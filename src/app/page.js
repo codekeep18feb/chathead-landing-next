@@ -8,7 +8,7 @@ import Footer from '../app/components/Footer';
 const Home = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <SolveSection />
       <HowSection />
       <EngagementSection />

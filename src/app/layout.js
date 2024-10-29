@@ -1,6 +1,6 @@
 // src/app/layout.js
 import './globals.css';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 export default function RootLayout({ children }) {
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
             </head>
             <body>
-                <Navbar />
+                <Header />
                 {children}
                 <Footer />
             </body>
