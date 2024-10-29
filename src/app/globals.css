@@ -235,13 +235,16 @@ body {
   border-radius: 8px;
   overflow: hidden;
   background-color: #f9f9f9;
+  height: 700px;
 }
 
 .left-side {
-  flex: 1;
+  /* flex: 1; */
   padding: 20px;
   border-right: 1px solid #ccc;
   background-color: #ffffff;
+  width: 350px;
+ background: linear-gradient(to right, #80deea, #ffccbc);;
 }
 
 .left-side h2 {
@@ -262,13 +265,15 @@ body {
   font-size: 1.1em;
   color: #555;
   border-radius: 4px;
+  background-color: #fff;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-.peer-list li:hover {
+/* .peer-list li:hover {
   background-color: #e0e0e0;
   color: #000;
-}
+} */
 
 .right-side {
   flex: 1;
@@ -276,12 +281,17 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-image: url(../../public/Asset/world_mag.png);
+  background-position: center;
+background-repeat: no-repeat;
+    background-size: contain;
 }
 
 /* Content sections */
 .chat-type-wrapper {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .back-btn button {
@@ -291,12 +301,24 @@ body {
   color: #333;
   cursor: pointer;
   margin-bottom: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: #e0e0e0;
 }
-
+.bi {
+  font-size: 30px;
+}
 .world-chat {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 15px; */
+  position: relative;
+  width: 100%;
+  height: auto; 
+  border: 3px solid #000;
+  display: flex;
+  flex: 1;
 }
 
 .chat-type-content {
@@ -304,6 +326,9 @@ body {
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 400px;
+  height: auto;
 }
 
 .chat-type-content h5 {
@@ -322,11 +347,55 @@ body {
   font-size: 0.95em;
   color: #666;
 }
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Adjust width and height if needed */
+  width: 400px;
+  height: auto;
+}
 
 .icon {
   margin-left: 8px;
   width: 12px;
   vertical-align: middle;
+}
+.v1_wrapper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.v1_wrapper h4 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.row{
+  display: flex;
+  gap: 20px;
+  flex: 1;
 }
 
 /* V1 Content Cards */
@@ -335,13 +404,14 @@ body {
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  width: 600px;
 }
 
 .v1_content_card h5 {
   font-size: 1.1em;
   color: #444;
   margin-bottom: 10px;
+  /* text-align: center; */
 }
 
 .v1_content_card ul {
@@ -401,6 +471,40 @@ body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; /* Add shadow for depth */
 }
 
+/* Customer Engagement */
+.engagement-section{
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+}
+.engagement-section h2{
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.engagement-section p{
+  font-size: 2opx;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.engagement-content{
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+
+}
+.engagement-item{
+  background-color: #fff;
+  width: 48%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
 
 /* Footer Styles */
 .footer {
@@ -450,10 +554,12 @@ body {
   .how-content {
     flex-direction: column; /* Stack content on smaller screens */
     align-items: center;
+    border: 2px solid black;
   }
 
   .utility-options {
     width: 100%; /* Full width on small screens */
     margin-bottom: 20px; /* Add margin for spacing */
+    background-color: orange;
   }
 }

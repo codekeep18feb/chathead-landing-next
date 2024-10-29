@@ -25,7 +25,7 @@ const HowSection = () => {
     return (
         <section className="how-section" style={{ display: 'flex' }}>
             {/* Left Side */}
-            <div className="left-side" style={{ flex: '1', padding: '20px', borderRight: '1px solid #ccc' }}>
+            <div className="left-side">
                 <h2>Peer to Admin</h2>
                 <ul className="peer-list">
                     {['v1', 'v2', 'v3'].map(option => (
@@ -35,7 +35,7 @@ const HowSection = () => {
             </div>
 
             {/* Right Side */}
-            <div className="right-side" style={{ flex: '1', padding: '20px' }}>
+            <div className="right-side">
                 {selectedOption ? (
                     <VersionContent version={selectedOption} onWatchDemo={handleWatchDemoClick} onBack={() => setSelectedOption(null)} />
                 ) : (
@@ -193,7 +193,9 @@ const DefaultContent = () => (
             </button>
         </div>
         <div className="world-chat">
-            <Section title="Benefits" items={[
+            <Section title="Benefits" 
+            className="top-left" 
+            items={[
                 'Start quickly to stay ahead of your competitors.',
                 'Free tier pack is enough for small business.',
                 'Flexible and most affordable pricing plans.',
@@ -201,32 +203,35 @@ const DefaultContent = () => (
                 'Reliable and comes with SLA terms.',
                 'Flexibility to choose the correct chat type for your needs.'
             ]} />
-            <Section title="Examples" items={[
+            <Section title="Examples"
+             className="top-right" items={[
                 'Lorem Ipsum is simply dummy text of the printing.',
                 'Lorem Ipsum is simply dummy text of the printing.',
                 'Lorem Ipsum is simply dummy text of the printing.',
                 'Lorem Ipsum is simply dummy text of the printing.'
             ]} />
-            <Section title="For Who" items={[
+            <Section title="For Who"
+            className="bottom-left" items={[
                 'Someone who wants a One-to-One Chat Solution in their product with any of the following cases:',
                 'Case 1- Auth - cloud managed',
                 'Case 2- Auth - locally managed',
                 'Case 3- Auth - not required'
             ]} />
-            <Section title="How it Works" items={[
+            <Section title="How it Works"
+            className="bottom-right" items={[
                 'Make a tenant account',
                 'Login to your Account',
                 'Create An App',
                 'Choose the right type of chat for your App',
                 'Follow the respective integration docs'
             ]} />
-            <img src="Asset/globe.png" alt="World Chat" />
+            <img src="Asset/globe.png" alt="World Chat" className='center-image' />
         </div>
     </div>
 );
 
-const Section = ({ title, items }) => (
-    <div className="chat-type-content">
+const Section = ({ title, items, className = '' }) => (
+    <div className={`chat-type-content ${className}`}>
         <h5>{title}</h5>
         <ul>
             {items.map((item, index) => (
