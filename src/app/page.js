@@ -12,7 +12,7 @@ const Home = () => {
       <SolveSection />
       <HowSection />
       <EngagementSection />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
