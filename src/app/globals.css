@@ -225,40 +225,157 @@ body {
   margin: 30% auto;
 }
 
-/* How Section */
+
+/* src/app/components/HowSection.css */
+
+/* General styling */
 .how-section {
-  text-align: center;
-  padding: 50px;
-  background-color: #e0e7ff;
-}
-
-.how-section h2 {
-  font-size: 45px;
-  margin-bottom: 20px;
-  color: var(--heading-color);
-}
-
-.how-section p {
-  font-size: 16px;
-  margin-bottom: 40px;
-  color: var(--text-color);
-}
-
-.how-content {
-  width: 85%;
-  max-width: 1200px; /* Limit the width */
-  height: auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 20px;
-  margin: auto;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-image: url(/public/Asset/world_mag.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
 }
+
+.left-side {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  background-color: #ffffff;
+}
+
+.left-side h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.peer-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.peer-list li {
+  padding: 10px 15px;
+  margin: 8px 0;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #555;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.peer-list li:hover {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.right-side {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Content sections */
+.chat-type-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.back-btn button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.world-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chat-type-content {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chat-type-content h5 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.chat-type-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.chat-type-content li {
+  margin: 5px 0;
+  font-size: 0.95em;
+  color: #666;
+}
+
+.icon {
+  margin-left: 8px;
+  width: 12px;
+  vertical-align: middle;
+}
+
+/* V1 Content Cards */
+.v1_content_card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.v1_content_card h5 {
+  font-size: 1.1em;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.v1_content_card ul {
+  padding-left: 20px;
+}
+
+.read_more_btn,
+#watch_demo {
+  margin-top: 10px;
+  padding: 8px 15px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.read_more_btn:hover,
+#watch_demo:hover {
+  background-color: #0056b3;
+}
+
+/* Image styling */
+.world-chat img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+
+
 
 /* Utility Options */
 .utility-options {
@@ -284,58 +401,6 @@ body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; /* Add shadow for depth */
 }
 
-/* Chat Type Wrapper */
-.chat-type-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-/* Back Button */
-.back-btn {
-  margin-bottom: 15px;
-  display: none;
-}
-
-.back-btn button {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  outline: none;
-  border: none;
-  background: var(--primary-color);
-  color: var(--white-text-color);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-/* World Chat */
-.world-chat {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.world-chat img {
-  z-index: 0;
-  width: 450px;
-  height: 450px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Chat Type Content */
-.chat-type-contant {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  z-index: 1;
-}
 
 /* Footer Styles */
 .footer {
