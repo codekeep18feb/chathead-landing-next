@@ -79,19 +79,19 @@ const ContentRows = ({ version, onWatchDemo }) => (
     <>
         <div className="row">
             {['Benefits', 'Provides'].map((title, index) => (
-                <ContentCard key={index} title={title} version={version} onWatchDemo={onWatchDemo} />
+                <ContentCard key={index} title={title} version={version} />
             ))}
         </div>
-
+        <WatchDemoButton onWatchDemo={onWatchDemo} version={version} /> {/* Move the button here */}
         <div className="row">
             {['Steps', 'Examples'].map((title, index) => (
-                <ContentCard key={index} title={title} version={version} onWatchDemo={onWatchDemo} />
+                <ContentCard key={index} title={title} version={version} />
             ))}
         </div>
     </>
 );
 
-const ContentCard = ({ title, version, onWatchDemo }) => {
+const ContentCard = ({ title, version }) => {
     const contentData = {
         v1: {
             Benefits: [
@@ -174,10 +174,16 @@ const ContentCard = ({ title, version, onWatchDemo }) => {
                     </li>
                 ))}
             </ul>
-            <button className="read_more_btn" onClick={() => onWatchDemo(version)}>Watch Demo</button>
         </div>
     );
 };
+
+// Watch Demo Button Component
+const WatchDemoButton = ({ onWatchDemo, version }) => (
+    <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <button className="read_more_btn" onClick={() => onWatchDemo(version)}>Watch Demo</button>
+    </div>
+);
 
 const DefaultContent = () => (
     <div className="chat-type-wrapper">
@@ -245,12 +251,11 @@ const overlayStyle = {
 };
 
 const popupStyle = {
-    background: 'white',
+    backgroundColor: '#fff',
     padding: '20px',
     borderRadius: '8px',
-    maxWidth: '500px',
-    width: '90%',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    maxWidth: '400px',
+    width: '100%',
 };
 
 export default HowSection;
