@@ -12,28 +12,50 @@ const payload = {
             {
                 "VANILA_JS": {
                     "content": [
+
+                        {
+                            "tag_type": "feature_options",
+                            "options": [
+                                {
+                                    "text": "Don't currently have a header and would like to have one", 
+                                    "description": [{
+                                        "tag_type": "p",
+                                        "text": "here some thing1-1"
+                                    },
+                                    
+                                    {
+                                        "tag_type": "img",
+                                        "src": "Asset/globe.png",
+                                        "alt": "alt n",
+                                    },
+                                    {
+                                        "tag_type": "p",
+                                        "text": "here some thing1-2"
+                                    },]
+                                },
+                                { "text": "Do have a header so would like to get Header Components Seprately so i can add them to my existing header", "description": [{
+                                        "tag_type": "p",
+                                        "text": "here some thing2-1"
+                                    }, {
+                                        "tag_type": "p",
+                                        "text": "here some thing2-2"
+                                    },]},
+                                { "text": "Other", "description": [{
+                                        "tag_type": "p",
+                                        "text": "Have more complex requirement :: No Worries, We got you covered"
+                                    }, {
+                                        "tag_type": "p",
+                                        "text": "Our Tech team can help you to integrate it any in scenerios"
+                                    },]}
+                            ]
+                        },
+
+
                         {
                             "tag_type": "p",
                             "text": "Instant messaging enhances user engagement by enabling users to connect and form a community within the app. Increased engagement can lead to increased user satisfaction and loyalty to your app. An instant messaging feature can also provide real-time support to users, allowing them to get help and answers to their questions quickly. The Chat SDK enables you to embed real-time messaging in any app, on any device, anywhere."
                         },
-                        {
-                            "tag_type": "p",
-                            "text": "This page guides you through implementing peer-to-adming messaging into your app using the Chat SDK for Web."
-                        },
-                        {
-                            "tag_type": "p",
-                            "text": "A User authentication system enhances close watch on users and better analytics of the users over the plateform"
-                        },
 
-                        { "tag_type": "h2", "text": "Integration of V1 (chat type)" },
-
-                        { "tag_type": "img", "src": "Asset/globe.png" },
-
-                        { "tag_type": "h2", "text": "Prerequisites" },
-                        {
-                            "tag_type": "p",
-                            "text": "In order to follow the procedure on this page, you must have:"
-                        },
 
                         {
                             "tag_type": "div",
@@ -42,28 +64,14 @@ const payload = {
                                     "tag_type": "ul",
                                     "items": [
 
-
                                         {
                                             text: 'Signup/Login to your account at Qchat Admin Page.',
                                             link_parts: [
                                                 { text: 'Signup/Login', link: 'https://www.google.com/' }
                                             ],
-                                        },
-                                        {
-                                            text: 'Create an App for your product.',
-                                            link_parts: [
-                                                { text: 'Create an App', link: 'https://www.google.com/' }
-                                            ],
-                                        },
-                                        {
-                                            text: 'Copy the credentials. we will require it soon during the integration',
-                                            highlightParts: [
-                                                { text: 'credentials' }
-                                            ]
                                         }
                                     ]
                                 },
-
 
                             ],
                         },
@@ -73,7 +81,6 @@ const payload = {
                             "tag_type": "p",
                             "text": "To integrate Chat into your app, do the following:"
                         },
-
 
                         {
                             "tag_type": "div",
@@ -100,9 +107,8 @@ const payload = {
                                                     "tag_type": "li",
                                                     "text": "after script is loaded we can initialize it like below.",
                                                     "extra_text": "kindly add it below the first script",
-                                                    "code": `<script>\n\n   async function makeMeAPICall(token) {\n        const apiUrl = 'https://v1u9b7mohg.execute-api.ap-south-1.amazonaws.com/prod/me';\n\n        try {\n            const response = await fetch(apiUrl, {\n                method: 'GET',\n                headers: {\n                    'Authorization': token,\n                    'Accept': '*/*'\n                }\n            });\n\n            if (!response.ok) {\n                throw new Error('Network response was not ok');\n            }\n\n            const data = await response.json();\n            console.log('User me api data:', data.id);\n            return data;\n        } catch (error) {\n            console.error('There was a problem with the fetch operation:', error);\n            throw error;\n        }\n    }\n    \n    // Wait for the document to be fully loaded\n    document.addEventListener("DOMContentLoaded", async function() {\n\n        const token = localStorage.getItem('tezkit_token');\n        if (token){\n            var loggedInUser = await makeMeAPICall(token);\n            window.chathead.initialize(loggedInUser);\n        }\n        else{\n            window.chathead.setUp(app_name="app1_acm_true_tenant5", \n             api_key="dGVuYW50NV9fU0VQUkFUT1JfX2FwcDFfYWNtX3RydWVfdGVuYW50NQ==");\n            window.chathead.initialize(null);\n        }\n    });\n\n</script>`
+                                                    "code": `<script>\n\n async function makeMeAPICall(token) {\n const apiUrl = 'https://v1u9b7mohg.execute-api.ap-south-1.amazonaws.com/prod/me';\n\n try {\n const response = await fetch(apiUrl, {\n method: 'GET',\n headers: {\n 'Authorization': token,\n 'Accept': '*/*'\n }\n });\n\n if (!response.ok) {\n throw new Error('Network response was not ok');\n }\n\n const data = await response.json();\n console.log('User me api data:', data.id);\n return data;\n } catch (error) {\n console.error('There was a problem with the fetch operation:', error);\n throw error;\n }\n }\n \n // Wait for the document to be fully loaded\n document.addEventListener("DOMContentLoaded", async function() {\n\n const token = localStorage.getItem('tezkit_token');\n if (token){\n var loggedInUser = await makeMeAPICall(token);\n window.chathead.initialize(loggedInUser);\n }\n else{\n window.chathead.setUp(app_name="app1_acm_true_tenant5", \n api_key="dGVuYW50NV9fU0VQUkFUT1JfX2FwcDFfYWNtX3RydWVfdGVuYW50NQ==");\n window.chathead.initialize(null);\n }\n });\n\n</script>`
                                                 },
-
 
                                             ]
                                         },
@@ -112,7 +118,6 @@ const payload = {
                                             // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
                                             "img": "Asset/globe.png"
 
-
                                         },
                                         {
                                             "tag_type": "li",
@@ -120,11 +125,9 @@ const payload = {
                                             // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
                                             "img": "Asset/globe.png"
 
-
                                         },
                                     ]
                                 },
-
 
                             ]
                         },
@@ -135,12 +138,10 @@ const payload = {
                             "text": "which means we can keep close connection with them"
                         },
 
-
                         {
                             "tag_type": "div",
                             "children": [
                                 { "tag_type": "h4", "text": "Users now should be able to do the following" },
-                
                                 {
                                     "tag_type": "ul",
                                     "items": [
@@ -148,12 +149,9 @@ const payload = {
                                         "User can send message to the Admin",
                                         "User can receive message to the Admin"]
                                 }
-                        
-
 
                             ]
                         },
-
 
 
 
@@ -178,7 +176,6 @@ const payload = {
                                         }
                                     ]
                                 },
-
 
                             ],
                         }
@@ -307,6 +304,55 @@ const payload = {
     }
 };
 
+
+
+
+const CondRadioRender = ({ r_options }) => {
+    // Set the initial selected option to the first one
+    const [selectedOption, setSelectedOption] = useState(r_options[0].text);
+
+    const handleChange = (event) => {
+        // Update the selected option based on user selection
+        setSelectedOption(event.target.value);
+    };
+
+    return (
+        <div>
+            <div>
+                {r_options.map((option, index) => (
+                    <div key={index}>
+                        <label>
+                            <input
+                                type="radio"
+                                name="option"
+                                value={option.text}
+                                checked={selectedOption === option.text}
+                                onChange={handleChange}
+                            />
+                            {option.text}
+                        </label>
+                    </div>
+                ))}
+            </div>
+            <div>
+                <h3>Selected Option Description:</h3>
+                <div>
+
+                    {/* {r_options.find(option => option.text === selectedOption)?.description.map((desc, idx) => (
+                        <li key={idx}>{desc}</li>
+                    )
+                )
+                    
+                    } */}
+
+                    <ContentRenderer content={r_options.find(option => option.text === selectedOption)?.description} key={8888} />
+
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const supportedTags = ["h1", "h2", "h3", "h4", "p", "div", "img", "a", "blockquote", "ul", "li", "code", "ol"];
 
 const renderTextWithElements = (text, linkParts, buttonParts, highlightParts) => {
@@ -378,7 +424,6 @@ const List = ({ items, listType }) => (
     )
 );
 
-
 const ListItem = ({ item, listType }) => {
     const linkParts = item.link_parts || [];
     const buttonParts = item.buttonParts || [];
@@ -424,13 +469,25 @@ const ContentRenderer = ({ content }) => {
                             {item.text}
                         </h2>
                     );
-                } else if (item.tag_type === 'h4') {
+                }
+
+
+                else if (item.tag_type === 'h4') {
                     return (
                         <h2 key={index} className="content-inner-heading">
                             {item.text}
                         </h2>
                     );
                 }
+
+                else if (item.tag_type === 'feature_options') {
+                    return (
+                        <CondRadioRender r_options={item.options} key={index} />
+                    );
+                }
+
+                // <CondRadioRender r_options={options} />
+
                 else if (item.tag_type === 'h3') {
                     return (
                         <h3 key={index} className="content-subheading">
@@ -487,7 +544,10 @@ const ContentRenderer = ({ content }) => {
                             )}
                         </li>
                     );
-                } else if (item.tag_type === 'div') {
+                }
+
+
+                else if (item.tag_type === 'div') {
                     return (
                         <div key={index} className="content-div">
                             {item.children && item.children.map((child, i) => (
@@ -570,3 +630,4 @@ const Document = () => {
 };
 
 export default Document;
+
