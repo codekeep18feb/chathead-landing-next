@@ -295,7 +295,6 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   padding: 20px 0px;
-  border: 1px solid red;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -615,7 +614,6 @@ body {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 0px;
   }
-
   .nav-links {
     display: flex;
     flex-direction: column;
@@ -632,16 +630,21 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 20px;
     gap: 20px;
-  }
-  .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    /* margin-left: 300px; */
     gap: 20px;
   }
-
+  .auth-buttons {
+    display: block;
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+}
+  .login {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .signup {
+    width: 100%;
+}
   .burger-icon {
     display: block; /* Show burger icon on smaller screens */
   }
@@ -659,6 +662,11 @@ body {
   .email-input {
     width: 400px;
   }
+  .email-input button {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
   .solve-image {
     width: 100%;
     background: var(--primary-gradient);
@@ -691,6 +699,8 @@ body {
   .right-side {
     display: block;
     padding: 20px;
+    /* margin-top: 40px; */
+    height: auto;
   }
   .center-image {
     display: none;
@@ -699,9 +709,68 @@ body {
     display: block;
     margin: auto;
     align-items: center;
+    margin-bottom: 15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    background: var(--primary-color);
+    color: var(--white-text-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
-  
+  .world-chat {
+    display: block;
+    width: 100%;
+    margin-top: 0;
+  }
 
+  .chat-type-content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 20px;
+    margin-left: 0;
+  }
+  .chat-type-content:nth-child(1) {
+    left: 0;
+    top: 0;
+    margin-top: 0;
+  }
+  .chat-type-content:nth-child(2) {
+    right: 0;
+    top: 0;
+  }
+  .chat-type-content:nth-child(3) {
+    left: 0;
+    top: 5px;
+    margin-top: 0;
+  }
+  .chat-type-content:nth-child(4) {
+    right: 0;
+    top: 5px;
+    margin-bottom: 0;
+  }
+  .chat-type-content ul {
+    text-align: left;
+    margin-bottom: 8px;
+    list-style-type: disc;
+    margin: 0px 50px;
+  }
+  .v1_wrapper {
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .v1_wrapper h4 {
+    margin: 10px 0px 20px 0;
+  }
+  .row {
+    flex-direction: column;
+  }
+  .v1_content_card {
+    width: 100%;
+  }
   .utility-options {
     width: 100%; /* Full width on small screens */
     margin-bottom: 20px; /* Add margin for spacing */
@@ -726,5 +795,83 @@ body {
   }
   .engagement-item {
     margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .navbar {
+    width: 100%;
+    margin: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 0px;
+  }
+  .burger-icon {
+    display: block;
+  }
+  .nav-links {
+    display: block;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    background-color: var(--white-text-color);
+    width: 50%;
+    z-index: 1;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px;
+    gap: 20px;
+  }
+  .nav-links li{
+   padding: 10px;
+
+  }
+  .login,
+  .signup {
+    width: 100%;
+   margin: 0px;
+  }
+  .signup {
+    width: 100%;
+  }
+  .email-input {
+    width: 100%;
+  }
+  .email-input button {
+    padding: 12px 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .chat-type-content ul {
+    margin: 0px;
+  }
+  .v1_wrapper {
+    width: 100%;
+  }
+  .v1_content_card {
+    height: auto;
+    padding: 10px;
+  }
+  .green_bg {
+    background-image: url(../../public/Asset/green_bg.png);
+    background-position: center;
+    background-size: auto;
+  }
+  .blue_bg {
+    background-image: url(../../public/Asset/blue_bg_mob.png);
+    background-position: center;
+    background-size: auto;
+  }
+  .engagement-item {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .engagement-item img {
+    width: 200px;
+    height: auto;
+    margin-top: 20px;
   }
 }
