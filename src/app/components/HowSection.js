@@ -2,6 +2,7 @@
 
 // src/app/components/HowSection.js
 import React, { useState } from "react";
+import ImageSlider from "./ImageSlider";
 
 const HowSection = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -52,17 +53,30 @@ const HowSection = () => {
 
         {/* Popup Overlay */}
         {showDemoPopup && (
-          <div className="overlay" style={overlayStyle}>
-            <div className="popup" style={popupStyle}>
-              <div
+          <div className="overlay">
+            <div className="popup">
+              {/* <div
                 className="close-btn"
                 onClick={closePopup}
                 style={{ cursor: "pointer", textAlign: "right" }}
               >
                 <i className="bi bi-x" style={{ fontSize: "24px" }}></i>
+              </div> */}
+
+              {/* <img src="/Asset/logo.png" alt="quickChat" /> */}
+
+              <div className="image-wrappe">
+                <ImageSlider
+                  images={[
+                    "/Asset/demo_imgs/after.jpeg",
+                    "/Asset/demo_imgs/before.jpeg",
+                  ]}
+                  onClose={closePopup}
+                />
               </div>
-              <h3>{`Watch Demo for ${demoVersion}`}</h3>
-              <p>{`This is the demo content for ${demoVersion}.`}</p>
+
+              {/* <h3>{`Watch Demo for ${demoVersion}`}</h3>
+              <p>{`This is the demo content for ${demoVersion}.`}</p> */}
             </div>
           </div>
         )}
@@ -257,8 +271,8 @@ const DefaultContent = () => (
   </div>
 );
 
-const Section = ({ title, items, }) => (
-  <div className= "chat-type-content">
+const Section = ({ title, items }) => (
+  <div className="chat-type-content">
     <h5>{title}</h5>
     <ul>
       {items.map((item, index) => (
@@ -267,27 +281,5 @@ const Section = ({ title, items, }) => (
     </ul>
   </div>
 );
-
-// Styles for the overlay and popup
-const overlayStyle = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: "rgba(0, 0, 0, 0.7)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  zIndex: 1000,
-};
-
-const popupStyle = {
-  backgroundColor: "#fff",
-  padding: "20px",
-  borderRadius: "8px",
-  maxWidth: "400px",
-  width: "100%",
-};
 
 export default HowSection;
