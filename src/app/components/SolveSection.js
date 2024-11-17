@@ -2,6 +2,8 @@
 import React from 'react';
 
 const SolveSection = () => {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+    
     return (
         <section className="solve-section">
             <div className="solve-content">
@@ -13,7 +15,9 @@ const SolveSection = () => {
                 </div>
             </div>
             <div className="solve-image">
-                <img src="/Asset/banner_img_chat.png" alt="Chat Solution" />
+                {/* <img src={`${basePath}/Asset/logo.png`} alt="quickChat" /> */}
+
+                <img src={`${basePath}/Asset/logo.png`} alt="quickChat" />
             </div>
         </section>
     );
