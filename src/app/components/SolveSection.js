@@ -17,7 +17,11 @@ const SolveSection = () => {
             <div className="solve-image">
                 {/* <img src={`${basePath}/Asset/logo.png`} alt="quickChat" /> */}
 
-                <img src={`${basePath}/Asset/logo.png`} alt="quickChat" />
+                {/* <img src={`${basePath}/Asset/logo.png`} alt="Chat Solution" /> */}
+            
+                <img src={`${basePath}/Asset/banner_img_chat.png`} alt="Chat Solution" />
+            
+            
             </div>
         </section>
     );
