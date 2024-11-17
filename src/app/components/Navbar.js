@@ -15,7 +15,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="logo">
-                <img src={`${basePath}/Asset/logo.png`} alt="quickChat" />
+                <img src={`${basePath}/Asset/logo.jpg`} alt="quickChat" />
                 <h2>quickChat</h2>
             </div>
             <div className="burger-icon" onClick={toggleMenu}>
@@ -39,12 +39,12 @@ const Navbar = () => {
                 </li>
                 <div className="auth-buttons">
                     <li>
-                        <a href="http://122.160.157.99:3101/newlogin">
+                        <a href="http://122.160.157.99:3101/login">
                             <button className="login">Log-in</button>
                         </a>
                     </li>
                     <li>
-                        <a href="http://122.160.157.99:3101/newsignup">
+                        <a href="http://122.160.157.99:3101/signup">
                             <button className="signup">Sign-up</button>
                         </a>
                     </li>
