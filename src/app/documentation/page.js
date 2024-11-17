@@ -8,7 +8,7 @@ import './test.css'; // Import the CSS file
 // Example payload with additional tags and Lorem Ipsum content
 const payload = {
     "installation": {
-        "Peer to Admin - V1 - SDK quickstart": [
+        "Peer to Admin - V1 - SDK quickstart updated!": [
             {
                 "VANILA_JS": {
                     "content": [
