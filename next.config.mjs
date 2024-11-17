@@ -1,6 +1,10 @@
 const isProd = process.env.NODE_ENV === 'production';
 
-console.log("canwe log some here?")
+
+console.log(`Building for environment: ${process.env.NODE_ENV}`);
+console.log(`Asset prefix set to: ${isProd ? '/chathead-landing-next/' : ''}`);
+
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
