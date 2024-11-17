@@ -63,7 +63,7 @@ const HowSection = () => {
                 <i className="bi bi-x" style={{ fontSize: "24px" }}></i>
               </div> */}
 
-              {/* <img src="/Asset/logo.png" alt="quickChat" /> */}
+              {/* <img src="Asset/logo.png" alt="quickChat" /> */}
 
               <div className="image-wrappe">
                 <ImageSlider
