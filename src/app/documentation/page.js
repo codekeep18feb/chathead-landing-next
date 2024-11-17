@@ -613,6 +613,8 @@ const Document = () => {
     return (
         <div className="document-container">
             <div className="doc_sidebar">
+
+                
                 {Object.keys(payload).map(key => (
                     <div key={key} onClick={() => handleKeyClick(key)} className="sidebar-item">
                         <h2>{key}</h2>

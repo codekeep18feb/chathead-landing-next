@@ -10,8 +10,8 @@ const Home = () => {
     <div>
       {/* <Header /> */}
       <SolveSection />
-      <HowSection />
-      <EngagementSection />
+      {/* <HowSection />
+      <EngagementSection /> */}
       {/* <Footer /> */}
     </div>
   );
