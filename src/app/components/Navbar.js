@@ -15,8 +15,8 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="logo">
-                <img src={`${basePath}/Asset/logo.jpg`} alt="quickChat" />
-                <h2>quickChat</h2>
+                <img src={`${basePath}/Asset/logo.jpg`} alt="addChat" />
+                <h2>addChat</h2>
             </div>
             <div className="burger-icon" onClick={toggleMenu}>
                 &#9776;

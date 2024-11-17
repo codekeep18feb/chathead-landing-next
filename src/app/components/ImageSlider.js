@@ -31,7 +31,7 @@ const ImageSlider = ({ images, onClose,}) => {
           <i className="bi bi-x" style={{ fontSize: "24px" }}></i>
         </div> */}
 
-        {/* <img src={images[0]} alt="quickChat" /> */}
+        {/* <img src={images[0]} alt="addChat" /> */}
 
         <img
           src={images[currentIndex]}
