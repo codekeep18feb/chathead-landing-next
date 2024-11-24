@@ -10,7 +10,7 @@ const payload = {
     "installation": {
         "Peer to Admin - V1 - SDK quickstart updated!": [
             {
-                "VANILA_JS": {
+                "P2A_V1": {
                     "content": [
 
                         {
@@ -33,7 +33,7 @@ const payload = {
                                         "text": "here some thing1-2"
                                     },]
                                 },
-                                { "text": "Do have a header so would like to get Header Components Seprately so i can add them to my existing header", "description": [{
+                                { "text": "Do have a header so would like to get Header Components Seprately so you can add them to my existing header", "description": [{
                                         "tag_type": "p",
                                         "text": "here some thing2-1"
                                     }, {
@@ -183,23 +183,23 @@ const payload = {
                 }
             },
             {
-                "REACT": {
+                "P2A_V2": {
                     "content": [
-                        { "tag_type": "h1", "text": "Install it from REACT 3000source" },
-                        { "tag_type": "div", "text": "<div >sdsfdsdfon REACT devices.</div>" },
-                        { "tag_type": "div", "text": "sdsdfon REACT devices." }
+                        { "tag_type": "h1", "text": "Install it from P2A_V2 3000source" },
+                        { "tag_type": "div", "text": "<div >sdsfdsdfon P2A_V2 devices.</div>" },
+                        { "tag_type": "div", "text": "sdsdfon P2A_V2 devices." }
                     ]
                 }
             }
 
         ]
     },
-    "probable_use_cases": {
+    "possible_use_cases": {
         "install": [
             {
-                "VANILA_JS": {
+                "P2A_V1": {
                     "content": [
-                        { "tag_type": "h1", "text": "Install it from VANILA_JS source" },
+                        { "tag_type": "h1", "text": "Install it from P2A_V1 source" },
                         { "tag_type": "p", "text": "Ensure your device meets the system requirements before installation." },
                         { "tag_type": "img", "src": "https://images.pexels.com/photos/10618233/pexels-photo-10618233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "alt": "Installation Image" },
                         { "tag_type": "blockquote", "text": "Refer to the user manual for detailed instructions." }
@@ -207,19 +207,19 @@ const payload = {
                 }
             },
             {
-                "REACT": {
+                "P2A_V2": {
                     "content": [
-                        { "tag_type": "h1", "text": "Install it from REACT source" },
-                        { "tag_type": "p", "text": "Follow the official guide to install on your REACT device." }
+                        { "tag_type": "h1", "text": "Install it from P2A_V2 source" },
+                        { "tag_type": "p", "text": "Follow the official guide to install on your P2A_V2 device." }
                     ]
                 }
             }
         ],
         "usage": [
             {
-                "VANILA_JS": {
+                "P2A_V1": {
                     "content": [
-                        { "tag_type": "h2", "text": "Usage Instructions for VANILA_JS" },
+                        { "tag_type": "h2", "text": "Usage Instructions for P2A_V1" },
                         {
                             "tag_type": "ul", "items": [
                                 "Launch the app",
@@ -232,9 +232,9 @@ const payload = {
                 }
             },
             {
-                "REACT": {
+                "P2A_V2": {
                     "content": [
-                        { "tag_type": "h2", "text": "Usage Instructions for REACT" },
+                        { "tag_type": "h2", "text": "Usage Instructions for P2A_V2" },
                         {
                             "tag_type": "ul", "items": [
                                 "Start the application",
@@ -251,7 +251,7 @@ const payload = {
     "examples": {
         "install": [
             {
-                "VANILA_JS": {
+                "P2A_V1": {
                     "content": [
                         { "tag_type": "h1", "text": "examples information" },
                         { "tag_type": "p", "text": "Ensure your device meets the system requirements before installation." },
@@ -261,19 +261,19 @@ const payload = {
                 }
             },
             {
-                "REACT": {
+                "P2A_V2": {
                     "content": [
-                        { "tag_type": "h1", "text": "Install it from REACT source" },
-                        { "tag_type": "p", "text": "Follow the official guide to install on your REACT device." }
+                        { "tag_type": "h1", "text": "Install it from P2A_V2 source" },
+                        { "tag_type": "p", "text": "Follow the official guide to install on your P2A_V2 device." }
                     ]
                 }
             }
         ],
         "usage": [
             {
-                "VANILA_JS": {
+                "P2A_V1": {
                     "content": [
-                        { "tag_type": "h2", "text": "Usage Instructions for VANILA_JS" },
+                        { "tag_type": "h2", "text": "Usage Instructions for P2A_V1" },
                         {
                             "tag_type": "ul", "items": [
                                 "Launch the app",
@@ -286,9 +286,9 @@ const payload = {
                 }
             },
             {
-                "REACT": {
+                "P2A_V2": {
                     "content": [
-                        { "tag_type": "h2", "text": "Usage Instructions for REACT" },
+                        { "tag_type": "h2", "text": "Usage Instructions for P2A_V2" },
                         {
                             "tag_type": "ul", "items": [
                                 "Start the application",
@@ -434,7 +434,7 @@ const ListItem = ({ item, listType }) => {
             {typeof item === 'string' ? (
                 <span dangerouslySetInnerHTML={{ __html: item }} />
             ) : (
-                <React.Fragment>
+                <>
                     {item.text ? (
                         <span>
                             {renderTextWithElements(item.text, linkParts, buttonParts, highlightParts)}
@@ -451,7 +451,7 @@ const ListItem = ({ item, listType }) => {
                             listType={item.listType || listType}
                         />
                     )}
-                </React.Fragment>
+                </>
             )}
         </li>
     );
@@ -567,15 +567,15 @@ const ContentRenderer = ({ content }) => {
 
 const Document = () => {
     const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
-    const [selectedTab, setSelectedTab] = useState('VANILA_JS');
+    const [selectedTab, setSelectedTab] = useState('P2A_V1');
 
     const handleKeyClick = (key) => {
         setSelectedKey(key);
-        setSelectedTab('VANILA_JS'); // reset tab selection to default
+        setSelectedTab('P2A_V1'); // reset tab selection to default
     };
 
     const renderTabs = () => {
-        const versions = ["VANILA_JS", "REACT"]; // Directly define the versions
+        const versions = ["P2A_V1", "P2A_V2"]; // Directly define the versions
         return (
             <div className="tabs">
                 {versions.map(version => (
