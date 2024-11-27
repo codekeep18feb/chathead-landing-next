@@ -2,11 +2,11 @@
 import React from 'react';
 import Navbar from './Navbar';
 
-const Header = () => {
+const Header = ({ onLinkHover, onNavLeave }) => {
   return (
-    <header className="header">
-      <Navbar />
-    </header>
+    // <header className="header">
+      <Navbar onLinkHover={onLinkHover} onNavLeave={onNavLeave}/>
+    // </header>
   );
 };
 

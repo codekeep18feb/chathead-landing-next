@@ -34,7 +34,7 @@ body {
 .header {
   /* position: fixed; */
   width: 100%;
-  z-index: 2;
+  z-index: 1010;
 }
 
 .navbar {
@@ -47,6 +47,7 @@ body {
   border-radius: 8px;
   margin: 20px 80px;
   transition: background-color 0.3s ease; /* Smooth transition for background */
+  z-index: 1011;
 }
 
 .navbar.scrolled {
@@ -95,6 +96,9 @@ body {
 
 .link:hover::before {
   transform: scaleX(1);
+}
+.nextArrow {
+  display: none;
 }
 
 /* Auth Buttons */
@@ -317,7 +321,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 1;
+  z-index: 4;
   padding: 20px;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -615,7 +619,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 5;
 }
 .popup {
   background-color: rgba(95, 92, 92, 0.1);
@@ -626,7 +630,7 @@ body {
   position: relative;
 }
 
-.image-wrappe{
+.image-wrappe {
   background-color: lightblue;
   padding: 0;
   margin: 0;
@@ -653,6 +657,35 @@ body {
   background-color: #ccc;
   cursor: not-allowed;
 }
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 8%;
+  left: 0;
+  width: 100%;
+  /* height: 20%; */
+  /* background: rgba(0, 0, 0, 0.5);  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1010;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+  /* min-width: 300px; */
+  text-align: center;
+  z-index: 1011;
+  width: 100%;
+  height: 20%;
+  margin: 0px 80px;
+}
+.navList {
+  display: flex;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   .navbar {
@@ -661,8 +694,12 @@ body {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 0px;
   }
+  .burger-icon {
+    display: block; /* Show burger icon on smaller screens */
+  }
+
   .nav-links {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
     align-items: flex-start;
@@ -670,7 +707,7 @@ body {
     right: 10px;
     background-color: var(--white-text-color);
     width: 30%;
-    z-index: 1;
+    z-index: 1006;
     font-size: 18px;
     font-weight: 600;
     border-radius: 10px;
@@ -678,6 +715,33 @@ body {
     padding: 20px;
     gap: 20px;
     gap: 20px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nextArrow {
+    display: block;
+  }
+  .navList {
+    display: block;
+    width: 100%;
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    cursor: pointer;
+  }
+  .nav-links a{
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .link::before{
+    display: none;
+  }
+  .modal-overlay {
+    display: none;
   }
   .auth-buttons {
     display: block;
@@ -691,9 +755,6 @@ body {
   }
   .signup {
     width: 100%;
-  }
-  .burger-icon {
-    display: block; /* Show burger icon on smaller screens */
   }
 
   .solve-section {
@@ -856,20 +917,23 @@ body {
     display: block;
   }
   .nav-links {
-    display: block;
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 80px;
     right: 10px;
     background-color: var(--white-text-color);
     width: 50%;
-    z-index: 1;
+    z-index: 3;
     font-size: 16px;
     font-weight: 500;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 10px;
     gap: 20px;
+  }
+  .nav-links.active {
+    display: flex;
   }
   .nav-links li {
     padding: 10px;
