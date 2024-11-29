@@ -1,6 +1,13 @@
+import SubscriptionPlans from "./SubscriptionPlans";
+import "./pricing.css";
+
 const Pricing = () =>{
     return(
-       <div>Price</div>
+       <div>
+        <h1>Choose Your Plan</h1>
+
+        <SubscriptionPlans/>
+       </div>
     )
    }
    
