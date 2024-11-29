@@ -7,37 +7,35 @@ const plans = {
     {
       type: "Free",
       price: "$0/month",
-      description: "A perfect plan to start with basic features.",
-      subheading: "For individuals exploring the service",
+      description: "A perfect plan to start with basic features. (_lorem)",
+      subheading: "For individuals exploring the service (_lorem)",
       features: [
-        "Access to limited features",
-        "1 project limit",
-        "Community support",
+        "Access to limited features (_lorem)",
+        "1 project limit  (_lorem)",
+        "Community support  (_lorem)",
       ],
       buttonLabel: "Get Started",
     },
     {
       type: "Basic",
       price: "$9.99/month",
-      description: "Best for small teams and individuals.",
-      subheading: "Grow your experience with better resources",
-      features: [
-        "Unlimited projects",
-        "Email support",
-        "Basic analytics",
-      ],
-      buttonLabel: "Choose Basic",
+      description: "Best for small teams and individuals. (_lorem)",
+      subheading: "Grow your experience with better resources (_lorem)",
+      features: ["Unlimited projects (_lorem)", 
+        "Email support (_lorem)", 
+        "Basic analytics (_lorem)"],
+      buttonLabel: "Choose Basic ",
     },
     {
       type: "Advance",
       price: "$29.99/month",
-      description: "For professionals and businesses.",
-      subheading: "Maximize your potential with all features",
+      description: "For professionals and businesses. (_lorem)",
+      subheading: "Maximize your potential with all features (_lorem)",
       features: [
-        "All Basic features",
-        "Priority support",
-        "Advanced analytics",
-        "Custom integrations",
+        "All Basic features (_lorem)",
+        "Priority support (_lorem)",
+        "Advanced analytics (_lorem)",
+        "Custom integrations (_lorem)",
       ],
       buttonLabel: "Go Pro",
     },
@@ -60,11 +58,7 @@ const plans = {
       price: "$99.99/year",
       description: "Best for small teams and individuals.",
       subheading: "Grow your experience with better resources",
-      features: [
-        "Unlimited projects",
-        "Email support",
-        "Basic analytics",
-      ],
+      features: ["Unlimited projects", "Email support", "Basic analytics"],
       buttonLabel: "Choose Basic",
     },
     {
@@ -103,7 +97,6 @@ const SubscriptionPlans = () => {
         </button>
       </div>
 
-
       <div className="plans-container">
         {plans[activeTab].map((plan, index) => (
           <div key={index} className={`plan-card ${plan.type.toLowerCase()}`}>
@@ -125,5 +118,3 @@ const SubscriptionPlans = () => {
 };
 
 export default SubscriptionPlans;
-
-
