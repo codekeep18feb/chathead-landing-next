@@ -353,10 +353,13 @@ const CondRadioRender = ({ r_options }) => {
   // Set the initial selected option to the first one
   const [selectedOption, setSelectedOption] = useState(r_options[0].text);
 
+
   const handleChange = (event) => {
     // Update the selected option based on user selection
     setSelectedOption(event.target.value);
   };
+
+
 
   return (
     <div>
@@ -378,9 +381,9 @@ const CondRadioRender = ({ r_options }) => {
                 value={option.text}
                 checked={selectedOption === option.text}
                 onChange={handleChange}
-                  className="custom-radio"
+                className="custom-radio"
               />
-              <span>{option.text}</span>
+              <p className="input_text">{option.text}</p>
             </label>
           </div>
         ))}
@@ -532,8 +535,10 @@ const ListItem = ({ item, listType }) => {
               )}
             </span>
           ) : null}
-          <div >
-            {item.img && <img src={item.img} alt="" className="content-list-img"/>}
+          <div>
+            {item.img && (
+              <img src={item.img} alt="" className="content-list-img" />
+            )}
           </div>
           {item.more_text && <p>{item.more_text}</p>}
           {item.add_more_p && <p>{item.add_more_p}</p>}
@@ -554,7 +559,7 @@ const ListItem = ({ item, listType }) => {
 
 const ContentRenderer = ({ content }) => {
   return (
-     <div className="contents">
+    <div className="contents">
       {content.map((item, index) => {
         const Tag = supportedTags.includes(item.tag_type)
           ? item.tag_type
@@ -563,12 +568,7 @@ const ContentRenderer = ({ content }) => {
         if (item.tag_type === "img") {
           return (
             <div className="content-img">
-                <img
-              key={index}
-              src={item.src}
-              alt={item.alt || ""}
-              
-            />
+              <img key={index} src={item.src} alt={item.alt || ""} />
             </div>
           );
         }
@@ -603,14 +603,9 @@ const ContentRenderer = ({ content }) => {
           );
         } else if (item.tag_type === "img") {
           return (
-           <div className="content-img">
-             <img
-              key={index}
-              src={item.src}
-              alt={item.alt || ""}
-             
-            />
-           </div>
+            <div className="content-img">
+              <img key={index} src={item.src} alt={item.alt || ""} />
+            </div>
           );
         } else if (item.tag_type === "a") {
           return (
@@ -675,6 +670,7 @@ const ContentRenderer = ({ content }) => {
 const Document = () => {
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
   const [selectedTab, setSelectedTab] = useState("VANILA_JS");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleKeyClick = (key) => {
     setSelectedKey(key);
@@ -696,6 +692,10 @@ const Document = () => {
         ))}
       </div>
     );
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(prevState => !prevState);  // Toggle the state on click
   };
 
   const renderContent = () => {
@@ -724,15 +724,32 @@ const Document = () => {
   return (
     <div className="document-container">
       <div className="doc_sidebar">
-        {Object.keys(payload).map((key) => (
-          <div
-            key={key}
-            onClick={() => handleKeyClick(key)}
-            className="sidebar-item"
+        <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>
+          {Object.keys(payload).map((key) => (
+            <div
+              key={key}
+              onClick={() => handleKeyClick(key)}
+              className="sidebar-item"
+            >
+              <h2>{key}</h2>
+            </div>
+          ))}
+        </div>
+        <div className="downIcon" onClick={toggleDropdown}>
+          <h3>Overview</h3>
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <h2>{key}</h2>
-          </div>
-        ))}
+            <path
+              d="M15 0C12.0333 0 9.13319 0.879734 6.66645 2.52796C4.19972 4.17618 2.27713 6.51886 1.14181 9.25975C0.00649932 12.0006 -0.290551 15.0166 0.288227 17.9264C0.867006 20.8361 2.29562 23.5088 4.3934 25.6066C6.49119 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2906 17.9994 29.9935 20.7403 28.8582C23.4811 27.7229 25.8238 25.8003 27.472 23.3335C29.1203 20.8668 30 17.9667 30 15C29.9953 11.0232 28.4135 7.21061 25.6014 4.39858C22.7894 1.58655 18.9768 0.00469155 15 0ZM22.7823 13.2368L15.9641 20.055C15.7084 20.3106 15.3616 20.4543 15 20.4543C14.6384 20.4543 14.2916 20.3106 14.0359 20.055L7.21773 13.2368C6.96934 12.9796 6.83189 12.6352 6.835 12.2776C6.8381 11.9201 6.98151 11.5781 7.23434 11.3252C7.48717 11.0724 7.82919 10.929 8.18673 10.9259C8.54427 10.9228 8.88873 11.0602 9.14591 11.3086L15 17.1627L20.8541 11.3086C21.1113 11.0602 21.4557 10.9228 21.8133 10.9259C22.1708 10.929 22.5128 11.0724 22.7657 11.3252C23.0185 11.5781 23.1619 11.9201 23.165 12.2776C23.1681 12.6352 23.0307 12.9796 22.7823 13.2368Z"
+              fill="black"
+            />
+          </svg>
+        </div>
       </div>
       <div className="rightWrap">
         <div className="main-content">
