@@ -686,6 +686,79 @@ body {
   display: flex;
 }
 
+
+/* Platform */
+.platform-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.platform-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.platform-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.card-icon {
+  font-size: 24px;
+  color: #4caf50;
+}
+
+.card-subheading {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+
 /* Media Queries */
 @media (max-width: 768px) {
   .navbar {

@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { collectSegments } from "next/dist/build/segment-config/app/app-segments";
+import Platform from "./Platform";
+import Solutions from "./Solutions";
+import Document from "../documentation/page";
 
 const Navbar = ({ onLinkHover, onNavLeave }) => {
   const [menuOpen, setMenuOpen] = useState(false); // Manage menu state
@@ -27,7 +30,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
         <ul className={`nav-links ${menuOpen ? "active" : ""}`} id="nav-links">
           <div className="navList">
             <li
-              onMouseEnter={() => onLinkHover("platform modal content")}
+              onMouseEnter={() => onLinkHover(<Platform/>)}
               onMouseLeave={onNavLeave}
               className="links"
             >
@@ -37,7 +40,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
               <div className=" nextArrow"> &gt;</div>
             </li>
             <li
-              onMouseEnter={() => onLinkHover("solutions modal content")}
+              onMouseEnter={() => onLinkHover(<Solutions/>)}
               onMouseLeave={onNavLeave}
               className="links"
             >
@@ -47,7 +50,8 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
               <div className=" nextArrow"> &gt;</div>
             </li>
             <li
-              onMouseEnter={() => onLinkHover("Developer modal content")}
+              onMouseEnter={() => onLinkHover(<Document/>)}
+              // onMouseEnter={() => onLinkHover("Developer modal content")}
               onMouseLeave={onNavLeave}
               className="links"
             >
