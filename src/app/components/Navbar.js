@@ -5,7 +5,8 @@ import Link from "next/link";
 import { collectSegments } from "next/dist/build/segment-config/app/app-segments";
 import Platform from "./Platform";
 import Solutions from "./Solutions";
-import Document from "../documentation/page";
+import Developers from "./Developers";
+import Resources from "./Resources";
 
 const Navbar = ({ onLinkHover, onNavLeave }) => {
   const [menuOpen, setMenuOpen] = useState(false); // Manage menu state
@@ -50,8 +51,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
               <div className=" nextArrow"> &gt;</div>
             </li>
             <li
-              onMouseEnter={() => onLinkHover(<Document/>)}
-              // onMouseEnter={() => onLinkHover("Developer modal content")}
+              onMouseEnter={() => onLinkHover(<Developers/>)}
               onMouseLeave={onNavLeave}
               className="links"
             >
@@ -61,7 +61,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
               <div className=" nextArrow"> &gt;</div>
             </li>
             <li
-              onMouseEnter={() => onLinkHover("Resource modal content")}
+              onMouseEnter={() => onLinkHover(<Resources/>)}
               onMouseLeave={onNavLeave}
               className="links"
             >
