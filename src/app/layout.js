@@ -18,7 +18,7 @@ export default function RootLayout({ children}) {
 
   const onNavLeave = () => {
     // setModalVisible(false);
-  };
+ };
 
   const closeModal = () => setModalVisible(false);
   return (
@@ -46,7 +46,7 @@ export default function RootLayout({ children}) {
           content={
             <div>
               <p>{modalContent}</p>
-              <button onClick={() => alert("Button clicked!")}>Click Me</button>
+              {/* <button onClick={() => alert("Button clicked!")}>Click Me</button> */}
             </div>
           }
           visible={modalVisible}
