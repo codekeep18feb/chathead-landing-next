@@ -820,6 +820,9 @@ body {
 .closeBtn span{
   margin-left: 10px;
 }
+.nav-links li.links:hover .dropdown {
+  display: block;
+}
 /* Media Queries */
 @media (max-width: 768px) {
   .platform-container {

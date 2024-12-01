@@ -25,7 +25,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
   }, []);
 
   const toggleMenu = () => {
-    setMenuOpen((prev) => !prev); // Toggle the state
+    setMenuOpen((prev) => !prev);
     console.log("i am clicked");
 
     if (!menuOpen) {
@@ -35,17 +35,21 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
     }
   };
 
-  const handleItemClick = (content) => {
-    if (isMobile) {
-      onLinkHover(content); // For mobile, call onLinkHover to show modal
-      setHoveredContent(content); // Display content for mobile
-
+  const handleItemClick = (content, link) => {
+    if (isMobile && link !== "/pricing") {
+      onLinkHover(content);
+      setHoveredContent(content);
       console.log("you clicked");
+    }
+
+    if (isMobile && link === "/pricing") {
+      setMenuOpen(false);
+      document.body.style.overflow = "auto";
     }
   };
 
   const handleCloseModal = () => {
-    setHoveredContent(null); // Close modal when clicking away
+    setHoveredContent(null);
   };
   // Use the basePath for images
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -63,6 +67,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
         className={`nav_overlay ${menuOpen ? "active" : ""}`}
         onClick={toggleMenu}
       ></div>
+
       <ul className={`nav-links ${menuOpen ? "active" : ""}`} id="nav-links">
         <div className="navList">
           <li
@@ -109,11 +114,13 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
             </a>
             <div className=" nextArrow"> &gt;</div>
           </li>
+
           <li>
-            <Link href="/pricing" className="link">
+            <Link href="/pricing" legacyBehavior>
+            <a  onClick={() => handleItemClick(null, "/pricing")} className="link">
               Pricing
+            </a>
             </Link>
-            {/* <a href="#pricing" className="link">Pricing</a> */}
           </li>
         </div>
         <div className="auth-buttons">
@@ -131,7 +138,6 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
       </ul>
       {(hoveredContent || isMobile) && (
         <>
-        
           <div
             className={`nav_overlay ${hoveredContent ? "active" : ""}`}
             onClick={handleCloseModal}

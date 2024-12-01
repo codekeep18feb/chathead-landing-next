@@ -18,7 +18,7 @@ export default function RootLayout({ children}) {
 
   const onNavLeave = () => {
     // setModalVisible(false);
-  };
+ };
 
   const closeModal = () => setModalVisible(false);
   return (
