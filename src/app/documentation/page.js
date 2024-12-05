@@ -3,9 +3,7 @@
 import React, { useState } from "react";
 // import video from "../../../Asset/demo_imgs/before.jpeg"
 import "./test.css"; // Import the CSS file
-// import "Asset/globe.png" from "./lets_integrate.jpg";
 
-// integrate_example.png
 // Example payload with additional tags and Lorem Ipsum content
 const payload = {
   installation: {
@@ -13,8 +11,6 @@ const payload = {
       {
         VANILA_JS: {
           content: [
-          
-
             {
               tag_type: "p",
               text: `Instant messaging enhances user engagement by enabling users to connect and form a community within the app. 
@@ -24,27 +20,12 @@ const payload = {
               The Chat SDK enables you to embed real-time messaging in any app, on any device, anywhere.`,
             },
 
-         
-
             //prerequisite?
             {
               tag_type: "div",
               children: [
                 { tag_type: "h2", text: "Prerequisite" },
-                // {
-                //   tag_type: "ul",
-                //   items: [
-                //     {
-                //       text: "Signup/Login to your account at Qchat Admin Page.",
-                //       link_parts: [
-                //         {
-                //           text: "Signup/Login",
-                //           link: "https://www.google.com/",
-                //         },
-                //       ],
-                //     },
-                //   ],
-                // },
+
                 {
                   tag_type: "p",
                   text: "To integrate Chat into your app, do the following:",
@@ -61,10 +42,10 @@ const payload = {
                         },
                       ],
                     },
-                    
+
                     {
                       tag_type: "li",
-                      text: "Create an app as per your use case.",
+                      text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HeaderFul])",
                     },
 
                     {
@@ -81,7 +62,6 @@ const payload = {
               children: [
                 { tag_type: "h2", text: "Project setup" },
 
-                
                 {
                   tag_type: "p",
                   text: "To integrate Chat into your app, do the following:",
@@ -93,20 +73,7 @@ const payload = {
                     {
                       text: "[HeaderFul] Don't currently have a header and would like to have one",
                       description: [
-                        // {
-                        //   tag_type: "p",
-                        //   text: "Your site does not have an existing Header",
-                        // },
-    
-                        // {
-                        //   tag_type: "img",
-                        //   src: "Asset/globe.png",
-                        //   alt: "alt n",
-                        // },
-                        // {
-                        //   tag_type: "p",
-                        //   text: "Like this above.",
-                        // },
+                       
                         {
                           tag_type: "p",
                           text: "In this mode [HeaderFul], the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
@@ -120,9 +87,6 @@ const payload = {
                         {
                           tag_type: "ol",
                           items: [
-                            
-                            
-            
                             {
                               tag_type: "li",
                               text: "Update the script credentials section with your app's credentials",
@@ -136,7 +100,7 @@ const payload = {
                                 },
                                 {
                                   tag_type: "li",
-                                  text: "after script is loaded we can initialize it like below.",
+                                  // text: "after script is loaded we can initialize it like below.",
                                   // extra_text: "kindly add it below the first script",
                                   code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
                                 },
@@ -177,18 +141,42 @@ const payload = {
                               // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
                               img: "Asset/headerful_example.png",
                             },
+                           
+
                             {
-                              tag_type: "li",
-                              text: "Example code of screenshot",
-                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
-                              // img: "Asset/globe.png",
+                              text: "Refer to the example code in the screenshot above if needed for guidance.",
+                              link_parts: [
+                                {
+                                  text: "example code",
+                                  link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                                },
+                              ],
                             },
+                            
+                          ],
+
+                          
+                        },
+                        {
+                          tag_type: "video",
+                          src: "https://cdn.pixabay.com/video/2024/01/23/197898-905833761_tiny.mp4",
+                          desc: "Demo for P2A V1 [Headful]",
+                        },
+                       
+                        {
+                          tag_type: "div",
+                          children: [
+
+                       
+
+                            { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
+            
+                            
                             {
-                              tag_type: "li",
-                              text: "if so it was successfull integrated.",
-                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
-                              // img: "Asset/globe.png",
+                              tag_type: "p",
+                              text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
                             },
+                            
                           ],
                         },
                       ],
@@ -196,7 +184,6 @@ const payload = {
                     {
                       text: "[HeaderLess] Currently have an Existing header and would like not to have one;",
                       description: [
-
                         {
                           tag_type: "p",
                           text: "In this mode, instead of displaying a standard header, all the authentication components (Signup, Login, etc.) are grouped together. These components are designed to be flexible, allowing you to place them in a fixed position anywhere within your custom header or elsewhere in your layout. Additionally, this mode includes a chat box for user interaction",
@@ -207,10 +194,15 @@ const payload = {
                           text: "To integrate Chat this into your app, Do the following.",
                         },
 
-                        
                         {
                           tag_type: "ol",
                           items: [
+                            {
+                              tag_type: "li",
+                              text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+                              // extra_text: "kindly add it below the first script",
+                              code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                            },
                             {
                               tag_type: "li",
                               text: "Update the script credentials section with your app's credentials",
@@ -224,7 +216,7 @@ const payload = {
                                 },
                                 {
                                   tag_type: "li",
-                                  text: "after script is loaded we can initialize it like below.",
+                                  // text: "after script is loaded we can initialize it like below.",
                                   // extra_text: "kindly add it below the first script",
                                   code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
                                 },
@@ -260,14 +252,6 @@ const payload = {
                               ],
                             },
 
-                            
-                            {
-                              tag_type: "li",
-                              text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
-                              // extra_text: "kindly add it below the first script",
-                              code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
-                            },
-                            
                             {
                               tag_type: "li",
                               text: "Verify if you see the Auth components where you placed them in your page and chat icon on the bottom of your page. like in below image ",
@@ -275,46 +259,51 @@ const payload = {
                               img: "Asset/headerless_example.png",
                             },
                             {
-                              tag_type: "li",
-                              text: "Example code of screenshot",
-                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
-                              // img: "Asset/globe.png",
+                              text: "Refer to the example code in the screenshot above if needed for guidance.",
+                              link_parts: [
+                                {
+                                  text: "example code",
+                                  link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                                },
+                              ],
                             },
+                            
+                            
+                          ],
+                        
+                        },
+                        {
+                          tag_type: "div",
+                          children: [
+
                             {
-                              tag_type: "li",
-                              text: "if so it was successfull integrated.",
-                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
-                              // img: "Asset/globe.png",
+                              tag_type: "div",
+                              children: [
+                                {
+                                  tag_type: "video",
+                                  src: "https://cdn.pixabay.com/video/2024/01/23/197898-905833761_tiny.mp4",
+                                  desc: "Demo for P2A V1 [HeadLess]",
+                                },
+                              ],
                             },
+
+                            { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
+            
+                            
+                            {
+                              tag_type: "p",
+                              text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
+                            },
+                            
                           ],
                         },
-                      
                       ],
                     },
                   ],
                 },
-                
               ],
             },
 
-            {
-              tag_type: "div",
-              children: [
-                {
-                  tag_type: "h4",
-                  text: "Users now should be able to do the following",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    "User on your site can now Signup / login from buttons in the header",
-                    "User can send message to the Admin",
-                    "User can receive message from the Admin",
-                    "Admin can receive the message and reply to the user",
-                  ],
-                },
-              ],
-            },
           ],
         },
       },
@@ -329,150 +318,7 @@ const payload = {
       },
     ],
   },
-  probable_use_cases: {
-    install: [
-      {
-        VANILA_JS: {
-          content: [
-            { tag_type: "h1", text: "Install it from VANILA_JS source" },
-            {
-              tag_type: "p",
-              text: "Ensure your device meets the system requirements before installation.",
-            },
-            {
-              tag_type: "img",
-              src: "https://images.pexels.com/photos/10618233/pexels-photo-10618233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-              alt: "Installation Image",
-            },
-            {
-              tag_type: "blockquote",
-              text: "Refer to the user manual for detailed instructions.",
-            },
-          ],
-        },
-      },
-      {
-        REACT: {
-          content: [
-            { tag_type: "h1", text: "Install it from REACT source" },
-            {
-              tag_type: "p",
-              text: "Follow the official guide to install on your REACT device.",
-            },
-          ],
-        },
-      },
-    ],
-    usage: [
-      {
-        VANILA_JS: {
-          content: [
-            { tag_type: "h2", text: "Usage Instructions for VANILA_JS" },
-            {
-              tag_type: "ul",
-              items: [
-                "Launch the app",
-                "Go to the settings menu",
-                "Adjust the settings as needed",
-              ],
-            },
-            {
-              tag_type: "p",
-              text: "Keep the app updated for best performance.",
-            },
-          ],
-        },
-      },
-      {
-        REACT: {
-          content: [
-            { tag_type: "h2", text: "Usage Instructions for REACT" },
-            {
-              tag_type: "ul",
-              items: [
-                "Start the application",
-                "Access settings",
-                "Customize your options",
-              ],
-            },
-            { tag_type: "p", text: "Check for updates regularly." },
-          ],
-        },
-      },
-    ],
-  },
-  examples: {
-    install: [
-      {
-        VANILA_JS: {
-          content: [
-            { tag_type: "h1", text: "examples information" },
-            {
-              tag_type: "p",
-              text: "Ensure your device meets the system requirements before installation.",
-            },
-            {
-              tag_type: "img",
-              src: "https://images.pexels.com/photos/10618233/pexels-photo-10618233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-              alt: "Installation Image",
-            },
-            {
-              tag_type: "blockquote",
-              text: "Refer to the user manual for detailed instructions.",
-            },
-          ],
-        },
-      },
-      {
-        REACT: {
-          content: [
-            { tag_type: "h1", text: "Install it from REACT source" },
-            {
-              tag_type: "p",
-              text: "Follow the official guide to install on your REACT device.",
-            },
-          ],
-        },
-      },
-    ],
-    usage: [
-      {
-        VANILA_JS: {
-          content: [
-            { tag_type: "h2", text: "Usage Instructions for VANILA_JS" },
-            {
-              tag_type: "ul",
-              items: [
-                "Launch the app",
-                "Go to the settings menu",
-                "Adjust the settings as needed",
-              ],
-            },
-            {
-              tag_type: "p",
-              text: "Keep the app updated for best performance.",
-            },
-          ],
-        },
-      },
-      {
-        REACT: {
-          content: [
-            { tag_type: "h2", text: "Usage Instructions for REACT" },
-            {
-              tag_type: "ul",
-              items: [
-                "Start the application",
-                "Access settings",
-                "Customize your options",
-              ],
-            },
-            { tag_type: "p", text: "Check for updates regularly." },
-          ],
-        },
-      },
-    ],
-  },
+ 
 };
 
 const CondRadioRender = ({ r_options }) => {
@@ -486,7 +332,6 @@ const CondRadioRender = ({ r_options }) => {
 
   return (
     <div>
-   
       <div className="content-paragraph">
         {r_options.map((option, index) => (
           <div key={index} className="radio-container">
@@ -505,7 +350,10 @@ const CondRadioRender = ({ r_options }) => {
         ))}
       </div>
       <div className="description">
-        <h3>Select the right Mode and follow the respective below mentioned Steps.</h3>
+        <h3>
+          Select the Right Mode and follow the respective integration as below
+          mentioned Steps.
+        </h3>
         <div>
           {/* {r_options.find(option => option.text === selectedOption)?.description.map((desc, idx) => (
                         <li key={idx}>{desc}</li>
@@ -522,14 +370,6 @@ const CondRadioRender = ({ r_options }) => {
             key={8888}
           />
         </div>
-      </div>
-      <div className="videos">
-        <video width="100%" height="auto" controls>
-          <source
-            src="https://cdn.pixabay.com/video/2024/01/23/197898-905833761_tiny.mp4"
-            type="video/mp4"
-          />
-        </video>
       </div>
     </div>
   );
@@ -693,6 +533,19 @@ const ContentRenderer = ({ content }) => {
           return (
             <div className="content-img">
               <img key={index} src={item.src} alt={item.alt || ""} />
+            </div>
+          );
+        }
+
+        if (item.tag_type === "video") {
+          return (
+            <div key={index}>
+              <h3>{item.desc}</h3>
+              <div className="videos">
+                <video width="100%" height="auto" controls>
+                  <source src={item.src} type="video/mp4" />
+                </video>
+              </div>
             </div>
           );
         }
