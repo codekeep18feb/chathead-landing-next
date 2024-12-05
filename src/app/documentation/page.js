@@ -9,74 +9,51 @@ import "./test.css"; // Import the CSS file
 // Example payload with additional tags and Lorem Ipsum content
 const payload = {
   installation: {
-    "Peer to Admin - V1 - SDK quickstart updated!": [
+    "Peer to Admin - V1": [
       {
         VANILA_JS: {
           content: [
-            {
-              tag_type: "feature_options",
-              options: [
-                {
-                  text: "Don't currently have a header and would like to have one",
-                  description: [
-                    {
-                      tag_type: "p",
-                      text: "here some thing1-1",
-                    },
-
-                    {
-                      tag_type: "img",
-                      src: "Asset/globe.png",
-                      alt: "alt n",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "here some thing1-2",
-                    },
-                  ],
-                },
-                {
-                  text: "Do have a header so would like to get Header Components Seprately so i can add them to my existing header",
-                  description: [
-                    {
-                      tag_type: "p",
-                      text: "here some thing2-1",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "here some thing2-2",
-                    },
-                  ],
-                },
-                {
-                  text: "Other",
-                  description: [
-                    {
-                      tag_type: "p",
-                      text: "Have more complex requirement :: No Worries, We got you covered",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "Our Tech team can help you to integrate it any in scenerios",
-                    },
-                  ],
-                },
-              ],
-            },
+          
 
             {
               tag_type: "p",
-              text: "Instant messaging enhances user engagement by enabling users to connect and form a community within the app. Increased engagement can lead to increased user satisfaction and loyalty to your app. An instant messaging feature can also provide real-time support to users, allowing them to get help and answers to their questions quickly. The Chat SDK enables you to embed real-time messaging in any app, on any device, anywhere.",
+              text: `Instant messaging enhances user engagement by enabling users to connect and form a community within the app. 
+              Increased engagement can lead to increased user satisfaction and loyalty to your app. 
+              An instant messaging feature can also provide real-time support to users, 
+              allowing them to get help and answers to their questions quickly. 
+              The Chat SDK enables you to embed real-time messaging in any app, on any device, anywhere.`,
             },
 
+         
+
+            //prerequisite?
             {
               tag_type: "div",
               children: [
+                { tag_type: "h2", text: "Prerequisite" },
+                // {
+                //   tag_type: "ul",
+                //   items: [
+                //     {
+                //       text: "Signup/Login to your account at Qchat Admin Page.",
+                //       link_parts: [
+                //         {
+                //           text: "Signup/Login",
+                //           link: "https://www.google.com/",
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
                 {
-                  tag_type: "ul",
+                  tag_type: "p",
+                  text: "To integrate Chat into your app, do the following:",
+                },
+                {
+                  tag_type: "ol",
                   items: [
                     {
-                      text: "Signup/Login to your account at Qchat Admin Page.",
+                      text: "Signup/Login to your account at AddChat.",
                       link_parts: [
                         {
                           text: "Signup/Login",
@@ -84,68 +61,219 @@ const payload = {
                         },
                       ],
                     },
+                    
+                    {
+                      tag_type: "li",
+                      text: "Create an app for your use case.",
+                    },
+
+                    {
+                      tag_type: "li",
+                      text: "Go To created apps's detail page and locate the credentials.",
+                    },
                   ],
                 },
               ],
-            },
-
-            { tag_type: "h2", text: "Project setup" },
-            {
-              tag_type: "p",
-              text: "To integrate Chat into your app, do the following:",
             },
 
             {
               tag_type: "div",
               children: [
-                {
-                  tag_type: "ol",
-                  items: [
-                    {
-                      tag_type: "li",
-                      text: "Get your credentials Handy; Find it the credentials section of the created App' Detail Page",
-                    },
+                { tag_type: "h2", text: "Project setup" },
 
+                
+                {
+                  tag_type: "p",
+                  text: "To integrate Chat into your app, do the following:",
+                },
+
+                {
+                  tag_type: "feature_options",
+                  options: [
                     {
-                      tag_type: "li",
-                      text: "Update the script credentials section with your app's credentials",
-                      sub_items: [
+                      text: "[HeaderFul] Don't currently have a header and would like to have one",
+                      description: [
+                        // {
+                        //   tag_type: "p",
+                        //   text: "Your site does not have an existing Header",
+                        // },
+    
+                        // {
+                        //   tag_type: "img",
+                        //   src: "Asset/globe.png",
+                        //   alt: "alt n",
+                        // },
+                        // {
+                        //   tag_type: "p",
+                        //   text: "Like this above.",
+                        // },
                         {
-                          tag_type: "li",
-                          text: "Find the entry file usually (index.html) and this below code in the head section of the html page.",
-                          extra_text:
-                            "Update the script credentials section with your app's credentials",
-                          code: '<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>',
+                          tag_type: "p",
+                          text: "In this mode, the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
                         },
+
                         {
-                          tag_type: "li",
-                          text: "after script is loaded we can initialize it like below.",
-                          extra_text: "kindly add it below the first script",
-                          code: `<script>\n\n async function makeMeAPICall(token) {\n const apiUrl = 'https://v1u9b7mohg.execute-api.ap-south-1.amazonaws.com/prod/me';\n\n try {\n const response = await fetch(apiUrl, {\n method: 'GET',\n headers: {\n 'Authorization': token,\n 'Accept': '*/*'\n }\n });\n\n if (!response.ok) {\n throw new Error('Network response was not ok');\n }\n\n const data = await response.json();\n console.log('User me api data:', data.id);\n return data;\n } catch (error) {\n console.error('There was a problem with the fetch operation:', error);\n throw error;\n }\n }\n \n // Wait for the document to be fully loaded\n document.addEventListener("DOMContentLoaded", async function() {\n\n const token = localStorage.getItem('tezkit_token');\n if (token){\n var loggedInUser = await makeMeAPICall(token);\n window.chathead.initialize(loggedInUser);\n }\n else{\n window.chathead.setUp(app_name="app1_acm_true_tenant5", \n api_key="dGVuYW50NV9fU0VQUkFUT1JfX2FwcDFfYWNtX3RydWVfdGVuYW50NQ==");\n window.chathead.initialize(null);\n }\n });\n\n</script>`,
+                          tag_type: "p",
+                          text: "To integrate Chat this into your app, Do the following.",
+                        },
+
+                        {
+                          tag_type: "ol",
+                          items: [
+                            
+                            
+            
+                            {
+                              tag_type: "li",
+                              text: "Update the script credentials section with your app's credentials",
+                              sub_items: [
+                                {
+                                  tag_type: "li",
+                                  text: "Find the entry file usually (index.html) and add these code in the head section of the html page.",
+                                  // extra_text:
+                                  //   "Update the script credentials section with your app's credentials",
+                                  code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                                },
+                                {
+                                  tag_type: "li",
+                                  text: "after script is loaded we can initialize it lidddke below.",
+                                  extra_text: "kindly add it below the first script",
+                                  code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
+                                },
+                                {
+                                  tag_type: "li",
+                                  text: "after script is loaded we can initialize it like below.",
+                                  extra_text: "kindly add it below the first script",
+                                  code: `<script>
+            document.addEventListener("DOMContentLoaded", async function () {
+              const token = localStorage.getItem("tezkit_token");
+              if (token) {
+                window.chathead.initialize(token);
+              } else {
+                window.chathead.setUp(
+                  "<Your App Name>", 
+                  "<Your Api Key>", 
+                  JSON.stringify({
+                    "header_theme": {
+                      "backgroundColor": "rgb(30, 136, 125)"
+                    },
+                    "chat_opener_theme": {
+                      "backgroundColor": "rgb(41, 48, 78)"
+                    }
+                  }),
+                  true,
+                  "/index.html"
+                );
+              }
+            });
+          </script>
+          `,
+                                },
+                              ],
+                            },
+                            {
+                              tag_type: "li",
+                              text: "Verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
+                              // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                              img: "Asset/globe.png",
+                            },
+                            {
+                              tag_type: "li",
+                              text: "if so it was successfull integrated.",
+                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
+                              // img: "Asset/globe.png",
+                            },
+                          ],
                         },
                       ],
                     },
                     {
-                      tag_type: "li",
-                      text: "Verify if you see the header on the top of your page. like above",
-                      // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                      img: "Asset/globe.png",
+                      text: "[HeaderLess] Currently have an Existing header and would like not to have one;",
+                      description: [
+
+                        {
+                          tag_type: "p",
+                          text: "In this mode, instead of displaying a standard header, all the authentication components (Signup, Login, etc.) are grouped together. These components are designed to be flexible, allowing you to place them in a fixed position anywhere within your custom header or elsewhere in your layout. Additionally, this mode includes a chat box for user interaction",
+                        },
+
+                        {
+                          tag_type: "p",
+                          text: "To integrate Chat this into your app, Do the following.",
+                        },
+
+                        
+                        {
+                          tag_type: "ol",
+                          items: [
+                            {
+                              tag_type: "li",
+                              text: "Update the script credentials section with your app's credentials",
+                              sub_items: [
+                                {
+                                  tag_type: "li",
+                                  text: "Find the entry file usually (index.html) and add these code in the head section of the html page.",
+                                  // extra_text:
+                                  //   "Update the script credentials section with your app's credentials",
+                                  code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                                },
+                                {
+                                  tag_type: "li",
+                                  text: "after script is loaded we can initialize it lidddke below.",
+                                  extra_text: "kindly add it below the first script",
+                                  code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
+                                },
+                                {
+                                  tag_type: "li",
+                                  text: "after script is loaded we can initialize it like below.",
+                                  extra_text: "kindly add it below the first script",
+                                  code: `<script>
+            document.addEventListener("DOMContentLoaded", async function () {
+              const token = localStorage.getItem("tezkit_token");
+              if (token) {
+                window.chathead.initialize(token);
+              } else {
+                window.chathead.setUp(
+                  "<Your App Name>", 
+                  "<Your Api Key>", 
+                  JSON.stringify({
+                    "header_theme": {
+                      "backgroundColor": "rgb(30, 136, 125)"
                     },
-                    {
-                      tag_type: "li",
-                      text: "Verify if you see the chat icon on the bottom of your page.",
-                      // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
-                      img: "Asset/globe.png",
+                    "chat_opener_theme": {
+                      "backgroundColor": "rgb(41, 48, 78)"
+                    }
+                  }),
+                  false,
+                  "/index.html"
+                );
+              }
+            });
+          </script>
+          `,
+                                },
+                              ],
+                            },
+                            {
+                              tag_type: "li",
+                              text: "Verify if you see the Auth components where you placed them in your page and chat icon on the bottom of your page. like in below image ",
+                              // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                              img: "Asset/globe.png",
+                            },
+                            {
+                              tag_type: "li",
+                              text: "if so it was successfull integrated.",
+                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
+                              // img: "Asset/globe.png",
+                            },
+                          ],
+                        },
+                      
+                      ],
                     },
                   ],
                 },
+                
               ],
-            },
-
-            { tag_type: "h2", text: "Now visitors have become users" },
-            {
-              tag_type: "p",
-              text: "which means we can keep close connection with them",
             },
 
             {
@@ -158,33 +286,10 @@ const payload = {
                 {
                   tag_type: "ul",
                   items: [
-                    "User can Signup / login",
+                    "User on your site can now Signup / login from buttons in the header",
                     "User can send message to the Admin",
-                    "User can receive message to the Admin",
-                  ],
-                },
-              ],
-            },
-
-            { tag_type: "h3", text: "API reference" },
-            {
-              tag_type: "div",
-              children: [
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      tag_type: "li",
-                      text: "makeMeAPICall",
-                    },
-                    {
-                      tag_type: "li",
-                      text: "window.chathead.initialize(<loggedInUser>)",
-                    },
-                    {
-                      tag_type: "li",
-                      text: "window.chathead.setUp(<app_name>, <api_key>)",
-                    },
+                    "User can receive message from the Admin",
+                    "Admin can receive the message and reply to the user",
                   ],
                 },
               ],
@@ -353,24 +458,14 @@ const CondRadioRender = ({ r_options }) => {
   // Set the initial selected option to the first one
   const [selectedOption, setSelectedOption] = useState(r_options[0].text);
 
-
   const handleChange = (event) => {
     // Update the selected option based on user selection
     setSelectedOption(event.target.value);
   };
 
-
-
   return (
     <div>
-      <div className="videos">
-        <video width="100%" height="auto" controls>
-          <source
-            src="https://cdn.pixabay.com/video/2024/01/23/197898-905833761_tiny.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div>
+   
       <div className="content-paragraph">
         {r_options.map((option, index) => (
           <div key={index} className="radio-container">
@@ -389,7 +484,7 @@ const CondRadioRender = ({ r_options }) => {
         ))}
       </div>
       <div className="description">
-        <h3>Selected Option Description:</h3>
+        <h3>Kindly follow the below integration steps for your type of chat system.</h3>
         <div>
           {/* {r_options.find(option => option.text === selectedOption)?.description.map((desc, idx) => (
                         <li key={idx}>{desc}</li>
@@ -406,6 +501,14 @@ const CondRadioRender = ({ r_options }) => {
             key={8888}
           />
         </div>
+      </div>
+      <div className="videos">
+        <video width="100%" height="auto" controls>
+          <source
+            src="https://cdn.pixabay.com/video/2024/01/23/197898-905833761_tiny.mp4"
+            type="video/mp4"
+          />
+        </video>
       </div>
     </div>
   );
@@ -695,7 +798,7 @@ const Document = () => {
   };
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(prevState => !prevState);  // Toggle the state on click
+    setIsDropdownOpen((prevState) => !prevState); // Toggle the state on click
   };
 
   const renderContent = () => {
