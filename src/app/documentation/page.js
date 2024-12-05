@@ -64,7 +64,7 @@ const payload = {
                     
                     {
                       tag_type: "li",
-                      text: "Create an app for your use case.",
+                      text: "Create an app as per your use case.",
                     },
 
                     {
@@ -109,12 +109,12 @@ const payload = {
                         // },
                         {
                           tag_type: "p",
-                          text: "In this mode, the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
+                          text: "In this mode [HeaderFul], the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
                         },
 
                         {
                           tag_type: "p",
-                          text: "To integrate Chat this into your app, Do the following.",
+                          text: "To integrate it into your app, Do the following.",
                         },
 
                         {
@@ -129,21 +129,21 @@ const payload = {
                               sub_items: [
                                 {
                                   tag_type: "li",
-                                  text: "Find the entry file usually (index.html) and add these code in the head section of the html page.",
+                                  text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
                                   // extra_text:
                                   //   "Update the script credentials section with your app's credentials",
                                   code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
                                 },
                                 {
                                   tag_type: "li",
-                                  text: "after script is loaded we can initialize it lidddke below.",
-                                  extra_text: "kindly add it below the first script",
+                                  text: "after script is loaded we can initialize it like below.",
+                                  // extra_text: "kindly add it below the first script",
                                   code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
                                 },
                                 {
                                   tag_type: "li",
                                   text: "after script is loaded we can initialize it like below.",
-                                  extra_text: "kindly add it below the first script",
+                                  // extra_text: "kindly add it below the first script",
                                   code: `<script>
             document.addEventListener("DOMContentLoaded", async function () {
               const token = localStorage.getItem("tezkit_token");
@@ -175,7 +175,13 @@ const payload = {
                               tag_type: "li",
                               text: "Verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
                               // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                              img: "Asset/globe.png",
+                              img: "Asset/headerful_example.png",
+                            },
+                            {
+                              tag_type: "li",
+                              text: "Example code of screenshot",
+                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
+                              // img: "Asset/globe.png",
                             },
                             {
                               tag_type: "li",
@@ -211,21 +217,21 @@ const payload = {
                               sub_items: [
                                 {
                                   tag_type: "li",
-                                  text: "Find the entry file usually (index.html) and add these code in the head section of the html page.",
+                                  text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
                                   // extra_text:
                                   //   "Update the script credentials section with your app's credentials",
                                   code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
                                 },
                                 {
                                   tag_type: "li",
-                                  text: "after script is loaded we can initialize it lidddke below.",
-                                  extra_text: "kindly add it below the first script",
+                                  text: "after script is loaded we can initialize it like below.",
+                                  // extra_text: "kindly add it below the first script",
                                   code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
                                 },
                                 {
                                   tag_type: "li",
                                   text: "after script is loaded we can initialize it like below.",
-                                  extra_text: "kindly add it below the first script",
+                                  // extra_text: "kindly add it below the first script",
                                   code: `<script>
             document.addEventListener("DOMContentLoaded", async function () {
               const token = localStorage.getItem("tezkit_token");
@@ -253,11 +259,26 @@ const payload = {
                                 },
                               ],
                             },
+
+                            
+                            {
+                              tag_type: "li",
+                              text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+                              // extra_text: "kindly add it below the first script",
+                              code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                            },
+                            
                             {
                               tag_type: "li",
                               text: "Verify if you see the Auth components where you placed them in your page and chat icon on the bottom of your page. like in below image ",
                               // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                              img: "Asset/globe.png",
+                              img: "Asset/headerless_example.png",
+                            },
+                            {
+                              tag_type: "li",
+                              text: "Example code of screenshot",
+                              // "more_text": "In /Gradle Scripts/proguard-rules.pro, add the following line:",
+                              // img: "Asset/globe.png",
                             },
                             {
                               tag_type: "li",
@@ -484,7 +505,7 @@ const CondRadioRender = ({ r_options }) => {
         ))}
       </div>
       <div className="description">
-        <h3>Kindly follow the below integration steps for your type of chat system.</h3>
+        <h3>Select the right Mode and follow the respective below mentioned Steps.</h3>
         <div>
           {/* {r_options.find(option => option.text === selectedOption)?.description.map((desc, idx) => (
                         <li key={idx}>{desc}</li>
