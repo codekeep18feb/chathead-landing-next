@@ -7,17 +7,18 @@ import "./test.css"; // Import the CSS file
 // Example payload with additional tags and Lorem Ipsum content
 const payload = {
   installation: {
-    "Peer to Admin - V1": [
+    "Peer to Admin - V1 (Chat + Auth)": [
       {
         VANILA_JS: {
           content: [
             {
+              tag_type: "h4",
+              text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.`,
+            },
+            {
               tag_type: "p",
-              text: `Instant messaging enhances user engagement by enabling users to connect and form a community within the app. 
-              Increased engagement can lead to increased user satisfaction and loyalty to your app. 
-              An instant messaging feature can also provide real-time support to users, 
-              allowing them to get help and answers to their questions quickly. 
-              The Chat SDK enables you to embed real-time messaging in any app, on any device, anywhere.`,
+              text: `
+Instant messaging boosts user engagement, fostering community, satisfaction, and loyalty. It also provides real-time support, allowing users to get quick help. The Chat SDK enables seamless real-time messaging on any app or device.`,
             },
 
             //prerequisite?
@@ -102,7 +103,7 @@ const payload = {
                                   tag_type: "li",
                                   // text: "after script is loaded we can initialize it like below.",
                                   // extra_text: "kindly add it below the first script",
-                                  code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
+                                  code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
                                 },
                                 {
                                   tag_type: "li",
