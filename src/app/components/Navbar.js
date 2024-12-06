@@ -125,12 +125,12 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
         </div>
         <div className="auth-buttons">
           <li>
-            <a href="http://122.160.157.99:3101/login">
+            <a href="http://dev.addchat.tech/login">
               <button className="login">Log-in</button>
             </a>
           </li>
           <li>
-            <a href="http://122.160.157.99:3101/signup">
+            <a href="http://dev.addchat.tech/signup">
               <button className="signup">Sign-up</button>
             </a>
           </li>
