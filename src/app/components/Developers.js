@@ -7,7 +7,7 @@ const Developers = () =>{
       <div className="platform-container">
       <div className="platform-sections">
         <div className="platform-section">
-          <a href="/documentation" >
+          <a href="/chathead-landing-next/documentation" >
                 Read documentation page
               </a>
           {/* <div className="card-list">
