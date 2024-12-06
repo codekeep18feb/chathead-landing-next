@@ -160,7 +160,7 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
                         },
                         {
                           tag_type: "video",
-                          src: "https://cdn.pixabay.com/video/2024/01/23/197898-905833761_tiny.mp4",
+                          src: "https://youtu.be/MKatoeFYeb8",
                           desc: "Demo for P2A V1 [Headful]",
                         },
                        
@@ -282,7 +282,7 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
                               children: [
                                 {
                                   tag_type: "video",
-                                  src: "https://cdn.pixabay.com/video/2024/01/23/197898-905833761_tiny.mp4",
+                                  src: "https://youtu.be/MKatoeFYeb8",
                                   desc: "Demo for P2A V1 [HeadLess]",
                                 },
                               ],
