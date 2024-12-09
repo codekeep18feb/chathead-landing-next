@@ -3,13 +3,16 @@
 import React, { useState,useEffect } from "react";
 // import video from "../../../Asset/demo_imgs/before.jpeg"
 import "./test.css"; // Import the CSS file
+import { useSearchParams } from 'next/navigation';
+
+
 
 // Example payload with additional tags and Lorem Ipsum content
 const payload = {
   installation: {
     "Peer to Admin - V1 (Chat + Auth)": [
       {
-        VANILA_JS: {
+        P2A__V1: {
           content: [
             {
               tag_type: "h4",
@@ -309,7 +312,7 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
         },
       },
       {
-        REACT: {
+        "P2A__V2.1": {
           content: [
             { tag_type: "h1", text: "Install it from REACT 3000source" },
             { tag_type: "div", text: "<div >sdsfdsdfon REACT devices.</div>" },
@@ -645,7 +648,7 @@ const ContentRenderer = ({ content }) => {
   );
 };
 
-const FilterComp = () => {
+const FilterComp = ({setSelectedFilter}) => {
   const [selections, setSelections] = useState({});
   const [expandedKeys, setExpandedKeys] = useState([]);
 
@@ -654,12 +657,12 @@ const FilterComp = () => {
       P2A: {
         version_types: {
           V1: { modes: ["HEADLESS", "HEADFUL"] },
-          V2: { modes: null },
+          "V2.1": { modes: null },
           "V2.2": { modes: null },
         },
       },
-      P2B: { disabled: true },  // Example disabled type
-      P2P: { disabled: true },  // Example disabled type
+      P2B: { disabled: true }, // Example disabled type
+      P2P: { disabled: true }, // Example disabled type
     },
   };
 
@@ -701,7 +704,7 @@ const FilterComp = () => {
       return (
         <div
           key={path.concat(key).join(".")}
-          style={{ marginLeft: `${path.length * 20}px`, opacity: isDisabled ? 0.5 : 1 }}
+          className={`option-container ${isDisabled ? "disabled" : ""}`}
         >
           <label>
             <input
@@ -726,10 +729,10 @@ const FilterComp = () => {
 
     if (value?.modes) {
       return (
-        <div style={{ marginLeft: `${path.length * 20}px` }}>
+        <div className="nested-options">
           <h4>Modesa</h4>
           {value.modes.map((mode, index) => (
-            <label key={index} style={{ display: "block" }}>
+            <label key={index} className="mode-label">
               <input
                 type="radio"
                 name={path.join(".")}
@@ -747,28 +750,84 @@ const FilterComp = () => {
 
   const handleSubmit = () => {
     console.log("Final Selections:", selections);
+
+    if (selections){
+
+      setSelectedFilter(selections)
+
+    }
   };
 
   return (
-    <div>
+    <div className="filter-container">
       <h3>Filter</h3>
-      <div>{renderOptions(filter_obj.app_types, ["app_types"])}</div>
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="options-list">{renderOptions(filter_obj.app_types, ["app_types"])}</div>
+      <button className="submit-btn" onClick={handleSubmit}>Submit</button>
     </div>
   );
 };
+
+
+
 const Document = () => {
+
+  const [selectedFilter, setSelectedFilter] = useState(null)
+  console.log("do we have a fitler???selectedFilter",selectedFilter)
+  
+  const searchParams = useSearchParams();
+  const current_version = searchParams.get('current_version') || 'P2A__V1'; // Default value if not provided
+
+  
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
-  const [selectedTab, setSelectedTab] = useState("VANILA_JS");
+  const [selectedTab, setSelectedTab] = useState(current_version);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+
+  useEffect(() => {
+
+    // Function to generate the key
+    function generateKey(obj) {
+      const appTypes = obj.app_types;
+      const keys = [];
+      
+      // Iterate over each app type
+      for (const appType in appTypes) {
+          const versionTypes = appTypes[appType].version_types;
+          
+          // Iterate over each version type
+          for (const version in versionTypes) {
+              keys.push(`${appType}__${version}`);
+          }
+      }
+      
+      return keys;
+    }
+
+    
+    if (selectedFilter){
+      //here we can run side effect 
+      const keys = generateKey(selectedFilter);
+
+
+      console.log(keys,"keyscurrent sleelcteoirn",selectedFilter,keys)
+    
+        // probably just try to reset the selectedTab
+        // first key of app_types & 
+        if (keys.length == 1){
+          setSelectedTab(keys[0])
+
+        }
+    }
+  }, [selectedFilter])
+  
 
   const handleKeyClick = (key) => {
     setSelectedKey(key);
-    setSelectedTab("VANILA_JS"); // reset tab selection to default
+    setSelectedTab("P2A__V1"); // reset tab selection to default
   };
 
   const renderTabs = () => {
-    const versions = ["VANILA_JS", "REACT"]; // Directly define the versions
+    const versions = ["P2A__V1", "P2A__V2.1"]; // Directly define the versions
     return (
       <div className="tabs">
         {versions.map((version) => (
@@ -813,7 +872,7 @@ const Document = () => {
 
   return (
     <div className="document-container">
-      {<FilterComp />}
+      {<FilterComp setSelectedFilter={setSelectedFilter}/>}
      <div className="doc_core_wrapper">
      <div className="doc_sidebar">
         <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>

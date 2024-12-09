@@ -421,7 +421,12 @@
     font-size: 20px;
     font-weight: 600;
   }
+
+
+  
 }
+
+
 @media (max-width: 468px) {
   .document-container {
     flex-direction: column;
@@ -495,4 +500,78 @@
     font-size: 18px;
     font-weight: 600;
   }
+}
+
+
+
+/* Basic container styling */
+.filter-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Option container with indentation based on hierarchy */
+.option-container {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.option-container label {
+  cursor: pointer;
+  font-weight: normal;
+}
+
+/* Disabled options should have a reduced opacity and cannot be selected */
+.option-container.disabled {
+  opacity: 0.5;
+}
+
+.option-container input[type="radio"]:disabled {
+  cursor: not-allowed;
+}
+
+/* Style for nested options (e.g., modes) */
+.nested-options {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.nested-options h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Styling for individual modes */
+.mode-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.mode-label input {
+  margin-right: 10px;
+}
+
+/* Submit button style */
+.submit-btn {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
