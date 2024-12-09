@@ -1,6 +1,7 @@
 /* General container styles */
 .document-container {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   font-family: Arial, sans-serif; /* Added for consistent font style */
   width: 100%;
@@ -448,7 +449,7 @@
   .sidebar_wrapper.active + .downIcon svg {
     transform: rotate(180deg);
   }
-  .document-container .doc_sidebar {
+  .document-container .doc_core_wrapper .doc_sidebar {
     display: block;
     padding: 0px;
   }
