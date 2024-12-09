@@ -49,7 +49,7 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
 
                     {
                       tag_type: "li",
-                      text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HeaderFul])",
+                      text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HEADFUL])",
                     },
 
                     {
@@ -75,12 +75,12 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
                   tag_type: "feature_options",
                   options: [
                     {
-                      text: "[HeaderFul] Don't currently have a header and would like to have one",
+                      text: "HEADFUL",
                       description: [
                        
                         {
                           tag_type: "p",
-                          text: "In this mode [HeaderFul], the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
+                          text: "In this mode [HEADFUL], the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
                         },
 
                         {
@@ -186,7 +186,7 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
                       ],
                     },
                     {
-                      text: "[HeaderLess] Currently have an Existing header and would like not to have one;",
+                      text: "HEADLESS",
                       description: [
                         {
                           tag_type: "p",
@@ -325,14 +325,27 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
  
 };
 
-const CondRadioRender = ({ r_options }) => {
-  // Set the initial selected option to the first one
-  const [selectedOption, setSelectedOption] = useState(r_options[0].text);
+const CondRadioRender = ({ r_options, current_mode }) => {
+  console.log(current_mode, "hecurrent_modere we can access current_mode", r_options, r_options[1]?.text);
+
+  // State to track the selected radio option
+  const [selectedOption, setSelectedOption] = useState(current_mode);
+
+  // Update the selectedOption whenever current_mode changes
+  useEffect(() => {
+    if (current_mode) {
+      setSelectedOption(current_mode);
+    }
+  }, [current_mode]);
 
   const handleChange = (event) => {
     // Update the selected option based on user selection
     setSelectedOption(event.target.value);
   };
+
+  if (!current_mode) {
+    return null; // Optionally handle when current_mode is not available
+  }
 
   return (
     <div>
@@ -353,25 +366,21 @@ const CondRadioRender = ({ r_options }) => {
           </div>
         ))}
       </div>
+
       <div className="description">
         <h3>
           Select the Right Mode and follow the respective integration as below
           mentioned Steps.
         </h3>
         <div>
-          {/* {r_options.find(option => option.text === selectedOption)?.description.map((desc, idx) => (
-                        <li key={idx}>{desc}</li>
-                    )
-                )
-                    
-                    } */}
-
+          {/* Render content based on the selected option */}
           <ContentRenderer
             content={
               r_options.find((option) => option.text === selectedOption)
                 ?.description
             }
             key={8888}
+            current_mode={current_mode}
           />
         </div>
       </div>
@@ -525,10 +534,11 @@ const ListItem = ({ item, listType }) => {
   );
 };
 
-const ContentRenderer = ({ content }) => {
+const ContentRenderer = ({ content, current_mode }) => {
+  console.log("sdeafsadsdfcontentf",current_mode)
   return (
     <div className="contents">
-      {content.map((item, index) => {
+      {content?.map((item, index) => {
         const Tag = supportedTags.includes(item.tag_type)
           ? item.tag_type
           : "div";
@@ -566,7 +576,7 @@ const ContentRenderer = ({ content }) => {
             </h2>
           );
         } else if (item.tag_type === "feature_options") {
-          return <CondRadioRender r_options={item.options} key={index} />;
+          return <CondRadioRender r_options={item.options} key={index} current_mode={current_mode}/>;
         }
 
         // <CondRadioRender r_options={options} />
@@ -630,7 +640,7 @@ const ContentRenderer = ({ content }) => {
             <div key={index} className="content-div">
               {item.children &&
                 item.children.map((child, i) => (
-                  <ContentRenderer key={i} content={[child]} />
+                  <ContentRenderer key={i} content={[child]} current_mode={current_mode}/>
                 ))}
             </div>
           );
@@ -778,6 +788,7 @@ const Document = () => {
   const current_version = searchParams.get('current_version') || 'P2A__V1'; // Default value if not provided
 
   
+  const [current_mode, setModeOfVersion] = useState(null);
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
   const [selectedTab, setSelectedTab] = useState(current_version);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -792,11 +803,17 @@ const Document = () => {
       
       // Iterate over each app type
       for (const appType in appTypes) {
+        console.log(appType, "hwo to get mode",obj)
           const versionTypes = appTypes[appType].version_types;
           
           // Iterate over each version type
           for (const version in versionTypes) {
               keys.push(`${appType}__${version}`);
+              const  mode = obj.app_types[appType]?.version_types[version]?.['selected_mode']
+              console.log("modesdfsdafsd",mode)
+              if (mode){
+                setModeOfVersion(mode)
+              }
           }
       }
       
@@ -821,6 +838,15 @@ const Document = () => {
   }, [selectedFilter])
   
 
+  useEffect(() => {
+    console.log("current_versionsdfsadfsdf",current_version)
+    if (current_version == "P2A__V1"){
+      setModeOfVersion("HEADFUL")
+    }
+  }, [current_version])
+  
+
+  console.log("current_modesdfsadfasdf",current_mode)
   const handleKeyClick = (key) => {
     setSelectedKey(key);
     setSelectedTab("P2A__V1"); // reset tab selection to default
@@ -861,7 +887,7 @@ const Document = () => {
                 ? item[selectedTab].content
                 : null;
               return content ? (
-                <ContentRenderer key={index} content={content} />
+                <ContentRenderer key={index} content={content} current_mode={current_mode}/>
               ) : null;
             })}
           </div>
@@ -869,6 +895,8 @@ const Document = () => {
       </div>
     );
   };
+
+  console.log("do we have nay mode?",current_mode)
 
   return (
     <div className="document-container">
