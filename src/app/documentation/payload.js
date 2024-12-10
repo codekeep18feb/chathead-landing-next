@@ -7,6 +7,10 @@ const payload = {
             P2A__V1: {
               content: [
                 {
+                  tag_type:"h2",
+                  text:`Cloud Managed Auth + Chat (Simple Site)`
+                },
+                {
                   tag_type: "h3",
                   text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.`,
                 },
@@ -278,6 +282,10 @@ const payload = {
           {
             "P2A__V2.1": {
               content: [
+                {
+                  tag_type:"h2",
+                  text:`Locally Managed Auth + Chat (Complex Sites)`
+                },
                 {
                   tag_type: "h3",
                   text: `This chat application is designed specifically for complex sites or apps built with JavaScript on both the client and server sides. It is ideal for products that already have built-in authentication and are looking to seamlessly integrate robust chat functionality.`,
@@ -684,6 +692,10 @@ const payload = {
           {
             "P2A__V2.2": {
               content: [
+                {
+                  tag_type:"h2",
+                  text:`Locally Managed Auth + Chat (Wordpress)`
+                },
                 {
                   tag_type: "h3",
                   text: `This chat application is designed specifically for Wordpress using native wp authentication. It is ideal for products that already have built-in authentication probably using some plugin and are looking to seamlessly integrate robust chat functionality.`,
