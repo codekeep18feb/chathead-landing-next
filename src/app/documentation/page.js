@@ -1,112 +1,110 @@
 "use client";
 
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import video from "../../../Asset/demo_imgs/before.jpeg"
 import "./test.css"; // Import the CSS file
-import { useSearchParams } from 'next/navigation';
-
-
+import { useSearchParams } from "next/navigation";
 
 // Example payload with additional tags and Lorem Ipsum content
 const payload = {
   installation: {
-    "Instant messaging boosts user engagement, fostering community, satisfaction, and loyalty. It also provides real-time support, allowing users to get quick help. The Chat SDK enables seamless real-time messaging on any app or device.": [
-      {
-        "P2A__V1": {
-          content: [
-            {
-              tag_type: "h4",
-              text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.`,
-            },
+    "Instant messaging boosts user engagement, fostering community, satisfaction, and loyalty. It also provides real-time support, allowing users to get quick help. The Chat SDK enables seamless real-time messaging on any app or device.":
+      [
+        {
+          P2A__V1: {
+            content: [
+              {
+                tag_type: "h4",
+                text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.`,
+              },
 
-            {
-              tag_type: "div",
-              children: [
-                { tag_type: "h2", text: "Prerequisite" },
+              {
+                tag_type: "div",
+                children: [
+                  { tag_type: "h2", text: "Prerequisite" },
 
-                {
-                  tag_type: "p",
-                  text: "To integrate Chat into your app, do the following:",
-                },
-                {
-                  tag_type: "ol",
-                  items: [
-                    {
-                      text: "Signup/Login to your account at AddChat.",
-                      link_parts: [
-                        {
-                          text: "Signup/Login",
-                          link: "https://www.google.com/",
-                        },
-                      ],
-                    },
+                  {
+                    tag_type: "p",
+                    text: "To integrate Chat into your app, do the following:",
+                  },
+                  {
+                    tag_type: "ol",
+                    items: [
+                      {
+                        text: "Signup/Login to your account at AddChat.",
+                        link_parts: [
+                          {
+                            text: "Signup/Login",
+                            link: "https://www.google.com/",
+                          },
+                        ],
+                      },
 
-                    {
-                      tag_type: "li",
-                      text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HEADFUL])",
-                    },
+                      {
+                        tag_type: "li",
+                        text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HEADFUL])",
+                      },
 
-                    {
-                      tag_type: "li",
-                      text: "Go To created apps's detail page and locate the credentials.",
-                    },
-                  ],
-                },
-              ],
-            },
+                      {
+                        tag_type: "li",
+                        text: "Go To created apps's detail page and locate the credentials.",
+                      },
+                    ],
+                  },
+                ],
+              },
 
-            {
-              tag_type: "div",
-              children: [
-                { tag_type: "h2", text: "Project setup" },
+              {
+                tag_type: "div",
+                children: [
+                  { tag_type: "h2", text: "Project setup" },
 
-                {
-                  tag_type: "p",
-                  text: "To integrate Chat into your app, do the following:",
-                },
+                  {
+                    tag_type: "p",
+                    text: "To integrate Chat into your app, do the following:",
+                  },
 
-                {
-                  tag_type: "feature_options",
-                  options: [
-                    {
-                      text: "HEADFUL",
-                      description: [
-                       
-                        {
-                          tag_type: "p",
-                          text: "In this mode [HEADFUL], the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
-                        },
+                  {
+                    tag_type: "feature_options",
+                    options: [
+                      {
+                        text: "HEADFUL",
+                        description: [
+                          {
+                            tag_type: "p",
+                            text: "In this mode [HEADFUL], the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
+                          },
 
-                        {
-                          tag_type: "p",
-                          text: "To integrate it into your app, Do the following.",
-                        },
+                          {
+                            tag_type: "p",
+                            text: "To integrate it into your app, Do the following.",
+                          },
 
-                        {
-                          tag_type: "ol",
-                          items: [
-                            {
-                              tag_type: "li",
-                              text: "Update the script credentials section with your app's credentials",
-                              sub_items: [
-                                {
-                                  tag_type: "li",
-                                  text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                                  // extra_text:
-                                  //   "Update the script credentials section with your app's credentials",
-                                  code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
-                                },
-                                {
-                                  tag_type: "li",
-                                  // text: "after script is loaded we can initialize it like below.",
-                                  // extra_text: "kindly add it below the first script",
-                                  code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
-                                },
-                                {
-                                  tag_type: "li",
-                                  text: "after script is loaded we can initialize it like below.",
-                                  // extra_text: "kindly add it below the first script",
-                                  code: `<script>
+                          {
+                            tag_type: "ol",
+                            items: [
+                              {
+                                tag_type: "li",
+                                text: "Update the script credentials section with your app's credentials",
+                                sub_items: [
+                                  {
+                                    tag_type: "li",
+                                    text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                                    // extra_text:
+                                    //   "Update the script credentials section with your app's credentials",
+                                    code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                                  },
+                                  {
+                                    tag_type: "li",
+                                    // text: "after script is loaded we can initialize it like below.",
+                                    // extra_text: "kindly add it below the first script",
+                                    code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                                  },
+                                  {
+                                    tag_type: "li",
+                                    text: "after script is loaded we can initialize it like below.",
+                                    // extra_text: "kindly add it below the first script",
+                                    code: `<script>
             document.addEventListener("DOMContentLoaded", async function () {
               const token = localStorage.getItem("tezkit_token");
               if (token) {
@@ -130,84 +128,78 @@ const payload = {
             });
           </script>
           `,
-                                },
-                              ],
-                            },
-                            {
-                              tag_type: "li",
-                              text: "Verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
-                              // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                              img: "Asset/headerful_example.png",
-                            },
-                           
+                                  },
+                                ],
+                              },
+                              {
+                                tag_type: "li",
+                                text: "Verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
+                                // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                                img: "Asset/headerful_example.png",
+                              },
 
-                            {
-                              text: "Refer to the example code in the screenshot above if needed for guidance.",
-                              link_parts: [
-                                {
-                                  text: "example code",
-                                  link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                                },
-                              ],
-                            },
-                            
-                          ],
+                              {
+                                text: "Refer to the example code in the screenshot above if needed for guidance.",
+                                link_parts: [
+                                  {
+                                    text: "example code",
+                                    link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                          {
+                            tag_type: "video",
+                            src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
+                            desc: "Demo for P2A V1 [Headful]",
+                          },
+                        ],
+                      },
+                      {
+                        text: "HEADLESS",
+                        description: [
+                          {
+                            tag_type: "p",
+                            text: "In this mode, instead of displaying a standard header, all the authentication components (Signup, Login, etc.) are grouped together. These components are designed to be flexible, allowing you to place them in a fixed position anywhere within your custom header or elsewhere in your layout. Additionally, this mode includes a chat box for user interaction",
+                          },
 
-                          
-                        },
-                        {
-                          tag_type: "video",
-                          src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
-                          desc: "Demo for P2A V1 [Headful]",
-                        },
-                       
-                   
-                      ],
-                    },
-                    {
-                      text: "HEADLESS",
-                      description: [
-                        {
-                          tag_type: "p",
-                          text: "In this mode, instead of displaying a standard header, all the authentication components (Signup, Login, etc.) are grouped together. These components are designed to be flexible, allowing you to place them in a fixed position anywhere within your custom header or elsewhere in your layout. Additionally, this mode includes a chat box for user interaction",
-                        },
+                          {
+                            tag_type: "p",
+                            text: "To integrate Chat this into your app, Do the following.",
+                          },
 
-                        {
-                          tag_type: "p",
-                          text: "To integrate Chat this into your app, Do the following.",
-                        },
-
-                        {
-                          tag_type: "ol",
-                          items: [
-                            {
-                              tag_type: "li",
-                              text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
-                              // extra_text: "kindly add it below the first script",
-                              code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
-                            },
-                            {
-                              tag_type: "li",
-                              text: "Update the script credentials section with your app's credentials",
-                              sub_items: [
-                                {
-                                  tag_type: "li",
-                                  text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                                  // extra_text:
-                                  //   "Update the script credentials section with your app's credentials",
-                                  code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
-                                },
-                                {
-                                  tag_type: "li",
-                                  // text: "after script is loaded we can initialize it like below.",
-                                  // extra_text: "kindly add it below the first script",
-                                  code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
-                                },
-                                {
-                                  tag_type: "li",
-                                  text: "after script is loaded we can initialize it like below.",
-                                  // extra_text: "kindly add it below the first script",
-                                  code: `<script>
+                          {
+                            tag_type: "ol",
+                            items: [
+                              {
+                                tag_type: "li",
+                                text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+                                // extra_text: "kindly add it below the first script",
+                                code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                              },
+                              {
+                                tag_type: "li",
+                                text: "Update the script credentials section with your app's credentials",
+                                sub_items: [
+                                  {
+                                    tag_type: "li",
+                                    text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                                    // extra_text:
+                                    //   "Update the script credentials section with your app's credentials",
+                                    code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                                  },
+                                  {
+                                    tag_type: "li",
+                                    // text: "after script is loaded we can initialize it like below.",
+                                    // extra_text: "kindly add it below the first script",
+                                    code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
+                                  },
+                                  {
+                                    tag_type: "li",
+                                    text: "after script is loaded we can initialize it like below.",
+                                    // extra_text: "kindly add it below the first script",
+                                    code: `<script>
             document.addEventListener("DOMContentLoaded", async function () {
               const token = localStorage.getItem("tezkit_token");
               if (token) {
@@ -231,154 +223,144 @@ const payload = {
             });
           </script>
           `,
-                                },
-                              ],
-                            },
+                                  },
+                                ],
+                              },
 
-                            {
-                              tag_type: "li",
-                              text: "Verify if you see the Auth components where you placed them in your page and chat icon on the bottom of your page. like in below image ",
-                              // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                              img: "Asset/headerless_example.png",
-                            },
-                            {
-                              text: "Refer to the example code in the screenshot above if needed for guidance.",
-                              link_parts: [
-                                {
-                                  text: "example code",
-                                  link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                                },
-                              ],
-                            },
-                            
-                            
-                          ],
-                        
-                        },
-                        {
-                          tag_type: "div",
-                          children: [
+                              {
+                                tag_type: "li",
+                                text: "Verify if you see the Auth components where you placed them in your page and chat icon on the bottom of your page. like in below image ",
+                                // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                                img: "Asset/headerless_example.png",
+                              },
+                              {
+                                text: "Refer to the example code in the screenshot above if needed for guidance.",
+                                link_parts: [
+                                  {
+                                    text: "example code",
+                                    link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                          {
+                            tag_type: "div",
+                            children: [
+                              {
+                                tag_type: "div",
+                                children: [
+                                  {
+                                    tag_type: "video",
+                                    src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
+                                    desc: "Demo for P2A V1 [HeadLess]",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    tag_type: "div",
+                    children: [
+                      {
+                        tag_type: "h3",
+                        text: "Congratulations Integration Should be Successfully Done by now!",
+                      },
 
-                            {
-                              tag_type: "div",
-                              children: [
-                                {
-                                  tag_type: "video",
-                                  src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
-                                  desc: "Demo for P2A V1 [HeadLess]",
-                                },
-                              ],
-                            },
-
-                            
-                            
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  tag_type: "div",
-                  children: [
-
-                 
-                    { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
-    
-                    
-                    {
-                      tag_type: "p",
-                      text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
-                    },
-                    
-                  ],
-                },
-              ],
-            },
-
-          ],
+                      {
+                        tag_type: "p",
+                        text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
         },
-      },
-      {
-        "P2A__V2.1": {
-          content: [
-            {
-              tag_type: "h4",
-              text: `This chat application is designed specifically for complex sites or apps built with JavaScript on both the client and server sides. It is ideal for products that already have built-in authentication and are looking to seamlessly integrate robust chat functionality.`,
-            },
+        {
+          "P2A__V2.1": {
+            content: [
+              {
+                tag_type: "h4",
+                text: `This chat application is designed specifically for complex sites or apps built with JavaScript on both the client and server sides. It is ideal for products that already have built-in authentication and are looking to seamlessly integrate robust chat functionality.`,
+              },
 
-            
-            //prerequisite?
-            {
-              tag_type: "div",
-              children: [
-                { tag_type: "h2", text: "Prerequisite" },
+              //prerequisite?
+              {
+                tag_type: "div",
+                children: [
+                  { tag_type: "h2", text: "Prerequisite" },
 
-                {
-                  tag_type: "p",
-                  text: "To integrate Chat into your app, do the following:",
-                },
-                {
-                  tag_type: "ol",
-                  items: [
-                    {
-                      text: "Signup/Login to your account at AddChat.",
-                      link_parts: [
-                        {
-                          text: "Signup/Login",
-                          link: "https://www.google.com/",
-                        },
-                      ],
-                    },
+                  {
+                    tag_type: "p",
+                    text: "To integrate Chat into your app, do the following:",
+                  },
+                  {
+                    tag_type: "ol",
+                    items: [
+                      {
+                        text: "Signup/Login to your account at AddChat.",
+                        link_parts: [
+                          {
+                            text: "Signup/Login",
+                            link: "https://www.google.com/",
+                          },
+                        ],
+                      },
 
-                    {
-                      tag_type: "li",
-                      text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HEADFUL])",
-                    },
+                      {
+                        tag_type: "li",
+                        text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HEADFUL])",
+                      },
 
-                    {
-                      tag_type: "li",
-                      text: "Go To created apps's detail page and locate the credentials.",
-                    },
-                  ],
-                },
-              ],
-            },
+                      {
+                        tag_type: "li",
+                        text: "Go To created apps's detail page and locate the credentials.",
+                      },
+                    ],
+                  },
+                ],
+              },
 
-            {
-              tag_type: "div",
-              children: [
-                { tag_type: "h2", text: "Project setup" },
+              {
+                tag_type: "div",
+                children: [
+                  { tag_type: "h2", text: "Project setup" },
 
-                {
-                  tag_type: "h4",
-                  text: "Client Side Integration",
-                },
-                {
-                  tag_type: "ol",
-                  items: [
-                    {
-                      tag_type: "li",
-                      text: "Update the script credentials section with your app's credentials",
-                      sub_items: [
-                        {
-                          tag_type: "li",
-                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                          // extra_text:
-                          //   "Update the script credentials section with your app's credentials",
-                          code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
-                        },
-                        {
-                          tag_type: "li",
-                          // text: "after script is loaded we can initialize it like below.",
-                          // extra_text: "kindly add it below the first script",
-                          code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
-                        },
-                        {
-                          tag_type: "li",
-                          text: "after script is loaded we can initialize it like below.",
-                          // extra_text: "kindly add it below the first script",
-                          code: `<script>
+                  {
+                    tag_type: "h4",
+                    text: "Client Side Integration",
+                  },
+                  {
+                    tag_type: "ol",
+                    items: [
+                      {
+                        tag_type: "li",
+                        text: "Update the script credentials section with your app's credentials",
+                        sub_items: [
+                          {
+                            tag_type: "li",
+                            text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                            // extra_text:
+                            //   "Update the script credentials section with your app's credentials",
+                            code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                          },
+                          {
+                            tag_type: "li",
+                            // text: "after script is loaded we can initialize it like below.",
+                            // extra_text: "kindly add it below the first script",
+                            code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                          },
+                          {
+                            tag_type: "li",
+                            text: "after script is loaded we can initialize it like below.",
+                            // extra_text: "kindly add it below the first script",
+                            code: `<script>
     document.addEventListener("DOMContentLoaded", async function () {
       const token = localStorage.getItem("tezkit_token");
       if (token) {
@@ -402,148 +384,225 @@ const payload = {
     });
   </script>
   `,
-                        },
-                      ],
+                          },
+                        ],
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Verify if you see chat icon on the bottom of your page. like in below image ",
+                        // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                        img: "Asset/headerful_example.png",
+                      },
+
+                      {
+                        text: "Refer to the example code in the screenshot above if needed for guidance.",
+                        link_parts: [
+                          {
+                            text: "example code",
+                            link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+
+                  //Backend side integration
+
+                  {
+                    tag_type: "h4",
+                    text: "Backend Side Integration",
+                  },
+
+                  {
+                    tag_type: "p",
+                    text: "Since authenticaiton is locally managed by you; whenever a new user has signed up on your plateform you should let us know by",
+                  },
+
+                  {
+                    tag_type: "feature_options",
+                    options: [
+                      {
+                        text: "python",
+                        description: [
+                          {
+                            tag_type: "p",
+                            text: "Python Language based integrtion",
+                          },
+
+                          {
+                            tag_type: "p",
+                            text: "To integrate it into your app, Do the following.",
+                          },
+
+                          {
+                            tag_type: "div",
+                            children: [
+                              {
+                                tag_type: "code",
+                                text: `
+credentials = {
+  "APP_API_KEY":"dGVuYW50NV9fU0VQUkFUT1JfX2FwcDJfYWNtX2ZhbHNlX3RlbmFudDU=",
+  "app_name": "<app_name>",
+  "tenant": "<tenant>"
+  }
+
+reqUrl = "https://gfxb0jf19k.execute-api.ap-south-1.amazonaws.com/prod/onboarding"
+
+headersList = {
+"Accept": "*/*",
+"User-Agent": "Thunder Client (https://www.thunderclient.com)",
+"X-API-Key": credentials['APP_API_KEY'],
+"Content-Type": "application/json" 
+}
+
+payload = json.dumps({
+    "tenant": credentials['tenant'],
+    "uid": uid,
+    "app_name": credentials['app_name']
+}
+)
+
+response = requests.request("POST", reqUrl, data=payload,  headers=headersList)`,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        text: "Node",
+                        description: [
+                          {
+                            tag_type: "p",
+                            text: "In this mode, instead of displaying a standard header, all the authentication components (Signup, Login, etc.) are grouped together. These components are designed to be flexible, allowing you to place them in a fixed position anywhere within your custom header or elsewhere in your layout. Additionally, this mode includes a chat box for user interaction",
+                          },
+
+                          {
+                            tag_type: "p",
+                            text: "To integrate Chat this into your app, Do the following.",
+                          },
+
+                          {
+                            tag_type: "ol",
+                            items: [
+                              {
+                                tag_type: "li",
+                                text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+                                // extra_text: "kindly add it below the first script",
+                                code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                              },
+                              {
+                                tag_type: "li",
+                                text: "Update the script credentials section with your app's credentials",
+                                sub_items: [
+                                  {
+                                    tag_type: "li",
+                                    text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                                    // extra_text:
+                                    //   "Update the script credentials section with your app's credentials",
+                                    code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                                  },
+                                  {
+                                    tag_type: "li",
+                                    // text: "after script is loaded we can initialize it like below.",
+                                    // extra_text: "kindly add it below the first script",
+                                    code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
+                                  },
+                                  {
+                                    tag_type: "li",
+                                    text: "after script is loaded we can initialize it like below.",
+                                    // extra_text: "kindly add it below the first script",
+                                    code: `<script>
+            document.addEventListener("DOMContentLoaded", async function () {
+              const token = localStorage.getItem("tezkit_token");
+              if (token) {
+                window.chathead.initialize(token);
+              } else {
+                window.chathead.setUp(
+                  "<Your App Name>", 
+                  "<Your Api Key>", 
+                  JSON.stringify({
+                    "header_theme": {
+                      "backgroundColor": "rgb(30, 136, 125)"
                     },
-                    {
-                      tag_type: "li",
-                      text: "Verify if you see chat icon on the bottom of your page. like in below image ",
-                      // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                      img: "Asset/headerful_example.png",
-                    },
-                   
+                    "chat_opener_theme": {
+                      "backgroundColor": "rgb(41, 48, 78)"
+                    }
+                  }),
+                  false,
+                  "/index.html"
+                );
+              }
+            });
+          </script>
+          `,
+                                  },
+                                ],
+                              },
 
-                    {
-                      text: "Refer to the example code in the screenshot above if needed for guidance.",
-                      link_parts: [
-                        {
-                          text: "example code",
-                          link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                        },
-                      ],
-                    },
-                    
-                  ],
+                              {
+                                tag_type: "li",
+                                text: "Verify if you see the Auth components where you placed them in your page and chat icon on the bottom of your page. like in below image ",
+                                // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                                img: "Asset/headerless_example.png",
+                              },
+                              {
+                                text: "Refer to the example code in the screenshot above if needed for guidance.",
+                                link_parts: [
+                                  {
+                                    text: "example code",
+                                    link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                          {
+                            tag_type: "div",
+                            children: [
+                              {
+                                tag_type: "div",
+                                children: [
+                                  {
+                                    tag_type: "video",
+                                    src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
+                                    desc: "Demo for P2A V1 [HeadLess]",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
 
-                  
-                },
+                  {
+                    tag_type: "video",
+                    src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
+                    desc: "Demo for P2A V1 [Headful]",
+                  },
 
-                //Backend side integration
-                
+                  {
+                    tag_type: "div",
+                    children: [
+                      {
+                        tag_type: "h3",
+                        text: "Congratulations Integration Should be Successfully Done by now!",
+                      },
 
-
-                {
-                  tag_type: "h4",
-                  text: "Backend Side Integration",
-                },
-                {
-                  tag_type: "ol",
-                  items: [
-                    {
-                      tag_type: "li",
-                      text: "Use Backend Api as mentioned below.",
-                      sub_items: [
-                        {
-                          tag_type: "li",
-                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                          // extra_text:
-                          //   "Update the script credentials section with your app's credentials",
-                          code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
-                        },
-                        {
-                          tag_type: "li",
-                          // text: "after script is loaded we can initialize it like below.",
-                          // extra_text: "kindly add it below the first script",
-                          code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
-                        },
-                        {
-                          tag_type: "li",
-                          text: "after script is loaded we can initialize it like below.",
-                          // extra_text: "kindly add it below the first script",
-                          code: `<script>
-    document.addEventListener("DOMContentLoaded", async function () {
-      const token = localStorage.getItem("tezkit_token");
-      if (token) {
-        window.chathead.initialize(token);
-      } else {
-        window.chathead.setUp(
-          "<Your App Name>", 
-          "<Your Api Key>", 
-          JSON.stringify({
-            "header_theme": {
-              "backgroundColor": "rgb(30, 136, 125)"
-            },
-            "chat_opener_theme": {
-              "backgroundColor": "rgb(41, 48, 78)"
-            }
-          }),
-          null,
-          "/index.html"
-        );
-      }
-    });
-  </script>
-  `,
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "li",
-                      text: "Verify if you see chat icon on the bottom of your page. like in below image ",
-                      // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                      img: "Asset/headerful_example.png",
-                    },
-                   
-
-                    {
-                      text: "Refer to the example code in the screenshot above if needed for guidance.",
-                      link_parts: [
-                        {
-                          text: "example code",
-                          link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                        },
-                      ],
-                    },
-                    
-                  ],
-
-                  
-                },
-
-
-
-
-                {
-                  tag_type: "video",
-                  src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
-                  desc: "Demo for P2A V1 [Headful]",
-                },
-               
-                {
-                  tag_type: "div",
-                  children: [
-
-               
-
-                    { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
-    
-                    
-                    {
-                      tag_type: "p",
-                      text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
-                    },
-                    
-                  ],
-                },
-              ],
-            },
-
-          ],
+                      {
+                        tag_type: "p",
+                        text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
         },
-      },
-    ],
+      ],
   },
- 
 };
 
 const CondRadioRender = ({ r_options, current_mode }) => {
@@ -575,10 +634,10 @@ const CondRadioRender = ({ r_options, current_mode }) => {
         {r_options.map((option, index) => (
           <div
             key={index}
-            className={`tab ${selectedOption === option.text ? 'active' : ''}`}
+            className={`tab ${selectedOption === option.text ? "active" : ""}`}
             onClick={() => {
-              console.log("tabshoudl get the click?")
-              handleTabClick(option.text)
+              console.log("tabshoudl get the click?");
+              handleTabClick(option.text);
             }}
           >
             {option.text}
@@ -587,10 +646,7 @@ const CondRadioRender = ({ r_options, current_mode }) => {
       </div>
 
       <div className="description">
-        <h3>
-          Select the Right Mode and follow the respective integration as below
-          mentioned Steps.
-        </h3>
+     
         <div>
           {/* Render content based on the selected option */}
           <ContentRenderer
@@ -699,7 +755,7 @@ const List = ({ items, listType }) => {
   console.log("Here are the items:", items);
 
   return listType === "ol" ? (
-    <ol className="content-list ordered" >
+    <ol className="content-list ordered">
       {items.map((item, index) => (
         <ListItem key={index} item={item} listType={listType} />
       ))}
@@ -712,8 +768,6 @@ const List = ({ items, listType }) => {
     </ul>
   );
 };
-
-
 
 const ListItem = ({ item, listType }) => {
   const linkParts = item.link_parts || [];
@@ -759,7 +813,7 @@ const ListItem = ({ item, listType }) => {
 };
 
 const ContentRenderer = ({ content, current_mode }) => {
-  console.log("sdeafsadsdfcontentf",current_mode)
+  console.log(content, "ismyscode indiv not even called", current_mode);
   return (
     <div className="contents">
       {content?.map((item, index) => {
@@ -800,7 +854,13 @@ const ContentRenderer = ({ content, current_mode }) => {
             </h2>
           );
         } else if (item.tag_type === "feature_options") {
-          return <CondRadioRender r_options={item.options} key={index} current_mode={current_mode}/>;
+          return (
+            <CondRadioRender
+              r_options={item.options}
+              key={index}
+              current_mode={current_mode}
+            />
+          );
         }
 
         // <CondRadioRender r_options={options} />
@@ -864,7 +924,11 @@ const ContentRenderer = ({ content, current_mode }) => {
             <div key={index} className="content-div">
               {item.children &&
                 item.children.map((child, i) => (
-                  <ContentRenderer key={i} content={[child]} current_mode={current_mode}/>
+                  <ContentRenderer
+                    key={i}
+                    content={[child]}
+                    current_mode={current_mode}
+                  />
                 ))}
             </div>
           );
@@ -882,7 +946,7 @@ const ContentRenderer = ({ content, current_mode }) => {
   );
 };
 
-const FilterComp = ({setSelectedFilter}) => {
+const FilterComp = ({ setSelectedFilter }) => {
   const [selections, setSelections] = useState({});
   const [expandedKeys, setExpandedKeys] = useState([]);
 
@@ -949,7 +1013,9 @@ const FilterComp = ({setSelectedFilter}) => {
             />
             {key}
           </label>
-          {expandedKeys.includes(path.concat(key).join(".")) && value && renderNestedOptions(value, path.concat(key))}
+          {expandedKeys.includes(path.concat(key).join(".")) &&
+            value &&
+            renderNestedOptions(value, path.concat(key))}
         </div>
       );
     });
@@ -985,90 +1051,82 @@ const FilterComp = ({setSelectedFilter}) => {
   const handleSubmit = () => {
     console.log("Final Selections:", selections);
 
-    if (selections){
-
-      setSelectedFilter(selections)
-
+    if (selections) {
+      setSelectedFilter(selections);
     }
   };
 
   return (
     <div className="filter-container">
       <h3>Filter</h3>
-      <div className="options-list">{renderOptions(filter_obj.app_types, ["app_types"])}</div>
-      <button className="submit-btn" onClick={handleSubmit}>Submit</button>
+      <div className="options-list">
+        {renderOptions(filter_obj.app_types, ["app_types"])}
+      </div>
+      <button className="submit-btn" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
   );
 };
 
-
-
 const Document = () => {
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  console.log("do we have a fitler???selectedFilter", selectedFilter);
 
-  const [selectedFilter, setSelectedFilter] = useState(null)
-  console.log("do we have a fitler???selectedFilter",selectedFilter)
-  
   const searchParams = useSearchParams();
-  const current_version = searchParams.get('current_version') || 'P2A__V1'; // Default value if not provided
+  const current_version = searchParams.get("current_version") || "P2A__V1"; // Default value if not provided
 
-  
   const [current_mode, setModeOfVersion] = useState(null);
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
   const [selectedTab, setSelectedTab] = useState(current_version);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-
   useEffect(() => {
-
     // Function to generate the key
     function generateKey(obj) {
       const appTypes = obj.app_types;
       const keys = [];
-      
+
       // Iterate over each app type
       for (const appType in appTypes) {
-        console.log(appType, "hwo to get mode",obj)
-          const versionTypes = appTypes[appType].version_types;
-          
-          // Iterate over each version type
-          for (const version in versionTypes) {
-              keys.push(`${appType}__${version}`);
-              const  mode = obj.app_types[appType]?.version_types[version]?.['selected_mode']
-              console.log("modesdfsdafsd",mode)
-              if (mode){
-                setModeOfVersion(mode)
-              }
+        console.log(appType, "hwo to get mode", obj);
+        const versionTypes = appTypes[appType].version_types;
+
+        // Iterate over each version type
+        for (const version in versionTypes) {
+          keys.push(`${appType}__${version}`);
+          const mode =
+            obj.app_types[appType]?.version_types[version]?.["selected_mode"];
+          console.log("modesdfsdafsd", mode);
+          if (mode) {
+            setModeOfVersion(mode);
           }
+        }
       }
-      
+
       return keys;
     }
 
-    
-    if (selectedFilter){
-      //here we can run side effect 
+    if (selectedFilter) {
+      //here we can run side effect
       const keys = generateKey(selectedFilter);
 
+      console.log(keys, "keyscurrent sleelcteoirn", selectedFilter, keys);
 
-      console.log(keys,"keyscurrent sleelcteoirn",selectedFilter,keys)
-    
-        // probably just try to reset the selectedTab
-        // first key of app_types & 
-        if (keys.length == 1){
-          setSelectedTab(keys[0])
-
-        }
+      // probably just try to reset the selectedTab
+      // first key of app_types &
+      if (keys.length == 1) {
+        setSelectedTab(keys[0]);
+      }
     }
-  }, [selectedFilter])
-  
+  }, [selectedFilter]);
 
   useEffect(() => {
-    console.log("current_versionsdfsadfsdf",current_version)
-    if (current_version == "P2A__V1"){
-      setModeOfVersion("HEADFUL")
+    console.log("current_versionsdfsadfsdf", current_version);
+    if (current_version == "P2A__V1") {
+      setModeOfVersion("HEADFUL");
     }
-  }, [current_version])
-  
+  }, [current_version]);
 
   const handleKeyClick = (key) => {
     setSelectedKey(key);
@@ -1110,7 +1168,11 @@ const Document = () => {
                 ? item[selectedTab].content
                 : null;
               return content ? (
-                <ContentRenderer key={index} content={content} current_mode={current_mode}/>
+                <ContentRenderer
+                  key={index}
+                  content={content}
+                  current_mode={current_mode}
+                />
               ) : null;
             })}
           </div>
@@ -1119,47 +1181,47 @@ const Document = () => {
     );
   };
 
-  console.log("do we have nay mode?",current_mode)
+  console.log("do we have nay mode?", current_mode);
 
   return (
     <div className="document-container">
-      {<FilterComp setSelectedFilter={setSelectedFilter}/>}
-     <div className="doc_core_wrapper">
-     <div className="doc_sidebar">
-        <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>
-          {Object.keys(payload).map((key) => (
-            <div
-              key={key}
-              onClick={() => handleKeyClick(key)}
-              className="sidebar-item"
+      {<FilterComp setSelectedFilter={setSelectedFilter} />}
+      <div className="doc_core_wrapper">
+        <div className="doc_sidebar">
+          <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>
+            {Object.keys(payload).map((key) => (
+              <div
+                key={key}
+                onClick={() => handleKeyClick(key)}
+                className="sidebar-item"
+              >
+                <h2>{key}</h2>
+              </div>
+            ))}
+          </div>
+          <div className="downIcon" onClick={toggleDropdown}>
+            <h3>Overview</h3>
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <h2>{key}</h2>
-            </div>
-          ))}
+              <path
+                d="M15 0C12.0333 0 9.13319 0.879734 6.66645 2.52796C4.19972 4.17618 2.27713 6.51886 1.14181 9.25975C0.00649932 12.0006 -0.290551 15.0166 0.288227 17.9264C0.867006 20.8361 2.29562 23.5088 4.3934 25.6066C6.49119 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2906 17.9994 29.9935 20.7403 28.8582C23.4811 27.7229 25.8238 25.8003 27.472 23.3335C29.1203 20.8668 30 17.9667 30 15C29.9953 11.0232 28.4135 7.21061 25.6014 4.39858C22.7894 1.58655 18.9768 0.00469155 15 0ZM22.7823 13.2368L15.9641 20.055C15.7084 20.3106 15.3616 20.4543 15 20.4543C14.6384 20.4543 14.2916 20.3106 14.0359 20.055L7.21773 13.2368C6.96934 12.9796 6.83189 12.6352 6.835 12.2776C6.8381 11.9201 6.98151 11.5781 7.23434 11.3252C7.48717 11.0724 7.82919 10.929 8.18673 10.9259C8.54427 10.9228 8.88873 11.0602 9.14591 11.3086L15 17.1627L20.8541 11.3086C21.1113 11.0602 21.4557 10.9228 21.8133 10.9259C22.1708 10.929 22.5128 11.0724 22.7657 11.3252C23.0185 11.5781 23.1619 11.9201 23.165 12.2776C23.1681 12.6352 23.0307 12.9796 22.7823 13.2368Z"
+                fill="black"
+              />
+            </svg>
+          </div>
         </div>
-        <div className="downIcon" onClick={toggleDropdown}>
-          <h3>Overview</h3>
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 30 30"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M15 0C12.0333 0 9.13319 0.879734 6.66645 2.52796C4.19972 4.17618 2.27713 6.51886 1.14181 9.25975C0.00649932 12.0006 -0.290551 15.0166 0.288227 17.9264C0.867006 20.8361 2.29562 23.5088 4.3934 25.6066C6.49119 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2906 17.9994 29.9935 20.7403 28.8582C23.4811 27.7229 25.8238 25.8003 27.472 23.3335C29.1203 20.8668 30 17.9667 30 15C29.9953 11.0232 28.4135 7.21061 25.6014 4.39858C22.7894 1.58655 18.9768 0.00469155 15 0ZM22.7823 13.2368L15.9641 20.055C15.7084 20.3106 15.3616 20.4543 15 20.4543C14.6384 20.4543 14.2916 20.3106 14.0359 20.055L7.21773 13.2368C6.96934 12.9796 6.83189 12.6352 6.835 12.2776C6.8381 11.9201 6.98151 11.5781 7.23434 11.3252C7.48717 11.0724 7.82919 10.929 8.18673 10.9259C8.54427 10.9228 8.88873 11.0602 9.14591 11.3086L15 17.1627L20.8541 11.3086C21.1113 11.0602 21.4557 10.9228 21.8133 10.9259C22.1708 10.929 22.5128 11.0724 22.7657 11.3252C23.0185 11.5781 23.1619 11.9201 23.165 12.2776C23.1681 12.6352 23.0307 12.9796 22.7823 13.2368Z"
-              fill="black"
-            />
-          </svg>
+        <div className="rightWrap">
+          <div className="main-content">
+            {renderTabs()}
+            {renderContent()}
+          </div>
         </div>
       </div>
-      <div className="rightWrap">
-        <div className="main-content">
-          {renderTabs()}
-          {renderContent()}
-        </div>
-      </div>
-     </div>
     </div>
   );
 };
