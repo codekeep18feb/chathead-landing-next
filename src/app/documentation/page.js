@@ -10,21 +10,15 @@ import { useSearchParams } from 'next/navigation';
 // Example payload with additional tags and Lorem Ipsum content
 const payload = {
   installation: {
-    "Peer to Admin - V1 (Chat + Auth)": [
+    "Instant messaging boosts user engagement, fostering community, satisfaction, and loyalty. It also provides real-time support, allowing users to get quick help. The Chat SDK enables seamless real-time messaging on any app or device.": [
       {
-        P2A__V1: {
+        "P2A__V1": {
           content: [
             {
               tag_type: "h4",
               text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.`,
             },
-            {
-              tag_type: "p",
-              text: `
-Instant messaging boosts user engagement, fostering community, satisfaction, and loyalty. It also provides real-time support, allowing users to get quick help. The Chat SDK enables seamless real-time messaging on any app or device.`,
-            },
 
-            //prerequisite?
             {
               tag_type: "div",
               children: [
@@ -167,22 +161,7 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
                           desc: "Demo for P2A V1 [Headful]",
                         },
                        
-                        {
-                          tag_type: "div",
-                          children: [
-
-                       
-
-                            { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
-            
-                            
-                            {
-                              tag_type: "p",
-                              text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
-                            },
-                            
-                          ],
-                        },
+                   
                       ],
                     },
                     {
@@ -291,18 +270,27 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
                               ],
                             },
 
-                            { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
-            
                             
-                            {
-                              tag_type: "p",
-                              text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
-                            },
                             
                           ],
                         },
                       ],
                     },
+                  ],
+                },
+                {
+                  tag_type: "div",
+                  children: [
+
+                 
+                    { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
+    
+                    
+                    {
+                      tag_type: "p",
+                      text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
+                    },
+                    
                   ],
                 },
               ],
@@ -314,9 +302,242 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
       {
         "P2A__V2.1": {
           content: [
-            { tag_type: "h1", text: "Install it from REACT 3000source" },
-            { tag_type: "div", text: "<div >sdsfdsdfon REACT devices.</div>" },
-            { tag_type: "div", text: "sdsdfon REACT devices." },
+            {
+              tag_type: "h4",
+              text: `This chat application is designed specifically for complex sites or apps built with JavaScript on both the client and server sides. It is ideal for products that already have built-in authentication and are looking to seamlessly integrate robust chat functionality.`,
+            },
+
+            
+            //prerequisite?
+            {
+              tag_type: "div",
+              children: [
+                { tag_type: "h2", text: "Prerequisite" },
+
+                {
+                  tag_type: "p",
+                  text: "To integrate Chat into your app, do the following:",
+                },
+                {
+                  tag_type: "ol",
+                  items: [
+                    {
+                      text: "Signup/Login to your account at AddChat.",
+                      link_parts: [
+                        {
+                          text: "Signup/Login",
+                          link: "https://www.google.com/",
+                        },
+                      ],
+                    },
+
+                    {
+                      tag_type: "li",
+                      text: "Create an app as per your use case. (Be Sure to choose the right Mode [Headless | HEADFUL])",
+                    },
+
+                    {
+                      tag_type: "li",
+                      text: "Go To created apps's detail page and locate the credentials.",
+                    },
+                  ],
+                },
+              ],
+            },
+
+            {
+              tag_type: "div",
+              children: [
+                { tag_type: "h2", text: "Project setup" },
+
+                {
+                  tag_type: "h4",
+                  text: "Client Side Integration",
+                },
+                {
+                  tag_type: "ol",
+                  items: [
+                    {
+                      tag_type: "li",
+                      text: "Update the script credentials section with your app's credentials",
+                      sub_items: [
+                        {
+                          tag_type: "li",
+                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                          // extra_text:
+                          //   "Update the script credentials section with your app's credentials",
+                          code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                        },
+                        {
+                          tag_type: "li",
+                          // text: "after script is loaded we can initialize it like below.",
+                          // extra_text: "kindly add it below the first script",
+                          code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                        },
+                        {
+                          tag_type: "li",
+                          text: "after script is loaded we can initialize it like below.",
+                          // extra_text: "kindly add it below the first script",
+                          code: `<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const token = localStorage.getItem("tezkit_token");
+      if (token) {
+        window.chathead.initialize(token);
+      } else {
+        window.chathead.setUp(
+          "<Your App Name>", 
+          "<Your Api Key>", 
+          JSON.stringify({
+            "header_theme": {
+              "backgroundColor": "rgb(30, 136, 125)"
+            },
+            "chat_opener_theme": {
+              "backgroundColor": "rgb(41, 48, 78)"
+            }
+          }),
+          null,
+          "/index.html"
+        );
+      }
+    });
+  </script>
+  `,
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "li",
+                      text: "Verify if you see chat icon on the bottom of your page. like in below image ",
+                      // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                      img: "Asset/headerful_example.png",
+                    },
+                   
+
+                    {
+                      text: "Refer to the example code in the screenshot above if needed for guidance.",
+                      link_parts: [
+                        {
+                          text: "example code",
+                          link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                        },
+                      ],
+                    },
+                    
+                  ],
+
+                  
+                },
+
+                //Backend side integration
+                
+
+
+                {
+                  tag_type: "h4",
+                  text: "Backend Side Integration",
+                },
+                {
+                  tag_type: "ol",
+                  items: [
+                    {
+                      tag_type: "li",
+                      text: "Use Backend Api as mentioned below.",
+                      sub_items: [
+                        {
+                          tag_type: "li",
+                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                          // extra_text:
+                          //   "Update the script credentials section with your app's credentials",
+                          code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                        },
+                        {
+                          tag_type: "li",
+                          // text: "after script is loaded we can initialize it like below.",
+                          // extra_text: "kindly add it below the first script",
+                          code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                        },
+                        {
+                          tag_type: "li",
+                          text: "after script is loaded we can initialize it like below.",
+                          // extra_text: "kindly add it below the first script",
+                          code: `<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const token = localStorage.getItem("tezkit_token");
+      if (token) {
+        window.chathead.initialize(token);
+      } else {
+        window.chathead.setUp(
+          "<Your App Name>", 
+          "<Your Api Key>", 
+          JSON.stringify({
+            "header_theme": {
+              "backgroundColor": "rgb(30, 136, 125)"
+            },
+            "chat_opener_theme": {
+              "backgroundColor": "rgb(41, 48, 78)"
+            }
+          }),
+          null,
+          "/index.html"
+        );
+      }
+    });
+  </script>
+  `,
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "li",
+                      text: "Verify if you see chat icon on the bottom of your page. like in below image ",
+                      // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                      img: "Asset/headerful_example.png",
+                    },
+                   
+
+                    {
+                      text: "Refer to the example code in the screenshot above if needed for guidance.",
+                      link_parts: [
+                        {
+                          text: "example code",
+                          link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                        },
+                      ],
+                    },
+                    
+                  ],
+
+                  
+                },
+
+
+
+
+                {
+                  tag_type: "video",
+                  src: "https://youtu.be/MKatoeFYeb8?si=slTFn2cD5I8l81Zi",
+                  desc: "Demo for P2A V1 [Headful]",
+                },
+               
+                {
+                  tag_type: "div",
+                  children: [
+
+               
+
+                    { tag_type: "h3", text: "Congratulations Integration Should be Successfully Done by now!" },
+    
+                    
+                    {
+                      tag_type: "p",
+                      text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
+                    },
+                    
+                  ],
+                },
+              ],
+            },
+
           ],
         },
       },
@@ -326,9 +547,9 @@ Instant messaging boosts user engagement, fostering community, satisfaction, and
 };
 
 const CondRadioRender = ({ r_options, current_mode }) => {
-  console.log(current_mode, "hecurrent_modere we can access current_mode", r_options, r_options[1]?.text);
+  console.log(current_mode, "current_mode", r_options, r_options[1]?.text);
 
-  // State to track the selected radio option
+  // State to track the selected option
   const [selectedOption, setSelectedOption] = useState(current_mode);
 
   // Update the selectedOption whenever current_mode changes
@@ -338,9 +559,9 @@ const CondRadioRender = ({ r_options, current_mode }) => {
     }
   }, [current_mode]);
 
-  const handleChange = (event) => {
-    // Update the selected option based on user selection
-    setSelectedOption(event.target.value);
+  const handleTabClick = (optionText) => {
+    // Update the selected option when a tab is clicked
+    setSelectedOption(optionText);
   };
 
   if (!current_mode) {
@@ -349,20 +570,18 @@ const CondRadioRender = ({ r_options, current_mode }) => {
 
   return (
     <div>
-      <div className="content-paragraph">
+      <div className="cond-tabs-container">
+        {/* Render the options as tabs */}
         {r_options.map((option, index) => (
-          <div key={index} className="radio-container">
-            <label>
-              <input
-                type="radio"
-                name="option"
-                value={option.text}
-                checked={selectedOption === option.text}
-                onChange={handleChange}
-                className="custom-radio"
-              />
-              <p className="input_text">{option.text}</p>
-            </label>
+          <div
+            key={index}
+            className={`tab ${selectedOption === option.text ? 'active' : ''}`}
+            onClick={() => {
+              console.log("tabshoudl get the click?")
+              handleTabClick(option.text)
+            }}
+          >
+            {option.text}
           </div>
         ))}
       </div>
@@ -476,9 +695,11 @@ const renderTextWithElements = (
   return parts;
 };
 
-const List = ({ items, listType }) =>
-  listType === "ol" ? (
-    <ol className="content-list ordered">
+const List = ({ items, listType }) => {
+  console.log("Here are the items:", items);
+
+  return listType === "ol" ? (
+    <ol className="content-list ordered" >
       {items.map((item, index) => (
         <ListItem key={index} item={item} listType={listType} />
       ))}
@@ -490,6 +711,9 @@ const List = ({ items, listType }) =>
       ))}
     </ul>
   );
+};
+
+
 
 const ListItem = ({ item, listType }) => {
   const linkParts = item.link_parts || [];
@@ -846,7 +1070,6 @@ const Document = () => {
   }, [current_version])
   
 
-  console.log("current_modesdfsadfasdf",current_mode)
   const handleKeyClick = (key) => {
     setSelectedKey(key);
     setSelectedTab("P2A__V1"); // reset tab selection to default

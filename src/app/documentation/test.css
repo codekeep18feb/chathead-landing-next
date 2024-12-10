@@ -82,9 +82,9 @@
 }
 
 .step-title {
-  font-size: 44px;
+  /* font-size: 44px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 30px; */
   width: 90%;
 }
 
@@ -574,4 +574,32 @@
 .submit-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.cond-tabs-container {
+  display: flex;
+  justify-content: space-evenly;
+  height: 50px;
+  align-items: center;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border-radius: 5px; /* Optional: add rounded corners for a more modern look */
+}
+
+.cond-tabs-container > .tab {
+  flex: 1; /* Each tab will take equal space */
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center; /* Center text inside each tab */
+  background-color: #f0f0f0;
+  transition: background-color 0.3s, color 0.3s; /* Adding transition for smoother hover effect */
+  border-radius: 5px;
+}
+
+.cond-tabs-container > .tab.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.cond-tabs-container > .tab:hover {
+  background-color: #ddd;
 }
