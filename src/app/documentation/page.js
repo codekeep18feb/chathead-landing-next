@@ -225,8 +225,8 @@ const ContentRenderer = ({ content, current_mode }) => {
 
         if (item.tag_type === "img") {
           return (
-            <div className="content-list-img">
-              <img key={index} src={item.src} alt={item.alt || ""} />
+            <div className="content-list-img" key={index}>
+              <img src={item.src} alt={item.alt || ""} />
             </div>
           );
         }
@@ -243,6 +243,7 @@ const ContentRenderer = ({ content, current_mode }) => {
             </div>
           );
         }
+
         if (item.tag_type === "h2") {
           return (
             <h2 key={index} className="content-heading">
@@ -265,7 +266,6 @@ const ContentRenderer = ({ content, current_mode }) => {
           );
         }
 
-        // <CondRadioRender r_options={options} />
         else if (item.tag_type === "h3") {
           return (
             <h3 key={index} className="content-subheading">
@@ -277,12 +277,6 @@ const ContentRenderer = ({ content, current_mode }) => {
             <p key={index} className="content-paragraph">
               {item.text}
             </p>
-          );
-        } else if (item.tag_type === "img") {
-          return (
-            <div className="content-list-img">
-              <img key={index} src={item.src} alt={item.alt || ""} />
-            </div>
           );
         } else if (item.tag_type === "a") {
           return (
@@ -327,7 +321,7 @@ const ContentRenderer = ({ content, current_mode }) => {
               {item.children &&
                 item.children.map((child, i) => (
                   <ContentRenderer
-                    key={i}
+                    key={`${index}-${i}`} // Combine index and child index for uniqueness
                     content={[child]}
                     current_mode={current_mode}
                   />
@@ -347,6 +341,7 @@ const ContentRenderer = ({ content, current_mode }) => {
     </div>
   );
 };
+
 
 const FilterComp = ({ setSelectedFilter }) => {
   const [selections, setSelections] = useState({});
