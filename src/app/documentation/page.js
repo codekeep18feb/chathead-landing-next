@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,Suspense } from "react";
 // import video from "../../../Asset/demo_imgs/before.jpeg"
 import "./test.css"; // Import the CSS file
 import { useSearchParams } from "next/navigation";
@@ -630,4 +630,13 @@ const Document = () => {
   );
 };
 
-export default Document;
+
+
+const DocumentWithSuspense = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Document />
+  </Suspense>
+);
+
+
+export default DocumentWithSuspense;
