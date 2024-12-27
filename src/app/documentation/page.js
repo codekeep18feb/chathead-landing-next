@@ -5,6 +5,7 @@ import React, { useState, useEffect,Suspense } from "react";
 import "./test.css"; // Import the CSS file
 import { useSearchParams } from "next/navigation";
 import payload from "./payload";
+import YouTubeEmbed from "../components/YouTubeVideo";
 
 
 const CondRadioRender = ({ r_options, current_mode }) => {
@@ -234,11 +235,9 @@ const ContentRenderer = ({ content, current_mode }) => {
         if (item.tag_type === "video") {
           return (
             <div key={index}>
-              <h3>{item.desc}</h3>
               <div className="videos">
-                <video width="100%" height="auto" controls>
-                  <source src={item.src} type="video/mp4" />
-                </video>
+
+                <YouTubeEmbed key={index} src={item.src} desc={item.desc} />
               </div>
             </div>
           );

@@ -94,7 +94,7 @@ const VersionContent = ({ version, onWatchDemo, onBack }) => (
     </div>
     <div className="world-chat">
       <section className="v1_wrapper">
-        <h4>{`${version} - CASE1 - If they already have an authentication system in product (JWT) and just want the chat.`}</h4>
+        <h4>{`[${version}]  - Authentication + Chat`}</h4>
         <ContentRows version={version} onWatchDemo={onWatchDemo} />
       </section>
     </div>
@@ -222,52 +222,48 @@ const DefaultContent = () => (
         <i className="bi bi-x"></i>
       </button>
     </div>
+  
     <div className="world-chat">
-      <Section
-        title="Benefits"
-        // className="top-left"
-        items={[
-          "Start quickly to stay ahead of your competitors.",
-          "Free tier pack is enough for small business.",
-          "Flexible and most affordable pricing plans.",
-          "Hassle-free integration with most types of sites/apps.",
-          "Reliable and comes with SLA terms.",
-          "Flexibility to choose the correct chat type for your needs.",
-        ]}
-      />
-      <Section
-        title="Examples"
-        // className="top-right"
-        items={[
-          "Lorem Ipsum is simply dummy text of the printing.",
-          "Lorem Ipsum is simply dummy text of the printing.",
-          "Lorem Ipsum is simply dummy text of the printing.",
-          "Lorem Ipsum is simply dummy text of the printing.",
-        ]}
-      />
-      <Section
-        title="For Who"
-        // className="bottom-left"
-        items={[
-          "Someone who wants a One-to-One Chat Solution in their product with any of the following cases:",
-          "Case 1- Auth - cloud managed",
-          "Case 2- Auth - locally managed",
-          "Case 3- Auth - not required",
-        ]}
-      />
-      <Section
-        title="How it Works"
-        // className="bottom-right"
-        items={[
-          "Make a tenant account",
-          "Login to your Account",
-          "Create An App",
-          "Choose the right type of chat for your App",
-          "Follow the respective integration docs",
-        ]}
-      />
-      <img src="Asset/globe.png" alt="World Chat" className="center-image" />
-    </div>
+  <Section
+    title="Why Choose Us?"
+    items={[
+      "Start quickly to outpace competitors.",
+      "Free tier for small businesses.",
+      "Flexible and affordable pricing plans.",
+      "Effortless integration with various platforms.",
+      "Reliable with SLA-backed service.",
+      "Customizable chat types to meet diverse needs.",
+    ]}
+  />
+  <Section
+    title="Effortless Integration"
+    items={[
+      "Simple setup process.",
+      "24/7 live support.",
+      "Comprehensive documentation.",
+    ]}
+  />
+  <Section
+    title="Getting Started"
+    items={[
+      "Create a tenant account.",
+      "Log in to your account.",
+      "Set up an app.",
+      "Select the ideal chat type for your app.",
+      "Follow step-by-step integration guides.",
+    ]}
+  />
+  <Section
+    title="Fully Managed Solutions"
+    items={[
+      "High availability.",
+      "Scalable infrastructure.",
+      "Cloud-native, no maintenance required.",
+    ]}
+  />
+  <img src="Asset/globe.png" alt="World Chat" className="center-image" />
+</div>
+
   </div>
 );
 

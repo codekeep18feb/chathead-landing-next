@@ -82,12 +82,13 @@ const payload = {
                               items: [
                                 {
                                   tag_type: "li",
-                                  text: "Load The Scripts",
+                                  text: "Update the script credentials section with your app's credentials",
                                   sub_items: [
                                     {
                                       tag_type: "li",
                                       text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                                      extra_text:"It should ideally be placed head of the root file.",
+                                      // extra_text:
+                                      //   "Update the script credentials section with your app's credentials",
                                       code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
                                     },
                                     {
@@ -96,47 +97,46 @@ const payload = {
                                       // extra_text: "kindly add it below the first script",
                                       code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
                                     },
-                                    
                                     {
                                       tag_type: "li",
-                                      text: "Run Setup & Initialization together",
-                                      extra_text: "Since this a simple site having one root file (index.html) we can run both (Setup & Initialization) together; Above is an example of it using LocalStorage But the same is applicable for cookies and SessionStorage",
+                                      text: "after script is loaded we can initialize it like below.",
+                                      // extra_text: "kindly add it below the first script",
                                       code: `<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    const token = localStorage.getItem("tezkit_token");
-    if (token) {
-      window.chathead.initialize(token);
-    } else {
-      window.chathead.setUp(
-        "<Your App Name>", 
-        "<Your Api Key>", 
-        JSON.stringify({
-          "header_theme": {
-            "backgroundColor": "rgb(30, 136, 125)" //to override the header background Color
-          },
-          "chat_opener_theme": {
-            "backgroundColor": "rgb(41, 48, 78)" //to override the chatBox background Color
-          }
-        }),
-        false, // for HEADLESS MODE
-        "/index.html"
-      );
-    }
-  });
-</script>
+              document.addEventListener("DOMContentLoaded", async function () {
+                const token = localStorage.getItem("tezkit_token");
+                if (token) {
+                  window.chathead.initialize(token);
+                } else {
+                  window.chathead.setUp(
+                    "<Your App Name>", 
+                    "<Your Api Key>", 
+                    JSON.stringify({
+                      "header_theme": {
+                        "backgroundColor": "rgb(30, 136, 125)"
+                      },
+                      "chat_opener_theme": {
+                        "backgroundColor": "rgb(41, 48, 78)"
+                      }
+                    }),
+                    true,
+                    "/index.html"
+                  );
+                }
+              });
+            </script>
             `,
                                     },
                                   ],
                                 },
                                 {
                                   tag_type: "li",
-                                  text: "Verify the Results!",
-                                  "more_text": "Kindly verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
+                                  text: "Verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
+                                  // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
                                   img: "Asset/headerful_example.png",
                                 },
   
                                 {
-                                  text: "Refer to the example code here.",
+                                  text: "Refer to the example code in the screenshot above if needed for guidance.",
                                   link_parts: [
                                     {
                                       text: "example code",
@@ -171,69 +171,67 @@ const payload = {
                               items: [
                                 {
                                   tag_type: "li",
-                                  text: "Load The Scripts",
+                                  text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+                                  // extra_text: "kindly add it below the first script",
+                                  code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                                },
+                                {
+                                  tag_type: "li",
+                                  text: "Update the script credentials section with your app's credentials",
                                   sub_items: [
                                     {
                                       tag_type: "li",
                                       text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                                      extra_text:"It should ideally be placed head of the root file.",
+                                      // extra_text:
+                                      //   "Update the script credentials section with your app's credentials",
                                       code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
                                     },
                                     {
                                       tag_type: "li",
                                       // text: "after script is loaded we can initialize it like below.",
                                       // extra_text: "kindly add it below the first script",
-                                      code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                                      code: `<script src="node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
                                     },
-                                    
                                     {
                                       tag_type: "li",
-                                      text: "Run Setup & Initialization together",
-                                      extra_text: "Since this a simple site having one root file (index.html) we can run both (Setup & Initialization) together; Above is an example of it using LocalStorage But the same is applicable for cookies and SessionStorage",
+                                      text: "after script is loaded we can initialize it like below.",
+                                      // extra_text: "kindly add it below the first script",
                                       code: `<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    const token = localStorage.getItem("tezkit_token");
-    if (token) {
-      window.chathead.initialize(token);
-    } else {
-      window.chathead.setUp(
-        "<Your App Name>", 
-        "<Your Api Key>", 
-        JSON.stringify({
-          "header_theme": {
-            "backgroundColor": "rgb(30, 136, 125)" //to override the header background Color
-          },
-          "chat_opener_theme": {
-            "backgroundColor": "rgb(41, 48, 78)" //to override the chatBox background Color
-          }
-        }),
-        true, // for HEADLESS MODE
-        "/index.html"
-      );
-    }
-  });
-</script>
+              document.addEventListener("DOMContentLoaded", async function () {
+                const token = localStorage.getItem("tezkit_token");
+                if (token) {
+                  window.chathead.initialize(token);
+                } else {
+                  window.chathead.setUp(
+                    "<Your App Name>", 
+                    "<Your Api Key>", 
+                    JSON.stringify({
+                      "header_theme": {
+                        "backgroundColor": "rgb(30, 136, 125)"
+                      },
+                      "chat_opener_theme": {
+                        "backgroundColor": "rgb(41, 48, 78)"
+                      }
+                    }),
+                    false,
+                    "/index.html"
+                  );
+                }
+              });
+            </script>
             `,
                                     },
                                   ],
                                 },
-
-                                {
-                                  tag_type: "li",
-                                  text: "Point the Location to show the to place the Authentication Components.",
-                                  extra_text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
-                                  code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
-                                },
-
-                                {
-                                  tag_type: "li",
-                                  text: "Verify the Results!",
-                                  "more_text": "Kindly verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
-                                  img: "Asset/headerful_example.png",
-                                },
   
                                 {
-                                  text: "Refer to the example code here.",
+                                  tag_type: "li",
+                                  text: "Verify if you see the Auth components where you placed them in your page and chat icon on the bottom of your page. like in below image ",
+                                  // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
+                                  img: "Asset/headerless_example.png",
+                                },
+                                {
+                                  text: "Refer to the example code in the screenshot above if needed for guidance.",
                                   link_parts: [
                                     {
                                       text: "example code",
@@ -243,8 +241,6 @@ const payload = {
                                 },
                               ],
                             },
-
-                          
                             {
                               tag_type: "div",
                               children: [
@@ -264,10 +260,22 @@ const payload = {
                         },
                       ],
                     },
-                   
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h3",
+                          text: "Congratulations Integration Should be Successfully Done by now!",
+                        },
+  
+                        {
+                          tag_type: "p",
+                          text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
+                        },
+                      ],
+                    },
                   ],
-                  
-                }
+                },
               ],
             },
           },
@@ -334,224 +342,29 @@ const payload = {
                       items: [
                         {
                           tag_type: "li",
-                          text: "Load the neccessary scripts",
+                          text: "Update the script credentials section with your app's credentials",
                           sub_items: [
                             {
                               tag_type: "li",
                               text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                              extra_text:
-                                "It should ideally be placed head of the root file.",
-                              code: `<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js</script>`,
+                              // extra_text:
+                              //   "Update the script credentials section with your app's credentials",
+                              code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
                             },
                             {
                               tag_type: "li",
-                              text: "Run SetUp",
-                              extra_text: "It should ideally be run on the page where we first detect an UnAuthenticated User + It set's up user's neccessary App Credentials to start with.",
-                              code: `<script>
-  const token = localStorage.getItem('tezkit_token',null);
-    if (!token) { //  To check if user is not logged in (based on your product's specific implimentation)
-        window.chathead.setUp(
-            (app_name = "<Your App Name>"),
-            (api_key =
-            "<Your Api Key>"),
-            (theme=JSON.stringify({"header_theme":{"backgroundColor":"rgb(30, 136, 125)"}, "chat_opener_theme":{"backgroundColor":"rgb(41 48 78)"}}))
-        );
-            }
-  </script>
-    `,
+                              text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                              // extra_text:
+                              //   "Update the script credentials section with your app's credentials",
+                              code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
                             },
-  
-                            {
-                              tag_type: "li",
-                              text: "Run initialization",
-                              extra_text: "This should run as soon as an Authenticated user is detected. + Ensure this runs after the Previous SetUp Code has already run in your Product. + You can verify this by adding logs at both places",
-                              code: `const token = localStorage.getItem('tezkit_token',null);
-  if (token) {
-      window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this will be used to distingush between different users and should be unique for all of them.
-  }
-    `,
-                            },
-                          ],
-                        },
-                        {
-                          tag_type: "li",
-                          text: "Verify if you see chat icon on the bottom of your page. like in below image (Client integration should be done by now.)",
-                          // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                          img: "Asset/headerful_example.png",
-                        },
-  
-                        {
-                          text: "Refer to the example code here.",
-                          link_parts: [
-                            {
-                              text: "example code",
-                              link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-  
-                    //Backend side integration
-  
-                    {
-                      tag_type: "h3",
-                      text: "Backend Integration",
-                    },
-                    {
-                      tag_type: "h3",
-                      text: "Onboarding api",
-                    },
-                    {
-                      tag_type: "p",
-                      text: `Since authenticaiton is locally managed by you; whenever a new user has signed up on your plateform you should let AddChat know by onbarding them like below.`,
-                    },
-
-  
-                    {
-                      tag_type: "p",
-                      text: `Kindly Note - If no users yet the Admin will show like below`,
-                    },
-                   
-  
-                  
-                    {
-                      tag_type: "img",
-                      src: "Asset/v2.1_preview.png",
-                    },
-
-                    {
-                      tag_type: "p",
-                      text: `If there are users already the Admin will show like below`,
-                    },
-                   
-  
-                  
-                    {
-                      tag_type: "img",
-                      src: "Asset/v2.1_preview.png",
-                    },
-                  
-  
-                    {
-                      tag_type: "h3",
-                      text: `Ways to Onboard Users`,
-                    },
-                   
-                    {
-                      tag_type: "p",
-                      text: `Should Ideally happens as soon as a new user has signed up on your plateform.`,
-                    },
-                   
-                    
-
-                    {
-                      tag_type: "feature_options",
-                      options: [
-                         
-                       {
-                          text: "Via Frontend",
-                          description: [
-                            {
-                              tag_type: "h3",
-                              text: "Using chathead.signup() method",
-                            },
-  
-                          
-  
-                          
-                          ],
-                        },
-  
-                        {
-                          text: "Via Backend",
-                          description: [
-
-                            {
-                              tag_type: "h3",
-                              text: "Using Rest /signup Api Endpoint",
-                            },
-
-                            {
-                              tag_type: "p",
-                              text: "Please refer to below image.",
-                            },
-                                                        {
-                              tag_type: "img",
-                              src: "Asset/v2.1_preview.png",
-                            },
-  
-                          
-  
-                          ],
-                        },
-                      ],
-                    },
-  
-  
-                    {
-                      tag_type: "video",
-                      src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-                      desc: "Demo for P2A_V2.1",
-                    },
-  
-                    
-                  ],
-                },
-
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                {
-                  tag_type: "div",
-                  children: [
-                    { tag_type: "h2", text: "Step 1 - Run Initial Setup" },
-  
-                    {
-                      tag_type: "h4",
-                      text: "This is ideally to be done on first screen where user gets routed after logout",
-                    },
-                    {
-                      tag_type: "ol",
-                      items: [
-                        {
-                          tag_type: "li",
-                          text: "Update the script credentials section with your app's credentials",
-                          sub_items: [
                             
+                            {
+                              tag_type: "li",
+                              // text: "after script is loaded we can initialize it like below.",
+                              // extra_text: "kindly add it below the first script",
+                              code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                            },
                             {
                               tag_type: "li",
                               text: "[setUp] at initial load when user detected loggedout, it should be called to run the setUp for AddChat once before we initialize the app as the next step",
@@ -872,46 +685,6 @@ const payload = {
                     },
                   ],
                 },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
-
-
-                
               ],
             },
           },
@@ -1004,7 +777,20 @@ const payload = {
                       desc: "Demo for P2A_V2.2",
                     },
   
-                   
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h3",
+                          text: "Congratulations Integration Should be Successfully Done by now!",
+                        },
+  
+                        {
+                          tag_type: "p",
+                          text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
