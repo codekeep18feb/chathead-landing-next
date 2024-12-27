@@ -618,6 +618,11 @@ const Document = () => {
             <h2>Instant messaging boosts user engagement, fostering community, satisfaction, and loyalty. It also provides real-time support, allowing users to get quick help. The Chat SDK enables seamless real-time messaging on any app or device.</h2>
             {renderTabs()}
             {renderContent()}
+
+            <h2>Congratulations Integration Should be Successfully Done by now!</h2>
+            <h2>Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.</h2>
+            <h2>Please Contact Our Support Team if you faced any issues. Thank You!</h2>
+            
           </div>
         </div>
       </div>
