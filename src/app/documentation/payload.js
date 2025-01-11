@@ -347,7 +347,7 @@ const payload = {
                             {
                               tag_type: "li",
                               text: "Run SetUp",
-                              extra_text: "It should ideally be run on the page where we first detect an UnAuthenticated User + It set's up user's neccessary App Credentials to start with.",
+                              extra_text: "This code should ideally execute on the page where an unauthenticated user is first detected. It is recommended to include it within the UI logic associated with the entry URL, which is typically the root /.",
                               code: `<script>
   const token = localStorage.getItem('tezkit_token',null);
     if (!token) { //  To check if user is not logged in (based on your product's specific implimentation)
@@ -365,7 +365,11 @@ const payload = {
                             {
                               tag_type: "li",
                               text: "Run initialization",
-                              extra_text: "This should run as soon as an Authenticated user is detected. + Ensure this runs after the Previous SetUp Code has already run in your Product. + You can verify this by adding logs at both places",
+                              extra_text: `This code should execute as soon as an authenticated user is detected. Ideally, it should run within the UI logic immediately after a logged-in user is identified.
+Additionally:
+
+Ensure this code runs only after the previous setup code in your product has completed execution.
+To verify the execution order, consider adding log statements both at the setup phase and here for debugging purposes.`,
                               code: `const token = localStorage.getItem('tezkit_token',null);
   if (token) {
       window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this will be used to distingush between different users and should be unique for all of them.
@@ -378,7 +382,7 @@ const payload = {
                           tag_type: "li",
                           text: "Verify if you see chat icon on the bottom of your page. like in below image (Client integration should be done by now.)",
                           // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                          img: "Asset/headerful_example.png",
+                          img: "Asset/is_chat_icon_present_for_v2.png",
                         },
   
                         {
@@ -411,29 +415,17 @@ const payload = {
   
                     {
                       tag_type: "p",
-                      text: `Kindly Note - If no users yet the Admin will show like below`,
+                      text: `Please note: Until users are onboarded, the admin panel will not display any users, even if the application has been created, as shown below.`,
                     },
                    
   
                   
                     {
                       tag_type: "img",
-                      src: "Asset/v2.1_preview.png",
+                      src: "Asset/no_users_admin.png",
                     },
 
-                    {
-                      tag_type: "p",
-                      text: `If there are users already the Admin will show like below`,
-                    },
                    
-  
-                  
-                    {
-                      tag_type: "img",
-                      src: "Asset/v2.1_preview.png",
-                    },
-                  
-  
                     {
                       tag_type: "h3",
                       text: `Ways to Onboard Users`,
@@ -458,6 +450,11 @@ const payload = {
                               text: "Using chathead.signup() method",
                             },
   
+
+                            {
+                              tag_type: "p",
+                              text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+                            },
                           
   
                           
@@ -474,12 +471,55 @@ const payload = {
                             },
 
                             {
-                              tag_type: "p",
-                              text: "Please refer to below image.",
+                              tag_type: "div",
+                              children: [
+                                
+                             
+                                
+
+                                
+                                {
+                                  tag_type: "img",
+                                  src: "Asset/onboarding_via_rest_endpoint_payload.png",
+                                },
+
+                                {
+                                  tag_type: "img",
+                                  src: "Asset/onboarding_via_rest_endpoint_headers.png",
+                                }
+                              ],
+                              extra_text:"Please find the curl below.",
+                              code: `curl --location 'https://gfxb0jf19k.execute-api.ap-south-1.amazonaws.com/prod/onboarding' \
+--header 'X-API-Key: bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=' \
+--header 'tenant_id: legal123' \
+--header 'app_name: v2app1' \
+--header 'Content-Type: application/json' \
+--data '{
+"tenant":"legal123",
+"uid":"new_site_user1",
+"app_name":"v2app1"
+}'`,
+                    
                             },
+                                                        
+  
+                          
+  
+                          ],
+                        },
+                        {
+                          text: "Via Admin",
+                          description: [
+
+                            {
+                              tag_type: "h3",
+                              text: "Users can be onboarded and their respective password can be shared with them.",
+                            },
+
+                          
                                                         {
                               tag_type: "img",
-                              src: "Asset/v2.1_preview.png",
+                              src: "Asset/onboarding_via_admin.png",
                             },
   
                           
@@ -535,343 +575,6 @@ const payload = {
 
 
 
-                {
-                  tag_type: "div",
-                  children: [
-                    { tag_type: "h2", text: "Step 1 - Run Initial Setup" },
-  
-                    {
-                      tag_type: "h4",
-                      text: "This is ideally to be done on first screen where user gets routed after logout",
-                    },
-                    {
-                      tag_type: "ol",
-                      items: [
-                        {
-                          tag_type: "li",
-                          text: "Update the script credentials section with your app's credentials",
-                          sub_items: [
-                            
-                            {
-                              tag_type: "li",
-                              text: "[setUp] at initial load when user detected loggedout, it should be called to run the setUp for AddChat once before we initialize the app as the next step",
-                              // extra_text: "kindly add it below the first script",
-                              code: `<script>
-  const token = localStorage.getItem('tezkit_token',null);
-    if (!token) {
-        window.chathead.setUp(
-            (app_name = "v2.1_first_app"),
-            (api_key =
-            "amV3ZWxlcnlraW5nX19TRVBSQVRPUl9fdjIuMV9maXJzdF9hcHA="),
-            (theme=JSON.stringify({"header_theme":{"backgroundColor":"rgb(30, 136, 125)"}, "chat_opener_theme":{"backgroundColor":"rgb(41 48 78)"}}))
-        );
-            }
-  </script>
-    `,
-                            },
-  
-                            {
-                              tag_type: "li",
-                              text: "[initialize] Once we have already run the setUp we are ought to run initialize asap the logged in user detected.",
-                              // extra_text: "kindly add it below the first script",
-                              code: `const token = localStorage.getItem('tezkit_token',null);
-  if (token) {
-      console.log("arew we seerhewrewr ing")
-      window.chathead.initialize({"uid": <new_user>}); // it should contain atleast \`uid\` key
-  }
-    `,
-                            },
-                          ],
-                        },
-                        {
-                          tag_type: "li",
-                          text: "Verify if you see chat icon on the bottom of your page. like in below image ",
-                          // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-                          img: "Asset/headerful_example.png",
-                        },
-  
-                        {
-                          text: "Refer to the example code in the screenshot above if needed for guidance.",
-                          link_parts: [
-                            {
-                              text: "example code",
-                              link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-  
-                    //Backend side integration
-  
-                    {
-                      tag_type: "h4",
-                      text: "Backend Integration for Onboarding api",
-                    },
-                    {
-                      tag_type: "p",
-                      text: `Since authenticaiton is locally managed by you; 
-                      whenever a new user has signed up on your plateform you should let us know by onbarding them like below`,
-                    },
-  
-                    {
-                      tag_type: "p",
-                      text: `Kindly Note - You won't be able to see newly signed up user on your platform on the Admin without it`,
-                    },
-                   
-  
-                  
-                    {
-                      tag_type: "img",
-                      src: "Asset/v2.1_preview.png",
-                    },
-                  
-  
-                    {
-                      tag_type: "p",
-                      text: `Onboarding Rest Endpoint`,
-                    },
-                   
-  
-                  
-                    {
-                      tag_type: "img",
-                      src: "https://learn.microsoft.com/en-us/graph/images/postman-screenshot.png",
-                    },
-                  
-                      {
-                              tag_type: "p",
-                              text: "Here’s an example that demonstrates integration when the product uses JWT authentication. However, this integration approach applies universally, regardless of the authentication system in use. The key requirement is to ensure that the Onboarding API is called immediately after the user successfully signs up, regardless of the authentication method implemented.",
-                            },
-                    {
-                      tag_type: "feature_options",
-                      options: [
-                         {
-                          text: "python",
-                          description: [
-                            {
-                              tag_type: "p",
-                              text: "Here’s an example of how this integration might look in your Python code, specifically when using Flask:",
-                            },
-  
-                          
-  
-                            {
-                              tag_type: "div",
-                              children: [
-                                {
-                                  tag_type: "code",
-                                  text: `
-  
-  
-  import json
-  import os
-  import requests
-  from flask import request, jsonify
-  from werkzeug.security import generate_password_hash  # Replace bcrypt with Flask's hashing if needed
-  
-  # Your database setup and models go here (e.g., User, db, etc.)
-  
-  def signup():
-      # Step 1: Handle user signup logic
-      data = request.get_json()
-      uid = data.get('uid')
-      email = data.get('email')
-      password = data.get('password')
-      hashed_password = generate_password_hash(password)
-  
-      # Replace with your ORM/DB logic
-      new_user = User(uid=uid, email=email, password=hashed_password)
-      db.session.add(new_user)
-      db.session.commit()
-  
-      # Step 2: Set up AddChat credentials securely
-      credentials = {
-          "APP_API_KEY": os.getenv("ADDCHAT_API_KEY"),
-          "app_name": os.getenv("ADDCHAT_APP_NAME"),
-          "tenant": os.getenv("ADDCHAT_TENANT")
-      }
-  
-      # Step 3: Make the AddChat onboarding API call
-      onboarding_url = "https://gfxb0jf19k.execute-api.ap-south-1.amazonaws.com/prod/onboarding"
-      headers = {
-          "Accept": "*/*",
-          "User-Agent": "MyApp (https://myapp.com)",
-          "X-API-Key": credentials["APP_API_KEY"],
-          "Content-Type": "application/json"
-      }
-      payload = {
-          "tenant": credentials["tenant"],
-          "uid": uid,
-          "app_name": credentials["app_name"]
-      }
-  
-      try:
-          response = requests.post(onboarding_url, headers=headers, json=payload)
-          response.raise_for_status()  # Raise an error for HTTP errors
-          onboarding_response = response.json()
-          print("Onboarding successful:", onboarding_response)
-      except requests.exceptions.RequestException as e:
-          print(f"Error during onboarding: {e}")
-          return jsonify({"msg": "User created, but onboarding failed"}), 500
-  
-      # Step 4: Respond to the client
-      return jsonify({"msg": "User created and onboarded successfully"}), 201
-  
-      
-      `,
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                       {
-                          text: "node",
-                          description: [
-                            {
-                              tag_type: "p",
-                              text: "Here’s an example of how this integration might look in your Node.js code, specifically when using Express:",
-                            },
-  
-                          
-  
-                            {
-                              tag_type: "div",
-                              children: [
-                                {
-                                  tag_type: "code",
-                                  text: `
-  
-  
-  const express = require("express");
-  const bcrypt = require("bcrypt");
-  const axios = require("axios");
-  const dotenv = require("dotenv");
-  const bodyParser = require("body-parser");
-  
-  // Load environment variables
-  dotenv.config();
-  
-  const app = express();
-  app.use(bodyParser.json());
-  
-  // Simulated database and models
-  const db = {
-    users: [],
-    addUser: function (user) {
-      this.users.push(user);
-    },
-  };
-  
-  app.post("/signup", async (req, res) => {
-    try {
-      // Step 1: Handle user signup logic
-      const { uid, email, password } = req.body;
-      if (!uid || !email || !password) {
-        return res.status(400).json({ msg: "All fields are required" });
-      }
-  
-      // Hash the password
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      // Simulate saving the user to the database
-      const newUser = { uid, email, password: hashedPassword };
-      db.addUser(newUser);
-  
-      // Step 2: Set up AddChat credentials securely
-      const credentials = {
-        APP_API_KEY: process.env.ADDCHAT_API_KEY,
-        app_name: process.env.ADDCHAT_APP_NAME,
-        tenant: process.env.ADDCHAT_TENANT,
-      };
-  
-      // Step 3: Make the AddChat onboarding API call
-      const onboardingUrl =
-        "https://gfxb0jf19k.execute-api.ap-south-1.amazonaws.com/prod/onboarding";
-      const headers = {
-        Accept: "*/*",
-        "User-Agent": "MyApp (https://myapp.com)",
-        "X-API-Key": credentials.APP_API_KEY,
-        "Content-Type": "application/json",
-      };
-      const payload = {
-        tenant: credentials.tenant,
-        uid: uid,
-        app_name: credentials.app_name,
-      };
-  
-      // API call using axios
-      const response = await axios.post(onboardingUrl, payload, { headers });
-  
-      console.log("Onboarding successful:", response.data);
-  
-      // Step 4: Respond to the client
-      res.status(201).json({ msg: "User created and onboarded successfully" });
-    } catch (error) {
-      console.error("Error during onboarding:", error.message || error);
-  
-      // Handle error
-      res.status(500).json({
-        msg: "User created, but onboarding failed",
-        error: error.response?.data || error.message,
-      });
-    }
-  });
-  
-  // Start the Express server
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-  console.log("Server running on port ".concat(PORT));
-  
-  });
-  
-  
-      
-      `,
-                                },
-                              ],
-                            },
-                          ],
-                        },
-  
-                        {
-                          text: "other",
-                          description: [
-                            {
-                              tag_type: "h4",
-                              text: "In the similar manners this can be implimented in any other backend; Just rememeber to call the onboarding rest endpoint whenever a new users has signed up on your plateform.",
-                            },
-  
-                          
-  
-                          ],
-                        },
-                      ],
-                    },
-  
-  
-                    {
-                      tag_type: "video",
-                      src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-                      desc: "Demo for P2A_V2.1",
-                    },
-  
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h3",
-                          text: "Congratulations Integration Should be Successfully Done by now!",
-                        },
-  
-                        {
-                          tag_type: "p",
-                          text: "Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.",
-                        },
-                      ],
-                    },
-                  ],
-                },
 
 
 
@@ -984,7 +687,7 @@ const payload = {
                     },
                     {
                       tag_type: "img",
-                      src: "Asset/v2.1_preview.png",
+                      src: "Asset/add_credentials_wp.png",
                     },
                   
   
@@ -995,7 +698,7 @@ const payload = {
                   
                     {
                       tag_type: "img",
-                      src: "Asset/v2.1_preview.png",
+                      src: "Asset/fashoni_chat_opener_visible.png",
                     },
   
                     {

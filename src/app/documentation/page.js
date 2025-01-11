@@ -325,6 +325,13 @@ const ContentRenderer = ({ content, current_mode }) => {
                     current_mode={current_mode}
                   />
                 ))}
+
+                {item.extra_text?<div>{item.extra_text}</div>:null}
+                {item.code && (
+                  <pre className="script_code">
+                    <code>{item.code}</code>
+                  </pre>
+                )}
             </div>
           );
         } else {
