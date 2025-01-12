@@ -148,9 +148,9 @@
   margin: 20px 0;
   font-style: italic;
   color: var(--light-text-color);
-  width: 100%; 
-  max-width: 80%; 
-  font-size: 16px; 
+  width: 100%;
+  max-width: 80%;
+  font-size: 16px;
   box-sizing: border-box;
 }
 
@@ -162,23 +162,9 @@
   background: black;
   color: white;
 }
-
-/* .content-list.ordered {
-    list-style-type: decimal;
-    display: block;
-    border: 3px solid red;
-  } */
-  
-  /* .content-list.ordered ol {
-    list-style-type: lower-roman;
-    padding-top: 5px;  
-  } */
-
-  .content-list.ordered {
-    counter-reset: list-counter;
-    /* padding-left: 30px; */
-  }
-                                                                                                                                                                                                                                   
+.content-list.ordered {
+  counter-reset: list-counter;
+}
 
 .content-list.ordered > li {
   position: relative;
@@ -190,7 +176,7 @@
 }
 
 .content-list.ordered > li::before {
-  content: counter(list-counter) ".";
+  content: counter(list-counter) "";
   position: absolute;
   left: 0;
   top: 0;
@@ -206,16 +192,22 @@
 }
 .content-list.ordered ol {
   list-style-type: lower-roman;
-  margin-left: 20px;
-  padding-left: 20px;
+  counter-reset: nested-counter;
 }
-.content-list.ordered ol li {
-  list-style-type: inherit;
-  padding-left: 0;
-  margin-left: 0;
-  position: static;
-  font-size: 16px;
+.content-list.ordered ol > li {
+  list-style: none;
+  counter-increment: nested-counter;
+  position: relative;
+}
+
+.content-list.ordered ol > li::before {
+  content: counter(nested-counter, lower-roman) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
   color: var(--dark-color);
+  font-weight: normal;
+  background-color: var(--dark-color);
 }
 
 .content-list ul {
@@ -353,7 +345,7 @@
   font-style: italic;
   padding-bottom: 12px;
 }
-.setup{
+.setup {
   margin-top: 20px;
 }
 @media (max-width: 768px) {
@@ -392,11 +384,9 @@
     font-size: 24px;
   } */
   .content-div {
-    padding: 20px 0px;
+    padding: 20px;
   }
-  .content-list.ordered {
-    padding: 10px;
-  }
+
   .content-list.ordered ol {
     margin-left: 0px;
   }
@@ -419,8 +409,6 @@
     font-size: 18px;
     font-weight: 600;
     color: #333;
-    border: 3px solid red;
-    background-color: yellow;
   }
   .abc {
     background-color: red;
