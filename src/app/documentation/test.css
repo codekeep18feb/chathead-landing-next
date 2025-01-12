@@ -101,11 +101,14 @@
 
 
 .content-list-img {
-  width: 70%;
+  width: 100%;
+}
+.content-list-img img{
+  width: 100%;
   object-fit: cover;
   display: flex;
   margin: auto;
-  /* border: 1px solid red; */
+
 }
 .content-link {
   display: block;
@@ -444,6 +447,10 @@
   .document-container .doc_core_wrapper .doc_sidebar {
     display: block;
     padding: 0px;
+  }
+  .doc_core_wrapper{
+    display: flex;
+    border: 5px solid red;
   }
   .sidebar_wrapper {
     display: none;
