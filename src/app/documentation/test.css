@@ -39,9 +39,18 @@
 .main-content {
   max-width: 1300px;
   padding: 20px;
-  /* border: 2px solid green; */
 }
-
+.mainHeading {
+  margin-bottom: 30px;
+}
+.mainHeading h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  line-height: 20px;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+}
 .tabs {
   margin-bottom: 20px;
   border: 1px solid red;
@@ -82,10 +91,10 @@
 }
 
 .step-title {
-  /* font-size: 44px;
-  font-weight: 700;
-  margin-bottom: 30px; */
-  width: 90%;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #555;
 }
 
 .content_wrapper {
@@ -99,16 +108,14 @@
   /* border: 2px solid red; */
 }
 
-
 .content-list-img {
   width: 100%;
 }
-.content-list-img img{
+.content-list-img img {
   width: 100%;
   object-fit: cover;
   display: flex;
   margin: auto;
-
 }
 .content-link {
   display: block;
@@ -185,6 +192,8 @@
   padding-left: 40px;
   list-style-type: none;
   counter-increment: list-counter;
+  font-size: 16px;
+    border: rpx solid red;
 }
 
 .content-list.ordered > li::before {
@@ -214,6 +223,8 @@
   padding-left: 0;
   margin-left: 0;
   position: static;
+  font-size: 16px;
+  color: #444;
 }
 
 .content-list ul {
@@ -221,20 +232,21 @@
   margin-left: 20px;
 }
 .content-heading {
-  /* text-align: center; */
-  margin: 20px 0px 0px 0px;
+  /* margin: 20px 0px 0px 0px; */
   color: var(--dark-color);
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 600;
   padding: 10px 0px;
+  color: #333;
 }
 .content-heading:first-of-type {
   padding: 0px;
 }
 .content-subheading {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  color: #666;
   padding: 20px 0px;
+  line-height: 30px;
 }
 .content-div {
   border-radius: 8px;
@@ -266,6 +278,8 @@
 }
 .ordered span {
   display: block;
+  font-size: 16px;
+  color: #444;
 }
 .content-inner-heading {
   margin: 0;
@@ -276,9 +290,10 @@
 .content-paragraph {
   width: 100%;
   font-size: 18px;
-  letter-spacing: 0.5px;
-  line-height: 28px;
-  padding-bottom: 20px;
+  padding: 16px 0px;
+  letter-spacing: 0.2px;
+  line-height: 26px;
+  color: #333;
 }
 
 .videos {
@@ -355,24 +370,23 @@
   .content-area {
     width: 100%;
   }
-  .step-title {
+  /* .step-title {
     font-size: 28px;
     font-weight: 600;
-  }
-  .content-paragraph {
+  } */
+  /* .content-paragraph {
     letter-spacing: 0.2px;
     line-height: 26px;
     font-size: 16px;
-  }
+  } */
 
-  
   .content-list li {
     font-size: 16px;
   }
-  .content-heading {
+  /* .content-heading {
     margin: 40px 0px 10px 0px;
     font-size: 24px;
-  }
+  } */
   .content-div {
     padding: 20px 0px;
   }
@@ -391,14 +405,16 @@
     font-size: 14px;
     padding: 12px;
   }
-  .content-list.ordered > li {
+  /* .content-list.ordered > li {
     margin-right: 10px;
-  }
+    color: red;
+    font-size: 16px;
+    border: rpx solid red;
+  } */
   .content-list-img {
     width: 100%;
   }
 
- 
   .content-inner-heading {
     margin: 0px 10px;
     font-size: 18px;
@@ -411,11 +427,7 @@
     font-size: 20px;
     font-weight: 600;
   }
-
-
-  
 }
-
 
 @media (max-width: 468px) {
   .document-container {
@@ -426,7 +438,7 @@
     display: flex;
   }
   .downIcon {
-    display:flex;
+    display: flex;
     cursor: pointer;
     padding: 10px;
     align-items: center;
@@ -439,7 +451,7 @@
     font-weight: 600;
   }
   .downIcon svg {
-    transition: transform 0.8s ease-in-out; 
+    transition: transform 0.8s ease-in-out;
   }
   .sidebar_wrapper.active + .downIcon svg {
     transform: rotate(180deg);
@@ -448,7 +460,7 @@
     display: block;
     padding: 0px;
   }
-  .doc_core_wrapper{
+  .doc_core_wrapper {
     display: flex;
     border: 5px solid red;
   }
@@ -471,7 +483,6 @@
     margin: 10px 0;
   }
 
-  
   .description h3 {
     font-size: 20px;
     font-weight: 700;
@@ -479,20 +490,18 @@
   .content-list.ordered ol {
     margin-left: 0px;
   }
-  .content-list.ordered > li {
+  /* .content-list.ordered > li {
     margin-right: 0px;
-  }
-  .step-title {
+  } */
+  /* .step-title {
     font-size: 28px;
     font-weight: 600;
-  }
+  } */
   .tab-button {
     font-size: 18px;
     font-weight: 600;
   }
 }
-
-
 
 /* Basic container styling */
 .filter-container {

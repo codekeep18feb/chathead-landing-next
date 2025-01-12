@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, useEffect,Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 // import video from "../../../Asset/demo_imgs/before.jpeg"
 import "./test.css"; // Import the CSS file
 import { useSearchParams } from "next/navigation";
 import payload from "./payload";
 import YouTubeEmbed from "../components/YouTubeVideo";
-
 
 const CondRadioRender = ({ r_options, current_mode }) => {
   console.log(current_mode, "current_mode", r_options, r_options[1]?.text);
@@ -37,7 +36,9 @@ const CondRadioRender = ({ r_options, current_mode }) => {
         {r_options.map((option, index) => (
           <button
             key={index}
-            className={`tab-button ${selectedOption === option.text ? "active" : ""}`}
+            className={`tab-button ${
+              selectedOption === option.text ? "active" : ""
+            }`}
             onClick={() => {
               console.log("tabshoudl get the click?");
               handleTabClick(option.text);
@@ -49,7 +50,6 @@ const CondRadioRender = ({ r_options, current_mode }) => {
       </div>
 
       <div className="description">
-     
         <div>
           {/* Render content based on the selected option */}
           <ContentRenderer
@@ -236,7 +236,6 @@ const ContentRenderer = ({ content, current_mode }) => {
           return (
             <div key={index}>
               <div className="videos">
-
                 <YouTubeEmbed key={index} src={item.src} desc={item.desc} />
               </div>
             </div>
@@ -263,13 +262,11 @@ const ContentRenderer = ({ content, current_mode }) => {
               current_mode={current_mode}
             />
           );
-        }
-
-        else if (item.tag_type === "h3") {
+        } else if (item.tag_type === "h3") {
           return (
-            <h3 key={index} className="content-subheading">
+            <p key={index} className="content-subheading">
               {item.text}
-            </h3>
+            </p>
           );
         } else if (item.tag_type === "p") {
           return (
@@ -326,12 +323,12 @@ const ContentRenderer = ({ content, current_mode }) => {
                   />
                 ))}
 
-                {item.extra_text?<div>{item.extra_text}</div>:null}
-                {item.code && (
-                  <pre className="script_code">
-                    <code>{item.code}</code>
-                  </pre>
-                )}
+              {item.extra_text ? <div>{item.extra_text}</div> : null}
+              {item.code && (
+                <pre className="script_code">
+                  <code>{item.code}</code>
+                </pre>
+              )}
             </div>
           );
         } else {
@@ -348,7 +345,6 @@ const ContentRenderer = ({ content, current_mode }) => {
   );
 };
 
-
 const FilterComp = ({ setSelectedFilter }) => {
   const [selections, setSelections] = useState({});
   const [expandedKeys, setExpandedKeys] = useState([]);
@@ -358,8 +354,8 @@ const FilterComp = ({ setSelectedFilter }) => {
       P2A: {
         version_types: {
           V1: { modes: ["HEADLESS", "HEADFUL"] },
-          "V2": { modes: null },
-          "V3": { modes: null },
+          V2: { modes: null },
+          V3: { modes: null },
         },
       },
       P2B: { disabled: true }, // Example disabled type
@@ -479,7 +475,7 @@ const Document = () => {
   const searchParams = useSearchParams();
   const current_version = searchParams.get("current_version") || "P2A__V1"; // Default value if not provided
 
-  console.log("what is the current version now? after click",current_version)
+  console.log("what is the current version now? after click", current_version);
   const [current_mode, setModeOfVersion] = useState(null);
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
   const [selectedTab, setSelectedTab] = useState(current_version);
@@ -538,7 +534,7 @@ const Document = () => {
   };
 
   const renderTabs = () => {
-    const versions = ["P2A__V1", "P2A__V2","P2A__V3"]; // Directly define the versions
+    const versions = ["P2A__V1", "P2A__V2", "P2A__V3"]; // Directly define the versions
     return (
       <div className="tabs">
         {versions.map((version) => (
@@ -621,14 +617,28 @@ const Document = () => {
         </div>
         <div className="rightWrap">
           <div className="main-content">
-            <h2>Instant messaging boosts user engagement, fostering community, satisfaction, and loyalty. It also provides real-time support, allowing users to get quick help. The Chat SDK enables seamless real-time messaging on any app or device.</h2>
+            <div className="mainHeading">
+              <h2>
+                Instant messaging boosts user engagement, fostering community,
+                satisfaction, and loyalty. It also provides real-time support,
+                allowing users to get quick help. The Chat SDK enables seamless
+                real-time messaging on any app or device.
+              </h2>
+            </div>
             {renderTabs()}
             {renderContent()}
 
-            <h2>Congratulations Integration Should be Successfully Done by now!</h2>
-            <h2>Your users can now sign up and seamlessly chat with the Admin Team, enabling two-way communication.</h2>
-            <h2>Please Contact Our Support Team if you faced any issues. Thank You!</h2>
-            
+            <h2>
+              Congratulations Integration Should be Successfully Done by now!
+            </h2>
+            <h2>
+              Your users can now sign up and seamlessly chat with the Admin
+              Team, enabling two-way communication.
+            </h2>
+            <h2>
+              Please Contact Our Support Team if you faced any issues. Thank
+              You!
+            </h2>
           </div>
         </div>
       </div>
@@ -636,13 +646,10 @@ const Document = () => {
   );
 };
 
-
-
 const DocumentWithSuspense = () => (
   <Suspense fallback={<div>Loading...</div>}>
     <Document />
   </Suspense>
 );
-
 
 export default DocumentWithSuspense;
