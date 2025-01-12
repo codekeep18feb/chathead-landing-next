@@ -11,7 +11,8 @@
   --light-secondary-color: #d3f4d8;
   --light-primary-color: #d4ddff;
   --heading-color: #242424;
-  --text-color: #4e4e4e;
+  --text-color: #333333;
+  --light-text-color: #555;
   --white-text-color: #fff;
   --background-color: #e9edff;
   --radial-gradient-color: radial-gradient(
@@ -825,6 +826,12 @@ body {
 }
 .doc_core_wrapper{
   display: flex;
+}
+.content-inner-heading{
+  font-size: 17px;
+  font-weight: 600;
+  padding: 10px 0px;
+  color: #4e4e4e;
 }
 /* Media Queries */
 @media (max-width: 768px) {
