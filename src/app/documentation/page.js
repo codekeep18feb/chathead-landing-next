@@ -32,19 +32,19 @@ const CondRadioRender = ({ r_options, current_mode }) => {
 
   return (
     <div>
-      <div className="cond-tabs-container">
+      <div className="tabs">
         {/* Render the options as tabs */}
         {r_options.map((option, index) => (
-          <div
+          <button
             key={index}
-            className={`tab ${selectedOption === option.text ? "active" : ""}`}
+            className={`tab-button ${selectedOption === option.text ? "active" : ""}`}
             onClick={() => {
               console.log("tabshoudl get the click?");
               handleTabClick(option.text);
             }}
           >
             {option.text}
-          </div>
+          </button>
         ))}
       </div>
 
@@ -358,8 +358,8 @@ const FilterComp = ({ setSelectedFilter }) => {
       P2A: {
         version_types: {
           V1: { modes: ["HEADLESS", "HEADFUL"] },
-          "V2.1": { modes: null },
-          "V2.2": { modes: null },
+          "V2": { modes: null },
+          "V3": { modes: null },
         },
       },
       P2B: { disabled: true }, // Example disabled type
@@ -433,7 +433,7 @@ const FilterComp = ({ setSelectedFilter }) => {
     if (value?.modes) {
       return (
         <div className="nested-options">
-          <h4>Modesa</h4>
+          <h4>Mode</h4>
           {value.modes.map((mode, index) => (
             <label key={index} className="mode-label">
               <input
@@ -538,7 +538,7 @@ const Document = () => {
   };
 
   const renderTabs = () => {
-    const versions = ["P2A__V1", "P2A__V2.1","P2A__V2.2"]; // Directly define the versions
+    const versions = ["P2A__V1", "P2A__V2","P2A__V3"]; // Directly define the versions
     return (
       <div className="tabs">
         {versions.map((version) => (

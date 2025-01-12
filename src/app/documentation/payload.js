@@ -272,7 +272,7 @@ const payload = {
             },
           },
           {
-            "P2A__V2.1": {
+            "P2A__V2": {
               content: [
                 {
                   tag_type:"h2",
@@ -308,7 +308,7 @@ const payload = {
   
                         {
                           tag_type: "li",
-                          text: "Create an app as per your use case. (Be Sure to choose the right version V2.1)",
+                          text: "Create an app as per your use case. (Be Sure to choose the right version V2)",
                         },
   
                         {
@@ -620,7 +620,7 @@ To verify the execution order, consider adding log statements both at the setup 
           },
   
           {
-            "P2A__V2.2": {
+            "P2A__V3": {
               content: [
                 {
                   tag_type:"h2",
@@ -656,7 +656,7 @@ To verify the execution order, consider adding log statements both at the setup 
   
                         {
                           tag_type: "li",
-                          text: "Create an app as per your use case. (Be Sure to choose the right version V2.2)",
+                          text: "Create an app as per your use case. (Be Sure to choose the right version V3)",
                         },
   
                         {
