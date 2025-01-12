@@ -390,7 +390,7 @@ To verify the execution order, consider adding log statements both at the setup 
                           link_parts: [
                             {
                               text: "example code",
-                              link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                              link: "https://github.com/codekeep18feb/examples/tree/website_placeholder_examples/p2a_v2_client/p2a_v2.1_client_jwt",
                             },
                           ],
                         },
