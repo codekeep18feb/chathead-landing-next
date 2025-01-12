@@ -823,6 +823,9 @@ body {
 .nav-links li.links:hover .dropdown {
   display: block;
 }
+.doc_core_wrapper{
+  display: flex;
+}
 /* Media Queries */
 @media (max-width: 768px) {
   .platform-container {
