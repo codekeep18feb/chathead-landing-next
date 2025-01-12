@@ -52,7 +52,7 @@ export default function RootLayout({ children}) {
           visible={modalVisible}
           onClose={closeModal}
         />
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
