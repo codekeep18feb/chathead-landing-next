@@ -30,7 +30,7 @@ const CondRadioRender = ({ r_options, current_mode }) => {
   }
 
   return (
-    <div>
+    <div className="setup">
       <div className="tabs">
         {/* Render the options as tabs */}
         {r_options.map((option, index) => (
@@ -235,7 +235,7 @@ const ContentRenderer = ({ content, current_mode }) => {
         if (item.tag_type === "video") {
           return (
             <div key={index}>
-              <div className="videos">
+              <div className="videos_wrapper">
                 <YouTubeEmbed key={index} src={item.src} desc={item.desc} />
               </div>
             </div>
@@ -262,12 +262,19 @@ const ContentRenderer = ({ content, current_mode }) => {
               current_mode={current_mode}
             />
           );
-        } else if (item.tag_type === "h3") {
+        } else if (item.tag_type === "p") {
           return (
             <p key={index} className="content-subheading">
               {item.text}
             </p>
           );
+        }else if (item.tag_type === "h3") {
+            return (
+              <h3 key={index} className="second_subheading">
+                {item.text}
+              </h3>
+            );
+        
         } else if (item.tag_type === "p") {
           return (
             <p key={index} className="content-paragraph">
@@ -628,17 +635,19 @@ const Document = () => {
             {renderTabs()}
             {renderContent()}
 
-            <h2>
-              Congratulations Integration Should be Successfully Done by now!
-            </h2>
-            <h2>
-              Your users can now sign up and seamlessly chat with the Admin
-              Team, enabling two-way communication.
-            </h2>
-            <h2>
-              Please Contact Our Support Team if you faced any issues. Thank
-              You!
-            </h2>
+            <div className="integration_successful">
+              <p>
+                Congratulations Integration Should be Successfully Done by now!
+              </p>
+              <p>
+                Your users can now sign up and seamlessly chat with the Admin
+                Team, enabling two-way communication.
+              </p>
+              <p>
+                Please Contact Our Support Team if you faced any issues. Thank
+                You!
+              </p>
+            </div>
           </div>
         </div>
       </div>
