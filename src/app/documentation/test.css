@@ -125,7 +125,7 @@
   text-decoration: underline;
 }
 .content-list {
-  padding-left: 20px;
+  /* padding-left: 20px; */
   list-style: disc;
 }
 .content-list li {
@@ -400,7 +400,7 @@
     padding: 12px;
   }
   .content-list.ordered > li {
-    margin-right: 10px;
+    /* margin-right: 10px; */
     font-size: 16px;
   }
 
@@ -413,9 +413,9 @@
   .abc {
     background-color: red;
   }
-  .content-list {
+  /* .content-list {
     padding: 0px 30px;
-  }
+  } */
   .description h3 {
     font-size: 20px;
     font-weight: 600;
@@ -427,7 +427,7 @@
     flex-direction: column;
   }
   .doc_sidebar {
-    width: 100%;
+    width: 25%;
     display: flex;
   }
   .downIcon {

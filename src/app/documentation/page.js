@@ -320,7 +320,7 @@ const ContentRenderer = ({ content, current_mode }) => {
           );
         } else if (item.tag_type === "div") {
           return (
-            <div key={index} className="content-div">
+            <div key={index}>
               {item.children &&
                 item.children.map((child, i) => (
                   <ContentRenderer
