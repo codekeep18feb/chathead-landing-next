@@ -440,23 +440,6 @@ To verify the execution order, consider adding log statements both at the setup 
                   tag_type: "feature_options",
                   options: [
                     {
-                      text: "Via Frontend",
-                      description: [
-                        {
-                          tag_type: "div",
-                          children: [],
-                          extra_text:
-                            "Using chathead.onboarding() method on the client side.",
-                          code: `await window.chathead.onboarding({"uid":data.username,},{
-                    "auth_key": "bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=",
-                    "tenant_id": "legal123",
-                    "app_name": "v2app1",
-                })`,
-                        },
-                      ],
-                    },
-
-                    {
                       text: "Via Backend",
                       description: [
                         {
@@ -491,6 +474,24 @@ To verify the execution order, consider adding log statements both at the setup 
                         },
                       ],
                     },
+                    {
+                      text: "Via Frontend",
+                      description: [
+                        {
+                          tag_type: "div",
+                          children: [],
+                          extra_text:
+                            "Using chathead.onboarding() method on the client side.",
+                          code: `await window.chathead.onboarding({"uid":data.username,},{
+                    "auth_key": "bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=",
+                    "tenant_id": "legal123",
+                    "app_name": "v2app1",
+                })`,
+                        },
+                      ],
+                    },
+
+                 
                     {
                       text: "Via Admin",
                       description: [
