@@ -43,7 +43,7 @@ const payload = {
 
                     {
                       tag_type: "li",
-                      text: "Go To created apps's detail page and locate the credentials.",
+                      text: "Go To created app's  detail page and locate the credentials.",
                     },
                   ],
                 },
@@ -316,7 +316,7 @@ const payload = {
 
                     {
                       tag_type: "li",
-                      text: "Go To created apps's detail page and locate the credentials.",
+                      text: "Go To created app's  detail page and locate the credentials.",
                     },
                   ],
                 },
@@ -413,7 +413,7 @@ To verify the execution order, consider adding log statements both at the setup 
                 },
                 {
                   tag_type: "p",
-                  text: `Since authenticaiton is locally managed by you; whenever a new user has signed up on your plateform you should let AddChat know by onbarding them like below.`,
+                  text: `Since authenticaiton is locally managed by you; whenever a new user has signed up on your platform you should let AddChat know by onbarding them like below.`,
                 },
 
                 {
@@ -433,7 +433,7 @@ To verify the execution order, consider adding log statements both at the setup 
 
                 {
                   tag_type: "p",
-                  text: `Should Ideally happens as soon as a new user has signed up on your plateform.`,
+                  text: `Should Ideally happens as soon as a new user has signed up on your platform.`,
                 },
 
                 {
@@ -443,13 +443,15 @@ To verify the execution order, consider adding log statements both at the setup 
                       text: "Via Frontend",
                       description: [
                         {
-                          tag_type: "h3",
-                          text: "Using chathead.signup() method",
-                        },
-
-                        {
-                          tag_type: "p",
-                          text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+                          tag_type: "div",
+                          children: [],
+                          extra_text:
+                            "Using chathead.onboarding() method on the client side.",
+                          code: `await window.chathead.onboarding({"uid":data.username,},{
+                    "auth_key": "bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=",
+                    "tenant_id": "legal123",
+                    "app_name": "v2app1",
+                })`,
                         },
                       ],
                     },
@@ -559,7 +561,7 @@ To verify the execution order, consider adding log statements both at the setup 
 
                     {
                       tag_type: "li",
-                      text: "Go To created apps's detail page and locate the credentials.",
+                      text: "Go To created app's  detail page and locate the credentials.",
                     },
                   ],
                 },
