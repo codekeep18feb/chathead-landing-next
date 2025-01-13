@@ -10,13 +10,34 @@ import YouTubeEmbed from "../components/YouTubeVideo";
 
 const CondRadioRender = ({ r_options, current_mode }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
+  const [isMobile, setIsMobile] = useState(false);
+
 
   // Update the selectedOption whenever current_mode or r_options change
   useEffect(() => {
     setSelectedOption(r_options[0]?.text);
   }, [current_mode, r_options]);
 
-  const handleTabClick = (optionText) => setSelectedOption(optionText);
+  // Check if the viewport is mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Mobile viewport breakpoint
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleOptionChange = (optionText) => {
+    // Update the selected option
+    setSelectedOption(optionText);
+  };
 
   if (!current_mode) {
     return null; // Handle the absence of current_mode gracefully
@@ -28,20 +49,37 @@ const CondRadioRender = ({ r_options, current_mode }) => {
 
   return (
     <div className="setup">
-      <div className="tabs">
-        {/* Render the options as tabs */}
-        {r_options.map((option, index) => (
-          <button
-            key={index}
-            className={`tab-button ${
-              selectedOption === option.text ? "active" : ""
-            }`}
-            onClick={() => handleTabClick(option.text)}
+      {isMobile ? (
+        // Render as dropdown on mobile
+        <div className="dropdown">
+          <select
+            value={selectedOption || ""}
+            onChange={(e) => handleOptionChange(e.target.value)}
+            className="dropdown-select"
           >
-            {option.text}
-          </button>
-        ))}
-      </div>
+            {r_options.map((option, index) => (
+              <option key={index} value={option.text}>
+                {option.text}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        // Render as tabs on larger screens
+        <div className="tabs">
+          {r_options.map((option, index) => (
+            <button
+              key={index}
+              className={`tab-button ${
+                selectedOption === option.text ? "active" : ""
+              }`}
+              onClick={() => handleOptionChange(option.text)}
+            >
+              {option.text}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="description">
         {/* Render content based on the selected option */}
@@ -258,13 +296,12 @@ const ContentRenderer = ({ content, current_mode }) => {
               {item.text}
             </p>
           );
-        }else if (item.tag_type === "h3") {
-            return (
-              <h3 key={index} className="second_subheading">
-                {item.text}
-              </h3>
-            );
-        
+        } else if (item.tag_type === "h3") {
+          return (
+            <h3 key={index} className="second_subheading">
+              {item.text}
+            </h3>
+          );
         } else if (item.tag_type === "p") {
           return (
             <p key={index} className="content-paragraph">
@@ -477,6 +514,7 @@ const Document = () => {
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
   const [selectedTab, setSelectedTab] = useState(current_version);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Function to generate the key
@@ -579,14 +617,72 @@ const Document = () => {
     );
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 468); 
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   console.log("do we have nay mode?", current_mode);
+
+  const renderSidebarContent = () =>
+    Object.keys(payload).map((key) => (
+      <div
+        key={key}
+        onClick={() => handleKeyClick(key)}
+        className="sidebar-item"
+      >
+        <h2>{key}</h2>
+      </div>
+    ));
+
+  const renderSidebar = () => {
+    if (isMobile) {
+      return (
+        <div className="sidebar-dropdown">
+          <button className={`dropdown-toggle ${isDropdownOpen ? 'active' : ''}`} onClick={toggleDropdown}>
+          <span>{selectedKey || "Select a Key"}</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 5.5L8 9.5L12 5.5"
+              stroke="black"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          </button>
+
+          {isDropdownOpen && (
+           <div className="dropdown-menu active">
+           {renderSidebarContent()}
+         </div>
+          )}
+        </div>
+      );
+    }
+    return <div className="sidebar-wrapper">{renderSidebarContent()}</div>;
+  };
 
   return (
     <div className="document-container">
       {<FilterComp setSelectedFilter={setSelectedFilter} />}
       <div className="doc_core_wrapper">
         <div className="doc_sidebar">
-          <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>
+        {renderSidebar()}
+          {/* <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>
             {Object.keys(payload).map((key) => (
               <div
                 key={key}
@@ -596,8 +692,8 @@ const Document = () => {
                 <h2>{key}</h2>
               </div>
             ))}
-          </div>
-          <div className="downIcon" onClick={toggleDropdown}>
+          </div> */}
+          {/* <div className="downIcon" onClick={toggleDropdown}>
             <h3>Overview</h3>
             <svg
               width="30"
@@ -611,7 +707,7 @@ const Document = () => {
                 fill="black"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
         <div className="rightWrap">
           <div className="main-content">

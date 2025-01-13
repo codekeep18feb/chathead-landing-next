@@ -148,7 +148,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
           >
             {hoveredContent}
             <button className="closeBtn" onClick={handleCloseModal}>
-              <i class="fa-solid fa-arrow-left"></i>
+              <i className="fa-solid fa-arrow-left"></i>
               <span>Back</span>
             </button>
           </div>
