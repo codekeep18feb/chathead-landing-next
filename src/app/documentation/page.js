@@ -7,19 +7,16 @@ import { useSearchParams } from "next/navigation";
 import payload from "./payload";
 import YouTubeEmbed from "../components/YouTubeVideo";
 
-const CondRadioRender = ({ r_options, current_mode }) => {
-  console.log(current_mode, "current_mode", r_options, r_options[1]?.text);
 
-  // State to track the selected option
-  const [selectedOption, setSelectedOption] = useState(current_mode);
+const CondRadioRender = ({ r_options, current_mode }) => {
+  const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Update the selectedOption whenever current_mode changes
+
+  // Update the selectedOption whenever current_mode or r_options change
   useEffect(() => {
-    if (current_mode) {
-      setSelectedOption(current_mode);
-    }
-  }, [current_mode]);
+    setSelectedOption(r_options[0]?.text);
+  }, [current_mode, r_options]);
 
   // Check if the viewport is mobile
   useEffect(() => {
@@ -43,8 +40,12 @@ const CondRadioRender = ({ r_options, current_mode }) => {
   };
 
   if (!current_mode) {
-    return null; // Optionally handle when current_mode is not available
+    return null; // Handle the absence of current_mode gracefully
   }
+
+  const selectedDescription = r_options.find(
+    (option) => option.text === selectedOption
+  )?.description;
 
   return (
     <div className="setup">
@@ -81,21 +82,17 @@ const CondRadioRender = ({ r_options, current_mode }) => {
       )}
 
       <div className="description">
-        <div>
-          {/* Render content based on the selected option */}
-          <ContentRenderer
-            content={
-              r_options.find((option) => option.text === selectedOption)
-                ?.description
-            }
-            key={8888}
-            current_mode={current_mode}
-          />
-        </div>
+        {/* Render content based on the selected option */}
+        <ContentRenderer
+          content={selectedDescription}
+          current_mode={current_mode}
+        />
       </div>
     </div>
   );
 };
+
+
 
 const supportedTags = [
   "h1",
@@ -564,6 +561,7 @@ const Document = () => {
     if (current_version == "P2A__V1") {
       setModeOfVersion("HEADFUL");
     }
+    
   }, [current_version]);
 
   const handleKeyClick = (key) => {

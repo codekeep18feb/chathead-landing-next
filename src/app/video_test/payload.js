@@ -44,7 +44,7 @@ const payload = {
   
                         {
                           tag_type: "li",
-                          text: "Go To created apps's detail page and locate the credentials.",
+                          text: "Go To created app's  detail page and locate the credentials.",
                         },
                       ],
                     },
@@ -321,7 +321,7 @@ const payload = {
   
                         {
                           tag_type: "li",
-                          text: "Go To created apps's detail page and locate the credentials.",
+                          text: "Go To created app's  detail page and locate the credentials.",
                         },
                       ],
                     },
@@ -424,7 +424,7 @@ const payload = {
                     {
                       tag_type: "p",
                       text: `Since authenticaiton is locally managed by you; 
-                      whenever a new user has signed up on your plateform you should let us know by onbarding them like below`,
+                      whenever a new user has signed up on your platform you should let us know by onbarding them like below`,
                     },
   
                     {
@@ -652,7 +652,7 @@ const payload = {
                           description: [
                             {
                               tag_type: "h4",
-                              text: "In the similar manners this can be implimented in any other backend; Just rememeber to call the onboarding rest endpoint whenever a new users has signed up on your plateform.",
+                              text: "In the similar manners this can be implimented in any other backend; Just rememeber to call the onboarding rest endpoint whenever a new users has signed up on your platform.",
                             },
   
                           
@@ -731,7 +731,7 @@ const payload = {
   
                         {
                           tag_type: "li",
-                          text: "Go To created apps's detail page and locate the credentials.",
+                          text: "Go To created app's  detail page and locate the credentials.",
                         },
                       ],
                     },
