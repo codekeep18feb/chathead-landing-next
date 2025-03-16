@@ -11,6 +11,8 @@ function Modal({ content, visible, onClose }) {
     <div className="modal-overlay" onMouseLeave={handleMouseLeave}>
       <div className="modal-content">{content}</div>
     </div>
+
+    
   );
 }
 
