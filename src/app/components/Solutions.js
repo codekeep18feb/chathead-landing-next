@@ -1,6 +1,15 @@
 
+"use client";
+
+import { useRouter } from "next/navigation";
+
 
 const Solutions = () =>{
+  const router = useRouter();
+
+  const handleCardClick = (path) => {
+    router.push(path);
+  };
 
    const solutionList = {
       useCase: [
@@ -21,7 +30,7 @@ const Solutions = () =>{
         },
         {
           icon: "fa-solid fa-chart-bar",
-          subHeading: "Dating",
+          subHeading: "Matrimony",
           text: "Create meaningful connections with secure 1:1 conversations    (_lorem ipsum)",
         },
         {
@@ -72,7 +81,9 @@ const Solutions = () =>{
           <h2 className="section-title">By use case</h2>
           <div className="card-list">
             {solutionList.useCase.map((item, index) => (
-              <div className="card" key={index}>
+              <div className="card" key={index}                 
+              onClick={() => handleCardClick(`/${item.subHeading.toLowerCase().replace(/ /g, '-')}`)}
+>
                 <div className="card-header">
                   <div className="icon_wrapper"><i className={`card-icon ${item.icon}`}></i></div>
                   <h3>{item.subHeading}</h3>

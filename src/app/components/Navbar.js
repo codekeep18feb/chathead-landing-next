@@ -83,7 +83,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
           </li>
           <li
             onMouseEnter={() => onLinkHover(<Solutions />)}
-            onMouseLeave={onNavLeave}
+            // onMouseLeave={onNavLeave}
             onClick={() => handleItemClick(<Solutions />)}
             className="links"
           >
