@@ -1,12 +1,18 @@
+"use client";
 
+import { useRouter } from "next/navigation";
 
 const Resources = () =>{
+  const router = useRouter();
 
+  const handleCardClick = (path) => {
+    router.push(path);
+  };
    const resourcesList = {
       addChat_blog: [
         {
           icon: "fa-solid fa-chart-bar",
-          subHeading: "Beyoud the Bubble - Fiverr  (_lorem ipsum)",
+          subHeading: "Blog",
           // text: "Foster learning with tools that keep students engaged and facilitate collaboration     (_lorem ipsum)",
         },
         {
@@ -41,7 +47,7 @@ const Resources = () =>{
           <h2 className="section-title">AddChat Blog</h2>
           <div className="newcard-list">
             {resourcesList.addChat_blog.map((item, index) => (
-              <div className="card" key={index}>
+              <div className="card" key={index}  onClick={() => handleCardClick(`/${item.subHeading.toLowerCase().replace(/ /g, '-')}`)}>
                 <div className="card-header">
                   <div className="icon_wrapper"><i className={`card-icon ${item.icon}`}></i></div>
                   <h3>{item.subHeading}</h3>
