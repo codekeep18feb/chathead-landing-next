@@ -32,12 +32,13 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 10px;
   padding: 20px;
+  background-color: white;
 }
 .contentSection .subheading {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color);
-  margin: 20px 0px ;
+  margin: 20px 0px;
 }
 
 .contentSection p {
@@ -56,5 +57,40 @@
 
 .normal-text .icon {
   margin-right: 10px;
+  color: var(--primary-color);
+}
+.heading_icon {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.heading_icon h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--light-text-color);
+}
+.cardsWrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-content: center;
+}
+.card {
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+}
+.icons{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #b0c0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
   color: var(--primary-color);
 }

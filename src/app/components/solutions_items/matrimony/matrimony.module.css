@@ -200,6 +200,18 @@
   margin-right: 10px;
   color: var(--primary-color);
 }
+.subheading_text {
+  border: 3px solid green;
+}
+.matrimonial_leftSection {
+  flex: 1;
+}
+.image-container {
+  width: 50%;
+}
+.image-container img {
+  max-width: 100%;
+}
 
 /* Smooth scrolling behavior for the whole page */
 /* html {
@@ -246,7 +258,7 @@
   align-items: center;
   width: 100%;
   padding: 12px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 500;
   text-align: left;
   background: none;
@@ -267,6 +279,7 @@
   font-size: 0.9rem;
   font-weight: 400;
   color: var(--text-color);
+  text-align: left;
 }
 .subHeading {
   color: #7c7c7c;

@@ -8,7 +8,6 @@ const ProtectBusiness = () => {
   const sections = [
     {
       subheading: "Tinder-style interface with all features out of the box",
-      className: "messaging-experience",
       image: `${basePath}/Asset/secureIc.png`,
       content: [
         {
@@ -28,7 +27,6 @@ const ProtectBusiness = () => {
     },
     {
       subheading: "Enhanced security for business messaging",
-      className: "secure-chat",
       image: `${basePath}/Asset/protect_userIc.png`,
       content: [
         {

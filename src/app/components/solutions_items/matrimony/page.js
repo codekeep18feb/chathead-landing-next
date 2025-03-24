@@ -10,6 +10,7 @@ import matrimony_banner from "../../../../../Asset/matrimony_banner.png";
 import { FaHandPointRight } from "react-icons/fa6";
 import Carousel from "./carousel";
 import ProtectBusiness from "./protectBusiness";
+import BuildShipCard from "./buildShipCard";
 
 export default function Matrimy() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -19,7 +20,7 @@ export default function Matrimy() {
       ref: useRef(null),
       subheading: "Tinder-style interface with all features out of the box",
       className: "messaging-experience",
-      image: `${basePath}/Asset/banner_img.png`,
+      image: `${basePath}/Asset/messaging_experience.png`,
 
       content: [
         {
@@ -41,7 +42,7 @@ export default function Matrimy() {
       ref: useRef(null),
       subheading: "Tinder-style interface with all features out of the box",
       className: "voice-video",
-      image: `${basePath}/Asset/banner_img.png`,
+      image: `${basePath}/Asset/voice_video.png`,
 
       content: [
         {
@@ -63,7 +64,7 @@ export default function Matrimy() {
       ref: useRef(null),
       subheading: "Always available, always reliable",
       className: "scale-millions",
-      image: `${basePath}/Asset/banner_img.png`,
+      image: `${basePath}/Asset/scale_millions.png`,
       content: [
         {
           type: "p",
@@ -84,7 +85,7 @@ export default function Matrimy() {
       ref: useRef(null),
       subheading: "Advanced content moderation",
       className: "moderation-control",
-      image: `${basePath}/Asset/banner_img.png`,
+      image: `${basePath}/Asset/moderation_control.png`,
       content: [
         { type: "p", text: "Our AI mimics human-like conversation patterns." },
         {
@@ -102,7 +103,7 @@ export default function Matrimy() {
       ref: useRef(null),
       subheading: "Maximize revenue with chat",
       className: "monetize-chat",
-      image: `${basePath}/Asset/banner_img.png`,
+      image: `${basePath}/Asset/monetize_chat.png`,
       content: [
         {
           type: "p",
@@ -263,7 +264,8 @@ export default function Matrimy() {
           ))}
         </div>
       </div>
-      <ProtectBusiness/>
+      <ProtectBusiness />
+      <BuildShipCard />
       <Accordion items={accordionItems} />
       <Carousel />
     </>
