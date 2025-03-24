@@ -9,6 +9,7 @@ import webhooks_img from "../../../../../Asset/webhooks_img.png";
 import matrimony_banner from "../../../../../Asset/matrimony_banner.png";
 import { FaHandPointRight } from "react-icons/fa6";
 import Carousel from "./carousel";
+import ProtectBusiness from "./protectBusiness";
 
 export default function Matrimy() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -262,6 +263,7 @@ export default function Matrimy() {
           ))}
         </div>
       </div>
+      <ProtectBusiness/>
       <Accordion items={accordionItems} />
       <Carousel />
     </>
