@@ -1,5 +1,5 @@
-import React from 'react'
-import Matrimony from '../components/solutions_items/matrimony/page'
+import React from "react";
+import Matrimony from "../components/solutions_items/matrimony/page";
 
 export default function page() {
   return (
@@ -7,5 +7,5 @@ export default function page() {
       <div>Whole Content</div>
       <Matrimony />
     </div>
-  )
+  );
 }
