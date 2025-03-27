@@ -3,10 +3,6 @@ import Head from "next/head";
 import { useRef } from "react";
 import matrimonySty from "./matrimony.module.css";
 import Accordion from "./accordion";
-import ai_power from "../../../../../Asset/ai_power.png";
-import notification_img from "../../../../../Asset/notification_img.png";
-import webhooks_img from "../../../../../Asset/webhooks_img.png";
-import matrimony_banner from "../../../../../Asset/matrimony_banner.png";
 import { FaHandPointRight } from "react-icons/fa6";
 import Carousel from "./carousel";
 import ProtectBusiness from "./protectBusiness";
@@ -128,21 +124,21 @@ export default function Matrimy() {
       subheading: "Gain deep insights into user behavior",
       content:
         "Analyze chat usage to understand how users interact. Create detailed user profiles based on chat history and sentiment analysis. Develop user funnels to track and optimize user journeys.",
-      image: ai_power.src,
+      image: `${basePath}/Asset/ai_power.png`,
     },
     {
       title: "Notifications  ",
       subheading: "Gain deep insights into user behavior ",
       content:
         "Analyze chat usage to understand how users interact. Create detailed user profiles based on chat history and sentiment analysis. Develop user funnels to track and optimize user journeys. ",
-      image: notification_img.src,
+      image: `${basePath}/Asset/notification_img.png`,
     },
     {
       title: "Webhooks",
       subheading: "Gain deep insights into user behavior",
       content:
         "Analyze chat usage to understand how users interact. Create detailed user profiles based on chat history and sentiment analysis. Develop user funnels to track and optimize user journeys.",
-      image: webhooks_img.src,
+      image: `${basePath}/Asset/webhooks_img.png`,
     },
   ];
   // Scroll to section function
@@ -165,7 +161,6 @@ export default function Matrimy() {
         </Head>
         {/* banner section */}
         <div className={matrimonySty.banner}>
-          <img src={matrimony_banner.src} alt="Chat Solution" />
           <div className={matrimonySty.banner_content}>
             <div className={matrimonySty.datingIc}>
               <svg
@@ -196,6 +191,10 @@ export default function Matrimy() {
             </p>
             <button className={matrimonySty.demo}>Schedule a demo</button>
           </div>
+          <img
+            src={`${basePath}/Asset/matrimony_banner.png`}
+            alt="Chat Solution"
+          />
         </div>
 
         <div className={matrimonySty.conatiner_wrap}>
