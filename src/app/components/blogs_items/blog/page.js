@@ -9,14 +9,14 @@ const Blog = () => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
     <div className={blogSty.container}>
-      <div className={blogSty.searchWrap}>
+      {/* <div className={blogSty.searchWrap}>
         <IoSearch className={blogSty.searchIcon} size={28} />
         <input
           type="text"
           placeholder="Search articles..."
           className={blogSty["input-box"]}
         />
-      </div>
+      </div> */}
 
       <div className={blogSty.banner}>
         <img
