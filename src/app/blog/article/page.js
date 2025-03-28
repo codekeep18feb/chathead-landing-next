@@ -150,14 +150,14 @@ const Article = () => {
   };
   return (
     <div className={articleSty.container}>
-      <div className={articleSty.searchWrap}>
+      {/* <div className={articleSty.searchWrap}>
         <IoSearch className={articleSty.searchIcon} size={28} />
         <input
           type="text"
           placeholder="Search articles..."
           className={articleSty["input-box"]}
         />
-      </div>
+      </div> */}
 
       <section className={articleSty.banner}>
         <div className={articleSty.banner_content}>
