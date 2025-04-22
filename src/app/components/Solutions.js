@@ -23,41 +23,41 @@ const Solutions = () =>{
           subHeading: "On-Demand Services",
           text: "Enhance service experience with direct communication between customers and providers     (_lorem ipsum)",
         },
-        {
-          icon: "fa-solid fa-chart-bar",
-          subHeading: "Healthcare & Telehealth",
-          text: "Support doctor-patient and other sensitive communication with HIPAA-compliant chat     (_lorem ipsum)",
-        },
+        // {
+        //   icon: "fa-solid fa-chart-bar",
+        //   subHeading: "Healthcare & Telehealth",
+        //   text: "Support doctor-patient and other sensitive communication with HIPAA-compliant chat     (_lorem ipsum)",
+        // },
         {
           icon: "fa-solid fa-chart-bar",
           subHeading: "Matrimony",
           text: "Create meaningful connections with secure 1:1 conversations    (_lorem ipsum)",
         },
-        {
-          icon: "fa-solid fa-chart-bar",
-          subHeading: "Community",
-          text: "Strengthen community engagement through dynamic, real-time communication tools     (_lorem ipsum)",
-        },
-        {
-          icon: "fa-solid fa-chart-bar",
-          subHeading: "SaaS & Multi-Tenant",
-          text: "Seamlessly deploy chat to your SaaS product with built-in multi tenancy     (_lorem ipsum)",
-        },
-        {
-          icon: "fa-solid fa-chart-bar",
-          subHeading: "Vartual Events",
-          text: "Liven virtual events with dynamic chat, powered by AI and smart moderation     (_lorem ipsum)",
-        },
-        {
-          icon: "fa-solid fa-chart-bar",
-          subHeading: "Online Education & Ed-Tech",
-          text: "Foster learning with tools that keep students engaged and facilitate collaboration     (_lorem ipsum)",
-        },
-        {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Team Comms & Workflows",
-         text: "Improve productivity and collaboration with real-time communication tools for teams     (_lorem ipsum)",
-       },
+        // {
+        //   icon: "fa-solid fa-chart-bar",
+        //   subHeading: "Community",
+        //   text: "Strengthen community engagement through dynamic, real-time communication tools     (_lorem ipsum)",
+        // },
+        // {
+        //   icon: "fa-solid fa-chart-bar",
+        //   subHeading: "SaaS & Multi-Tenant",
+        //   text: "Seamlessly deploy chat to your SaaS product with built-in multi tenancy     (_lorem ipsum)",
+        // },
+        // {
+        //   icon: "fa-solid fa-chart-bar",
+        //   subHeading: "Vartual Events",
+        //   text: "Liven virtual events with dynamic chat, powered by AI and smart moderation     (_lorem ipsum)",
+        // },
+        // {
+        //   icon: "fa-solid fa-chart-bar",
+        //   subHeading: "Online Education & Ed-Tech",
+        //   text: "Foster learning with tools that keep students engaged and facilitate collaboration     (_lorem ipsum)",
+        // },
+      //   {
+      //    icon: "fa-solid fa-chart-bar",
+      //    subHeading: "Team Comms & Workflows",
+      //    text: "Improve productivity and collaboration with real-time communication tools for teams     (_lorem ipsum)",
+      //  },
       ],
       company_type: [
         {

@@ -9,54 +9,55 @@ const Platform = () => {
        {
          icon: "fa-solid fa-chart-bar",
          subHeading: "Analytics & insights",
-         text: "Get real-time usage insights of your user engagement through chat     (_lorem ipsum)",
+         text: "Get real-time usage insights of your user engagement through chat",
        },
        {
          icon: "fa-solid fa-chart-bar",
          subHeading: "Notifications",
-         text: "Push, email and SMS notifications for new messages, mentions, and other important events.     (_lorem ipsum)",
+         text: "Push, email notifications for new messages, mentions, and other important events.",
        },
        {
          icon: "fa-solid fa-chart-bar",
          subHeading: "Interactive messages",
-         text: "Convert your chat into a powerful operations hub     (_lorem ipsum)",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Multi-tenancy",
-         text: "Create and manage multiple, independent chat environments with ease     (_lorem ipsum)",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Webhooks",
-         text: "Set up programmatic triggers for all chat events     (_lorem ipsum)",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Security & compliance",
-         text: "Advanced encryption and security. Fully compliant with HIPAA, GDPR, SOC 2     (_lorem ipsum)",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "All features",
-         text: "Explore all features of CometChat across chat, voice and video     (_lorem ipsum)",
-       },
+         text: "Convert your chat into a powerful operations hub",
+       }
+       ,
+      //  {
+      //    icon: "fa-solid fa-chart-bar",
+      //    subHeading: "Multi-tenancy",
+      //    text: "Create and manage multiple, independent chat environments with ease",
+      //  },
+      //  {
+      //    icon: "fa-solid fa-chart-bar",
+      //    subHeading: "Webhooks",
+      //    text: "Set up programmatic triggers for all chat events",
+      //  },
+      //  {
+      //    icon: "fa-solid fa-chart-bar",
+      //    subHeading: "Security & compliance",
+      //    text: "Advanced encryption and security. Fully compliant with HIPAA, GDPR, SOC 2",
+      //  },
+      //  {
+      //    icon: "fa-solid fa-chart-bar",
+      //    subHeading: "All features",
+      //    text: "Explore all features of CometChat across chat, voice and video",
+      //  },
      ],
      integration: [
        {
          icon: "fa-solid fa-user",
          subHeading: "UI kits",
-         text: "Ready to ship chat with pre-built UI components & business logic     (_lorem ipsum)",
+         text: "Ready to ship chat with pre-built UI components & business logic",
        },
        {
          icon: "fa-solid fa-envelope",
          subHeading: "SDKs & APIs",
-         text: "Fully customisable SDKs and APIs to power your in-app user engagement     (_lorem ipsum)",
+         text: "Fully customisable SDKs and APIs to power your in-app user engagement",
        },
        {
          icon: "fa-solid fa-chart-bar",
          subHeading: "Widgets",
-         text: "Simple, no-code option for light-weight chat use cases     (_lorem ipsum)",
+         text: "Simple, no-code option for light-weight chat use cases",
        },
      ],
    };
