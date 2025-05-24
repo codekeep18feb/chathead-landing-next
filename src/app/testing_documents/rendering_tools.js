@@ -69,9 +69,30 @@ const CondRadioRender = ({ r_options }) => {
 
 // Updated supported tags
 const supportedTags = [
-  "h1", "h2", "h3", "h4", "p", "div", "img", "a", 
-  "blockquote", "ul", "li", "code", "ol", "table",
-  "accordion", "breadcrumbs", "code_with_copy"
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "p",
+  "div",
+  "img",
+  "a",
+  "blockquote",
+  "ul",
+  "li",
+  "code",
+  "ol",
+  "table",
+  "accordion",
+  "breadcrumbs",
+  "code_with_copy",
+  "callout",
+  "steps",
+  "tabs",
+  "tooltip",
+  "pagination",
+  "kbd",
+  "text", // Add this
 ];
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts) return text;
@@ -106,6 +127,119 @@ const renderTextWithElements = (text, linkParts) => {
   return parts;
 };
 
+const Callout = ({ type = "info", title, children }) => {
+  const icons = {
+    info: "ℹ️",
+    warning: "⚠️",
+    danger: "⛔",
+    success: "✅",
+  };
+
+  return (
+    <div className={`callout callout-${type}`}>
+      <div className="callout-header">
+        <span className="callout-icon">{icons[type]}</span>
+        {title && <h4 className="callout-title">{title}</h4>}
+      </div>
+      <div className="callout-content">{children}</div>
+    </div>
+  );
+};
+
+// Update the Steps component to use ContentRenderer
+const Steps = ({ items }) => {
+  return (
+    <div className="steps">
+      {items.map((step, index) => (
+        <div key={index} className="step">
+          <div className="step-number">{index + 1}</div>
+          <div className="step-content">
+            {step.title && <h4 className="step-title">{step.title}</h4>}
+            <div className="step-description">
+              <ContentRenderer content={step.content} />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// New Component: Tabs
+const Tabs = ({ items }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <div className="tabs-container">
+      <div className="tab-buttons">
+        {items.map((tab, index) => (
+          <button
+            key={index}
+            className={`tab-button ${index === activeTab ? "active" : ""}`}
+            onClick={() => setActiveTab(index)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      <div className="tab-content">
+        <ContentRenderer content={items[activeTab].content} />
+      </div>
+    </div>
+  );
+};
+
+// New Component: Tooltip
+const Tooltip = ({ content, children }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    <div
+      className="tooltip-wrapper"
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
+    >
+      <ContentRenderer content={[children]} />
+      {isVisible && (
+        <div className="tooltip">
+          <ContentRenderer content={content} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+// New Component: Pagination
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  return (
+    <div className="pagination">
+      {Array.from({ length: totalPages }, (_, i) => (
+        <button
+          key={i}
+          className={`page-number ${i + 1 === currentPage ? "active" : ""}`}
+          onClick={() => onPageChange(i + 1)}
+        >
+          {i + 1}
+        </button>
+      ))}
+    </div>
+  );
+};
+
+// New Component: Keyboard Shortcut
+const Kbd = ({ keys }) => {
+  return (
+    <span className="kbd-container">
+      {keys.map((key, index) => (
+        <React.Fragment key={key}>
+          <kbd className="kbd-key">{key}</kbd>
+          {index < keys.length - 1 && <span className="kbd-plus">+</span>}
+        </React.Fragment>
+      ))}
+    </span>
+  );
+};
+
 const CodeWithCopy = ({ code, language }) => {
   const [copied, setCopied] = useState(false);
 
@@ -134,12 +268,12 @@ const Accordion = ({ title, children }) => {
 
   return (
     <div className="accordion">
-      <button 
-        className={`accordion-header ${isOpen ? 'open' : ''}`}
+      <button
+        className={`accordion-header ${isOpen ? "open" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {title}
-        <span className="accordion-icon">{isOpen ? '▼' : '▶'}</span>
+        <span className="accordion-icon">{isOpen ? "▼" : "▶"}</span>
       </button>
       {isOpen && <div className="accordion-content">{children}</div>}
     </div>
@@ -189,7 +323,6 @@ const Breadcrumbs = ({ items }) => {
     </nav>
   );
 };
-
 
 const List = ({
   items,
@@ -343,11 +476,55 @@ const ContentRenderer = ({ content }) => {
           case "feature_options":
             return <CondRadioRender r_options={item.options} key={index} />;
 
+          case "callout":
+            return (
+              <Callout key={index} type={item.type} title={item.title}>
+                <ContentRenderer content={item.children} />
+              </Callout>
+            );
+
+          case "steps":
+            return <Steps key={index} items={item.items} />;
+
+          case "tabs":
+            return <Tabs key={index} items={item.items} />;
+
+          case "tooltip":
+            return (
+              <Tooltip key={index} content={item.content}>
+                <ContentRenderer content={item.children} />
+              </Tooltip>
+            );
+
+          case "pagination":
+            return (
+              <Pagination
+                key={index}
+                currentPage={item.currentPage}
+                totalPages={item.totalPages}
+                onPageChange={item.onPageChange}
+              />
+            );
+
+          case "kbd":
+            return <Kbd key={index} keys={item.keys} />;
+
+          // Add text handling
+          case "text":
+            return <span key={index}>{item.text}</span>;
+
+          // Update the p case in ContentRenderer
           case "p":
             return (
-              <p key={index} className="content-subheading">
-                {item.text}
-              </p>
+              <div key={index} className="content-paragraph">
+                {item.text &&
+                  renderTextWithElements(item.text, item.link_parts)}
+                {item.children && (
+                  <div className="p-children">
+                    <ContentRenderer content={item.children} />
+                  </div>
+                )}
+              </div>
             );
 
           case "h3":

@@ -418,7 +418,7 @@ function doc() {
     },
   ];
 
-  const content = [
+  const new_contents = [
     {
       tag_type: "breadcrumbs",
       items: [
@@ -496,10 +496,82 @@ function doc() {
     },
   ];
 
+
+  const sampleContent = [
+    {
+      tag_type: "callout",
+      type: "warning",
+      title: "Important Note",
+      children: [
+        {
+          tag_type: "p",
+          text: "This feature is currently in beta. Use with caution."
+        }
+      ]
+    },
+    {
+      tag_type: "steps",
+      items: [
+        {
+          title: "Installation",
+          content: [
+            {
+              tag_type: "code",
+              text: "npm install your-package"
+            }
+          ]
+        },
+        {
+          title: "Configuration",
+          content: [
+            {
+              tag_type: "p",
+              text: "Create a config file in your root directory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "tabs",
+      items: [
+        {
+          label: "JavaScript",
+          content: [
+            {
+              tag_type: "code",
+              text: "console.log('Hello World');"
+            }
+          ]
+        },
+        {
+          label: "Python",
+          content: [
+            {
+              tag_type: "code",
+              text: "print('Hello World')"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "p",
+      text: "Press ",
+      children: [
+        {
+          tag_type: "kbd",
+          keys: ["Ctrl", "S"]
+        },
+        " to save your changes"
+      ]
+    }
+  ];
+
   return (
     <div>
       {/* doc */}
-      <ContentRenderer key={1} content={content} />
+      <ContentRenderer key={1} content={sampleContent} />
     </div>
   );
 }
