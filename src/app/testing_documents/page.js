@@ -348,7 +348,8 @@ function doc() {
       ]
     }
   ];
-  const content_collapsable_list = [{
+
+  const content_collapsable_list_ikd = [{
     tag_type: "ol",
     items: [
       {
@@ -389,7 +390,32 @@ function doc() {
       }
     }
   }];
-  
+
+
+  const content_collapsable_list = [{
+    tag_type: "ol",
+    items: [
+      {
+        tag_type: "li",
+        text: "Main Step 1",
+        sub_items: [
+          {
+            tag_type: "li",
+            text: "Substep 1.1",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Nested Detail",
+                code: "npm install package"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    property:{"collapse":{"collapsable":true}}
+  }]
+
  
 
   return (
@@ -397,7 +423,7 @@ function doc() {
       {/* doc */}
       <ContentRenderer
                   key={1}
-                  content={content_collapsable_list}
+                  content={content_collapsable_list_ikd}
                   
                 />
 

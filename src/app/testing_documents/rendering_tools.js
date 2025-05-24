@@ -136,7 +136,7 @@ const List = ({ items, listType, collapsable, fcNonCollapsable, depth = 0 }) => 
 };
 
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
-  const [expanded, setExpanded] = useState(depth < 2);
+  const [expanded, setExpanded] = useState(depth < 1);
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
   
   // Determine collapsability based on depth
