@@ -848,10 +848,237 @@ function doc() {
     }
   ];
 
+  const comprehensiveDemoContent = [
+    {
+      tag_type: "breadcrumbs",
+      items: [
+        { label: "Home", href: "/" },
+        { label: "API Docs", href: "/api" },
+        { label: "v2.3 Reference" }
+      ]
+    },
+    {
+      tag_type: "h1",
+      text: "API Documentation v2.3"
+    },
+    {
+      tag_type: "search"
+    },
+    {
+      tag_type: "callout",
+      type: "warning",
+      title: "Migration Notice",
+      children: [
+        {
+          tag_type: "p",
+          text: "Version 2.3 contains breaking changes. Review the ",
+          children: [
+            {
+              tag_type: "a",
+              href: "/migration-guide",
+              text: "migration guide"
+            },
+            {
+              tag_type: "text",
+              text: " before updating."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "tabs",
+      items: [
+        {
+          label: "REST API",
+          content: [
+            {
+              tag_type: "code_with_copy",
+              code: "curl -X GET https://api.example.com/v2/users",
+              language: "bash"
+            },
+            {
+              tag_type: "h3",
+              text: "Response Format"
+            },
+            {
+              tag_type: "code",
+              text: JSON.stringify({ id: "uuid", name: "John Doe" }, null, 2),
+              show_copy: true
+            }
+          ]
+        },
+        {
+          label: "GraphQL",
+          content: [
+            {
+              tag_type: "code_with_copy",
+              code: "query { user(id: \"123\") { name email }}",
+              language: "graphql"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "api_table",
+      properties: [
+        {
+          name: "user.id",
+          type: "string",
+          format: "UUIDv4",
+          required: true,
+          description: "Globally unique identifier",
+          example: "\"550e8400-e29b-41d4-a716-446655440000\""
+        },
+        {
+          name: "user.metadata.tags",
+          type: "array<string>",
+          description: "Classification tags",
+          example: "[\"admin\", \"beta-tester\"]"
+        },
+        {
+          name: "pagination.limit",
+          type: "integer",
+          default: "50",
+          min: 1,
+          max: 1000,
+          description: "Results per page"
+        },
+        {
+          name: "legacy_token",
+          type: "string",
+          status: "deprecated",
+          description: "Use OAuth2 tokens instead",
+          version: "Removed in v3.0"
+        }
+      ]
+    },
+    {
+      tag_type: "accordion",
+      title: "Advanced Rate Limiting",
+      children: [
+        {
+          tag_type: "h3",
+          text: "Rate Limit Headers"
+        },
+        {
+          tag_type: "ul",
+          items: [
+            {
+              tag_type: "li",
+              text: "X-RateLimit-Limit: Total requests allowed"
+            },
+            {
+              tag_type: "li",
+              text: "X-RateLimit-Remaining: Remaining requests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "mermaid_diagram",
+      code: `sequenceDiagram
+        Client->>API: GET /users
+        API->>Database: Query users
+        Database-->>API: Return data
+        API-->>Client: JSON response`
+    },
+    {
+      tag_type: "steps",
+      items: [
+        {
+          title: "Authentication",
+          content: [
+            {
+              tag_type: "code_with_copy",
+              code: "Authorization: Bearer <token>",
+              language: "text"
+            }
+          ]
+        },
+        {
+          title: "Making Requests",
+          content: [
+            {
+              tag_type: "ol",
+              items: [
+                {
+                  tag_type: "li",
+                  text: "Set Content-Type header"
+                },
+                {
+                  tag_type: "li",
+                  text: "Include API version in URL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "blockquote",
+      text: "Always validate responses and handle errors gracefully."
+    },
+    {
+      tag_type: "p",
+      children: [
+        {
+          tag_type: "text",
+          text: "Need help? Use "
+        },
+        {
+          tag_type: "kbd",
+          keys: ["Ctrl", "K"]
+        },
+        {
+          tag_type: "text",
+          text: " to open search or "
+        },
+        {
+          tag_type: "tooltip",
+          content: [
+            {
+              tag_type: "a",
+              href: "/support",
+              text: "Contact Support"
+            }
+          ],
+          children: [
+            {
+              tag_type: "text",
+              text: "get assistance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "pagination",
+      currentPage: 1,
+      totalPages: 5
+    },
+    {
+      tag_type: "side_nav",
+      items: [
+        { id: "getting-started", label: "Getting Started" },
+        { id: "authentication", label: "Authentication" },
+        { id: "endpoints", label: "Endpoints" }
+      ]
+    },
+    {
+      tag_type: "status_badge",
+      type: "beta",
+      text: "Experimental Feature"
+    }
+  ];
+
   return (
     <div>
       {/* doc */}
-      <ContentRenderer key={1} content={apiReferenceContent} />
+      <ContentRenderer key={1} content={comprehensiveDemoContent} />
     </div>
   );
 }
