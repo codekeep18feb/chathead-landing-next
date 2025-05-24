@@ -348,7 +348,6 @@ function doc() {
       ]
     }
   ];
-
   const content_collapsable_list = [{
     tag_type: "ol",
     items: [
@@ -363,30 +362,46 @@ function doc() {
               {
                 tag_type: "li",
                 text: "Nested Detail",
-                code: "npm install package"
+                code: "npm install package",
+                sub_items: [
+                  {
+                    tag_type: "li",
+                    text: "Level 4 Detail",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "Level 5 Deepest Detail",
+                        code: "node script.js"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         ]
       }
     ],
-    property:{"collapsable":true}
-  }]
+    property: {
+      collapse: {
+        collapsable: true,
+        fc_non_collapsable: true
+      }
+    }
+  }];
+  
+ 
+
   return (
     <div>
       {/* doc */}
       <ContentRenderer
                   key={1}
                   content={content_collapsable_list}
-                  // current_mode={current_mode}
+                  
                 />
 
 
-<ContentRenderer
-                  key={2}
-                  content={content_non_collapsable_list}
-                  // current_mode={current_mode}
-                />
     </div>
   );
 }

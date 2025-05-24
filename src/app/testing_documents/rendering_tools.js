@@ -105,8 +105,7 @@ const renderTextWithElements = (text, linkParts) => {
   return parts;
 };
 
-
-const List = ({ items, listType, collapsable }) => {
+const List = ({ items, listType, collapsable, fcNonCollapsable, depth = 0 }) => {
   return listType === "ol" ? (
     <ol className="content-list ordered">
       {items.map((item, index) => (
@@ -115,6 +114,8 @@ const List = ({ items, listType, collapsable }) => {
           item={item} 
           listType={listType}
           collapsable={collapsable}
+          fcNonCollapsable={fcNonCollapsable}
+          depth={depth}
         />
       ))}
     </ol>
@@ -126,29 +127,27 @@ const List = ({ items, listType, collapsable }) => {
           item={item} 
           listType={listType}
           collapsable={collapsable}
+          fcNonCollapsable={fcNonCollapsable}
+          depth={depth}
         />
       ))}
     </ul>
   );
 };
 
-const ListItem = ({ item, listType, collapsable }) => {
-  const [expanded, setExpanded] = useState(false);
+const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
+  const [expanded, setExpanded] = useState(depth < 2);
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
-  const isCollapsible = collapsable && hasSubItems;
+  
+  // Determine collapsability based on depth
+  const isCollapsible = collapsable && hasSubItems && depth >= 1;
+  
+  // Children inherit collapsability but increment depth
+  const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
 
   const handleClick = (e) => {
     e.stopPropagation();
-    if (isCollapsible) {
-      setExpanded(!expanded);
-    }
-  };
-
-  const handleChevronClick = (e) => {
-    e.stopPropagation();
-    if (isCollapsible) {
-      setExpanded(!expanded);
-    }
+    if (isCollapsible) setExpanded(!expanded);
   };
 
   return (
@@ -162,7 +161,7 @@ const ListItem = ({ item, listType, collapsable }) => {
     >
       {isCollapsible && (
         <span 
-          onClick={handleChevronClick}
+          onClick={handleClick}
           style={{
             position: 'absolute',
             left: 0,
@@ -179,27 +178,27 @@ const ListItem = ({ item, listType, collapsable }) => {
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
           <>
-            {item.text && (
-              <span>
-                {renderTextWithElements(item.text, item.link_parts)}
-              </span>
+            {item.text && <span>{item.text}</span>}
+            {item.code && (
+              <pre className="script_code">
+                <code>{item.code}</code>
+              </pre>
             )}
-            {/* ... (rest of item content rendering remains same) ... */}
           </>
         )}
       </div>
 
       {hasSubItems && (
         <div style={{ 
-          display: expanded || !isCollapsible ? 'block' : 'none',
-          marginLeft: '20px',
-          transition: 'all 0.3s ease',
-          pointerEvents: 'auto'
+          display: expanded ? 'block' : 'none',
+          marginLeft: '20px'
         }}>
           <List 
             items={item.sub_items} 
             listType={item.listType || listType}
-            collapsable={collapsable}
+            collapsable={childCollapsable}
+            fcNonCollapsable={fcNonCollapsable}
+            depth={depth + 1}
           />
         </div>
       )}
@@ -207,54 +206,6 @@ const ListItem = ({ item, listType, collapsable }) => {
   );
 };
 
-
-// standard list all items at once.
-// const List = ({ items, listType }) => (
-//   listType === "ol" ? (
-//     <ol className="content-list ordered">
-//       {items.map((item, index) => (
-//         <ListItem key={index} item={item} listType={listType} />
-//       ))}
-//     </ol>
-//   ) : (
-//     <ul className="content-list">
-//       {items.map((item, index) => (
-//         <ListItem key={index} item={item} listType={listType} />
-//       ))}
-//     </ul>
-//   )
-// );
-
-// const ListItem = ({ item, listType }) => (
-//   <li>
-//     {typeof item === "string" ? (
-//       <span dangerouslySetInnerHTML={{ __html: item }} />
-//     ) : (
-//       <>
-//         {item.text && (
-//           <span>
-//             {renderTextWithElements(item.text, item.link_parts)}
-//           </span>
-//         )}
-//         <div>
-//           {item.img && (
-//             <img src={item.img} alt="" className="content-list-img" />
-//           )}
-//         </div>
-//         {item.more_text && <p>{item.more_text}</p>}
-//         {item.code && (
-//           <pre className="script_code">
-//             <code>{item.code}</code>
-//           </pre>
-//         )}
-//         {item.extra_text && <p>{item.extra_text}</p>}
-//         {item.sub_items && (
-//           <List items={item.sub_items} listType={item.listType || listType} />
-//         )}
-//       </>
-//     )}
-//   </li>
-// );
 
 const ContentRenderer = ({ content }) => {
   return (
@@ -309,7 +260,7 @@ const ContentRenderer = ({ content }) => {
 
           case "ul":
           case "ol":
-            return <List key={index} items={item.items} listType={item.tag_type} collapsable={item.property?.collapsable}/>;
+            return <List key={index} items={item.items} listType={item.tag_type} collapsable={item.property?.collapse?.collapsable} fcNonCollapsable={item.property?.collapse?.fc_non_collapsable}/>;
 
           case "blockquote":
             return <blockquote key={index} className="content-blockquote">{item.text}</blockquote>;
