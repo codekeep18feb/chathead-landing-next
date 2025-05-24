@@ -1,7 +1,6 @@
 import React from "react";
 import ContentRenderer from "./rendering_tools";
 
-
 function doc() {
   const content_some_mix_data_examples = [
     { tag_type: "h2", text: "Cloud Managed Auth + Chat (Simple Site)" },
@@ -14,7 +13,7 @@ function doc() {
           description: [
             {
               tag_type: "p",
-              text: "Simple implementation with minimal configuration"
+              text: "Simple implementation with minimal configuration",
             },
             {
               tag_type: "ol",
@@ -22,23 +21,23 @@ function doc() {
                 {
                   tag_type: "li",
                   text: "Add base script tag",
-                  code: '<script src="basic.js"></script>'
+                  code: '<script src="basic.js"></script>',
                 },
                 {
                   tag_type: "li",
                   text: "Initialize with default settings",
-                  code: 'window.chat.init()'
-                }
-              ]
-            }
-          ]
+                  code: "window.chat.init()",
+                },
+              ],
+            },
+          ],
         },
         {
           text: "ADVANCED",
           description: [
             {
               tag_type: "p",
-              text: "Customizable implementation with multiple options"
+              text: "Customizable implementation with multiple options",
             },
             {
               tag_type: "ul",
@@ -46,18 +45,18 @@ function doc() {
                 {
                   tag_type: "li",
                   text: "Add core library",
-                  code: '<script src="advanced-core.js"></script>'
+                  code: '<script src="advanced-core.js"></script>',
                 },
                 {
                   tag_type: "li",
                   text: "Add plugins",
-                  code: '<script src="advanced-plugins.js"></script>'
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  code: '<script src="advanced-plugins.js"></script>',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "p",
@@ -242,13 +241,13 @@ function doc() {
     },
   ];
 
-  const content_non_collapsable_list =  [
+  const content_non_collapsable_list = [
     {
       tag_type: "div",
       children: [
         {
           tag_type: "h2",
-          text: "Nested List Example"
+          text: "Nested List Example",
         },
         {
           tag_type: "ol",
@@ -264,7 +263,7 @@ function doc() {
                     {
                       tag_type: "li",
                       text: "Detail 1.1.1",
-                      code: "npm install package-1"
+                      code: "npm install package-1",
                     },
                     {
                       tag_type: "li",
@@ -272,18 +271,18 @@ function doc() {
                       link_parts: [
                         {
                           text: "documentation",
-                          link: "https://example.com/docs"
-                        }
-                      ]
-                    }
-                  ]
+                          link: "https://example.com/docs",
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
                   tag_type: "li",
                   text: "Substep 1.2",
-                  code: "console.log('Hello World')"
-                }
-              ]
+                  code: "console.log('Hello World')",
+                },
+              ],
             },
             {
               tag_type: "li",
@@ -296,16 +295,16 @@ function doc() {
                     {
                       tag_type: "li",
                       text: "Nested substep 2.1.1",
-                      extra_text: "This is additional information"
+                      extra_text: "This is additional information",
                     },
                     {
                       tag_type: "li",
                       text: "Nested substep 2.1.2",
-                      img: "path/to/image.png"
-                    }
-                  ]
-                }
-              ]
+                      img: "path/to/image.png",
+                    },
+                  ],
+                },
+              ],
             },
             {
               tag_type: "li",
@@ -313,11 +312,11 @@ function doc() {
               sub_items: [
                 {
                   tag_type: "li",
-                  text: "Simple substep without nesting"
-                }
-              ]
-            }
-          ]
+                  text: "Simple substep without nesting",
+                },
+              ],
+            },
+          ],
         },
         {
           tag_type: "ul",
@@ -333,101 +332,174 @@ function doc() {
                     {
                       tag_type: "li",
                       text: "Sub-sub-bullet",
-                      code: "const deep = true;"
-                    }
-                  ]
-                }
-              ]
+                      code: "const deep = true;",
+                    },
+                  ],
+                },
+              ],
             },
             {
               tag_type: "li",
-              text: "Bullet Point 2"
-            }
-          ]
-        }
-      ]
-    }
+              text: "Bullet Point 2",
+            },
+          ],
+        },
+      ],
+    },
   ];
 
-  const content_collapsable_list_ikd = [{
-    tag_type: "ol",
-    items: [
-      {
-        tag_type: "li",
-        text: "Main Step 1",
-        sub_items: [
-          {
-            tag_type: "li",
-            text: "Substep 1.1",
-            sub_items: [
-              {
-                tag_type: "li",
-                text: "Nested Detail",
-                code: "npm install package",
-                sub_items: [
-                  {
-                    tag_type: "li",
-                    text: "Level 4 Detail",
-                    sub_items: [
-                      {
-                        tag_type: "li",
-                        text: "Level 5 Deepest Detail",
-                        code: "node script.js"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    property: {
-      collapse: {
-        collapsable: true,
-        fc_non_collapsable: true
-      }
-    }
-  }];
+  const content_collapsable_list_ikd = [
+    {
+      tag_type: "ol",
+      items: [
+        {
+          tag_type: "li",
+          text: "Main Step 1",
+          sub_items: [
+            {
+              tag_type: "li",
+              text: "Substep 1.1",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Nested Detail",
+                  code: "npm install package",
+                  sub_items: [
+                    {
+                      tag_type: "li",
+                      text: "Level 4 Detail",
+                      sub_items: [
+                        {
+                          tag_type: "li",
+                          text: "Level 5 Deepest Detail",
+                          code: "node script.js",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      property: {
+        collapse: {
+          collapsable: true,
+          fc_non_collapsable: true,
+        },
+      },
+    },
+  ];
 
+  const content_collapsable_list = [
+    {
+      tag_type: "ol",
+      items: [
+        {
+          tag_type: "li",
+          text: "Main Step 1",
+          sub_items: [
+            {
+              tag_type: "li",
+              text: "Substep 1.1",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Nested Detail",
+                  code: "npm install package",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      property: { collapse: { collapsable: true } },
+    },
+  ];
 
-  const content_collapsable_list = [{
-    tag_type: "ol",
-    items: [
-      {
-        tag_type: "li",
-        text: "Main Step 1",
-        sub_items: [
-          {
-            tag_type: "li",
-            text: "Substep 1.1",
-            sub_items: [
-              {
-                tag_type: "li",
-                text: "Nested Detail",
-                code: "npm install package"
-              }
-            ]
-          }
-        ]
+  const content = [
+    {
+      tag_type: "breadcrumbs",
+      items: [
+        { label: "Home", href: "/" },
+        { label: "Documentation", href: "/docs" },
+        { label: "New Features" },
+      ],
+    },
+    {
+      tag_type: "h2",
+      text: "Component Demo Section",
+    },
+    {
+      tag_type: "accordion",
+      title: "API Reference",
+      children: [
+        {
+          tag_type: "table",
+          headers: ["Parameter", "Type", "Description"],
+          rows: [
+            ["title", "string", "Component title"],
+            ["content", "array", "Content items"],
+            ["collapsable", "boolean", "Toggle collapse feature"],
+          ],
+        },
+      ],
+    },
+    {
+      tag_type: "h3",
+      text: "Example Usage",
+    },
+    {
+      tag_type: "code_with_copy",
+      code: "npm install @awesome/docs-components",
+      language: "bash",
+    },
+    {
+      tag_type: "accordion",
+      title: "Configuration Guide",
+      children: [
+        {
+          tag_type: "p",
+          text: "Here's how to configure the components:",
+        },
+        {
+          tag_type: "code",
+          text: `
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const token = localStorage.getItem("tezkit_token");
+      if (token) {
+        window.chathead.initialize(token);
+      } else {
+        window.chathead.setUp(
+          "<Your App Name>", 
+          "<Your Api Key>", 
+          JSON.stringify({
+            "header_theme": {
+              "backgroundColor": "rgb(30, 136, 125)" //to override the header background Color
+            },
+            "chat_opener_theme": {
+              "backgroundColor": "rgb(41, 48, 78)" //to override the chatBox background Color
+            }
+          }),
+          false, // for HEADLESS MODE
+          "/index.html"
+        );
       }
-    ],
-    property:{"collapse":{"collapsable":true}}
-  }]
-
- 
+    });
+  </script>
+          `,
+          show_copy: true,
+        },
+      ],
+    },
+  ];
 
   return (
     <div>
       {/* doc */}
-      <ContentRenderer
-                  key={1}
-                  content={content_collapsable_list_ikd}
-                  
-                />
-
-
+      <ContentRenderer key={1} content={content} />
     </div>
   );
 }
