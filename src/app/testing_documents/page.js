@@ -568,10 +568,290 @@ function doc() {
     }
   ];
 
+
+  const demoContent = [
+    {
+      tag_type: "breadcrumbs",
+      items: [
+        { label: "Home", href: "/" },
+        { label: "Documentation", href: "/docs" },
+        { label: "Component Demo" }
+      ]
+    },
+    {
+      tag_type: "h1",
+      text: "Comprehensive Component Demo"
+    },
+    {
+      tag_type: "callout",
+      type: "info",
+      title: "Demo Guide",
+      children: [
+        {
+          tag_type: "p",
+          text: "This document showcases all available components in various nested configurations."
+        }
+      ]
+    },
+    {
+      tag_type: "steps",
+      items: [
+        {
+          title: "Setup",
+          content: [
+            {
+              tag_type: "code_with_copy",
+              code: "npm install demo-package",
+              language: "bash"
+            },
+            {
+              tag_type: "p",
+              text: "Requires Node.js 18+"
+            }
+          ]
+        },
+        {
+          title: "Configuration",
+          content: [
+            {
+              tag_type: "ol",
+              items: [
+                {
+                  tag_type: "li",
+                  text: "Create config file",
+                  code: "touch config.json"
+                },
+                {
+                  tag_type: "li",
+                  text: "Add basic setup",
+                  sub_items: [
+                    {
+                      tag_type: "code",
+                      text: JSON.stringify({ debug: true }, null, 2)
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "tabs",
+      items: [
+        {
+          label: "JavaScript",
+          content: [
+            {
+              tag_type: "code_with_copy",
+              code: "console.log('Hello World');",
+              language: "javascript"
+            }
+          ]
+        },
+        {
+          label: "Python",
+          content: [
+            {
+              tag_type: "code_with_copy",
+              code: "print('Hello World')",
+              language: "python"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "table",
+      headers: ["Component", "Type", "Description"],
+      rows: [
+        ["Button", "Atom", "Basic interactive element"],
+        ["Card", "Molecule", "Container with header and content"],
+        ["Grid", "Organism", "Responsive layout system"]
+      ]
+    },
+    {
+      tag_type: "accordion",
+      title: "Advanced Features",
+      children: [
+        {
+          tag_type: "h3",
+          text: "Collapsible Lists"
+        },
+        {
+          tag_type: "ol",
+          property: {
+            collapse: {
+              collapsable: true,
+              fc_non_collapsable: true
+            }
+          },
+          items: [
+            {
+              tag_type: "li",
+              text: "Main Feature",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Sub Feature",
+                  code: "enableFeature(true)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      tag_type: "blockquote",
+      text: "This component system provides exceptional flexibility for technical documentation."
+    },
+    {
+      tag_type: "p",
+      children: [
+        {
+          tag_type: "text",
+          text: "Use "
+        },
+        {
+          tag_type: "kbd",
+          keys: ["Ctrl", "S"]
+        },
+        {
+          tag_type: "text",
+          text: " to save. Hover "
+        },
+        {
+          tag_type: "tooltip",
+          content: [
+            {
+              tag_type: "code",
+              text: "saveDocument()"
+            }
+          ],
+          children: [
+            {
+              tag_type: "text",
+              text: "here"
+            }
+          ]
+        },
+        {
+          tag_type: "text",
+          text: " for help."
+        }
+      ]
+    },
+    {
+      tag_type: "pagination",
+      currentPage: 1,
+      totalPages: 5,
+      // onPageChange: (page) => console.log("Page changed to:", page)
+    }
+  ];
+
+  const new_tags_content = [
+    {
+      tag_type: "side_nav",
+      items: [
+        { id: "getting-started", label: "Getting Started" },
+        { id: "api-reference", label: "API Reference" }
+      ]
+    },
+    {
+      tag_type: "search"
+    },
+    {
+      tag_type: "mermaid_diagram",
+      code: `
+        graph TD
+          A[Client] --> B[Load Balancer]
+          B --> C[Server 1]
+          B --> D[Server 2]
+      `
+    }
+  ];
+
+
+  const apiReferenceContent  = [
+    {
+      tag_type: "api_table",
+      properties: [
+        {
+          name: "user.id",
+          type: "string",
+          format: "UUIDv4",
+          required: true,
+          description: "Unique user identifier",
+          version: "1.2.0"
+        },
+        {
+          name: "user.email",
+          type: "string",
+          format: "email",
+          required: true,
+          description: "User's primary email address",
+          validation: "RFC 5322 standard",
+          example: "user@example.com"
+        },
+        {
+          name: "user.preferences",
+          type: "object",
+          default: "{}",
+          description: "User settings and preferences",
+          properties: [
+            {
+              name: "theme",
+              type: "string",
+              enum: ["light", "dark", "system"],
+              default: "light"
+            },
+            {
+              name: "notifications",
+              type: "object",
+              properties: [
+                { name: "email", type: "boolean", default: "true" },
+                { name: "push", type: "boolean", default: "false" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "pagination.limit",
+          type: "integer",
+          default: "25",
+          min: 1,
+          max: 100,
+          description: "Number of items per page"
+        },
+        {
+          name: "pagination.cursor",
+          type: "string",
+          description: "Base64 encoded pagination cursor",
+          notes: "Use for deep pagination in large datasets"
+        },
+        {
+          name: "metadata.tags",
+          type: "array<string>",
+          description: "Associated classification tags",
+          example: '["admin", "beta-user"]'
+        },
+        {
+          name: "deprecated_field",
+          type: "string",
+          status: "deprecated",
+          description: "Legacy field scheduled for removal in v3.0",
+          alternative: "Use new_field instead"
+        }
+      ]
+    }
+  ];
+
   return (
     <div>
       {/* doc */}
-      <ContentRenderer key={1} content={sampleContent} />
+      <ContentRenderer key={1} content={apiReferenceContent} />
     </div>
   );
 }

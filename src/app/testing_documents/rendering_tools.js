@@ -93,6 +93,10 @@ const supportedTags = [
   "pagination",
   "kbd",
   "text", // Add this
+  "side_nav",
+  "search",
+  "mermaid_diagram",
+  "api_table",
 ];
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts) return text;
@@ -209,15 +213,70 @@ const Tooltip = ({ content, children }) => {
   );
 };
 
-// New Component: Pagination
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const SideNav = ({ items }) => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return (
+    <div className={`side-nav ${isOpen ? "open" : "collapsed"}`}>
+      <button className="nav-toggle" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? "◀" : "▶"}
+      </button>
+      {isOpen && (
+        <nav>
+          {items.map((item) => (
+            <a href={`#${item.id}`} key={item.id} className="nav-item">
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
+    </div>
+  );
+};
+
+const DocSearch = () => {
+  const [query, setQuery] = useState("");
+
+  return (
+    <div className="doc-search">
+      <input
+        type="text"
+        placeholder="Search documentation..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button className="search-button">🔍</button>
+    </div>
+  );
+};
+
+const MermaidDiagram = ({ code }) => {
+  useEffect(() => {
+    // Initialize Mermaid diagram
+    window.mermaid?.initialize({ startOnLoad: true });
+    window.mermaid?.init();
+  }, [code]);
+
+  return <div className="mermaid">{code}</div>;
+};
+
+// Update the Pagination component
+const Pagination = ({ currentPage, totalPages }) => {
+  const [page, setPage] = useState(currentPage);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    // Add any additional page change logic here
+    console.log("Page changed to:", newPage);
+  };
+
   return (
     <div className="pagination">
       {Array.from({ length: totalPages }, (_, i) => (
         <button
           key={i}
-          className={`page-number ${i + 1 === currentPage ? "active" : ""}`}
-          onClick={() => onPageChange(i + 1)}
+          className={`page-number ${i + 1 === page ? "active" : ""}`}
+          onClick={() => handlePageChange(i + 1)}
         >
           {i + 1}
         </button>
@@ -434,6 +493,33 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   );
 };
 
+const APIReferenceTable = ({ properties }) => (
+  <table className="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {properties.map((prop) => (
+        <tr key={prop.name}>
+          <td>
+            <code>{prop.name}</code>
+          </td>
+          <td>
+            <em>{prop.type}</em>
+          </td>
+          <td>{prop.default || "-"}</td>
+          <td>{prop.description}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
 const ContentRenderer = ({ content }) => {
   return (
     <div className="contents">
@@ -471,6 +557,20 @@ const ContentRenderer = ({ content }) => {
               <h2 key={index} className="content-inner-heading">
                 {item.text}
               </h2>
+            );
+
+          case "side_nav":
+            return <SideNav key={index} items={item.items} />;
+
+          case "search":
+            return <DocSearch key={index} />;
+
+          case "mermaid_diagram":
+            return <MermaidDiagram key={index} code={item.code} />;
+
+          case "api_table":
+            return (
+              <APIReferenceTable key={index} properties={item.properties} />
             );
 
           case "feature_options":
