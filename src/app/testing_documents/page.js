@@ -3,7 +3,7 @@ import ContentRenderer from "./rendering_tools";
 
 
 function doc() {
-  const content = [
+  const content_some_mix_data_examples = [
     { tag_type: "h2", text: "Cloud Managed Auth + Chat (Simple Site)" },
 
     {
@@ -242,14 +242,149 @@ function doc() {
     },
   ];
 
-  const current_mode = "HEADFUL"
+  const content_non_collapsable_list =  [
+    {
+      tag_type: "div",
+      children: [
+        {
+          tag_type: "h2",
+          text: "Nested List Example"
+        },
+        {
+          tag_type: "ol",
+          items: [
+            {
+              tag_type: "li",
+              text: "Main Step 1",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Substep 1.1",
+                  sub_items: [
+                    {
+                      tag_type: "li",
+                      text: "Detail 1.1.1",
+                      code: "npm install package-1"
+                    },
+                    {
+                      tag_type: "li",
+                      text: "Detail 1.1.2",
+                      link_parts: [
+                        {
+                          text: "documentation",
+                          link: "https://example.com/docs"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  tag_type: "li",
+                  text: "Substep 1.2",
+                  code: "console.log('Hello World')"
+                }
+              ]
+            },
+            {
+              tag_type: "li",
+              text: "Main Step 2",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Substep 2.1",
+                  sub_items: [
+                    {
+                      tag_type: "li",
+                      text: "Nested substep 2.1.1",
+                      extra_text: "This is additional information"
+                    },
+                    {
+                      tag_type: "li",
+                      text: "Nested substep 2.1.2",
+                      img: "path/to/image.png"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              tag_type: "li",
+              text: "Main Step 3",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Simple substep without nesting"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          tag_type: "ul",
+          items: [
+            {
+              tag_type: "li",
+              text: "Bullet Point 1",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Sub-bullet 1",
+                  sub_items: [
+                    {
+                      tag_type: "li",
+                      text: "Sub-sub-bullet",
+                      code: "const deep = true;"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              tag_type: "li",
+              text: "Bullet Point 2"
+            }
+          ]
+        }
+      ]
+    }
+  ];
 
+  const content_collapsable_list = [{
+    tag_type: "ol",
+    items: [
+      {
+        tag_type: "li",
+        text: "Main Step 1",
+        sub_items: [
+          {
+            tag_type: "li",
+            text: "Substep 1.1",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Nested Detail",
+                code: "npm install package"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    property:{"collapsable":true}
+  }]
   return (
     <div>
       {/* doc */}
       <ContentRenderer
                   key={1}
-                  content={content}
+                  content={content_collapsable_list}
+                  // current_mode={current_mode}
+                />
+
+
+<ContentRenderer
+                  key={1}
+                  content={content_non_collapsable_list}
                   // current_mode={current_mode}
                 />
     </div>
