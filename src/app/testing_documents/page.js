@@ -383,7 +383,7 @@ function doc() {
 
 
 <ContentRenderer
-                  key={1}
+                  key={2}
                   content={content_non_collapsable_list}
                   // current_mode={current_mode}
                 />
