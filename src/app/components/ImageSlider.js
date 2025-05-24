@@ -38,22 +38,7 @@ const ImageSlider = ({ images, onClose,}) => {
           alt={`Demo for version`}
         //   style={{ width: "100%"}}
         />
-        {/* <div className="step-navigation">
-          <button
-            onClick={prevImage}
-            disabled={images.length <= 1}
-            className="btn btn-prev"
-          >
-            Previous
-          </button>
-          <button
-            onClick={nextImage}
-            disabled={images.length <= 1}
-            className="btn btn-next"
-          >
-            Next
-          </button>
-        </div> */}
+     
 
         <div className="step-navigation">
           <button

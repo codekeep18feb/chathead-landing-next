@@ -68,8 +68,8 @@ const HowSection = () => {
               <div className="image-wrappe">
                 <ImageSlider
                   images={[
-                    "/Asset/demo_imgs/after.jpeg",
-                    "/Asset/demo_imgs/before.jpeg",
+                    "/Asset/demo_imgs/v1/p2a/after.jpeg",
+                    "/Asset/demo_imgs/v1/p2a/before.jpeg",
                   ]}
                   onClose={closePopup}
                 />
