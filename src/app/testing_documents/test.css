@@ -311,6 +311,25 @@
   }
 }
 
+
+/* ========== Breadcrumbs ========== */
+.breadcrumbs ol {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumbs li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs .separator {
+  margin: 0 8px;
+  color: #666;
+}
+
+
 @media (max-width: 468px) {
   .document-container {
     flex-direction: column;
