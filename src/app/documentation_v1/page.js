@@ -10,39 +10,23 @@ import YouTubeEmbed from "../components/YouTubeVideo";
 import TopFilterComp from "../components/documents/TopFilterComp";
 import Sidebar from "../components/documents/side_bar_content/Sidebar";
 
-const CondRadioRender = ({ r_options, current_mode }) => {
+
+const CondRadioRender = ({ r_options }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Update the selectedOption whenever current_mode or r_options change
   useEffect(() => {
     setSelectedOption(r_options[0]?.text);
-  }, [current_mode, r_options]);
+  }, [r_options]);
 
-  // Check if the viewport is mobile
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Mobile viewport breakpoint
-    };
-
-    // Initial check
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
-
-    // Add resize event listener
     window.addEventListener("resize", handleResize);
-
-    // Cleanup listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleOptionChange = (optionText) => {
-    // Update the selected option
-    setSelectedOption(optionText);
-  };
-
-  if (!current_mode) {
-    return null; // Handle the absence of current_mode gracefully
-  }
+  const handleOptionChange = (optionText) => setSelectedOption(optionText);
 
   const selectedDescription = r_options.find(
     (option) => option.text === selectedOption
@@ -51,7 +35,6 @@ const CondRadioRender = ({ r_options, current_mode }) => {
   return (
     <div className="setup">
       {isMobile ? (
-        // Render as dropdown on mobile
         <div className="dropdown">
           <select
             value={selectedOption || ""}
@@ -66,7 +49,6 @@ const CondRadioRender = ({ r_options, current_mode }) => {
           </select>
         </div>
       ) : (
-        // Render as tabs on larger screens
         <div className="tabs">
           {r_options.map((option, index) => (
             <button
@@ -83,15 +65,12 @@ const CondRadioRender = ({ r_options, current_mode }) => {
       )}
 
       <div className="description">
-        {/* Render content based on the selected option */}
-        <ContentRenderer
-          content={selectedDescription}
-          current_mode={current_mode}
-        />
+        <ContentRenderer content={selectedDescription} />
       </div>
     </div>
   );
 };
+
 
 const supportedTags = [
   "h1",
@@ -242,8 +221,7 @@ const ListItem = ({ item, listType }) => {
   );
 };
 
-const ContentRenderer = ({ content, current_mode }) => {
-  console.log(content, "ismyscode indiv not even called", current_mode);
+const ContentRenderer = ({ content }) => {
   return (
     <div className="contents">
       {content?.map((item, index) => {
@@ -251,127 +229,111 @@ const ContentRenderer = ({ content, current_mode }) => {
           ? item.tag_type
           : "div";
 
-        if (item.tag_type === "img") {
-          return (
-            <div className="content-list-img" key={index}>
-              <img src={item.src} alt={item.alt || ""} />
-            </div>
-          );
-        }
-
-        if (item.tag_type === "video") {
-          return (
-            <div key={index}>
-              <div className="videos_wrapper">
-                <YouTubeEmbed key={index} src={item.src} desc={item.desc} />
+        switch (item.tag_type) {
+          case "img":
+            return (
+              <div className="content-list-img" key={index}>
+                <img src={item.src} alt={item.alt || ""} />
               </div>
-            </div>
-          );
-        }
+            );
+            
+          case "video":
+            return (
+              <div key={index}>
+                <div className="videos_wrapper">
+                  <YouTubeEmbed src={item.src} desc={item.desc} />
+                </div>
+              </div>
+            );
 
-        if (item.tag_type === "h2") {
-          return (
-            <h2 key={index} className="content-heading">
-              {item.text}
-            </h2>
-          );
-        } else if (item.tag_type === "h4") {
-          return (
-            <h2 key={index} className="content-inner-heading">
-              {item.text}
-            </h2>
-          );
-        } else if (item.tag_type === "feature_options") {
-          return (
-            <CondRadioRender
-              r_options={item.options}
-              key={index}
-              current_mode={current_mode}
-            />
-          );
-        } else if (item.tag_type === "p") {
-          return (
-            <p key={index} className="content-subheading">
-              {item.text}
-            </p>
-          );
-        } else if (item.tag_type === "h3") {
-          return (
-            <h3 key={index} className="second_subheading">
-              {item.text}
-            </h3>
-          );
-        } else if (item.tag_type === "p") {
-          return (
-            <p key={index} className="content-paragraph">
-              {item.text}
-            </p>
-          );
-        } else if (item.tag_type === "a") {
-          return (
-            <a
-              key={index}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="content-link"
-            >
-              {item.text}
-            </a>
-          );
-        } else if (item.tag_type === "ul" || item.tag_type === "ol") {
-          return (
-            <List key={index} items={item.items} listType={item.tag_type} />
-          );
-        } else if (item.tag_type === "blockquote") {
-          return (
-            <blockquote key={index} className="content-blockquote">
-              {item.text}
-            </blockquote>
-          );
-        } else if (item.tag_type === "code") {
-          return (
-            <pre key={index} className="content-code">
-              <code>{item.text}</code>
-            </pre>
-          );
-        } else if (item.tag_type === "li") {
-          return (
-            <li key={index} className="content-list-item">
-              {item.text}
-              {item.sub_items && (
-                <List items={item.sub_items} listType={item.listType || "ul"} />
-              )}
-            </li>
-          );
-        } else if (item.tag_type === "div") {
-          return (
-            <div key={index} className="content-div">
-              {item.children &&
-                item.children.map((child, i) => (
+          case "feature_options":
+            return <CondRadioRender key={index} r_options={item.options} />;
+
+          case "h2":
+            return (
+              <h2 key={index} className="content-heading">
+                {item.text}
+              </h2>
+            );
+
+          case "h4":
+            return (
+              <h4 key={index} className="content-inner-heading">
+                {item.text}
+              </h4>
+            );
+
+          case "h3":
+            return (
+              <h3 key={index} className="second_subheading">
+                {item.text}
+              </h3>
+            );
+
+          case "p":
+            return (
+              <p key={index} className="content-paragraph">
+                {item.text}
+              </p>
+            );
+
+          case "a":
+            return (
+              <a
+                key={index}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="content-link"
+              >
+                {item.text}
+              </a>
+            );
+
+          case "ul":
+          case "ol":
+            return <List key={index} items={item.items} listType={item.tag_type} />;
+
+          case "blockquote":
+            return (
+              <blockquote key={index} className="content-blockquote">
+                {item.text}
+              </blockquote>
+            );
+
+          case "code":
+            return (
+              <pre key={index} className="content-code">
+                <code>{item.text}</code>
+              </pre>
+            );
+
+          case "div":
+            return (
+              <div key={index} className="content-div">
+                {item.children?.map((child, i) => (
                   <ContentRenderer
-                    key={`${index}-${i}`} // Combine index and child index for uniqueness
+                    key={`${index}-${i}`}
                     content={[child]}
-                    current_mode={current_mode}
                   />
                 ))}
+                {item.extra_text && <div>{item.extra_text}</div>}
+                {item.code && (
+                  <pre className="script_code">
+                    <code>{item.code}</code>
+                  </pre>
+                )}
+              </div>
+            );
 
-              {item.extra_text ? <div>{item.extra_text}</div> : null}
-              {item.code && (
-                <pre className="script_code">
-                  <code>{item.code}</code>
-                </pre>
-              )}
-            </div>
-          );
-        } else {
-          return (
-            <Tag
-              key={index}
-              className={`content-${item.tag_type}`}
-              dangerouslySetInnerHTML={{ __html: item.text }}
-            />
-          );
+          default:
+            return (
+              <Tag
+                key={index}
+                className={`content-${item.tag_type}`}
+                dangerouslySetInnerHTML={{ __html: item.text }}
+              />
+            );
         }
       })}
     </div>
@@ -475,7 +437,7 @@ const Document = () => {
         <ContentRenderer
                   key={4444}
                   content={payload}
-                  current_mode={"HEADERLESS"}
+                  // current_mode={"HEADERLESS"}
                 />
 
       </div>
@@ -493,7 +455,7 @@ const Document = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  console.log("do we have nay mode?", current_mode);
+  // console.log("do we have nay mode?", current_mode);
 
   const renderSidebarContent = () =>
     Object.keys(payload).map((key) => (
