@@ -1,5 +1,6 @@
 import React from "react";
 import ContentRenderer from "./rendering_tools";
+import ScrollButtonExample from "../components/ScrollButtonExample";
 
 function doc() {
   const content_some_mix_data_examples = [
@@ -1075,10 +1076,23 @@ function doc() {
     }
   ];
 
+  const handleScroll = () => {
+    const element = document.getElementById("target-section");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+
+
   return (
     <div>
-      {/* doc */}
-      <ContentRenderer key={1} content={comprehensiveDemoContent} />
+      {/* <ContentRenderer key={1} content={content_collapsable_list_ikd} /> */}
+      <ScrollButtonExample />
+      pagination
+      <ContentRenderer key={2} content={comprehensiveDemoContent} />
+      
+
     </div>
   );
 }

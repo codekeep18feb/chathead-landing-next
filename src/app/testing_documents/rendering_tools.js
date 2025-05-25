@@ -422,16 +422,49 @@ const List = ({
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const [expanded, setExpanded] = useState(depth < 1);
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
-
-  // Determine collapsability based on depth
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
-
-  // Children inherit collapsability but increment depth
   const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
+
+  const handleScroll = (selector) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const handleClick = (e) => {
     e.stopPropagation();
     if (isCollapsible) setExpanded(!expanded);
+  };
+
+  const renderLink = () => {
+    if (!item.link_configuration?.show) return null;
+    
+    const config = item.link_configuration;
+    
+    if (config.type === 'internal') {
+      return (
+        <button
+          onClick={() => handleScroll(config.targetSelector)}
+          className="content-link internal"
+          title="Scroll to section"
+        >
+          🔗
+        </button>
+      );
+    }
+    
+    return (
+      <a
+        href={config.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="content-link external"
+        title="Open in new tab"
+      >
+        🔗
+      </a>
+    );
   };
 
   return (
@@ -458,12 +491,15 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         </span>
       )}
 
-      <div onClick={handleClick}>
+      <div onClick={handleClick} style={{ display: 'inline-block' }}>
         {typeof item === "string" ? (
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
           <>
-            {item.text && <span>{item.text}</span>}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {item.text && <span>{item.text}</span>}
+              {renderLink()}
+            </div>
             {item.code && (
               <pre className="script_code">
                 <code>{item.code}</code>
@@ -474,12 +510,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       </div>
 
       {hasSubItems && (
-        <div
-          style={{
-            display: expanded ? "block" : "none",
-            marginLeft: "20px",
-          }}
-        >
+        <div style={{ display: expanded ? "block" : "none", marginLeft: "20px" }}>
           <List
             items={item.sub_items}
             listType={item.listType || listType}
