@@ -471,23 +471,13 @@ const Document = () => {
     const steps = Object.keys(payload[selectedKey]);
     return (
       <div className="content-area">
-        {steps.map((step) => (
-          <div key={step} className="step">
-            <h1 className="step-title">{step}</h1>
-            {payload[selectedKey][step].map((item, index) => {
-              const content = item[selectedTab]
-                ? item[selectedTab].content
-                : null;
-              return content ? (
-                <ContentRenderer
-                  key={index}
-                  content={content}
-                  current_mode={current_mode}
+        
+        <ContentRenderer
+                  key={4444}
+                  content={payload}
+                  current_mode={"HEADERLESS"}
                 />
-              ) : null;
-            })}
-          </div>
-        ))}
+
       </div>
     );
   };
@@ -605,7 +595,7 @@ const Document = () => {
                 real-time messaging on any app or device.
               </h2>
             </div>
-            {renderTabs()}
+            {/* {renderTabs()} */}
             {renderContent()}
 
             <div className="integration_successful">

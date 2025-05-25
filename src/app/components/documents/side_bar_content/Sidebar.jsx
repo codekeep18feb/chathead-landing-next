@@ -2,11 +2,12 @@ import React from 'react';
 import ContentRenderer from '@/app/testing_documents/rendering_tools';
 
 export default function Sidebar({ selectedFilter }) {
-  // Safe null checking with optional chaining
-  const appType = selectedFilter?.app_types 
-    ? Object.keys(selectedFilter.app_types)[0]
-    : null;
 
+  console.log("whawerjwerselectedFilter",selectedFilter)
+  // Safe null checking with optional chaining
+  const appType = selectedFilter?.app_type;
+
+  console.log("appTypesdafsdf",appType)
   // Common content configuration
   const p2aContent = [
     {
@@ -76,15 +77,7 @@ export default function Sidebar({ selectedFilter }) {
             targetSelector: ".content-inner-heading"
           },
           sub_items: [
-            {
-              tag_type: "li",
-              text: "Substep with External Link",
-              link_configuration: {
-                show: true,
-                type: "external",
-                url: "https://example.com/docs"
-              }
-            },
+          
             {
               tag_type: "li",
               text: "Actual Integration Section Reference",
