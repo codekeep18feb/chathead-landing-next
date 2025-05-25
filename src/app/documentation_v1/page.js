@@ -565,6 +565,7 @@ const Document = () => {
             toggleDropdown={toggleDropdown}
             payload={payload}
             handleKeyClick={handleKeyClick}
+            selectedFilter={selectedFilter}
           />
 
           {/* <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>
