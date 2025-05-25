@@ -350,6 +350,9 @@ const Document = () => {
   console.log("what is the current version now? after click", current_version);
   const [current_mode, setModeOfVersion] = useState(null);
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
+
+
+  console.log(selectedKey,"why selected key is not 'P2A'")
   const [selectedTab, setSelectedTab] = useState(current_version);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -402,41 +405,29 @@ const Document = () => {
   }, [current_version]);
 
   const handleKeyClick = (key) => {
+    console.log("WRWERWEQRWE",key)
     setSelectedKey(key);
-    setSelectedTab("P2A__V1"); // reset tab selection to default
+    // setSelectedTab("P2A__V1"); // reset tab selection to default
   };
 
-  const renderTabs = () => {
-    const versions = ["P2A__V1", "P2A__V2", "P2A__V3"]; // Directly define the versions
-    return (
-      <div className="tabs">
-        {versions.map((version) => (
-          <button
-            key={version}
-            onClick={() => setSelectedTab(version)}
-            className={`tab-button ${selectedTab === version ? "active" : ""}`}
-          >
-            {version.toUpperCase()}
-          </button>
-        ))}
-      </div>
-    );
-  };
+
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState); // Toggle the state on click
   };
 
   const renderContent = () => {
-    if (!selectedKey) return <div>Select a key from the left</div>;
+    if (!selectedFilter || !selectedFilter.app_type) return <div>Select a key from the left</div>;
 
-    const steps = Object.keys(payload[selectedKey]);
+    // const steps = Object.keys(payload[selectedKey]);
+    const content = payload[selectedFilter.app_type][selectedFilter.version_type]
+    console.log(selectedFilter,"DScontentSDFASDSDFFSAD",content)
+
     return (
       <div className="content-area">
-        
         <ContentRenderer
                   key={4444}
-                  content={payload}
+                  content={content}
                   // current_mode={"HEADERLESS"}
                 />
 
@@ -457,55 +448,12 @@ const Document = () => {
 
   // console.log("do we have nay mode?", current_mode);
 
-  const renderSidebarContent = () =>
-    Object.keys(payload).map((key) => (
-      <div
-        key={key}
-        onClick={() => handleKeyClick(key)}
-        className="sidebar-item"
-      >
-        <h2>{key}-hello</h2>
-      </div>
-    ));
 
-  const renderSidebar = () => {
-    if (isMobile) {
-      return (
-        <div className="sidebar-dropdown">
-          <button
-            className={`dropdown-toggle ${isDropdownOpen ? "active" : ""}`}
-            onClick={toggleDropdown}
-          >
-            <span>{selectedKey || "Select a Key"}</span>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 5.5L8 9.5L12 5.5"
-                stroke="black"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
 
-          {isDropdownOpen && (
-            <div className="dropdown-menu active">{renderSidebarContent()}</div>
-          )}
-        </div>
-      );
-    }
-    return <div className="sidebar-wrapper">{renderSidebarContent()}</div>;
-  };
-
+    
   return (
     <div className="document-container">
-      {<TopFilterComp setSelectedFilter={setSelectedFilter} />}
+      {<TopFilterComp setSelectedFilter={setSelectedFilter}/>}
       <div className="doc_core_wrapper">
         <div className="doc_sidebar">
           {/* {renderSidebar()} */}
@@ -520,32 +468,7 @@ const Document = () => {
             selectedFilter={selectedFilter}
           />
 
-          {/* <div className={`sidebar_wrapper ${isDropdownOpen ? "active" : ""}`}>
-            {Object.keys(payload).map((key) => (
-              <div
-                key={key}
-                onClick={() => handleKeyClick(key)}
-                className="sidebar-item"
-              >
-                <h2>{key}</h2>
-              </div>
-            ))}
-          </div> */}
-          {/* <div className="downIcon" onClick={toggleDropdown}>
-            <h3>Overview</h3>
-            <svg
-              width="30"
-              height="30"
-              viewBox="0 0 30 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 0C12.0333 0 9.13319 0.879734 6.66645 2.52796C4.19972 4.17618 2.27713 6.51886 1.14181 9.25975C0.00649932 12.0006 -0.290551 15.0166 0.288227 17.9264C0.867006 20.8361 2.29562 23.5088 4.3934 25.6066C6.49119 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2906 17.9994 29.9935 20.7403 28.8582C23.4811 27.7229 25.8238 25.8003 27.472 23.3335C29.1203 20.8668 30 17.9667 30 15C29.9953 11.0232 28.4135 7.21061 25.6014 4.39858C22.7894 1.58655 18.9768 0.00469155 15 0ZM22.7823 13.2368L15.9641 20.055C15.7084 20.3106 15.3616 20.4543 15 20.4543C14.6384 20.4543 14.2916 20.3106 14.0359 20.055L7.21773 13.2368C6.96934 12.9796 6.83189 12.6352 6.835 12.2776C6.8381 11.9201 6.98151 11.5781 7.23434 11.3252C7.48717 11.0724 7.82919 10.929 8.18673 10.9259C8.54427 10.9228 8.88873 11.0602 9.14591 11.3086L15 17.1627L20.8541 11.3086C21.1113 11.0602 21.4557 10.9228 21.8133 10.9259C22.1708 10.929 22.5128 11.0724 22.7657 11.3252C23.0185 11.5781 23.1619 11.9201 23.165 12.2776C23.1681 12.6352 23.0307 12.9796 22.7823 13.2368Z"
-                fill="black"
-              />
-            </svg>
-          </div> */}
+
         </div>
         <div className="rightWrap">
           <div className="main-content">
