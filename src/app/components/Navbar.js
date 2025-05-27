@@ -117,20 +117,23 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
 
           <li>
             <Link href="/pricing" legacyBehavior>
-            <a  onClick={() => handleItemClick(null, "/pricing")} className="link">
-              Pricing
-            </a>
+              <a
+                onClick={() => handleItemClick(null, "/pricing")}
+                className="link"
+              >
+                Pricing
+              </a>
             </Link>
           </li>
         </div>
         <div className="auth-buttons">
           <li>
-            <a href="http://dev.addchat.tech/login">
+            <a href="http://admin.magicchat.io/login">
               <button className="login">Log-in</button>
             </a>
           </li>
           <li>
-            <a href="http://dev.addchat.tech/signup">
+            <a href="http://admin.magicchat.io/signup">
               <button className="signup">Sign-up</button>
             </a>
           </li>
