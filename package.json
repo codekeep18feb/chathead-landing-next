@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && touch ./out/.nojekyll && gh-pages -d out -t true"
+    "deploy": "npm run build && echo 'magicchat.io' > out/CNAME && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
