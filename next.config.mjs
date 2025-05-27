@@ -7,7 +7,7 @@ const nextConfig = {
   images: { unoptimized: true },
   env: {
     NEXT_PUBLIC_BASE_PATH: "",
-    NEXT_PUBLIC_API_URL: "https://api.example.com", // your actual API if needed
+    NEXT_PUBLIC_API_URL: "https://api.example.com", // your actual API if neede
   },
 };
 
