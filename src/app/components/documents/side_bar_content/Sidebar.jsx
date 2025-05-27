@@ -15,40 +15,52 @@ export default function Sidebar({ selectedFilter }) {
       items: [
         {
           tag_type: "li",
-          text: "Main Process",
+          text: "Project setup",
           link_configuration: {
             show: true,
             type: "internal",
-            targetSelector: ".content-inner-heading"
+            targetSelector: ".content-heading"
           },
           sub_items: [
             {
               tag_type: "li",
-              text: "Substep with External Link",
+              text: "Client Side Integration",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Client Side Integration",
+                  link_configuration: {
+                    show: true,
+                    type: "internal",
+                    targetSelector: ".content-inner-heading"
+                  }
+                },
+                {
+                  tag_type: "li",
+                  text: "Backend Integration",
+                  link_configuration: {
+                    show: true,
+                    type: "internal",
+                    targetSelector: ".second_subheading"
+                  }
+                  
+                }
+              ],
               link_configuration: {
                 show: true,
-                type: "external",
-                url: "https://example.com/docs"
+                type: "internal",
+                targetSelector: ".content-inner-heading"
               }
             },
             {
               tag_type: "li",
-              text: "Actual Integration Section Reference",
-              code: "// This is the target section",
-              sub_items: [
-                {
-                  tag_type: "li",
-                  text: "Nested Implementation Detail",
-                  code: "npm run integrate",
-                  sub_items: [
-                    {
-                      tag_type: "li",
-                      text: "Success Marker Element",
-                      code: "<div class='integration_successful'>✅</div>"
-                    }
-                  ]
-                }
-              ]
+              text: "Backend Integration",
+              link_configuration: {
+                show: true,
+                type: "internal",
+                targetSelector: ".second_subheading"
+              }
+              
             }
           ]
         }
