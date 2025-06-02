@@ -139,6 +139,106 @@ const payload = {
         },
 
         {
+          tag_type: "tabs",
+          items: [
+            {
+              label: "HEADER FULL",
+              content: [
+                {
+                  tag_type: "h3",
+                  text: "A Header having all the authentication options will be added to your site",
+                },
+
+                {
+                  tag_type: "p",
+                  text: "Set `headerless_mode` to `true` as in the below",
+                },
+
+                {
+                  tag_type: "code_with_copy",
+                  code: `window.chathead.setUp(
+      "<Your App Name>", 
+      "<Your Api Key>", 
+      JSON.stringify({
+        "header_theme": {
+          "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
+        },
+        "chat_opener_theme": {
+          "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
+        }
+      }),
+      true, // <-- Update this to true if not already
+      "/index.html"
+    );
+         `,
+                  language: "bash",
+                },
+              ],
+            },
+
+            {
+              label: "HEADER LESS",
+              content: [
+                {
+                  tag_type: "h3",
+                  text: "A Header having all the authentication options will be added to your site",
+                },
+
+                {
+                  tag_type: "p",
+                  text: "Set `headerless_mode` to `false` as in the below",
+                },
+
+                {
+                  tag_type: "code_with_copy",
+                  code: `window.chathead.setUp(
+      "<Your App Name>", 
+      "<Your Api Key>", 
+      JSON.stringify({
+        "header_theme": {
+          "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
+        },
+        "chat_opener_theme": {
+          "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
+        }
+      }),
+      false, // <-- Update this to false if not already
+      "/index.html"
+    );
+         `,
+                  language: "bash",
+                },
+
+                // {
+                //   tag_type: "p",
+                //   text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+                // },
+
+
+        {
+          tag_type: "callout",
+          type: "info",
+          title: "Choose a location to load Authentication Components",
+          children: [
+            {
+              tag_type: "p",
+              text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+            }
+          ],
+        },
+                {
+                  tag_type: "code_with_copy",
+                  // text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                  // extra_text:
+                  // "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                  code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                },
+              ],
+            },
+          ],
+        },
+
+        {
           tag_type: "callout",
           type: "info",
           title: "Additional Notes",
