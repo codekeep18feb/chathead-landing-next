@@ -85,7 +85,8 @@ const Document = () => {
   };
 
   const renderContent = () => {
-    if (!selectedFilter || !selectedFilter.app_type) return <div>Select a key from the left</div>;
+    console.log("selesdtsdfilter",selectedFilter)
+    if (!selectedFilter || !selectedFilter.version_type) return <div>Select a key from the left</div>;
 
     // const steps = Object.keys(payload[selectedKey]);
     const content = payload[selectedFilter.version_type]

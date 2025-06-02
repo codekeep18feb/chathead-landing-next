@@ -5,7 +5,6 @@ const payload = {
       tag_type: "h2",
       text: `Cloud Managed Auth + Chat (Simple Site)`,
     },
-    
 
     {
       tag_type: "div",
@@ -85,261 +84,82 @@ const payload = {
 <script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js">
 </script>`,
                 },
-
-               
               ],
             },
-           
-            
-          ],
-        },
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        {
-          tag_type: "tabs",
-          items: [
             {
-              label: "HEADER FULL",
-              content: [
-
-                {
-                  tag_type: "ol",
-                  items: [
-                    {
-                      tag_type: "li",
-                      text: "Ensure you are choosing the right mode as per your need",
-                      sub_items: [
-                        {
-                          tag_type: "li",
-                          text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                          extra_text:
-                            "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                          // code: `The authentication type is V1 (i.e., your site currently has no built-in authentication), and`,
-                        },
-                        {
-                          tag_type: "li",
-                          text: "You want Magicchat to fully manage user authentication, and",
-                          extra_text:
-                            "You want Magicchat to fully manage user authentication, and",
-                          // code: `You want Magicchat to fully manage user authentication, and`,
-                        },
-      
-                        {
-                          tag_type: "li",
-                          text: "Decide whether to add a header on the top of the site",
-                          extra_text: `You want Magicchat to add a header at the top of your site that includes all authentication options.`,
-                          // code: `You want Magicchat to add a header at the top of your site that includes all authentication options.`,
-                        },
-                      ],
-                    }
-                  ],
-                },
-
-              
-                
-                {
-                  tag_type: "code_with_copy",
-                  code: `<script>
-document.addEventListener("DOMContentLoaded", async function () {
-  const token = localStorage.getItem("tezkit_token");
-  if (token) {
-    window.chathead.initialize(token);
-  } else {
-    window.chathead.setUp(
-      "<Your App Name>", 
-      "<Your Api Key>", 
-      JSON.stringify({
-        "header_theme": {
-          "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
-        },
-        "chat_opener_theme": {
-          "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
-        }
-      }),
-      false, // for HEADLESS MODE
-      "/index.html"
-    );
-  }
-});
-</script>
-         `,
-                  language: "bash",
-                },
-             
-               
-                
-              ],
-            },
-            {
-              label: "HEADER LESS",
-              content: [
-
-                {
-                  tag_type: "ol",
-                  items: [
-                    {
-                      tag_type: "li",
-                      text: "Choose the [HEADER LESS] mode only if:",
-                      sub_items: [
-                        {
-                          tag_type: "li",
-                          text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                          extra_text:
-                            "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                          // code: `The authentication type is V1 (i.e., your site currently has no built-in authentication), and`,
-                        },
-                        {
-                          tag_type: "li",
-                          text: "You want Magicchat to fully manage user authentication, and",
-                          extra_text:
-                            "You want Magicchat to fully manage user authentication, and",
-                          // code: `You want Magicchat to fully manage user authentication, and`,
-                        },
-      
-                        {
-                          tag_type: "li",
-                          text: "Probably when you have another header already in your site on the top and want to put authentiation handler options anywhere on the site.",
-                          // extra_text: `in this case you can create a div like in the code below at any place of your site and will add our authentication handlers/buttons/options there.`,
-                          // code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
-                        },
-                      ],
-                    },
-                    ,
+              tag_type: "li",
+              text: "Running Magicchat Setup Requires two steps",
+              sub_items: [
                 {
                   tag_type: "li",
-                  text: `Add this below line in your code anywhere you want to show authentication options`,
-                  sub_items: [
-                    {
-                      tag_type: "code_with_copy",
-                      // text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                      // extra_text:
-                      //   "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                      code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
-                    }
-                    
-                    
-                  ],
+                  text: "Step 1 – Initialize on Logged-Out Screens",
+                  extra_text:
+                    "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
+                  code: `<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (!token) {
+      window.chathead.setUp(
+        "<Your App Name>",
+        "<Your API Key>",
+        JSON.stringify({
+          header_theme: {
+            backgroundColor: "rgb(30, 136, 125)" // Customize header background color
+          },
+          chat_opener_theme: {
+            backgroundColor: "rgb(41, 48, 78)" // Customize chat opener background color
+          }
+        }),
+        false, // Enable or disable headless mode
+        "/index.html" // Path to the chat widget's iframe container (if applicable)
+      );
+    }
+  });
+</script>`,
                 },
-               
-                
-                {
-                  tag_type: "code_with_copy",
-                  code: `//<---below previously add scripts in the head of the html preferebly---->
 
-<script>
-document.addEventListener("DOMContentLoaded", async function () {
-  const token = localStorage.getItem("tezkit_token");
-  if (token) {
-    window.chathead.initialize(token);
-  } else {
-    window.chathead.setUp(
-      "<Your App Name>", 
-      "<Your Api Key>", 
-      JSON.stringify({
-        "header_theme": {
-          "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
-        },
-        "chat_opener_theme": {
-          "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
-        }
-      }),
-      false, // for HEADLESS MODE
-      "/index.html"
-    );
-  }
-});
-</script>
-         `,
-                  language: "bash",
+                {
+                  tag_type: "li",
+                  text: "Step 2 – Initialize on Logged-In Screens",
+                  extra_text:
+                    "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
+                  code: `<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (token) {
+      window.chathead.initialize(token);
+    }
+  });
+</script>`,
                 },
-             
-                
-                  ],
-                }
-               
-                
               ],
             },
           ],
         },
 
-        {
-          tag_type: "h1",
-          text: "Verify the Results!",
-          more_text:
-            "Kindly verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
-          img: "Asset/headerful_example.png",
-        },
-
-        // {
-        //   text: "Refer to the example code here.",
-        //   link_parts: [
-        //     {
-        //       text: "example code",
-        //       link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-        //     },
-        //   ],
-        // },
-        {
-          tag_type: "p",
-          text: `Kindly verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image`,
-        },
-
-        {
-          tag_type: "img",
-          src: "Asset/headerful_example.png",
-        },
         {
           tag_type: "callout",
           type: "info",
-          // title: "Refer to the example code here.",
+          title: "Additional Notes",
           children: [
-
-            
             {
               tag_type: "p",
-              text: "Refer to the example code.",
+              text: "If your app uses a common root layout or entry point (e.g., a main index.js or layout component that renders on every route), you can combine both setUp and initialize logic into a single location. This ensures the chat behaves appropriately based on the user's login state without duplicating code across screens.",
+            },
+
+            {
+              tag_type: "p",
+              text: "you can probably find the root file which loads each time despite being on any screen, and you probably can run both (setup, initialize) at once",
               children: [
                 {
                   tag_type: "a",
                   href: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                  text: "here"
-                }
-                
-              ]
-            }
-          ]
+                  text: "for example here ",
+                },
+              ],
+            },
+          ],
         },
 
         {
