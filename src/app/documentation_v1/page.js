@@ -12,26 +12,20 @@ import Sidebar from "../components/documents/side_bar_content/Sidebar";
 import ContentRenderer from "../testing_documents/rendering_tools";
 
 
-
-
-
-
-
-
 const Document = () => {
   const [selectedFilter, setSelectedFilter] = useState(null);
   console.log("do we have a fitler???selectedFilter", selectedFilter);
 
   const searchParams = useSearchParams();
-  const current_version = searchParams.get("current_version") || "P2A__V1"; // Default value if not provided
+  // const current_version = searchParams.get("current_version") || "P2A__V1"; // Default value if not provided
 
-  console.log("what is the current version now? after click", current_version);
+  // console.log("what is the current version now? after click", current_version);
   const [current_mode, setModeOfVersion] = useState(null);
-  const [selectedKey, setSelectedKey] = useState(Object.keys(payload)[0]);
+  const [selectedKey, setSelectedKey] = useState(Object.keys(payload)["V1"]);
 
 
   console.log(selectedKey,"why selected key is not 'P2A'")
-  const [selectedTab, setSelectedTab] = useState(current_version);
+  // const [selectedTab, setSelectedTab] = useState(current_version);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -75,12 +69,8 @@ const Document = () => {
     }
   }, [selectedFilter]);
 
-  useEffect(() => {
-    console.log("current_versionsdfsadfsdf", current_version);
-    if (current_version == "P2A__V1") {
-      setModeOfVersion("HEADFUL");
-    }
-  }, [current_version]);
+
+  
 
   const handleKeyClick = (key) => {
     console.log("WRWERWEQRWE",key)
@@ -98,7 +88,7 @@ const Document = () => {
     if (!selectedFilter || !selectedFilter.app_type) return <div>Select a key from the left</div>;
 
     // const steps = Object.keys(payload[selectedKey]);
-    const content = payload[selectedFilter.app_type][selectedFilter.version_type]
+    const content = payload[selectedFilter.version_type]
     console.log(selectedFilter,"DScontentSDFASDSDFFSAD",content)
 
     return (
