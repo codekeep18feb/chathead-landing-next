@@ -26,19 +26,19 @@ const plans = {
         "Basic analytics (_lorem)"],
       buttonLabel: "Choose Basic ",
     },
-    {
-      type: "Advance",
-      price: "$29.99/month",
-      description: "For professionals and businesses. (_lorem)",
-      subheading: "Maximize your potential with all features (_lorem)",
-      features: [
-        "All Basic features (_lorem)",
-        "Priority support (_lorem)",
-        "Advanced analytics (_lorem)",
-        "Custom integrations (_lorem)",
-      ],
-      buttonLabel: "Go Pro",
-    },
+    // {
+    //   type: "Advance",
+    //   price: "$29.99/month",
+    //   description: "For professionals and businesses. (_lorem)",
+    //   subheading: "Maximize your potential with all features (_lorem)",
+    //   features: [
+    //     "All Basic features (_lorem)",
+    //     "Priority support (_lorem)",
+    //     "Advanced analytics (_lorem)",
+    //     "Custom integrations (_lorem)",
+    //   ],
+    //   buttonLabel: "Go Pro",
+    // },
   ],
   yearly: [
     {
@@ -61,19 +61,19 @@ const plans = {
       features: ["Unlimited projects", "Email support", "Basic analytics"],
       buttonLabel: "Choose Basic",
     },
-    {
-      type: "Advance",
-      price: "$299.99/year",
-      description: "For professionals and businesses.",
-      subheading: "Maximize your potential with all features",
-      features: [
-        "All Basic features",
-        "Priority support",
-        "Advanced analytics",
-        "Custom integrations",
-      ],
-      buttonLabel: "Go Pro",
-    },
+    // {
+    //   type: "Advance",
+    //   price: "$299.99/year",
+    //   description: "For professionals and businesses.",
+    //   subheading: "Maximize your potential with all features",
+    //   features: [
+    //     "All Basic features",
+    //     "Priority support",
+    //     "Advanced analytics",
+    //     "Custom integrations",
+    //   ],
+    //   buttonLabel: "Go Pro",
+    // },
   ],
 };
 
