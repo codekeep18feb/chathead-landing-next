@@ -75,7 +75,7 @@ function doc() {
           tag_type: "ol",
           items: [
             {
-              text: "Signup/Login to your account at AddChat.",
+              text: "Signup/Login to your account at MagicChat.",
               link_parts: [
                 { text: "Signup/Login", link: "https://www.google.com/" },
               ],
@@ -497,7 +497,6 @@ function doc() {
     },
   ];
 
-
   const sampleContent = [
     {
       tag_type: "callout",
@@ -506,9 +505,9 @@ function doc() {
       children: [
         {
           tag_type: "p",
-          text: "This feature is currently in beta. Use with caution."
-        }
-      ]
+          text: "This feature is currently in beta. Use with caution.",
+        },
+      ],
     },
     {
       tag_type: "steps",
@@ -518,20 +517,20 @@ function doc() {
           content: [
             {
               tag_type: "code",
-              text: "npm install your-package"
-            }
-          ]
+              text: "npm install your-package",
+            },
+          ],
         },
         {
           title: "Configuration",
           content: [
             {
               tag_type: "p",
-              text: "Create a config file in your root directory"
-            }
-          ]
-        }
-      ]
+              text: "Create a config file in your root directory",
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "tabs",
@@ -541,20 +540,20 @@ function doc() {
           content: [
             {
               tag_type: "code",
-              text: "console.log('Hello World');"
-            }
-          ]
+              text: "console.log('Hello World');",
+            },
+          ],
         },
         {
           label: "Python",
           content: [
             {
               tag_type: "code",
-              text: "print('Hello World')"
-            }
-          ]
-        }
-      ]
+              text: "print('Hello World')",
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "p",
@@ -562,13 +561,12 @@ function doc() {
       children: [
         {
           tag_type: "kbd",
-          keys: ["Ctrl", "S"]
+          keys: ["Ctrl", "S"],
         },
-        " to save your changes"
-      ]
-    }
+        " to save your changes",
+      ],
+    },
   ];
-
 
   const demoContent = [
     {
@@ -576,12 +574,12 @@ function doc() {
       items: [
         { label: "Home", href: "/" },
         { label: "Documentation", href: "/docs" },
-        { label: "Component Demo" }
-      ]
+        { label: "Component Demo" },
+      ],
     },
     {
       tag_type: "h1",
-      text: "Comprehensive Component Demo"
+      text: "Comprehensive Component Demo",
     },
     {
       tag_type: "callout",
@@ -590,9 +588,9 @@ function doc() {
       children: [
         {
           tag_type: "p",
-          text: "This document showcases all available components in various nested configurations."
-        }
-      ]
+          text: "This document showcases all available components in various nested configurations.",
+        },
+      ],
     },
     {
       tag_type: "steps",
@@ -603,13 +601,13 @@ function doc() {
             {
               tag_type: "code_with_copy",
               code: "npm install demo-package",
-              language: "bash"
+              language: "bash",
             },
             {
               tag_type: "p",
-              text: "Requires Node.js 18+"
-            }
-          ]
+              text: "Requires Node.js 18+",
+            },
+          ],
         },
         {
           title: "Configuration",
@@ -620,7 +618,7 @@ function doc() {
                 {
                   tag_type: "li",
                   text: "Create config file",
-                  code: "touch config.json"
+                  code: "touch config.json",
                 },
                 {
                   tag_type: "li",
@@ -628,15 +626,15 @@ function doc() {
                   sub_items: [
                     {
                       tag_type: "code",
-                      text: JSON.stringify({ debug: true }, null, 2)
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                      text: JSON.stringify({ debug: true }, null, 2),
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "tabs",
@@ -647,9 +645,9 @@ function doc() {
             {
               tag_type: "code_with_copy",
               code: "console.log('Hello World');",
-              language: "javascript"
-            }
-          ]
+              language: "javascript",
+            },
+          ],
         },
         {
           label: "Python",
@@ -657,11 +655,11 @@ function doc() {
             {
               tag_type: "code_with_copy",
               code: "print('Hello World')",
-              language: "python"
-            }
-          ]
-        }
-      ]
+              language: "python",
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "table",
@@ -669,8 +667,8 @@ function doc() {
       rows: [
         ["Button", "Atom", "Basic interactive element"],
         ["Card", "Molecule", "Container with header and content"],
-        ["Grid", "Organism", "Responsive layout system"]
-      ]
+        ["Grid", "Organism", "Responsive layout system"],
+      ],
     },
     {
       tag_type: "accordion",
@@ -678,15 +676,15 @@ function doc() {
       children: [
         {
           tag_type: "h3",
-          text: "Collapsible Lists"
+          text: "Collapsible Lists",
         },
         {
           tag_type: "ol",
           property: {
             collapse: {
               collapsable: true,
-              fc_non_collapsable: true
-            }
+              fc_non_collapsable: true,
+            },
           },
           items: [
             {
@@ -696,60 +694,60 @@ function doc() {
                 {
                   tag_type: "li",
                   text: "Sub Feature",
-                  code: "enableFeature(true)"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  code: "enableFeature(true)",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "blockquote",
-      text: "This component system provides exceptional flexibility for technical documentation."
+      text: "This component system provides exceptional flexibility for technical documentation.",
     },
     {
       tag_type: "p",
       children: [
         {
           tag_type: "text",
-          text: "Use "
+          text: "Use ",
         },
         {
           tag_type: "kbd",
-          keys: ["Ctrl", "S"]
+          keys: ["Ctrl", "S"],
         },
         {
           tag_type: "text",
-          text: " to save. Hover "
+          text: " to save. Hover ",
         },
         {
           tag_type: "tooltip",
           content: [
             {
               tag_type: "code",
-              text: "saveDocument()"
-            }
+              text: "saveDocument()",
+            },
           ],
           children: [
             {
               tag_type: "text",
-              text: "here"
-            }
-          ]
+              text: "here",
+            },
+          ],
         },
         {
           tag_type: "text",
-          text: " for help."
-        }
-      ]
+          text: " for help.",
+        },
+      ],
     },
     {
       tag_type: "pagination",
       currentPage: 1,
       totalPages: 5,
       // onPageChange: (page) => console.log("Page changed to:", page)
-    }
+    },
   ];
 
   const new_tags_content = [
@@ -757,11 +755,11 @@ function doc() {
       tag_type: "side_nav",
       items: [
         { id: "getting-started", label: "Getting Started" },
-        { id: "api-reference", label: "API Reference" }
-      ]
+        { id: "api-reference", label: "API Reference" },
+      ],
     },
     {
-      tag_type: "search"
+      tag_type: "search",
     },
     {
       tag_type: "mermaid_diagram",
@@ -770,12 +768,11 @@ function doc() {
           A[Client] --> B[Load Balancer]
           B --> C[Server 1]
           B --> D[Server 2]
-      `
-    }
+      `,
+    },
   ];
 
-
-  const apiReferenceContent  = [
+  const apiReferenceContent = [
     {
       tag_type: "api_table",
       properties: [
@@ -785,7 +782,7 @@ function doc() {
           format: "UUIDv4",
           required: true,
           description: "Unique user identifier",
-          version: "1.2.0"
+          version: "1.2.0",
         },
         {
           name: "user.email",
@@ -794,7 +791,7 @@ function doc() {
           required: true,
           description: "User's primary email address",
           validation: "RFC 5322 standard",
-          example: "user@example.com"
+          example: "user@example.com",
         },
         {
           name: "user.preferences",
@@ -806,17 +803,17 @@ function doc() {
               name: "theme",
               type: "string",
               enum: ["light", "dark", "system"],
-              default: "light"
+              default: "light",
             },
             {
               name: "notifications",
               type: "object",
               properties: [
                 { name: "email", type: "boolean", default: "true" },
-                { name: "push", type: "boolean", default: "false" }
-              ]
-            }
-          ]
+                { name: "push", type: "boolean", default: "false" },
+              ],
+            },
+          ],
         },
         {
           name: "pagination.limit",
@@ -824,29 +821,29 @@ function doc() {
           default: "25",
           min: 1,
           max: 100,
-          description: "Number of items per page"
+          description: "Number of items per page",
         },
         {
           name: "pagination.cursor",
           type: "string",
           description: "Base64 encoded pagination cursor",
-          notes: "Use for deep pagination in large datasets"
+          notes: "Use for deep pagination in large datasets",
         },
         {
           name: "metadata.tags",
           type: "array<string>",
           description: "Associated classification tags",
-          example: '["admin", "beta-user"]'
+          example: '["admin", "beta-user"]',
         },
         {
           name: "deprecated_field",
           type: "string",
           status: "deprecated",
           description: "Legacy field scheduled for removal in v3.0",
-          alternative: "Use new_field instead"
-        }
-      ]
-    }
+          alternative: "Use new_field instead",
+        },
+      ],
+    },
   ];
 
   const comprehensiveDemoContent = [
@@ -855,15 +852,15 @@ function doc() {
       items: [
         { label: "Home", href: "/" },
         { label: "API Docs", href: "/api" },
-        { label: "v2.3 Reference" }
-      ]
+        { label: "v2.3 Reference" },
+      ],
     },
     {
       tag_type: "h1",
-      text: "API Documentation v2.3"
+      text: "API Documentation v2.3",
     },
     {
-      tag_type: "search"
+      tag_type: "search",
     },
     {
       tag_type: "callout",
@@ -877,15 +874,15 @@ function doc() {
             {
               tag_type: "a",
               href: "/migration-guide",
-              text: "migration guide"
+              text: "migration guide",
             },
             {
               tag_type: "text",
-              text: " before updating."
-            }
-          ]
-        }
-      ]
+              text: " before updating.",
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "tabs",
@@ -896,30 +893,30 @@ function doc() {
             {
               tag_type: "code_with_copy",
               code: "curl -X GET https://api.example.com/v2/users",
-              language: "bash"
+              language: "bash",
             },
             {
               tag_type: "h3",
-              text: "Response Format"
+              text: "Response Format",
             },
             {
               tag_type: "code",
               text: JSON.stringify({ id: "uuid", name: "John Doe" }, null, 2),
-              show_copy: true
-            }
-          ]
+              show_copy: true,
+            },
+          ],
         },
         {
           label: "GraphQL",
           content: [
             {
               tag_type: "code_with_copy",
-              code: "query { user(id: \"123\") { name email }}",
-              language: "graphql"
-            }
-          ]
-        }
-      ]
+              code: 'query { user(id: "123") { name email }}',
+              language: "graphql",
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "api_table",
@@ -930,13 +927,13 @@ function doc() {
           format: "UUIDv4",
           required: true,
           description: "Globally unique identifier",
-          example: "\"550e8400-e29b-41d4-a716-446655440000\""
+          example: '"550e8400-e29b-41d4-a716-446655440000"',
         },
         {
           name: "user.metadata.tags",
           type: "array<string>",
           description: "Classification tags",
-          example: "[\"admin\", \"beta-tester\"]"
+          example: '["admin", "beta-tester"]',
         },
         {
           name: "pagination.limit",
@@ -944,16 +941,16 @@ function doc() {
           default: "50",
           min: 1,
           max: 1000,
-          description: "Results per page"
+          description: "Results per page",
         },
         {
           name: "legacy_token",
           type: "string",
           status: "deprecated",
           description: "Use OAuth2 tokens instead",
-          version: "Removed in v3.0"
-        }
-      ]
+          version: "Removed in v3.0",
+        },
+      ],
     },
     {
       tag_type: "accordion",
@@ -961,22 +958,22 @@ function doc() {
       children: [
         {
           tag_type: "h3",
-          text: "Rate Limit Headers"
+          text: "Rate Limit Headers",
         },
         {
           tag_type: "ul",
           items: [
             {
               tag_type: "li",
-              text: "X-RateLimit-Limit: Total requests allowed"
+              text: "X-RateLimit-Limit: Total requests allowed",
             },
             {
               tag_type: "li",
-              text: "X-RateLimit-Remaining: Remaining requests"
-            }
-          ]
-        }
-      ]
+              text: "X-RateLimit-Remaining: Remaining requests",
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "mermaid_diagram",
@@ -984,7 +981,7 @@ function doc() {
         Client->>API: GET /users
         API->>Database: Query users
         Database-->>API: Return data
-        API-->>Client: JSON response`
+        API-->>Client: JSON response`,
     },
     {
       tag_type: "steps",
@@ -995,9 +992,9 @@ function doc() {
             {
               tag_type: "code_with_copy",
               code: "Authorization: Bearer <token>",
-              language: "text"
-            }
-          ]
+              language: "text",
+            },
+          ],
         },
         {
           title: "Making Requests",
@@ -1007,36 +1004,36 @@ function doc() {
               items: [
                 {
                   tag_type: "li",
-                  text: "Set Content-Type header"
+                  text: "Set Content-Type header",
                 },
                 {
                   tag_type: "li",
-                  text: "Include API version in URL"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  text: "Include API version in URL",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "blockquote",
-      text: "Always validate responses and handle errors gracefully."
+      text: "Always validate responses and handle errors gracefully.",
     },
     {
       tag_type: "p",
       children: [
         {
           tag_type: "text",
-          text: "Need help? Use "
+          text: "Need help? Use ",
         },
         {
           tag_type: "kbd",
-          keys: ["Ctrl", "K"]
+          keys: ["Ctrl", "K"],
         },
         {
           tag_type: "text",
-          text: " to open search or "
+          text: " to open search or ",
         },
         {
           tag_type: "tooltip",
@@ -1044,36 +1041,36 @@ function doc() {
             {
               tag_type: "a",
               href: "/support",
-              text: "Contact Support"
-            }
+              text: "Contact Support",
+            },
           ],
           children: [
             {
               tag_type: "text",
-              text: "get assistance"
-            }
-          ]
-        }
-      ]
+              text: "get assistance",
+            },
+          ],
+        },
+      ],
     },
     {
       tag_type: "pagination",
       currentPage: 1,
-      totalPages: 5
+      totalPages: 5,
     },
     {
       tag_type: "side_nav",
       items: [
         { id: "getting-started", label: "Getting Started" },
         { id: "authentication", label: "Authentication" },
-        { id: "endpoints", label: "Endpoints" }
-      ]
+        { id: "endpoints", label: "Endpoints" },
+      ],
     },
     {
       tag_type: "status_badge",
       type: "beta",
-      text: "Experimental Feature"
-    }
+      text: "Experimental Feature",
+    },
   ];
 
   const handleScroll = () => {
@@ -1083,16 +1080,12 @@ function doc() {
     }
   };
 
-
-
   return (
     <div>
       {/* <ContentRenderer key={1} content={content_collapsable_list_ikd} /> */}
       <ScrollButtonExample />
       pagination
       <ContentRenderer key={2} content={comprehensiveDemoContent} />
-      
-
     </div>
   );
 }

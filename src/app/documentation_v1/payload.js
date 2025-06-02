@@ -19,7 +19,7 @@ const payload = {
           tag_type: "ol",
           items: [
             {
-              text: "Signup/Login to your account at AddChat.",
+              text: "Signup/Login to your account at MagicChat.",
               link_parts: [
                 {
                   text: "Signup/Login",
@@ -214,18 +214,17 @@ const payload = {
                 //   text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
                 // },
 
-
-        {
-          tag_type: "callout",
-          type: "info",
-          title: "Choose a location to load Authentication Components",
-          children: [
-            {
-              tag_type: "p",
-              text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
-            }
-          ],
-        },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "Choose a location to load Authentication Components",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
+                    },
+                  ],
+                },
                 {
                   tag_type: "code_with_copy",
                   // text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
@@ -295,7 +294,7 @@ const payload = {
           tag_type: "ol",
           items: [
             {
-              text: "Signup/Login to your account at AddChat.",
+              text: "Signup/Login to your account at MagicChat.",
               link_parts: [
                 {
                   text: "Signup/Login",
@@ -306,12 +305,12 @@ const payload = {
 
             {
               tag_type: "li",
-              text: "Create an app as per your use case. (Be Sure to choose the right version V2)",
+              text: "Create a New App and be sure to select Version V2 during setup.",
             },
 
             {
               tag_type: "li",
-              text: "Go To created app's  detail page and locate the credentials.",
+              text: "Navigate to the App Details page and note your: , App Name, API Key, Tenant ID",
             },
           ],
         },
@@ -328,74 +327,112 @@ const payload = {
           text: "Client Side Integration",
         },
         {
+          tag_type: "p",
+          text: "To integrate it into your app, Do the following.",
+        },
+
+        {
           tag_type: "ol",
           items: [
             {
               tag_type: "li",
-              text: "Load the neccessary scripts",
+              text: "Load The Scripts",
               sub_items: [
                 {
                   tag_type: "li",
                   text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
                   extra_text:
                     "It should ideally be placed head of the root file.",
-                  code: `<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js</script>`,
+                  code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
                 },
                 {
                   tag_type: "li",
-                  text: "Run SetUp",
-                  extra_text:
-                    "This code should ideally execute on the page where an unauthenticated user is first detected. It is recommended to include it within the UI logic associated with the entry URL, which is typically the root /.",
-                  code: `<script>
-const token = localStorage.getItem('tezkit_token',null);
-if (!token) { //  To check if user is not logged in (based on your product's specific implimentation)
-window.chathead.setUp(
-(app_name = "<Your App Name>"),
-(api_key =
-"<Your Api Key>"),
-(theme=JSON.stringify({"header_theme":{"backgroundColor":"rgb(30, 136, 125)"}, "chat_opener_theme":{"backgroundColor":"rgb(41 48 78)"}}))
-);
-}
-</script>
-`,
-                },
-
-                {
-                  tag_type: "li",
-                  text: "Run initialization",
-                  extra_text: `This code should execute as soon as an authenticated user is detected. Ideally, it should run within the UI logic immediately after a logged-in user is identified.
-Additionally:
-
-Ensure this code runs only after the previous setup code in your product has completed execution.
-To verify the execution order, consider adding log statements both at the setup phase and here for debugging purposes.`,
-                  code: `const token = localStorage.getItem('tezkit_token',null);
-if (token) {
-window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this will be used to distingush between different users and should be unique for all of them.
-}
-`,
+                  // text: "after script is loaded we can initialize it like below.",
+                  // extra_text: "kindly add it below the first script",
+                  code: `
+<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js">
+</script>`,
                 },
               ],
             },
+
             {
               tag_type: "li",
-              text: "Verify if you see chat icon on the bottom of your page. like in below image (Client integration should be done by now.)",
-              // "more_text": "To add the necessary permissions, in /app/Manifests/AndroidManifest.xml, add the following permissions after </application>:",
-              img: "Asset/is_chat_icon_present_for_v2.png",
+              text: "Running Magicchat Setup Requires two steps",
+              sub_items: [
+                {
+                  tag_type: "li",
+                  text: "Step 1 – Initialize on Logged-Out Screens",
+                  extra_text:
+                    "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
+                  code: `<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (!token) {
+      window.chathead.setUp(
+        "<Your App Name>",
+        "<Your API Key>",
+        JSON.stringify({
+          header_theme: {
+            backgroundColor: "rgb(30, 136, 125)" // Customize header background color
+          },
+          chat_opener_theme: {
+            backgroundColor: "rgb(41, 48, 78)" // Customize chat opener background color
+          }
+        }),
+        false, // Enable or disable headless mode
+        "/index.html" // Path to the chat widget's iframe container (if applicable)
+      );
+    }
+  });
+</script>`,
+                },
+
+                {
+                  tag_type: "li",
+                  text: "Step 2 – Initialize on Logged-In Screens",
+                  extra_text:
+                    "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
+                  code: `<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (token) {
+      window.chathead.initialize(token);
+    }
+  });
+</script>`,
+                },
+              ],
+            },
+
+            
+          ],
+        },
+
+
+ {
+          tag_type: "callout",
+          type: "info",
+          title: "Additional Notes",
+          children: [
+            {
+              tag_type: "p",
+              text: "If your app uses a common root layout or entry point (e.g., a main index.js or layout component that renders on every route), you can combine both setUp and initialize logic into a single location. This ensures the chat behaves appropriately based on the user's login state without duplicating code across screens.",
             },
 
             {
-              text: "Refer to the example code.",
-              link_parts: [
+              tag_type: "p",
+              text: "you can probably find the root file which loads each time despite being on any screen, and you probably can run both (setup, initialize) at once",
+              children: [
                 {
-                  text: "here",
-                  link: "https://github.com/codekeep18feb/examples/tree/website_placeholder_examples/p2a_v2_client/p2a_v2.1_client_jwt",
+                  tag_type: "a",
+                  href: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                  text: "for example here ",
                 },
               ],
             },
           ],
         },
-
         //Backend side integration
 
         {
@@ -406,14 +443,10 @@ window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this wil
           tag_type: "h3",
           text: "Onboarding api",
         },
+      
         {
           tag_type: "p",
-          text: `Since authenticaiton is locally managed by you; whenever a new user has signed up on your platform you should let AddChat know by onbarding them like below.`,
-        },
-
-        {
-          tag_type: "p",
-          text: `Please note: Until users are onboarded, the admin panel will not display any users, even if the application has been created, as shown below.`,
+          text: `To ensure users can access chat features and are visible in the MagicChat Admin Panel, you must onboard them upon registration.`,
         },
 
         {
@@ -426,10 +459,7 @@ window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this wil
           text: `Ways to Onboard Users`,
         },
 
-        {
-          tag_type: "p",
-          text: `Should Ideally happens as soon as a new user has signed up on your platform.`,
-        },
+       
 
         {
           tag_type: "feature_options",
@@ -443,8 +473,15 @@ window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this wil
                 },
 
                 {
+                  tag_type: "h3",
+                  text: "Now this has changed to https://auth.magicchat.io/prod/onboarding",
+                },
+
+                {
                   tag_type: "div",
                   children: [
+
+                  
                     {
                       tag_type: "img",
                       src: "Asset/onboarding_via_rest_endpoint_payload.png",
@@ -503,10 +540,20 @@ window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this wil
           ],
         },
 
+         {
+          tag_type: "h2",
+          text: `Ensure you call the onboarding API immediately after user signup.`,
+        },
+
+        {
+          tag_type: "h2",
+          text: `Legacy or missed users can be added via batch API methods—contact support for more details.`,
+        },
+
         {
           tag_type: "video",
           src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-          desc: "Demo for P2A_V2.1",
+          desc: "Demo for V2",
         },
       ],
     },
@@ -535,7 +582,7 @@ window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this wil
           tag_type: "ol",
           items: [
             {
-              text: "Signup/Login to your account at AddChat.",
+              text: "Signup/Login to your account at MagicChat.",
               link_parts: [
                 {
                   text: "Signup/Login",
@@ -569,11 +616,11 @@ window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this wil
         },
         {
           tag_type: "p",
-          text: "Install the AddChat plugin",
+          text: "Install the MagicChat plugin",
         },
         {
           tag_type: "p",
-          text: "Add the AddChat Credentials like below",
+          text: "Add the MagicChat Credentials like below",
         },
         {
           tag_type: "img",

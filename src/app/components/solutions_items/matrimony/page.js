@@ -103,7 +103,7 @@ export default function Matrimy() {
       content: [
         {
           type: "p",
-          text: "AddChat Bots help automate repetitive tasks efficiently.",
+          text: "MagicChat Bots help automate repetitive tasks efficiently.",
         },
         {
           type: "group", // Group multiple similar elements
@@ -153,7 +153,7 @@ export default function Matrimy() {
     <>
       <div className={matrimonySty.container}>
         <Head>
-          <title>AddChat for Matrimonial</title>
+          <title>MagicChat for Matrimonial</title>
           <meta
             name="description"
             content="Seamless, secure messaging for matrimonial platforms"
@@ -200,7 +200,7 @@ export default function Matrimy() {
         <div className={matrimonySty.conatiner_wrap}>
           {/* Header Section */}
           <header className={matrimonySty.header}>
-            <h1>AddChat for matrimonial</h1>
+            <h1>MagicChat for matrimonial</h1>
             <p>Seamless connections, safer interactions, smarter matches</p>
 
             {/* Navigation Tabs */}

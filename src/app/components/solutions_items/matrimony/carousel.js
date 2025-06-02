@@ -7,7 +7,7 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1597157639073-69284dc0fdaf?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwd2VkZGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     alt: "Wedding 1",
-    text: "“Our existing chat system struggled with the growing user base, leading to performance hiccups. We had to shift, and with AddChat, we improved our matching algorithm, increasing match rates by 20%.”",
+    text: "“Our existing chat system struggled with the growing user base, leading to performance hiccups. We had to shift, and with MagicChat, we improved our matching algorithm, increasing match rates by 20%.”",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFcfko4VAZJJGM4OHDMC4AciePcXTTLGoy6w&s",
     author: "Reetu Singh",
     designation: "Product Manager",
@@ -16,7 +16,7 @@ const slides = [
     image:
       "https://www.candidshutters.com/maintenance/wp-content/uploads/2024/06/Best-wedding-photographers-India-Top-5-destination-wedding-photographers-Indian-weddings-2.jpg",
     alt: "Wedding 2",
-    text: "“A seamless integration with AddChat allowed us to boost user engagement by 30%, creating meaningful connections.”",
+    text: "“A seamless integration with MagicChat allowed us to boost user engagement by 30%, creating meaningful connections.”",
     logo: "https://d3lzcn6mbbadaf.cloudfront.net/media/details/ANI-20230224091946.jpg",
     author: "Arjun Mehra",
     designation: "CTO, Matrimony App",
@@ -25,7 +25,7 @@ const slides = [
     image:
       "https://cdn0.weddingwire.in/vendor/9778/3_2/960/jpg/wedding-photographers-shaadigram-art-couple-shot-3_15_449778-168613815393146.jpeg",
     alt: "Wedding 3",
-    text: "“AddChat’s real-time chat improved our platform significantly. Users now connect effortlessly, and our retention rates have skyrocketed.”",
+    text: "“MagicChat’s real-time chat improved our platform significantly. Users now connect effortlessly, and our retention rates have skyrocketed.”",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST7OFdEEZduebRh58MO-Up4qkbFzsBPdNrtA&s",
     author: "Priya Sharma",
     designation: "Head of Product",

@@ -18,7 +18,7 @@ export default function Accordion({ items }) {
 
   return (
     <div className={matrimonySty.accordionContainer}>
-      <h1>AddChat for matrimonial</h1>
+      <h1>MagicChat for matrimonial</h1>
       <p>Seamless connections, safer interactions, smarter matches</p>
 
       <div className={matrimonySty.accordion_content}>
