@@ -2,164 +2,174 @@ import React from 'react';
 import ContentRenderer from '@/app/testing_documents/rendering_tools';
 
 export default function Sidebar({ selectedFilter }) {
+  console.log("Here is the glimpse of selectedFilter?", selectedFilter);
 
-  console.log("whawerjwerselectedFilter",selectedFilter)
-  // Safe null checking with optional chaining
   const appType = selectedFilter?.app_type;
+  const versionType = selectedFilter?.version_type;
 
-  console.log("appTypesdafsdf",appType)
-  // Common content configuration
-  const p2aContent = [
-    {
-      tag_type: "ol",
-      items: [
-        {
-          tag_type: "li",
-          text: "Project setup",
-          link_configuration: {
-            show: true,
-            type: "internal",
-            targetSelector: ".content-heading"
-          },
-          sub_items: [
-            {
-              tag_type: "li",
-              text: "Client Side Integration",
-              sub_items: [
-                {
-                  tag_type: "li",
-                  text: "Client Side Integration",
-                  link_configuration: {
-                    show: true,
-                    type: "internal",
-                    targetSelector: ".content-inner-heading"
-                  }
-                },
-                {
-                  tag_type: "li",
-                  text: "Backend Integration",
-                  link_configuration: {
-                    show: true,
-                    type: "internal",
-                    targetSelector: ".second_subheading"
-                  }
-                  
+  console.log("appType:", appType);
+  console.log("versionType:", versionType);
+
+  // === Define content versions ===
+
+  const ContentByVersion = {
+    V1: [
+      {
+        tag_type: "ol",
+        items: [
+          {
+            tag_type: "li",
+            text: "Integration",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Prerequisite",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: ".content-inner-heading"
                 }
-              ],
-              link_configuration: {
-                show: true,
-                type: "internal",
-                targetSelector: ".content-inner-heading"
-              }
-            },
-            {
-              tag_type: "li",
-              text: "Backend Integration",
-              link_configuration: {
-                show: true,
-                type: "internal",
-                targetSelector: ".second_subheading"
-              }
+              },
+              {
+                tag_type: "li",
+                text: "Client Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div.doc_core_wrapper > div.rightWrap > div > div.content-area > div > div:nth-child(3) > div:nth-child(1) > h2"
+                }
+              },
+             
               
+            ],
+            link_configuration: {
+              show: true,
+              type: "internal",
+              targetSelector: ".content-inner-heading"
             }
-          ]
-        }
-      ],
-      property: {
-        collapse: {
-          collapsable: true,
-          fc_non_collapsable: true,
+          }
+        ],
+        property: {
+          collapse: {
+            collapsable: true,
+            fc_non_collapsable: true,
+          }
         }
       }
-    }
-  ];
-
-
-  // Common content configuration
-  const p2pContent = [
-    {
-      tag_type: "ol",
-      items: [
-        {
-          tag_type: "li",
-          text: "Main Process",
-          link_configuration: {
-            show: true,
-            type: "internal",
-            targetSelector: ".content-inner-heading"
-          },
-          sub_items: [
-          
-            {
-              tag_type: "li",
-              text: "Actual Integration Section Reference",
-              code: "// This is the target section",
-              sub_items: [
-                {
-                  tag_type: "li",
-                  text: "Nested Implementation Detail",
-                  code: "npm run integrate",
-                  sub_items: [
-                    {
-                      tag_type: "li",
-                      text: "Success Marker Element",
-                      code: "<div class='integration_successful'>✅</div>"
-                    }
-                  ]
+    ],
+    V2: [
+      {
+        tag_type: "ol",
+        items: [
+          {
+            tag_type: "li",
+            text: "Integration",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Prerequisite",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: ".content-inner-heading"
                 }
-              ]
+              },
+              {
+                tag_type: "li",
+                text: "Client Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div.doc_core_wrapper > div.rightWrap > div > div.content-area > div > div:nth-child(3) > div:nth-child(1) > h2"
+                }
+              },
+              
+              {
+                tag_type: "li",
+                text: "Backend Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: ".second_subheading"
+                }
+              },
+              
+            ],
+            link_configuration: {
+              show: true,
+              type: "internal",
+              targetSelector: ".content-inner-heading"
             }
-          ]
-        }
-      ],
-      property: {
-        collapse: {
-          collapsable: true,
-          fc_non_collapsable: true,
+          }
+        ],
+        property: {
+          collapse: {
+            collapsable: true,
+            fc_non_collapsable: true,
+          }
         }
       }
-    }
-  ];
-
-
-  // Conditional content based on app type
-  const getContent = () => {
-    switch(appType) {
-      case 'P2A':
-        return p2aContent.map(item => ({
-          ...item,
-          items: item.items.map(li => ({
-            ...li,
-            text: `${li.text} (P2A Specific)`
-          }))
-        }));
-      
-      case 'P2P':
-        return p2pContent.map(item => ({
-          ...item,
-          items: item.items.map(li => ({
-            ...li,
-            text: `${li.text} (P2P Specific)`
-          }))
-        }));
-
-      default:
-        return [{
-          tag_type: "div",
-          text: "Select a valid application type from the filter"
-        }];
-    }
+    ],
+    V3: [
+      {
+        tag_type: "ol",
+        items: [
+          {
+            tag_type: "li",
+            text: "Integration",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Prerequisite",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: ".content-inner-heading"
+                }
+              },
+              {
+                tag_type: "li",
+                text: "Client Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div.doc_core_wrapper > div.rightWrap > div > div.content-area > div > div:nth-child(3) > div:nth-child(1) > h2"
+                }
+              },
+              
+             
+              
+            ],
+            link_configuration: {
+              show: true,
+              type: "internal",
+              targetSelector: ".content-inner-heading"
+            }
+          }
+        ],
+        property: {
+          collapse: {
+            collapsable: true,
+            fc_non_collapsable: true,
+          }
+        }
+      }
+    ]
   };
+
+ 
+
+  console.log("sdfsdfsdfversionType",versionType)
 
   return (
     <div>
-      {appType ? (
-        <ContentRenderer 
-          key={appType} // Important for re-rendering on type change
-          content={getContent()} 
+      {(versionType) ? (
+        <ContentRenderer
+          key={`${versionType}`} // Force re-render on change
+          content={ContentByVersion[versionType]}
         />
       ) : (
-        <div>Please select a valid application type</div>
+        <div>Please select a valid application type and version</div>
       )}
     </div>
   );

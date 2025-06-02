@@ -19,7 +19,7 @@ const Article = () => {
           type: "p",
           className: "addChat-bots",
           parts: [
-            "AddChat Bots help ",
+            "MagicChat Bots help ",
             {
               type: "link",
               href: "https://example.com",
@@ -55,7 +55,7 @@ const Article = () => {
         content: [
           {
             type: "p",
-            text: "AddChat Bots help automate repetitive tasks efficiently.",
+            text: "MagicChat Bots help automate repetitive tasks efficiently.",
           },
           {
             type: "ul",
@@ -66,7 +66,7 @@ const Article = () => {
                   {
                     type: "link",
                     href: "https://example.com/save",
-                    text: "AddChat Bots",
+                    text: "MagicChat Bots",
                   },
                   " to handle routine tasks.",
                 ],
@@ -111,7 +111,7 @@ const Article = () => {
       content: [
         {
           type: "p",
-          text: "AddChat Bots help automate repetitive tasks efficiently.",
+          text: "MagicChat Bots help automate repetitive tasks efficiently.",
         },
         {
           type: "ul",
@@ -150,7 +150,6 @@ const Article = () => {
   };
   return (
     <div className={articleSty.container}>
-
       <section className={articleSty.banner}>
         <div className={articleSty.banner_content}>
           <h3>

@@ -34,20 +34,12 @@ const FilterComp = ({ setSelectedFilter }) => {
 
   return (
     <div className="filter-container">
-      <h3>Filter</h3>
+      {/* <h3>Select Version Type</h3> */}
       <div className="options-list">
-        <div className="filter-group">
-          <h4>App Type</h4>
-          {renderOptions(
-            filterOptions.app_types,
-            selectedAppType,
-            setSelectedAppType,
-            "app_type"
-          )}
-        </div>
+     
         
         <div className="filter-group">
-          <h4>Version Type</h4>
+          <h3>Select Version Type</h3>
           {renderOptions(
             filterOptions.version_types,
             selectedVersionType,

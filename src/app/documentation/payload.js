@@ -27,7 +27,7 @@ const payload = {
                   tag_type: "ol",
                   items: [
                     {
-                      text: "Signup/Login to your account at AddChat.",
+                      text: "Signup/Login to your account at MagicChat.",
                       link_parts: [
                         {
                           text: "Signup/Login",
@@ -304,7 +304,7 @@ const payload = {
                   tag_type: "ol",
                   items: [
                     {
-                      text: "Signup/Login to your account at AddChat.",
+                      text: "Signup/Login to your account at MagicChat.",
                       link_parts: [
                         {
                           text: "Signup/Login",
@@ -417,7 +417,7 @@ To verify the execution order, consider adding log statements both at the setup 
                 },
                 {
                   tag_type: "p",
-                  text: `Since authenticaiton is locally managed by you; whenever a new user has signed up on your platform you should let AddChat know by onbarding them like below.`,
+                  text: `Since authenticaiton is locally managed by you; whenever a new user has signed up on your platform you should let MagicChat know by onbarding them like below.`,
                 },
 
                 {
@@ -495,7 +495,6 @@ To verify the execution order, consider adding log statements both at the setup 
                       ],
                     },
 
-                 
                     {
                       text: "Via Admin",
                       description: [
@@ -550,7 +549,7 @@ To verify the execution order, consider adding log statements both at the setup 
                   tag_type: "ol",
                   items: [
                     {
-                      text: "Signup/Login to your account at AddChat.",
+                      text: "Signup/Login to your account at MagicChat.",
                       link_parts: [
                         {
                           text: "Signup/Login",
@@ -584,11 +583,11 @@ To verify the execution order, consider adding log statements both at the setup 
                 },
                 {
                   tag_type: "p",
-                  text: "Install the AddChat plugin",
+                  text: "Install the MagicChat plugin",
                 },
                 {
                   tag_type: "p",
-                  text: "Add the AddChat Credentials like below",
+                  text: "Add the MagicChat Credentials like below",
                 },
                 {
                   tag_type: "img",
