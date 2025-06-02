@@ -148,16 +148,16 @@ const Document = () => {
 
 
         </div>
-        <div className="rightWrap">
+        {selectedFilter ? <div className="rightWrap">
           <div className="main-content">
-            <div className="mainHeading">
+            {/* <div className="mainHeading">
               <h2>
                 Instant messaging boosts user engagement, fostering community,
                 satisfaction, and loyalty. It also provides real-time support,
                 allowing users to get quick help. The Chat SDK enables seamless
                 real-time messaging on any app or device.
               </h2>
-            </div>
+            </div> */}
             {/* {renderTabs()} */}
             {renderContent()}
 
@@ -175,7 +175,7 @@ const Document = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div>:<div>Kinldy select the right filters for you from top.</div>}
       </div>
     </div>
   );

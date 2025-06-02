@@ -6,10 +6,7 @@ const payload = {
         tag_type: "h2",
         text: `Cloud Managed Auth + Chat (Simple Site)`,
       },
-      {
-        tag_type: "p",
-        text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.`,
-      },
+      
 
       {
         tag_type: "div",
@@ -85,39 +82,12 @@ const payload = {
                     tag_type: "li",
                     // text: "after script is loaded we can initialize it like below.",
                     // extra_text: "kindly add it below the first script",
-                    code: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                    code: `
+<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js">
+</script>`,
                   },
 
-                  {
-                    tag_type: "li",
-                    text: "Run Setup & Initialization together",
-                    extra_text:
-                      "Since this a simple site having one root file (index.html) we can run both (Setup & Initialization) together; Above is an example of it using LocalStorage But the same is applicable for cookies and SessionStorage",
-                    code: `<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-  const token = localStorage.getItem("tezkit_token");
-  if (token) {
-  window.chathead.initialize(token);
-  } else {
-  window.chathead.setUp(
-  "<Your App Name>", 
-  "<Your Api Key>", 
-  JSON.stringify({
-  "header_theme": {
-  "backgroundColor": "rgb(30, 136, 125)" //to override the header background Color
-  },
-  "chat_opener_theme": {
-  "backgroundColor": "rgb(41, 48, 78)" //to override the chatBox background Color
-  }
-  }),
-  false, // for HEADLESS MODE
-  "/index.html"
-  );
-  }
-  });
-  </script>
-  `,
-                  },
+                 
                 ],
               },
               {
@@ -139,6 +109,206 @@ const payload = {
               },
             ],
           },
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          {
+            tag_type: "tabs",
+            items: [
+              {
+                label: "HEADER FULL",
+                content: [
+
+                  {
+                    tag_type: "ol",
+                    items: [
+                      {
+                        tag_type: "li",
+                        text: "Ensure you are choosing the right mode as per your need",
+                        sub_items: [
+                          {
+                            tag_type: "li",
+                            text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                            extra_text:
+                              "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                            // code: `The authentication type is V1 (i.e., your site currently has no built-in authentication), and`,
+                          },
+                          {
+                            tag_type: "li",
+                            text: "You want Magicchat to fully manage user authentication, and",
+                            extra_text:
+                              "You want Magicchat to fully manage user authentication, and",
+                            // code: `You want Magicchat to fully manage user authentication, and`,
+                          },
+        
+                          {
+                            tag_type: "li",
+                            text: "Decide whether to add a header on the top of the site",
+                            extra_text: `You want Magicchat to add a header at the top of your site that includes all authentication options.`,
+                            // code: `You want Magicchat to add a header at the top of your site that includes all authentication options.`,
+                          },
+                        ],
+                      }
+                    ],
+                  },
+
+                
+                  
+                  {
+                    tag_type: "code_with_copy",
+                    code: `<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (token) {
+      window.chathead.initialize(token);
+    } else {
+      window.chathead.setUp(
+        "<Your App Name>", 
+        "<Your Api Key>", 
+        JSON.stringify({
+          "header_theme": {
+            "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
+          },
+          "chat_opener_theme": {
+            "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
+          }
+        }),
+        false, // for HEADLESS MODE
+        "/index.html"
+      );
+    }
+  });
+</script>
+           `,
+                    language: "bash",
+                  },
+               
+                 
+                  
+                ],
+              },
+              {
+                label: "HEADER LESS",
+                content: [
+
+                  {
+                    tag_type: "ol",
+                    items: [
+                      {
+                        tag_type: "li",
+                        text: "Choose the [HEADER LESS] mode only if:",
+                        sub_items: [
+                          {
+                            tag_type: "li",
+                            text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                            extra_text:
+                              "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                            // code: `The authentication type is V1 (i.e., your site currently has no built-in authentication), and`,
+                          },
+                          {
+                            tag_type: "li",
+                            text: "You want Magicchat to fully manage user authentication, and",
+                            extra_text:
+                              "You want Magicchat to fully manage user authentication, and",
+                            // code: `You want Magicchat to fully manage user authentication, and`,
+                          },
+        
+                          {
+                            tag_type: "li",
+                            text: "Probably when you have another header already in your site on the top and want to put authentiation handler options anywhere on the site.",
+                            // extra_text: `in this case you can create a div like in the code below at any place of your site and will add our authentication handlers/buttons/options there.`,
+                            // code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                          },
+                        ],
+                      },
+                      ,
+                  {
+                    tag_type: "li",
+                    text: `Add this below line in your code anywhere you want to show authentication options`,
+                    sub_items: [
+                      {
+                        tag_type: "code_with_copy",
+                        // text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                        // extra_text:
+                        //   "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
+                        code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
+                      }
+                      
+                      
+                    ],
+                  },
+                 
+                  
+                  {
+                    tag_type: "code_with_copy",
+                    code: `//<---below previously add scripts in the head of the html preferebly---->
+
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (token) {
+      window.chathead.initialize(token);
+    } else {
+      window.chathead.setUp(
+        "<Your App Name>", 
+        "<Your Api Key>", 
+        JSON.stringify({
+          "header_theme": {
+            "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
+          },
+          "chat_opener_theme": {
+            "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
+          }
+        }),
+        false, // for HEADLESS MODE
+        "/index.html"
+      );
+    }
+  });
+</script>
+           `,
+                    language: "bash",
+                  },
+               
+                    ],
+                  }
+                 
+                  
+                ],
+              },
+            ],
+          },
+
           {
             tag_type: "video",
             src: "https://www.youtube.com/watch?v=MKatoeFYeb8",

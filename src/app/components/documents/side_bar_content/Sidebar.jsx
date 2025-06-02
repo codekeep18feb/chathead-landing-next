@@ -3,7 +3,7 @@ import ContentRenderer from '@/app/testing_documents/rendering_tools';
 
 export default function Sidebar({ selectedFilter }) {
 
-  console.log("whawerjwerselectedFilter",selectedFilter)
+  console.log("Here is the glimpse of selectedFilter?",selectedFilter)
   // Safe null checking with optional chaining
   const appType = selectedFilter?.app_type;
 
@@ -121,6 +121,7 @@ export default function Sidebar({ selectedFilter }) {
     }
   ];
 
+  
 
   // Conditional content based on app type
   const getContent = () => {
