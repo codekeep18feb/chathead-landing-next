@@ -19,54 +19,34 @@ export default function Sidebar({ selectedFilter }) {
         items: [
           {
             tag_type: "li",
-            text: "P2A - V1",
-            link_configuration: {
-              show: true,
-              type: "internal",
-              targetSelector: ".content-heading"
-            },
+            text: "Integration",
             sub_items: [
               {
                 tag_type: "li",
-                text: "Integration",
-                sub_items: [
-                  {
-                    tag_type: "li",
-                    text: "Prerequisite",
-                    link_configuration: {
-                      show: true,
-                      type: "internal",
-                      targetSelector: ".content-inner-heading"
-                    }
-                  },
-                  {
-                    tag_type: "li",
-                    text: "Client Integration",
-                    link_configuration: {
-                      show: true,
-                      type: "internal",
-                      targetSelector: "body > div > div.doc_core_wrapper > div.rightWrap > div > div.content-area > div > div:nth-child(3) > div:nth-child(1) > h2"
-                    }
-                  },
-                  
-                  {
-                    tag_type: "li",
-                    text: "Watch Demo",
-                    link_configuration: {
-                      show: true,
-                      type: "internal",
-                      targetSelector: ".videos_wrapper"
-                    }
-                  },
-                  
-                ],
+                text: "Prerequisite",
                 link_configuration: {
                   show: true,
                   type: "internal",
                   targetSelector: ".content-inner-heading"
                 }
-              }
-            ]
+              },
+              {
+                tag_type: "li",
+                text: "Client Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div.doc_core_wrapper > div.rightWrap > div > div.content-area > div > div:nth-child(3) > div:nth-child(1) > h2"
+                }
+              },
+             
+              
+            ],
+            link_configuration: {
+              show: true,
+              type: "internal",
+              targetSelector: ".content-inner-heading"
+            }
           }
         ],
         property: {
@@ -83,33 +63,43 @@ export default function Sidebar({ selectedFilter }) {
         items: [
           {
             tag_type: "li",
-            text: "Main Process",
+            text: "Integration",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Prerequisite",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: ".content-inner-heading"
+                }
+              },
+              {
+                tag_type: "li",
+                text: "Client Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div.doc_core_wrapper > div.rightWrap > div > div.content-area > div > div:nth-child(3) > div:nth-child(1) > h2"
+                }
+              },
+              
+              {
+                tag_type: "li",
+                text: "Backend Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: ".second_subheading"
+                }
+              },
+              
+            ],
             link_configuration: {
               show: true,
               type: "internal",
               targetSelector: ".content-inner-heading"
-            },
-            sub_items: [
-              {
-                tag_type: "li",
-                text: "Actual Integration Section Reference",
-                code: "// This is the target section",
-                sub_items: [
-                  {
-                    tag_type: "li",
-                    text: "Nested Implementation Detail",
-                    code: "npm run integrate",
-                    sub_items: [
-                      {
-                        tag_type: "li",
-                        text: "Success Marker Element",
-                        code: "<div class='integration_successful'>✅</div>"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            }
           }
         ],
         property: {
@@ -126,33 +116,35 @@ export default function Sidebar({ selectedFilter }) {
         items: [
           {
             tag_type: "li",
-            text: "Main Process",
+            text: "Integration",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Prerequisite",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: ".content-inner-heading"
+                }
+              },
+              {
+                tag_type: "li",
+                text: "Client Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div.doc_core_wrapper > div.rightWrap > div > div.content-area > div > div:nth-child(3) > div:nth-child(1) > h2"
+                }
+              },
+              
+             
+              
+            ],
             link_configuration: {
               show: true,
               type: "internal",
               targetSelector: ".content-inner-heading"
-            },
-            sub_items: [
-              {
-                tag_type: "li",
-                text: "Actual Integration Section Reference",
-                code: "// This is the target section",
-                sub_items: [
-                  {
-                    tag_type: "li",
-                    text: "Nested Implementation Detail",
-                    code: "npm run integrate",
-                    sub_items: [
-                      {
-                        tag_type: "li",
-                        text: "Success Marker Element",
-                        code: "<div class='integration_successful'>✅</div>"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            }
           }
         ],
         property: {
@@ -167,11 +159,11 @@ export default function Sidebar({ selectedFilter }) {
 
  
 
-  
+  console.log("sdfsdfsdfversionType",versionType)
 
   return (
     <div>
-      {(appType && versionType) ? (
+      {(versionType) ? (
         <ContentRenderer
           key={`${versionType}`} // Force re-render on change
           content={ContentByVersion[versionType]}

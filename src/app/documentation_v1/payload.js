@@ -3,9 +3,14 @@ const payload = {
   V1: [
     {
       tag_type: "h2",
-      text: `Cloud Managed Auth + Chat (Simple Site)`,
+      text: `Cloud Managed Auth [V1]`,
     },
 
+{
+  tag_type: "p",
+  text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.
+`,
+},
     {
       tag_type: "div",
       children: [
@@ -52,15 +57,7 @@ const payload = {
           text: "To integrate Chat into your app, do the following:",
         },
 
-        {
-          tag_type: "p",
-          text: "In this mode [HEADFUL], the header will include authentication options (Signup, Login, etc.) along with a chat box for user interaction.",
-        },
-
-        {
-          tag_type: "p",
-          text: "To integrate it into your app, Do the following.",
-        },
+     
 
         {
           tag_type: "ol",
@@ -286,10 +283,6 @@ const payload = {
       children: [
         { tag_type: "h2", text: "Prerequisite" },
 
-        {
-          tag_type: "p",
-          text: "To integrate Chat into your app, do the following:",
-        },
         {
           tag_type: "ol",
           items: [
