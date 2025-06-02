@@ -90,23 +90,8 @@ const payload = {
                  
                 ],
               },
-              {
-                tag_type: "li",
-                text: "Verify the Results!",
-                more_text:
-                  "Kindly verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
-                img: "Asset/headerful_example.png",
-              },
-
-              {
-                text: "Refer to the example code here.",
-                link_parts: [
-                  {
-                    text: "example code",
-                    link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
-                  },
-                ],
-              },
+             
+              
             ],
           },
 
@@ -300,6 +285,7 @@ const payload = {
                     language: "bash",
                   },
                
+                  
                     ],
                   }
                  
@@ -307,6 +293,54 @@ const payload = {
                 ],
               },
             ],
+          },
+
+          {
+            tag_type: "h1",
+            text: "Verify the Results!",
+            more_text:
+              "Kindly verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image ",
+            img: "Asset/headerful_example.png",
+          },
+
+          // {
+          //   text: "Refer to the example code here.",
+          //   link_parts: [
+          //     {
+          //       text: "example code",
+          //       link: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+          //     },
+          //   ],
+          // },
+          {
+            tag_type: "p",
+            text: `Kindly verify if you see the header on the top of your page and chat icon on the bottom of your page. like in below image`,
+          },
+
+          {
+            tag_type: "img",
+            src: "Asset/headerful_example.png",
+          },
+          {
+            tag_type: "callout",
+            type: "info",
+            // title: "Refer to the example code here.",
+            children: [
+
+              
+              {
+                tag_type: "p",
+                text: "Refer to the example code.",
+                children: [
+                  {
+                    tag_type: "a",
+                    href: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                    text: "here"
+                  }
+                  
+                ]
+              }
+            ]
           },
 
           {
@@ -432,10 +466,10 @@ window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this wil
               },
 
               {
-                text: "Refer to the example code here.",
+                text: "Refer to the example code.",
                 link_parts: [
                   {
-                    text: "example code",
+                    text: "here",
                     link: "https://github.com/codekeep18feb/examples/tree/website_placeholder_examples/p2a_v2_client/p2a_v2.1_client_jwt",
                   },
                 ],
