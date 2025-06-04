@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 // import video from "../../../Asset/demo_imgs/before.jpeg"
 import "./test.css";
-import styles from "./docPageSty.module.css"
+import styles from "./docPageSty.module.css";
 import { useSearchParams } from "next/navigation";
 import payload from "./payload";
 import YouTubeEmbed from "../components/YouTubeVideo";
@@ -11,7 +11,6 @@ import YouTubeEmbed from "../components/YouTubeVideo";
 import TopFilterComp from "../components/documents/TopFilterComp";
 import Sidebar from "../components/documents/side_bar_content/Sidebar";
 import ContentRenderer from "../testing_documents/rendering_tools";
-
 
 const Document = () => {
   const [selectedFilter, setSelectedFilter] = useState(null);
@@ -24,8 +23,7 @@ const Document = () => {
   const [current_mode, setModeOfVersion] = useState(null);
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)["V1"]);
 
-
-  console.log(selectedKey,"why selected key is not 'P2A'")
+  console.log(selectedKey, "why selected key is not 'P2A'");
   // const [selectedTab, setSelectedTab] = useState(current_version);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -70,37 +68,32 @@ const Document = () => {
     }
   }, [selectedFilter]);
 
-
-  
-
   const handleKeyClick = (key) => {
-    console.log("WRWERWEQRWE",key)
+    console.log("WRWERWEQRWE", key);
     setSelectedKey(key);
     // setSelectedTab("P2A__V1"); // reset tab selection to default
   };
-
-
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState); // Toggle the state on click
   };
 
   const renderContent = () => {
-    console.log("selesdtsdfilter",selectedFilter)
-    if (!selectedFilter || !selectedFilter.version_type) return <div>Select a key from the left</div>;
+    console.log("selesdtsdfilter", selectedFilter);
+    if (!selectedFilter || !selectedFilter.version_type)
+      return <div>Select a key from the left</div>;
 
     // const steps = Object.keys(payload[selectedKey]);
-    const content = payload[selectedFilter.version_type]
-    console.log(selectedFilter,"DScontentSDFASDSDFFSAD",content)
+    const content = payload[selectedFilter.version_type];
+    console.log(selectedFilter, "DScontentSDFASDSDFFSAD", content);
 
     return (
       <div className={styles["content-area"]}>
         <ContentRenderer
-                  key={4444}
-                  content={content}
-                  // current_mode={"HEADERLESS"}
-                />
-
+          key={4444}
+          content={content}
+          // current_mode={"HEADERLESS"}
+        />
       </div>
     );
   };
@@ -118,18 +111,12 @@ const Document = () => {
 
   // console.log("do we have nay mode?", current_mode);
 
-
-
-    
   return (
     <div className={styles["document-container"]}>
-      {<TopFilterComp setSelectedFilter={setSelectedFilter}/>}
       <div className={styles.doc_core_wrapper}>
         <div className={styles.doc_sidebar}>
-          {/* {renderSidebar()} */}
-
           <Sidebar
-            isMobile={isMobile} // Pass state/values
+            isMobile={isMobile}
             selectedKey={selectedKey}
             isDropdownOpen={isDropdownOpen}
             toggleDropdown={toggleDropdown}
@@ -137,37 +124,44 @@ const Document = () => {
             handleKeyClick={handleKeyClick}
             selectedFilter={selectedFilter}
           />
-
-
         </div>
-        {selectedFilter ? <div className={styles.rightWrap}>
+
+        <div className={styles.rightWrap}>
           <div className={styles["main-content"]}>
             {/* <div className={styels.mainHeading}>
+              Instant messaging boosts user engagement, fostering community,
               <h2>
-                Instant messaging boosts user engagement, fostering community,
-                satisfaction, and loyalty. It also provides real-time support,
-                allowing users to get quick help. The Chat SDK enables seamless
-                real-time messaging on any app or device.
+              satisfaction, and loyalty. It also provides real-time support,
+              allowing users to get quick help. The Chat SDK enables seamless
+              real-time messaging on any app or device.
               </h2>
-            </div> */}
+              </div> */}
             {/* {renderTabs()} */}
-            {renderContent()}
-
-            <div className={styles.integration_successful}>
-              <p>
-                Congratulations Integration Should be Successfully Done by now!
-              </p>
-              <p>
-                Your users can now sign up and seamlessly chat with the Admin
-                Team, enabling two-way communication.
-              </p>
-              <p>
-                Please Contact Our Support Team if you faced any issues. Thank
-                You!
-              </p>
-            </div>
+            
+            <TopFilterComp setSelectedFilter={setSelectedFilter} />
+            {selectedFilter ? (
+              <>
+                {renderContent()}
+                <div className={styles.integration_successful}>
+                  <p>
+                    Congratulations Integration Should be Successfully Done by
+                    now!
+                  </p>
+                  <p>
+                    Your users can now sign up and seamlessly chat with the
+                    Admin Team, enabling two-way communication.
+                  </p>
+                  <p>
+                    Please Contact Our Support Team if you faced any issues.
+                    Thank You!
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div>Kinldy select the right filters for you from top.</div>
+            )}
           </div>
-        </div>:<div>Kinldy select the right filters for you from top.</div>}
+        </div>
       </div>
     </div>
   );
