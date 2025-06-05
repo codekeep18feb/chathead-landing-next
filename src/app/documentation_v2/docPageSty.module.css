@@ -85,6 +85,12 @@
   line-height: 30px;
   letter-spacing: 0.5px;
 }
+.integration_successful {
+  padding: 20px;
+  background: #5bfb731f;
+  margin: 20px;
+  border-radius: 8px;
+}
 .integration_successful p {
   font-size: 16px;
   font-weight: 600;

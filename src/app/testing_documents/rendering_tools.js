@@ -5,6 +5,8 @@ import React, { useState, useEffect, Suspense } from "react";
 import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../components/YouTubeVideo";
+import { FaLink } from "react-icons/fa6";
+
 
 const CondRadioRender = ({ r_options }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
@@ -98,6 +100,8 @@ const supportedTags = [
   "search",
   "mermaid_diagram",
   "api_table",
+  "mesgTip",
+  "strong",
 ];
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts) return text;
@@ -141,16 +145,27 @@ const Callout = ({ type = "info", title, children }) => {
   };
 
   return (
-    <div className={`callout callout-${type}`}>
+    <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
       <div className={styles["callout-header"]}>
-        <span className="callout-icon">{icons[type]}</span>
-        {title && <h4 className="callout-title">{title}</h4>}
+        <span className={styles["callout-icon"]}>{icons[type]}</span>
+        {title && <h4 className={styles["callout-title"]}>{title}</h4>}
       </div>
-      <div className="callout-content">{children}</div>
+      <div className={styles["callout-content"]}>{children}</div>
     </div>
   );
 };
 
+const MessageTip = ({ title, children }) => {
+  return (
+    <div className={styles.messageTipWrap}>
+      <div className={styles.leftBorder}></div>
+      <div className={styles["mesg-title"]}>
+        {title && <strong>{title}</strong>}
+        <div className={styles["mesg-content"]}>{children}</div>
+      </div>
+    </div>
+  );
+};
 // Update the Steps component to use ContentRenderer
 const Steps = ({ items }) => {
   return (
@@ -159,7 +174,9 @@ const Steps = ({ items }) => {
         <div key={index} className={styles.step}>
           <div className={styles["step-number"]}>{index + 1}</div>
           <div className={styles["step-content"]}>
-            {step.title && <h4 className={styles["step-title"]}>{step.title}</h4>}
+            {step.title && (
+              <h4 className={styles["step-title"]}>{step.title}</h4>
+            )}
             <div className={styles["step-description"]}>
               <ContentRenderer content={step.content} />
             </div>
@@ -180,7 +197,9 @@ const Tabs = ({ items }) => {
         {items.map((tab, index) => (
           <button
             key={index}
-            className={`${styles['tab-button']} ${index === activeTab ? styles['active'] : ""}`}
+            className={`${styles["tab-button"]} ${
+              index === activeTab ? styles["active"] : ""
+            }`}
             onClick={() => setActiveTab(index)}
           >
             {tab.label}
@@ -440,21 +459,22 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
   const renderLink = () => {
     if (!item.link_configuration?.show) return null;
-    
+
     const config = item.link_configuration;
-    
-    if (config.type === 'internal') {
+
+    if (config.type === "internal") {
       return (
         <button
           onClick={() => handleScroll(config.targetSelector)}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
-          🔗
+          {/* 🔗 */}
+          <FaLink size={16}/>
         </button>
       );
     }
-    
+
     return (
       <a
         href={config.url}
@@ -492,12 +512,12 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         </span>
       )}
 
-      <div onClick={handleClick} >
+      <div onClick={handleClick}>
         {typeof item === "string" ? (
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
           <>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               {item.text && <span>{item.text}</span>}
               {renderLink()}
             </div>
@@ -511,7 +531,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       </div>
 
       {hasSubItems && (
-        <div style={{ display: expanded ? "block" : "none", marginLeft: "20px" }}>
+        <div
+          style={{ display: expanded ? "block" : "none", marginLeft: "20px" }}
+        >
           <List
             items={item.sub_items}
             listType={item.listType || listType}
@@ -614,7 +636,12 @@ const ContentRenderer = ({ content }) => {
                 <ContentRenderer content={item.children} />
               </Callout>
             );
-
+          case "mesgTip":
+            return (
+              <MessageTip key={index} title={item.title}>
+                <ContentRenderer content={item.children} />
+              </MessageTip>
+            );
           case "steps":
             return <Steps key={index} items={item.items} />;
 

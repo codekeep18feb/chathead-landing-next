@@ -533,16 +533,17 @@ const payload = {
           ],
         },
 
-         {
-          tag_type: "h2",
-          text: `Ensure you call the onboarding API immediately after user signup.`,
-        },
-
         {
-          tag_type: "h2",
-          text: `Legacy or missed users can be added via batch API methods—contact support for more details.`,
-        },
-
+          tag_type: "mesgTip",
+          title: "Tip:",
+          children: [
+          {
+          tag_type: "p",
+          text: "Ensure you call the onboarding API immediately after user signup. Legacy or missed users can be added via batch API methods—contact support for more details.",
+          },
+          ],
+          },
+          
         {
           tag_type: "video",
           src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
