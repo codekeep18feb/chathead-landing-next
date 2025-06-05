@@ -280,6 +280,17 @@
     margin: 0 8px;
     color: #666;
   }
+  .callout {
+    padding: 16px;
+    margin: 20px 0;
+    border-radius: 4px;
+    border-left: 4px solid;
+  }
+  
+  .callout-info {
+    background-color: #e6f3ff;
+    border-color: #4d90fe;
+  }
   .callout-header {
       display: flex;
       align-items: center;
