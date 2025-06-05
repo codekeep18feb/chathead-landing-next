@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import "./test.css";
+// import "./test.css";
+import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../components/YouTubeVideo";
 
@@ -29,13 +30,13 @@ const CondRadioRender = ({ r_options }) => {
   )?.description;
 
   return (
-    <div className="setup">
+    <div className={styles.setup}>
       {isMobile ? (
-        <div className="dropdown">
+        <div className={styles.dropdown}>
           <select
             value={selectedOption || ""}
             onChange={(e) => handleOptionChange(e.target.value)}
-            className="dropdown-select"
+            className={styles["dropdown-select"]}
           >
             {r_options.map((option, index) => (
               <option key={index} value={option.text}>
@@ -45,12 +46,12 @@ const CondRadioRender = ({ r_options }) => {
           </select>
         </div>
       ) : (
-        <div className="tabs">
+        <div className={styles.tabs}>
           {r_options.map((option, index) => (
             <button
               key={index}
-              className={`tab-button ${
-                selectedOption === option.text ? "active" : ""
+              className={`${styles["tab-button"]} ${
+                selectedOption === option.text ? styles["active"] : ""
               }`}
               onClick={() => handleOptionChange(option.text)}
             >
@@ -60,7 +61,7 @@ const CondRadioRender = ({ r_options }) => {
         </div>
       )}
 
-      <div className="description">
+      <div className={styles.description}>
         <ContentRenderer content={selectedDescription} />
       </div>
     </div>
@@ -141,7 +142,7 @@ const Callout = ({ type = "info", title, children }) => {
 
   return (
     <div className={`callout callout-${type}`}>
-      <div className="callout-header">
+      <div className={styles["callout-header"]}>
         <span className="callout-icon">{icons[type]}</span>
         {title && <h4 className="callout-title">{title}</h4>}
       </div>
@@ -153,13 +154,13 @@ const Callout = ({ type = "info", title, children }) => {
 // Update the Steps component to use ContentRenderer
 const Steps = ({ items }) => {
   return (
-    <div className="steps">
+    <div className={styles.steps}>
       {items.map((step, index) => (
-        <div key={index} className="step">
-          <div className="step-number">{index + 1}</div>
-          <div className="step-content">
-            {step.title && <h4 className="step-title">{step.title}</h4>}
-            <div className="step-description">
+        <div key={index} className={styles.step}>
+          <div className={styles["step-number"]}>{index + 1}</div>
+          <div className={styles["step-content"]}>
+            {step.title && <h4 className={styles["step-title"]}>{step.title}</h4>}
+            <div className={styles["step-description"]}>
               <ContentRenderer content={step.content} />
             </div>
           </div>
@@ -174,19 +175,19 @@ const Tabs = ({ items }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="tabs-container">
-      <div className="tab-buttons">
+    <div className={styles["tabs-container"]}>
+      <div className={styles["tab-buttons"]}>
         {items.map((tab, index) => (
           <button
             key={index}
-            className={`tab-button ${index === activeTab ? "active" : ""}`}
+            className={`${styles['tab-button']} ${index === activeTab ? styles['active'] : ""}`}
             onClick={() => setActiveTab(index)}
           >
             {tab.label}
           </button>
         ))}
       </div>
-      <div className="tab-content">
+      <div className={styles["tab-content"]}>
         <ContentRenderer content={items[activeTab].content} />
       </div>
     </div>
@@ -310,11 +311,11 @@ const CodeWithCopy = ({ code, language }) => {
   };
 
   return (
-    <div className="code-with-copy">
-      <pre className="script_code">
+    <div className={styles["code-with-copy"]}>
+      <pre className={styles.script_code}>
         <code>{code}</code>
       </pre>
-      <button onClick={copyToClipboard} className="copy-button">
+      <button onClick={copyToClipboard} className={styles["copy-button"]}>
         {copied ? "✓ Copied" : "📋 Copy"}
       </button>
     </div>
@@ -391,7 +392,7 @@ const List = ({
   depth = 0,
 }) => {
   return listType === "ol" ? (
-    <ol className="content-list ordered">
+    <ol className={`${styles["content-list"]} ${styles.ordered}`}>
       {items.map((item, index) => (
         <ListItem
           key={index}
@@ -404,7 +405,7 @@ const List = ({
       ))}
     </ol>
   ) : (
-    <ul className="content-list">
+    <ul className={styles["content-list"]}>
       {items.map((item, index) => (
         <ListItem
           key={index}
@@ -446,7 +447,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       return (
         <button
           onClick={() => handleScroll(config.targetSelector)}
-          className="content-link internal"
+          className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
           🔗
@@ -459,7 +460,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         href={config.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="content-link external"
+        className={`${styles["content-link"]} ${styles.external}`}
         title="Open in new tab"
       >
         🔗
@@ -473,7 +474,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         cursor: isCollapsible ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "disc",
         position: "relative",
-        paddingLeft: "20px",
+        paddingLeft: "35px",
       }}
     >
       {isCollapsible && (
