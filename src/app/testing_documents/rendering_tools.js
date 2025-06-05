@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import "./test.css";
+// import "./test.css";
+import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../components/YouTubeVideo";
+import { FaLink } from "react-icons/fa6";
+
 
 const CondRadioRender = ({ r_options }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
@@ -29,13 +32,13 @@ const CondRadioRender = ({ r_options }) => {
   )?.description;
 
   return (
-    <div className="setup">
+    <div className={styles.setup}>
       {isMobile ? (
-        <div className="dropdown">
+        <div className={styles.dropdown}>
           <select
             value={selectedOption || ""}
             onChange={(e) => handleOptionChange(e.target.value)}
-            className="dropdown-select"
+            className={styles["dropdown-select"]}
           >
             {r_options.map((option, index) => (
               <option key={index} value={option.text}>
@@ -45,12 +48,12 @@ const CondRadioRender = ({ r_options }) => {
           </select>
         </div>
       ) : (
-        <div className="tabs">
+        <div className={styles.tabs}>
           {r_options.map((option, index) => (
             <button
               key={index}
-              className={`tab-button ${
-                selectedOption === option.text ? "active" : ""
+              className={`${styles["tab-button"]} ${
+                selectedOption === option.text ? styles["active"] : ""
               }`}
               onClick={() => handleOptionChange(option.text)}
             >
@@ -60,7 +63,7 @@ const CondRadioRender = ({ r_options }) => {
         </div>
       )}
 
-      <div className="description">
+      <div className={styles.description}>
         <ContentRenderer content={selectedDescription} />
       </div>
     </div>
@@ -97,6 +100,8 @@ const supportedTags = [
   "search",
   "mermaid_diagram",
   "api_table",
+  "mesgTip",
+  "strong",
 ];
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts) return text;
@@ -140,26 +145,39 @@ const Callout = ({ type = "info", title, children }) => {
   };
 
   return (
-    <div className={`callout callout-${type}`}>
-      <div className="callout-header">
-        <span className="callout-icon">{icons[type]}</span>
-        {title && <h4 className="callout-title">{title}</h4>}
+    <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
+      <div className={styles["callout-header"]}>
+        <span className={styles["callout-icon"]}>{icons[type]}</span>
+        {title && <h4 className={styles["callout-title"]}>{title}</h4>}
       </div>
-      <div className="callout-content">{children}</div>
+      <div className={styles["callout-content"]}>{children}</div>
     </div>
   );
 };
 
+const MessageTip = ({ title, children }) => {
+  return (
+    <div className={styles.messageTipWrap}>
+      <div className={styles.leftBorder}></div>
+      <div className={styles["mesg-title"]}>
+        {title && <strong>{title}</strong>}
+        <div className={styles["mesg-content"]}>{children}</div>
+      </div>
+    </div>
+  );
+};
 // Update the Steps component to use ContentRenderer
 const Steps = ({ items }) => {
   return (
-    <div className="steps">
+    <div className={styles.steps}>
       {items.map((step, index) => (
-        <div key={index} className="step">
-          <div className="step-number">{index + 1}</div>
-          <div className="step-content">
-            {step.title && <h4 className="step-title">{step.title}</h4>}
-            <div className="step-description">
+        <div key={index} className={styles.step}>
+          <div className={styles["step-number"]}>{index + 1}</div>
+          <div className={styles["step-content"]}>
+            {step.title && (
+              <h4 className={styles["step-title"]}>{step.title}</h4>
+            )}
+            <div className={styles["step-description"]}>
               <ContentRenderer content={step.content} />
             </div>
           </div>
@@ -174,19 +192,21 @@ const Tabs = ({ items }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="tabs-container">
-      <div className="tab-buttons">
+    <div className={styles["tabs-container"]}>
+      <div className={styles["tab-buttons"]}>
         {items.map((tab, index) => (
           <button
             key={index}
-            className={`tab-button ${index === activeTab ? "active" : ""}`}
+            className={`${styles["tab-button"]} ${
+              index === activeTab ? styles["active"] : ""
+            }`}
             onClick={() => setActiveTab(index)}
           >
             {tab.label}
           </button>
         ))}
       </div>
-      <div className="tab-content">
+      <div className={styles["tab-content"]}>
         <ContentRenderer content={items[activeTab].content} />
       </div>
     </div>
@@ -310,11 +330,11 @@ const CodeWithCopy = ({ code, language }) => {
   };
 
   return (
-    <div className="code-with-copy">
-      <pre className="script_code">
+    <div className={styles["code-with-copy"]}>
+      <pre className={styles.script_code}>
         <code>{code}</code>
       </pre>
-      <button onClick={copyToClipboard} className="copy-button">
+      <button onClick={copyToClipboard} className={styles["copy-button"]}>
         {copied ? "✓ Copied" : "📋 Copy"}
       </button>
     </div>
@@ -391,7 +411,7 @@ const List = ({
   depth = 0,
 }) => {
   return listType === "ol" ? (
-    <ol className="content-list ordered">
+    <ol className={`${styles["content-list"]} ${styles.ordered}`}>
       {items.map((item, index) => (
         <ListItem
           key={index}
@@ -404,7 +424,7 @@ const List = ({
       ))}
     </ol>
   ) : (
-    <ul className="content-list">
+    <ul className={styles["content-list"]}>
       {items.map((item, index) => (
         <ListItem
           key={index}
@@ -439,27 +459,28 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
   const renderLink = () => {
     if (!item.link_configuration?.show) return null;
-    
+
     const config = item.link_configuration;
-    
-    if (config.type === 'internal') {
+
+    if (config.type === "internal") {
       return (
         <button
           onClick={() => handleScroll(config.targetSelector)}
-          className="content-link internal"
+          className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
-          🔗
+          {/* 🔗 */}
+          <FaLink size={16}/>
         </button>
       );
     }
-    
+
     return (
       <a
         href={config.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="content-link external"
+        className={`${styles["content-link"]} ${styles.external}`}
         title="Open in new tab"
       >
         🔗
@@ -472,8 +493,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       style={{
         cursor: isCollapsible ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "disc",
-        position: "relative",
-        paddingLeft: "20px",
+        // position: "relative",
+        // paddingLeft: "35px",
       }}
     >
       {isCollapsible && (
@@ -491,12 +512,12 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         </span>
       )}
 
-      <div onClick={handleClick} style={{ display: 'inline-block' }}>
+      <div onClick={handleClick}>
         {typeof item === "string" ? (
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
           <>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               {item.text && <span>{item.text}</span>}
               {renderLink()}
             </div>
@@ -510,7 +531,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       </div>
 
       {hasSubItems && (
-        <div style={{ display: expanded ? "block" : "none", marginLeft: "20px" }}>
+        <div
+          style={{ display: expanded ? "block" : "none", marginLeft: "20px" }}
+        >
           <List
             items={item.sub_items}
             listType={item.listType || listType}
@@ -553,7 +576,7 @@ const APIReferenceTable = ({ properties }) => (
 
 const ContentRenderer = ({ content }) => {
   return (
-    <div className="contents">
+    <div className={`${styles.contents} ${styles.sidebarContentclass}`}>
       {content?.map((item, index) => {
         const Tag = supportedTags.includes(item.tag_type)
           ? item.tag_type
@@ -570,7 +593,7 @@ const ContentRenderer = ({ content }) => {
           case "video":
             return (
               <div key={index}>
-                <div className="videos_wrapper">
+                <div className={styles.videos_wrapper}>
                   <YouTubeEmbed src={item.src} desc={item.desc} />
                 </div>
               </div>
@@ -578,7 +601,7 @@ const ContentRenderer = ({ content }) => {
 
           case "h2":
             return (
-              <h2 key={index} className="content-heading">
+              <h2 key={index} className={styles["content-heading"]}>
                 {item.text}
               </h2>
             );
@@ -613,7 +636,12 @@ const ContentRenderer = ({ content }) => {
                 <ContentRenderer content={item.children} />
               </Callout>
             );
-
+          case "mesgTip":
+            return (
+              <MessageTip key={index} title={item.title}>
+                <ContentRenderer content={item.children} />
+              </MessageTip>
+            );
           case "steps":
             return <Steps key={index} items={item.items} />;
 
