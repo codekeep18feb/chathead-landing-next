@@ -158,7 +158,7 @@ const Document = () => {
                 </div>
               </>
             ) : (
-              <div>Kinldy select the right filters for you from top.</div>
+              <div className={styles.noFilterMessage}>Kinldy select the right filters for you from top.</div>
             )}
           </div>
         </div>
