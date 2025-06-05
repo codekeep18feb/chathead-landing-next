@@ -19,9 +19,44 @@
 }
 .doc_sidebar {
   width: 25%;
-  background: var(--secondary-color);
+  background: var(--light-primary-color);
   padding: 12px;
 }
+.doc_sidebar ol {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0;
+  counter-reset: none !important;
+}
+
+.doc_sidebar ol > li {
+  list-style: none !important;
+  counter-increment: none !important;
+  position: static !important;
+  padding-left: 0 !important;
+}
+.doc_sidebar ol > li::before {
+  content: none !important;
+}
+.doc_sidebar li > div:first-of-type > div {
+  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+.doc_sidebar li > div:first-of-type > div:hover {
+  background-color: pink;
+}
+
+.doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} 
 .rightWrap {
   background-color: var(--white-text-color);
   overflow-y: auto;
