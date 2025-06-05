@@ -18,7 +18,7 @@
   background-color: transparent;
 }
 .doc_sidebar {
-  width: 25%;
+  width: 20%;
   background: var(--light-primary-color);
   padding: 12px;
 }
@@ -39,24 +39,26 @@
   content: none !important;
 }
 .doc_sidebar li > div:first-of-type > div {
-  background-color: green;
+  background-color: #c4cffb;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
   border-radius: 6px;
   transition: background-color 0.2s ease;
+  width: 100%;
 }
 .doc_sidebar li > div:first-of-type > div:hover {
-  background-color: pink;
+  background-color: #b1c0fb;
 }
 
 .doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
-  background-color: yellow;
+  background: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-} 
+  color: var(--white-text-color);
+}
 .rightWrap {
   background-color:transparent;
   overflow-y: auto;

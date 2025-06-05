@@ -473,8 +473,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       style={{
         cursor: isCollapsible ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "disc",
-        position: "relative",
-        paddingLeft: "35px",
+        // position: "relative",
+        // paddingLeft: "35px",
       }}
     >
       {isCollapsible && (
@@ -492,7 +492,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         </span>
       )}
 
-      <div onClick={handleClick} style={{ display: 'inline-block' }}>
+      <div onClick={handleClick} >
         {typeof item === "string" ? (
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
@@ -554,7 +554,7 @@ const APIReferenceTable = ({ properties }) => (
 
 const ContentRenderer = ({ content }) => {
   return (
-    <div className="contents">
+    <div className={`${styles.contents} ${styles.sidebarContentclass}`}>
       {content?.map((item, index) => {
         const Tag = supportedTags.includes(item.tag_type)
           ? item.tag_type
@@ -571,7 +571,7 @@ const ContentRenderer = ({ content }) => {
           case "video":
             return (
               <div key={index}>
-                <div className="videos_wrapper">
+                <div className={styles.videos_wrapper}>
                   <YouTubeEmbed src={item.src} desc={item.desc} />
                 </div>
               </div>
@@ -579,7 +579,7 @@ const ContentRenderer = ({ content }) => {
 
           case "h2":
             return (
-              <h2 key={index} className="content-heading">
+              <h2 key={index} className={styles["content-heading"]}>
                 {item.text}
               </h2>
             );
