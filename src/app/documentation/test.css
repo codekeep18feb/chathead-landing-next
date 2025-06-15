@@ -1,38 +1,3 @@
-.document-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  width: 100%;
-  gap: 30px;
-  /* overflow-y: auto; */
-}
-.doc_sidebar {
-  width: 350px;
-  background: var(--secondary-color);
-  padding: 12px;
-}
-.rightWrap {
-  background-color: var(--white-text-color);
-  overflow-y: auto;
-  width: 100%;
-  padding: 20px;
-}
-.main-content {
-  max-width: 1080px;
-  padding: 20px;
-}
-.mainHeading {
-  margin-bottom: 30px;
-}
-.mainHeading h2 {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--text-color);
-  line-height: 20px;
-  line-height: 30px;
-  letter-spacing: 0.5px;
-}
 .tabs {
   margin-bottom: 20px;
   border: 1px solid red;
@@ -59,11 +24,6 @@
   font-weight: bold;
   color: var(--white-text-color);
   border: none;
-}
-
-.content-area {
-  width: 90%;
-  margin-top: 20px;
 }
 
 .step {
@@ -306,13 +266,6 @@
 .downIcon {
   display: none;
 }
-.integration_successful p {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-color);
-  font-style: italic;
-  padding-bottom: 12px;
-}
 .setup {
   margin-top: 20px;
 }
@@ -431,10 +384,7 @@
   .sidebar_wrapper.active + .downIcon svg {
     transform: rotate(180deg);
   }
-  
-  .doc_core_wrapper {
-    display: block;
-  }
+
   .sidebar-dropdown .dropdown-toggle {
     background-color: #fff;
     color: #000;
