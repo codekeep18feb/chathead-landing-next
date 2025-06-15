@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./filterSty.module.css"
 
 const FilterComp = ({ setSelectedFilter }) => {
   const [selectedAppType, setSelectedAppType] = useState(null);
@@ -18,7 +19,7 @@ const FilterComp = ({ setSelectedFilter }) => {
 
   const renderOptions = (options, selectedValue, handler, name) => {
     return options.map((option) => (
-      <div key={option} className="option-container">
+      <div key={option} className={styles["option-container"]}>
         <label>
           <input
             type="radio"
@@ -33,12 +34,12 @@ const FilterComp = ({ setSelectedFilter }) => {
   };
 
   return (
-    <div className="filter-container">
+    <div className={styles["filter-container"]}>
       {/* <h3>Select Version Type</h3> */}
-      <div className="options-list">
+      <div className={styles["options-list"]}>
      
         
-        <div className="filter-group">
+        <div className={styles["filter-group"]}>
           <h3>Select Version Type</h3>
           {renderOptions(
             filterOptions.version_types,
@@ -48,8 +49,8 @@ const FilterComp = ({ setSelectedFilter }) => {
           )}
         </div>
       </div>
-      <button className="submit-btn" onClick={handleSubmit}>
-        Submit
+      <button className={styles["submit-btn"]} onClick={handleSubmit}>
+      Apply Filter
       </button>
     </div>
   );
