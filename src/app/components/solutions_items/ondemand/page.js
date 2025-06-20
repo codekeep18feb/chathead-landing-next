@@ -1,10 +1,15 @@
 "use client";
 import Head from "next/head";
+import { useRef } from "react";
 import BuildShipManageCards from "./buildShipManageCards";
 import { MdOutlineSecurity } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import BannerSection from "./BannerSection";
 import AccordionSection from "./AccordionSection";
+import FeatureSectionWrapper from "./FeatureSectionWrapper";
+
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const sectionsData = [
   {
@@ -69,8 +74,6 @@ const sectionsData = [
   },
 ];
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 const items = [
   {
     title: "Insights",
@@ -95,7 +98,118 @@ const items = [
   },
 ];
 
+
+
 export default function OnDemand() {
+
+  const sections = {
+    "Messaging experience": {
+      ref: useRef(null),
+      subheading: "Tinder-style interface with all features out of the box",
+      className: "messaging-experience",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      
+
+      content: [
+        {
+          type: "p",
+          text: "Smooth and user-friendly chat interface for seamless real-time communication.",
+        },
+        {
+          type: "group", // Group multiple similar elements
+          className: "normal-text",
+          texts: [
+            "Let users express themselves with emojis, stickers, and creative avatars",
+            "Suggest conversation starters based on shared interests, personalities, and messaging history.",
+            "Leverage interactive message formats to show polls, quizzes, and chat-based games to create an engaging experience.",
+          ],
+        },
+      ],
+    },
+    "Voice and video calling": {
+      ref: useRef(null),
+      subheading: "Tinder-style interface with all features out of the box",
+      className: "voice-video",
+      image: `${basePath}/Asset/voice_video.png`,
+
+      content: [
+        {
+          type: "p",
+          text: "Provide a more immersive and interactive way for users to get to know each other and build relationships.",
+        },
+        {
+          type: "group", // Group multiple similar elements
+          className: "normal-text",
+          texts: [
+            "Video calling helps users to verify identity and makes it harder for catfishers to operate.",
+            "Alleviate pre-date nerves by providing a face-time like experience within your app interface.",
+            "Low latency and HD quality videos for a better user experience and retention.",
+          ],
+        },
+      ],
+    },
+    "Scale for millions": {
+      ref: useRef(null),
+      subheading: "Always available, always reliable",
+      className: "scale-millions",
+      image: `${basePath}/Asset/scale_millions.png`,
+      content: [
+        {
+          type: "p",
+          text: "Scalable and reliable infrastructure that can handle large user bases and high traffic.",
+        },
+        {
+          type: "group", // Group multiple similar elements
+          className: "normal-text",
+          texts: [
+            "Uninterrupted service even in peak usage hours. Our system can support up to a million concurrent users.",
+            "Globally distributed network of servers, ensures low latency and lightning-fast message delivery.",
+            "Eliminate the need for expensive in-house DevOps teams and server management.",
+          ],
+        },
+      ],
+    },
+    "Moderation control": {
+      ref: useRef(null),
+      subheading: "Advanced content moderation",
+      className: "moderation-control",
+      image: `${basePath}/Asset/moderation_control.png`,
+      content: [
+        { type: "p", text: "Our AI mimics human-like conversation patterns." },
+        {
+          type: "group", // Group multiple similar elements
+          className: "normal-text",
+          texts: [
+            "Uninterrupted service even in peak usage hours. Our system can support up to a million concurrent users.",
+            "Globally distributed network of servers, ensures low latency and lightning-fast message delivery.",
+            "Eliminate the need for expensive in-house DevOps teams and server management.",
+          ],
+        },
+      ],
+    },
+    "Monetize chat": {
+      ref: useRef(null),
+      subheading: "Maximize revenue with chat",
+      className: "monetize-chat",
+      image: `${basePath}/Asset/monetize_chat.png`,
+      content: [
+        {
+          type: "p",
+          text: "MagicChat Bots help automate repetitive tasks efficiently.",
+        },
+        {
+          type: "group", // Group multiple similar elements
+          className: "normal-text",
+          texts: [
+            "Uninterrupted service even in peak usage hours. Our system can support up to a million concurrent users.",
+            "Globally distributed network of servers, ensures low latency and lightning-fast message delivery.",
+            "Eliminate the need for expensive in-house DevOps teams and server management.",
+          ],
+        },
+      ],
+    },
+  };
+  
   return (
     <div>
       <BannerSection
@@ -122,6 +236,12 @@ export default function OnDemand() {
       items={items}
       defaultOpenIndex={0}
       showImage={true}
+      />
+
+      <FeatureSectionWrapper
+      title="MagicChat for matrimonial"
+      description="Seamless connections, safer interactions, smarter matches"
+      sections={sections}
       />
     </div>
   );
