@@ -7,6 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import BannerSection from "./BannerSection";
 import AccordionSection from "./AccordionSection";
 import FeatureSectionWrapper from "./FeatureSectionWrapper";
+import ProtectBusiness from "./ProtectBusiness";
 
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -98,6 +99,46 @@ const items = [
   },
 ];
 
+const business = [
+  {
+    subheading: "Tinder-style interface with all features out of the box",
+    image: `${basePath}/Asset/secureIc.png`,
+    content: [
+      {
+        type: "p",
+        text: "Smooth and user-friendly chat interface for seamless real-time communication.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Let users express themselves with emojis, stickers, and creative avatars.",
+          "Suggest conversation starters based on shared interests, personalities, and messaging history.",
+          "Leverage interactive message formats to show polls, quizzes, and chat-based games to create an engaging experience.",
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Enhanced security for business messaging",
+    image: `${basePath}/Asset/protect_userIc.png`,
+    content: [
+      {
+        type: "p",
+        text: "End-to-end encryption ensures secure business communication.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Enable two-factor authentication for added security.",
+          "Automatically detect and filter spam messages.",
+          "Monitor and audit messages to prevent unauthorized access.",
+        ],
+      },
+    ],
+  },
+];
 
 
 export default function OnDemand() {
@@ -242,6 +283,13 @@ export default function OnDemand() {
       title="MagicChat for matrimonial"
       description="Seamless connections, safer interactions, smarter matches"
       sections={sections}
+      />
+
+
+      <ProtectBusiness 
+      title="Protect your business with our unique solutions"
+      description="Communication platform built for growth"
+      sections={business}
       />
     </div>
   );
