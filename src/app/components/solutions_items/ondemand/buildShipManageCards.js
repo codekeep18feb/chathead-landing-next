@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import styles from "./proBusiStyle.module.css";
 
 const BuildShipManageCards = ({ title, subtitle, sections }) => {
