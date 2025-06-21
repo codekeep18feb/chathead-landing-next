@@ -8,6 +8,7 @@ import ProtectBusiness from "../ondemand/ProtectBusiness";
 import FeatureSectionWrapper from "../ondemand/FeatureSectionWrapper";
 import BannerSection from "../ondemand/BannerSection";
 import Carousel from "../ondemand/Carousel";
+import FeaturesIntegrations from "../ondemand/FeaturesIntegrations";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -23,12 +24,12 @@ const sectionsData = [
     ],
   },
   {
-    subheading: "Data retention",
+    subheading: "Webhooks",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "Retain chat histories securely for compliance and user satisfaction, allowing users to revisit and cherish their meaningful conversations. ",
+        text: "Automate tasks, personalize user experiences, and gain valuable insights to drive growth by subscribing to webhooks.",
       },
     ],
   },
@@ -38,7 +39,7 @@ const sectionsData = [
     content: [
       {
         type: "p",
-        text: "Enhance user interactions with intelligent suggestions and responses, making conversations smoother and more engaging.",
+        text: "End-to-end encryption with advanced security. Fully compliant with HIPAA, GDPR, SOC 2",
       },
     ],
   },
@@ -48,91 +49,121 @@ const sectionsData = [
     content: [
       {
         type: "p",
-        text: "Automate routine tasks and provide instant support with chatbots to reduce operational workload.",
+        text: "Create a more engaging experience by implementing bots that can be connected to any GEN AI engine or learn from user activity occurring on your platform.",
       },
     ],
   },
   {
-    subheading: "Rich media sharing",
+    subheading: "Scalability",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "Allow users to share photos, videos, and voice messages, enriching their interactions and making connections more personal.",
+        text: "Scale effortlessly to meet the demands of your expanding user base. A robust infrastructure that can support 1 Million+ concurrency.",
       },
     ],
   },
   {
-    subheading: "Tinder-style interface with all features out of the box",
+    subheading: "Data retention",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "Smooth and user-friendly chat interface for seamless real-time communication.",
+        text: "Need to access past conversations for audits, dispute resolution, or customer inquiries? Magic Chat automatically stores and retains all your chat data, ensuring you never lose a conversation.",
       },
     ],
   },
 ];
 
-const accordionItems = [
+const items = [
   {
-    title: "AI powered insights",
-    subheading: "Gain deep insights into user behavior",
+    title: "Insights",
+    subheading:
+      "Understand your buyer funnel, identify areas of drop-offs, and frequently asked questions",
     content:
-      "Analyze chat usage to understand how users interact. Create detailed user profiles based on chat history and sentiment analysis. Develop user funnels to track and optimize user journeys.",
+      "Default analytics dashboard for monitoring chat usage, active users, total messages exchanged, and calls made. AI-powered insights to get deeper context into user and funnel activity.",
     image: `${basePath}/Asset/ai_power.png`,
   },
   {
     title: "Notifications  ",
-    subheading: "Gain deep insights into user behavior ",
+    subheading: "Reliable push, email and SMS notifications",
     content:
-      "Analyze chat usage to understand how users interact. Create detailed user profiles based on chat history and sentiment analysis. Develop user funnels to track and optimize user journeys. ",
+      "Keep conversations flowing smoothly by sending instant push notifications whenever a user receives a new message.",
     image: `${basePath}/Asset/notification_img.png`,
   },
   {
-    title: "Webhooks",
-    subheading: "Gain deep insights into user behavior",
+    title: "Moderation Control",
+    subheading: "Monitor users, report malicious texts",
     content:
-      "Analyze chat usage to understand how users interact. Create detailed user profiles based on chat history and sentiment analysis. Develop user funnels to track and optimize user journeys.",
+      "Centralized view of all flagged messages, reported users, and violations. Admins can quickly assess potential issues and identify trends that may require further attention.",
     image: `${basePath}/Asset/webhooks_img.png`,
   },
 ];
 
-const business = [
+const features = [
   {
-    subheading: "Tinder-style interface with all features out of the box",
-    image: `${basePath}/Asset/secureIc.png`,
+    subheading: "Communication",
     content: [
-      {
-        type: "p",
-        text: "Smooth and user-friendly chat interface for seamless real-time communication.",
-      },
       {
         type: "group",
         className: "normal-text",
         texts: [
-          "Let users express themselves with emojis, stickers, and creative avatars.",
-          "Suggest conversation starters based on shared interests, personalities, and messaging history.",
-          "Leverage interactive message formats to show polls, quizzes, and chat-based games to create an engaging experience.",
+          "1 to 1 chat",
+          "Group chat",
+          "Voice & video calling",
+          "Secure file transfer",
+          "Chat search & history",
+          
         ],
       },
     ],
   },
   {
-    subheading: "Enhanced security for business messaging",
-    image: `${basePath}/Asset/protect_userIc.png`,
+    subheading: "Moderation",
+    // image: `${basePath}/Asset/secureIc.png`,
     content: [
-      {
-        type: "p",
-        text: "End-to-end encryption ensures secure business communication.",
-      },
       {
         type: "group",
         className: "normal-text",
         texts: [
-          "Enable two-factor authentication for added security.",
-          "Automatically detect and filter spam messages.",
-          "Monitor and audit messages to prevent unauthorized access.",
+          "Sentiment Analysis",
+          "Image moderation",
+          "Profanity Filter",
+          "Data Masking",
+          "Report User & Message",
+          
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Engagement",
+    content: [
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Push Notifications",
+          "Email Replies",
+          "Message reminders",
+          "Typing indicators",
+          "Message translation",
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Admin",
+    content: [
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Dashboard & Analytics",
+          "Bots interface",
+          "Customer support integration",
+          "Call Recording",
+          "Webhooks",
         ],
       },
     ],
@@ -186,108 +217,90 @@ const HeartIcon = (
   </svg>
 );
 
-export default function Matrimy() {
+export default function Marketplace() {
   const sections = {
     "Messaging experience": {
       ref: useRef(null),
-      subheading: "Tinder-style interface with all features out of the box",
+      subheading: "Whatsapp-style interface with all features out of the box",
       className: "messaging-experience",
       image: `${basePath}/Asset/messaging_experience.png`,
 
       content: [
         {
           type: "p",
-          text: "Smooth and user-friendly chat interface for seamless real-time communication.",
+          text: "Build a relatable and modern messaging experience. More familiar the UX feels, the higher the user engagement.",
         },
         {
           type: "group", // Group multiple similar elements
           className: "normal-text",
           texts: [
-            "Let users express themselves with emojis, stickers, and creative avatars",
-            "Suggest conversation starters based on shared interests, personalities, and messaging history.",
-            "Leverage interactive message formats to show polls, quizzes, and chat-based games to create an engaging experience.",
+            "AI powered smart messaging with conversation prompts",
+            "Voice notes with real time translation for users speaking different languages.",
+            "Allow users to send and receive product information through images and videos.",
           ],
         },
       ],
     },
-    "Voice and video calling": {
+    "Centralized Inbox": {
       ref: useRef(null),
-      subheading: "Tinder-style interface with all features out of the box",
+      subheading: "Streamline product enquiries for sellers",
       className: "voice-video",
       image: `${basePath}/Asset/voice_video.png`,
 
       content: [
         {
           type: "p",
-          text: "Provide a more immersive and interactive way for users to get to know each other and build relationships.",
+          text: "Allow sellers to manage multiple conversations with a personalized inbox view.",
         },
         {
           type: "group", // Group multiple similar elements
           className: "normal-text",
           texts: [
-            "Video calling helps users to verify identity and makes it harder for catfishers to operate.",
-            "Alleviate pre-date nerves by providing a face-time like experience within your app interface.",
-            "Low latency and HD quality videos for a better user experience and retention.",
+            "Keep all conversations organized in one place.",
+            "Gain a complete picture of buyer engagement for each product.",
+            "Switch between seeing recent conversations for a specific listing or filter by buyer.",
           ],
         },
       ],
     },
-    "Scale for millions": {
+    "Chat Moderation": {
       ref: useRef(null),
-      subheading: "Always available, always reliable",
+      subheading: "Prevent platform leakage",
       className: "scale-millions",
       image: `${basePath}/Asset/scale_millions.png`,
       content: [
         {
           type: "p",
-          text: "Scalable and reliable infrastructure that can handle large user bases and high traffic.",
+          text: "Retain users and keep all transactions within your platform.",
         },
         {
           type: "group", // Group multiple similar elements
           className: "normal-text",
           texts: [
-            "Uninterrupted service even in peak usage hours. Our system can support up to a million concurrent users.",
-            "Globally distributed network of servers, ensures low latency and lightning-fast message delivery.",
-            "Eliminate the need for expensive in-house DevOps teams and server management.",
+            "Data masking to prevent attempts of contact and payment information sharing.",
+            "Prevent users from bypassing platform rules with proactive AI content moderation.",
+            "Integrate payment flow within chat for easy and secure transactions.",
           ],
         },
       ],
     },
-    "Moderation control": {
+    "Messaging Operations": {
       ref: useRef(null),
-      subheading: "Advanced content moderation",
+      subheading: "Utilize messaging as a robust operations hub.",
       className: "moderation-control",
       image: `${basePath}/Asset/moderation_control.png`,
       content: [
-        { type: "p", text: "Our AI mimics human-like conversation patterns." },
-        {
-          type: "group", // Group multiple similar elements
-          className: "normal-text",
-          texts: [
-            "Uninterrupted service even in peak usage hours. Our system can support up to a million concurrent users.",
-            "Globally distributed network of servers, ensures low latency and lightning-fast message delivery.",
-            "Eliminate the need for expensive in-house DevOps teams and server management.",
-          ],
-        },
-      ],
-    },
-    "Monetize chat": {
-      ref: useRef(null),
-      subheading: "Maximize revenue with chat",
-      className: "monetize-chat",
-      image: `${basePath}/Asset/monetize_chat.png`,
-      content: [
         {
           type: "p",
-          text: "MagicChat Bots help automate repetitive tasks efficiently.",
+          text: "Go beyond basic user-to-user messaging. Interactive messages empowers marketplace admins to utilize chat as an operations hub.",
         },
         {
           type: "group", // Group multiple similar elements
           className: "normal-text",
           texts: [
-            "Uninterrupted service even in peak usage hours. Our system can support up to a million concurrent users.",
-            "Globally distributed network of servers, ensures low latency and lightning-fast message delivery.",
-            "Eliminate the need for expensive in-house DevOps teams and server management.",
+            "Streamline lead generation and product qualification through forms.",
+            "Simplify payment processing and order placement through cards.",
+            "Create unique and customized interactive messages to meet any advanced requirements that are not natively supported.",
           ],
         },
       ],
@@ -297,12 +310,9 @@ export default function Matrimy() {
     <>
       <BannerSection
         icon={HeartIcon}
-        label="Dating"
-        heading="Create a safe, secure and positive messaging environment for your
-              users"
-        description="Messaging experience that seamlessly scales from thousands to
-              millions of users. Leverage AI-powered moderation to prevent and
-              manage inappropriate user behaviors."
+        label="Marketplace"
+        heading="Connect buyers and sellers seamlessly without the risk of platform leakage"
+        description="Magic Chat helps you to provide the best communication experience for your buyers and sellers, all while increasing conversions and eliminating leakages in your marketplace."
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
         imageSrc={`${basePath}/Asset/matrimony_banner.png`}
@@ -310,35 +320,35 @@ export default function Matrimy() {
       />
 
       <FeatureSectionWrapper
-        title="MagicChat for matrimonial"
-        description="Seamless connections, safer interactions, smarter matches"
+        title="MagicChat for Marketplaces"
+        description="Less friction, Better communication, No platform leakage"
         sections={sections}
       />
 
-      <ProtectBusiness
-        title="Protect your business with our unique solutions"
+      <FeaturesIntegrations
+        title="Features and integrations that make for great interactions"
         description="Communication platform built for growth"
-        sections={business}
+        sections={features}
       />
       <BuildShipManageCards
-        title="Build, ship and manage marketplace chat at scale"
+        title="Build, ship and manage chat at scale"
         subtitle="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
         sections={sectionsData}
       />
 
       <AccordionSection
-        heading="MagicChat for Matrimonial"
+        heading="Admin tools for chat management, moderation and Insights"
         description="Seamless connections, safer interactions, smarter matches"
-        items={accordionItems}
+        items={items}
         defaultOpenIndex={0}
         showImage={true}
       />
-      
+
       <Carousel
-      slides={testimonialSlides}
-      title="10 years and 50,000+ customer stories"
-      description="Customer Stories"
-    />
+        slides={testimonialSlides}
+        title="10 years and 50,000+ customer stories"
+        description="Customer Stories"
+      />
     </>
   );
 }
