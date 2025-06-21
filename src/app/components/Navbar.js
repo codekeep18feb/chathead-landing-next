@@ -7,6 +7,7 @@ import Platform from "./Platform";
 import Solutions from "./Solutions";
 import Developers from "./Developers";
 import Resources from "./Resources";
+import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 
 const Navbar = ({ onLinkHover, onNavLeave }) => {
   const [menuOpen, setMenuOpen] = useState(false); // Manage menu state
@@ -39,6 +40,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
     if (isMobile && link !== "/pricing") {
       onLinkHover(content);
       setHoveredContent(content);
+      setMenuOpen(false);
       console.log("you clicked");
     }
 
@@ -60,9 +62,17 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
         <img src={`${basePath}/Asset/logo.jpg`} alt="addChat" />
         <h2>addChat</h2>
       </div>
-      <div className="burger-icon" onClick={toggleMenu}>
+      {/* <div className="burger-icon" onClick={toggleMenu}>
         &#9776;
+      </div> */}
+
+      <div
+        className={`burger-icon ${!menuOpen ? "animate-fade" : ""}`}
+        onClick={toggleMenu}
+      >
+        {menuOpen ? <HiOutlineX size={28} /> : <HiOutlineMenuAlt3 size={28} />}
       </div>
+
       <div
         className={`nav_overlay ${menuOpen ? "active" : ""}`}
         onClick={toggleMenu}
