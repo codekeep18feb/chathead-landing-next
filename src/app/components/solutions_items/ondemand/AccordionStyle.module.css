@@ -91,3 +91,36 @@
   height: auto;
   border-radius: 8px;
 }
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .accordionContainer {
+    padding: 2rem;
+    border-radius: 0px;
+  }
+  .accordionContainer h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .accordionContainer {
+    padding: 1.5rem;
+    border-radius: 0px;
+  }
+
+  .accordionContainer h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 470px) {
+  .header{
+    padding: 0px;
+  }
+  .accordionContainer h1 {
+    font-size: 1.8rem;
+  }
+
+
+}

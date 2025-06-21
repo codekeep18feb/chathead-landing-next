@@ -24,6 +24,7 @@
 }
 .contentWrap {
   display: flex;
+  flex-wrap: wrap; 
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -31,6 +32,10 @@
   background-color: #775c99;
   padding: 3rem;
   border-radius: 10px;
+}
+.contentSection {
+  flex: 1 1 25%; 
+  margin-bottom: 2rem;
 }
 .contentSection {
   width: 100%;
@@ -64,4 +69,55 @@
 }
 .icon{
     color: #f5f5dc;
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .wrapper {
+    padding: 2rem;
+  }
+  .header h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .contentWrap {
+    margin-top: 30px;
+    
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 1.5rem;
+  }
+  .header{
+    padding: 0px;
+  }
+  .header h1 {
+    font-size: 2rem;
+  }
+  .contentWrap {
+    margin-top: 30px;
+    padding: 2rem;
+  }
+  .contentSection{
+    margin-right: 50px;
+  }
+}
+
+
+@media (max-width: 470px) {
+  .header{
+    padding: 0px;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .contentWrap {
+    margin-top: 30px;
+    padding: 2rem;
+  }
+
+
 }

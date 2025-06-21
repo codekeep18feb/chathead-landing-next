@@ -1,16 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from "./CarouselStyle.module.css";
 
 const Carousel = ({ slides, title, description }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const nextSlide = () =>
     setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
 
   const prevSlide = () =>
     setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -30,7 +40,9 @@ const Carousel = ({ slides, title, description }) => {
         <div
           className={styles.slideContainer}
           style={{
-            transform: `translateX(calc(-${currentIndex * 95}% - 40px))`,
+            transform: isMobile
+              ? `translateX(-${currentIndex * 100}%)`
+              : `translateX(calc(-${currentIndex * 95}% - 40px))`,
           }}
         >
           {slides.map((slide, index) => (
