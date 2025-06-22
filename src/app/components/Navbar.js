@@ -138,12 +138,12 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
         </div>
         <div className="auth-buttons">
           <li>
-            <a href="http://admin.magicchat.io/login">
+            <a href="http://dev.addchat.tech/login">
               <button className="login">Log-in</button>
             </a>
           </li>
           <li>
-            <a href="http://admin.magicchat.io/signup">
+            <a href="http://dev.addchat.tech/signup">
               <button className="signup">Sign-up</button>
             </a>
           </li>
