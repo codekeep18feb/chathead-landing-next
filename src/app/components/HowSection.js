@@ -3,14 +3,70 @@
 // src/app/components/HowSection.js
 import React, { useState } from "react";
 import ImageSlider from "./ImageSlider";
+import Tabs from "./Tabs";
+import Slider from "./Slider";
+
+const slides = {
+  p2a: [
+    {
+      image: "/Asset/fashoni_chat_opener_visible.png",
+      sections: [
+        {
+          heading: "What is P2A",
+          paragraph: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+          list: ["Auth", "Admin Panel"],
+        },
+      ],
+    },
+    {
+      image: "/Asset/no_users_admin.png",
+      sections: [
+        {
+          heading: "Features",
+          paragraph: "Detailed overview for P2A.",
+        },
+      ],
+    },
+  ],
+
+  p2p: [
+    {
+      image: "/images/p2p-slide1.jpg",
+      sections: [
+        {
+          heading: "P2P Messaging",
+          subheading: "User to User",
+          paragraph: "This slide explains P2P logic.",
+          list: ["Chat", "File Sharing", "Emojis"],
+        },
+      ],
+    },
+    {
+      image: "/images/p2p-slide2.jpg",
+      sections: [
+        {
+          heading: "End-to-End Encryption",
+          paragraph: "Security features in P2P chat.",
+        },
+      ],
+    },
+  ],
+};
+
+const tabData = [
+  { label: "P2A", content: <Slider slides={slides.p2a} /> },
+  { label: "P2P", content: <Slider slides={slides.p2p} /> },
+];
 
 const HowSection = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [showDemoPopup, setShowDemoPopup] = useState(false);
   const [demoVersion, setDemoVersion] = useState(null);
+  const [showTabs, setShowTabs] = useState(false);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    setShowTabs(false);
   };
 
   const handleWatchDemoClick = (version) => {
@@ -36,15 +92,33 @@ const HowSection = () => {
               </li>
             ))}
           </ul>
+
+          <button onClick={() => setShowTabs(true)} style={{
+                padding: "10px 15px",
+                margin: "8px 0",
+                cursor: "pointer",
+                fontSize: "1.1em",
+                color: "#555",
+                borderRadius: "4px",
+                backgroundColor: "#fff",
+                transition: "background-color 0.3s ease",
+                outline: "none",
+                border: "none",
+          }}>P2A vs P2P</button>
         </div>
 
         {/* Right Side */}
         <div className="right-side">
-          {selectedOption ? (
+          {showTabs ? (
+            <Tabs tabs={tabData} />
+          ) : selectedOption ? (
             <VersionContent
               version={selectedOption}
               onWatchDemo={handleWatchDemoClick}
-              onBack={() => setSelectedOption(null)}
+              onBack={() => {
+                setSelectedOption(null);
+                setShowTabs(false);
+              }}
             />
           ) : (
             <DefaultContent />
@@ -222,48 +296,47 @@ const DefaultContent = () => (
         <i className="bi bi-x"></i>
       </button>
     </div>
-  
-    <div className="world-chat">
-  <Section
-    title="Why Choose Us?"
-    items={[
-      "Start quickly to outpace competitors.",
-      "Free tier for small businesses.",
-      "Flexible and affordable pricing plans.",
-      "Effortless integration with various platforms.",
-      "Reliable with SLA-backed service.",
-      "Customizable chat types to meet diverse needs.",
-    ]}
-  />
-  <Section
-    title="Effortless Integration"
-    items={[
-      "Simple setup process.",
-      "24/7 live support.",
-      "Comprehensive documentation.",
-    ]}
-  />
-  <Section
-    title="Getting Started"
-    items={[
-      "Create a tenant account.",
-      "Log in to your account.",
-      "Set up an app.",
-      "Select the ideal chat type for your app.",
-      "Follow step-by-step integration guides.",
-    ]}
-  />
-  <Section
-    title="Fully Managed Solutions"
-    items={[
-      "High availability.",
-      "Scalable infrastructure.",
-      "Cloud-native, no maintenance required.",
-    ]}
-  />
-  <img src="Asset/globe.png" alt="World Chat" className="center-image" />
-</div>
 
+    <div className="world-chat">
+      <Section
+        title="Why Choose Us?"
+        items={[
+          "Start quickly to outpace competitors.",
+          "Free tier for small businesses.",
+          "Flexible and affordable pricing plans.",
+          "Effortless integration with various platforms.",
+          "Reliable with SLA-backed service.",
+          "Customizable chat types to meet diverse needs.",
+        ]}
+      />
+      <Section
+        title="Effortless Integration"
+        items={[
+          "Simple setup process.",
+          "24/7 live support.",
+          "Comprehensive documentation.",
+        ]}
+      />
+      <Section
+        title="Getting Started"
+        items={[
+          "Create a tenant account.",
+          "Log in to your account.",
+          "Set up an app.",
+          "Select the ideal chat type for your app.",
+          "Follow step-by-step integration guides.",
+        ]}
+      />
+      <Section
+        title="Fully Managed Solutions"
+        items={[
+          "High availability.",
+          "Scalable infrastructure.",
+          "Cloud-native, no maintenance required.",
+        ]}
+      />
+      <img src="Asset/globe.png" alt="World Chat" className="center-image" />
+    </div>
   </div>
 );
 

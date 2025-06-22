@@ -4,7 +4,11 @@ import SolveSection from '../app/components/SolveSection';
 import HowSection from '../app/components/HowSection';
 import EngagementSection from '../app/components/EngagementSection';
 import Footer from '../app/components/Footer';
+import Tabs from './components/Tabs';
+
+
 // import Pricing from './components/Pricing';
+
 
 const Home = () => {
   return (
@@ -16,6 +20,8 @@ const Home = () => {
 
       {/* <Pricing/> */}
       {/* <Footer /> */}
+
+      {/* <Tabs tabs={tabData}/> */}
     </div>
   );
 };

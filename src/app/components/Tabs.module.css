@@ -1,0 +1,139 @@
+.tabWrapper{
+    background-color: white;
+    padding: 2rem ;
+    overflow: auto;
+}
+.tabsContainer {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.tabButton:hover {
+  color: #0070f3;
+}
+
+.activeTab {
+  font-weight: bold;
+  border-bottom: 2px solid #0070f3;
+  color: #0070f3;
+}
+
+.tabContent {
+  padding: 1rem 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* border-radius: 1rem; */
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 30px;
+  }
+  
+.slide {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-direction: column;
+}
+
+
+.nextButton,
+.prevButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.nextButton:hover,
+.prevButton:hover {
+  background: #005bb5;
+}
+
+.prevButton {
+  left: 1rem;
+}
+
+.nextButton {
+  right: 1rem;
+}
+
+
+.slideImage {
+  width: 100%;
+  /* max-width: 500px; */
+  height: 400px;
+  /* border-radius: 10px; */
+  margin-bottom: 1rem;
+  background: lightblue;
+}
+
+.slideDescription {
+  font-size: 1rem;
+  text-align: center;
+  color: #555;
+}
+
+
+.section {
+    margin-bottom: 1.5rem;
+    background-color: lightblue;
+    text-align: left;
+    width: 100%
+  }
+  
+  .section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .section h4 {
+    font-size: 1.2rem;
+    color: #777;
+    margin-bottom: 0.25rem;
+  }
+  
+  .section p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .section ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+    color: #333;
+  }
+  
