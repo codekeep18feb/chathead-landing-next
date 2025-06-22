@@ -144,6 +144,10 @@ body {
   cursor: pointer;
   color: var(--heading-color);
   z-index: 11;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.animate-fade {
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 /* Solve Section */
@@ -1155,5 +1159,18 @@ body {
   .icon_wrapper{
     width: 28px;
     height: 28px;
+  }
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

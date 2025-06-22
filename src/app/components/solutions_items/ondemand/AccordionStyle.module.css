@@ -1,0 +1,126 @@
+.accordionContainer {
+  padding: 3rem 10rem;
+  background-color: #f9f9ff;
+  border-radius: 12px;
+}
+.accordionContainer p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-align: center;
+}
+.accordionContainer h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  text-align: center;
+}
+.accordion_content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.leftSection {
+  flex: 1;
+  min-width: 300px;
+}
+
+.rightSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accordionItem {
+  background-color: #f2f5ff;
+  margin-bottom: 16px;
+  transition: border-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.activeItem {
+  background-color: #e0e7ff;
+  border: none;
+}
+
+.accordionButton {
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.accordionContent {
+  padding: 10px 15px;
+  margin-top: 8px;
+  border-radius: 6px;
+}
+.accordionContent .accordiontext {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: left;
+  color: var(--light-text-color);
+  margin-top: 10px;
+}
+.subHeading {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .accordionContainer {
+    padding: 2rem;
+    border-radius: 0px;
+  }
+  .accordionContainer h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .accordionContainer {
+    padding: 1.5rem;
+    border-radius: 0px;
+  }
+
+  .accordionContainer h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 470px) {
+  .header{
+    padding: 0px;
+  }
+  .accordionContainer h1 {
+    font-size: 1.8rem;
+  }
+
+
+}
