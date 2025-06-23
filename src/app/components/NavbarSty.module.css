@@ -1,0 +1,395 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 22px;
+  background-color: var(--white-text-color);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  margin: 20px 80px;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+.navbar.scrolled {
+  background-color: var(--primary-gradient);
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+  color: var(--heading-color);
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navList {
+  display: flex;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 16px;
+  transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+.link {
+  margin-right: 40px;
+  color: var(--text-color);
+  position: relative;
+}
+
+.link::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: all 0.6s ease;
+  bottom: -15px;
+  left: 0;
+}
+
+.link:hover::before {
+  transform: scaleX(1);
+}
+.nextArrow {
+  display: none;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.login,
+.signup {
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.login {
+  background: var(--primary-gradient);
+  color: var(--white-text-color);
+}
+
+.signup {
+  background: var(--white-text-color);
+  color: var(--heading-color);
+}
+
+.login:hover,
+.signup:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Burger Icon */
+.burger-icon {
+  display: none; /* Use media queries to toggle visibility */
+  font-size: 30px;
+  cursor: pointer;
+  color: var(--heading-color);
+  z-index: 11;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.animate-fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+.modal-overlay {
+  top: 6%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  height: 20%;
+  margin: 0px 80px;
+}
+.nav_overlay {
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.modalDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  padding: 20px;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease-out;
+  display: none;
+  width: 90%;
+  height: 94vh;
+  align-items: flex-end;
+}
+
+.modalDropdown.active {
+  transform: translateY(0);
+  display: block;
+  overflow-y: auto;
+}
+
+
+.modalDropdown .closeBtn {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.closeBtn span{
+  margin-left: 10px;
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .navbar {
+    width: 100%;
+    margin: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 0px;
+  }
+  .burger-icon {
+    display: block;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    top: 80px;
+    right: 0;
+    background-color: var(--white-text-color);
+    width: 70%;
+    height: 94vh;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 20px;
+    gap: 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  .nav_overlay.active {
+    display: block;
+  }
+  .nextArrow {
+    display: block;
+  }
+  .navList {
+    display: block;
+    width: 100%;
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    cursor: pointer;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .link::before {
+    display: none;
+  }
+  .modal-overlay {
+    display: none;
+  }
+  .auth-buttons {
+    display: block;
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+  }
+  .login {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .signup {
+    width: 100%;
+  }
+  .modal-overlay {
+    display: none;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 1024px) {
+  .navbar {
+    width: 100%;
+    margin: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 0px;
+  }
+  .burger-icon {
+    display: block;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    top: 80px;
+    right: 0;
+    background-color: var(--white-text-color);
+    width: 70%;
+    height: 94vh;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 20px;
+    gap: 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  .nav_overlay.active {
+    display: block;
+  }
+  .nextArrow {
+    display: block;
+  }
+  .navList {
+    display: block;
+    width: 100%;
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    cursor: pointer;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .link::before {
+    display: none;
+  }
+  .modal-overlay {
+    display: none;
+  }
+  .auth-buttons {
+    display: block;
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+  }
+  .login {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .signup {
+    width: 100%;
+  }
+  .modal-overlay {
+    display: none;
+  }
+}
+
+@media  (max-width: 425px) {
+  .navbar {
+    width: 100%;
+    margin: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 0px;
+  }
+  .burger-icon {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background-color: var(--white-text-color);
+    width: 80%;
+    height: 600px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    gap: 20px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    padding: 10px;
+  }
+  .login,
+  .signup {
+    width: 100%;
+    margin: 0px;
+  }
+  .signup {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
