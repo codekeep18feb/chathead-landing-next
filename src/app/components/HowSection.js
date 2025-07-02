@@ -12,12 +12,19 @@ const slides = {
       image: "/Asset/fashoni_chat_opener_visible.png",
       sections: [
         {
-          heading: "What is P2A",
+          heading: "What is Peer to Admin (P2A)",
           paragraph:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          list: ["Auth", "Admin Panel"],
+            "P2A chat is designed for scenarios where users need to interact directly with the application or site administrators. It combines automated support with human assistance, helping users resolve issues, ask questions, or request services.",
+          list: [
+            "Lets users ask questions and receive instant answers from an AI-powered bot (offline mode).",
+            "Enables real-time conversations with live admins for support, sales, or onboarding.",
+            "Ideal for service-based platforms, e-commerce sites, and customer support systems.",
+            "Useful in internal tools where employees need direct access to admin or support staff.",
+            "Seamlessly switches between bot and human support as needed — no complex setup required.",
+          ],
         },
       ],
+      
     },
     {
       image: "/Asset/no_users_admin.png",
@@ -35,12 +42,19 @@ const slides = {
       image: "/images/p2p-slide1.jpg",
       sections: [
         {
-          heading: "P2P Messaging",
-          subheading: "User to User",
-          paragraph: "This slide explains P2P logic.",
-          list: ["Chat", "File Sharing", "Emojis"],
+          heading: "What is Peer to Peer (P2P)",
+          paragraph:
+            "P2P chat is used when a product requires users to communicate directly with other users on the platform — without admin involvement. It's ideal for platforms focused on community, collaboration, or direct messaging between users.",
+          list: [
+            "Enables user-to-user interaction through private or group chat.",
+            "Supports use cases like social media platforms, online marketplaces, or forums.",
+            "Common in gaming platforms for team communication or matchmaking.",
+            "Perfect for collaboration tools where users need to coordinate in real time.",
+            "Provides built-in chat without having to build a full messaging backend from scratch.",
+          ],
         },
       ],
+      
     },
     {
       image: "/images/p2p-slide2.jpg",
