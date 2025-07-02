@@ -85,9 +85,13 @@ const HowSection = () => {
       <div className="how-content">
         {/* Left Side */}
         <div className="left-side">
-          <h2>Peer to Admin</h2>
+          <h2>Services Summary</h2>
           <ul className="peer-list">
-            {["v1", "v2", "v3"].map((option) => (
+            {[
+              "cloud managed auth",
+              "locally managed auth",
+              "plugin driven",
+            ].map((option) => (
               <li key={option} onClick={() => handleOptionClick(option)}>
                 {option}
               </li>
@@ -165,11 +169,11 @@ const HowSection = () => {
   );
 };
 
-const VersionContent = ({ version, onWatchDemo, onBack }) => 
-  {
-    console.log("verwer",version)
+const VersionContent = ({ version, onWatchDemo, onBack }) => {
+  console.log("verwer", version);
 
-    return (<div className="chat-type-wrapper" style={{ display: "block" }}>
+  return (
+    <div className="chat-type-wrapper" style={{ display: "block" }}>
       <div className="back-btn">
         <button onClick={onBack}>
           <i className="bi bi-x"></i>
@@ -177,14 +181,19 @@ const VersionContent = ({ version, onWatchDemo, onBack }) =>
       </div>
       <div className="world-chat">
         <section className="v1_wrapper">
-          {version=="v1" ? <h4>{`[${version}]  - Chat (Simple Apps/Sites) with Cloud Managed Authentication `}</h4>: version=="v2" ? <h4>{`[${version}]  - Chat (Complex Apps/Sites) with Locally Managed Authentication`}</h4> : <h4>{`[${version}]  - Chat (CMS based Sites) with Plugin Driven Authentication `}</h4>}
+          {version == "cloud managed auth" ? (
+            <h4>{`[${version}]  - Chat (Simple Apps/Sites) with Cloud Managed Authentication `}</h4>
+          ) : version == "locally managed auth" ? (
+            <h4>{`[${version}]  - Chat (Complex Apps/Sites) with Locally Managed Authentication`}</h4>
+          ) : (
+            <h4>{`[${version}]  - Chat (CMS based Sites) with Plugin Driven Authentication `}</h4>
+          )}
           <ContentRows version={version} onWatchDemo={onWatchDemo} />
         </section>
       </div>
-    </div>)
-    
-  }
-
+    </div>
+  );
+};
 
 const ContentRows = ({ version, onWatchDemo }) => (
   <>
@@ -205,14 +214,13 @@ const ContentRows = ({ version, onWatchDemo }) => (
 
 const ContentCard = ({ title, version }) => {
   const contentData = {
-    v1: {
-      "for Whom":  [
+    "cloud managed auth": {
+      "for Whom": [
         "Products that need both authentication and chat out of the box.",
         "Apps that haven't implemented authentication yet.",
         "Websites aiming to convert visitors into active, authenticated users.",
         "Ideal for live or AI-powered chat paired with Magicchat’s authentication services.",
-      ]
-      ,
+      ],
       Provides: [
         "Adds user login, signup, and authentication UI to your app or website.",
         "Embeds a customizable chatbox into any interface—web or mobile.",
@@ -234,7 +242,7 @@ const ContentCard = ({ title, version }) => {
         "Fits well into MVPs or new apps that lack built-in auth and chat but need both to onboard and support users fast.",
       ],
     },
-    v2: {
+    "locally managed auth": {
       "for Whom": [
         "Products that already have built-in authentication and only need chat services.",
         "Apps with existing authentication systems in place.",
@@ -255,9 +263,9 @@ const ContentCard = ({ title, version }) => {
         "Ideal for client-server or monolithic architectures with built-in (or planned) authentication.",
         "Great for service providers, support-focused businesses, and mid to large-scale chat call centers.",
         "Perfect for modern architectures — works seamlessly with any authentication system (authentication-agnostic).",
-      ]
+      ],
     },
-    v3: {
+    "plugin driven": {
       "for Whom": [
         "CMS platforms like WordPress that already have built-in authentication and only need chat functionality.",
         "Systems using tightly coupled auth plugins that can't notify when a new user signs up.",
@@ -279,7 +287,7 @@ const ContentCard = ({ title, version }) => {
         "Ideal for CMS-based products with tightly coupled, plugin-driven authentication systems.",
         "Great for service providers, support-focused businesses, and mid to large-scale chat call centers.",
         "Perfect for modern architectures — works seamlessly with any authentication system (auth-agnostic).",
-      ]
+      ],
     },
   };
 
