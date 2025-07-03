@@ -7,6 +7,8 @@ import Tabs from "./Tabs";
 import Slider from "./Slider";
 import styles from "./HowSectionSty.module.css";
 import { FaHandPointRight } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+
 
 const slides = {
   p2a: [
@@ -215,6 +217,7 @@ const ContentRows = ({ version, onWatchDemo }) => (
 );
 
 const ContentCard = ({ title, version }) => {
+  const router = useRouter();
   const contentData = {
     "cloud managed auth": {
       "for Whom": [
@@ -295,6 +298,12 @@ const ContentCard = ({ title, version }) => {
 
   const content = contentData[version][title];
 
+  const handleIconClick = () => {
+    if (version === "cloud managed auth") {
+      router.push("/cloudManaged"); // Navigate to the desired page
+    }
+  };
+
   return (
     <div className={styles.v1_content_card}>
       <h5>{title}</h5>
@@ -307,7 +316,7 @@ const ContentCard = ({ title, version }) => {
         ))}
         {/* <img className="icon" src="Asset/arrow.png" alt="icon" /> */}
       </ul>
-      <div className={styles["icon-wrapper"]}>
+      <div className={styles["icon-wrapper"]} onClick={handleIconClick}>
         <img className={styles.icon} src="Asset/arrow.png" alt="icon" />
       </div>
     </div>
