@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './NavbarSty.module.css'
 
 function Modal({ content, visible, onClose }) {
   if (!visible) return null;
@@ -8,8 +9,8 @@ function Modal({ content, visible, onClose }) {
   };
 
   return (
-    <div className="modal-overlay" onMouseLeave={handleMouseLeave}>
-      <div className="modal-content">{content}</div>
+    <div className={styles["modal-overlay"]} onMouseLeave={handleMouseLeave}>
+      <div className={styles["modal-content"]}>{content}</div>
     </div>
 
     

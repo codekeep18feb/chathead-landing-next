@@ -184,19 +184,19 @@ body {
 }
 
 /* Email Input */
-.email-input {
+/* .email-input {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: auto;
   padding: 12px;
   width: 500px;
-  max-width: 100%; /* Responsive */
+  max-width: 100%; 
   background: var(--white-text-color);
   border-radius: 8px;
   position: relative;
   overflow: hidden;
-}
+} */
 
 .email-input::before {
   content: "";
@@ -226,6 +226,9 @@ body {
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+}
+.email-input button:hover{
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 /* Solve Image Section */

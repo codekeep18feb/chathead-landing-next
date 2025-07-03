@@ -1,39 +1,33 @@
-"use client"; // This line must be at the top
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { collectSegments } from "next/dist/build/segment-config/app/app-segments";
 import Platform from "./Platform";
 import Solutions from "./Solutions";
 import Developers from "./Developers";
 import Resources from "./Resources";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
+import styles from "./NavbarSty.module.css";
 
 const Navbar = ({ onLinkHover, onNavLeave }) => {
-  const [menuOpen, setMenuOpen] = useState(false); // Manage menu state
-  const [hoveredContent, setHoveredContent] = useState(null); // For tracking hovered content
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [hoveredContent, setHoveredContent] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust based on your mobile breakpoint
+      setIsMobile(window.innerWidth <= 1280);
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Check initial window size
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
-    console.log("i am clicked");
-
-    if (!menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = !menuOpen ? "hidden" : "auto";
   };
 
   const handleItemClick = (content, link) => {
@@ -41,7 +35,6 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
       onLinkHover(content);
       setHoveredContent(content);
       setMenuOpen(false);
-      console.log("you clicked");
     }
 
     if (isMobile && link === "/pricing") {
@@ -53,114 +46,123 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
   const handleCloseModal = () => {
     setHoveredContent(null);
   };
-  // Use the basePath for images
+
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  console.log("base pathDFD", basePath);
+
   return (
-    <nav className="navbar">
-      <div className="logo">
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>
         <img src={`${basePath}/Asset/logo.jpg`} alt="addChat" />
         <h2>addChat</h2>
       </div>
-      {/* <div className="burger-icon" onClick={toggleMenu}>
-        &#9776;
-      </div> */}
 
       <div
-        className={`burger-icon ${!menuOpen ? "animate-fade" : ""}`}
+        className={`${styles["burger-icon"]} ${
+          !menuOpen ? styles["animate-fade"] : ""
+        }`}
         onClick={toggleMenu}
       >
         {menuOpen ? <HiOutlineX size={28} /> : <HiOutlineMenuAlt3 size={28} />}
       </div>
 
       <div
-        className={`nav_overlay ${menuOpen ? "active" : ""}`}
+        className={`${styles.nav_overlay} ${menuOpen ? styles.active : ""}`}
         onClick={toggleMenu}
       ></div>
 
-      <ul className={`nav-links ${menuOpen ? "active" : ""}`} id="nav-links">
-        <div className="navList">
+      <ul
+        className={`${styles["nav-links"]} ${
+          menuOpen ? styles.active : ""
+        }`}
+        id="nav-links"
+      >
+        <div className={styles.navList}>
           <li
             onMouseEnter={() => onLinkHover(<Platform />)}
             onMouseLeave={onNavLeave}
             onClick={() => handleItemClick(<Platform />)}
-            className="links"
+            className={styles.links}
           >
-            <a href="#platform" className="link">
+            <a href="#platform" className={styles.link}>
               Platform
             </a>
-            <div className=" nextArrow"> &gt;</div>
+            <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
             onMouseEnter={() => onLinkHover(<Solutions />)}
-            // onMouseLeave={onNavLeave}
             onClick={() => handleItemClick(<Solutions />)}
-            className="links"
+            className={styles.links}
           >
-            <a href="#solutions" className="link">
+            <a href="#solutions" className={styles.link}>
               Solutions
             </a>
-            <div className=" nextArrow"> &gt;</div>
+            <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
             onMouseEnter={() => onLinkHover(<Developers />)}
             onMouseLeave={onNavLeave}
             onClick={() => handleItemClick(<Developers />)}
-            className="links"
+            className={styles.links}
           >
-            <a href="#developer" className="link">
+            <a href="#developer" className={styles.link}>
               Developers
             </a>
-            <div className=" nextArrow"> &gt;</div>
+            <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
             onMouseEnter={() => onLinkHover(<Resources />)}
             onMouseLeave={onNavLeave}
             onClick={() => handleItemClick(<Resources />)}
-            className="links"
+            className={styles.links}
           >
-            <a href="#resource" className="link">
+            <a href="#resource" className={styles.link}>
               Resources
             </a>
-            <div className=" nextArrow"> &gt;</div>
+            <div className={styles.nextArrow}> &gt;</div>
           </li>
 
           <li>
             <Link href="/pricing" legacyBehavior>
               <a
                 onClick={() => handleItemClick(null, "/pricing")}
-                className="link"
+                className={styles.link}
               >
                 Pricing
               </a>
             </Link>
           </li>
         </div>
-        <div className="auth-buttons">
+
+        <div className={styles["auth-buttons"]}>
           <li>
             <a href="http://dev.addchat.tech/login">
-              <button className="login">Log-in</button>
+              <button className={styles.login}>Log-in</button>
             </a>
           </li>
           <li>
             <a href="http://dev.addchat.tech/signup">
-              <button className="signup">Sign-up</button>
+              <button className={styles.signup}>Sign-up</button>
             </a>
           </li>
         </div>
       </ul>
+
       {(hoveredContent || isMobile) && (
         <>
           <div
-            className={`nav_overlay ${hoveredContent ? "active" : ""}`}
+            className={`${styles.nav_overlay} ${
+              hoveredContent ? styles.active : ""
+            }`}
             onClick={handleCloseModal}
           ></div>
           <div
-            className={`modalDropdown ${hoveredContent ? "active" : ""}`}
+            className={`${styles.modalDropdown} ${
+              hoveredContent ? styles.active : ""
+            }`}
             onClick={handleCloseModal}
           >
             {hoveredContent}
-            <button className="closeBtn" onClick={handleCloseModal}>
+            <button className={styles.closeBtn} onClick={handleCloseModal}>
               <i className="fa-solid fa-arrow-left"></i>
               <span>Back</span>
             </button>
