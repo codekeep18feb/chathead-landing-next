@@ -184,7 +184,6 @@ const features = [
           "Voice & video calling",
           "Secure file transfer",
           "Chat search & history",
-          
         ],
       },
     ],
@@ -202,7 +201,6 @@ const features = [
           "Profanity Filter",
           "Data Masking",
           "Report User & Message",
-          
         ],
       },
     ],
@@ -256,7 +254,7 @@ const HeartIcon = (
       fill="#2C2424"
     />
   </svg>
-);  
+);
 
 export default function OnDemand() {
   const sections = {
@@ -383,7 +381,7 @@ export default function OnDemand() {
       />
 
       <FeatureSectionWrapper
-        title="Cometchat for On-Demand Marketplaces"
+        title="Magicchat.io for On-Demand Marketplaces"
         description="Less friction, Better communication, No platform leakage"
         sections={sections}
       />
@@ -408,10 +406,10 @@ export default function OnDemand() {
         sections={business}
       />
 
-      <FeaturesIntegrations 
-       title="Features and integrations that make for great interactions"
-       description="Communication platform built for growth"
-       sections={features}
+      <FeaturesIntegrations
+        title="Features and integrations that make for great interactions"
+        description="Communication platform built for growth"
+        sections={features}
       />
 
       <Carousel

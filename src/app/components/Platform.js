@@ -1,66 +1,67 @@
 const Platform = () => {
-   const platformList = {
-     features: [
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Moderation",
-         text: "Create a safe environment for your users with our AI moderation   (_lorem ipsum)",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Analytics & insights",
-         text: "Get real-time usage insights of your user engagement through chat",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Notifications",
-         text: "Push, email notifications for new messages, mentions, and other important events.",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Interactive messages",
-         text: "Convert your chat into a powerful operations hub",
-       }
-       ,
-      //  {
-      //    icon: "fa-solid fa-chart-bar",
-      //    subHeading: "Multi-tenancy",
-      //    text: "Create and manage multiple, independent chat environments with ease",
-      //  },
-      //  {
-      //    icon: "fa-solid fa-chart-bar",
-      //    subHeading: "Webhooks",
-      //    text: "Set up programmatic triggers for all chat events",
-      //  },
-      //  {
-      //    icon: "fa-solid fa-chart-bar",
-      //    subHeading: "Security & compliance",
-      //    text: "Advanced encryption and security. Fully compliant with HIPAA, GDPR, SOC 2",
-      //  },
-      //  {
-      //    icon: "fa-solid fa-chart-bar",
-      //    subHeading: "All features",
-      //    text: "Explore all features of CometChat across chat, voice and video",
-      //  },
-     ],
-     integration: [
-       {
-         icon: "fa-solid fa-user",
-         subHeading: "UI kits",
-         text: "Ready to ship chat with pre-built UI components & business logic",
-       },
-       {
-         icon: "fa-solid fa-envelope",
-         subHeading: "SDKs & APIs",
-         text: "Fully customisable SDKs and APIs to power your in-app user engagement",
-       },
-       {
-         icon: "fa-solid fa-chart-bar",
-         subHeading: "Widgets",
-         text: "Simple, no-code option for light-weight chat use cases",
-       },
-     ],
-   };
+  const platformList = {
+    features: [
+      {
+        icon: "fa-solid fa-face-smile",
+        subHeading: "Reactions",
+        text: "Let users express themselves instantly with emoji reactions to messages, making conversations more engaging and dynamic.",
+      },
+      {
+        icon: "fa-solid fa-receipt",
+        subHeading: "Delivery Reports",
+        text: "Track message delivery in real time with instant read and delivery receipts, ensuring your communication is always on point.",
+      },
+      {
+        icon: "fa-solid fa-signal",
+        subHeading: "Live Status",
+        text: "Monitor live presence and availability of users across your platform with real-time status indicators.",
+      },
+      {
+        icon: "fa-solid fa-envelope-circle-check",
+        subHeading: "Email Notifications",
+        text: "Receive instant email alerts for important events, ensuring users never miss out on critical updates or activities.",
+      },
+      // Uncomment to add more features
+      // {
+      //   icon: "fa-solid fa-network-wired",
+      //   subHeading: "Multi-Tenancy",
+      //   text: "Create and manage multiple isolated chat environments within a single platform, perfect for SaaS and B2B use cases.",
+      // },
+      // {
+      //   icon: "fa-solid fa-plug",
+      //   subHeading: "Webhooks",
+      //   text: "Enable real-time external integrations with custom webhooks triggered by chat events.",
+      // },
+      // {
+      //   icon: "fa-solid fa-shield-halved",
+      //   subHeading: "Security & Compliance",
+      //   text: "Enterprise-grade security including end-to-end encryption, GDPR, HIPAA, and SOC 2 compliance.",
+      // },
+      // {
+      //   icon: "fa-solid fa-list-check",
+      //   subHeading: "All Features",
+      //   text: "Access a complete suite of messaging, voice, video, moderation, and engagement tools.",
+      // },
+    ],
+    integration: [
+      // {
+      //   icon: "fa-solid fa-layer-group",
+      //   subHeading: "UI Kits",
+      //   text: "Accelerate development with pre-built, customizable UI components that include chat business logic out of the box.",
+      // },
+      // {
+      //   icon: "fa-solid fa-code",
+      //   subHeading: "SDKs & APIs",
+      //   text: "Integrate chat capabilities deeply into your application using modular SDKs and robust APIs tailored to your stack.",
+      // },
+      {
+        icon: "fa-solid fa-puzzle-piece",
+        subHeading: "Integration",
+        text: "Please follow the documentaton to integrate it into your product.",
+      },
+    ],
+  };
+  
  
    return (
      <div className="platform-container">
