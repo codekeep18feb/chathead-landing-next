@@ -1,10 +1,12 @@
 "use client";
 
 // src/app/components/HowSection.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageSlider from "./ImageSlider";
 import Tabs from "./Tabs";
 import Slider from "./Slider";
+import styles from "./HowSectionSty.module.css";
+import { FaHandPointRight } from "react-icons/fa";
 
 const slides = {
   p2a: [
@@ -24,7 +26,6 @@ const slides = {
           ],
         },
       ],
-      
     },
     {
       image: "/Asset/no_users_admin.png",
@@ -54,7 +55,6 @@ const slides = {
           ],
         },
       ],
-      
     },
     {
       image: "/images/p2p-slide2.jpg",
@@ -94,13 +94,25 @@ const HowSection = () => {
     setDemoVersion(null);
   };
 
+  useEffect(() => {
+    if (showDemoPopup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showDemoPopup]);
+
   return (
-    <section className="how-section">
-      <div className="how-content">
+    <section className={styles["how-section"]}>
+      <div className={styles["how-content"]}>
         {/* Left Side */}
-        <div className="left-side">
+        <div className={styles["left-side"]}>
           <h2>Services Summary</h2>
-          <ul className="peer-list">
+          <ul className={styles["peer-list"]}>
             {[
               "cloud managed auth",
               "locally managed auth",
@@ -112,27 +124,13 @@ const HowSection = () => {
             ))}
           </ul>
 
-          <button
-            onClick={() => setShowTabs(true)}
-            style={{
-              padding: "10px 15px",
-              margin: "8px 0",
-              cursor: "pointer",
-              fontSize: "1.1em",
-              color: "#555",
-              borderRadius: "4px",
-              backgroundColor: "#fff",
-              transition: "background-color 0.3s ease",
-              outline: "none",
-              border: "none",
-            }}
-          >
-            P2A vs P2P
-          </button>
+          <ul className={styles["peer-list"]} style={{ marginTop: "10px" }}>
+            <li onClick={() => setShowTabs(true)}>P2A vs P2P</li>
+          </ul>
         </div>
 
         {/* Right Side */}
-        <div className="right-side">
+        <div className={styles["right-side"]}>
           {showTabs ? (
             <Tabs tabs={tabData} />
           ) : selectedOption ? (
@@ -151,19 +149,9 @@ const HowSection = () => {
 
         {/* Popup Overlay */}
         {showDemoPopup && (
-          <div className="overlay">
-            <div className="popup">
-              {/* <div
-                className="close-btn"
-                onClick={closePopup}
-                style={{ cursor: "pointer", textAlign: "right" }}
-              >
-                <i className="bi bi-x" style={{ fontSize: "24px" }}></i>
-              </div> */}
-
-              {/* <img src="Asset/logo.jpg" alt="addChat" /> */}
-
-              <div className="image-wrappe">
+          <div className={styles.overlay}>
+            <div className={styles.popup}>
+              <div className={styles["image-wrappe"]}>
                 <ImageSlider
                   images={[
                     "/Asset/demo_imgs/v1/p2a/before.png",
@@ -187,14 +175,14 @@ const VersionContent = ({ version, onWatchDemo, onBack }) => {
   console.log("verwer", version);
 
   return (
-    <div className="chat-type-wrapper" style={{ display: "block" }}>
-      <div className="back-btn">
+    <div className={styles["chat-type-wrapper"]} style={{ display: "block" }}>
+      <div className={styles["back-btn"]}>
         <button onClick={onBack}>
           <i className="bi bi-x"></i>
         </button>
       </div>
-      <div className="world-chat">
-        <section className="v1_wrapper">
+      <div className={styles["world-chat"]}>
+        <section className={styles.v1_wrapper}>
           {version == "cloud managed auth" ? (
             <h4>{`[${version}]  - Chat (Simple Apps/Sites) with Cloud Managed Authentication `}</h4>
           ) : version == "locally managed auth" ? (
@@ -210,20 +198,20 @@ const VersionContent = ({ version, onWatchDemo, onBack }) => {
 };
 
 const ContentRows = ({ version, onWatchDemo }) => (
-  <>
-    <div className="row">
+  <div>
+    <div className={styles.row}>
       {["for Whom", "Provides"].map((title, index) => (
         <ContentCard key={index} title={title} version={version} />
       ))}
     </div>
     <WatchDemoButton onWatchDemo={onWatchDemo} version={version} />{" "}
     {/* Move the button here */}
-    <div className="row">
+    <div className={styles.row}>
       {["How Does it work", "Example Usage"].map((title, index) => (
         <ContentCard key={index} title={title} version={version} />
       ))}
     </div>
-  </>
+  </div>
 );
 
 const ContentCard = ({ title, version }) => {
@@ -308,16 +296,19 @@ const ContentCard = ({ title, version }) => {
   const content = contentData[version][title];
 
   return (
-    <div className="v1_content_card">
+    <div className={styles.v1_content_card}>
       <h5>{title}</h5>
-      <ul>
+      <ul className={styles["grid-list"]}>
         {content.map((text, index) => (
-          <li key={index}>{text}</li>
+          <li key={index}>
+            <FaHandPointRight className={styles["list-icon"]} />
+            {text}
+          </li>
         ))}
         {/* <img className="icon" src="Asset/arrow.png" alt="icon" /> */}
       </ul>
-      <div className="icon-wrapper">
-        <img className="icon" src="Asset/arrow.png" alt="icon" />
+      <div className={styles["icon-wrapper"]}>
+        <img className={styles.icon} src="Asset/arrow.png" alt="icon" />
       </div>
     </div>
   );
@@ -326,21 +317,24 @@ const ContentCard = ({ title, version }) => {
 // Watch Demo Button Component
 const WatchDemoButton = ({ onWatchDemo, version }) => (
   <div style={{ textAlign: "center", margin: "20px 0" }}>
-    <button className="read_more_btn" onClick={() => onWatchDemo(version)}>
+    <button
+      className={styles.read_more_btn}
+      onClick={() => onWatchDemo(version)}
+    >
       Watch Demo
     </button>
   </div>
 );
 
 const DefaultContent = () => (
-  <div className="chat-type-wrapper">
-    <div className="back-btn">
+  <div className={styles["chat-type-wrapper"]}>
+    <div className={styles["back-btn"]}>
       <button>
         <i className="bi bi-x"></i>
       </button>
     </div>
 
-    <div className="world-chat">
+    <div className={styles["world-chat"]}>
       <Section
         title="Why Choose Us?"
         items={[
@@ -381,17 +375,24 @@ const DefaultContent = () => (
           "Transparent, affordable pricing for all.",
         ]}
       />
-      <img src="Asset/globe.png" alt="World Chat" className="center-image" />
+      <img
+        src="Asset/globe.png"
+        alt="World Chat"
+        className={styles["center-image"]}
+      />
     </div>
   </div>
 );
 
 const Section = ({ title, items }) => (
-  <div className="chat-type-content">
+  <div className={styles["chat-type-content"]}>
     <h5>{title}</h5>
-    <ul>
+    <ul className={styles["grid-list"]}>
       {items.map((item, index) => (
-        <li key={index}>{item}</li>
+        <li key={index}>
+          <FaHandPointRight className={styles["list-icon"]} />
+          {item}
+        </li>
       ))}
     </ul>
   </div>
