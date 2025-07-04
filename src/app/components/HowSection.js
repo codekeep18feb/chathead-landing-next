@@ -242,7 +242,7 @@ const ContentCard = ({ title, version }) => {
   const router = useRouter();
 
   const routePrefix = {
-    "cloud managed auth": "CloudManagedAuth",
+    "cloud managed auth": "cloud-managed-auth",
     "locally managed auth": "LocallyManagedAuth",
     "plugin driven": "PluginDrivenAuth",
   };
