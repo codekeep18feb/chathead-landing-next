@@ -67,7 +67,9 @@ const Platform = () => {
      <div className="platform-container">
        <div className="platform-sections">
          <div className="platform-section">
+           <>
            <h2 className="section-title">Features</h2>
+           </>
            <div className="card-list">
              {platformList.features.map((item, index) => (
                <div className="card" key={index}>
@@ -81,7 +83,9 @@ const Platform = () => {
            </div>
          </div>
          <div className="platform-section">
+          <>
            <h2 className="section-title">Integration</h2>
+           </>
            <div className="card-list newcard-list">
              {platformList.integration.map((item, index) => (
                <div className="card" key={index}>

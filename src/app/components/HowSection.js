@@ -240,6 +240,26 @@ const ContentRows = ({ version, onWatchDemo }) => (
 
 const ContentCard = ({ title, version }) => {
   const router = useRouter();
+
+  const routePrefix = {
+    "cloud managed auth": "CloudManagedAuth",
+    "locally managed auth": "LocallyManagedAuth",
+    "plugin driven": "PluginDrivenAuth",
+  };
+
+  const slugMap = {
+    "for Whom": "to-whom",
+    Provides: "provides",
+    "How Does it work": "how-it-works",
+    "Example Usage": "example-usage",
+  };
+
+  const handleIconClick = () => {
+    const sectionSlug = slugMap[title];
+    const baseRoute = routePrefix[version];
+    router.push(`/${baseRoute}/${sectionSlug}`);
+  };
+
   const contentData = {
     "cloud managed auth": {
       "for Whom": [
@@ -320,11 +340,11 @@ const ContentCard = ({ title, version }) => {
 
   const content = contentData[version][title];
 
-  const handleIconClick = () => {
-    if (version === "cloud managed auth") {
-      router.push("/cloudManaged"); // Navigate to the desired page
-    }
-  };
+  // const handleIconClick = () => {
+  //   if (version === "cloud managed auth") {
+  //     router.push("/cloudManaged"); 
+  //   }
+  // };
 
   return (
     <div className={styles.v1_content_card}>
