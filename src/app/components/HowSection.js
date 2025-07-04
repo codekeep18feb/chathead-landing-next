@@ -243,8 +243,8 @@ const ContentCard = ({ title, version }) => {
 
   const routePrefix = {
     "cloud managed auth": "cloud-managed-auth",
-    "locally managed auth": "LocallyManagedAuth",
-    "plugin driven": "PluginDrivenAuth",
+    "locally managed auth": "locally-managed-auth",
+    "plugin driven": "plugin-driven",
   };
 
   const slugMap = {
