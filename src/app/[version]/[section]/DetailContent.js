@@ -10,22 +10,22 @@ export default function DetailContent({ section, content }) {
       <h1 className={styles.title}>{section.replace(/-/g, " ")}</h1>
 
       <div className={styles.contentBlock}>
-      {content.map((item, index) => {
-  if (item.type === "list") {
-    return (
-      <li key={index}>
-        <FaHandPointRight className={styles.icon} />
-        {item.text}
-      </li>
-    );
-  }
+        {content.map((item, index) => {
+          if (item.type === "list") {
+            return (
+              <li key={index}>
+                <FaHandPointRight className={styles.icon} />
+                {item.text}
+              </li>
+            );
+          }
 
-  if (item.type === "component") {
-    return <div key={index}>{item.element}</div>;
-  }
+          if (item.type === "component") {
+            return <div key={index}>{item.element}</div>;
+          }
 
-  return null;
-})}
+          return null;
+        })}
       </div>
     </div>
   );

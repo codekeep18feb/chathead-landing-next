@@ -241,24 +241,43 @@ const ContentRows = ({ version, onWatchDemo }) => (
 const ContentCard = ({ title, version }) => {
   const router = useRouter();
 
+  // const routePrefix = {
+  //   "cloud managed auth": "cloud-managed-auth",
+  //   "locally managed auth": "locally-managed-auth",
+  //   "plugin driven": "plugin-driven",
+  // };
+
+  // const slugMap = {
+  //   "for Whom": "to-whom",
+  //   Provides: "provides",
+  //   "How Does it work": "how-it-works",
+  //   "Example Usage": "example-usage",
+  // };
+
+  const handleIconClick = () => {
+    // const sectionSlug = slugMap[title];
+    // const baseRoute = routePrefix[version];
+    // router.push(`/${baseRoute}/${sectionSlug}`);
+
+    const sectionSlug = slugMap[title];
+    const baseRoute = routePrefix[version];
+    router.push(`/${baseRoute}/${sectionSlug}`);
+  };
+
   const routePrefix = {
     "cloud managed auth": "cloud-managed-auth",
     "locally managed auth": "locally-managed-auth",
     "plugin driven": "plugin-driven",
   };
-
+  
   const slugMap = {
     "for Whom": "to-whom",
     Provides: "provides",
     "How Does it work": "how-it-works",
     "Example Usage": "example-usage",
   };
+  
 
-  const handleIconClick = () => {
-    const sectionSlug = slugMap[title];
-    const baseRoute = routePrefix[version];
-    router.push(`/${baseRoute}/${sectionSlug}`);
-  };
 
   const contentData = {
     "cloud managed auth": {
