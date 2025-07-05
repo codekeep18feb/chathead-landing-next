@@ -45,7 +45,9 @@ const Resources = () => {
     <div className="platform-container">
       <div className="platform-sections">
         <div className="platform-section">
+          <>
           <h2 className="section-title">MagicChat Blog</h2>
+          </>
           <div className="newcard-list">
             {resourcesList.addChat_blog.map((item, index) => (
               <div
@@ -69,7 +71,9 @@ const Resources = () => {
           </div>
         </div>
         <div className="platform-section">
+          <>
           <h2 className="section-title">Resources</h2>
+          </>
           <div className="newcard-list">
             {resourcesList.company_type.map((item, index) => (
               <div className="card" key={index}>

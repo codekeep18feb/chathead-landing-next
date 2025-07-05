@@ -9,7 +9,6 @@ import styles from "./HowSectionSty.module.css";
 import { FaHandPointRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-
 const slides = {
   p2a: [
     {
@@ -81,6 +80,7 @@ const HowSection = () => {
   const [demoVersion, setDemoVersion] = useState(null);
   const [showTabs, setShowTabs] = useState(false);
 
+  console.log("Selected option:", selectedOption);
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setShowTabs(false);
@@ -120,14 +120,33 @@ const HowSection = () => {
               "locally managed auth",
               "plugin driven",
             ].map((option) => (
-              <li key={option} onClick={() => handleOptionClick(option)}>
+              <li
+                key={option}
+                onClick={() => handleOptionClick(option)}
+                style={{
+                  backgroundColor: selectedOption === option ? "#4d6bdf" : "",
+                  color: selectedOption === option ? "white" : "",
+                }}
+              >
                 {option}
               </li>
             ))}
           </ul>
 
           <ul className={styles["peer-list"]} style={{ marginTop: "10px" }}>
-            <li onClick={() => setShowTabs(true)}>P2A vs P2P</li>
+            <li
+               onClick={() => {
+                setShowTabs(true);
+                setSelectedOption(null); 
+              }}
+              
+              style={{
+                backgroundColor: showTabs ? "#4d6bdf" : "",
+                color: showTabs ? "white" : "",
+              }}
+            >
+              P2A vs P2P
+            </li>
           </ul>
         </div>
 
@@ -153,6 +172,9 @@ const HowSection = () => {
         {showDemoPopup && (
           <div className={styles.overlay}>
             <div className={styles.popup}>
+              <button className={styles["close-btn"]} onClick={closePopup}>
+                &times;
+              </button>
               <div className={styles["image-wrappe"]}>
                 <ImageSlider
                   images={[
@@ -218,6 +240,45 @@ const ContentRows = ({ version, onWatchDemo }) => (
 
 const ContentCard = ({ title, version }) => {
   const router = useRouter();
+
+  // const routePrefix = {
+  //   "cloud managed auth": "cloud-managed-auth",
+  //   "locally managed auth": "locally-managed-auth",
+  //   "plugin driven": "plugin-driven",
+  // };
+
+  // const slugMap = {
+  //   "for Whom": "to-whom",
+  //   Provides: "provides",
+  //   "How Does it work": "how-it-works",
+  //   "Example Usage": "example-usage",
+  // };
+
+  const handleIconClick = () => {
+    // const sectionSlug = slugMap[title];
+    // const baseRoute = routePrefix[version];
+    // router.push(`/${baseRoute}/${sectionSlug}`);
+
+    const sectionSlug = slugMap[title];
+    const baseRoute = routePrefix[version];
+    router.push(`/${baseRoute}/${sectionSlug}`);
+  };
+
+  const routePrefix = {
+    "cloud managed auth": "cloud-managed-auth",
+    "locally managed auth": "locally-managed-auth",
+    "plugin driven": "plugin-driven",
+  };
+  
+  const slugMap = {
+    "for Whom": "to-whom",
+    Provides: "provides",
+    "How Does it work": "how-it-works",
+    "Example Usage": "example-usage",
+  };
+  
+
+
   const contentData = {
     "cloud managed auth": {
       "for Whom": [
@@ -298,11 +359,11 @@ const ContentCard = ({ title, version }) => {
 
   const content = contentData[version][title];
 
-  const handleIconClick = () => {
-    if (version === "cloud managed auth") {
-      router.push("/cloudManaged"); // Navigate to the desired page
-    }
-  };
+  // const handleIconClick = () => {
+  //   if (version === "cloud managed auth") {
+  //     router.push("/cloudManaged"); 
+  //   }
+  // };
 
   return (
     <div className={styles.v1_content_card}>

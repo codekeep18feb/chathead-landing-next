@@ -78,7 +78,9 @@ const Solutions = () =>{
       <div className="platform-container">
       <div className="platform-sections">
         <div className="platform-section">
+          <>
           <h2 className="section-title">By use case</h2>
+          </>
           <div className="card-list">
             {solutionList.useCase.map((item, index) => (
               <div className="card" key={index}                 
@@ -94,7 +96,9 @@ const Solutions = () =>{
           </div>
         </div>
         <div className="platform-section">
+          <>
           <h2 className="section-title">By company type</h2>
+          </>
           <div className="card-list newcard-list">
             {solutionList.company_type.map((item, index) => (
               <div className="card" key={index}>

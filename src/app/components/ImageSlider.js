@@ -1,5 +1,7 @@
 // src/app/components/ImageSlider.js
 import React, { useState } from "react";
+import styles from "./HowSectionSty.module.css";
+
 
 const ImageSlider = ({ images, onClose,}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,21 +42,22 @@ const ImageSlider = ({ images, onClose,}) => {
         />
      
 
-        <div className="step-navigation">
+        <div className={styles["step-navigation"]}>
           <button
             onClick={prevImage}
             disabled={images.length === 0 || currentIndex === 0}
-            className="btn btn-prev"
+            className={`${styles.btn} ${styles["btn-prev"]}`}
           >
             Previous
           </button>
 
           {images.length > 1 && currentIndex < images.length - 1 ? (
-            <button onClick={nextImage} className="btn btn-next">
+            <button onClick={nextImage} 
+            className={`${styles.btn} ${styles["btn-next"]}`}>
               Next
             </button>
           ) : (
-            <button onClick={finishImage} className="btn btn-finish">
+            <button onClick={finishImage} className={`${styles.btn} ${styles["btn-finish"]}`}>
               Finish
             </button>
           )}
