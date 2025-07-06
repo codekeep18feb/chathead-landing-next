@@ -794,3 +794,59 @@ export const cmsExampleUsageContent = {
     },
   };
   
+
+  export const cloudManagedReactionsFeature = {
+    label: "Feature",
+    heading: "Reactions",
+    description:
+      "Let users express themselves instantly with emoji reactions to messages, making conversations more engaging and dynamic.",
+    imageSrc: `${basePath}/Asset/messaging_experience.png`,
+    sections: {
+      "Emoji Reactions": {
+        className: "emoji-reactions",
+        image: `${basePath}/Asset/messaging_experience.png`,
+        content: [
+          {
+            type: "group",
+            className: "normal-text",
+            texts: [
+              "Allow users to react to messages using emojis for faster, lightweight interactions.",
+              "Popular reactions like 👍 ❤️ 😂 😮 help convey emotion instantly without typing.",
+              "Reactions enhance chat dynamics, especially in group discussions and community chats.",
+            ],
+          },
+        ],
+      },
+      "Boosted Engagement": {
+        className: "engagement-metrics",
+        image: `${basePath}/Asset/messaging_experience.png`,
+        content: [
+          {
+            type: "group",
+            className: "normal-text",
+            texts: [
+              "Encourage more participation by lowering the barrier to interaction.",
+              "Reactions offer a frictionless way for users to stay active in conversations.",
+              "Track the most used reactions to understand what resonates with your users.",
+            ],
+          },
+        ],
+      },
+      "Lightweight & Real-Time": {
+        className: "real-time-updates",
+        image: `${basePath}/Asset/messaging_experience.png`,
+        content: [
+          {
+            type: "group",
+            className: "normal-text",
+            texts: [
+              "All reactions update in real-time, making chats feel lively and current.",
+              "Built to be lightweight and responsive, even in high-traffic chats.",
+              "Seamless integration with your existing chat infrastructure.",
+            ],
+          },
+        ],
+      },
+    },
+  };
+  
