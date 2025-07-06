@@ -25,7 +25,7 @@ export default function BannerSection({
           {buttonText}
         </button>
       </div>
-      <Image src={imageSrc} alt={altText} width={600} height={400} />
+      <Image src={imageSrc} alt={altText} width={600} height={600} />
     </div>
   );
 }

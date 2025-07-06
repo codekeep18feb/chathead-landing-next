@@ -1,11 +1,8 @@
 "use client";
-import Head from "next/head";
+
+import BannerSection from "@/app/components/solutions_items/ondemand/BannerSection";
+import FeatureSectionWrapper from "@/app/components/solutions_items/ondemand/FeatureSectionWrapper";
 import { useRef } from "react";
-import BannerSection from "../components/solutions_items/ondemand/BannerSection";
-import FeatureSectionWrapper from "../components/solutions_items/ondemand/FeatureSectionWrapper";
-// import FeatureSectionWrapper from "../ondemand/FeatureSectionWrapper";
-
-
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -26,9 +23,9 @@ const HeartIcon = (
   </svg>
 );
 
-export default function WhowCloudDetailPage() {
+export default function ExampleUsageContent() {
   const sections = {
-    "Products need both": {
+    "Small product-based businesses": {
       ref: useRef(null),
       // subheading: "Whatsapp-style interface with all features out of the box",
       className: "messaging-experience",
@@ -43,14 +40,14 @@ export default function WhowCloudDetailPage() {
           type: "group",
           className: "normal-text",
           texts: [
-            "Products that need both authentication and chat out of the box.",
-           "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Ideal for small product-based businesses—connect sellers and buyers instantly through chat.",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             " Lorem Ipsum has been the in dustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
           ],
         },
       ],
     },
-    "App authentication": {
+    "Service Providers": {
       ref: useRef(null),
       // subheading: "Streamline product enquiries for sellers",
       className: "voice-video",
@@ -65,14 +62,14 @@ export default function WhowCloudDetailPage() {
           type: "group", // Group multiple similar elements
           className: "normal-text",
           texts: [
-            "Apps that haven't implemented authentication yet",
+            "Great for service providers, support-driven businesses, and small-scale chat call centers.",
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             " Lorem Ipsum has been the in dustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
           ],
         },
       ],
     },
-    "Active Users": {
+    "Boosts lead generation": {
       ref: useRef(null),
       // subheading: "Prevent platform leakage",
       className: "scale-millions",
@@ -86,14 +83,14 @@ export default function WhowCloudDetailPage() {
           type: "group", // Group multiple similar elements
           className: "normal-text",
           texts: [
-            "Websites aiming to convert visitors into active, authenticated users.",
+            "Boosts lead generation by engaging visitors on high-traffic web pages through smart authentication and chat.",
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             " Lorem Ipsum has been the in dustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
           ],
         },
       ],
     },
-    "Live or AI-powered": {
+    "User onboarding": {
       ref: useRef(null),
       // subheading: "Utilize messaging as a robust operations hub.",
       className: "moderation-control",
@@ -104,10 +101,31 @@ export default function WhowCloudDetailPage() {
           // text: "Go beyond basic user-to-user messaging. Interactive messages empowers marketplace admins to utilize chat as an operations hub.",
         },
         {
-          type: "group", 
+          type: "group",
           className: "normal-text",
           texts: [
-            "Ideal for live or AI-powered chat paired with Magicchat’s authentication services.",
+            "Useful for advisory blogs, educational platforms, or landing pages needing instant engagement or user onboarding.",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            " Lorem Ipsum has been the in dustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+          ],
+        },
+      ],
+    },
+    "MVPs or new apps": {
+      ref: useRef(null),
+      // subheading: "Utilize messaging as a robust operations hub.",
+      className: "moderation-control",
+      image: `${basePath}/Asset/moderation_control.png`,
+      content: [
+        {
+          type: "p",
+          // text: "Go beyond basic user-to-user messaging. Interactive messages empowers marketplace admins to utilize chat as an operations hub.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Fits well into MVPs or new apps that lack built-in auth and chat but need both to onboard and support users fast.",
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             " Lorem Ipsum has been the in dustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
           ],
@@ -115,11 +133,12 @@ export default function WhowCloudDetailPage() {
       ],
     },
   };
+
   return (
     <>
       <BannerSection
-        // icon={HeartIcon}
-        // label="Marketplace"
+        icon={HeartIcon}
+        label="Example Usage"
         heading="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
         description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries."
         buttonText="Schedule a demo"
@@ -133,7 +152,6 @@ export default function WhowCloudDetailPage() {
         description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
         sections={sections}
       />
-
     </>
   );
 }

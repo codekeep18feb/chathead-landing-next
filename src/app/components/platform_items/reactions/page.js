@@ -1,0 +1,202 @@
+"use client";
+import Head from "next/head";
+import BannerSection from "../../solutions_items/ondemand/BannerSection";
+import FeatureSectionWrapper from "../../solutions_items/ondemand/FeatureSectionWrapper";
+import { useRef } from "react";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+const HeartIcon = (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M14 0C21.7323 0 28 6.26773 28 14C28 21.7323 21.7323 28 14 28C6.26773 28 0 21.7323 0 14C0 6.26773 6.26773 0 14 0ZM11.5402 12.612C15.5433 11.2328 14.1285 6.69977 14.5338 6.83484C17.1549 8.11617 20.1015 10.9118 20.1015 15.1052C20.1015 18.3198 17.6088 21.1619 13.9863 21.1619C10.7723 21.3079 8.04945 18.8218 7.90344 15.6084C7.7525 12.2763 10.8648 9.84594 10.8648 10.4459C10.8921 10.7871 11.1825 12.612 11.5402 12.612Z"
+      fill="#2C2424"
+    />
+  </svg>
+);
+
+export default function ReactionsPage() {
+  // const sections = {
+  //   "Messaging experience": {
+  //     ref: useRef(null),
+  //     subheading: "Whatsapp-style interface with all features out of the box",
+  //     className: "messaging-experience",
+  //     image: `${basePath}/Asset/messaging_experience.png`,
+
+  //     content: [
+  //       {
+  //         type: "p",
+  //         text: "Build a relatable and modern messaging experience. More familiar the UX feels, the higher the user engagement.",
+  //       },
+  //       {
+  //         type: "group", // Group multiple similar elements
+  //         className: "normal-text",
+  //         texts: [
+  //           "AI powered smart messaging with conversation prompts",
+  //           "Voice notes with real time translation for users speaking different languages.",
+  //           "Allow users to send and receive product information through images and videos.",
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   "Centralized Inbox": {
+  //     ref: useRef(null),
+  //     subheading: "Streamline product enquiries for sellers",
+  //     className: "voice-video",
+  //     image: `${basePath}/Asset/voice_video.png`,
+
+  //     content: [
+  //       {
+  //         type: "p",
+  //         text: "Allow sellers to manage multiple conversations with a personalized inbox view.",
+  //       },
+  //       {
+  //         type: "group", // Group multiple similar elements
+  //         className: "normal-text",
+  //         texts: [
+  //           "Keep all conversations organized in one place.",
+  //           "Gain a complete picture of buyer engagement for each product.",
+  //           "Switch between seeing recent conversations for a specific listing or filter by buyer.",
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   "Chat Moderation": {
+  //     ref: useRef(null),
+  //     subheading: "Prevent platform leakage",
+  //     className: "scale-millions",
+  //     image: `${basePath}/Asset/scale_millions.png`,
+  //     content: [
+  //       {
+  //         type: "p",
+  //         text: "Retain users and keep all transactions within your platform.",
+  //       },
+  //       {
+  //         type: "group", // Group multiple similar elements
+  //         className: "normal-text",
+  //         texts: [
+  //           "Data masking to prevent attempts of contact and payment information sharing.",
+  //           "Prevent users from bypassing platform rules with proactive AI content moderation.",
+  //           "Integrate payment flow within chat for easy and secure transactions.",
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   "Messaging Operations": {
+  //     ref: useRef(null),
+  //     subheading: "Utilize messaging as a robust operations hub.",
+  //     className: "moderation-control",
+  //     image: `${basePath}/Asset/moderation_control.png`,
+  //     content: [
+  //       {
+  //         type: "p",
+  //         text: "Go beyond basic user-to-user messaging. Interactive messages empowers marketplace admins to utilize chat as an operations hub.",
+  //       },
+  //       {
+  //         type: "group", // Group multiple similar elements
+  //         className: "normal-text",
+  //         texts: [
+  //           "Streamline lead generation and product qualification through forms.",
+  //           "Simplify payment processing and order placement through cards.",
+  //           "Create unique and customized interactive messages to meet any advanced requirements that are not natively supported.",
+  //         ],
+  //       },
+  //     ],
+  //   },
+  // };
+
+  const reactions = {
+    "Emoji Reactions": {
+      ref: useRef(null),
+      subheading: "Expressive emoji reactions for quick, emotional responses",
+      className: "emoji-reactions",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Let users respond to messages instantly with emoji reactions—making chats more fun, expressive, and dynamic.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Allow users to react to messages using emojis for faster, lightweight interactions.",
+            "Popular reactions like 👍 ❤️ 😂 😮 help convey emotion instantly without typing.",
+            "Reactions enhance chat dynamics, especially in group discussions and community chats.",
+          ],
+        },
+      ],
+    },
+    "Boosted Engagement": {
+      ref: useRef(null),
+      subheading: "Frictionless interaction drives deeper engagement",
+      className: "engagement-metrics",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Reactions lower the barrier to participation—keeping more users active and engaged with minimal effort.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Encourage more participation by lowering the barrier to interaction.",
+            "Reactions offer a frictionless way for users to stay active in conversations.",
+            "Track the most used reactions to understand what resonates with your users.",
+          ],
+        },
+      ],
+    },
+    "Lightweight & Real-Time": {
+      ref: useRef(null),
+      subheading: "Optimized for scale with real-time feedback",
+      className: "real-time-updates",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Deliver a smooth, modern messaging experience with real-time reaction updates—even in high-volume chats.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "All reactions update in real-time, making chats feel lively and current.",
+            "Built to be lightweight and responsive, even in high-traffic chats.",
+            "Seamless integration with your existing chat infrastructure.",
+          ],
+        },
+      ],
+    },
+  };
+
+  return (
+    <>
+      <BannerSection
+        icon={HeartIcon}
+        label="Reactions"
+        heading="Connect buyers and sellers seamlessly without the risk of platform leakage"
+        description="Magic Chat helps you to provide the best communication experience for your buyers and sellers, all while increasing conversions and eliminating leakages in your marketplace."
+        buttonText="Schedule a demo"
+        buttonAction={() => alert("Demo scheduled!")}
+        imageSrc={`${basePath}/Asset/reaction1.png`}
+        altText="Chat Solution"
+      />
+
+      <FeatureSectionWrapper
+        title="MagicChat for Marketplaces"
+        description="Less friction, Better communication, No platform leakage"
+        sections={reactions}
+      />
+    </>
+  );
+}

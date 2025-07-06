@@ -79,7 +79,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
         <div className={styles.navList}>
           <li
             onMouseEnter={() => onLinkHover(<Platform />)}
-            onMouseLeave={onNavLeave}
+            // onMouseLeave={onNavLeave}
             onClick={() => handleItemClick(<Platform />)}
             className={styles.links}
           >

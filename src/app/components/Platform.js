@@ -1,4 +1,14 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 const Platform = () => {
+  const router = useRouter();
+
+  const handleCardClick = (path) => {
+    router.push(path);
+  };
+
   const platformList = {
     features: [
       {
@@ -67,10 +77,14 @@ const Platform = () => {
      <div className="platform-container">
        <div className="platform-sections">
          <div className="platform-section">
+           <>
            <h2 className="section-title">Features</h2>
+           </>
            <div className="card-list">
              {platformList.features.map((item, index) => (
-               <div className="card" key={index}>
+               <div className="card" key={index} 
+               onClick={() => handleCardClick(`/${item.subHeading.toLowerCase().replace(/ /g, '-')}`)}
+               >
                  <div className="card-header">
                    <div className="icon_wrapper"><i className={`card-icon ${item.icon}`}></i></div>
                    <h3>{item.subHeading}</h3>
@@ -81,10 +95,12 @@ const Platform = () => {
            </div>
          </div>
          <div className="platform-section">
+          <>
            <h2 className="section-title">Integration</h2>
+           </>
            <div className="card-list newcard-list">
              {platformList.integration.map((item, index) => (
-               <div className="card" key={index}>
+               <div className="card" key={index} onClick={() => handleCardClick('/documentation')}>
                  <div className="card-header">
                   <div className="icon_wrapper"><i className={`card-icon ${item.icon}`}></i></div>
                    <h3>{item.subHeading}</h3>
