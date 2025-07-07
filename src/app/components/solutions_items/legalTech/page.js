@@ -21,10 +21,10 @@ const HeartIcon = (
   </svg>
 );
 
-export default function Ecommerce() {
+export default function LegalTech() {
   return (
     <>
-      <h1>E-commerce</h1>
+      <h1>Legal Tech</h1>
       <BannerSection
         icon={HeartIcon}
         label="Dating"
