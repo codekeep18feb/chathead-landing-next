@@ -2,10 +2,11 @@
 
 import { useRouter } from "next/navigation";
 
-const Solutions = () => {
+const Solutions = ({onCloseModal}) => {
   const router = useRouter();
 
   const handleCardClick = (path) => {
+    if (onCloseModal) onCloseModal();
     router.push(path);
   };
 
