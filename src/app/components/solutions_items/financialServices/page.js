@@ -1,5 +1,5 @@
 "use client";
-import BannerSection from "../ondemand/BannerSection";
+import BannerSection from "../../BannerSection";
 
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";

@@ -1,7 +1,7 @@
 "use client";
 
-import BannerSection from "@/app/components/solutions_items/ondemand/BannerSection";
-import FeatureSectionWrapper from "@/app/components/solutions_items/ondemand/FeatureSectionWrapper";
+import BannerSection from "@/app/components/BannerSection";
+import FeatureSectionWrapper from "@/app/components/FeatureSectionWrapper";
 import { useRef } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";

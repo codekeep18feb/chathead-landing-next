@@ -1,13 +1,13 @@
 "use client";
 import Head from "next/head";
 import { useRef } from "react";
-import AccordionSection from "../ondemand/AccordionSection";
-import BuildShipManageCards from "../ondemand/buildShipManageCards";
+import AccordionSection from "../../AccordionSection";
+import BuildShipManageCards from "../../buildShipManageCards";
 import { MdOutlineSecurity } from "react-icons/md";
-import ProtectBusiness from "../ondemand/ProtectBusiness";
-import FeatureSectionWrapper from "../ondemand/FeatureSectionWrapper";
-import BannerSection from "../ondemand/BannerSection";
-import Carousel from "../ondemand/Carousel";
+import ProtectBusiness from "../../ProtectBusiness";
+import FeatureSectionWrapper from "../../FeatureSectionWrapper";
+import BannerSection from "../../BannerSection";
+import Carousel from "../../Carousel";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
