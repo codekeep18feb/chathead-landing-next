@@ -39,32 +39,34 @@ const Solutions = () => {
       {
         icon: "fa-solid fa-chart-bar",
         subHeading: "E-commerce",
-        text: "Strengthen community engagement through dynamic, real-time communication tools     (_lorem ipsum)",
+        text: "Streamline online shopping experiences with seamless interactions between buyers and sellers (_lorem ipsum)",
       },
       {
         icon: "fa-solid fa-chart-bar",
         subHeading: "Financial Services",
-        text: "Strengthen community engagement through dynamic, real-time communication tools     (_lorem ipsum)",
+        text: "Boost trust and efficiency with secure communication between clients and financial institutions (_lorem ipsum)",
       },
       {
         icon: "fa-solid fa-chart-bar",
         subHeading: "Grocery Delivery",
-        text: "Seamlessly deploy chat to your SaaS product with built-in multi tenancy     (_lorem ipsum)",
-      },
+        text: "Simplify daily shopping with real-time communication between customers and delivery partners (_lorem ipsum)",
+      }
+      ,
       {
         icon: "fa-solid fa-chart-bar",
         subHeading: "Travel",
-        text: "Liven virtual events with dynamic chat, powered by AI and smart moderation     (_lorem ipsum)",
-      },
+        text: "Elevate travel experiences with seamless interaction between travelers and service providers (_lorem ipsum)",
+      }
+      ,
       {
         icon: "fa-solid fa-chart-bar",
         subHeading: "Real Estate",
-        text: "Improve productivity and collaboration with real-time communication tools for teams     (_lorem ipsum)",
+        text: "Improve property transactions with direct communication between buyers, sellers, and agents (_lorem ipsum)",
       },
       {
         icon: "fa-solid fa-chart-bar",
         subHeading: "Legal Tech",
-        text: "Improve productivity and collaboration with real-time communication tools for teams     (_lorem ipsum)",
+        text: "Simplify legal processes with seamless communication between clients and legal professionals (_lorem ipsum)",
       },
     ],
     company_type: [
@@ -97,11 +99,11 @@ const Solutions = () => {
                   handleCardClick(
                     `/${item.subHeading
                       .toLowerCase()
-                      .replace(/[^a-z0-9 ]/g, "")  // remove special characters
-                      .trim()                      // remove extra space at the ends
-                      .replace(/\s+/g, "-")}`      // replace spaces with hyphen
+                      .replace(/[^a-z0-9 ]/g, "") // remove special characters
+                      .trim() // remove extra space at the ends
+                      .replace(/\s+/g, "-")}` // replace spaces with hyphen
                   )
-                }               
+                }
               >
                 <div className="card-header">
                   <div className="icon_wrapper">
