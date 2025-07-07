@@ -1,15 +1,15 @@
 "use client";
 import Head from "next/head";
 import { useRef } from "react";
-import BuildShipManageCards from "./buildShipManageCards";
+import BuildShipManageCards from "../../buildShipManageCards";
 import { MdOutlineSecurity } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
-import BannerSection from "./BannerSection";
-import AccordionSection from "./AccordionSection";
-import FeatureSectionWrapper from "./FeatureSectionWrapper";
-import ProtectBusiness from "./ProtectBusiness";
-import Carousel from "./Carousel";
-import FeaturesIntegrations from "./FeaturesIntegrations";
+import BannerSection from "../../BannerSection";
+import AccordionSection from "../../AccordionSection";
+import FeatureSectionWrapper from "../../FeatureSectionWrapper";
+import ProtectBusiness from "../../ProtectBusiness";
+import Carousel from "../../Carousel";
+import FeaturesIntegrations from "../../FeaturesIntegrations";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 

@@ -146,7 +146,7 @@
 
 .modalDropdown {
   position: absolute;
-  top: 100%;
+  top: 90%;
   right: 0;
   background-color: white;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
@@ -164,6 +164,7 @@
   transform: translateY(0);
   display: block;
   overflow-y: auto;
+  width: 100%;
 }
 
 

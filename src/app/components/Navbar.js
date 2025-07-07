@@ -9,9 +9,9 @@ import Resources from "./Resources";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import styles from "./NavbarSty.module.css";
 
-const Navbar = ({ onLinkHover, onNavLeave }) => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hoveredContent, setHoveredContent] = useState(null);
+  const [hoveredContentKey, setHoveredContentKey] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -30,24 +30,40 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
     document.body.style.overflow = !menuOpen ? "hidden" : "auto";
   };
 
-  const handleItemClick = (content, link) => {
-    if (isMobile && link !== "/pricing") {
-      onLinkHover(content);
-      setHoveredContent(content);
+  const handleItemClick = (key) => {
+    if (isMobile && key !== "pricing") {
+      setHoveredContentKey(key);
       setMenuOpen(false);
     }
 
-    if (isMobile && link === "/pricing") {
+    if (isMobile && key === "pricing") {
       setMenuOpen(false);
       document.body.style.overflow = "auto";
     }
   };
 
   const handleCloseModal = () => {
-    setHoveredContent(null);
+    console.log("Closing modal...");
+    setHoveredContentKey(null);
+    document.body.style.overflow = "auto";
   };
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+  const renderHoveredContent = () => {
+    switch (hoveredContentKey) {
+      case "platform":
+        return <Platform />;
+      case "solutions":
+        return <Solutions onCloseModal={handleCloseModal} />;
+      case "developers":
+        return <Developers />;
+      case "resources":
+        return <Resources />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -71,16 +87,13 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
       ></div>
 
       <ul
-        className={`${styles["nav-links"]} ${
-          menuOpen ? styles.active : ""
-        }`}
+        className={`${styles["nav-links"]} ${menuOpen ? styles.active : ""}`}
         id="nav-links"
       >
         <div className={styles.navList}>
           <li
-            onMouseEnter={() => onLinkHover(<Platform />)}
-            // onMouseLeave={onNavLeave}
-            onClick={() => handleItemClick(<Platform />)}
+            onMouseEnter={() => setHoveredContentKey("platform")}
+            onClick={() => handleItemClick("platform")}
             className={styles.links}
           >
             <a href="#platform" className={styles.link}>
@@ -89,8 +102,8 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
             <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
-            onMouseEnter={() => onLinkHover(<Solutions />)}
-            onClick={() => handleItemClick(<Solutions />)}
+            onMouseEnter={() => setHoveredContentKey("solutions")}
+            onClick={() => handleItemClick("solutions")}
             className={styles.links}
           >
             <a href="#solutions" className={styles.link}>
@@ -99,9 +112,9 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
             <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
-            onMouseEnter={() => onLinkHover(<Developers />)}
-            onMouseLeave={onNavLeave}
-            onClick={() => handleItemClick(<Developers />)}
+            onMouseEnter={() => setHoveredContentKey("developers")}
+            onClick={() => handleItemClick("developers")}
+            onMouseLeave={handleCloseModal}
             className={styles.links}
           >
             <a href="#developer" className={styles.link}>
@@ -110,9 +123,9 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
             <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
-            onMouseEnter={() => onLinkHover(<Resources />)}
-            onMouseLeave={onNavLeave}
-            onClick={() => handleItemClick(<Resources />)}
+            onMouseEnter={() => setHoveredContentKey("resources")}
+            onClick={() => handleItemClick("resources")}
+            onMouseLeave={handleCloseModal}
             className={styles.links}
           >
             <a href="#resource" className={styles.link}>
@@ -124,7 +137,7 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
           <li>
             <Link href="/pricing" legacyBehavior>
               <a
-                onClick={() => handleItemClick(null, "/pricing")}
+                onClick={() => handleItemClick("pricing")}
                 className={styles.link}
               >
                 Pricing
@@ -147,25 +160,26 @@ const Navbar = ({ onLinkHover, onNavLeave }) => {
         </div>
       </ul>
 
-      {(hoveredContent || isMobile) && (
+      {(hoveredContentKey || isMobile) && (
         <>
           <div
             className={`${styles.nav_overlay} ${
-              hoveredContent ? styles.active : ""
+              hoveredContentKey ? styles.active : ""
             }`}
             onClick={handleCloseModal}
           ></div>
           <div
             className={`${styles.modalDropdown} ${
-              hoveredContent ? styles.active : ""
+              hoveredContentKey ? styles.active : ""
             }`}
             onClick={handleCloseModal}
+            // onMouseLeave={handleCloseModal} 
           >
-            {hoveredContent}
-            <button className={styles.closeBtn} onClick={handleCloseModal}>
+            {renderHoveredContent()}
+            {/* <button className={styles.closeBtn} onClick={handleCloseModal}>
               <i className="fa-solid fa-arrow-left"></i>
               <span>Back</span>
-            </button>
+            </button> */}
           </div>
         </>
       )}
