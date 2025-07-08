@@ -24,6 +24,9 @@
   font-size: 1.3rem;
   font-weight: 500;
   color: var(--text-color);
+  padding: 0px 6rem;
+  max-width: 1280px;
+  margin: auto;
 }
 .navTabs {
   display: flex;

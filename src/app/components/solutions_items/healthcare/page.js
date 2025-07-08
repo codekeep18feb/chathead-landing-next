@@ -4,7 +4,9 @@ import BuildShipManageCards from "../../buildShipManageCards";
 import { MdOutlineSecurity } from "react-icons/md";
 import FeatureSectionWrapper from "../../FeatureSectionWrapper";
 import { useRef } from "react";
-
+import AccordionSection from "../../AccordionSection";
+import ProtectBusiness from "../../ProtectBusiness";
+import FeaturesIntegrations from "../../FeaturesIntegrations";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -88,6 +90,150 @@ const sectionsData = [
   },
 ];
 
+const items = [
+  {
+    title: "Startups",
+    subheading: "Digital Health Startups",
+    content:
+      "Partner with us for telehealth systems, wellness tech like Femtech and Baby Tech, and software for diagnostic and assistive devices.",
+    image: `${basePath}/Asset/banner_placeholder.png`,
+  },
+  {
+    title: "Providers",
+    subheading: "Healthcare Providers",
+    content:
+      "We deliver tailored solutions such as EMR/EHR systems, practice and lab management tools, hospital asset tracking, RPM platforms, POC applications, and PHM systems.",
+    image: `${basePath}/Asset/banner_placeholder.png`,
+  },
+  {
+    title: "Manufacturers",
+    subheading: "Medical Device Manufacturers",
+    content:
+      "We develop embedded systems, cloud/mobile solutions, and AI-powered analytics to enhance hospital-grade and consumer medical devices.",
+    image: `${basePath}/Asset/banner_placeholder.png`,
+  },
+  {
+    title: "Pharma & Biotech",
+    subheading: "Software Solutions for Life Sciences",
+    content:
+      "We provide custom software for clinical trials, drug development, production, and distribution, including ERP, data visualization, and integrated systems.",
+    image: `${basePath}/Asset/banner_placeholder.png`,
+  },
+];
+
+const business = [
+  {
+    subheading: "User-Friendly Interface",
+    image: `${basePath}/Asset/userInterface.png`,
+    content: [
+      {
+        type: "p",
+        text: "Our UI/UX experts design intuitive interfaces, ensuring ease of use for both healthcare providers and patients.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Intuitive navigation for faster adoption by clinicians and patients",
+          "Responsive and accessible design across all devices",
+          "Minimal learning curve with clean, user-friendly layouts",
+          "Role-based interfaces tailored for doctors, nurses, admins, and patients",
+          "Clear feedback and error handling to reduce user mistakes",
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Interoperability",
+    image: `${basePath}/Asset/interoperability.png`,
+    content: [
+      {
+        type: "p",
+        text: "Our solutions integrate smoothly with existing systems, enabling efficient data exchange across applications and devices.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Seamless integration with EHR, EMR, and HIS systems",
+          "Support for HL7, FHIR, and other healthcare data standards",
+          "Real-time data exchange between devices and platforms",
+          "API-driven architecture for flexible system connectivity",
+          "Improved care coordination through unified patient records",
+        ],
+      },
+    ],
+  },
+];
+
+const features = [
+  {
+    subheading: "End-to-End Development",
+    content: [
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Ideation to implementation",
+          "User-centric UI/UX design",
+          "Agile software development",
+          "Rigorous testing & QA",
+          "Deployment and ongoing support"
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Flexible Engagement Models",
+    // image: `${basePath}/Asset/secureIc.png`,
+    content: [
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Fixed-price project delivery",
+          "Dedicated development teams",
+          "Time and material contracts",
+          "Scalable resource allocation",
+          "Custom engagement structures"
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Quality Assurance and Support",
+    content: [
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Comprehensive QA testing",
+          "Bug-free software delivery",
+          "Security and performance checks",
+          "Ongoing support and maintenance",
+          "Regular updates and monitoring"
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Rapid Time-to-Market",
+    content: [
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Agile development approach",
+          "Accelerated project delivery",
+          "Experienced healthcare experts",
+          "Streamlined deployment process",
+          "Faster launch, competitive edge"
+        ],
+      },
+    ],
+  },
+];
+
 export default function HealthcareTelehealth() {
   const healthSection = {
     "Software Consulting": {
@@ -98,8 +244,7 @@ export default function HealthcareTelehealth() {
       content: [
         {
           type: "p",
-          text:
-            "We provide expert consulting to navigate the complexities of healthcare software development. Our strategic insights help leverage advanced technologies to improve operational efficiency and patient outcomes.",
+          text: "We provide expert consulting to navigate the complexities of healthcare software development. Our strategic insights help leverage advanced technologies to improve operational efficiency and patient outcomes.",
         },
         {
           type: "group",
@@ -120,8 +265,7 @@ export default function HealthcareTelehealth() {
       content: [
         {
           type: "p",
-          text:
-            "We deliver tailored software solutions that enhance patient care and ensure better medical outcomes. With extensive experience, we create intuitive, high-quality systems to meet the unique needs of the healthcare industry.",
+          text: "We deliver tailored software solutions that enhance patient care and ensure better medical outcomes. With extensive experience, we create intuitive, high-quality systems to meet the unique needs of the healthcare industry.",
         },
         {
           type: "group",
@@ -142,8 +286,7 @@ export default function HealthcareTelehealth() {
       content: [
         {
           type: "p",
-          text:
-            "We ensure seamless integration of healthcare systems to enhance interoperability and streamline data exchange. Our solutions reduce silos, improve functionality, and create a cohesive healthcare ecosystem.",
+          text: "We ensure seamless integration of healthcare systems to enhance interoperability and streamline data exchange. Our solutions reduce silos, improve functionality, and create a cohesive healthcare ecosystem.",
         },
         {
           type: "group",
@@ -164,8 +307,7 @@ export default function HealthcareTelehealth() {
       content: [
         {
           type: "p",
-          text:
-            "We offer end-to-end software product development, from concept to deployment. Our solutions are scalable, secure, and innovative, meeting industry needs while driving better healthcare outcomes.",
+          text: "We offer end-to-end software product development, from concept to deployment. Our solutions are scalable, secure, and innovative, meeting industry needs while driving better healthcare outcomes.",
         },
         {
           type: "group",
@@ -186,8 +328,7 @@ export default function HealthcareTelehealth() {
       content: [
         {
           type: "p",
-          text:
-            "Unlock actionable insights with healthcare data analytics. Our experts build scalable data warehouses, integrate OLAP analytics, and leverage AI-driven tools to analyze diagnostic, operational, and sales data—helping you make data-driven decisions efficiently.",
+          text: "Unlock actionable insights with healthcare data analytics. Our experts build scalable data warehouses, integrate OLAP analytics, and leverage AI-driven tools to analyze diagnostic, operational, and sales data—helping you make data-driven decisions efficiently.",
         },
         {
           type: "group",
@@ -201,7 +342,6 @@ export default function HealthcareTelehealth() {
       ],
     },
   };
-  
 
   return (
     <>
@@ -217,7 +357,7 @@ export default function HealthcareTelehealth() {
         altText="Chat Solution"
       />
 
-     <FeatureSectionWrapper
+      <FeatureSectionWrapper
         title="Healthcare Software Development Services"
         description="At Magic chat Technologies, we deliver custom healthcare software solutions that enhance patient care, streamline workflows, and improve operational efficiency with advanced, scalable, and secure technologies."
         sections={healthSection}
@@ -227,6 +367,26 @@ export default function HealthcareTelehealth() {
         title="Your Trusted Partner for Healthcare Software Development Services"
         subtitle="At Magic chat Technologies, we provide end-to-end custom healthcare software development services, from prototyping to design, development, and deployment. We integrate user-centric design principles at every stage, creating intuitive interfaces for both medical professionals and patients."
         sections={sectionsData}
+      />
+
+      <AccordionSection
+        heading="Healthcare Software Development for Every Need"
+        description="End-to-end healthcare software solutions for providers, pharma, medtech, and digital health—secure, interoperable, and user-centric."
+        items={items}
+        defaultOpenIndex={0}
+        showImage={true}
+      />
+
+      <ProtectBusiness
+        title="Key Features of Our Healthcare Software Solutions"
+        description="Turn raw data into actionable insights with our end-to-end analytics solutions—optimize operations, make smarter decisions, and stay competitive."
+        sections={business}
+      />
+
+      <FeaturesIntegrations
+        title="Why Healthcare Organizations Choose Magic Chat"
+        description="A flexible, cost-effective platform built for car rental businesses—manage regional operations, supplier networks, and customer service with ease, whether you're a startup or a large aggregator."
+        sections={features}
       />
     </>
   );
