@@ -181,7 +181,7 @@ export default function RealEstate() {
       <h1>Real-estate</h1>
       <BannerSection
         icon={HeartIcon}
-        label="Dating"
+        label="Real Estate"
         heading="Create a safe, secure and positive messaging environment for your
               users"
         description="Messaging experience that seamlessly scales from thousands to
@@ -205,7 +205,7 @@ export default function RealEstate() {
         sections={sectionsData}
       />
 
-      <TimeTestedComp/>
+      <TimeTestedComp />
     </>
   );
 }
