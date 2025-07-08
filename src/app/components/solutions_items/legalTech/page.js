@@ -1,6 +1,9 @@
 "use client";
+import { useRef } from "react";
+import AccordionSection from "../../AccordionSection";
 import BannerSection from "../../BannerSection";
-
+import FeatureSectionWrapper from "../../FeatureSectionWrapper";
+import ProtectBusiness from "../../ProtectBusiness";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -21,7 +24,163 @@ const HeartIcon = (
   </svg>
 );
 
+const legalItems = [
+  {
+    title: "Contract Intelligence",
+    subheading: "AI-powered contract review and analysis",
+    content:
+      "Streamline legal workflows by automatically analyzing contracts for key clauses, risks, and compliance issues. Accelerate review processes with intelligent clause extraction and red-flag detection.",
+    image: `${basePath}/Asset/ai_power.png`,
+  },
+  {
+    title: "Case Management",
+    subheading: "Organize, track, and manage legal cases efficiently",
+    content:
+      "Centralize all case-related data, documents, and timelines in one platform. Automate routine tasks, set reminders, and collaborate securely across legal teams.",
+    image: `${basePath}/Asset/notification_img.png`,
+  },
+  {
+    title: "Regulatory Compliance",
+    subheading: "Stay updated and compliant with changing laws",
+    content:
+      "Monitor regulatory updates in real time and ensure your legal operations align with current frameworks. Receive automated alerts, generate compliance reports, and mitigate legal risk.",
+    image: `${basePath}/Asset/webhooks_img.png`,
+  },
+];
+
+const legalObj = [
+  {
+    subheading: "AI-Powered Contract Analysis",
+    image: `${basePath}/Asset/userInterface.png`,
+    content: [
+      {
+        type: "p",
+        text: "Leverage artificial intelligence to review and analyze contracts faster and more accurately. Our systems detect key clauses, highlight risks, and ensure compliance with legal standards.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Automatically extract and classify clauses in seconds",
+          "Identify red flags, missing terms, and risk factors",
+          "Compare contracts against industry standards and templates",
+          "Track version history and collaborative edits",
+          "Accelerate review cycles with smart recommendations",
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Regulatory Compliance & Risk Management",
+    image: `${basePath}/Asset/interoperability.png`,
+    content: [
+      {
+        type: "p",
+        text: "Stay aligned with evolving laws using built-in compliance tools and risk dashboards. Our legal tech solutions help prevent violations and streamline regulatory reporting.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Monitor changing regulations in real-time across regions",
+          "Automated alerts for compliance deadlines and updates",
+          "Built-in reporting tools for audits and legal reviews",
+          "Role-based controls to enforce compliance workflows",
+          "Comprehensive risk logs and documentation history",
+        ],
+      },
+    ],
+  },
+];
+
 export default function LegalTech() {
+  const legalSection = {
+    "Document Management": {
+      ref: useRef(null),
+      subheading: "Centralized control over legal files and contracts",
+      className: "messaging-experience",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Organize, store, and access case files, contracts, and legal documents in one secure platform. Our solution helps reduce paperwork, improve retrieval time, and ensure version control.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Centralized storage with advanced search and tagging features.",
+            "Version control to track document edits and changes.",
+            "Role-based access for sensitive legal documents.",
+          ],
+        },
+      ],
+    },
+    "Case Workflow Automation": {
+      ref: useRef(null),
+      subheading: "Streamlining legal processes from intake to closure",
+      className: "voice-video",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Automate and manage legal workflows such as client intake, case tracking, hearing schedules, and communication logs. Improve efficiency and reduce human error across your operations.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Automated reminders for deadlines, hearings, and filings.",
+            "Drag-and-drop interface for setting up custom workflows.",
+            "Case lifecycle tracking with real-time updates.",
+          ],
+        },
+      ],
+    },
+    "Compliance & Risk Monitoring": {
+      ref: useRef(null),
+      subheading: "Stay ahead of legal regulations and reduce exposure",
+      className: "scale-millions",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Ensure your firm stays compliant with evolving regulations and industry standards. Our solution helps monitor risk, track policy changes, and provide real-time alerts for legal updates.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Automated compliance alerts and audit trails.",
+            "Real-time regulatory updates across jurisdictions.",
+            "Risk dashboards to monitor case-related vulnerabilities.",
+          ],
+        },
+      ],
+    },
+    "Billing & Time Tracking": {
+      ref: useRef(null),
+      subheading: "Accurate billing and transparent time logs",
+      className: "moderation-control",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Track billable hours, generate invoices, and manage retainers effortlessly. Our tools ensure lawyers and firms are compensated accurately while maintaining client trust.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Track time entries linked to cases and tasks.",
+            "Generate itemized invoices and monitor payments.",
+            "Manage retainers, expenses, and client billing cycles.",
+          ],
+        },
+      ],
+    },
+  };
+  
   return (
     <>
       <h1>Legal Tech</h1>
@@ -37,6 +196,25 @@ export default function LegalTech() {
         buttonAction={() => alert("Demo scheduled!")}
         imageSrc={`${basePath}/Asset/matrimony_banner.png`}
         altText="Chat Solution"
+      />
+
+    <FeatureSectionWrapper
+        title="Reasons Why Magic Chat is the Ideal Travel Technology Partner for You."
+        description="At Magic Chat Technologies, we help travel businesses thrive with innovative digital solutions that simplify trip planning, enhance customer engagement, and streamline operations through secure, scalable, and user-centric platforms."
+        sections={legalSection}
+      />
+
+      <ProtectBusiness
+        title="Smart Legal Tech Solutions for Compliance and Efficiency"
+        description="Enhance legal operations with AI-driven tools for contract analysis, risk management, and regulatory compliance—built for speed, accuracy, and peace of mind."
+        sections={legalObj}
+      />
+      <AccordionSection
+        heading="Empowering Legal Teams with Smart Tech Solutions"
+        description="Streamline legal operations and boost compliance with smart tech solutions like AI contract analysis, case management, and real-time regulatory tracking."
+        items={legalItems}
+        defaultOpenIndex={0}
+        showImage={true}
       />
     </>
   );

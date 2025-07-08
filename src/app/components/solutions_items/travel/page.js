@@ -200,7 +200,6 @@ export default function Travel() {
       image: `${basePath}/Asset/webhooks_img.png`,
     },
   ];
-  
 
   const travelObj = [
     {
@@ -246,7 +245,6 @@ export default function Travel() {
       ],
     },
   ];
-  
 
   return (
     <>
@@ -280,13 +278,13 @@ export default function Travel() {
         sections={travelObj}
       />
 
-            <AccordionSection
-              heading="Powerful Admin Tools for Chat Oversight and Optimization"
-              description="Easily manage your chat platform with powerful admin tools for user control, real-time moderation, and actionable insights—all in one place."
-              items={toolsItems}
-              defaultOpenIndex={0}
-              showImage={true}
-            />
+      <AccordionSection
+        heading="Powerful Admin Tools for Chat Oversight and Optimization"
+        description="Easily manage your chat platform with powerful admin tools for user control, real-time moderation, and actionable insights—all in one place."
+        items={toolsItems}
+        defaultOpenIndex={0}
+        showImage={true}
+      />
     </>
   );
 }
