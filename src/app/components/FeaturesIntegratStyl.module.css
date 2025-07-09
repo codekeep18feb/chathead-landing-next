@@ -1,123 +1,128 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  /* gap: 20px; */
   padding: 3rem 10rem;
-  /* max-width: 1200px; */
   margin: 0 auto;
   color: #333;
 }
+
 .header {
   padding: 20px;
   text-align: center;
 }
+
 .header h1 {
   font-size: 2.5rem;
   font-weight: bold;
   color: var(--text-color);
   margin-bottom: 15px;
 }
+
 .header p {
   font-size: 1.3rem;
   font-weight: 500;
   color: var(--text-color);
+  max-width: 1280px;
+  margin: auto;
 }
+
 .contentWrap {
   display: flex;
-  flex-wrap: wrap; 
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  border: 1px solid green;
+  flex-wrap: wrap;
+  gap: 2rem; /* spacing between columns */
   background-color: #775c99;
   padding: 3rem;
   border-radius: 10px;
 }
+
 .contentSection {
-  flex: 1 1 25%; 
-  margin-bottom: 2rem;
+  flex: 1 1 calc(25% - 1.5rem); /* ensures 4 in a row with gap */
+  min-width: 220px;
 }
-.contentSection {
-  width: 100%;
-}
+
 .emptydiv {
   width: 30px;
   height: 5px;
-  background-color: aqua;
   background: linear-gradient(to top left, #ffffff, #775c99);
   border-radius: 20px;
-
 }
+
 .contentSection .subheading {
   font-size: 1.5rem;
   font-weight: bold;
   color: white;
   margin: 20px 0px;
+  max-width: 270px;
+  text-align: left;
 }
 
 .contentSection p {
-  /* line-height: 1.5; */
   margin-bottom: 20px;
   font-size: 1rem;
   font-weight: 400;
 }
+
 .normal-text {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  color: white;
-}
-.icon{
-    color: #f5f5dc;
+  color: rgb(219, 219, 219);
 }
 
+.icon {
+  color: #f5f5dc;
+}
 
+/* Tablet */
 @media (min-width: 769px) and (max-width: 1024px) {
   .wrapper {
     padding: 2rem;
   }
+
   .header h1 {
     font-size: 2rem;
-    margin-bottom: 15px;
   }
+
   .contentWrap {
-    margin-top: 30px;
-    
     padding: 2rem;
+  }
+
+  .contentSection {
+    flex: 1 1 calc(50% - 1rem); /* 2 in a row */
   }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
   .wrapper {
     padding: 1.5rem;
   }
-  .header{
-    padding: 0px;
+
+  .header {
+    padding: 0;
   }
+
   .header h1 {
     font-size: 2rem;
   }
+
   .contentWrap {
-    margin-top: 30px;
     padding: 2rem;
   }
-  .contentSection{
-    margin-right: 50px;
+
+  .contentSection {
+    flex: 1 1 100%; /* full width */
+    margin-right: 0;
   }
 }
 
-
+/* Small phones */
 @media (max-width: 470px) {
-  .header{
-    padding: 0px;
-  }
   .header h1 {
     font-size: 1.8rem;
   }
+
   .contentWrap {
-    margin-top: 30px;
     padding: 2rem;
   }
-
-
 }
