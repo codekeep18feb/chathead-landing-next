@@ -213,7 +213,7 @@ export default function FinancialServices() {
               manage inappropriate user behaviors."
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
-        imageSrc={`${basePath}/Asset/matrimony_banner.png`}
+        imageSrc={`${basePath}/Asset/banner_placeholder.png`}
         altText="Chat Solution"
       />
       <ProtectBusiness

@@ -232,7 +232,7 @@ export default function OnlineEducation() {
         description="Magic Chat, a top education app development provider, transforms learning for millions with innovative and user-friendly applications, empowering students and trainers through personalized experiences and effective progress tracking."
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
-        imageSrc={`${basePath}/Asset/matrimony_banner.png`}
+        imageSrc={`${basePath}/Asset/banner_placeholder.png`}
         altText="Chat Solution"
       />
 

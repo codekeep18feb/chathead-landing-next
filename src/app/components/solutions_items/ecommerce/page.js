@@ -266,7 +266,7 @@ export default function Ecommerce() {
       <h1>E-commerce</h1>
       <BannerSection
         icon={HeartIcon}
-        label="Dating"
+        label="E-commerce"
         heading="Create a safe, secure and positive messaging environment for your
               users"
         description="Messaging experience that seamlessly scales from thousands to
@@ -274,7 +274,7 @@ export default function Ecommerce() {
               manage inappropriate user behaviors."
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
-        imageSrc={`${basePath}/Asset/matrimony_banner.png`}
+        imageSrc={`${basePath}/Asset/banner_placeholder.png`}
         altText="Chat Solution"
       />
 

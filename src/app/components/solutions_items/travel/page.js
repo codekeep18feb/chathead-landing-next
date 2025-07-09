@@ -256,7 +256,7 @@ export default function Travel() {
         description="Enhance the user experience for your clients by collaborating with us to develop high-performing, scalable, and secure travel software applications."
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
-        imageSrc={`${basePath}/Asset/matrimony_banner.png`}
+        imageSrc={`${basePath}/Asset/banner_placeholder.png`}
         altText="Chat Solution"
       />
 
