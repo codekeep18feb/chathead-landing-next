@@ -173,7 +173,7 @@ const Navbar = () => {
               hoveredContentKey ? styles.active : ""
             }`}
             onClick={handleCloseModal}
-            // onMouseLeave={handleCloseModal} 
+            onMouseLeave={handleCloseModal} 
           >
             {renderHoveredContent()}
             {/* <button className={styles.closeBtn} onClick={handleCloseModal}>
