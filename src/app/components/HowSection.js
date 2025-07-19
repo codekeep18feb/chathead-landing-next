@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 const slides = {
   p2a: [
     {
-      image: "/Asset/fashoni_chat_opener_visible.png",
+      image: "/Asset/p2a_firstImg.png",
       sections: [
         {
           heading: "What is Peer to Admin (P2A)",
@@ -29,7 +29,7 @@ const slides = {
       ],
     },
     {
-      image: "/Asset/no_users_admin.png",
+      image: "/Asset/p2a_secondImg.png",
       sections: [
         {
           heading: "Features",
@@ -41,7 +41,7 @@ const slides = {
 
   p2p: [
     {
-      image: "/images/p2p-slide1.jpg",
+      image: "/Asset/p2p_firstImg.png",
       sections: [
         {
           heading: "What is Peer to Peer (P2P)",
@@ -58,7 +58,7 @@ const slides = {
       ],
     },
     {
-      image: "/images/p2p-slide2.jpg",
+      image: "/Asset/p2p-slide2.jpg",
       sections: [
         {
           heading: "End-to-End Encryption",
@@ -178,8 +178,9 @@ const HowSection = () => {
               <div className={styles["image-wrappe"]}>
                 <ImageSlider
                   images={[
-                    "/Asset/demo_imgs/v1/p2a/before.png",
-                    "/Asset/demo_imgs/v1/p2a/after.png",
+                    "/Asset/beforeChatAdd.png",
+                    "/Asset/afterChatAdd.png",
+                    "/Asset/afterModalOpen.png",
                   ]}
                   onClose={closePopup}
                 />
