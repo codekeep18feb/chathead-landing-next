@@ -13,7 +13,7 @@ import Sidebar from "../components/documents/side_bar_content/Sidebar";
 import ContentRenderer from "../testing_documents/rendering_tools";
 
 const Document = () => {
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState({app_type: null, version_type: 'V1'});
   console.log("do we have a fitler???selectedFilter", selectedFilter);
 
   const searchParams = useSearchParams();
