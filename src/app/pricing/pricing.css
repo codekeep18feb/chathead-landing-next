@@ -157,3 +157,29 @@
 .advance {
   border: 3px solid #4d6bdf;
 }
+
+.see-all-button-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.see-all-button-wrapper button {
+  background-color: #007bff; /* Indigo */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.see-all-button-wrapper button:hover {
+  transform: translateY(-2px);
+}
+
+.see-all-button-wrapper button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
