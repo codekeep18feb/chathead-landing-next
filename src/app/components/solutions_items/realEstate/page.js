@@ -1,9 +1,10 @@
 "use client";
-import { useRef } from "react";
 import BannerSection from "../../BannerSection";
-import FeatureSectionWrapper from "../../FeatureSectionWrapper";
-import { MdOutlineSecurity } from "react-icons/md";
 import BuildShipManageCards from "../../buildShipManageCards";
+import { MdOutlineSecurity } from "react-icons/md";
+import FeatureSectionWrapper from "../../FeatureSectionWrapper";
+import { useRef } from "react";
+import ProtectBusiness from "../../ProtectBusiness";
 import TimeTestedComp from "../../TimeTestedComp";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -25,207 +26,293 @@ const HeartIcon = (
   </svg>
 );
 
-const cardsData = [
+const whyChooesyou = [
   {
-    number: "01",
-    heading: "Discovery & Requirements Gathering",
-    description:
-      "Being a top-rated Real estate application development company, our development process begins with discovering the market fit of your Realestate app idea. We thoughtfully study the landscape for similar offerings and develop the best technology to satisfy your specific requirements.",
+    subheading: "Expertise",
+    icon: <MdOutlineSecurity />,
+    content: [
+      {
+        type: "p",
+        text: "Our team brings years of domain-specific expertise, ensuring your travel tech solution is built on solid industry knowledge, best practices, and cutting-edge technology.",
+      },
+    ],
   },
   {
-    number: "02",
-    heading: "Design & Prototyping",
-    description:
-      "Create wireframes, mockups, and interactive prototypes for the app’s UI/UX. Design iterations are made based on feedback to ensure usability and alignment with business goals, helping visualize the app before development begins.",
+    subheading: "Contemporary UI/UX",
+    icon: <MdOutlineSecurity />,
+    content: [
+      {
+        type: "p",
+        text: "We prioritize modern, user-friendly interfaces that enhance the user journey—from discovery to booking and beyond—resulting in higher engagement and satisfaction.",
+      },
+    ],
   },
   {
-    number: "03",
-    heading: "Best development practices",
-    description:
-      "In this step, we also zero in on the best possible . elements to cater to your audience and design thoughtful user journeys that increase conversions.",
+    subheading: "Effective Communication",
+    icon: <MdOutlineSecurity />,
+    content: [
+      {
+        type: "p",
+        text: "With clear and consistent communication, we keep you informed at every stage of development. We value your input and ensure alignment with your business goals.",
+      },
+    ],
   },
   {
-    number: "04",
-    heading: "Development and Testing",
-    description:
-      "In this stage of the development process we develop the apps, create the necessary components and APIs and seamlessly connect the parts together that come alive as a beautiful and engaging Real estate app.",
+    subheading: "Cost-effective and timely solutions",
+    icon: <MdOutlineSecurity />,
+    content: [
+      {
+        type: "p",
+        text: "We offer competitive pricing without compromising on quality. Our agile workflows ensure timely delivery to help you launch faster and maximize ROI.",
+      },
+    ],
   },
   {
-    number: "05",
-    heading: "Deployment and maintenance",
-    description:
-      "As part of our Real estate software development services, we deploy the app or software on its intended platform and based on the feedback from focus groups and general users alike, we update and maintain the app for the best result.",
+    subheading: "Protection",
+    icon: <MdOutlineSecurity />,
+    content: [
+      {
+        type: "p",
+        text: "Security is at the core of every product we build. From secure payment integrations to data protection, we implement robust measures to safeguard users and businesses.",
+      },
+    ],
   },
   {
-    number: "06",
-    heading: "Ongoing Support & Future Enhancements",
-    description:
-      "Our partnership doesn't end at launch. We offer continuous support, monitor performance, fix bugs, and roll out new features based on user feedback and market trends to ensure your real estate app remains competitive and future-ready.",
+    subheading: "Future maintenance and support",
+    icon: <MdOutlineSecurity />,
+    content: [
+      {
+        type: "p",
+        text: "We don't just deliver and walk away. We provide ongoing maintenance, updates, and support to keep your app running smoothly as your business evolves.",
+      },
+    ],
   },
 ];
 
-export default function RealEstate() {
-  const realEstateSection = {
-    "Experienced Team": {
+const ecommerceObj = [
+  {
+    subheading: "Scalable Storefront Architecture",
+    image: `${basePath}/Asset/userInterface.png`,
+    content: [
+      {
+        type: "p",
+        text: "We build modular and scalable eCommerce applications that adapt to your business size and growth stage—from emerging startups to enterprise-level marketplaces.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Custom storefront designs optimized for conversions and speed",
+          "Support for unlimited SKUs, categories, and variants",
+          "Mobile-first architecture with responsive, PWA-ready UI",
+          "Multi-language and multi-currency capabilities for global reach",
+          "Headless commerce support for seamless frontend/backend separation",
+        ],
+      },
+    ],
+  },
+  {
+    subheading: "Secure & Flexible Transactions",
+    image: `${basePath}/Asset/userInterface.png`,
+    content: [
+      {
+        type: "p",
+        text: "Our platforms ensure secure, compliant, and flexible payment processing for businesses of all sizes. Whether you're local or global, you get smooth, protected checkout flows.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "Integration with all major global and regional payment gateways",
+          "PCI-DSS compliant infrastructure and tokenized transactions",
+          "Support for wallets, UPI, BNPL (Buy Now Pay Later), and subscriptions",
+          "Real-time fraud detection and chargeback prevention mechanisms",
+          "Seamless handling of refunds, partial payments, and invoices",
+        ],
+      },
+    ],
+  },
+];
+
+const ecommerceCardsData = [
+  {
+    number: "01",
+    heading: "Discovery & Market Research",
+    description:
+      "As a leading eCommerce app development company, we start by understanding your business goals, target audience, and competitors. Our team conducts in-depth market research to define the best strategy and feature set tailored to your niche.",
+  },
+  {
+    number: "02",
+    heading: "UI/UX Design & Prototyping",
+    description:
+      "We craft intuitive and visually appealing designs focused on seamless navigation and customer retention. Wireframes and prototypes are shared to visualize user flows and refine experiences before development begins.",
+  },
+  {
+    number: "03",
+    heading: "Tech Stack Selection & Architecture Planning",
+    description:
+      "We identify the best technologies and frameworks for your eCommerce app—ensuring scalability, security, and high performance. We also define the app’s architecture and data flow for a solid foundation.",
+  },
+  {
+    number: "04",
+    heading: "Custom Development & Integrations",
+    description:
+      "Our developers build robust front-end and back-end modules, integrate third-party tools like payment gateways, inventory systems, and CRM platforms—ensuring a seamless eCommerce experience for users and admins.",
+  },
+  {
+    number: "05",
+    heading: "Testing & Quality Assurance",
+    description:
+      "We rigorously test the app for usability, performance, and security. Manual and automated testing ensures bug-free functionality across devices and platforms, delivering a flawless shopping experience.",
+  },
+  {
+    number: "06",
+    heading: "Launch & Ongoing Support",
+    description:
+      "We handle app deployment to app stores or web servers and provide post-launch support. Based on analytics and user feedback, we continuously improve the app with new features and optimizations.",
+  },
+];
+
+export default function Ecommerce() {
+  const ecommerceSection = {
+    "All Chat Modes": {
       ref: useRef(null),
-      subheading: "Industry experts delivering smart real estate solutions",
-      className: "messaging-experience",
+      subheading: "Live, Offline and Lead-generating chats in one platform",
+      className: "product-management",
       image: `${basePath}/Asset/messaging_experience.png`,
       content: [
         {
           type: "p",
-          text: "Our team consists of seasoned professionals with deep expertise in real estate software development. We bring industry knowledge, technical excellence, and a problem-solving mindset to every project.",
+          text: "Magic Chat supports real-time interaction between users and admins, smart AI-driven responses during off-hours, and lead-generating chat flows with pre-set forms.",
         },
         {
           type: "group",
           className: "normal-text",
           texts: [
-            "Expertise in residential, commercial, and rental property platforms.",
-            "Decades of combined experience in real estate technology.",
-            "Collaborative approach with agile project delivery.",
+            "Live User-Admin Interaction",
+            "Offline AI-powered chatbot for 24x7 support",
+            "Lead-generating chatbots with pre-set questions and lead forms",
           ],
         },
       ],
     },
-    "Client Data Security": {
+    "No Coding / Plug and Play Setup": {
       ref: useRef(null),
-      subheading: "Safeguarding sensitive information with advanced security",
-      className: "voice-video",
+      subheading: "Fast setup and customization without writing a line of code",
+      className: "order-fulfillment",
       image: `${basePath}/Asset/messaging_experience.png`,
       content: [
         {
           type: "p",
-          text: "We prioritize client and user data protection through robust encryption, secure infrastructure, and best practices in cybersecurity—ensuring full confidentiality across all digital channels.",
+          text: "Easily integrate and manage chat features from the admin panel. Instantly update behavior, UI, and rules without redeploying or logging out users.",
         },
         {
           type: "group",
           className: "normal-text",
           texts: [
-            "Implement end-to-end encryption for user data and transactions.",
-            "Ensure GDPR compliance and data privacy policies.",
-            "Role-based access controls and multi-layer authentication.",
+            "Customize chat appearance and logic from the admin dashboard",
+            "Apply changes instantly—no need to re-login",
+            "Truly plug-and-play: integrate in minutes",
           ],
         },
       ],
     },
-    "On Time Delivery": {
+    "Affordable Pricing": {
       ref: useRef(null),
-      subheading: "Reliable timelines with no compromise on quality",
-      className: "scale-millions",
+      subheading: "Start for free, scale when needed",
+      className: "customer-engagement",
       image: `${basePath}/Asset/messaging_experience.png`,
       content: [
         {
           type: "p",
-          text: "Timely delivery is core to our development approach. We follow agile workflows and strict project management standards to meet your deadlines and ensure successful product launches.",
+          text: "Test and build your app without worrying about cost. Our free plan supports up to 100 users and includes all core features to help you get started quickly.",
         },
         {
           type: "group",
           className: "normal-text",
           texts: [
-            "Clear project milestones and delivery schedules.",
-            "Real-time tracking and communication at every stage.",
-            "Dedicated teams committed to your timeline goals.",
+            "Free tier suitable for early-stage testing and launch",
+            "Upgrade only when you exceed 100 users",
+            "Get full feature access even on free plans",
           ],
         },
       ],
     },
-    "Impeccable Experience": {
+    "Varity of Chat Options": {
       ref: useRef(null),
-      subheading: "Delivering seamless digital journeys for buyers and sellers",
-      className: "moderation-control",
+      subheading: "Choose P2A or P2P as per your platform needs",
+      className: "chat-options",
       image: `${basePath}/Asset/messaging_experience.png`,
       content: [
         {
           type: "p",
-          text: "We create feature-rich, user-focused real estate platforms that enhance engagement and simplify complex property transactions. Every touchpoint is designed to elevate the digital experience.",
+          text: "We support both Peer-to-Admin and Peer-to-Peer messaging. Select the mode that suits your platform's communication model.",
         },
         {
           type: "group",
           className: "normal-text",
           texts: [
-            "Design intuitive interfaces for property search and management.",
-            "Integrate 3D tours, maps, and smart filters for better discovery.",
-            "Enable seamless communication between buyers, sellers, and agents.",
+            "P2A - Peer to Admin chat",
+            "P2P - Peer to Peer chat",
+            "Flexible switching based on use-case",
+          ],
+        },
+      ],
+    },
+    "Auth Agnostic": {
+      ref: useRef(null),
+      subheading: "Integrate easily with any auth or even without it",
+      className: "auth-agnostic",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Whether your product uses social logins, custom tokens, or no authentication at all, Magic Chat integrates with minimal configuration.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Works with or without user authentication",
+            "Easily configurable with any auth system",
+            "Great for MVPs or full-fledged platforms alike",
+          ],
+        },
+      ],
+    },
+    "Works Anywhere JavaScript Runs": {
+      ref: useRef(null),
+      subheading: "Use it on any JavaScript-based frontend",
+      className: "js-compatibility",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "p",
+          text: "Magic Chat integrates effortlessly with any platform that supports JavaScript. Whether you're using React, Vue, Angular, Next.js, Nuxt, or plain HTML — you're covered.",
+        },
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Works seamlessly in any JavaScript environment",
+            "Supports React, Vue, Angular, Next.js, Nuxt, and more",
+            "Ideal for modern SPAs or traditional websites alike",
           ],
         },
       ],
     },
   };
 
-  const sectionsData = [
-    {
-      subheading: "Real Estate App Consultation",
-      icon: <MdOutlineSecurity />,
-      content: [
-        {
-          type: "p",
-          text: "Expert guidance on transforming your real estate business into a digital solution. From app concept ideation to feasibility analysis, receive detailed insights on market trends, user needs, and technology recommendations.",
-        },
-      ],
-    },
-    {
-      subheading: "Custom Real Estate App Development",
-      icon: <MdOutlineSecurity />,
-      content: [
-        {
-          type: "p",
-          text: "Tailored app solutions designed to fit unique business models. Build a custom app with features such as property listings, search filters, virtual tours, and booking integrations that resonate with your brand and audience.",
-        },
-      ],
-    },
-    {
-      subheading: "Property Listing & Management Solutions",
-      icon: <MdOutlineSecurity />,
-      content: [
-        {
-          type: "p",
-          text: "Develop a seamless system for adding, updating, and managing property listings. Empower realtors, agencies, or property managers to update listings with images, descriptions, amenities, and pricing effortlessly.",
-        },
-      ],
-    },
-    {
-      subheading: "Real-Time Chat & Communication Tools",
-      icon: <MdOutlineSecurity />,
-      content: [
-        {
-          type: "p",
-          text: "Integrated messaging features to facilitate instant communication between buyers, sellers, and agents. Includes chat, voice calls, and video calls, allowing for smooth, efficient interaction within the app.",
-        },
-      ],
-    },
-    {
-      subheading: "App Maintenance & Support",
-      icon: <MdOutlineSecurity />,
-      content: [
-        {
-          type: "p",
-          text: "Continuous app monitoring, updates, and technical support to ensure seamless performance. Maintenance services include bug fixes, feature enhancements, and OS compatibility updates.",
-        },
-      ],
-    },
-    {
-      subheading: "Augmented Reality (AR) & Virtual Tours",
-      icon: <MdOutlineSecurity />,
-      content: [
-        {
-          type: "p",
-          text: "Provide immersive property tours through AR and virtual reality, allowing users to explore properties remotely. This solution supports 3D tours, panoramic views, and virtual staging to showcase properties effectively.",
-        },
-      ],
-    },
-  ];
-
   return (
     <>
-      <h1>Real-estate</h1>
+      <h1>E-commerce</h1>
       <BannerSection
         icon={HeartIcon}
-        label="Real Estate"
-        heading="Create a safe, secure and positive messaging environment for your
+        label="E-commerce"
+        heading="Provide a safe, secure and positive messaging environment for your
               users"
         description="Messaging experience that seamlessly scales from thousands to
-              millions of users. Leverage AI-powered moderation to prevent and
-              manage inappropriate user behaviors."
+              millions of users. Leverage AI-powered chatbot to answer question even if Admin is Offline. Provides robust Live Intraction experience between admin and User. No Coding required , Easy to setup (Just Plug & Play), Premium Simple UI"
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
         imageSrc={`${basePath}/Asset/banner_placeholder.png`}
@@ -233,21 +320,27 @@ export default function RealEstate() {
       />
 
       <FeatureSectionWrapper
-        title="Reasons Why Magic Chat is the Perfect Real Estate Technology Partner for You."
-        description="At Magic Chat Technologies, we empower real estate businesses with cutting-edge software solutions that optimize operations, enhance client experiences, and streamline property management through scalable, secure, and innovative technologies."
-        sections={realEstateSection}
+        title="Why Magic Chat is the Perfect Technology Partner for Your eCommerce Growth."
+        description="At Magic Chat Technologies, we build high-performance eCommerce platforms that drive conversions, streamline inventory and fulfillment, and deliver seamless shopping experiences across web and mobile. From storefront to checkout, we help you scale faster and smarter."
+        sections={ecommerceSection}
       />
 
       <BuildShipManageCards
-        title="Real estate Website and Application Development Solutions That Create Impact."
-        subtitle="We specialize in creating tailored Real estate applications and Website equipped with a variety of features designed to facilitate a seamless Real estate experience."
-        sections={sectionsData}
+        title="Why choose Magic chat to develop Ecommerce apps?"
+        subtitle="At Magic chat, we have talented ecommerce app developers with a wealth of experience building customized Ecommerce app solutions out of the box."
+        sections={whyChooesyou}
+      />
+
+      <ProtectBusiness
+        title="E-commerce apps for businesses of all sizes and types"
+        description="We build complete eCommerce mobile app solutions tailored to businesses of all sizes—helping you attract customers, boost retention, and strengthen your brand presence."
+        sections={ecommerceObj}
       />
 
       <TimeTestedComp
-        title="Our Proven Development Workflow"
-        subtitle="Each step is crafted to maximize product quality and customer satisfaction."
-        cardsData={cardsData}
+        title="Our eCommerce Development Process"
+        subtitle="Tailored to build scalable, secure, and high-converting shopping experiences."
+        cardsData={ecommerceCardsData}
       />
     </>
   );

@@ -298,11 +298,10 @@ export default function Matrimy() {
       <BannerSection
         icon={HeartIcon}
         label="Dating"
-        heading="Create a safe, secure and positive messaging environment for your
+        heading="Provide a safe, secure and positive messaging environment for your
               users"
         description="Messaging experience that seamlessly scales from thousands to
-              millions of users. Leverage AI-powered moderation to prevent and
-              manage inappropriate user behaviors."
+              millions of users. Leverage AI-powered chatbot to answer question even if Admin is Offline. Provides robust Live Intraction experience between admin and User. No Coding required , Easy to setup (Just Plug & Play), Premium Simple UI"
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
         imageSrc={`${basePath}/Asset/matrimony_banner.png`}
@@ -333,12 +332,12 @@ export default function Matrimy() {
         defaultOpenIndex={0}
         showImage={true}
       />
-      
+
       <Carousel
-      slides={testimonialSlides}
-      title="10 years and 50,000+ customer stories"
-      description="Customer Stories"
-    />
+        slides={testimonialSlides}
+        title="10 years and 50,000+ customer stories"
+        description="Customer Stories"
+      />
     </>
   );
 }

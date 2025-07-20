@@ -180,25 +180,24 @@ export default function LegalTech() {
       ],
     },
   };
-  
+
   return (
     <>
       <h1>Legal Tech</h1>
       <BannerSection
         icon={HeartIcon}
         label="Dating"
-        heading="Create a safe, secure and positive messaging environment for your
+        heading="Provide a safe, secure and positive messaging environment for your
               users"
         description="Messaging experience that seamlessly scales from thousands to
-              millions of users. Leverage AI-powered moderation to prevent and
-              manage inappropriate user behaviors."
+              millions of users. Leverage AI-powered chatbot to answer question even if Admin is Offline. Provides robust Live Intraction experience between admin and User. No Coding required , Easy to setup (Just Plug & Play), Premium Simple UI"
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
         imageSrc={`${basePath}/Asset/banner_placeholder.png`}
         altText="Chat Solution"
       />
 
-    <FeatureSectionWrapper
+      <FeatureSectionWrapper
         title="Reasons Why Magic Chat is the Ideal Travel Technology Partner for You."
         description="At Magic Chat Technologies, we help travel businesses thrive with innovative digital solutions that simplify trip planning, enhance customer engagement, and streamline operations through secure, scalable, and user-centric platforms."
         sections={legalSection}

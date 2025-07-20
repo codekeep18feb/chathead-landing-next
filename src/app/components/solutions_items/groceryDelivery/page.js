@@ -361,11 +361,10 @@ export default function GroceryDelivery() {
       <BannerSection
         icon={HeartIcon}
         label="Grocery-Delivery"
-        heading="Create a safe, secure and positive messaging environment for your
+        heading="Provide a safe, secure and positive messaging environment for your
               users"
         description="Messaging experience that seamlessly scales from thousands to
-              millions of users. Leverage AI-powered moderation to prevent and
-              manage inappropriate user behaviors."
+              millions of users. Leverage AI-powered chatbot to answer question even if Admin is Offline. Provides robust Live Intraction experience between admin and User. No Coding required , Easy to setup (Just Plug & Play), Premium Simple UI"
         buttonText="Schedule a demo"
         buttonAction={() => alert("Demo scheduled!")}
         imageSrc={`${basePath}/Asset/banner_placeholder.png`}
