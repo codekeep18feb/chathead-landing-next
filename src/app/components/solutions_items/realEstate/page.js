@@ -115,7 +115,28 @@ const productHighlights = [
       },
     ],
   },
+  {
+    subheading: "Insightful, Scalable, Centralized",
+    image: `${basePath}/Asset/messaging_experience.png`,
+    content: [
+      {
+        type: "p",
+        text: "Track performance, manage multiple sites, and keep improving—all from one powerful dashboard.",
+      },
+      {
+        type: "group",
+        className: "normal-text",
+        texts: [
+          "📊 Insight Dashboard – Know what’s working and where to improve",
+          "🌐 Multi-site Support – Deploy chatbots across multiple sites",
+          "🛠 Central Admin – Control all bots from one place",
+          "⚙️ Optimize flows post-launch with live data",
+        ],
+      },
+    ],
+  },
 ];
+
 
 const buildSteps = [
   {
