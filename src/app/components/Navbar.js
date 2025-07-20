@@ -68,8 +68,8 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={`${basePath}/Asset/logo.jpg`} alt="addChat" />
-        <h2>addChat</h2>
+        <img src={`${basePath}/Asset/logo.jpg`} alt="Magicchat" />
+        <h2>Magicchat</h2>
       </div>
 
       <div
