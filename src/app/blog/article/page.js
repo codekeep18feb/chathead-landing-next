@@ -2,7 +2,6 @@
 import React from "react";
 import articleSty from "./articleStyle.module.css";
 import { FaClock, FaCalendarAlt, FaRegHandPointRight } from "react-icons/fa";
-
 import { IoSearch } from "react-icons/io5";
 import Link from "next/link";
 import { useRef } from "react";
@@ -11,132 +10,115 @@ const Article = () => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   const sectionsContent = {
-    "Why addChat Bots": {
+    "August 2025 Release Highlights": {
       ref: useRef(null),
       icon: <FaRegHandPointRight />,
       content: [
         {
           type: "p",
-          className: "addChat-bots",
-          parts: [
-            "MagicChat Bots help ",
-            {
-              type: "link",
-              href: "https://example.com",
-              text: "you",
-              className: "link-style",
-            },
-            " automate repetitive tasks efficiently.",
-          ],
+          text: "We're excited to announce game-changing features coming this August that will transform how teams manage customer support. These updates focus on enhanced collaboration and granular control.",
         },
-        {
-          type: "p",
-          text: "At Daily, we have been building real-time audio and video infrastructure since 2016. Our customers have been developers building conversational experiences – it started with people talking to each other..",
-        },
-      ],
-    },
-    "AI that talks naturally": {
-      ref: useRef(null),
-      icon: <FaRegHandPointRight />,
-      content: [
-        { type: "p", text: "Our AI mimics human-like conversation patterns." },
         {
           type: "img",
-          src: `${basePath}/Asset/ai_img.png`,
-          alt: "AI Conversation",
+          src: `${basePath}/images/team-collab.jpg`,
+          alt: "Team collaboration",
         },
-        { type: "p", text: "This ensures better engagement with users." },
       ],
     },
-    "Flexibility to use the best models, and the best models for your use case":
-      {
-        ref: useRef(null),
-        icon: <FaRegHandPointRight />,
-        content: [
-          {
-            type: "p",
-            text: "MagicChat Bots help automate repetitive tasks efficiently.",
-          },
-          {
-            type: "ul",
-            items: [
-              {
-                parts: [
-                  "Save time by using ",
-                  {
-                    type: "link",
-                    href: "https://example.com/save",
-                    text: "MagicChat Bots",
-                  },
-                  " to handle routine tasks.",
-                ],
-              },
-              {
-                parts: [
-                  "Reduce errors with ",
-                  {
-                    type: "link",
-                    href: "https://example.com/errors",
-                    text: "AI automation",
-                  },
-                  ".",
-                ],
-              },
-              { parts: ["Increase productivity effortlessly."] },
-            ],
-            className: "bullet-list",
-          },
-          {
-            type: "p",
-            text: "They seamlessly integrate with your existing workflows.",
-          },
-        ],
-      },
-    "Build now, and for the future": {
-      ref: useRef(null),
-      icon: <FaRegHandPointRight />,
-      content: [
-        { type: "p", text: "Our AI mimics human-like conversation patterns." },
-        {
-          type: "img",
-          src: `${basePath}/images/ai_convo.png`,
-          alt: "AI Conversation",
-        },
-        { type: "p", text: "This ensures better engagement with users." },
-      ],
-    },
-    "Demos, demos, demos & starting out": {
+    "Multi-Admin Support": {
       ref: useRef(null),
       icon: <FaRegHandPointRight />,
       content: [
         {
           type: "p",
-          text: "MagicChat Bots help automate repetitive tasks efficiently.",
+          text: "Delegate tasks and empower your team with our new multi-admin functionality:",
         },
         {
           type: "ul",
           items: [
-            {
-              parts: [
-                "Reduce errors with ",
-                {
-                  type: "link",
-                  href: "https://example.com/errors",
-                  text: "AI automation",
-                },
-                ".",
-              ],
-            },
-            { parts: ["Increase productivity effortlessly."] },
-            { parts: ["Save time."] },
-            { parts: ["Reduce errors."] },
-            { parts: ["Increase productivity."] },
+            { parts: ["Onboard unlimited support agents/admins"] },
+            { parts: ["Assign conversations to specific team members"] },
+            { parts: ["Maintain oversight while distributing workload"] },
+            { parts: ["Enable team members to act on your behalf"] },
           ],
+          className: "bullet-list",
         },
         {
           type: "p",
-          text: "They seamlessly integrate with your existing workflows.",
-          className: "normal-text",
+          text: "This eliminates bottlenecks and ensures customers always get timely responses from the most qualified team member.",
+        },
+      ],
+    },
+    "Advanced RBAC System": {
+      ref: useRef(null),
+      icon: <FaRegHandPointRight />,
+      content: [
+        {
+          type: "p",
+          text: "Our new Role-Based Access Control provides unprecedented flexibility:",
+        },
+        {
+          type: "ul",
+          items: [
+            { parts: ["Create custom roles with granular permissions"] },
+            { parts: ["Define access levels for different support tiers"] },
+            { parts: ["Restrict sensitive actions to authorized personnel"] },
+            { parts: ["One-click role assignment for new team members"] },
+          ],
+          className: "bullet-list",
+        },
+        {
+          type: "p",
+          text: "Sample permission options:",
+        },
+        {
+          type: "img",
+          src: `${basePath}/images/rbac-screenshot.png`,
+          alt: "RBAC permissions interface",
+          className: "feature-image",
+        },
+      ],
+    },
+    "Enterprise-Grade Support Center": {
+      ref: useRef(null),
+      icon: <FaRegHandPointRight />,
+      content: [
+        {
+          type: "p",
+          text: "Together these features enable fully-functional support teams:",
+        },
+        {
+          type: "ul",
+          items: [
+            { parts: ["Scale support operations without complexity"] },
+            { parts: ["Maintain security with least-privilege access"] },
+            { parts: ["Reduce resolution time with smart delegation"] },
+            { parts: ["Audit trails for all admin actions"] },
+          ],
+          className: "bullet-list",
+        },
+        {
+          type: "p",
+          text: "Whether you have 5 agents or 500, our new system adapts to your organizational structure and security requirements.",
+        },
+      ],
+    },
+    "Rollout Timeline": {
+      ref: useRef(null),
+      icon: <FaRegHandPointRight />,
+      content: [
+        {
+          type: "p",
+          text: "These features will be available to all enterprise plans starting August 1, 2025:",
+        },
+        {
+          type: "ul",
+          items: [
+            { parts: ["July 30: Documentation and training materials released"] },
+            { parts: ["August 4: Early access for beta customers"] },
+            { parts: ["August 10: General availability for all customers"] },
+          ],
+          className: "bullet-list",
         },
       ],
     },
@@ -148,39 +130,38 @@ const Article = () => {
       block: "start",
     });
   };
+  
   return (
     <div className={articleSty.container}>
       <section className={articleSty.banner}>
         <div className={articleSty.banner_content}>
-          <h3>
-            addChat Bots: Build Real-Time Voice, Vision, and Video AI
-            Agents__(Lorem)
-          </h3>
-          <p>
+          <h3>What's Coming in August 2025: Team Support Revolution</h3>
+          {/* Fixed: Replaced invalid <p> wrapper with <div> */}
+          <div className={articleSty.bannerInfo}>
             <div className={articleSty.bannerIc}>
-              <img src="https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2ZpbGUlMjBwaWN8ZW58MHx8MHx8fDA%3D" />
-              Justyna Polaczyk
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+              Product Team
             </div>
 
             <div className={articleSty.bannerIc}>
               <span>
                 <FaClock size={18} />
               </span>
-              3 min read
+              4 min read
             </div>
 
             <div className={articleSty.bannerIc}>
               <span>
                 <FaCalendarAlt size={18} />
               </span>
-              Feb 28
+              July 21, 2025
             </div>
-          </p>
+          </div>
         </div>
         <div className={articleSty.bannerImg}>
           <img
-            src="https://plus.unsplash.com/premium_photo-1661255378914-d0934128d91d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Article thumbnail"
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1740&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Team collaboration"
           />
         </div>
       </section>
@@ -189,10 +170,9 @@ const Article = () => {
         <div className={articleSty.leftSection}>
           <div className={articleSty.desc}>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              This August, we're launching powerful new features designed for growing support teams. 
+              Discover how our Multi-Admin support and advanced RBAC system will transform your customer 
+              service operations and enable enterprise-grade collaboration.
             </p>
           </div>
           {Object.entries(sectionsContent).map(
@@ -292,6 +272,7 @@ const Article = () => {
 
         <div className={articleSty.rightSection}>
           <header className={articleSty.sections}>
+            <h3>In this article</h3>
             <nav className={articleSty["sections-tabs"]}>
               {Object.entries(sectionsContent).map(([tab, { icon }]) => (
                 <a
