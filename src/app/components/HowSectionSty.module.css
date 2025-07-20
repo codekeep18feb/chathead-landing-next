@@ -352,3 +352,80 @@
   right: 20px;
   margin-bottom: 20px;
 } */
+
+
+/* Responsive Enhancements for HowSectionSty.module.css */
+
+@media screen and (max-width: 1024px) {
+  .how-content {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .left-side {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .right-side {
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+    padding: 10px;
+    background-size: cover;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .v1_content_card,
+  .chat-type-content {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .center-image,
+  .world-chat img {
+    display: none;
+  }
+
+  .back-btn button {
+    display: inline-block;
+  }
+
+  .world-chat {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .how-section {
+    padding: 1rem;
+  }
+
+  .read_more_btn {
+    width: 120px;
+    height: 80px;
+    font-size: 0.9rem;
+  }
+
+  .popup {
+    padding: 10px;
+  }
+
+  .close-btn {
+    right: 20px;
+    top: 10px;
+  }
+
+  .image-wrappe {
+    height: 60vh;
+  }
+
+  .v1_wrapper h4 {
+    font-size: 1.2rem;
+  }
+}
