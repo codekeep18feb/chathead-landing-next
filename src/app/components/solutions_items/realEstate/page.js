@@ -26,321 +26,334 @@ const HeartIcon = (
   </svg>
 );
 
-const whyChooesyou = [
+const whyChooseMagicChat = [
   {
-    subheading: "Expertise",
+    subheading: "Deep Real Estate Expertise",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "Our team brings years of domain-specific expertise, ensuring your travel tech solution is built on solid industry knowledge, best practices, and cutting-edge technology.",
+        text: "Our team understands the real estate domain—buyers, sellers, agents, and investors. We help you engage them better, faster, and with clarity through powerful chat flows.",
       },
     ],
   },
   {
-    subheading: "Contemporary UI/UX",
+    subheading: "Modern & Conversion-Driven UI/UX",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "We prioritize modern, user-friendly interfaces that enhance the user journey—from discovery to booking and beyond—resulting in higher engagement and satisfaction.",
+        text: "We deliver beautiful, intuitive experiences that drive engagement—whether users are browsing listings or booking property visits.",
       },
     ],
   },
   {
-    subheading: "Effective Communication",
+    subheading: "Transparent & Responsive Communication",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "With clear and consistent communication, we keep you informed at every stage of development. We value your input and ensure alignment with your business goals.",
+        text: "From kickoff to scale-up, we’re in sync with your team—ensuring our technology supports your roadmap, vision, and go-to-market strategy.",
       },
     ],
   },
   {
-    subheading: "Cost-effective and timely solutions",
+    subheading: "Quick, Scalable & Cost-Efficient",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "We offer competitive pricing without compromising on quality. Our agile workflows ensure timely delivery to help you launch faster and maximize ROI.",
+        text: "With plug-and-play architecture, you launch fast and scale without overhead. No bloated dev costs—just real results and ROI.",
       },
     ],
   },
   {
-    subheading: "Protection",
+    subheading: "Ongoing Support & Upgrades",
     icon: <MdOutlineSecurity />,
     content: [
       {
         type: "p",
-        text: "Security is at the core of every product we build. From secure payment integrations to data protection, we implement robust measures to safeguard users and businesses.",
-      },
-    ],
-  },
-  {
-    subheading: "Future maintenance and support",
-    icon: <MdOutlineSecurity />,
-    content: [
-      {
-        type: "p",
-        text: "We don't just deliver and walk away. We provide ongoing maintenance, updates, and support to keep your app running smoothly as your business evolves.",
+        text: "Post-launch, we stay with you—optimizing bots, releasing new features, and ensuring the platform evolves with your real estate business.",
       },
     ],
   },
 ];
 
-const ecommerceObj = [
+const productHighlights = [
   {
-    subheading: "Scalable Storefront Architecture",
-    image: `${basePath}/Asset/userInterface.png`,
+    subheading: "High-Impact Chat Experience",
+    image: `${basePath}/Asset/messaging_experience.png`,
     content: [
       {
         type: "p",
-        text: "We build modular and scalable eCommerce applications that adapt to your business size and growth stage—from emerging startups to enterprise-level marketplaces.",
+        text: "Capture leads, answer queries, and engage clients—all via real-time, AI-powered chat experiences tailored for real estate platforms.",
       },
       {
         type: "group",
         className: "normal-text",
         texts: [
-          "Custom storefront designs optimized for conversions and speed",
-          "Support for unlimited SKUs, categories, and variants",
-          "Mobile-first architecture with responsive, PWA-ready UI",
-          "Multi-language and multi-currency capabilities for global reach",
-          "Headless commerce support for seamless frontend/backend separation",
+          "Live Chat for agent-user interaction",
+          "AI assistant handles off-hours & FAQs",
+          "Lead-gen bots with smart forms and CRM sync",
         ],
       },
     ],
   },
   {
-    subheading: "Secure & Flexible Transactions",
-    image: `${basePath}/Asset/userInterface.png`,
+    subheading: "Lightweight Integration. Powerful Results.",
+    image: `${basePath}/Asset/messaging_experience.png`,
     content: [
       {
         type: "p",
-        text: "Our platforms ensure secure, compliant, and flexible payment processing for businesses of all sizes. Whether you're local or global, you get smooth, protected checkout flows.",
+        text: "Embed Magic Chat with just a few lines of JavaScript. Works seamlessly across your stack—React, Vue, Angular, or plain HTML.",
       },
       {
         type: "group",
         className: "normal-text",
         texts: [
-          "Integration with all major global and regional payment gateways",
-          "PCI-DSS compliant infrastructure and tokenized transactions",
-          "Support for wallets, UPI, BNPL (Buy Now Pay Later), and subscriptions",
-          "Real-time fraud detection and chargeback prevention mechanisms",
-          "Seamless handling of refunds, partial payments, and invoices",
+          "Works anywhere JavaScript runs",
+          "Auth-agnostic: plug into any login system or none",
+          "Minimal setup, instant deployment",
         ],
       },
     ],
   },
 ];
 
-const ecommerceCardsData = [
+const buildSteps = [
   {
     number: "01",
-    heading: "Discovery & Market Research",
+    heading: "Discovery & Requirement Mapping",
     description:
-      "As a leading eCommerce app development company, we start by understanding your business goals, target audience, and competitors. Our team conducts in-depth market research to define the best strategy and feature set tailored to your niche.",
+      "We align with your real estate workflows, buyer personas, and KPIs to design chatbot strategies that serve both user intent and business goals.",
   },
   {
     number: "02",
-    heading: "UI/UX Design & Prototyping",
+    heading: "Chat UI/UX Design",
     description:
-      "We craft intuitive and visually appealing designs focused on seamless navigation and customer retention. Wireframes and prototypes are shared to visualize user flows and refine experiences before development begins.",
+      "We craft elegant, branded interfaces that feel native to your platform—delighting users and maximizing engagement.",
   },
   {
     number: "03",
-    heading: "Tech Stack Selection & Architecture Planning",
+    heading: "Tech Stack Integration",
     description:
-      "We identify the best technologies and frameworks for your eCommerce app—ensuring scalability, security, and high performance. We also define the app’s architecture and data flow for a solid foundation.",
-  },
-  {
-    number: "04",
-    heading: "Custom Development & Integrations",
-    description:
-      "Our developers build robust front-end and back-end modules, integrate third-party tools like payment gateways, inventory systems, and CRM platforms—ensuring a seamless eCommerce experience for users and admins.",
-  },
-  {
-    number: "05",
-    heading: "Testing & Quality Assurance",
-    description:
-      "We rigorously test the app for usability, performance, and security. Manual and automated testing ensures bug-free functionality across devices and platforms, delivering a flawless shopping experience.",
-  },
-  {
-    number: "06",
-    heading: "Launch & Ongoing Support",
-    description:
-      "We handle app deployment to app stores or web servers and provide post-launch support. Based on analytics and user feedback, we continuously improve the app with new features and optimizations.",
+      "Just drop a few lines of JavaScript into your platform—React, Vue, Angular, Next.js, Nuxt, or plain HTML. We guide you on where to place the code to load the chatbot at the right entry points. Clear documentation and support provided.",
   },
 ];
 
-export default function Ecommerce() {
-  const ecommerceSection = {
-    "All Chat Modes": {
-      ref: useRef(null),
-      subheading: "Live, Offline and Lead-generating chats in one platform",
-      className: "product-management",
-      image: `${basePath}/Asset/messaging_experience.png`,
-      content: [
-        {
-          type: "p",
-          text: "Magic Chat supports real-time interaction between users and admins, smart AI-driven responses during off-hours, and lead-generating chat flows with pre-set forms.",
-        },
-        {
-          type: "group",
-          className: "normal-text",
-          texts: [
-            "Live User-Admin Interaction",
-            "Offline AI-powered chatbot for 24x7 support",
-            "Lead-generating chatbots with pre-set questions and lead forms",
-          ],
-        },
-      ],
-    },
-    "No Coding / Plug and Play Setup": {
-      ref: useRef(null),
-      subheading: "Fast setup and customization without writing a line of code",
-      className: "order-fulfillment",
-      image: `${basePath}/Asset/messaging_experience.png`,
-      content: [
-        {
-          type: "p",
-          text: "Easily integrate and manage chat features from the admin panel. Instantly update behavior, UI, and rules without redeploying or logging out users.",
-        },
-        {
-          type: "group",
-          className: "normal-text",
-          texts: [
-            "Customize chat appearance and logic from the admin dashboard",
-            "Apply changes instantly—no need to re-login",
-            "Truly plug-and-play: integrate in minutes",
-          ],
-        },
-      ],
-    },
-    "Affordable Pricing": {
-      ref: useRef(null),
-      subheading: "Start for free, scale when needed",
-      className: "customer-engagement",
-      image: `${basePath}/Asset/messaging_experience.png`,
-      content: [
-        {
-          type: "p",
-          text: "Test and build your app without worrying about cost. Our free plan supports up to 100 users and includes all core features to help you get started quickly.",
-        },
-        {
-          type: "group",
-          className: "normal-text",
-          texts: [
-            "Free tier suitable for early-stage testing and launch",
-            "Upgrade only when you exceed 100 users",
-            "Get full feature access even on free plans",
-          ],
-        },
-      ],
-    },
-    "Varity of Chat Options": {
-      ref: useRef(null),
-      subheading: "Choose P2A or P2P as per your platform needs",
-      className: "chat-options",
-      image: `${basePath}/Asset/messaging_experience.png`,
-      content: [
-        {
-          type: "p",
-          text: "We support both Peer-to-Admin and Peer-to-Peer messaging. Select the mode that suits your platform's communication model.",
-        },
-        {
-          type: "group",
-          className: "normal-text",
-          texts: [
-            "P2A - Peer to Admin chat",
-            "P2P - Peer to Peer chat",
-            "Flexible switching based on use-case",
-          ],
-        },
-      ],
-    },
-    "Auth Agnostic": {
-      ref: useRef(null),
-      subheading: "Integrate easily with any auth or even without it",
-      className: "auth-agnostic",
-      image: `${basePath}/Asset/messaging_experience.png`,
-      content: [
-        {
-          type: "p",
-          text: "Whether your product uses social logins, custom tokens, or no authentication at all, Magic Chat integrates with minimal configuration.",
-        },
-        {
-          type: "group",
-          className: "normal-text",
-          texts: [
-            "Works with or without user authentication",
-            "Easily configurable with any auth system",
-            "Great for MVPs or full-fledged platforms alike",
-          ],
-        },
-      ],
-    },
-    "Works Anywhere JavaScript Runs": {
-      ref: useRef(null),
-      subheading: "Use it on any JavaScript-based frontend",
-      className: "js-compatibility",
-      image: `${basePath}/Asset/messaging_experience.png`,
-      content: [
-        {
-          type: "p",
-          text: "Magic Chat integrates effortlessly with any platform that supports JavaScript. Whether you're using React, Vue, Angular, Next.js, Nuxt, or plain HTML — you're covered.",
-        },
-        {
-          type: "group",
-          className: "normal-text",
-          texts: [
-            "Works seamlessly in any JavaScript environment",
-            "Supports React, Vue, Angular, Next.js, Nuxt, and more",
-            "Ideal for modern SPAs or traditional websites alike",
-          ],
-        },
-      ],
-    },
-  };
-
+export default function RealEstate() {
   return (
     <>
-      <h1>E-commerce</h1>
+      <h1>Real Estate Chat Solutions</h1>
       <BannerSection
         icon={HeartIcon}
-        label="E-commerce"
-        heading="Provide a safe, secure and positive messaging environment for your
-              users"
-        description="Messaging experience that seamlessly scales from thousands to
-              millions of users. Leverage AI-powered chatbot to answer question even if Admin is Offline. Provides robust Live Intraction experience between admin and User. No Coding required , Easy to setup (Just Plug & Play), Premium Simple UI"
-        buttonText="Schedule a demo"
+        label="Real Estate"
+        heading="Bring AI-Powered Chat to Your Property Platform"
+        description="Magic Chat is the fastest way to launch live chat, AI support, and lead-generation bots for real estate. Easy to integrate. Scales with you. Built for speed, engagement, and growth."
+        buttonText="Get a Demo"
         buttonAction={() => alert("Demo scheduled!")}
         imageSrc={`${basePath}/Asset/banner_placeholder.png`}
-        altText="Chat Solution"
+        altText="Real Estate Chat"
       />
 
       <FeatureSectionWrapper
-        title="Why Magic Chat is the Perfect Technology Partner for Your eCommerce Growth."
-        description="At Magic Chat Technologies, we build high-performance eCommerce platforms that drive conversions, streamline inventory and fulfillment, and deliver seamless shopping experiences across web and mobile. From storefront to checkout, we help you scale faster and smarter."
-        sections={ecommerceSection}
+        title="Why Magic Chat Is Built for Real Estate"
+        description="Whether you run a listings marketplace, property portal, or brokerage platform—Magic Chat brings you a communication layer that’s fast, reliable, and conversion-optimized."
+        sections={{
+          "All Chat Modes": {
+            ref: useRef(null),
+            subheading: "Live, AI & Lead Bots—All in One",
+            className: "chat-modes",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "Magic Chat lets you handle real-time inquiries, automate off-hours, and capture leads effortlessly with one integration.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "Live Chat (P2A, P2P)",
+                  "AI for after-hours support",
+                  "Lead bots with form validation & CRM sync",
+                ],
+              },
+            ],
+          },
+          "No Coding / Plug and Play Setup": {
+            ref: useRef(null),
+            subheading: "Get Started in Minutes",
+            className: "easy-setup",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "Deploy Magic Chat without changing your backend or frontend structure. It’s as easy as dropping a script into your app.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "No backend integration required",
+                  "Launch instantly",
+                  "Manage from a clean, intuitive dashboard",
+                ],
+              },
+            ],
+          },
+          "Affordable Pricing": {
+            ref: useRef(null),
+            subheading: "Built for Startups and Scaling Teams",
+            className: "pricing",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "With transparent pricing and a generous free tier, Magic Chat delivers full functionality without surprise costs.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "Startup-friendly pricing plans",
+                  "No paywalls on essential features",
+                  "Pay as you grow",
+                ],
+              },
+            ],
+          },
+          "Varity of Chat Options": {
+            ref: useRef(null),
+            subheading: "Flexible Communication Modes",
+            className: "chat-options",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "Choose P2A (Peer-to-Admin) or P2P (Peer-to-Peer) communication depending on your user journey—Magic Chat supports both effortlessly.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "P2A for agent/broker chats",
+                  "P2P for buyer-seller or tenant-owner interactions",
+                  "Switch modes per page or user type",
+                ],
+              },
+            ],
+          },
+          "Auth Agnostic": {
+            ref: useRef(null),
+            subheading: "Plug into Any Login System—or None",
+            className: "auth",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "Magic Chat works regardless of how your users authenticate. No login? No problem.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "Works with OAuth, JWT, cookies or session-based auth",
+                  "Anonymous user support built-in",
+                  "Easy user mapping via token passthrough",
+                ],
+              },
+            ],
+          },
+          "Works Anywhere JavaScript Runs": {
+            ref: useRef(null),
+            subheading: "Framework Agnostic. Future Proof.",
+            className: "frameworks",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "Whether you use React, Vue, Angular, Next.js, or plain HTML—Magic Chat just works.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "Works with all JS frameworks",
+                  "SPA, MPA, SSR compatible",
+                  "Perfect for hybrid and micro-frontend architectures",
+                ],
+              },
+            ],
+          },
+        }}
       />
 
       <BuildShipManageCards
-        title="Why choose Magic chat to develop Ecommerce apps?"
-        subtitle="At Magic chat, we have talented ecommerce app developers with a wealth of experience building customized Ecommerce app solutions out of the box."
-        sections={whyChooesyou}
+        title="Why choose Magic Chat for your Real Estate platform?"
+        subtitle="We combine smart technology with industry understanding to help you chat better, faster, and more effectively."
+        sections={whyChooseMagicChat}
       />
 
       <ProtectBusiness
-        title="E-commerce apps for businesses of all sizes and types"
-        description="We build complete eCommerce mobile app solutions tailored to businesses of all sizes—helping you attract customers, boost retention, and strengthen your brand presence."
-        sections={ecommerceObj}
+        title="Modern Messaging. Massive Impact."
+        description="Magic Chat delivers lightweight, secure, and scalable chat for property platforms of all sizes—from local listings to global marketplaces."
+        sections={productHighlights}
       />
 
       <TimeTestedComp
-        title="Our eCommerce Development Process"
-        subtitle="Tailored to build scalable, secure, and high-converting shopping experiences."
-        cardsData={ecommerceCardsData}
+        title="Our Chat Implementation Process"
+        subtitle="From discovery to live support, our streamlined process ensures you go live fast—and grow without limits."
+        cardsData={buildSteps}
+      />
+
+      <FeatureSectionWrapper
+        title="Smarter Control. Better Decisions."
+        description="Track what matters and manage across multiple domains—all from one unified dashboard."
+        sections={{
+          "Insights Dashboard": {
+            ref: useRef(null),
+            subheading: "Know What to Improve",
+            className: "insights",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "See real-time chat metrics, conversion trends, drop-off points, and lead quality. Pinpoint exactly where user engagement can be improved.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "Track lead volume, response rate, chat duration",
+                  "Export analytics to CSV or dashboard",
+                  "Make informed improvements to flow or messaging",
+                ],
+              },
+            ],
+          },
+          "Multi-Site Management": {
+            ref: useRef(null),
+            subheading: "One Admin. Many Domains.",
+            className: "multi-site",
+            image: `${basePath}/Asset/messaging_experience.png`,
+            content: [
+              {
+                type: "p",
+                text: "Create and control multiple chatbots across different domains or products—all from a single Admin dashboard.",
+              },
+              {
+                type: "group",
+                className: "normal-text",
+                texts: [
+                  "Separate bots per brand, location, or language",
+                  "One login to manage all chatbot instances",
+                  "Custom flows and styles per site",
+                ],
+              },
+            ],
+          },
+        }}
       />
     </>
   );
