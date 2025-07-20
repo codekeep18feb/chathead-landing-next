@@ -10,13 +10,7 @@ import TimeTestedComp from "../../TimeTestedComp";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const HeartIcon = (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -81,12 +75,12 @@ const whyChooseMagicChat = [
 
 const productHighlights = [
   {
-    subheading: "High-Impact Chat Experience",
+    subheading: "Real-Time Chat. Easy to Embed. Instant Impact.",
     image: `${basePath}/Asset/messaging_experience.png`,
     content: [
       {
         type: "p",
-        text: "Capture leads, answer queries, and engage clients—all via real-time, AI-powered chat experiences tailored for real estate platforms.",
+        text: "Capture leads, answer queries, and engage clients in real time with AI-powered chat—seamlessly embedded into your site using just a few lines of JavaScript.",
       },
       {
         type: "group",
@@ -95,25 +89,28 @@ const productHighlights = [
           "Live Chat for agent-user interaction",
           "AI assistant handles off-hours & FAQs",
           "Lead-gen bots with smart forms and CRM sync",
+          "Works across React, Vue, Angular, or plain HTML",
+          "Auth-agnostic: plug into any login system or none",
+          "Minimal setup, instant deployment",
         ],
       },
     ],
   },
   {
-    subheading: "Lightweight Integration. Powerful Results.",
+    subheading: "Covers All Chat Scenarios",
     image: `${basePath}/Asset/messaging_experience.png`,
     content: [
       {
         type: "p",
-        text: "Embed Magic Chat with just a few lines of JavaScript. Works seamlessly across your stack—React, Vue, Angular, or plain HTML.",
+        text: "Magic Chat gives you a complete suite of chat options to cover every stage of the customer journey—whether your team is online, offline, or you're just capturing leads.",
       },
       {
         type: "group",
         className: "normal-text",
         texts: [
-          "Works anywhere JavaScript runs",
-          "Auth-agnostic: plug into any login system or none",
-          "Minimal setup, instant deployment",
+          "🧲 Lead Generation Chatbot – Lightweight, form-driven lead capture.",
+          "🤖 AI Chatbot – Always-on smart assistant for FAQs and offline hours.",
+          "💬 Live Agent Chat – Real-time chat with agents when online.",
         ],
       },
     ],
@@ -305,55 +302,6 @@ export default function RealEstate() {
         title="Our Chat Implementation Process"
         subtitle="From discovery to live support, our streamlined process ensures you go live fast—and grow without limits."
         cardsData={buildSteps}
-      />
-
-      <FeatureSectionWrapper
-        title="Smarter Control. Better Decisions."
-        description="Track what matters and manage across multiple domains—all from one unified dashboard."
-        sections={{
-          "Insights Dashboard": {
-            ref: useRef(null),
-            subheading: "Know What to Improve",
-            className: "insights",
-            image: `${basePath}/Asset/messaging_experience.png`,
-            content: [
-              {
-                type: "p",
-                text: "See real-time chat metrics, conversion trends, drop-off points, and lead quality. Pinpoint exactly where user engagement can be improved.",
-              },
-              {
-                type: "group",
-                className: "normal-text",
-                texts: [
-                  "Track lead volume, response rate, chat duration",
-                  "Export analytics to CSV or dashboard",
-                  "Make informed improvements to flow or messaging",
-                ],
-              },
-            ],
-          },
-          "Multi-Site Management": {
-            ref: useRef(null),
-            subheading: "One Admin. Many Domains.",
-            className: "multi-site",
-            image: `${basePath}/Asset/messaging_experience.png`,
-            content: [
-              {
-                type: "p",
-                text: "Create and control multiple chatbots across different domains or products—all from a single Admin dashboard.",
-              },
-              {
-                type: "group",
-                className: "normal-text",
-                texts: [
-                  "Separate bots per brand, location, or language",
-                  "One login to manage all chatbot instances",
-                  "Custom flows and styles per site",
-                ],
-              },
-            ],
-          },
-        }}
       />
     </>
   );
