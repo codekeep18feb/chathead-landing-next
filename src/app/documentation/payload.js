@@ -65,85 +65,111 @@ const payload = {
               text: "Load The Scripts",
               sub_items: [
                 {
-                  tag_type: "li",
-                  text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                  extra_text:
-                    "It should ideally be placed head of the root file.",
-                  code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                  tag_type: "div",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document."
+                    },
+                    {
+                      tag_type: "p",
+                      text: "It should ideally be placed head of the root file."
+                    },
+                    {
+                      tag_type: "code",
+                      show_copy: true,
+                      text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>'
+                    }
+                  ]
                 },
                 {
-                  tag_type: "li",
-                  // text: "after script is loaded we can initialize it like below.",
-                  // extra_text: "kindly add it below the first script",
-                  code: `
-<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js">
-</script>`,
-                },
-              ],
+                  tag_type: "div",
+                  children: [
+                    {
+                      tag_type: "code",
+                      show_copy: true,
+                      text: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`
+                    }
+                  ]
+                }
+              ]
             },
-
             {
               tag_type: "li",
               text: "Running Magicchat Setup Requires two steps",
               sub_items: [
                 {
-                  tag_type: "li",
-                  text: "Step 1 – setup on first Logged-Out Screens",
-                  extra_text:
-                    "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
-                  code: `      <script>
-        document.addEventListener("DOMContentLoaded", async function () {
-          const token = localStorage.getItem("tezkit_token");
-          if (!token) {
-            await window.chathead.setUp(
-              "v1app1", // app_name
-              "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
-              JSON.stringify({
-                header_theme: {
-                  backgroundColor: "rgb(163, 112, 206)",
-                  textColor: "white",
+                  tag_type: "div",
+                  children: [
+                    {
+                      tag_type: "h4",
+                      text: "Step 1 – setup on first Logged-Out Screens"
+                    },
+                    {
+                      tag_type: "p",
+                      text: "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present."
+                    },
+                    {
+                      tag_type: "code",
+                      show_copy: true,
+                      text: `<script>
+                document.addEventListener("DOMContentLoaded", async function () {
+                  const token = localStorage.getItem("tezkit_token");
+                  if (!token) {
+                    await window.chathead.setUp(
+                      "v1app1", // app_name
+                      "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
+                      JSON.stringify({
+                        header_theme: {
+                          backgroundColor: "rgb(163, 112, 206)",
+                          textColor: "white",
+                        },
+                        chat_opener_theme: {
+                          backgroundColor: "rgb(163, 112, 206)",
+                          textColor: "white",
+                        },
+                        chat_box_theme: {
+                          backgroundColor: "red",
+                          textColor: "black",
+                        },
+                      }), // theme
+                      true,  // header_req (HEADER FULL :: header will be added)
+                      "/", // redirect_url after login
+                    );
+                  } 
+                });
+              </script>`
+                    }
+                  ]
                 },
-                chat_opener_theme: {
-                  backgroundColor: "rgb(163, 112, 206)",
-                  textColor: "white",
-                },
-                chat_box_theme: {
-                  backgroundColor: "red",
-                  textColor: "black",
-                },
-              }), // theme
-              false, // header_req
-              "/index.html", // redirect_uri
-              false // reboot_settings
-            );
-
-          } 
-        });
-      </script>
-
-
-`,
-                },
-
                 {
-                  tag_type: "li",
-                  text: "Step 2 – Initialize on first Logged-In Screens",
-                  extra_text:
-                    "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
-                  code: `    
-    <script>
-      document.addEventListener("DOMContentLoaded", async function () {
-        const token = localStorage.getItem("tezkit_token");
-        if (token) {
-          await window.chathead.initialize(token);
-        } 
-      });
-    </script>
-`,
-                },
-              ],
-            },
-          ],
+                  tag_type: "div",
+                  children: [
+                    {
+                      tag_type: "h4",
+                      text: "Step 2 – Initialize on first Logged-In Screens"
+                    },
+                    {
+                      tag_type: "p",
+                      text: "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner)."
+                    },
+                    {
+                      tag_type: "code",
+                      show_copy: true,
+                      text: `<script>
+              document.addEventListener("DOMContentLoaded", async function () {
+                const token = localStorage.getItem("tezkit_token");
+                if (token) {
+                  await window.chathead.initialize(token);
+                } 
+              });
+            </script>`
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
 
         {
@@ -159,9 +185,8 @@ const payload = {
 
                 {
                   tag_type: "p",
-                  text: "Set `headerless_mode` to `true` as in the below",
+                  text: "Choose Setting `header_req` to `true` if you wish to have a header from magicchat with all the Authentication Component and all.",
                 },
-
 
                 {
                   tag_type: "img",
@@ -200,7 +225,7 @@ const payload = {
 
                 {
                   tag_type: "p",
-                  text: "Set `headerless_mode` to `false` as in the below",
+                  text: "Choose Setting `header_req` to `false` if you wish not to have a header from magicchat and possibly already have a header in which you want to place Magicchat Authentication Component at any desired location.",
                 },
                 {
                   tag_type: "img",
@@ -271,7 +296,7 @@ const payload = {
               children: [
                 {
                   tag_type: "a",
-                  href: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                  href: "https://github.com/magicchat-core/example__v1/blob/a98e8902079c3c40062751d675a90a8ad0cae302/index.html#L16",
                   text: "for example here ",
                 },
               ],
@@ -379,7 +404,7 @@ const payload = {
                   text: "Step 1 – Initialize on first Logged-Out Screens",
                   extra_text:
                     "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
-                  code: `      <script>
+                  code: `<script>
         document.addEventListener("DOMContentLoaded", async function () {
           const token = localStorage.getItem("tezkit_token");
           if (!token) {
@@ -400,9 +425,8 @@ const payload = {
                   textColor: "black",
                 },
               }), // theme
-              false, // header_req
-              "/index.html", // redirect_uri
-              false // reboot_settings
+              true,  // header_req (HEADER FULL :: header will be added)
+              "/", // redirect_url after login
             );
 
           } 
@@ -451,7 +475,7 @@ const payload = {
               children: [
                 {
                   tag_type: "a",
-                  href: "https://github.com/codekeep18feb/examples/tree/main/vanila_js_sites/p2a_v1_clients",
+                  href: "https://github.com/magicchat-core/example__v2",
                   text: "for example here ",
                 },
               ],

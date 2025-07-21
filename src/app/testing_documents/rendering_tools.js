@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-// import "./test.css";
 import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../components/YouTubeVideo";
 import { FaLink } from "react-icons/fa6";
-
 
 const CondRadioRender = ({ r_options }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
@@ -95,7 +93,7 @@ const supportedTags = [
   "tooltip",
   "pagination",
   "kbd",
-  "text", // Add this
+  "text",
   "side_nav",
   "search",
   "mermaid_diagram",
@@ -166,7 +164,7 @@ const MessageTip = ({ title, children }) => {
     </div>
   );
 };
-// Update the Steps component to use ContentRenderer
+
 const Steps = ({ items }) => {
   return (
     <div className={styles.steps}>
@@ -187,7 +185,6 @@ const Steps = ({ items }) => {
   );
 };
 
-// New Component: Tabs
 const Tabs = ({ items }) => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -213,7 +210,6 @@ const Tabs = ({ items }) => {
   );
 };
 
-// New Component: Tooltip
 const Tooltip = ({ content, children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -272,7 +268,6 @@ const DocSearch = () => {
 
 const MermaidDiagram = ({ code }) => {
   useEffect(() => {
-    // Initialize Mermaid diagram
     window.mermaid?.initialize({ startOnLoad: true });
     window.mermaid?.init();
   }, [code]);
@@ -280,13 +275,11 @@ const MermaidDiagram = ({ code }) => {
   return <div className="mermaid">{code}</div>;
 };
 
-// Update the Pagination component
 const Pagination = ({ currentPage, totalPages }) => {
   const [page, setPage] = useState(currentPage);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
-    // Add any additional page change logic here
     console.log("Page changed to:", newPage);
   };
 
@@ -305,7 +298,6 @@ const Pagination = ({ currentPage, totalPages }) => {
   );
 };
 
-// New Component: Keyboard Shortcut
 const Kbd = ({ keys }) => {
   return (
     <span className="kbd-container">
@@ -341,7 +333,6 @@ const CodeWithCopy = ({ code, language }) => {
   );
 };
 
-// New Component: Accordion Section
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -359,7 +350,6 @@ const Accordion = ({ title, children }) => {
   );
 };
 
-// New Component: Table
 const Table = ({ headers, rows }) => {
   return (
     <table className="doc-table">
@@ -383,7 +373,6 @@ const Table = ({ headers, rows }) => {
   );
 };
 
-// New Component: Breadcrumbs
 const Breadcrumbs = ({ items }) => {
   return (
     <nav className="breadcrumbs">
@@ -469,8 +458,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
-          {/* 🔗 */}
-          <FaLink size={16}/>
+          <FaLink size={16} />
         </button>
       );
     }
@@ -493,8 +481,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       style={{
         cursor: isCollapsible ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "disc",
-        // position: "relative",
-        // paddingLeft: "35px",
+        position: "relative",
+        paddingLeft: isCollapsible ? "20px" : "0",
       }}
     >
       {isCollapsible && (
@@ -534,13 +522,14 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         <div
           style={{ display: expanded ? "block" : "none", marginLeft: "20px" }}
         >
-          <List
-            items={item.sub_items}
-            listType={item.listType || listType}
-            collapsable={childCollapsable}
-            fcNonCollapsable={fcNonCollapsable}
-            depth={depth + 1}
-          />
+          {/* FIX: Wrap sub_items in proper list container */}
+          {item.sub_items[0]?.tag_type === "li" ? (
+            <ul className={styles["content-list"]}>
+              <ContentRenderer content={item.sub_items} />
+            </ul>
+          ) : (
+            <ContentRenderer content={item.sub_items} />
+          )}
         </div>
       )}
     </li>
@@ -575,6 +564,43 @@ const APIReferenceTable = ({ properties }) => (
 );
 
 const ContentRenderer = ({ content }) => {
+  // Helper function for link rendering in li elements
+  const renderLink = (item) => {
+    if (!item.link_configuration?.show) return null;
+    const config = item.link_configuration;
+
+    if (config.type === "internal") {
+      return (
+        <button
+          onClick={() => {
+            try {
+              const element = document.querySelector(config.targetSelector);
+              if (element) element.scrollIntoView({ behavior: "smooth" });
+            } catch (e) {
+              console.error("Scroll error:", e);
+            }
+          }}
+          className={`${styles["content-link"]} ${styles.internal}`}
+          title="Scroll to section"
+        >
+          <FaLink size={16} />
+        </button>
+      );
+    }
+
+    return (
+      <a
+        href={config.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles["content-link"]} ${styles.external}`}
+        title="Open in new tab"
+      >
+        🔗
+      </a>
+    );
+  };
+
   return (
     <div className={`${styles.contents} ${styles.sidebarContentclass}`}>
       {content?.map((item, index) => {
@@ -661,18 +687,15 @@ const ContentRenderer = ({ content }) => {
                 key={index}
                 currentPage={item.currentPage}
                 totalPages={item.totalPages}
-                onPageChange={item.onPageChange}
               />
             );
 
           case "kbd":
             return <Kbd key={index} keys={item.keys} />;
 
-          // Add text handling
           case "text":
             return <span key={index}>{item.text}</span>;
 
-          // Update the p case in ContentRenderer
           case "p":
             return (
               <div key={index} className="content-paragraph">
@@ -725,7 +748,6 @@ const ContentRenderer = ({ content }) => {
               </blockquote>
             );
 
-          // New Component Cases
           case "table":
             return (
               <Table key={index} headers={item.headers} rows={item.rows} />
@@ -766,12 +788,27 @@ const ContentRenderer = ({ content }) => {
           case "li":
             return (
               <li key={index} className="content-list-item">
-                {item.text}
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  {item.text && <span>{item.text}</span>}
+                  {item.link_configuration && renderLink(item)}
+                </div>
+                {item.code && (
+                  <pre className="script_code">
+                    <code>{item.code}</code>
+                  </pre>
+                )}
+                
                 {item.sub_items && (
-                  <List
-                    items={item.sub_items}
-                    listType={item.listType || "ul"}
-                  />
+                  <div style={{ marginLeft: "20px" }}>
+                    {/* FIX: Wrap sub_items in proper list container */}
+                    {item.sub_items[0]?.tag_type === "li" ? (
+                      <ul className={styles["content-list"]}>
+                        <ContentRenderer content={item.sub_items} />
+                      </ul>
+                    ) : (
+                      <ContentRenderer content={item.sub_items} />
+                    )}
+                  </div>
                 )}
               </li>
             );
