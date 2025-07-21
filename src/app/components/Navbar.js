@@ -114,7 +114,7 @@ const Navbar = () => {
           <li
             onMouseEnter={() => setHoveredContentKey("developers")}
             onClick={() => handleItemClick("developers")}
-            onMouseLeave={handleCloseModal}
+            // onMouseLeave={handleCloseModal}
             className={styles.links}
           >
             <a href="#developer" className={styles.link}>
@@ -125,7 +125,7 @@ const Navbar = () => {
           <li
             onMouseEnter={() => setHoveredContentKey("resources")}
             onClick={() => handleItemClick("resources")}
-            onMouseLeave={handleCloseModal}
+            // onMouseLeave={handleCloseModal}
             className={styles.links}
           >
             <a href="#resource" className={styles.link}>
@@ -134,7 +134,7 @@ const Navbar = () => {
             <div className={styles.nextArrow}> &gt;</div>
           </li>
 
-          <li>
+          <li  onMouseEnter={handleCloseModal}>
             <Link href="/pricing" legacyBehavior>
               <a
                 onClick={() => handleItemClick("pricing")}
