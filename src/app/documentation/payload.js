@@ -6,11 +6,11 @@ const payload = {
       text: `Cloud Managed Auth [V1]`,
     },
 
-{
-  tag_type: "p",
-  text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.
+    {
+      tag_type: "p",
+      text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.
 `,
-},
+    },
     {
       tag_type: "div",
       children: [
@@ -57,8 +57,6 @@ const payload = {
           text: "To integrate Chat into your app, do the following:",
         },
 
-     
-
         {
           tag_type: "ol",
           items: [
@@ -90,45 +88,58 @@ const payload = {
               sub_items: [
                 {
                   tag_type: "li",
-                  text: "Step 1 – Initialize on Logged-Out Screens",
+                  text: "Step 1 – setup on first Logged-Out Screens",
                   extra_text:
                     "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
-                  code: `<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("tezkit_token");
-    if (!token) {
-      window.chathead.setUp(
-        "<Your App Name>",
-        "<Your API Key>",
-        JSON.stringify({
-          header_theme: {
-            backgroundColor: "rgb(30, 136, 125)" // Customize header background color
-          },
-          chat_opener_theme: {
-            backgroundColor: "rgb(41, 48, 78)" // Customize chat opener background color
-          }
-        }),
-        false, // Enable or disable headless mode
-        "/index.html" // Path to the chat widget's iframe container (if applicable)
-      );
-    }
-  });
-</script>`,
+                  code: `      <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+          const token = localStorage.getItem("tezkit_token");
+          if (!token) {
+            await window.chathead.setUp(
+              "v1app1", // app_name
+              "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
+              JSON.stringify({
+                header_theme: {
+                  backgroundColor: "rgb(163, 112, 206)",
+                  textColor: "white",
+                },
+                chat_opener_theme: {
+                  backgroundColor: "rgb(163, 112, 206)",
+                  textColor: "white",
+                },
+                chat_box_theme: {
+                  backgroundColor: "red",
+                  textColor: "black",
+                },
+              }), // theme
+              false, // header_req
+              "/index.html", // redirect_uri
+              false // reboot_settings
+            );
+
+          } 
+        });
+      </script>
+
+
+`,
                 },
 
                 {
                   tag_type: "li",
-                  text: "Step 2 – Initialize on Logged-In Screens",
+                  text: "Step 2 – Initialize on first Logged-In Screens",
                   extra_text:
                     "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
-                  code: `<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("tezkit_token");
-    if (token) {
-      window.chathead.initialize(token);
-    }
-  });
-</script>`,
+                  code: `    
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        const token = localStorage.getItem("tezkit_token");
+        if (token) {
+          await window.chathead.initialize(token);
+        } 
+      });
+    </script>
+`,
                 },
               ],
             },
@@ -149,6 +160,12 @@ const payload = {
                 {
                   tag_type: "p",
                   text: "Set `headerless_mode` to `true` as in the below",
+                },
+
+
+                {
+                  tag_type: "img",
+                  src: "Asset/header_ful.png",
                 },
 
                 {
@@ -184,6 +201,10 @@ const payload = {
                 {
                   tag_type: "p",
                   text: "Set `headerless_mode` to `false` as in the below",
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/header_less.png",
                 },
 
                 {
@@ -355,55 +376,66 @@ const payload = {
               sub_items: [
                 {
                   tag_type: "li",
-                  text: "Step 1 – Initialize on Logged-Out Screens",
+                  text: "Step 1 – Initialize on first Logged-Out Screens",
                   extra_text:
                     "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
-                  code: `<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("tezkit_token");
-    if (!token) {
-      window.chathead.setUp(
-        "<Your App Name>",
-        "<Your API Key>",
-        JSON.stringify({
-          header_theme: {
-            backgroundColor: "rgb(30, 136, 125)" // Customize header background color
-          },
-          chat_opener_theme: {
-            backgroundColor: "rgb(41, 48, 78)" // Customize chat opener background color
-          }
-        }),
-        false, // Enable or disable headless mode
-        "/index.html" // Path to the chat widget's iframe container (if applicable)
-      );
-    }
-  });
-</script>`,
+                  code: `      <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+          const token = localStorage.getItem("tezkit_token");
+          if (!token) {
+            await window.chathead.setUp(
+              "v1app1", // app_name
+              "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
+              JSON.stringify({
+                header_theme: {
+                  backgroundColor: "rgb(163, 112, 206)",
+                  textColor: "white",
+                },
+                chat_opener_theme: {
+                  backgroundColor: "rgb(163, 112, 206)",
+                  textColor: "white",
+                },
+                chat_box_theme: {
+                  backgroundColor: "red",
+                  textColor: "black",
+                },
+              }), // theme
+              false, // header_req
+              "/index.html", // redirect_uri
+              false // reboot_settings
+            );
+
+          } 
+        });
+      </script>
+
+
+`,
                 },
 
                 {
                   tag_type: "li",
-                  text: "Step 2 – Initialize on Logged-In Screens",
+                  text: "Step 2 – Initialize on first Logged-In Screens",
                   extra_text:
                     "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
-                  code: `<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("tezkit_token");
-    if (token) {
-      window.chathead.initialize(token);
-    }
-  });
-</script>`,
+                  code: `    
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        const token = localStorage.getItem("tezkit_token");
+        if (token) {
+          await window.chathead.initialize(token);
+        } 
+      });
+    </script>
+
+`,
                 },
               ],
             },
-
-            
           ],
         },
 
-
- {
+        {
           tag_type: "callout",
           type: "info",
           title: "Additional Notes",
@@ -436,7 +468,7 @@ const payload = {
           tag_type: "h3",
           text: "Onboarding api",
         },
-      
+
         {
           tag_type: "p",
           text: `To ensure users can access chat features and are visible in the MagicChat Admin Panel, you must onboard them upon registration.`,
@@ -451,8 +483,6 @@ const payload = {
           tag_type: "h3",
           text: `Ways to Onboard Users`,
         },
-
-       
 
         {
           tag_type: "feature_options",
@@ -473,8 +503,6 @@ const payload = {
                 {
                   tag_type: "div",
                   children: [
-
-                  
                     {
                       tag_type: "img",
                       src: "Asset/onboarding_via_rest_endpoint_payload.png",
@@ -537,13 +565,13 @@ const payload = {
           tag_type: "mesgTip",
           title: "Tip:",
           children: [
-          {
-          tag_type: "p",
-          text: "Ensure you call the onboarding API immediately after user signup. Legacy or missed users can be added via batch API methods—contact support for more details.",
-          },
+            {
+              tag_type: "p",
+              text: "Ensure you call the onboarding API immediately after user signup. Legacy or missed users can be added via batch API methods—contact support for more details.",
+            },
           ],
-          },
-          
+        },
+
         {
           tag_type: "video",
           src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
