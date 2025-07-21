@@ -58,7 +58,16 @@ const slides = {
       ],
     },
     {
-      image: "/Asset/p2p-slide2.jpg",
+      image: "/Asset/defultpage_p2p.png",
+      sections: [
+        {
+          heading: "End-to-End Encryption",
+          paragraph: "Security features in P2P chat.",
+        },
+      ],
+    },
+    {
+      image: "/Asset/p2p_secondImg.png",
       sections: [
         {
           heading: "End-to-End Encryption",
@@ -73,6 +82,24 @@ const tabData = [
   { label: "P2A", content: <Slider slides={slides.p2a} /> },
   { label: "P2P", content: <Slider slides={slides.p2p} /> },
 ];
+
+const demoImages = {
+  "cloud managed auth": [
+    "/Asset/beforeChatAdd.png",
+    "/Asset/afterChatAdd.png",
+    "/Asset/afterModalOpen.png",
+  ],
+  "locally managed auth": [
+    "/Asset/beforeChatAdd.png",
+    "/Asset/afterChatAdd.png",
+    "/Asset/afterModalOpen.png",
+  ],
+  "plugin driven": [
+    "/Asset/beforeChatAdd.png",
+    "/Asset/afterChatAdd.png",
+    "/Asset/afterModalOpen.png",
+  ],
+};
 
 const HowSection = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -135,11 +162,10 @@ const HowSection = () => {
 
           <ul className={styles["peer-list"]} style={{ marginTop: "10px" }}>
             <li
-               onClick={() => {
+              onClick={() => {
                 setShowTabs(true);
-                setSelectedOption(null); 
+                setSelectedOption(null);
               }}
-              
               style={{
                 backgroundColor: showTabs ? "#4d6bdf" : "",
                 color: showTabs ? "white" : "",
@@ -177,11 +203,7 @@ const HowSection = () => {
               </button>
               <div className={styles["image-wrappe"]}>
                 <ImageSlider
-                  images={[
-                    "/Asset/beforeChatAdd.png",
-                    "/Asset/afterChatAdd.png",
-                    "/Asset/afterModalOpen.png",
-                  ]}
+                  images={demoImages[demoVersion] || []}
                   onClose={closePopup}
                 />
               </div>
@@ -270,15 +292,13 @@ const ContentCard = ({ title, version }) => {
     "locally managed auth": "locally-managed-auth",
     "plugin driven": "plugin-driven",
   };
-  
+
   const slugMap = {
     "for Whom": "to-whom",
     Provides: "provides",
     "How Does it work": "how-it-works",
     "Example Usage": "example-usage",
   };
-  
-
 
   const contentData = {
     "cloud managed auth": {
@@ -362,7 +382,7 @@ const ContentCard = ({ title, version }) => {
 
   // const handleIconClick = () => {
   //   if (version === "cloud managed auth") {
-  //     router.push("/cloudManaged"); 
+  //     router.push("/cloudManaged");
   //   }
   // };
 
