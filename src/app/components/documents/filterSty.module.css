@@ -9,60 +9,47 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.option-container {
-  margin-left: 20px;
-  border: 1px solid #ccc;
-  padding: 10px 30px;
-  border-radius: 4px;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-}
-.option-container:hover {
-  border: 1px solid var(--primary-color);
-  background: var(--light-primary-color);
+  flex-wrap: wrap;
 }
 
-.option-container label {
-  cursor: pointer;
-  font-weight: normal;
-  gap: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.option-container input[type="radio"] {
-  transform: scale(1.5);
-  /* accent-color: var(--primary-color); */
-}
-
-.option-container.disabled {
-  opacity: 0.5;
-}
-.option-container input[type="radio"]:disabled {
-  cursor: not-allowed;
-}
 .filter-group {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
-.submit-btn {
-  padding: 10px 15px;
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.option-button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   background-color: transparent;
-  color: var(--primary-color);
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
   cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.submit-btn:hover {
-  text-decoration: underline;
-  cursor: hand;
-  cursor: pointer;
+.option-button:hover {
+  background-color: var(--light-primary-color);
+  border-color: var(--primary-color);
   color: var(--primary-color);
 }
 
-.submit-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.option-button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Remove unused styles */
+.option-container,
+.option-container label,
+.option-container input[type="radio"],
+.submit-btn {
+  display: none;
 }
