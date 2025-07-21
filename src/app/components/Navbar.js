@@ -92,7 +92,9 @@ const Navbar = () => {
       >
         <div className={styles.navList}>
           <li
-            onMouseEnter={() => setHoveredContentKey("platform")}
+            onMouseEnter={() => {
+              if (!isMobile) setHoveredContentKey("platform");
+            }}
             onClick={() => handleItemClick("platform")}
             className={styles.links}
           >
@@ -101,8 +103,11 @@ const Navbar = () => {
             </a>
             <div className={styles.nextArrow}> &gt;</div>
           </li>
+
           <li
-            onMouseEnter={() => setHoveredContentKey("solutions")}
+          onMouseEnter={() => {
+            if (!isMobile) setHoveredContentKey("solutions");
+          }}
             onClick={() => handleItemClick("solutions")}
             className={styles.links}
           >
@@ -112,9 +117,11 @@ const Navbar = () => {
             <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
-            onMouseEnter={() => setHoveredContentKey("developers")}
+           onMouseEnter={() => {
+            if (!isMobile) setHoveredContentKey("developers");
+          }}
             onClick={() => handleItemClick("developers")}
-            onMouseLeave={handleCloseModal}
+            // onMouseLeave={handleCloseModal}
             className={styles.links}
           >
             <a href="#developer" className={styles.link}>
@@ -123,9 +130,11 @@ const Navbar = () => {
             <div className={styles.nextArrow}> &gt;</div>
           </li>
           <li
-            onMouseEnter={() => setHoveredContentKey("resources")}
+          onMouseEnter={() => {
+            if (!isMobile) setHoveredContentKey("resources");
+          }}
             onClick={() => handleItemClick("resources")}
-            onMouseLeave={handleCloseModal}
+            // onMouseLeave={handleCloseModal}
             className={styles.links}
           >
             <a href="#resource" className={styles.link}>
@@ -134,7 +143,7 @@ const Navbar = () => {
             <div className={styles.nextArrow}> &gt;</div>
           </li>
 
-          <li>
+          <li  onMouseEnter={handleCloseModal}>
             <Link href="/pricing" legacyBehavior>
               <a
                 onClick={() => handleItemClick("pricing")}
