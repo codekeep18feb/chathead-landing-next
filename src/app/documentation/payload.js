@@ -69,18 +69,18 @@ const payload = {
                   children: [
                     {
                       tag_type: "p",
-                      text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document."
+                      text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
                     },
                     {
                       tag_type: "p",
-                      text: "It should ideally be placed head of the root file."
+                      text: "It should ideally be placed head of the root file.",
                     },
                     {
                       tag_type: "code",
                       show_copy: true,
-                      text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>'
-                    }
-                  ]
+                      text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                    },
+                  ],
                 },
                 {
                   tag_type: "div",
@@ -88,11 +88,11 @@ const payload = {
                     {
                       tag_type: "code",
                       show_copy: true,
-                      text: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`
-                    }
-                  ]
-                }
-              ]
+                      text: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                    },
+                  ],
+                },
+              ],
             },
             {
               tag_type: "li",
@@ -103,42 +103,117 @@ const payload = {
                   children: [
                     {
                       tag_type: "h4",
-                      text: "Step 1 – setup on first Logged-Out Screens"
+                      text: "Step 1 – setup on first Logged-Out Screens",
                     },
                     {
                       tag_type: "p",
-                      text: "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present."
+                      text: "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
                     },
                     {
                       tag_type: "code",
                       show_copy: true,
                       text: `<script>
-                document.addEventListener("DOMContentLoaded", async function () {
-                  const token = localStorage.getItem("tezkit_token");
-                  if (!token) {
-                    await window.chathead.setUp(
-                      "v1app1", // app_name
-                      "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
-                      JSON.stringify({
-                        header_theme: {
-                          backgroundColor: "rgb(163, 112, 206)",
-                          textColor: "white",
+              document.addEventListener("DOMContentLoaded", async function () {
+                const token = localStorage.getItem("tezkit_token");
+                if (!token) {
+                  await window.chathead.setUp(
+                    "v1app1", // app_name
+                    "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
+                    JSON.stringify({
+                      header_theme: {
+                        backgroundColor: "rgb(163, 112, 206)",
+                        textColor: "white",
+                      },
+                      chat_opener_theme: {
+                        backgroundColor: "rgb(163, 112, 206)",
+                        textColor: "white",
+                      },
+                      chat_box_theme: {
+                        backgroundColor: "red",
+                        textColor: "black",
+                      },
+                    }), // theme
+                    true,  // header_req (HEADER FULL :: header will be added)
+                    "/", // redirect_url after login
+                  );
+                } 
+              });
+            </script>`,
+                    },
+                    {
+                      tag_type: "callout",
+                      type: "info",
+                      title: "Parameter Details",
+                      children: [
+                        {
+                          tag_type: "table",
+                          headers: ["Parameter", "Type", "Description"],
+                          rows: [
+                            [
+                              "app_name", 
+                              "string", 
+                              "Unique identifier for your application (provided during registration)"
+                            ],
+                            [
+                              "api_key", 
+                              "string", 
+                              "Base64 encoded API key for authentication"
+                            ],
+                            [
+                              "theme", 
+                              "string (JSON)", 
+                              "Theme configuration object as a JSON string"
+                            ],
+                            [
+                              "header_req", 
+                              "boolean", 
+                              "Set to true to display header with user controls"
+                            ],
+                            [
+                              "redirect_url", 
+                              "string", 
+                              "URL to redirect to after successful login"
+                            ]
+                          ]
                         },
-                        chat_opener_theme: {
-                          backgroundColor: "rgb(163, 112, 206)",
-                          textColor: "white",
-                        },
-                        chat_box_theme: {
-                          backgroundColor: "red",
-                          textColor: "black",
-                        },
-                      }), // theme
-                      true,  // header_req (HEADER FULL :: header will be added)
-                      "/", // redirect_url after login
-                    );
-                  } 
-                });
-              </script>`
+                        {
+                          tag_type: "callout",
+                          type: "warning",
+                          title: "Theme Configuration",
+                          children: [
+                            {
+                              tag_type: "p",
+                              text: "The theme parameter requires a JSON string with these nested objects:"
+                            },
+                            {
+                              tag_type: "ul",
+                              items: [
+                                {
+                                  text: "header_theme - Styles for the chat header",
+                                  sub_items: [
+                                    { text: "backgroundColor: CSS color value" },
+                                    { text: "textColor: CSS color value" }
+                                  ]
+                                },
+                                {
+                                  text: "chat_opener_theme - Styles for the chat opener button",
+                                  sub_items: [
+                                    { text: "backgroundColor: CSS color value" },
+                                    { text: "textColor: CSS color value" }
+                                  ]
+                                },
+                                {
+                                  text: "chat_box_theme - Styles for the main chat container",
+                                  sub_items: [
+                                    { text: "backgroundColor: CSS color value" },
+                                    { text: "textColor: CSS color value" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 },
@@ -147,11 +222,11 @@ const payload = {
                   children: [
                     {
                       tag_type: "h4",
-                      text: "Step 2 – Initialize on first Logged-In Screens"
+                      text: "Step 2 – Initialize on first Logged-In Screens",
                     },
                     {
                       tag_type: "p",
-                      text: "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner)."
+                      text: "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
                     },
                     {
                       tag_type: "code",
@@ -163,121 +238,254 @@ const payload = {
                   await window.chathead.initialize(token);
                 } 
               });
-            </script>`
+            </script>`,
+                    },
+                    {
+                      tag_type: "callout",
+                      type: "info",
+                      title: "Parameter Details",
+                      children: [
+                        {
+                          tag_type: "table",
+                          headers: ["Parameter", "Type", "Description"],
+                          rows: [
+                            [
+                              "token", 
+                              "string", 
+                              "User authentication token obtained after login"
+                            ]
+                          ]
+                        },
+                        {
+                          tag_type: "mesgTip",
+                          title: "Token Handling",
+                          children: [
+                            {
+                              tag_type: "p",
+                              text: "The token should be stored in localStorage after successful authentication and retrieved as shown in the example."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+        },
+        {
+          tag_type: "tabs",
+          items: [
+            {
+              label: "Full Header Mode",
+              content: [
+                {
+                  tag_type: "h3",
+                  text: "Complete Authentication Header Solution"
+                },
+                {
+                  tag_type: "p",
+                  text: "When you set `header_req` to `true`, MagicChat will automatically add a fully functional header to your application that includes:"
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    { text: "User authentication controls (login/logout)" },
+                    { text: "User profile management" },
+                    { text: "Notification indicators" },
+                    { text: "Branding area" },
+                    { text: "Responsive navigation menu" }
+                  ]
+                },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "Best For",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Applications without an existing header or those looking for a complete out-of-the-box authentication solution."
+                    }
+                  ]
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/header_ful.png",
+                  alt: "MagicChat Full Header Implementation"
+                },
+                {
+                  tag_type: "h4",
+                  text: "Implementation Code"
+                },
+                {
+                  tag_type: "code_with_copy",
+                  code: `window.chathead.setUp(
+          "<Your App Name>", 
+          "<Your Api Key>", 
+          JSON.stringify({
+            "header_theme": {
+              "backgroundColor": "rgb(30, 136, 125)", // Header background
+              "textColor": "#ffffff",                  // Header text color
+              "logoUrl": "/path/to/your/logo.png"      // Optional custom logo
+            },
+            "chat_opener_theme": {
+              "backgroundColor": "rgb(41, 48, 78)",    // Chat button color
+              "iconColor": "#ffffff"                   // Chat icon color
+            }
+          }),
+          true, // ENABLE FULL HEADER
+          "/dashboard" // Redirect after login
+        );`,
+                  language: "javascript"
+                },
+                {
+                  tag_type: "callout",
+                  type: "success",
+                  title: "Customization Options",
+                  children: [
+                    {
+                      tag_type: "table",
+                      headers: ["Property", "Description", "Default"],
+                      rows: [
+                        ["backgroundColor", "Header background color", "Brand primary"],
+                        ["textColor", "Text and icon colors", "#ffffff"],
+                        ["logoUrl", "Custom logo image URL", "MagicChat logo"],
+                        ["height", "Header height in pixels", "60px"]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              label: "Header-Less Mode",
+              content: [
+                {
+                  tag_type: "h3",
+                  text: "Custom Authentication Placement"
+                },
+                {
+                  tag_type: "p",
+                  text: "Set `header_req` to `false` when you already have a header or want to place authentication components in specific locations."
+                },
+                {
+                  tag_type: "steps",
+                  items: [
+                    {
+                      title: "Step 1: Initialize MagicChat",
+                      content: [
+                        {
+                          tag_type: "code_with_copy",
+                          code: `window.chathead.setUp(
+          "<Your App Name>", 
+          "<Your Api Key>", 
+          JSON.stringify({
+            "chat_opener_theme": {
+              "backgroundColor": "rgb(41, 48, 78)" // Chat button color
+            }
+          }),
+          false, // DISABLE MAGICCHAT HEADER
+          "/dashboard" // Redirect after login
+        );`,
+                          language: "javascript"
+                        }
+                      ]
+                    },
+                    {
+                      title: "Step 2: Place Authentication Components",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Add this container where you want authentication controls to appear:"
+                        },
+                        {
+                          tag_type: "code_with_copy",
+                          code: `<div id="tezkit-auth-area" class="custom-auth-styles"></div>`
+                        }
+                      ]
+                    },
+                    {
+                      title: "Step 3: Customize Styling (Optional)",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Add CSS to match your existing design:"
+                        },
+                        {
+                          tag_type: "code_with_copy",
+                          code: `#tezkit-auth-area {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+        
+        /* Style login/logout buttons */
+        .tezkit-auth-button {
+          padding: 8px 16px;
+          border-radius: 4px;
+          background-color: #4a6cf7;
+          color: white;
+          cursor: pointer;
+        }`
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/header_less.png",
+                  alt: "Custom Authentication Placement"
+                },
+                {
+                  tag_type: "callout",
+                  type: "warning",
+                  title: "Important Implementation Notes",
+                  children: [
+                    {
+                      tag_type: "ul",
+                      items: [
+                        {
+                          text: "Place the container in your header or wherever authentication should appear"
+                        },
+                        {
+                          text: "Multiple containers are supported for complex layouts"
+                        },
+                        {
+                          text: "Components automatically adapt to authentication state"
+                        },
+                        {
+                          text: "Elements will render as:",
+                          sub_items: [
+                            { text: "Login/Signup buttons when logged out" },
+                            { text: "User avatar + dropdown when logged in" }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "Available Authentication Components",
+                  children: [
+                    {
+                      tag_type: "table",
+                      headers: ["Component", "Selector", "Description"],
+                      rows: [
+                        ["User Avatar", ".tezkit-user-avatar", "Profile picture with dropdown menu"],
+                        ["Login Button", ".tezkit-login-btn", "Triggers login flow"],
+                        ["Signup Button", ".tezkit-signup-btn", "Triggers registration flow"],
+                        ["User Menu", ".tezkit-user-menu", "Dropdown with profile options"]
+                      ]
                     }
                   ]
                 }
               ]
             }
           ]
-        },
-
-        {
-          tag_type: "tabs",
-          items: [
-            {
-              label: "HEADER FULL",
-              content: [
-                {
-                  tag_type: "h3",
-                  text: "A Header having all the authentication options will be added to your site",
-                },
-
-                {
-                  tag_type: "p",
-                  text: "Choose Setting `header_req` to `true` if you wish to have a header from magicchat with all the Authentication Component and all.",
-                },
-
-                {
-                  tag_type: "img",
-                  src: "Asset/header_ful.png",
-                },
-
-                {
-                  tag_type: "code_with_copy",
-                  code: `window.chathead.setUp(
-      "<Your App Name>", 
-      "<Your Api Key>", 
-      JSON.stringify({
-        "header_theme": {
-          "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
-        },
-        "chat_opener_theme": {
-          "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
-        }
-      }),
-      true, // <-- Update this to true if not already
-      "/index.html"
-    );
-         `,
-                  language: "bash",
-                },
-              ],
-            },
-
-            {
-              label: "HEADER LESS",
-              content: [
-                {
-                  tag_type: "h3",
-                  text: "A Header having all the authentication options will be added to your site",
-                },
-
-                {
-                  tag_type: "p",
-                  text: "Choose Setting `header_req` to `false` if you wish not to have a header from magicchat and possibly already have a header in which you want to place Magicchat Authentication Component at any desired location.",
-                },
-                {
-                  tag_type: "img",
-                  src: "Asset/header_less.png",
-                },
-
-                {
-                  tag_type: "code_with_copy",
-                  code: `window.chathead.setUp(
-      "<Your App Name>", 
-      "<Your Api Key>", 
-      JSON.stringify({
-        "header_theme": {
-          "backgroundColor": "rgb(30, 136, 125)" //override the header background Color
-        },
-        "chat_opener_theme": {
-          "backgroundColor": "rgb(41, 48, 78)" //override the chatBox background Color
-        }
-      }),
-      false, // <-- Update this to false if not already
-      "/index.html"
-    );
-         `,
-                  language: "bash",
-                },
-
-                // {
-                //   tag_type: "p",
-                //   text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
-                // },
-
-                {
-                  tag_type: "callout",
-                  type: "info",
-                  title: "Choose a location to load Authentication Components",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Insert the following div into any desired location within your HTML page where you want the Authentication Component to appear.",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "code_with_copy",
-                  // text: "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                  // extra_text:
-                  // "The authentication type is V1 (i.e., your site currently has no built-in authentication), and",
-                  code: `<div id="tezkit-auth-area" style="min-width: 200px;"> </div>`,
-                },
-              ],
-            },
-          ],
         },
 
         {
