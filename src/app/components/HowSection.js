@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 const slides = {
   p2a: [
     {
-      image: "/Asset/fashoni_chat_opener_visible.png",
+      image: "/Asset/p2a_firstImg.png",
       sections: [
         {
           heading: "What is Peer to Admin (P2A)",
@@ -29,7 +29,7 @@ const slides = {
       ],
     },
     {
-      image: "/Asset/no_users_admin.png",
+      image: "/Asset/p2a_secondImg.png",
       sections: [
         {
           heading: "Features",
@@ -41,7 +41,7 @@ const slides = {
 
   p2p: [
     {
-      image: "/images/p2p-slide1.jpg",
+      image: "/Asset/p2p_firstImg.png",
       sections: [
         {
           heading: "What is Peer to Peer (P2P)",
@@ -58,7 +58,16 @@ const slides = {
       ],
     },
     {
-      image: "/images/p2p-slide2.jpg",
+      image: "/Asset/defultpage_p2p.png",
+      sections: [
+        {
+          heading: "End-to-End Encryption",
+          paragraph: "Security features in P2P chat.",
+        },
+      ],
+    },
+    {
+      image: "/Asset/p2p_secondImg.png",
       sections: [
         {
           heading: "End-to-End Encryption",
@@ -73,6 +82,24 @@ const tabData = [
   { label: "P2A", content: <Slider slides={slides.p2a} /> },
   { label: "P2P", content: <Slider slides={slides.p2p} /> },
 ];
+
+const demoImages = {
+  "cloud managed auth": [
+    "/Asset/beforeChatAdd.png",
+    "/Asset/afterChatAdd.png",
+    "/Asset/afterModalOpen.png",
+  ],
+  "locally managed auth": [
+    "/Asset/beforeChatAdd.png",
+    "/Asset/afterChatAdd.png",
+    "/Asset/afterModalOpen.png",
+  ],
+  "plugin driven": [
+    "/Asset/beforeChatAdd.png",
+    "/Asset/afterChatAdd.png",
+    "/Asset/afterModalOpen.png",
+  ],
+};
 
 const HowSection = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -135,11 +162,10 @@ const HowSection = () => {
 
           <ul className={styles["peer-list"]} style={{ marginTop: "10px" }}>
             <li
-               onClick={() => {
+              onClick={() => {
                 setShowTabs(true);
-                setSelectedOption(null); 
+                setSelectedOption(null);
               }}
-              
               style={{
                 backgroundColor: showTabs ? "#4d6bdf" : "",
                 color: showTabs ? "white" : "",
@@ -177,10 +203,7 @@ const HowSection = () => {
               </button>
               <div className={styles["image-wrappe"]}>
                 <ImageSlider
-                  images={[
-                    "/Asset/demo_imgs/v1/p2a/before.png",
-                    "/Asset/demo_imgs/v1/p2a/after.png",
-                  ]}
+                  images={demoImages[demoVersion] || []}
                   onClose={closePopup}
                 />
               </div>
@@ -269,15 +292,13 @@ const ContentCard = ({ title, version }) => {
     "locally managed auth": "locally-managed-auth",
     "plugin driven": "plugin-driven",
   };
-  
+
   const slugMap = {
     "for Whom": "to-whom",
     Provides: "provides",
     "How Does it work": "how-it-works",
     "Example Usage": "example-usage",
   };
-  
-
 
   const contentData = {
     "cloud managed auth": {
@@ -361,7 +382,7 @@ const ContentCard = ({ title, version }) => {
 
   // const handleIconClick = () => {
   //   if (version === "cloud managed auth") {
-  //     router.push("/cloudManaged"); 
+  //     router.push("/cloudManaged");
   //   }
   // };
 
