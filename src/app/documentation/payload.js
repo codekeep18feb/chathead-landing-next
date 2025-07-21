@@ -150,31 +150,31 @@ const payload = {
                           headers: ["Parameter", "Type", "Description"],
                           rows: [
                             [
-                              "app_name", 
-                              "string", 
-                              "Unique identifier for your application (provided during registration)"
+                              "app_name",
+                              "string",
+                              "Unique identifier for your application (provided during registration)",
                             ],
                             [
-                              "api_key", 
-                              "string", 
-                              "Base64 encoded API key for authentication"
+                              "api_key",
+                              "string",
+                              "Base64 encoded API key for authentication",
                             ],
                             [
-                              "theme", 
-                              "string (JSON)", 
-                              "Theme configuration object as a JSON string"
+                              "theme",
+                              "string (JSON)",
+                              "Theme configuration object as a JSON string",
                             ],
                             [
-                              "header_req", 
-                              "boolean", 
-                              "Set to true to display header with user controls"
+                              "header_req",
+                              "boolean",
+                              "Set to true to display header with user controls",
                             ],
                             [
-                              "redirect_url", 
-                              "string", 
-                              "URL to redirect to after successful login"
-                            ]
-                          ]
+                              "redirect_url",
+                              "string",
+                              "URL to redirect to after successful login",
+                            ],
+                          ],
                         },
                         {
                           tag_type: "callout",
@@ -183,7 +183,7 @@ const payload = {
                           children: [
                             {
                               tag_type: "p",
-                              text: "The theme parameter requires a JSON string with these nested objects:"
+                              text: "The theme parameter requires a JSON string with these nested objects:",
                             },
                             {
                               tag_type: "ul",
@@ -191,31 +191,37 @@ const payload = {
                                 {
                                   text: "header_theme - Styles for the chat header",
                                   sub_items: [
-                                    { text: "backgroundColor: CSS color value" },
-                                    { text: "textColor: CSS color value" }
-                                  ]
+                                    {
+                                      text: "backgroundColor: CSS color value",
+                                    },
+                                    { text: "textColor: CSS color value" },
+                                  ],
                                 },
                                 {
                                   text: "chat_opener_theme - Styles for the chat opener button",
                                   sub_items: [
-                                    { text: "backgroundColor: CSS color value" },
-                                    { text: "textColor: CSS color value" }
-                                  ]
+                                    {
+                                      text: "backgroundColor: CSS color value",
+                                    },
+                                    { text: "textColor: CSS color value" },
+                                  ],
                                 },
                                 {
                                   text: "chat_box_theme - Styles for the main chat container",
                                   sub_items: [
-                                    { text: "backgroundColor: CSS color value" },
-                                    { text: "textColor: CSS color value" }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                                    {
+                                      text: "backgroundColor: CSS color value",
+                                    },
+                                    { text: "textColor: CSS color value" },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
                   tag_type: "div",
@@ -250,11 +256,11 @@ const payload = {
                           headers: ["Parameter", "Type", "Description"],
                           rows: [
                             [
-                              "token", 
-                              "string", 
-                              "User authentication token obtained after login"
-                            ]
-                          ]
+                              "token",
+                              "string",
+                              "User authentication token obtained after login",
+                            ],
+                          ],
                         },
                         {
                           tag_type: "mesgTip",
@@ -262,16 +268,16 @@ const payload = {
                           children: [
                             {
                               tag_type: "p",
-                              text: "The token should be stored in localStorage after successful authentication and retrieved as shown in the example."
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
+                              text: "The token should be stored in localStorage after successful authentication and retrieved as shown in the example.",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
         {
@@ -282,11 +288,11 @@ const payload = {
               content: [
                 {
                   tag_type: "h3",
-                  text: "Complete Authentication Header Solution"
+                  text: "Complete Authentication Header Solution",
                 },
                 {
                   tag_type: "p",
-                  text: "When you set `header_req` to `true`, MagicChat will automatically add a fully functional header to your application that includes:"
+                  text: "When you set `header_req` to `true`, MagicChat will automatically add a fully functional header to your application that includes:",
                 },
                 {
                   tag_type: "ul",
@@ -295,8 +301,8 @@ const payload = {
                     { text: "User profile management" },
                     { text: "Notification indicators" },
                     { text: "Branding area" },
-                    { text: "Responsive navigation menu" }
-                  ]
+                    { text: "Responsive navigation menu" },
+                  ],
                 },
                 {
                   tag_type: "callout",
@@ -305,18 +311,18 @@ const payload = {
                   children: [
                     {
                       tag_type: "p",
-                      text: "Applications without an existing header or those looking for a complete out-of-the-box authentication solution."
-                    }
-                  ]
+                      text: "Applications without an existing header or those looking for a complete out-of-the-box authentication solution.",
+                    },
+                  ],
                 },
                 {
                   tag_type: "img",
                   src: "Asset/header_ful.png",
-                  alt: "MagicChat Full Header Implementation"
+                  alt: "MagicChat Full Header Implementation",
                 },
                 {
                   tag_type: "h4",
-                  text: "Implementation Code"
+                  text: "Implementation Code",
                 },
                 {
                   tag_type: "code_with_copy",
@@ -337,7 +343,7 @@ const payload = {
           true, // ENABLE FULL HEADER
           "/dashboard" // Redirect after login
         );`,
-                  language: "javascript"
+                  language: "javascript",
                 },
                 {
                   tag_type: "callout",
@@ -348,26 +354,30 @@ const payload = {
                       tag_type: "table",
                       headers: ["Property", "Description", "Default"],
                       rows: [
-                        ["backgroundColor", "Header background color", "Brand primary"],
+                        [
+                          "backgroundColor",
+                          "Header background color",
+                          "Brand primary",
+                        ],
                         ["textColor", "Text and icon colors", "#ffffff"],
                         ["logoUrl", "Custom logo image URL", "MagicChat logo"],
-                        ["height", "Header height in pixels", "60px"]
-                      ]
-                    }
-                  ]
-                }
-              ]
+                        ["height", "Header height in pixels", "60px"],
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             {
               label: "Header-Less Mode",
               content: [
                 {
                   tag_type: "h3",
-                  text: "Custom Authentication Placement"
+                  text: "Custom Authentication Placement",
                 },
                 {
                   tag_type: "p",
-                  text: "Set `header_req` to `false` when you already have a header or want to place authentication components in specific locations."
+                  text: "Set `header_req` to `false` when you already have a header or want to place authentication components in specific locations.",
                 },
                 {
                   tag_type: "steps",
@@ -388,29 +398,29 @@ const payload = {
           false, // DISABLE MAGICCHAT HEADER
           "/dashboard" // Redirect after login
         );`,
-                          language: "javascript"
-                        }
-                      ]
+                          language: "javascript",
+                        },
+                      ],
                     },
                     {
                       title: "Step 2: Place Authentication Components",
                       content: [
                         {
                           tag_type: "p",
-                          text: "Add this container where you want authentication controls to appear:"
+                          text: "Add this container where you want authentication controls to appear:",
                         },
                         {
                           tag_type: "code_with_copy",
-                          code: `<div id="tezkit-auth-area" class="custom-auth-styles"></div>`
-                        }
-                      ]
+                          code: `<div id="tezkit-auth-area" class="custom-auth-styles"></div>`,
+                        },
+                      ],
                     },
                     {
                       title: "Step 3: Customize Styling (Optional)",
                       content: [
                         {
                           tag_type: "p",
-                          text: "Add CSS to match your existing design:"
+                          text: "Add CSS to match your existing design:",
                         },
                         {
                           tag_type: "code_with_copy",
@@ -427,16 +437,16 @@ const payload = {
           background-color: #4a6cf7;
           color: white;
           cursor: pointer;
-        }`
-                        }
-                      ]
-                    }
-                  ]
+        }`,
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
                   tag_type: "img",
                   src: "Asset/header_less.png",
-                  alt: "Custom Authentication Placement"
+                  alt: "Custom Authentication Placement",
                 },
                 {
                   tag_type: "callout",
@@ -447,24 +457,24 @@ const payload = {
                       tag_type: "ul",
                       items: [
                         {
-                          text: "Place the container in your header or wherever authentication should appear"
+                          text: "Place the container in your header or wherever authentication should appear",
                         },
                         {
-                          text: "Multiple containers are supported for complex layouts"
+                          text: "Multiple containers are supported for complex layouts",
                         },
                         {
-                          text: "Components automatically adapt to authentication state"
+                          text: "Components automatically adapt to authentication state",
                         },
                         {
                           text: "Elements will render as:",
                           sub_items: [
                             { text: "Login/Signup buttons when logged out" },
-                            { text: "User avatar + dropdown when logged in" }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                            { text: "User avatar + dropdown when logged in" },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
                   tag_type: "callout",
@@ -475,43 +485,110 @@ const payload = {
                       tag_type: "table",
                       headers: ["Component", "Selector", "Description"],
                       rows: [
-                        ["User Avatar", ".tezkit-user-avatar", "Profile picture with dropdown menu"],
-                        ["Login Button", ".tezkit-login-btn", "Triggers login flow"],
-                        ["Signup Button", ".tezkit-signup-btn", "Triggers registration flow"],
-                        ["User Menu", ".tezkit-user-menu", "Dropdown with profile options"]
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-
-        {
-          tag_type: "callout",
-          type: "info",
-          title: "Additional Notes",
-          children: [
-            {
-              tag_type: "p",
-              text: "If your app uses a common root layout or entry point (e.g., a main index.js or layout component that renders on every route), you can combine both setUp and initialize logic into a single location. This ensures the chat behaves appropriately based on the user's login state without duplicating code across screens.",
-            },
-
-            {
-              tag_type: "p",
-              text: "you can probably find the root file which loads each time despite being on any screen, and you probably can run both (setup, initialize) at once",
-              children: [
-                {
-                  tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/a98e8902079c3c40062751d675a90a8ad0cae302/index.html#L16",
-                  text: "for example here ",
+                        [
+                          "User Avatar",
+                          ".tezkit-user-avatar",
+                          "Profile picture with dropdown menu",
+                        ],
+                        [
+                          "Login Button",
+                          ".tezkit-login-btn",
+                          "Triggers login flow",
+                        ],
+                        [
+                          "Signup Button",
+                          ".tezkit-signup-btn",
+                          "Triggers registration flow",
+                        ],
+                        [
+                          "User Menu",
+                          ".tezkit-user-menu",
+                          "Dropdown with profile options",
+                        ],
+                      ],
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
 
+        {
+          tag_type: "callout",
+          type: "info",
+          title: "Implementation Best Practices",
+          children: [
+            {
+              tag_type: "h4",
+              text: "Centralized Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route):",
+            },
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Combine both setUp and initialize logic in a single location",
+                },
+                {
+                  text: "This ensures the chatbox renders consistently across all routes",
+                },
+                {
+                  text: "Avoids code duplication across screens",
+                },
+              ],
+            },
+            {
+              tag_type: "h4",
+              text: "Route-Specific Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "To limit chat functionality to specific routes:",
+            },
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Initialize only on screens where chat is needed",
+                },
+                {
+                  text: "Use the initialize method on specific route components",
+                },
+                {
+                  text: "Provides more control over chat visibility",
+                },
+              ],
+            },
+            {
+              tag_type: "h4",
+              text: "Example Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "See this complete example implementation in our GitHub repository:",
+            },
+            {
+              tag_type: "a",
+              href: "https://github.com/magicchat-core/example__v1/blob/a98e8902079c3c40062751d675a90a8ad0cae302/index.html#L16",
+              text: "View Full Implementation Example",
+            },
+            {
+              tag_type: "callout",
+              type: "info",
+              title: "Future Improvements",
+              children: [
+                {
+                  tag_type: "p",
+                  text: "We're working to simplify route-specific implementations in upcoming releases.",
+                },
+              ],
+            },
+          ],
+        },
         {
           tag_type: "video",
           src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
@@ -670,140 +747,301 @@ const payload = {
         {
           tag_type: "callout",
           type: "info",
-          title: "Additional Notes",
+          title: "Implementation Best Practices",
           children: [
             {
-              tag_type: "p",
-              text: "If your app uses a common root layout or entry point (e.g., a main index.js or layout component that renders on every route), you can combine both setUp and initialize logic into a single location. This ensures the chat behaves appropriately based on the user's login state without duplicating code across screens.",
+              tag_type: "h4",
+              text: "Centralized Implementation",
             },
-
             {
               tag_type: "p",
-              text: "you can probably find the root file which loads each time despite being on any screen, and you probably can run both (setup, initialize) at once",
+              text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route):",
+            },
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Combine both setUp and initialize logic in a single location",
+                },
+                {
+                  text: "This ensures the chatbox renders consistently across all routes",
+                },
+                {
+                  text: "Avoids code duplication across screens",
+                },
+              ],
+            },
+            {
+              tag_type: "h4",
+              text: "Route-Specific Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "To limit chat functionality to specific routes:",
+            },
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Initialize only on screens where chat is needed",
+                },
+                {
+                  text: "Use the initialize method on specific route components",
+                },
+                {
+                  text: "Provides more control over chat visibility",
+                },
+              ],
+            },
+            {
+              tag_type: "h4",
+              text: "Example Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "See this complete example implementation in our GitHub repository:",
+            },
+            {
+              tag_type: "a",
+              href: "https://github.com/magicchat-core/example__v2/blob/4c71eb9d286538189f386d8ec7f8fc4dd1764ff0/templates/base.html#L151",
+              text: "View Full Implementation Example",
+            },
+            {
+              tag_type: "callout",
+              type: "info",
+              title: "Future Improvements",
               children: [
                 {
-                  tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v2",
-                  text: "for example here ",
+                  tag_type: "p",
+                  text: "We're working to simplify route-specific implementations in upcoming releases.",
                 },
               ],
             },
           ],
         },
         //Backend side integration
-
         {
-          tag_type: "h3",
+          tag_type: "h2",
           text: "Backend Integration",
         },
         {
-          tag_type: "h3",
-          text: "Onboarding api",
-        },
-
-        {
           tag_type: "p",
-          text: `To ensure users can access chat features and are visible in the MagicChat Admin Panel, you must onboard them upon registration.`,
+          text: "For platforms with existing authentication systems, MagicChat requires user onboarding to establish identity mapping between your platform users and MagicChat accounts.",
         },
-
         {
-          tag_type: "img",
-          src: "Asset/no_users_admin.png",
-        },
-
-        {
-          tag_type: "h3",
-          text: `Ways to Onboard Users`,
-        },
-
-        {
-          tag_type: "feature_options",
-          options: [
-            {
-              text: "Via Backend",
-              description: [
-                {
-                  tag_type: "h3",
-                  text: "Using Rest /signup Api Endpoint",
-                },
-
-                {
-                  tag_type: "h3",
-                  text: "Now this has changed to https://auth.magicchat.io/prod/onboarding",
-                },
-
-                {
-                  tag_type: "div",
-                  children: [
-                    {
-                      tag_type: "img",
-                      src: "Asset/onboarding_via_rest_endpoint_payload.png",
-                    },
-
-                    {
-                      tag_type: "img",
-                      src: "Asset/onboarding_via_rest_endpoint_headers.png",
-                    },
-                  ],
-                  extra_text: "Please find the curl below.",
-                  code: `curl --location 'https://gfxb0jf19k.execute-api.ap-south-1.amazonaws.com/prod/onboarding' \
---header 'X-API-Key: bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=' \
---header 'tenant_id: legal123' \
---header 'app_name: v2app1' \
---header 'Content-Type: application/json' \
---data '{
-"tenant":"legal123",
-"uid":"new_site_user1",
-"app_name":"v2app1"
-}'`,
-                },
-              ],
-            },
-            {
-              text: "Via Frontend",
-              description: [
-                {
-                  tag_type: "div",
-                  children: [],
-                  extra_text:
-                    "Using chathead.onboarding() method on the client side.",
-                  code: `await window.chathead.onboarding({"uid":data.username,},{
-        "auth_key": "bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=",
-        "tenant_id": "legal123",
-        "app_name": "v2app1",
-    })`,
-                },
-              ],
-            },
-
-            {
-              text: "Via Admin",
-              description: [
-                {
-                  tag_type: "h3",
-                  text: "Users can be onboarded and their respective password can be shared with them.",
-                },
-
-                {
-                  tag_type: "img",
-                  src: "Asset/onboarding_via_admin.png",
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          tag_type: "mesgTip",
-          title: "Tip:",
+          tag_type: "callout",
+          type: "info",
+          title: "Key Integration Requirement",
           children: [
             {
               tag_type: "p",
-              text: "Ensure you call the onboarding API immediately after user signup. Legacy or missed users can be added via batch API methods—contact support for more details.",
+              text: "Each new user must be onboarded with a unique identifier (UID) that serves as the proxy between your platform and MagicChat's user management system.",
             },
           ],
         },
+        {
+          tag_type: "h3",
+          text: "Onboarding API",
+        },
+        {
+          tag_type: "p",
+          text: "Successfully onboarded users will appear in the MagicChat Admin Panel with their associated applications.",
+        },
+        {
+          tag_type: "steps",
+          items: [
+            {
+              title: "Admin Panel - Onboarded Users",
+              content: [
+                {
+                  tag_type: "img",
+                  src: "Asset/onboarded_user.png",
+                  alt: "MagicChat Admin Panel showing onboarded users",
+                },
+              ],
+            },
+            {
+              title: "Admin Panel - No Users",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "Applications without onboarded users will display an empty state:",
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/no_users_admin.png",
+                  alt: "MagicChat Admin Panel showing no onboarded users",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          tag_type: "h3",
+          text: "User Onboarding Methods",
+        },
+        {
+          tag_type: "tabs",
+          items: [
+            {
+              label: "Backend Integration",
+              content: [
+                {
+                  tag_type: "h4",
+                  text: "REST API Endpoint",
+                },
+                {
+                  tag_type: "p",
+                  text: "Use our onboarding API to programmatically register users:",
+                },
+                {
+                  tag_type: "code_with_copy",
+                  code: "POST https://auth.addchat.tech/dev/onboarding",
+                  language: "http",
+                },
+                {
+                  tag_type: "h4",
+                  text: "Request Example",
+                },
+                {
+                  tag_type: "code_with_copy",
+                  code: `curl --location 'https://auth.addchat.tech/dev/onboarding' \\
+      --header 'X-API-Key: YOUR_API_KEY' \\
+      --header 'Content-Type: application/json' \\
+      --data '{
+        "uid": "unique_user_identifier_123",
+        "app_name": "your_application_name",
+        "version": "V2"
+      }'`,
+                  language: "bash",
+                },
+                {
+                  tag_type: "table",
+                  headers: ["Parameter", "Type", "Description"],
+                  rows: [
+                    ["uid", "string", "Your platform's unique user identifier"],
+                    [
+                      "app_name",
+                      "string",
+                      "Your registered MagicChat application name",
+                    ],
+                    [
+                      "version",
+                      "string",
+                      "for locally managed auth API version is `V2`",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Frontend Integration",
+              content: [
+                {
+                  tag_type: "h4",
+                  text: "Client-Side Onboarding",
+                },
+                {
+                  tag_type: "p",
+                  text: "Call the onboarding method directly from your frontend code:",
+                },
+                {
+                  tag_type: "code_with_copy",
+                  code: `await window.chathead.onboarding(
+        { 
+          "uid": "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" 
+        },
+        {
+          "version": "V2",
+          "app_name": "your_application_name"
+        }
+      )`,
+                  language: "javascript",
+                },
+                {
+                  tag_type: "callout",
+                  type: "warning",
+                  title: "Implementation Note",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "This method should be called immediately after successful user registration in your application.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Admin Panel",
+              content: [
+                {
+                  tag_type: "h4",
+                  text: "Manual User Onboarding",
+                },
+                {
+                  tag_type: "p",
+                  text: "Manually onboard users through the MagicChat Admin Interface:",
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/onboarding_via_admin.png",
+                  alt: "MagicChat Admin Panel user onboarding interface",
+                },
+                {
+                  tag_type: "steps",
+                  items: [
+                    {
+                      title: "Navigate to Users Section",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Access the Users management area in your application's admin panel",
+                        },
+                      ],
+                    },
+                    {
+                      title: "Select 'Add User'",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Complete the user creation form with required details",
+                        },
+                      ],
+                    },
+                    {
+                      title: "Share Credentials",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Provide the generated credentials to the end-user through secure channels",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          tag_type: "callout",
+          type: "info",
+          title: "Implementation Best Practices",
+          children: [
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Trigger onboarding immediately after user registration",
+                },
 
+                {
+                  text: "For bulk onboarding of existing users, contact our support team for batch processing options",
+                },
+              ],
+            },
+          ],
+        },
         {
           tag_type: "video",
           src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
@@ -862,42 +1100,116 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Project setup" },
-
+        { 
+          tag_type: "h2", 
+          text: "Project Setup" 
+        },
         {
-          tag_type: "h4",
+          tag_type: "h3",
           text: "Client Side Integration",
         },
         {
-          tag_type: "p",
-          text: "Install the MagicChat plugin",
+          tag_type: "callout",
+          type: "success",
+          title: "Plugin Installation",
+          children: [
+            {
+              tag_type: "div",
+              // className: styles["download-container"],
+              children: [
+                {
+                  tag_type: "div",
+                  // className: styles["download-header"],
+                  children: [
+                    {
+                      tag_type: "h4",
+                      text: "MagicChat WordPress Plugin"
+                    },
+                    {
+                      tag_type: "p",
+                      text: "Version 2.3.1 | 2.4 MB | Updated: 2023-11-15"
+                    }
+                  ]
+                },
+                {
+                  tag_type: "div",
+                  // className: styles["download-body"],
+                  children: [
+                    {
+                      tag_type: "ul",
+                      items: [
+                        { text: "One-click installation" },
+                        { text: "Compatible with WordPress 5.0+" },
+                        { text: "Tested with PHP 7.4-8.2" }
+                      ]
+                    },
+                    {
+                      tag_type: "a",
+                      href: "/addChatPlugin.zip",
+                      // className: styles["download-button"],
+                      text: "Download Plugin",
+                      download: true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-          tag_type: "p",
-          text: "Add the MagicChat Credentials like below",
+          tag_type: "steps",
+          items: [
+            {
+              title: "Add MagicChat Credentials",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "After installing the plugin, navigate to MagicChat settings in your WordPress admin panel and enter your credentials:"
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/add_credentials_wp.png",
+                  alt: "MagicChat credentials configuration in WordPress"
+                }
+              ]
+            },
+            {
+              title: "Verify Integration",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "Confirm the chat utility appears correctly on your site:"
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/fashoni_chat_opener_visible.png",
+                  alt: "MagicChat opener visible on website"
+                }
+              ]
+            }
+          ]
         },
         {
-          tag_type: "img",
-          src: "Asset/add_credentials_wp.png",
-        },
-
-        {
-          tag_type: "p",
-          text: "Verify if you can see the chat utility on your product like below",
-        },
-
-        {
-          tag_type: "img",
-          src: "Asset/fashoni_chat_opener_visible.png",
-        },
-
-        {
-          tag_type: "video",
-          src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-          desc: "Demo for P2A_V2.2",
-        },
-      ],
-    },
+          tag_type: "div",
+          // className: styles["video-container"],
+          children: [
+            {
+              tag_type: "h4",
+              text: "Integration Walkthrough"
+            },
+            {
+              tag_type: "p",
+              text: "Watch this tutorial below for complete setup instructions:"
+            },
+            {
+              tag_type: "video",
+              src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
+              desc: "MagicChat WordPress Integration Tutorial"
+            }
+          ]
+        }
+      ]
+    }
   ],
 };
 export default payload;
