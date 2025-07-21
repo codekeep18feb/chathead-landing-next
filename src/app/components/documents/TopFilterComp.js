@@ -6,29 +6,32 @@ const FilterComp = ({ setSelectedFilter }) => {
   const [selectedVersionType, setSelectedVersionType] = useState("V1"); // default
 
   const filterOptions = {
-    app_types: ["P2A", "P2P"],
-    version_types: ["V1", "V2", "V3"],
+    version_types: [
+      { key: "V1", label: "Cloud Managed Auth" },
+      { key: "V2", label: "Locally Managed Auth" },
+      { key: "V3", label: "Plugin Driven" },
+    ],
   };
 
-  const handleSelectVersionType = (option) => {
-    setSelectedVersionType(option);
+  const handleSelectVersionType = (key) => {
+    setSelectedVersionType(key);
     setSelectedFilter({
       app_type: selectedAppType,
-      version_type: option,
+      version_type: key,
     });
   };
 
   const renderOptions = (options, selectedValue, handler) => {
-    return options.map((option) => (
+    return options.map(({ key, label }) => (
       <button
-        key={option}
+        key={key}
         className={`${styles["option-button"]} ${
-          selectedValue === option ? styles["active"] : ""
+          selectedValue === key ? styles["active"] : ""
         }`}
-        onClick={() => handler(option)}
+        onClick={() => handler(key)}
         type="button"
       >
-        {option}
+        {label}
       </button>
     ));
   };
