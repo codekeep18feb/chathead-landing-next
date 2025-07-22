@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { FaHandPointRight } from "react-icons/fa";
 import styles from "./FeatureStyle.module.css";
 
@@ -7,10 +8,23 @@ export default function FeatureSectionBlock({
   subheading,
   content,
   image,
+  images = [],
   className,
   isEven,
-  bgClass = "bg1", // fallback background class
+  bgClass = "bg1",
 }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef(null);
+
+  useEffect(() => {
+    if (images.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      }, 5000); // 🔁 Smooth switch every 5s
+      return () => clearInterval(intervalRef.current);
+    }
+  }, [images]);
+
   return (
     <section
       ref={refProp}
@@ -24,6 +38,7 @@ export default function FeatureSectionBlock({
         className={styles.patternBg}
         aria-hidden="true"
       />
+
       <div className={styles.leftSection}>
         <h2 className={styles.highlighted}>{title}</h2>
         <h3 className={styles.subheading}>{subheading}</h3>
@@ -48,7 +63,34 @@ export default function FeatureSectionBlock({
       </div>
 
       <div className={styles.imageContainer}>
-        <img src={image} alt={title} />
+        {Array.isArray(images) && images.length > 0 ? (
+          <div
+            className={styles.sliderTrack}
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {images.map((img, idx) => (
+              <div key={idx} className={styles.slideWrapper}>
+                {img.heading && (
+                  <div className={styles.imageHeading}>{img.heading}</div>
+                )}
+                <img
+                  src={img.src}
+                  alt={`${title} ${idx + 1}`}
+                  className={styles.slideImage}
+                />
+              </div>
+            ))}
+          </div>
+        ) : image?.src ? (
+          <div className={styles.slideWrapper}>
+            {image.heading && (
+              <div className={styles.imageHeading}>{image.heading}</div>
+            )}
+            <img src={image.src} alt={title} className={styles.slideImage} />
+          </div>
+        ) : (
+          <img src={image} alt={title} className={styles.slideImage} />
+        )}
       </div>
     </section>
   );

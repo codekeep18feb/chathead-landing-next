@@ -34,15 +34,16 @@ export default function FeatureSectionWrapper({
 
       {Object.entries(sections).map(([key, data], index) => (
         <FeatureSectionBlock
-          key={key}
-          refProp={sectionRefs[key]}
-          title={key}
-          subheading={data.subheading}
-          content={data.content}
-          image={data.image}
-          className={styles[data.className]}
-          isEven={index % 2 === 0}
-          bgClass={`bg${(index % 4) + 1}`} // bg1 to bg4 rotate
+        key={key}
+        refProp={sectionRefs[key]}
+        title={key}
+        subheading={data.subheading}
+        content={data.content}
+        image={data.image} // ✅ keep this for fallback
+        images={data.images || []} // ✅ add this line
+        className={styles[data.className]}
+        isEven={index % 2 === 0}
+        bgClass={`bg${(index % 4) + 1}`}
         />
       ))}
     </div>
