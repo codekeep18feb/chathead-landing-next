@@ -15,7 +15,7 @@ const ProtectBusiness = ({ title, description, sections = [] }) => {
             <img
               src={section.image}
               alt={`Section ${secIndex + 1}`}
-              className={styles.banner}
+              className={styles["card-image"]}
             />
             <h2 className={styles.subheading}>{section.subheading}</h2>
 

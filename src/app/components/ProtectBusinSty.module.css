@@ -20,19 +20,22 @@
   .header p {
     font-size: 1.3rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--light-text-color);
   }
   .contentWrap {
     display: flex;
     width: 100%;
-    gap: 30px;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .contentSection {
-    width: 50%;
+    max-width: calc(50% - 24px);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
     padding: 20px;
     background-color: white;
+    flex: 1 1 calc(50% - 24px);
   }
   .contentSection .subheading {
     font-size: 1.5rem;
@@ -94,8 +97,36 @@
     font-size: 28px;
     color: var(--primary-color);
   }
-  
+  .card-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .wrapper {
+      padding: 2rem;
+      flex-direction: column;
+    }
+    .header{
+      text-align: center;
+      margin: auto;
+    }
+    .header h1 {
+      font-size: 2rem;
+    }
+    .card-image {
+      width: 100%;
+      /* height: 180px; */
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+  }
   @media (max-width: 768px) {
+    .wrapper{
+      padding: 1.5rem;
+    }
     .header {
       padding: 20px 0px;
     }
@@ -105,9 +136,13 @@
     .header p {
       font-size: 1rem;
     }
-    .contentWrap {
+    /* .contentWrap {
       flex-direction: column;
-    }
+    } */
+    .contentSection{
+      flex: 1 1 100%;
+      max-width: 100%;
+     }
     .contentSection{
       width: 100%;
     }
