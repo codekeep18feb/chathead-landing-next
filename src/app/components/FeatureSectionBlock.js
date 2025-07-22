@@ -3,7 +3,7 @@ import { FaHandPointRight } from "react-icons/fa";
 import styles from "./FeatureStyle.module.css";
 
 export default function FeatureSectionBlock({
-  refProp,
+  refProp = null,
   title,
   subheading,
   content,
@@ -15,19 +15,45 @@ export default function FeatureSectionBlock({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  useEffect(() => {
-    if (images.length > 1) {
+  const startAutoSlide = () => {
+    if (images.length > 1 && !intervalRef.current) {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
-      }, 5000); // 🔁 Smooth switch every 5s
-      return () => clearInterval(intervalRef.current);
+      }, 3000);
     }
+  };
+
+  const stopAutoSlide = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+  };
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (section) {
+      section.addEventListener("mouseenter", startAutoSlide);
+      section.addEventListener("mouseleave", stopAutoSlide);
+    }
+
+    return () => {
+      section?.removeEventListener("mouseenter", startAutoSlide);
+      section?.removeEventListener("mouseleave", stopAutoSlide);
+      stopAutoSlide();
+    };
   }, [images]);
 
   return (
     <section
-      ref={refProp}
+      ref={(el) => {
+        if (typeof refProp === "function") {
+          refProp(el);
+        } else if (refProp && typeof refProp === "object") {
+          refProp.current = el;
+        }
+        sectionRef.current = el;
+      }}
       className={`${styles.contentSection} ${styles[bgClass]} ${className} ${
         isEven ? styles.evenSection : styles.oddSection
       }`}
