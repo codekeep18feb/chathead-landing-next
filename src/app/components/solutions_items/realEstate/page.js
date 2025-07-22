@@ -189,11 +189,11 @@ export default function RealEstate() {
             images: [
               {
                 src: `${basePath}/Asset/magicChatImg/p2aImage.png`,
-                heading: "Heading..........",
+                heading: "Peer to Peer (P2P)",
               },
               {
                 src: `${basePath}/Asset/magicChatImg/p2pImage.png`,
-                heading: "Heading..........",
+                heading: "User to Admin (P2A)",
               },
             ],
             content: [
