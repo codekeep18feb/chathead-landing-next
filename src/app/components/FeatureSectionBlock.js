@@ -59,7 +59,7 @@ export default function FeatureSectionBlock({
       }`}
     >
       <img
-        src="/Asset/pattern.png"
+        src="/Asset/newbg11.png"
         alt="background pattern"
         className={styles.patternBg}
         aria-hidden="true"
