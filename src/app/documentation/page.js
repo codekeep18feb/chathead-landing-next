@@ -11,10 +11,15 @@ import YouTubeEmbed from "../components/YouTubeVideo";
 import TopFilterComp from "../components/documents/TopFilterComp";
 import Sidebar from "../components/documents/side_bar_content/Sidebar";
 import ContentRenderer from "../testing_documents/rendering_tools";
+import { GrFormNext } from "react-icons/gr";
 
 const Document = () => {
-  const [selectedFilter, setSelectedFilter] = useState({app_type: null, version_type: 'V1'});
+  const [selectedFilter, setSelectedFilter] = useState({
+    app_type: null,
+    version_type: "V1",
+  });
   console.log("do we have a fitler???selectedFilter", selectedFilter);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const searchParams = useSearchParams();
   // const current_version = searchParams.get("current_version") || "P2A__V1"; // Default value if not provided
@@ -78,6 +83,10 @@ const Document = () => {
     setIsDropdownOpen((prevState) => !prevState); // Toggle the state on click
   };
 
+  const handleSidebarToggle = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   const renderContent = () => {
     console.log("selesdtsdfilter", selectedFilter);
     if (!selectedFilter || !selectedFilter.version_type)
@@ -114,16 +123,28 @@ const Document = () => {
   return (
     <div className={styles["document-container"]}>
       <div className={styles.doc_core_wrapper}>
-        <div className={styles.doc_sidebar}>
-          <Sidebar
-            isMobile={isMobile}
-            selectedKey={selectedKey}
-            isDropdownOpen={isDropdownOpen}
-            toggleDropdown={toggleDropdown}
-            payload={payload}
-            handleKeyClick={handleKeyClick}
-            selectedFilter={selectedFilter}
-          />
+        <div
+          className={`${styles.doc_sidebar} ${
+            isSidebarOpen ? styles.sidebarOpenFull : ""
+          }`}
+        >
+          <div
+            className={styles.sidebarshowHideIc}
+            onClick={handleSidebarToggle}
+          >
+            <GrFormNext size={24}/>
+          </div>
+          <div className={!isSidebarOpen ? styles.hideSidebarContent : ""}>
+            <Sidebar
+              isMobile={isMobile}
+              selectedKey={selectedKey}
+              isDropdownOpen={isDropdownOpen}
+              toggleDropdown={toggleDropdown}
+              payload={payload}
+              handleKeyClick={handleKeyClick}
+              selectedFilter={selectedFilter}
+            />
+          </div>
         </div>
 
         <div className={styles.rightWrap}>
@@ -137,7 +158,7 @@ const Document = () => {
               </h2>
               </div> */}
             {/* {renderTabs()} */}
-            
+
             <TopFilterComp setSelectedFilter={setSelectedFilter} />
             {selectedFilter ? (
               <>
@@ -158,7 +179,9 @@ const Document = () => {
                 </div>
               </>
             ) : (
-              <div className={styles.noFilterMessage}>Kinldy select the right filters for you from top.</div>
+              <div className={styles.noFilterMessage}>
+                Kinldy select the right filters for you from top.
+              </div>
             )}
           </div>
         </div>
