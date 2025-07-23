@@ -10,7 +10,6 @@
   transition: background-color 0.3s ease;
   z-index: 10;
   position: relative;
-  border: 2px solid red;
 }
 .navbar.scrolled {
   background-color: var(--primary-gradient);
