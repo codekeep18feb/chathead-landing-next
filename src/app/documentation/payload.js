@@ -58,227 +58,187 @@ const payload = {
         },
 
         {
-          tag_type: "ol",
-          items: [
+          "tag_type": "div",
+          "className": "custom-ordered-list",
+          "children": [
             {
-              tag_type: "li",
-              text: "Load The Scripts",
-              sub_items: [
+              "tag_type": "div",
+              "className": "custom-list-item",
+              "children": [
                 {
-                  tag_type: "div",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "It should ideally be placed head of the root file.",
-                    },
-                    {
-                      tag_type: "code",
-                      show_copy: true,
-                      text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
-                    },
-                  ],
+                  "tag_type": "div",
+                  "className": "list-item-header",
+                  "text": "1. Load The Scripts"
                 },
                 {
-                  tag_type: "div",
-                  children: [
+                  "tag_type": "div",
+                  "className": "sub-items-container",
+                  "children": [
                     {
-                      tag_type: "code",
-                      show_copy: true,
-                      text: `<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js"></script>`,
+                      "tag_type": "div",
+                      "children": [
+                        {
+                          "tag_type": "p",
+                          "text": "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document."
+                        },
+                        {
+                          "tag_type": "p",
+                          "text": "It should ideally be placed head of the root file."
+                        },
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script src=\"https://cdn.socket.io/4.1.2/socket.io.min.js\"></script>"
+                        }
+                      ]
                     },
-                  ],
-                },
-              ],
+                    {
+                      "tag_type": "div",
+                      "children": [
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js\"></script>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             },
             {
-              tag_type: "li",
-              text: "Running Magicchat Setup Requires two steps",
-              sub_items: [
+              "tag_type": "div",
+              "className": "custom-list-item",
+              "children": [
                 {
-                  tag_type: "div",
-                  children: [
-                    {
-                      tag_type: "h4",
-                      text: "Step 1 – setup on first Logged-Out Screens",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
-                    },
-                    {
-                      tag_type: "code",
-                      show_copy: true,
-                      text: `<script>
-              document.addEventListener("DOMContentLoaded", async function () {
-                const token = localStorage.getItem("tezkit_token");
-                if (!token) {
-                  await window.chathead.setUp(
-                    "v1app1", // app_name
-                    "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
-                    JSON.stringify({
-                      header_theme: {
-                        backgroundColor: "rgb(163, 112, 206)",
-                        textColor: "white",
-                      },
-                      chat_opener_theme: {
-                        backgroundColor: "rgb(163, 112, 206)",
-                        textColor: "white",
-                      },
-                      chat_box_theme: {
-                        backgroundColor: "red",
-                        textColor: "black",
-                      },
-                    }), // theme
-                    true,  // header_req (HEADER FULL :: header will be added)
-                    "/", // redirect_url after login
-                  );
-                } 
-              });
-            </script>`,
-                    },
-                    {
-                      tag_type: "callout",
-                      type: "info",
-                      title: "Parameter Details",
-                      children: [
-                        {
-                          tag_type: "table",
-                          headers: ["Parameter", "Type", "Description"],
-                          rows: [
-                            [
-                              "app_name",
-                              "string",
-                              "Unique identifier for your application (provided during registration)",
-                            ],
-                            [
-                              "api_key",
-                              "string",
-                              "Base64 encoded API key for authentication",
-                            ],
-                            [
-                              "theme",
-                              "string (JSON)",
-                              "Theme configuration object as a JSON string",
-                            ],
-                            [
-                              "header_req",
-                              "boolean",
-                              "Set to true to display header with user controls",
-                            ],
-                            [
-                              "redirect_url",
-                              "string",
-                              "URL to redirect to after successful login",
-                            ],
-                          ],
-                        },
-                        {
-                          tag_type: "callout",
-                          type: "warning",
-                          title: "Theme Configuration",
-                          children: [
-                            {
-                              tag_type: "p",
-                              text: "The theme parameter requires a JSON string with these nested objects:",
-                            },
-                            {
-                              tag_type: "ul",
-                              items: [
-                                {
-                                  text: "header_theme - Styles for the chat header",
-                                  sub_items: [
-                                    {
-                                      text: "backgroundColor: CSS color value",
-                                    },
-                                    { text: "textColor: CSS color value" },
-                                  ],
-                                },
-                                {
-                                  text: "chat_opener_theme - Styles for the chat opener button",
-                                  sub_items: [
-                                    {
-                                      text: "backgroundColor: CSS color value",
-                                    },
-                                    { text: "textColor: CSS color value" },
-                                  ],
-                                },
-                                {
-                                  text: "chat_box_theme - Styles for the main chat container",
-                                  sub_items: [
-                                    {
-                                      text: "backgroundColor: CSS color value",
-                                    },
-                                    { text: "textColor: CSS color value" },
-                                  ],
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
+                  "tag_type": "div",
+                  "className": "list-item-header",
+                  "text": "2. Running Magicchat Setup Requires two steps"
                 },
                 {
-                  tag_type: "div",
-                  children: [
+                  "tag_type": "div",
+                  "className": "sub-items-container",
+                  "children": [
                     {
-                      tag_type: "h4",
-                      text: "Step 2 – Initialize on first Logged-In Screens",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
-                    },
-                    {
-                      tag_type: "code",
-                      show_copy: true,
-                      text: `<script>
-              document.addEventListener("DOMContentLoaded", async function () {
-                const token = localStorage.getItem("tezkit_token");
-                if (token) {
-                  await window.chathead.initialize(token);
-                } 
-              });
-            </script>`,
-                    },
-                    {
-                      tag_type: "callout",
-                      type: "info",
-                      title: "Parameter Details",
-                      children: [
+                      "tag_type": "div",
+                      "children": [
                         {
-                          tag_type: "table",
-                          headers: ["Parameter", "Type", "Description"],
-                          rows: [
-                            [
-                              "token",
-                              "string",
-                              "User authentication token obtained after login",
-                            ],
-                          ],
+                          "tag_type": "h4",
+                          "text": "Step 1 – setup on first Logged-Out Screens"
                         },
                         {
-                          tag_type: "mesgTip",
-                          title: "Token Handling",
-                          children: [
+                          "tag_type": "p",
+                          "text": "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present."
+                        },
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.chathead.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req\n        \"/\", // redirect_url\n      );\n    } \n  });\n</script>"
+                        },
+                        {
+                          "tag_type": "callout",
+                          "type": "info",
+                          "title": "Parameter Details",
+                          "children": [
                             {
-                              tag_type: "p",
-                              text: "The token should be stored in localStorage after successful authentication and retrieved as shown in the example.",
+                              "tag_type": "table",
+                              "headers": ["Parameter", "Type", "Description"],
+                              "rows": [
+                                ["app_name", "string", "Unique identifier for your application"],
+                                ["api_key", "string", "Base64 encoded API key"],
+                                ["theme", "string (JSON)", "Theme configuration JSON"],
+                                ["header_req", "boolean", "Show header with user controls"],
+                                ["redirect_url", "string", "Redirect URL after login"]
+                              ]
                             },
-                          ],
-                        },
-                      ],
+                            {
+                              "tag_type": "callout",
+                              "type": "warning",
+                              "title": "Theme Configuration",
+                              "children": [
+                                {
+                                  "tag_type": "p",
+                                  "text": "The theme parameter requires a JSON string with these nested objects:"
+                                },
+                                {
+                                  "tag_type": "ul",
+                                  "items": [
+                                    {
+                                      "text": "header_theme - Styles for the chat header",
+                                      "sub_items": [
+                                        {"text": "backgroundColor: CSS color value"},
+                                        {"text": "textColor: CSS color value"}
+                                      ]
+                                    },
+                                    {
+                                      "text": "chat_opener_theme - Chat opener button styles",
+                                      "sub_items": [
+                                        {"text": "backgroundColor: CSS color value"},
+                                        {"text": "textColor: CSS color value"}
+                                      ]
+                                    },
+                                    {
+                                      "text": "chat_box_theme - Main chat container styles",
+                                      "sub_items": [
+                                        {"text": "backgroundColor: CSS color value"},
+                                        {"text": "textColor: CSS color value"}
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     },
-                  ],
-                },
-              ],
-            },
-          ],
+                    {
+                      "tag_type": "div",
+                      "children": [
+                        {
+                          "tag_type": "h4",
+                          "text": "Step 2 – Initialize on first Logged-In Screens"
+                        },
+                        {
+                          "tag_type": "p",
+                          "text": "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner)."
+                        },
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.chathead.initialize(token);\n    } \n  });\n</script>"
+                        },
+                        {
+                          "tag_type": "callout",
+                          "type": "info",
+                          "title": "Parameter Details",
+                          "children": [
+                            {
+                              "tag_type": "table",
+                              "headers": ["Parameter", "Type", "Description"],
+                              "rows": [
+                                ["token", "string", "User authentication token"]
+                              ]
+                            },
+                            {
+                              "tag_type": "mesgTip",
+                              "title": "Token Handling",
+                              "children": [
+                                {
+                                  "tag_type": "p",
+                                  "text": "The token should be stored in localStorage after successful authentication."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           tag_type: "tabs",
@@ -656,93 +616,110 @@ const payload = {
         },
 
         {
-          tag_type: "ol",
-          items: [
+          "tag_type": "div",
+          "className": "custom-ordered-list",
+          "children": [
             {
-              tag_type: "li",
-              text: "Load The Scripts",
-              sub_items: [
+              "tag_type": "div",
+              "className": "custom-list-item",
+              "children": [
                 {
-                  tag_type: "li",
-                  text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                  extra_text:
-                    "It should ideally be placed head of the root file.",
-                  code: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                  "tag_type": "div",
+                  "className": "list-item-header",
+                  "text": "1. Load The Scripts"
                 },
                 {
-                  tag_type: "li",
-                  // text: "after script is loaded we can initialize it like below.",
-                  // extra_text: "kindly add it below the first script",
-                  code: `
-<script src="https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js">
-</script>`,
-                },
-              ],
+                  "tag_type": "div",
+                  "className": "sub-items-container",
+                  "children": [
+                    {
+                      "tag_type": "div",
+                      "children": [
+                        {
+                          "tag_type": "p",
+                          "text": "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document."
+                        },
+                        {
+                          "tag_type": "p",
+                          "text": "It should ideally be placed head of the root file."
+                        },
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script src=\"https://cdn.socket.io/4.1.2/socket.io.min.js\"></script>"
+                        }
+                      ]
+                    },
+                    {
+                      "tag_type": "div",
+                      "children": [
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js\">\n</script>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             },
-
             {
-              tag_type: "li",
-              text: "Running Magicchat Setup Requires two steps",
-              sub_items: [
+              "tag_type": "div",
+              "className": "custom-list-item",
+              "children": [
                 {
-                  tag_type: "li",
-                  text: "Step 1 – Initialize on first Logged-Out Screens",
-                  extra_text:
-                    "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
-                  code: `<script>
-        document.addEventListener("DOMContentLoaded", async function () {
-          const token = localStorage.getItem("tezkit_token");
-          if (!token) {
-            await window.chathead.setUp(
-              "v1app1", // app_name
-              "bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==", // api_key
-              JSON.stringify({
-                header_theme: {
-                  backgroundColor: "rgb(163, 112, 206)",
-                  textColor: "white",
+                  "tag_type": "div",
+                  "className": "list-item-header",
+                  "text": "2. Running Magicchat Setup Requires two steps"
                 },
-                chat_opener_theme: {
-                  backgroundColor: "rgb(163, 112, 206)",
-                  textColor: "white",
-                },
-                chat_box_theme: {
-                  backgroundColor: "red",
-                  textColor: "black",
-                },
-              }), // theme
-              true,  // header_req (HEADER FULL :: header will be added)
-              "/", // redirect_url after login
-            );
-
-          } 
-        });
-      </script>
-
-
-`,
-                },
-
                 {
-                  tag_type: "li",
-                  text: "Step 2 – Initialize on first Logged-In Screens",
-                  extra_text:
-                    "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
-                  code: `    
-    <script>
-      document.addEventListener("DOMContentLoaded", async function () {
-        const token = localStorage.getItem("tezkit_token");
-        if (token) {
-          await window.chathead.initialize(token);
-        } 
-      });
-    </script>
-
-`,
-                },
-              ],
-            },
-          ],
-        },
+                  "tag_type": "div",
+                  "className": "sub-items-container",
+                  "children": [
+                    {
+                      "tag_type": "div",
+                      "children": [
+                        {
+                          "tag_type": "h4",
+                          "text": "Step 1 – Initialize on first Logged-Out Screens"
+                        },
+                        {
+                          "tag_type": "p",
+                          "text": "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present."
+                        },
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.chathead.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req (HEADER FULL :: header will be added)\n        \"/\", // redirect_url after login\n      );\n    } \n  });\n</script>"
+                        }
+                      ]
+                    },
+                    {
+                      "tag_type": "div",
+                      "children": [
+                        {
+                          "tag_type": "h4",
+                          "text": "Step 2 – Initialize on first Logged-In Screens"
+                        },
+                        {
+                          "tag_type": "p",
+                          "text": "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner)."
+                        },
+                        {
+                          "tag_type": "code",
+                          "show_copy": true,
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.chathead.initialize(token);\n    } \n  });\n</script>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+        ,
 
         {
           tag_type: "callout",

@@ -571,6 +571,8 @@ const APIReferenceTable = ({ properties }) => (
 
 const ContentRenderer = ({ content }) => {
   // Helper function for link rendering in li elements
+
+  console.log("contenterewr",content)
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;
     const config = item.link_configuration;
