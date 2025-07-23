@@ -228,7 +228,7 @@
 .callout-info .content-link {
   border-radius: 5px;
   padding: 10px 20px;
-  background-color: #97ccfd;
+  background-color: green;
 }
 .content-blockquote {
   border-left: 4px solid #ccc;
@@ -426,9 +426,6 @@
 
 
 @media (min-width: 426px) and (max-width: 1024px) {
- /* .content-heading,  .content-paragraph {
-  padding: 0px 20px;
- } */
  .content-div {
   margin: 5px;
  }

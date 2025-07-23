@@ -488,6 +488,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         position: "relative",
         paddingLeft: isCollapsible ? "20px" : "32px",
       }}
+
     >
       {isCollapsible && (
         <span
@@ -508,8 +509,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         {typeof item === "string" ? (
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
-          <>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div>
+            <div  
+            style={{ display: "flex", alignItems: "center", gap: "20px", marginRight: "10px"}} >
               {item.text && <span>{item.text}</span>}
               {renderLink()}
             </div>
@@ -518,7 +520,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
                 <code>{item.code}</code>
               </pre>
             )}
-          </>
+          </div>
         )}
       </div>
 

@@ -19,7 +19,6 @@ const Document = () => {
     version_type: "V1",
   });
   console.log("do we have a fitler???selectedFilter", selectedFilter);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const searchParams = useSearchParams();
   // const current_version = searchParams.get("current_version") || "P2A__V1"; // Default value if not provided
@@ -83,10 +82,6 @@ const Document = () => {
     setIsDropdownOpen((prevState) => !prevState); // Toggle the state on click
   };
 
-  const handleSidebarToggle = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
   const renderContent = () => {
     console.log("selesdtsdfilter", selectedFilter);
     if (!selectedFilter || !selectedFilter.version_type)
@@ -120,21 +115,22 @@ const Document = () => {
 
   // console.log("do we have nay mode?", current_mode);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1025);
+    };
+
+    handleResize(); // initialize on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className={styles["document-container"]}>
       <div className={styles.doc_core_wrapper}>
-        <div
-          className={`${styles.doc_sidebar} ${
-            isSidebarOpen ? styles.sidebarOpenFull : ""
-          }`}
-        >
-          <div
-            className={styles.sidebarshowHideIc}
-            onClick={handleSidebarToggle}
-          >
-            <GrFormNext size={24}/>
-          </div>
-          <div className={!isSidebarOpen ? styles.hideSidebarContent : ""}>
+        {!isMobile && (
+          <div className={styles.doc_sidebar}>
             <Sidebar
               isMobile={isMobile}
               selectedKey={selectedKey}
@@ -145,21 +141,26 @@ const Document = () => {
               selectedFilter={selectedFilter}
             />
           </div>
-        </div>
+        )}
 
         <div className={styles.rightWrap}>
           <div className={styles["main-content"]}>
-            {/* <div className={styels.mainHeading}>
-              Instant messaging boosts user engagement, fostering community,
-              <h2>
-              satisfaction, and loyalty. It also provides real-time support,
-              allowing users to get quick help. The Chat SDK enables seamless
-              real-time messaging on any app or device.
-              </h2>
-              </div> */}
-            {/* {renderTabs()} */}
-
             <TopFilterComp setSelectedFilter={setSelectedFilter} />
+
+            {isMobile && (
+              <div className={styles.mobileSidebarWrapper}>
+                <Sidebar
+                  isMobile={isMobile}
+                  selectedKey={selectedKey}
+                  isDropdownOpen={isDropdownOpen}
+                  toggleDropdown={toggleDropdown}
+                  payload={payload}
+                  handleKeyClick={handleKeyClick}
+                  selectedFilter={selectedFilter}
+                />
+              </div>
+            )}
+
             {selectedFilter ? (
               <>
                 {renderContent()}
