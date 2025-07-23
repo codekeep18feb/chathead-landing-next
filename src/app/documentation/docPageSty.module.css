@@ -75,7 +75,7 @@
 }
 .main-content {
   max-width: 1080px;
-  /* padding: 20px; */
+  padding: 20px;
 }
 .mainHeading {
   margin-bottom: 30px;
@@ -128,9 +128,7 @@
 
 @media (min-width: 426px) and (max-width: 1024px) {
  .doc_sidebar{
-  margin-right: 30px;
   padding-right: 30px;
-  /* transition: all 0.3s ease-in-out; */
  }
  .sidebarshowHideIc{
   display: flex;
@@ -158,8 +156,45 @@
 .doc_sidebar:not(.sidebarOpenFull) .sidebarshowHideIc {
   right: 0px;
 }
+.content-area {
+  width: 100%;
+  padding: 0px 10px 0px 0px;
+}
+
 }
 
 @media screen and (max-width: 425px) {
-
+  .doc_sidebar{
+    padding-right: 30px;
+   }
+   .sidebarshowHideIc{
+    display: flex;
+   }
+   .sidebarOpenFull {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 85px;
+    z-index: 999;
+    background: var(--light-primary-color);
+    height: 100vh;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+  }
+  .sidebarOpenFull .sidebarshowHideIc {
+    right: 0px;
+  }
+  .hideSidebarContent{
+    display: none;
+  }
+  .doc_sidebar:not(.sidebarOpenFull) {
+    width: 5% !important;
+  }
+  .doc_sidebar:not(.sidebarOpenFull) .sidebarshowHideIc {
+    right: 0px;
+  }
+  .content-area {
+    width: 100%;
+    padding: 0px 10px 0px 0px;
+  }
 }

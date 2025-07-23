@@ -352,19 +352,23 @@ const Accordion = ({ title, children }) => {
 
 const Table = ({ headers, rows }) => {
   return (
-    <table className="doc-table">
-      <thead>
-        <tr>
+    <table className={styles.docTable}>
+      <thead className={styles.docTableHead}>
+        <tr className={styles.docTableHeadRow}>
           {headers.map((header, index) => (
-            <th key={index}>{header}</th>
+            <th key={index} className={styles.docTableHeadCell}>
+              {header}
+            </th>
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className={styles.docTableBody}>
         {rows.map((row, rowIndex) => (
-          <tr key={rowIndex}>
+          <tr key={rowIndex} className={styles.docTableBodyRow}>
             {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
+              <td key={cellIndex} className={styles.docTableBodyCell}>
+                {cell}
+              </td>
             ))}
           </tr>
         ))}
@@ -480,9 +484,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     <li
       style={{
         cursor: isCollapsible ? "pointer" : "default",
-        listStyleType: listType === "ol" ? "none" : "disc",
+        listStyleType: listType === "ol" ? "none" : "none",
         position: "relative",
-        paddingLeft: isCollapsible ? "20px" : "0",
+        paddingLeft: isCollapsible ? "20px" : "32px",
       }}
     >
       {isCollapsible && (
@@ -510,7 +514,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
               {renderLink()}
             </div>
             {item.code && (
-              <pre className="script_code">
+              <pre className={styles["script_code"]}>
                 <code>{item.code}</code>
               </pre>
             )}
@@ -520,7 +524,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
       {hasSubItems && (
         <div
-          style={{ display: expanded ? "block" : "none", marginLeft: "20px" }}
+          style={{ display: expanded ? "block" : "none", marginTop: "5px",  marginLeft: "10px" }} 
         >
           {/* FIX: Wrap sub_items in proper list container */}
           {item.sub_items[0]?.tag_type === "li" ? (
@@ -634,7 +638,7 @@ const ContentRenderer = ({ content }) => {
 
           case "h4":
             return (
-              <h2 key={index} className="content-inner-heading">
+              <h2 key={index} className={styles["content-inner-heading"]}>
                 {item.text}
               </h2>
             );
@@ -698,7 +702,7 @@ const ContentRenderer = ({ content }) => {
 
           case "p":
             return (
-              <div key={index} className="content-paragraph">
+              <div key={index} className={styles["content-paragraph"]}>
                 {item.text &&
                   renderTextWithElements(item.text, item.link_parts)}
                 {item.children && (
@@ -711,7 +715,7 @@ const ContentRenderer = ({ content }) => {
 
           case "h3":
             return (
-              <h3 key={index} className="second_subheading">
+              <h3 key={index} className={styles.second_subheading}>
                 {item.text}
               </h3>
             );
@@ -723,7 +727,7 @@ const ContentRenderer = ({ content }) => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="content-link"
+                className={styles["content-link"]}
               >
                 {item.text}
               </a>
@@ -780,15 +784,15 @@ const ContentRenderer = ({ content }) => {
                 language={item.language}
               />
             ) : (
-              <pre key={index} className="content-code">
+              <pre key={index} className={styles["content-code"]}>
                 <code>{item.text}</code>
               </pre>
             );
 
           case "li":
             return (
-              <li key={index} className="content-list-item">
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <li key={index} className={styles["content-list-item"]}>
+                <div className={styles.sidebarLi}>
                   {item.text && <span>{item.text}</span>}
                   {item.link_configuration && renderLink(item)}
                 </div>
@@ -815,7 +819,7 @@ const ContentRenderer = ({ content }) => {
 
           case "div":
             return (
-              <div key={index} className="content-div">
+              <div key={index} className={styles["content-div"]}>
                 {item.children?.map((child, i) => (
                   <ContentRenderer key={`${index}-${i}`} content={[child]} />
                 ))}
