@@ -160,6 +160,7 @@
   align-items: flex-end;
   border-radius: 10px;
   max-height: 80vh;
+  height: 1000px;
 }
 
 .modalDropdown.active {

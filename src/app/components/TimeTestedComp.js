@@ -6,8 +6,11 @@ export default function TimeTestedComp({
   cardsData = [],
   className = "",
 }) {
-  const firstRow = cardsData.slice(0, Math.ceil(cardsData.length / 2));
-  const secondRow = cardsData.slice(Math.ceil(cardsData.length / 2));
+  // const firstRow = cardsData.slice(0, Math.ceil(cardsData.length / 2));
+  // const secondRow = cardsData.slice(Math.ceil(cardsData.length / 2));
+
+  const firstRow = cardsData.slice(0, 3);
+  const secondRow = cardsData.slice(3, 6);
 
   return (
     <div className={`${styles.wrapper} ${className}`}>

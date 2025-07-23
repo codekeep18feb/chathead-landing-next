@@ -10,7 +10,13 @@ import TimeTestedComp from "../../TimeTestedComp";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const HeartIcon = (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -137,7 +143,6 @@ const productHighlights = [
   },
 ];
 
-
 const buildSteps = [
   {
     number: "01",
@@ -178,15 +183,23 @@ export default function RealEstate() {
         title="Why Magic Chat Is Built for Real Estate"
         description="Whether you run a listings marketplace, property portal, or brokerage platform—Magic Chat brings you a communication layer that’s fast, reliable, and conversion-optimized."
         sections={{
-          "All Chat Modes": {
-            ref: useRef(null),
-            subheading: "Live, AI & Lead Bots—All in One",
+          "Varity of Chat Options": {
+            subheading: "Flexible Communication Modes",
             className: "chat-modes",
-            image: `${basePath}/Asset/messaging_experience.png`,
+            images: [
+              {
+                src: `${basePath}/Asset/magicChatImg/p2aImage.png`,
+                heading: "Peer to Peer (P2P)",
+              },
+              {
+                src: `${basePath}/Asset/magicChatImg/p2pImage.png`,
+                heading: "User to Admin (P2A)",
+              },
+            ],
             content: [
               {
                 type: "p",
-                text: "Magic Chat lets you handle real-time inquiries, automate off-hours, and capture leads effortlessly with one integration.",
+                text: "Choose P2A (Peer-to-Admin) or P2P (Peer-to-Peer) communication depending on your user journey—Magic Chat supports both effortlessly.",
               },
               {
                 type: "group",
@@ -194,7 +207,7 @@ export default function RealEstate() {
                 texts: [
                   "Live Chat (P2A, P2P)",
                   "AI for after-hours support",
-                  "Lead bots with form validation & CRM sync",
+                  "Lead bots...",
                 ],
               },
             ],
@@ -203,7 +216,13 @@ export default function RealEstate() {
             ref: useRef(null),
             subheading: "Get Started in Minutes",
             className: "easy-setup",
-            image: `${basePath}/Asset/messaging_experience.png`,
+            images: [
+              {
+                src: `${basePath}/Asset/codegif.gif`,
+                heading: "Zero Code Setup Demo",
+              },
+            ],
+      
             content: [
               {
                 type: "p",
@@ -224,7 +243,16 @@ export default function RealEstate() {
             ref: useRef(null),
             subheading: "Built for Startups and Scaling Teams",
             className: "pricing",
-            image: `${basePath}/Asset/messaging_experience.png`,
+            images: [
+              {
+                src: `${basePath}/Asset/magicChatImg/AffordablePricing.png`,
+                heading: "Heading..........",
+              },
+              {
+                src: `${basePath}/Asset/magicChatImg/AffordablePricing2.png`,
+                heading: "Heading..........",
+              },
+            ],
             content: [
               {
                 type: "p",
@@ -241,32 +269,42 @@ export default function RealEstate() {
               },
             ],
           },
-          "Varity of Chat Options": {
-            ref: useRef(null),
-            subheading: "Flexible Communication Modes",
-            className: "chat-options",
-            image: `${basePath}/Asset/messaging_experience.png`,
-            content: [
-              {
-                type: "p",
-                text: "Choose P2A (Peer-to-Admin) or P2P (Peer-to-Peer) communication depending on your user journey—Magic Chat supports both effortlessly.",
-              },
-              {
-                type: "group",
-                className: "normal-text",
-                texts: [
-                  "P2A for agent/broker chats",
-                  "P2P for buyer-seller or tenant-owner interactions",
-                  "Switch modes per page or user type",
-                ],
-              },
-            ],
-          },
+          // "Varity of Chat Options": {
+          //   ref: useRef(null),
+          //   subheading: "Flexible Communication Modes",
+          //   className: "chat-options",
+          //   image: `${basePath}/Asset/messaging_experience.png`,
+          //   content: [
+          //     {
+          //       type: "p",
+          //       text: "Choose P2A (Peer-to-Admin) or P2P (Peer-to-Peer) communication depending on your user journey—Magic Chat supports both effortlessly.",
+          //     },
+          //     {
+          //       type: "group",
+          //       className: "normal-text",
+          //       texts: [
+          //         "P2A for agent/broker chats",
+          //         "P2P for buyer-seller or tenant-owner interactions",
+          //         "Switch modes per page or user type",
+          //       ],
+          //     },
+          //   ],
+          // },
           "Auth Agnostic": {
             ref: useRef(null),
             subheading: "Plug into Any Login System—or None",
             className: "auth",
-            image: `${basePath}/Asset/messaging_experience.png`,
+            images: [
+              {
+                src: `${basePath}/Asset/magicChatImg/nologin_noproble.png`,
+                heading: "Heading..........",
+              },
+              {
+                src: `${basePath}/Asset/magicChatImg/nologin_noproble2.png`,
+                heading: "Heading..........",
+              },
+            ],
+
             content: [
               {
                 type: "p",
@@ -287,7 +325,16 @@ export default function RealEstate() {
             ref: useRef(null),
             subheading: "Framework Agnostic. Future Proof.",
             className: "frameworks",
-            image: `${basePath}/Asset/messaging_experience.png`,
+            images: [
+              {
+                src: `${basePath}/Asset/magicChatImg/Framework.png`,
+                heading: "Heading..........",
+              },
+              {
+                src: `${basePath}/Asset/magicChatImg/Framework2.png`,
+                heading: "Heading..........",
+              },
+            ],
             content: [
               {
                 type: "p",
