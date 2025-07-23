@@ -11,9 +11,13 @@ import YouTubeEmbed from "../components/YouTubeVideo";
 import TopFilterComp from "../components/documents/TopFilterComp";
 import Sidebar from "../components/documents/side_bar_content/Sidebar";
 import ContentRenderer from "../testing_documents/rendering_tools";
+import { GrFormNext } from "react-icons/gr";
 
 const Document = () => {
-  const [selectedFilter, setSelectedFilter] = useState({app_type: null, version_type: 'V1'});
+  const [selectedFilter, setSelectedFilter] = useState({
+    app_type: null,
+    version_type: "V1",
+  });
   console.log("do we have a fitler???selectedFilter", selectedFilter);
 
   const searchParams = useSearchParams();
@@ -111,34 +115,52 @@ const Document = () => {
 
   // console.log("do we have nay mode?", current_mode);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1025);
+    };
+
+    handleResize(); // initialize on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className={styles["document-container"]}>
       <div className={styles.doc_core_wrapper}>
-        <div className={styles.doc_sidebar}>
-          <Sidebar
-            isMobile={isMobile}
-            selectedKey={selectedKey}
-            isDropdownOpen={isDropdownOpen}
-            toggleDropdown={toggleDropdown}
-            payload={payload}
-            handleKeyClick={handleKeyClick}
-            selectedFilter={selectedFilter}
-          />
-        </div>
+        {!isMobile && (
+          <div className={styles.doc_sidebar}>
+            <Sidebar
+              isMobile={isMobile}
+              selectedKey={selectedKey}
+              isDropdownOpen={isDropdownOpen}
+              toggleDropdown={toggleDropdown}
+              payload={payload}
+              handleKeyClick={handleKeyClick}
+              selectedFilter={selectedFilter}
+            />
+          </div>
+        )}
 
         <div className={styles.rightWrap}>
           <div className={styles["main-content"]}>
-            {/* <div className={styels.mainHeading}>
-              Instant messaging boosts user engagement, fostering community,
-              <h2>
-              satisfaction, and loyalty. It also provides real-time support,
-              allowing users to get quick help. The Chat SDK enables seamless
-              real-time messaging on any app or device.
-              </h2>
-              </div> */}
-            {/* {renderTabs()} */}
-            
             <TopFilterComp setSelectedFilter={setSelectedFilter} />
+
+            {isMobile && (
+              <div className={styles.mobileSidebarWrapper}>
+                <Sidebar
+                  isMobile={isMobile}
+                  selectedKey={selectedKey}
+                  isDropdownOpen={isDropdownOpen}
+                  toggleDropdown={toggleDropdown}
+                  payload={payload}
+                  handleKeyClick={handleKeyClick}
+                  selectedFilter={selectedFilter}
+                />
+              </div>
+            )}
+
             {selectedFilter ? (
               <>
                 {renderContent()}
@@ -158,7 +180,9 @@ const Document = () => {
                 </div>
               </>
             ) : (
-              <div className={styles.noFilterMessage}>Kinldy select the right filters for you from top.</div>
+              <div className={styles.noFilterMessage}>
+                Kinldy select the right filters for you from top.
+              </div>
             )}
           </div>
         </div>

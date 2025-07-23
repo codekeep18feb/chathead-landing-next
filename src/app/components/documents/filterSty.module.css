@@ -1,7 +1,7 @@
 .filter-container {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 5;
   padding: 20px;
   width: 100%;
   background-color: var(--white-text-color);
@@ -12,10 +12,27 @@
   flex-wrap: wrap;
 }
 
+.options-list {
+  width: 100%;
+}
+
 .filter-group {
   display: flex;
+  gap: 10px;
+}
+
+.filter-group h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.mobile-dropdown-wrapper {
+  display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .button-group {
@@ -46,6 +63,19 @@
   border-color: var(--primary-color);
 }
 
+.filterIconWrapper {
+  display: none;
+  width: 35px;
+  height: 34px;
+  border: 1px solid var(--primary-color);
+  background: var(--light-primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
 /* Remove unused styles */
 .option-container,
 .option-container label,
@@ -53,3 +83,83 @@
 .submit-btn {
   display: none;
 }
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+}
+/* --- MOBILE STYLES --- */
+@media screen and (max-width: 885px) {
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .filterIconWrapper {
+    display: flex;
+  }
+  .filterIconWrapper {
+    position: relative;
+  }
+  .filterIconWrapper::after {
+    content: "Show/Hide Filters";
+    position: absolute;
+    top: 10%; 
+    transform: translateX(-70%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+  }
+  
+  .filterIconWrapper:hover::after {
+    opacity: 1;
+  }
+
+  .filterIcon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+.option-button{
+  padding: 10px;
+  text-align: left;
+}
+  .button-group {
+    align-self: flex-end; 
+    width: 200px;        
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: none;
+  }
+
+  .button-group.show-on-mobile {
+    display: flex;
+    max-height: 300px;
+    opacity: 1;
+  }
+}
+
+

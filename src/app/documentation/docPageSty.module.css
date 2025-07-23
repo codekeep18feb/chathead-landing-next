@@ -21,6 +21,8 @@
   width: 20%;
   background: var(--light-primary-color);
   padding: 12px;
+  position: relative;
+
 }
 .doc_sidebar ol {
   list-style: none !important;
@@ -61,7 +63,7 @@
 }
 .rightWrap {
   background-color:transparent;
-  overflow-y: auto;
+  overflow-y: auto; 
   flex: 1;
   max-height: 100vh;
   scrollbar-width: none;
@@ -72,7 +74,7 @@
 }
 .main-content {
   max-width: 1080px;
-  /* padding: 20px; */
+  padding: 20px;
 }
 .mainHeading {
   margin-bottom: 30px;
@@ -108,4 +110,70 @@
   text-align: center;
 }
 
+.mobileSidebarWrapper {
+  margin-top: 16px;
+  border: 1px solid #ddd;
+  padding: 0px 12px;
+  background-color: #97ccfd;
+  border-bottom: 3px solid #5aaefd;
 
+  overflow-x: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+
+  scrollbar-width: thin;           /* Firefox */
+  scrollbar-color: #888 #e0e0e0; 
+}
+/* For WebKit browsers like Chrome, Safari */
+.mobileSidebarWrapper::-webkit-scrollbar {
+  height: 6px; /* horizontal scrollbar height */
+}
+
+.mobileSidebarWrapper::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+
+.mobileSidebarWrapper::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+.mobileSidebarWrapper div {
+  display: flex;
+  gap: 20px;
+  background-color: transparent;
+  color: var(--text-color);
+ 
+}
+.mobileSidebarWrapper div:hover {
+ box-shadow: none;
+ background-color: transparent;
+}
+.mobileSidebarWrapper li {
+  display: flex;
+  background-color: transparent;
+  margin: 0px;
+}
+.mobileSidebarWrapper ol > li::before {
+  content: none !important;
+}
+.mobileSidebarWrapper .content-link {
+  background-color: yellow; 
+}
+
+/* 
+@media (min-width: 426px) and (max-width: 1024px) {
+.content-area {
+  width: 100%;
+  padding: 0px 10px 0px 0px;
+}
+
+}
+
+@media screen and (max-width: 425px) {
+  .content-area {
+    width: 100%;
+    padding: 0px 10px 0px 0px;
+  }
+} */
