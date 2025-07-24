@@ -6,6 +6,7 @@ import FeatureSectionWrapper from "../../FeatureSectionWrapper";
 import { useRef } from "react";
 import ProtectBusiness from "../../ProtectBusiness";
 import TimeTestedComp from "../../TimeTestedComp";
+import IndustryPageTemplate from "../../IndustryPageTemplate";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -264,41 +265,11 @@ export default function Ecommerce() {
   return (
     <>
       <h1>E-commerce</h1>
-      <BannerSection
-        icon={HeartIcon}
-        label="E-commerce"
-        heading="Provide a safe, secure and positive messaging environment for your
-              users"
-        description="Messaging experience that seamlessly scales from thousands to
-              millions of users. Leverage AI-powered chatbot to answer question even if Admin is Offline. Provides robust Live Intraction experience between admin and User. No Coding required , Easy to setup (Just Plug & Play), Premium Simple UI"
-        buttonText="Schedule a demo"
-        buttonAction={() => alert("Demo scheduled!")}
-        imageSrc={`${basePath}/Asset/banner_placeholder.png`}
-        altText="Chat Solution"
-      />
-
-      <FeatureSectionWrapper
-        title="Why Magic Chat is the Perfect Technology Partner for Your eCommerce Growth."
-        description="At Magic Chat Technologies, we build high-performance eCommerce platforms that drive conversions, streamline inventory and fulfillment, and deliver seamless shopping experiences across web and mobile. From storefront to checkout, we help you scale faster and smarter."
-        sections={ecommerceSection}
-      />
-
-      <BuildShipManageCards
-        title="Why choose Magic chat to develop Ecommerce apps?"
-        subtitle="At Magic chat, we have talented ecommerce app developers with a wealth of experience building customized Ecommerce app solutions out of the box."
-        sections={whyChooesyou}
-      />
-
-      <ProtectBusiness
-        title="E-commerce apps for businesses of all sizes and types"
-        description="We build complete eCommerce mobile app solutions tailored to businesses of all sizes—helping you attract customers, boost retention, and strengthen your brand presence."
-        sections={ecommerceObj}
-      />
-
-      <TimeTestedComp
-        title="Our eCommerce Development Process"
-        subtitle="Tailored to build scalable, secure, and high-converting shopping experiences."
-        cardsData={ecommerceCardsData}
+      <IndustryPageTemplate
+        industry_name={"E-commerce"}
+        industry_reason={
+          "At Magic Chat Technologies, we build high-performance eCommerce platforms that drive conversions, streamline inventory and fulfillment, and deliver seamless shopping experiences across web and mobile. From storefront to checkout, we help you scale faster and smarter."
+        }
       />
     </>
   );

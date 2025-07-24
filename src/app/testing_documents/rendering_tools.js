@@ -486,9 +486,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         cursor: isCollapsible ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "none",
         position: "relative",
-        paddingLeft: isCollapsible ? "20px" : "32px",
+        // paddingLeft: isCollapsible ? "20px" : "0px",
       }}
-
     >
       {isCollapsible && (
         <span
@@ -510,8 +509,16 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
           <div>
-            <div  
-            style={{ display: "flex", alignItems: "center", gap: "20px", marginRight: "10px"}} >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                // marginRight: "10px",
+                flex: "1",
+                justifyContent: "space-between"
+              }}
+            >
               {item.text && <span>{item.text}</span>}
               {renderLink()}
             </div>
@@ -526,7 +533,11 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
       {hasSubItems && (
         <div
-          style={{ display: expanded ? "block" : "none", marginTop: "5px",  marginLeft: "10px" }} 
+          style={{
+            display: expanded ? "block" : "none",
+            marginTop: "5px",
+            marginLeft: "10px",
+          }}
         >
           {/* FIX: Wrap sub_items in proper list container */}
           {item.sub_items[0]?.tag_type === "li" ? (
@@ -572,7 +583,7 @@ const APIReferenceTable = ({ properties }) => (
 const ContentRenderer = ({ content }) => {
   // Helper function for link rendering in li elements
 
-  console.log("contenterewr",content)
+  console.log("contenterewr", content);
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;
     const config = item.link_configuration;
@@ -726,7 +737,8 @@ const ContentRenderer = ({ content }) => {
 
           case "a":
             return (
-              <a
+             <button className={styles["view-full-implementation"]} key={index}>
+               <a
                 key={index}
                 href={item.href}
                 target="_blank"
@@ -735,6 +747,7 @@ const ContentRenderer = ({ content }) => {
               >
                 {item.text}
               </a>
+             </button>
             );
 
           case "ul":
@@ -805,7 +818,7 @@ const ContentRenderer = ({ content }) => {
                     <code>{item.code}</code>
                   </pre>
                 )}
-                
+
                 {item.sub_items && (
                   <div style={{ marginLeft: "20px" }}>
                     {/* FIX: Wrap sub_items in proper list container */}
@@ -821,15 +834,35 @@ const ContentRenderer = ({ content }) => {
               </li>
             );
 
+          // case "div":
+          //   return (
+          //     <div key={index} className={styles["content-div"]}>
+          //       {item.children?.map((child, i) => (
+          //         <ContentRenderer key={`${index}-${i}`} content={[child]} />
+          //       ))}
+          //       {item.extra_text && <div>{item.extra_text}</div>}
+          //       {item.code && (
+          //         <pre className={styles.script_code}>
+          //           <code>{item.code}</code>
+          //         </pre>
+          //       )}
+          //     </div>
+          //   );
+
           case "div":
             return (
-              <div key={index} className={styles["content-div"]}>
-                {item.children?.map((child, i) => (
-                  <ContentRenderer key={`${index}-${i}`} content={[child]} />
-                ))}
+              <div
+                key={index}
+                className={item.className || styles["content-div"]}
+              >
+                {item.text && <span>{item.text}</span>}
+
+                {item.children && <ContentRenderer content={item.children} />}
+
                 {item.extra_text && <div>{item.extra_text}</div>}
+
                 {item.code && (
-                  <pre className="script_code">
+                  <pre className={styles.script_code}>
                     <code>{item.code}</code>
                   </pre>
                 )}
