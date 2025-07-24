@@ -265,12 +265,12 @@ export default function Ecommerce() {
   return (
     <>
       <h1>E-commerce</h1>
-            <IndustryPageTemplate
-              industry_name={"E-commerce"}
-              industry_reason={
-                "At Magic Chat Technologies, we build high-performance eCommerce platforms that drive conversions, streamline inventory and fulfillment, and deliver seamless shopping experiences across web and mobile. From storefront to checkout, we help you scale faster and smarter."
-              }
-            />
+      <IndustryPageTemplate
+        industry_name={"E-commerce"}
+        industry_reason={
+          "At Magic Chat Technologies, we build high-performance eCommerce platforms that drive conversions, streamline inventory and fulfillment, and deliver seamless shopping experiences across web and mobile. From storefront to checkout, we help you scale faster and smarter."
+        }
+      />
     </>
   );
 }
