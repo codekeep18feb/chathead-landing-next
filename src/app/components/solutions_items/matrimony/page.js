@@ -2,14 +2,14 @@
 
 import IndustryPageTemplate from "../../IndustryPageTemplate";
 
-export default function Matrimy() {
+export default function Matrimony() {
   return (
     <>
-    <h1>Matrimony</h1>
+      <h1>Matrimony Chat Solutions</h1>
       <IndustryPageTemplate
         industry_name={"Matrimony"}
         industry_reason={
-          "Seamless connections, safer interactions, smarter matches"
+          "Magic Chat enables secure, real-time conversations that help users connect meaningfully while protecting privacy and reducing platform drop-off. Ideal for matchmaking platforms that value trust, authenticity, and higher engagement."
         }
       />
     </>

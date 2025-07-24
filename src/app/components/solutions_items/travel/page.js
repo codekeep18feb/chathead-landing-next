@@ -5,11 +5,11 @@ import IndustryPageTemplate from "../../IndustryPageTemplate";
 export default function Travel() {
   return (
     <>
-      <h1>Travel</h1>
+      <h1>Travel Chat Solutions</h1>
       <IndustryPageTemplate
         industry_name={"Travel"}
         industry_reason={
-          "At Magic Chat Technologies, we help travel businesses thrive with innovative digital solutions that simplify trip planning, enhance customer engagement, and streamline operations through secure, scalable, and user-centric platforms."
+          "Transform how travelers connect with agents, hosts, and platforms. Magic Chat enables real-time communication for booking confirmations, itinerary updates, and personalized support — reducing friction and elevating traveler satisfaction across your digital travel ecosystem."
         }
       />
     </>

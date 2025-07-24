@@ -4,11 +4,11 @@ import IndustryPageTemplate from "../../IndustryPageTemplate";
 export default function LegalTech() {
   return (
     <>
-      <h1>Legal Tech</h1>
+      <h1>Legal Tech Chat Solutions</h1>
       <IndustryPageTemplate
         industry_name={"Legal Tech"}
         industry_reason={
-          "At Magic Chat Technologies, we help travel businesses thrive with innovative digital solutions that simplify trip planning, enhance customer engagement, and streamline operations through secure, scalable, and user-centric platforms."
+          "Magic Chat empowers legal tech platforms with AI-driven chat support to streamline client onboarding, automate FAQ responses, and ensure timely communication—while maintaining data privacy and compliance."
         }
       />
     </>
