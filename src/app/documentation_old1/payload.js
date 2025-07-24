@@ -106,9 +106,9 @@ const payload = {
   document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem("tezkit_token");
     if (token) {
-      window.chathead.initialize(token);
+      window.magicchat_io.initialize(token);
     } else {
-      window.chathead.setUp(
+      window.magicchat_io.setUp(
         "<Your App Name>", 
         "<Your Api Key>", 
         JSON.stringify({
@@ -198,9 +198,9 @@ const payload = {
   document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem("tezkit_token");
     if (token) {
-      window.chathead.initialize(token);
+      window.magicchat_io.initialize(token);
     } else {
-      window.chathead.setUp(
+      window.magicchat_io.setUp(
         "<Your App Name>", 
         "<Your Api Key>", 
         JSON.stringify({
@@ -359,7 +359,7 @@ const payload = {
                           code: `<script>
   const token = localStorage.getItem('tezkit_token',null);
     if (!token) { //  To check if user is not logged in (based on your product's specific implimentation)
-        window.chathead.setUp(
+        window.magicchat_io.setUp(
             (app_name = "<Your App Name>"),
             (api_key =
             "<Your Api Key>"),
@@ -380,7 +380,7 @@ Ensure this code runs only after the previous setup code in your product has com
 To verify the execution order, consider adding log statements both at the setup phase and here for debugging purposes.`,
                           code: `const token = localStorage.getItem('tezkit_token',null);
   if (token) {
-      window.chathead.initialize({"uid": <new_user>}); // uid is mandatory as this will be used to distingush between different users and should be unique for all of them.
+      window.magicchat_io.initialize({"uid": <new_user>}); // uid is mandatory as this will be used to distingush between different users and should be unique for all of them.
   }
     `,
                         },
@@ -486,7 +486,7 @@ To verify the execution order, consider adding log statements both at the setup 
                           children: [],
                           extra_text:
                             "Using chathead.onboarding() method on the client side.",
-                          code: `await window.chathead.onboarding({"uid":data.username,},{
+                          code: `await window.magicchat_io.onboarding({"uid":data.username,},{
                     "auth_key": "bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=",
                     "tenant_id": "legal123",
                     "app_name": "v2app1",

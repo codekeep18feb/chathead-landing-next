@@ -76,6 +76,7 @@ const payload = {
                   "children": [
                     {
                       "tag_type": "div",
+                      // "className": "sub-items-container",
                       "children": [
                         {
                           "tag_type": "p",
@@ -98,7 +99,7 @@ const payload = {
                         {
                           "tag_type": "code",
                           "show_copy": true,
-                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js\"></script>"
+                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/magicchat-core/dev-ssc-client-cdns@v0.7.3/bundle.js\"></script>"
                         }
                       ]
                     }
@@ -112,7 +113,7 @@ const payload = {
               "children": [
                 {
                   "tag_type": "div",
-                  "className": "list-item-header",
+                  "className": "list-item-header ",
                   "text": "2. Running Magicchat Setup Requires two steps"
                 },
                 {
@@ -133,7 +134,7 @@ const payload = {
                         {
                           "tag_type": "code",
                           "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.chathead.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req\n        \"/\", // redirect_url\n      );\n    } \n  });\n</script>"
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.magicchat_io.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req\n        \"/\", // redirect_url\n      );\n    } \n  });\n</script>"
                         },
                         {
                           "tag_type": "callout",
@@ -206,7 +207,7 @@ const payload = {
                         {
                           "tag_type": "code",
                           "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.chathead.initialize(token);\n    } \n  });\n</script>"
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>"
                         },
                         {
                           "tag_type": "callout",
@@ -286,7 +287,7 @@ const payload = {
                 },
                 {
                   tag_type: "code_with_copy",
-                  code: `window.chathead.setUp(
+                  code: `await window.magicchat_io.setUp(
           "<Your App Name>", 
           "<Your Api Key>", 
           JSON.stringify({
@@ -347,7 +348,7 @@ const payload = {
                       content: [
                         {
                           tag_type: "code_with_copy",
-                          code: `window.chathead.setUp(
+                          code: `await window.magicchat_io.setUp(
           "<Your App Name>", 
           "<Your Api Key>", 
           JSON.stringify({
@@ -533,7 +534,7 @@ const payload = {
             },
             {
               tag_type: "a",
-              href: "https://github.com/magicchat-core/example__v1/blob/a98e8902079c3c40062751d675a90a8ad0cae302/index.html#L16",
+              href: "https://github.com/magicchat-core/example__v1/blob/749fe7d1c274f01c058ad852e470ab62b059111e/index.html#L20",
               text: "View Full Implementation Example",
             },
             {
@@ -656,7 +657,7 @@ const payload = {
                         {
                           "tag_type": "code",
                           "show_copy": true,
-                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/codekeep18feb/addchat-client-cdn-files@v1.0.2/bundle.js\">\n</script>"
+                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/magicchat-core/dev-ssc-client-cdns@v0.7.3/bundle.js\">\n</script>"
                         }
                       ]
                     }
@@ -670,7 +671,7 @@ const payload = {
               "children": [
                 {
                   "tag_type": "div",
-                  "className": "list-item-header",
+                  "className": "list-item-header ",
                   "text": "2. Running Magicchat Setup Requires two steps"
                 },
                 {
@@ -691,7 +692,7 @@ const payload = {
                         {
                           "tag_type": "code",
                           "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.chathead.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req (HEADER FULL :: header will be added)\n        \"/\", // redirect_url after login\n      );\n    } \n  });\n</script>"
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.magicchat_io.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req (HEADER FULL :: header will be added)\n        \"/\", // redirect_url after login\n      );\n    } \n  });\n</script>"
                         }
                       ]
                     },
@@ -709,7 +710,7 @@ const payload = {
                         {
                           "tag_type": "code",
                           "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.chathead.initialize(token);\n    } \n  });\n</script>"
+                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>"
                         }
                       ]
                     }
@@ -780,7 +781,7 @@ const payload = {
             },
             {
               tag_type: "a",
-              href: "https://github.com/magicchat-core/example__v2/blob/4c71eb9d286538189f386d8ec7f8fc4dd1764ff0/templates/base.html#L151",
+              href: "https://github.com/magicchat-core/example__v2/blob/1edb4218f1256e010d539f2fcb11b82f8cedeefe/templates/base.html#L104",
               text: "View Full Implementation Example",
             },
             {
@@ -924,7 +925,7 @@ const payload = {
                 },
                 {
                   tag_type: "code_with_copy",
-                  code: `await window.chathead.onboarding(
+                  code: `await window.magicchat_io.onboarding(
         { 
           "uid": "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" 
         },

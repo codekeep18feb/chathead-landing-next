@@ -23,7 +23,7 @@ export default function Sidebar({ selectedFilter }) {
             sub_items: [
               {
                 tag_type: "li",
-                text: "Prerequisite1",
+                text: "Prerequisite",
                 link_configuration: {
                   show: true,
                   type: "internal",
@@ -36,7 +36,7 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div:nth-child(3) > ol > li:nth-child(1) > div:nth-child(1) > div > span"
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
                 }
               },
              
@@ -71,7 +71,7 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: ".content-inner-heading"
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
                 }
               },
               {
@@ -80,7 +80,7 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div:nth-child(2) > h2"
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
                 }
               },
               
@@ -90,7 +90,7 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: ".second_subheading"
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(6)"
                 }
               },
               
@@ -124,7 +124,7 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div:nth-child(1) > h2"
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
                 }
               },
               {
@@ -133,7 +133,7 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div:nth-child(2) > h3"
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
                 }
               },
               
