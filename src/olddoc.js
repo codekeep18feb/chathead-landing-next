@@ -68,7 +68,7 @@ const payload = {
                                                     "tag_type": "li",
                                                     "text": "after script is loaded we can initialize it like below.",
                                                     "extra_text": "kindly add it below the first script",
-                                                    "code": `<script>\n\n async function makeMeAPICall(token) {\n const apiUrl = 'https://v1u9b7mohg.execute-api.ap-south-1.amazonaws.com/prod/me';\n\n try {\n const response = await fetch(apiUrl, {\n method: 'GET',\n headers: {\n 'Authorization': token,\n 'Accept': '*/*'\n }\n });\n\n if (!response.ok) {\n throw new Error('Network response was not ok');\n }\n\n const data = await response.json();\n console.log('User me api data:', data.id);\n return data;\n } catch (error) {\n console.error('There was a problem with the fetch operation:', error);\n throw error;\n }\n }\n \n // Wait for the document to be fully loaded\n document.addEventListener("DOMContentLoaded", async function() {\n\n const token = localStorage.getItem('tezkit_token');\n if (token){\n var loggedInUser = await makeMeAPICall(token);\n window.chathead.initialize(loggedInUser);\n }\n else{\n window.chathead.setUp(app_name="app1_acm_true_tenant5", \n api_key="dGVuYW50NV9fU0VQUkFUT1JfX2FwcDFfYWNtX3RydWVfdGVuYW50NQ==");\n window.chathead.initialize(null);\n }\n });\n\n</script>`
+                                                    "code": `<script>\n\n async function makeMeAPICall(token) {\n const apiUrl = 'https://v1u9b7mohg.execute-api.ap-south-1.amazonaws.com/prod/me';\n\n try {\n const response = await fetch(apiUrl, {\n method: 'GET',\n headers: {\n 'Authorization': token,\n 'Accept': '*/*'\n }\n });\n\n if (!response.ok) {\n throw new Error('Network response was not ok');\n }\n\n const data = await response.json();\n console.log('User me api data:', data.id);\n return data;\n } catch (error) {\n console.error('There was a problem with the fetch operation:', error);\n throw error;\n }\n }\n \n // Wait for the document to be fully loaded\n document.addEventListener("DOMContentLoaded", async function() {\n\n const token = localStorage.getItem('tezkit_token');\n if (token){\n var loggedInUser = await makeMeAPICall(token);\n window.magicchat_io.initialize(loggedInUser);\n }\n else{\n window.magicchat_io.setUp(app_name="app1_acm_true_tenant5", \n api_key="dGVuYW50NV9fU0VQUkFUT1JfX2FwcDFfYWNtX3RydWVfdGVuYW50NQ==");\n window.magicchat_io.initialize(null);\n }\n });\n\n</script>`
                                                 },
 
                                             ]
@@ -129,11 +129,11 @@ const payload = {
                                         },
                                         {
                                             "tag_type": "li",
-                                            "text": "window.chathead.initialize(<loggedInUser>)",
+                                            "text": "window.magicchat_io.initialize(<loggedInUser>)",
                                         },
                                         {
                                             "tag_type": "li",
-                                            "text": "window.chathead.setUp(<app_name>, <api_key>)",
+                                            "text": "window.magicchat_io.setUp(<app_name>, <api_key>)",
                                         }
                                     ]
                                 },

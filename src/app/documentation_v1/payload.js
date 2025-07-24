@@ -97,7 +97,7 @@ const payload = {
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
     if (!token) {
-      window.chathead.setUp(
+      window.magicchat_io.setUp(
         "<Your App Name>",
         "<Your API Key>",
         JSON.stringify({
@@ -125,7 +125,7 @@ const payload = {
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
     if (token) {
-      window.chathead.initialize(token);
+      window.magicchat_io.initialize(token);
     }
   });
 </script>`,
@@ -153,7 +153,7 @@ const payload = {
 
                 {
                   tag_type: "code_with_copy",
-                  code: `window.chathead.setUp(
+                  code: `window.magicchat_io.setUp(
       "<Your App Name>", 
       "<Your Api Key>", 
       JSON.stringify({
@@ -188,7 +188,7 @@ const payload = {
 
                 {
                   tag_type: "code_with_copy",
-                  code: `window.chathead.setUp(
+                  code: `window.magicchat_io.setUp(
       "<Your App Name>", 
       "<Your Api Key>", 
       JSON.stringify({
@@ -362,7 +362,7 @@ const payload = {
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
     if (!token) {
-      window.chathead.setUp(
+      window.magicchat_io.setUp(
         "<Your App Name>",
         "<Your API Key>",
         JSON.stringify({
@@ -390,7 +390,7 @@ const payload = {
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
     if (token) {
-      window.chathead.initialize(token);
+      window.magicchat_io.initialize(token);
     }
   });
 </script>`,
@@ -507,7 +507,7 @@ const payload = {
                   children: [],
                   extra_text:
                     "Using chathead.onboarding() method on the client side.",
-                  code: `await window.chathead.onboarding({"uid":data.username,},{
+                  code: `await window.magicchat_io.onboarding({"uid":data.username,},{
         "auth_key": "bGVnYWwxMjNfX1NFUFJBVE9SX192MmFwcDE=",
         "tenant_id": "legal123",
         "app_name": "v2app1",
