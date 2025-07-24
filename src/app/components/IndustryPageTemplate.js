@@ -26,7 +26,10 @@ const HeartIcon = (
   </svg>
 );
 
-export default function IndustryPageTemplate({ industry_name , industry_reason}) {
+export default function IndustryPageTemplate({
+  industry_name,
+  industry_reason,
+}) {
   const whyChooseMagicChat = [
     {
       subheading: `Deep ${industry_name} Expertise`,
@@ -181,7 +184,7 @@ export default function IndustryPageTemplate({ industry_name , industry_reason})
         title={`Why Magic Chat Is Built for ${industry_name}`}
         description={industry_reason}
         sections={{
-          "Varity of Chat Options": {
+          "Variety of Chat Options": {
             subheading: "Flexible Communication Modes",
             className: "chat-modes",
             images: [
@@ -202,7 +205,11 @@ export default function IndustryPageTemplate({ industry_name , industry_reason})
               {
                 type: "group",
                 className: "normal-text",
-                texts: ["Live Chat (P2A, P2P)", "AI for after-hours support", "Lead bots..."],
+                texts: [
+                  "Live Chat (P2A, P2P)",
+                  "AI for after-hours support",
+                  "Lead bots...",
+                ],
               },
             ],
           },
