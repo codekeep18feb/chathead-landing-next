@@ -8,7 +8,10 @@ const SolveSection = () => {
     <section className="solve-section">
       <div className="solve-content">
         <h1>What do we Solve</h1>
-        <p>Flexible and Easy to use SDK & APIs for real-time chat support.</p>
+        <p>
+          No-code chatbot platform for Lead Gen, AI answers & Live Agent
+          Chat — "All in one".
+        </p>
         {/* <div className="email-input">
                     <input type="email" placeholder="Enter your email id" />
                     <button>Get Started Free</button>
