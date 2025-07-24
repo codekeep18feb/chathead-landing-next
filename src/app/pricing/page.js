@@ -84,8 +84,7 @@ function Pricing() {
       <div className="heading_wrapper">
         <h1>Flexible Plans & Pricing</h1>
         <p>
-          Full-featured chat platform at industry-leading prices. True
-          usage-based pricing with no hidden fees or surprise overages.
+          All-in-one Chat, Bot & Lead Gen Platform — Simple Plans, Full Power.
         </p>
       </div>
 
