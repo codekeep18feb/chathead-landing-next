@@ -268,7 +268,8 @@ export default function Ecommerce() {
       <IndustryPageTemplate
         industry_name={"E-commerce"}
         industry_reason={
-          "At Magic Chat Technologies, we build high-performance eCommerce platforms that drive conversions, streamline inventory and fulfillment, and deliver seamless shopping experiences across web and mobile. From storefront to checkout, we help you scale faster and smarter."
+          "Turn Shoppers into Buyers—Faster\
+Magic Chat adds live chat, AI support, and conversion-focused automation across your e-commerce funnel. From product discovery to cart recovery, we help you answer questions instantly, reduce bounce, and boost checkout rates—with zero developer dependency."
         }
       />
     </>

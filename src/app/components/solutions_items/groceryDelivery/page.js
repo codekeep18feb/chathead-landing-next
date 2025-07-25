@@ -8,7 +8,8 @@ export default function GroceryDelivery() {
       <IndustryPageTemplate
         industry_name={"Grocery Delivery"}
         industry_reason={
-          "Enable fast, reliable, and personalized customer support for your grocery delivery business. Magic Chat helps you handle order tracking, delivery updates, customer queries, and feedback—all through a smart no-code chatbot with live agent fallback."
+          "Power Real-Time Support from Checkout to Doorstep\
+Whether it's order tracking, substitution requests, delivery ETAs, or last-minute changes—Magic Chat helps you respond instantly. Add AI-powered automation and live agent fallback to your grocery delivery flow with zero coding, zero delays, and total control."
         }
       />
     </>

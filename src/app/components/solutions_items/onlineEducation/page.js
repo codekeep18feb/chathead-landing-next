@@ -9,7 +9,7 @@ export default function OnlineEducation() {
       <IndustryPageTemplate
         industry_name={"Education"}
         industry_reason={
-          "Empower digital learning with real-time communication tools that boost student engagement, simplify collaboration, and personalize the learning journey. Magic Chat transforms eLearning platforms into interactive, scalable, and globally accessible experiences."
+          "Magic Chat powers real-time interaction for EdTech platforms, online academies, and LMS tools—helping you boost student retention, simplify instructor communication, and personalize support at scale. From onboarding to assignments, we turn static courses into dynamic learning journeys."
         }
       />
     </>

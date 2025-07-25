@@ -9,7 +9,8 @@ export default function HealthcareTelehealth() {
       <IndustryPageTemplate
         industry_name={"Healthcare & Telehealth"}
         industry_reason={
-          "Provide patients with instant support, appointment scheduling, and health information access through Magic Chat. Our chatbot and live agent solutions are built to ensure HIPAA-conscious, reliable, and responsive communication for clinics, hospitals, and telehealth providers."
+          "Trusted, Compliant Chat for Modern Healthcare & Telehealth Providers\
+Magic Chat empowers clinics, hospitals, and telehealth platforms to offer real-time, HIPAA-conscious communication for patients—supporting appointment scheduling, symptom triage, after-hours AI assistance, and secure admin messaging. Built for speed, privacy, and always-on care."
         }
       />
     </>

@@ -9,7 +9,8 @@ export default function OnDemand() {
       <IndustryPageTemplate
         industry_name={"On-Demand Services"}
         industry_reason={
-          "Power your on-demand platform with seamless in-app communication—reducing friction, enabling real-time updates between providers and users, and preventing platform leakage for a fully controlled and high-retention experience."
+          "Built for On-Demand Platforms That Rely on Speed, Trust, and Real-Time Communication \
+Magic Chat enables instant, secure messaging between customers and service providers—reducing cancellations, boosting engagement, and keeping every interaction on your platform. No code. No complexity. Just results."
         }
       />
     </>

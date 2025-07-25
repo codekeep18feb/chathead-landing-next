@@ -8,7 +8,7 @@ export default function FinancialServices() {
       <IndustryPageTemplate
         industry_name={"Financial Services"}
         industry_reason={
-          "From banking and insurance to investment platforms—Magic Chat helps financial services deliver secure, instant, and intelligent customer communication with lead capture, AI assistance, and live agent chat—all without code."
+          "Magic Chat enables secure, AI-powered conversations for financial platforms—across banking, insurance, lending, and investments. Capture leads, resolve queries faster, and guide users across complex workflows—without writing a line of code."
         }
       />
     </>

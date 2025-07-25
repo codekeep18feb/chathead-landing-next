@@ -9,7 +9,8 @@ export default function Matrimony() {
       <IndustryPageTemplate
         industry_name={"Matrimony"}
         industry_reason={
-          "Magic Chat enables secure, real-time conversations that help users connect meaningfully while protecting privacy and reducing platform drop-off. Ideal for matchmaking platforms that value trust, authenticity, and higher engagement."
+          "Designed for Matchmaking Where Trust and Timing Matter Most\
+Magic Chat helps matrimony platforms foster meaningful, privacy-first conversations between matches—encouraging real-time engagement, reducing ghosting, and keeping users on-platform. Ideal for platforms that prioritize trust, safety, and higher match success rates."
         }
       />
     </>

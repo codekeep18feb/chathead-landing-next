@@ -9,7 +9,7 @@ export default function Marketplace() {
       <IndustryPageTemplate
         industry_name={"Marketplace"}
         industry_reason={
-          "Magic Chat powers seamless buyer-seller communication, reduces platform leakage, and enhances trust—helping marketplaces increase conversions and build stronger communities with secure, real-time messaging."
+          "Whether you run a B2B, C2C, or vertical marketplace—Magic Chat empowers buyers and sellers to connect instantly, resolve queries, and close transactions without leaving your platform. Reduce drop-offs, eliminate off-platform chats, and grow trust with real-time, AI-powered messaging."
         }
       />
     </>

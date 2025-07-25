@@ -8,7 +8,7 @@ export default function RealEstate() {
       <IndustryPageTemplate
         industry_name={"Real Estate"}
         industry_reason={
-          "Power seamless interactions between buyers, sellers, and agents with a chat layer built for trust and conversions. Whether you operate a listings marketplace, property portal, or brokerage platform — Magic Chat delivers secure, real-time messaging that drives deal closures and improves user experience."
+          "Magic Chat supercharges your real estate platform with modern messaging built for speed, clarity, and conversion. Whether you run a listings site, MLS platform, or digital brokerage—enable buyers, sellers, and agents to connect instantly, resolve faster, and move deals forward with confidence."
         }
       />
     </>

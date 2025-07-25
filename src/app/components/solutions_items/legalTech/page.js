@@ -8,7 +8,7 @@ export default function LegalTech() {
       <IndustryPageTemplate
         industry_name={"Legal Tech"}
         industry_reason={
-          "Magic Chat empowers legal tech platforms with AI-driven chat support to streamline client onboarding, automate FAQ responses, and ensure timely communication—while maintaining data privacy and compliance."
+          "Magic Chat equips legal service providers with secure, AI-enabled messaging tools to streamline client intake, triage questions faster, and maintain communication standards that meet the demands of today’s legal clients. From solo attorneys to large firms, we help you serve better—without adding to your admin load."
         }
       />
     </>
