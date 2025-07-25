@@ -58,188 +58,214 @@ const payload = {
         },
 
         {
-          "tag_type": "div",
-          "className": "custom-ordered-list",
-          "children": [
+          tag_type: "div",
+          className: "custom-ordered-list",
+          children: [
             {
-              "tag_type": "div",
-              "className": "custom-list-item",
-              "children": [
+              tag_type: "div",
+              className: "custom-list-item",
+              children: [
                 {
-                  "tag_type": "div",
-                  "className": "list-item-header",
-                  "text": "1. Load The Scripts"
+                  tag_type: "div",
+                  className: "list-item-header",
+                  text: "1. Load The Scripts",
                 },
                 {
-                  "tag_type": "div",
-                  "className": "sub-items-container",
-                  "children": [
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
                     {
-                      "tag_type": "div",
+                      tag_type: "div",
                       // "className": "sub-items-container",
-                      "children": [
+                      children: [
                         {
-                          "tag_type": "p",
-                          "text": "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document."
+                          tag_type: "p",
+                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
                         },
                         {
-                          "tag_type": "p",
-                          "text": "It should ideally be placed head of the root file."
+                          tag_type: "p",
+                          text: "It should ideally be placed head of the root file.",
                         },
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script src=\"https://cdn.socket.io/4.1.2/socket.io.min.js\"></script>"
-                        }
-                      ]
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                        },
+                      ],
                     },
                     {
-                      "tag_type": "div",
-                      "children": [
+                      tag_type: "div",
+                      children: [
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/magicchat-core/dev-ssc-client-cdns@v0.7.3/bundle.js\"></script>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/dev-ssc-client-cdns@v0.7.3/bundle.js"></script>',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             {
-              "tag_type": "div",
-              "className": "custom-list-item",
-              "children": [
+              tag_type: "div",
+              className: "custom-list-item",
+              children: [
                 {
-                  "tag_type": "div",
-                  "className": "list-item-header ",
-                  "text": "2. Running Magicchat Setup Requires two steps"
+                  tag_type: "div",
+                  className: "list-item-header ",
+                  text: "2. Running Magicchat Setup Requires two steps",
                 },
                 {
-                  "tag_type": "div",
-                  "className": "sub-items-container",
-                  "children": [
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
                     {
-                      "tag_type": "div",
-                      "children": [
+                      tag_type: "div",
+                      children: [
                         {
-                          "tag_type": "h4",
-                          "text": "Step 1 – setup on first Logged-Out Screens"
+                          tag_type: "h4",
+                          text: "Step 1 – setup on first Logged-Out Screens",
                         },
                         {
-                          "tag_type": "p",
-                          "text": "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present."
+                          tag_type: "p",
+                          text: "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
                         },
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.magicchat_io.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req\n        \"/\", // redirect_url\n      );\n    } \n  });\n</script>"
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script>\n  document.addEventListener("DOMContentLoaded", async function () {\n    const token = localStorage.getItem("tezkit_token");\n    if (!token) {\n      await window.magicchat_io.setUp(\n        "<YOUR_MAGICCHAT_APP_NAME>", // app_name\n        "<YOUR_MAGICCHAT_API_KEY>", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: "rgb(163, 112, 206)",\n            textColor: "white",\n          },\n          chat_opener_theme: {\n            backgroundColor: "rgb(163, 112, 206)",\n            textColor: "white",\n          },\n          chat_box_theme: {\n            backgroundColor: "red",\n            textColor: "black",\n          },\n        }), // theme\n        true,  // header_req\n        "/", // redirect_url\n      );\n    } \n  });\n</script>',
                         },
                         {
-                          "tag_type": "callout",
-                          "type": "info",
-                          "title": "Parameter Details",
-                          "children": [
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
                             {
-                              "tag_type": "table",
-                              "headers": ["Parameter", "Type", "Description"],
-                              "rows": [
-                                ["app_name", "string", "Unique identifier for your application"],
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_name",
+                                  "string",
+                                  "Unique identifier for your application",
+                                ],
                                 ["api_key", "string", "Base64 encoded API key"],
-                                ["theme", "string (JSON)", "Theme configuration JSON"],
-                                ["header_req", "boolean", "Show header with user controls"],
-                                ["redirect_url", "string", "Redirect URL after login"]
-                              ]
+                                [
+                                  "theme",
+                                  "string (JSON)",
+                                  "Theme configuration JSON",
+                                ],
+                                [
+                                  "header_req",
+                                  "boolean",
+                                  "Show header with user controls",
+                                ],
+                                [
+                                  "redirect_url",
+                                  "string",
+                                  "Redirect URL after login",
+                                ],
+                              ],
                             },
                             {
-                              "tag_type": "callout",
-                              "type": "warning",
-                              "title": "Theme Configuration",
-                              "children": [
+                              tag_type: "callout",
+                              type: "warning",
+                              title: "Theme Configuration",
+                              children: [
                                 {
-                                  "tag_type": "p",
-                                  "text": "The theme parameter requires a JSON string with these nested objects:"
+                                  tag_type: "p",
+                                  text: "The theme parameter requires a JSON string with these nested objects:",
                                 },
                                 {
-                                  "tag_type": "ul",
-                                  "items": [
+                                  tag_type: "ul",
+                                  items: [
                                     {
-                                      "text": "header_theme - Styles for the chat header",
-                                      "sub_items": [
-                                        {"text": "backgroundColor: CSS color value"},
-                                        {"text": "textColor: CSS color value"}
-                                      ]
+                                      text: "header_theme - Styles for the chat header",
+                                      sub_items: [
+                                        {
+                                          text: "backgroundColor: CSS color value",
+                                        },
+                                        { text: "textColor: CSS color value" },
+                                      ],
                                     },
                                     {
-                                      "text": "chat_opener_theme - Chat opener button styles",
-                                      "sub_items": [
-                                        {"text": "backgroundColor: CSS color value"},
-                                        {"text": "textColor: CSS color value"}
-                                      ]
+                                      text: "chat_opener_theme - Chat opener button styles",
+                                      sub_items: [
+                                        {
+                                          text: "backgroundColor: CSS color value",
+                                        },
+                                        { text: "textColor: CSS color value" },
+                                      ],
                                     },
                                     {
-                                      "text": "chat_box_theme - Main chat container styles",
-                                      "sub_items": [
-                                        {"text": "backgroundColor: CSS color value"},
-                                        {"text": "textColor: CSS color value"}
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
+                                      text: "chat_box_theme - Main chat container styles",
+                                      sub_items: [
+                                        {
+                                          text: "backgroundColor: CSS color value",
+                                        },
+                                        { text: "textColor: CSS color value" },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
                     },
                     {
-                      "tag_type": "div",
-                      "children": [
+                      tag_type: "div",
+                      children: [
                         {
-                          "tag_type": "h4",
-                          "text": "Step 2 – Initialize on first Logged-In Screens"
+                          tag_type: "h4",
+                          text: "Step 2 – Initialize on first Logged-In Screens",
                         },
                         {
-                          "tag_type": "p",
-                          "text": "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner)."
+                          tag_type: "p",
+                          text: "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
                         },
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>"
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script>\n  document.addEventListener("DOMContentLoaded", async function () {\n    const token = localStorage.getItem("tezkit_token");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>',
                         },
                         {
-                          "tag_type": "callout",
-                          "type": "info",
-                          "title": "Parameter Details",
-                          "children": [
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
                             {
-                              "tag_type": "table",
-                              "headers": ["Parameter", "Type", "Description"],
-                              "rows": [
-                                ["token", "string", "User authentication token"]
-                              ]
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "token",
+                                  "string",
+                                  "User authentication token",
+                                ],
+                              ],
                             },
                             {
-                              "tag_type": "mesgTip",
-                              "title": "Token Handling",
-                              "children": [
+                              tag_type: "mesgTip",
+                              title: "Token Handling",
+                              children: [
                                 {
-                                  "tag_type": "p",
-                                  "text": "The token should be stored in localStorage after successful authentication."
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                                  tag_type: "p",
+                                  text: "The token should be stored in localStorage after successful authentication.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           tag_type: "tabs",
@@ -372,7 +398,7 @@ const payload = {
                         },
                         {
                           tag_type: "code_with_copy",
-                          code: `<div id="tezkit-auth-area" class="custom-auth-styles"></div>`,
+                          code: `<div id="tezkit-auth-area" ></div>`,
                         },
                       ],
                     },
@@ -386,19 +412,32 @@ const payload = {
                         {
                           tag_type: "code_with_copy",
                           code: `#tezkit-auth-area {
-          display: flex;
-          gap: 12px;
-          align-items: center;
-        }
-        
-        /* Style login/logout buttons */
-        .tezkit-auth-button {
-          padding: 8px 16px;
-          border-radius: 4px;
-          background-color: #4a6cf7;
-          color: white;
-          cursor: pointer;
-        }`,
+  display: inline-flex;
+  gap: 10px; /* space between buttons */
+  align-items: center;
+}
+
+#tezkit-auth-area button {
+  background-color:orange;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#tezkit-auth-area button:hover {
+  background-color: #4338ca;
+  transform: translateY(-1px);
+}
+
+#tezkit-auth-area button:active {
+  transform: translateY(1px);
+  background-color: #3730a3;
+}`,
                         },
                       ],
                     },
@@ -617,111 +656,109 @@ const payload = {
         },
 
         {
-          "tag_type": "div",
-          "className": "custom-ordered-list",
-          "children": [
+          tag_type: "div",
+          className: "custom-ordered-list",
+          children: [
             {
-              "tag_type": "div",
-              "className": "custom-list-item",
-              "children": [
+              tag_type: "div",
+              className: "custom-list-item",
+              children: [
                 {
-                  "tag_type": "div",
-                  "className": "list-item-header",
-                  "text": "1. Load The Scripts"
+                  tag_type: "div",
+                  className: "list-item-header",
+                  text: "1. Load The Scripts",
                 },
                 {
-                  "tag_type": "div",
-                  "className": "sub-items-container",
-                  "children": [
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
                     {
-                      "tag_type": "div",
-                      "children": [
+                      tag_type: "div",
+                      children: [
                         {
-                          "tag_type": "p",
-                          "text": "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document."
+                          tag_type: "p",
+                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
                         },
                         {
-                          "tag_type": "p",
-                          "text": "It should ideally be placed head of the root file."
+                          tag_type: "p",
+                          text: "It should ideally be placed head of the root file.",
                         },
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script src=\"https://cdn.socket.io/4.1.2/socket.io.min.js\"></script>"
-                        }
-                      ]
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                        },
+                      ],
                     },
                     {
-                      "tag_type": "div",
-                      "children": [
+                      tag_type: "div",
+                      children: [
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script src=\"https://cdn.jsdelivr.net/gh/magicchat-core/dev-ssc-client-cdns@v0.7.3/bundle.js\">\n</script>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/dev-ssc-client-cdns@v0.7.3/bundle.js">\n</script>',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             {
-              "tag_type": "div",
-              "className": "custom-list-item",
-              "children": [
+              tag_type: "div",
+              className: "custom-list-item",
+              children: [
                 {
-                  "tag_type": "div",
-                  "className": "list-item-header ",
-                  "text": "2. Running Magicchat Setup Requires two steps"
+                  tag_type: "div",
+                  className: "list-item-header ",
+                  text: "2. Running Magicchat Setup Requires two steps",
                 },
                 {
-                  "tag_type": "div",
-                  "className": "sub-items-container",
-                  "children": [
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
                     {
-                      "tag_type": "div",
-                      "children": [
+                      tag_type: "div",
+                      children: [
                         {
-                          "tag_type": "h4",
-                          "text": "Step 1 – Initialize on first Logged-Out Screens"
+                          tag_type: "h4",
+                          text: "Step 1 – Initialize on first Logged-Out Screens",
                         },
                         {
-                          "tag_type": "p",
-                          "text": "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present."
+                          tag_type: "p",
+                          text: "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
                         },
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (!token) {\n      await window.magicchat_io.setUp(\n        \"v1app1\", // app_name\n        \"bGVnYWxob3VzZV9fU0VQUkFUT1JfX3YxYXBwMQ==\", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_opener_theme: {\n            backgroundColor: \"rgb(163, 112, 206)\",\n            textColor: \"white\",\n          },\n          chat_box_theme: {\n            backgroundColor: \"red\",\n            textColor: \"black\",\n          },\n        }), // theme\n        true,  // header_req (HEADER FULL :: header will be added)\n        \"/\", // redirect_url after login\n      );\n    } \n  });\n</script>"
-                        }
-                      ]
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script>\n  document.addEventListener("DOMContentLoaded", async function () {\n    const token = localStorage.getItem("tezkit_token");\n    if (!token) {\n      await window.magicchat_io.setUp(\n        "<YOUR_MAGICCHAT_APP_NAME>", // app_name\n        "<YOUR_MAGICCHAT_API_KEY>", // api_key\n        JSON.stringify({\n          header_theme: {\n            backgroundColor: "rgb(163, 112, 206)",\n            textColor: "white",\n          },\n          chat_opener_theme: {\n            backgroundColor: "rgb(163, 112, 206)",\n            textColor: "white",\n          },\n          chat_box_theme: {\n            backgroundColor: "red",\n            textColor: "black",\n          },\n        }), // theme\n        true,  // header_req (HEADER FULL :: header will be added)\n        "/", // redirect_url after login\n      );\n    } \n  });\n</script>',
+                        },
+                      ],
                     },
                     {
-                      "tag_type": "div",
-                      "children": [
+                      tag_type: "div",
+                      children: [
                         {
-                          "tag_type": "h4",
-                          "text": "Step 2 – Initialize on first Logged-In Screens"
+                          tag_type: "h4",
+                          text: "Step 2 – Initialize on first Logged-In Screens",
                         },
                         {
-                          "tag_type": "p",
-                          "text": "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner)."
+                          tag_type: "p",
+                          text: "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
                         },
                         {
-                          "tag_type": "code",
-                          "show_copy": true,
-                          "text": "<script>\n  document.addEventListener(\"DOMContentLoaded\", async function () {\n    const token = localStorage.getItem(\"tezkit_token\");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-        ,
-
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script>\n  document.addEventListener("DOMContentLoaded", async function () {\n    const token = localStorage.getItem("tezkit_token");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
         {
           tag_type: "callout",
           type: "info",
@@ -1078,9 +1115,9 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { 
-          tag_type: "h2", 
-          text: "Project Setup" 
+        {
+          tag_type: "h2",
+          text: "Project Setup",
         },
         {
           tag_type: "h3",
@@ -1101,13 +1138,13 @@ const payload = {
                   children: [
                     {
                       tag_type: "h4",
-                      text: "MagicChat WordPress Plugin"
+                      text: "MagicChat WordPress Plugin",
                     },
                     {
                       tag_type: "p",
-                      text: "Version 2.3.1 | 2.4 MB | Updated: 2023-11-15"
-                    }
-                  ]
+                      text: "Version 2.3.1 | 2.4 MB | Updated: 2023-11-15",
+                    },
+                  ],
                 },
                 {
                   tag_type: "div",
@@ -1118,21 +1155,21 @@ const payload = {
                       items: [
                         { text: "One-click installation" },
                         { text: "Compatible with WordPress 5.0+" },
-                        { text: "Tested with PHP 7.4-8.2" }
-                      ]
+                        { text: "Tested with PHP 7.4-8.2" },
+                      ],
                     },
                     {
                       tag_type: "a",
                       href: "/addChatPlugin.zip",
                       // className: styles["download-button"],
                       text: "Download Plugin",
-                      download: true
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                      download: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           tag_type: "steps",
@@ -1142,30 +1179,30 @@ const payload = {
               content: [
                 {
                   tag_type: "p",
-                  text: "After installing the plugin, navigate to MagicChat settings in your WordPress admin panel and enter your credentials:"
+                  text: "After installing the plugin, navigate to MagicChat settings in your WordPress admin panel and enter your credentials:",
                 },
                 {
                   tag_type: "img",
                   src: "Asset/add_credentials_wp.png",
-                  alt: "MagicChat credentials configuration in WordPress"
-                }
-              ]
+                  alt: "MagicChat credentials configuration in WordPress",
+                },
+              ],
             },
             {
               title: "Verify Integration",
               content: [
                 {
                   tag_type: "p",
-                  text: "Confirm the chat utility appears correctly on your site:"
+                  text: "Confirm the chat utility appears correctly on your site:",
                 },
                 {
                   tag_type: "img",
                   src: "Asset/fashoni_chat_opener_visible.png",
-                  alt: "MagicChat opener visible on website"
-                }
-              ]
-            }
-          ]
+                  alt: "MagicChat opener visible on website",
+                },
+              ],
+            },
+          ],
         },
         {
           tag_type: "div",
@@ -1173,21 +1210,21 @@ const payload = {
           children: [
             {
               tag_type: "h4",
-              text: "Integration Walkthrough"
+              text: "Integration Walkthrough",
             },
             {
               tag_type: "p",
-              text: "Watch this tutorial below for complete setup instructions:"
+              text: "Watch this tutorial below for complete setup instructions:",
             },
             {
               tag_type: "video",
               src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-              desc: "MagicChat WordPress Integration Tutorial"
-            }
-          ]
-        }
-      ]
-    }
+              desc: "MagicChat WordPress Integration Tutorial",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 export default payload;
