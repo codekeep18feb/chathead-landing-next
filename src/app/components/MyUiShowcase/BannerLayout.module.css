@@ -1,0 +1,49 @@
+.bannerWrap {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    background-color: white;
+  }
+  
+  .contentOuterDiv {
+    width: 50%;
+    height: 100%;
+    position: relative;
+  }
+ 
+  .shapeBox {
+    width: 125%;
+    height: 110%;
+    transform: rotate(15deg) translateY(-195px);
+    transition: transform 0.5s ease;
+    border-bottom-right-radius: 150px;
+    /* margin-left: -15.5%; */
+    margin-left: -20.5%;
+    position: relative;
+    background-color: rgba(128, 0, 128, 0.63);
+    z-index: 1;
+  }
+
+  .imagesection {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+  }
+  
+  .imagesection img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 90%;
+    z-index: 0;
+  }
+  

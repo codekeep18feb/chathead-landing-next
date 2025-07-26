@@ -1,0 +1,47 @@
+.banner {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1s ease, transform 1s ease;
+  max-width: 800px;
+  margin: 60px auto;
+  text-align: center;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.image {
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.content p {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.content button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.content button:hover {
+  background-color: #005bb5;
+}

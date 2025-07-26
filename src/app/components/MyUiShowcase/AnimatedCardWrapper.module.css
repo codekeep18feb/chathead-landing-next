@@ -1,0 +1,16 @@
+.outerWrapper {
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+  }
+  
+  .innerWrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+  
