@@ -2,7 +2,7 @@
 // src/app/layout.js
 
 import "./globals.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
@@ -10,6 +10,19 @@ import Modal from "./components/Modal";
 export default function RootLayout({ children}) {
   const [modalContent, setModalContent] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hasMoved, setHasMoved] = useState(false);
+
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!hasMoved) setHasMoved(true);
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [hasMoved]);
 
   const onLinkHover = (content) => {
     setModalContent(content);
@@ -53,6 +66,14 @@ export default function RootLayout({ children}) {
           onClose={closeModal}
         />
         {/* <Footer /> */}
+        {hasMoved && (
+          <div
+            className="mousecircle"
+            style={{ left: mousePos.x, top: mousePos.y }}
+          >
+            <div className="centerdot"></div>
+          </div>
+        )}
       </body>
     </html>
   );
