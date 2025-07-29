@@ -231,11 +231,11 @@ const VersionContent = ({ version, onWatchDemo, onBack }) => {
       <div className={styles["world-chat"]}>
         <section className={styles.v1_wrapper}>
           {version == "cloud managed auth" ? (
-            <h4>{`[${version}]  - Chat (Simple Apps/Sites) with Cloud Managed Authentication `}</h4>
+            <h4>{`[${version}]  - Require Authentication + Chat `}</h4>
           ) : version == "locally managed auth" ? (
-            <h4>{`[${version}]  - Chat (Complex Apps/Sites) with Locally Managed Authentication`}</h4>
+            <h4>{`[${version}]  - Require "Chat" only as already have a built in controlled Authentication Environment`}</h4>
           ) : (
-            <h4>{`[${version}]  - Chat (CMS based Sites) with Plugin Driven Authentication `}</h4>
+            <h4>{`[${version}]  - Require "Chat" only as already have a built in uncontrolled Authentication Environment. `}</h4>
           )}
           <ContentRows version={version} onWatchDemo={onWatchDemo} />
         </section>
