@@ -601,7 +601,7 @@ const payload = {
   V2: [
     {
       tag_type: "h2",
-      text: `BYO Auth Chat + Chat (Complex Sites) -  [V2]`,
+      text: `BYO (Bring Your Own) Auth  +  Chat  [V2]`,
     },
     {
       tag_type: "p",
@@ -1068,7 +1068,7 @@ const payload = {
   V3: [
     {
       tag_type: "h2",
-      text: `BYO Auth Chat + Chat (Wordpress)`,
+      text: `CMS-Ready Chat (Wordpress) [V3]`,
     },
     {
       tag_type: "p",
