@@ -3,7 +3,6 @@ import styles from "./filterSty.module.css";
 import { FaFilter } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 
-
 const FilterComp = ({ setSelectedFilter }) => {
   const [selectedAppType, setSelectedAppType] = useState(null);
   const [selectedVersionType, setSelectedVersionType] = useState("V1"); // default
@@ -13,19 +12,18 @@ const FilterComp = ({ setSelectedFilter }) => {
     const handleResize = () => {
       setShowMobileFilters(window.innerWidth <= 885);
     };
-  
+
     handleResize(); // Initial check
     window.addEventListener("resize", handleResize);
-  
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
 
   const filterOptions = {
     version_types: [
-      { key: "V1", label: "Cloud Managed Auth" },
-      { key: "V2", label: "Locally Managed Auth" },
-      { key: "V3", label: "Plugin Driven" },
+      { key: "V1", label: "Instant Auth + Chat" },
+      { key: "V2", label: "BYO Auth Chat" },
+      { key: "V3", label: "CMS-Ready Chat" },
     ],
   };
 
@@ -67,7 +65,7 @@ const FilterComp = ({ setSelectedFilter }) => {
               />
             </div>
           </div>
-  
+
           {/* Dropdown List */}
           <div
             className={`${styles["button-group"]} ${
@@ -84,8 +82,6 @@ const FilterComp = ({ setSelectedFilter }) => {
       </div>
     </div>
   );
-  
-  
 };
 
 export default FilterComp;

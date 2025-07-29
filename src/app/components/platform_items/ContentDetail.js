@@ -5,7 +5,7 @@ import styles from "./ContentDetail.module.css"; // create this CSS file
 import { FaTimes, FaHandPointRight } from "react-icons/fa";
 
 const contentData = {
-  "cloud managed auth": {
+  "Instant Auth + Chat": {
     "for Whom": [
       "Products that need both authentication and chat out of the box.",
       "Apps that haven't implemented authentication yet.",
@@ -33,7 +33,7 @@ const contentData = {
       "Fits well into MVPs or new apps that lack built-in auth and chat but need both to onboard and support users fast.",
     ],
   },
-  "locally managed auth": {
+  "BYO Auth Chat": {
     "for Whom": [
       "Products that already have built-in authentication and only need chat services.",
       "Apps with existing authentication systems in place.",
@@ -56,7 +56,7 @@ const contentData = {
       "Perfect for modern architectures — works seamlessly with any authentication system (authentication-agnostic).",
     ],
   },
-  "plugin driven": {
+  "CMS-Ready Chat": {
     "for Whom": [
       "CMS platforms like WordPress that already have built-in authentication and only need chat functionality.",
       "Systems using tightly coupled auth plugins that can't notify when a new user signs up.",
@@ -75,7 +75,7 @@ const contentData = {
       "If your framework isn’t supported yet (e.g., Laravel, Drupal, Shopify, Wix), don’t worry — you can request integration directly from us.",
     ],
     "Example Usage": [
-      "Ideal for CMS-based products with tightly coupled, plugin-driven authentication systems.",
+      "Ideal for CMS-based products with tightly coupled, cms-ready-chat authentication systems.",
       "Great for service providers, support-focused businesses, and mid to large-scale chat call centers.",
       "Perfect for modern architectures — works seamlessly with any authentication system (auth-agnostic).",
     ],

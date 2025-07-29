@@ -84,17 +84,17 @@ const tabData = [
 ];
 
 const demoImages = {
-  "cloud managed auth": [
+  "Instant Auth + Chat": [
     "/Asset/beforeChatAdd.png",
     "/Asset/afterChatAdd.png",
     "/Asset/afterModalOpen.png",
   ],
-  "locally managed auth": [
+  "BYO Auth Chat": [
     "/Asset/beforeChatAdd.png",
     "/Asset/afterChatAdd.png",
     "/Asset/afterModalOpen.png",
   ],
-  "plugin driven": [
+  "CMS-Ready Chat": [
     "/Asset/beforeChatAdd.png",
     "/Asset/afterChatAdd.png",
     "/Asset/afterModalOpen.png",
@@ -142,22 +142,20 @@ const HowSection = () => {
         <div className={styles["left-side"]}>
           <h2>Services Summary</h2>
           <ul className={styles["peer-list"]}>
-            {[
-              "cloud managed auth",
-              "locally managed auth",
-              "plugin driven",
-            ].map((option) => (
-              <li
-                key={option}
-                onClick={() => handleOptionClick(option)}
-                style={{
-                  backgroundColor: selectedOption === option ? "#4d6bdf" : "",
-                  color: selectedOption === option ? "white" : "",
-                }}
-              >
-                {option}
-              </li>
-            ))}
+            {["Instant Auth + Chat", "BYO Auth Chat", "CMS-Ready Chat"].map(
+              (option) => (
+                <li
+                  key={option}
+                  onClick={() => handleOptionClick(option)}
+                  style={{
+                    backgroundColor: selectedOption === option ? "#4d6bdf" : "",
+                    color: selectedOption === option ? "white" : "",
+                  }}
+                >
+                  {option}
+                </li>
+              )
+            )}
           </ul>
 
           <ul className={styles["peer-list"]} style={{ marginTop: "10px" }}>
@@ -230,12 +228,12 @@ const VersionContent = ({ version, onWatchDemo, onBack }) => {
       </div>
       <div className={styles["world-chat"]}>
         <section className={styles.v1_wrapper}>
-          {version == "cloud managed auth" ? (
-            <h4>{`[${version}]  - Require Authentication + Chat `}</h4>
-          ) : version == "locally managed auth" ? (
-            <h4>{`[${version}]  - Require "Chat" only as already have a built in controlled Authentication Environment`}</h4>
+          {version == "Instant Auth + Chat" ? (
+            <h4>{`[${version}]  - “Turn Visitors into Logged-In, Engaged Users.” `}</h4>
+          ) : version == "BYO Auth Chat" ? (
+            <h4>{`[${version}]  - “Already Have Login? Just Add Chat.”`}</h4>
           ) : (
-            <h4>{`[${version}]  - Require "Chat" only as already have a built in uncontrolled Authentication Environment. `}</h4>
+            <h4>{`[${version}]  - “Drop-In Chat for Your CMS.” `}</h4>
           )}
           <ContentRows version={version} onWatchDemo={onWatchDemo} />
         </section>
@@ -265,9 +263,9 @@ const ContentCard = ({ title, version }) => {
   const router = useRouter();
 
   // const routePrefix = {
-  //   "cloud managed auth": "cloud-managed-auth",
-  //   "locally managed auth": "locally-managed-auth",
-  //   "plugin driven": "plugin-driven",
+  //   "Instant Auth + Chat": "instant-auth-chat",
+  //   "BYO Auth Chat": "byo-auth-chat",
+  //   "CMS-Ready Chat": "cms-ready-chat",
   // };
 
   // const slugMap = {
@@ -288,9 +286,9 @@ const ContentCard = ({ title, version }) => {
   };
 
   const routePrefix = {
-    "cloud managed auth": "cloud-managed-auth",
-    "locally managed auth": "locally-managed-auth",
-    "plugin driven": "plugin-driven",
+    "Instant Auth + Chat": "instant-auth-chat",
+    "BYO Auth Chat": "byo-auth-chat",
+    "CMS-Ready Chat": "cms-ready-chat",
   };
 
   const slugMap = {
@@ -301,7 +299,7 @@ const ContentCard = ({ title, version }) => {
   };
 
   const contentData = {
-    "cloud managed auth": {
+    "Instant Auth + Chat": {
       "for Whom": [
         "Products that need both authentication and chat out of the box.",
         "Apps that haven't implemented authentication yet.",
@@ -329,7 +327,7 @@ const ContentCard = ({ title, version }) => {
         "Fits well into MVPs or new apps that lack built-in auth and chat but need both to onboard and support users fast.",
       ],
     },
-    "locally managed auth": {
+    "BYO Auth Chat": {
       "for Whom": [
         "Products that already have built-in authentication and only need chat services.",
         "Apps with existing authentication systems in place.",
@@ -352,7 +350,7 @@ const ContentCard = ({ title, version }) => {
         "Perfect for modern architectures — works seamlessly with any authentication system (authentication-agnostic).",
       ],
     },
-    "plugin driven": {
+    "CMS-Ready Chat": {
       "for Whom": [
         "CMS platforms like WordPress that already have built-in authentication and only need chat functionality.",
         "Systems using tightly coupled auth plugins that can't notify when a new user signs up.",
@@ -371,7 +369,7 @@ const ContentCard = ({ title, version }) => {
         "If your framework isn’t supported yet (e.g., Laravel, Drupal, Shopify, Wix), don’t worry — you can request integration directly from us.",
       ],
       "Example Usage": [
-        "Ideal for CMS-based products with tightly coupled, plugin-driven authentication systems.",
+        "Ideal for CMS-based products with tightly coupled, cms-ready-chat authentication systems.",
         "Great for service providers, support-focused businesses, and mid to large-scale chat call centers.",
         "Perfect for modern architectures — works seamlessly with any authentication system (auth-agnostic).",
       ],
@@ -381,7 +379,7 @@ const ContentCard = ({ title, version }) => {
   const content = contentData[version][title];
 
   // const handleIconClick = () => {
-  //   if (version === "cloud managed auth") {
+  //   if (version === "Instant Auth + Chat") {
   //     router.push("/cloudManaged");
   //   }
   // };

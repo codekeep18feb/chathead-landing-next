@@ -3,7 +3,7 @@ const payload = {
   V1: [
     {
       tag_type: "h2",
-      text: `Cloud Managed Auth [V1]`,
+      text: `Instant Auth + Chat [V1]`,
     },
 
     {
@@ -601,7 +601,7 @@ const payload = {
   V2: [
     {
       tag_type: "h2",
-      text: `Locally Managed Auth + Chat (Complex Sites) -  [V2]`,
+      text: `BYO Auth Chat + Chat (Complex Sites) -  [V2]`,
     },
     {
       tag_type: "p",
@@ -943,7 +943,7 @@ const payload = {
                     [
                       "version",
                       "string",
-                      "for locally managed auth API version is `V2`",
+                      "for BYO Auth Chat API version is `V2`",
                     ],
                   ],
                 },
@@ -1068,7 +1068,7 @@ const payload = {
   V3: [
     {
       tag_type: "h2",
-      text: `Locally Managed Auth + Chat (Wordpress)`,
+      text: `BYO Auth Chat + Chat (Wordpress)`,
     },
     {
       tag_type: "p",

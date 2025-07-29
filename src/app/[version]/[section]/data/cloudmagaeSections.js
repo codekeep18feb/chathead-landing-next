@@ -3,9 +3,9 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 // object for to whom
 export const cloudManagedToWhomContent = {
   label: "To Whom",
-  heading: "Cloud Managed Auth",
+  heading: "Instant Auth + Chat",
   description:
-    "Cloud-based auth paired with chat. Best for quickly scaling platforms.",
+    "robust auth auth paired with chat. Best for quickly scaling platforms.",
   imageSrc: `${basePath}/Asset/matrimony_banner.png`,
   sections: {
     "Products need both": {
@@ -73,7 +73,7 @@ export const cloudManagedToWhomContent = {
 
 export const localmagaeContent = {
   label: "To Whom",
-  heading: "Locally Managed Auth",
+  heading: "BYO Auth Chat",
   description: "Great for platforms with existing local auth infrastructure.",
   imageSrc: `${basePath}/Asset/matrimony_banner.png`,
   sections: {
@@ -184,8 +184,8 @@ export const localmagaeContent = {
 
 export const pluginmagaeContent = {
   label: "To Whom",
-  heading: "Plugin Driven",
-  description: "Extend existing platforms with our plugin-driven auth + chat.",
+  heading: "CMS-Ready Chat",
+  description: "Extend existing platforms with our cms-ready-chat auth + chat.",
   imageSrc: `${basePath}/Asset/matrimony_banner.png`,
   sections: {
     "Built-in Auth Platforms": {
@@ -741,112 +741,109 @@ export const cloudManagedExampleUsageContent = {
   },
 };
 
-
 export const cmsExampleUsageContent = {
-    label: "Example Usage",
-    heading: "Example Usage",
-    description:
-      "Best suited for CMS platforms and businesses needing flexible, authentication-agnostic chat integration.",
-    imageSrc: `${basePath}/Asset/matrimony_banner.png`,
-    sections: {
-      "CMS-Based Products": {
-        className: "auth-ui-kit",
-        image: `${basePath}/Asset/messaging_experience.png`,
-        content: [
-          {
-            type: "group",
-            className: "normal-text",
-            texts: [
-              "Ideal for CMS-based products with tightly coupled, plugin-driven authentication systems.",
-              "Chat works seamlessly without needing to alter your plugin setup.",
-            ],
-          },
-        ],
-      },
-      "Support & Service Providers": {
-        className: "chatbox-integration",
-        image: `${basePath}/Asset/messaging_experience.png`,
-        content: [
-          {
-            type: "group",
-            className: "normal-text",
-            texts: [
-              "Great for service providers, support-focused businesses, and chat call centers.",
-              "Scale your customer support while keeping your platform intact.",
-            ],
-          },
-        ],
-      },
-      "Authentication-Agnostic Systems": {
-        className: "dashboard-insights",
-        image: `${basePath}/Asset/messaging_experience.png`,
-        content: [
-          {
-            type: "group",
-            className: "normal-text",
-            texts: [
-              "Perfect for modern platforms that support any authentication logic.",
-              "Integrates cleanly into both legacy and next-gen tech stacks.",
-            ],
-          },
-        ],
-      },
+  label: "Example Usage",
+  heading: "Example Usage",
+  description:
+    "Best suited for CMS platforms and businesses needing flexible, authentication-agnostic chat integration.",
+  imageSrc: `${basePath}/Asset/matrimony_banner.png`,
+  sections: {
+    "CMS-Based Products": {
+      className: "auth-ui-kit",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Ideal for CMS-based products with tightly coupled, cms-ready-chat authentication systems.",
+            "Chat works seamlessly without needing to alter your plugin setup.",
+          ],
+        },
+      ],
     },
-  };
-  
+    "Support & Service Providers": {
+      className: "chatbox-integration",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Great for service providers, support-focused businesses, and chat call centers.",
+            "Scale your customer support while keeping your platform intact.",
+          ],
+        },
+      ],
+    },
+    "Authentication-Agnostic Systems": {
+      className: "dashboard-insights",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Perfect for modern platforms that support any authentication logic.",
+            "Integrates cleanly into both legacy and next-gen tech stacks.",
+          ],
+        },
+      ],
+    },
+  },
+};
 
-  export const cloudManagedReactionsFeature = {
-    label: "Feature",
-    heading: "Reactions",
-    description:
-      "Let users express themselves instantly with emoji reactions to messages, making conversations more engaging and dynamic.",
-    imageSrc: `${basePath}/Asset/messaging_experience.png`,
-    sections: {
-      "Emoji Reactions": {
-        className: "emoji-reactions",
-        image: `${basePath}/Asset/messaging_experience.png`,
-        content: [
-          {
-            type: "group",
-            className: "normal-text",
-            texts: [
-              "Allow users to react to messages using emojis for faster, lightweight interactions.",
-              "Popular reactions like 👍 ❤️ 😂 😮 help convey emotion instantly without typing.",
-              "Reactions enhance chat dynamics, especially in group discussions and community chats.",
-            ],
-          },
-        ],
-      },
-      "Boosted Engagement": {
-        className: "engagement-metrics",
-        image: `${basePath}/Asset/messaging_experience.png`,
-        content: [
-          {
-            type: "group",
-            className: "normal-text",
-            texts: [
-              "Encourage more participation by lowering the barrier to interaction.",
-              "Reactions offer a frictionless way for users to stay active in conversations.",
-              "Track the most used reactions to understand what resonates with your users.",
-            ],
-          },
-        ],
-      },
-      "Lightweight & Real-Time": {
-        className: "real-time-updates",
-        image: `${basePath}/Asset/messaging_experience.png`,
-        content: [
-          {
-            type: "group",
-            className: "normal-text",
-            texts: [
-              "All reactions update in real-time, making chats feel lively and current.",
-              "Built to be lightweight and responsive, even in high-traffic chats.",
-              "Seamless integration with your existing chat infrastructure.",
-            ],
-          },
-        ],
-      },
+export const cloudManagedReactionsFeature = {
+  label: "Feature",
+  heading: "Reactions",
+  description:
+    "Let users express themselves instantly with emoji reactions to messages, making conversations more engaging and dynamic.",
+  imageSrc: `${basePath}/Asset/messaging_experience.png`,
+  sections: {
+    "Emoji Reactions": {
+      className: "emoji-reactions",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Allow users to react to messages using emojis for faster, lightweight interactions.",
+            "Popular reactions like 👍 ❤️ 😂 😮 help convey emotion instantly without typing.",
+            "Reactions enhance chat dynamics, especially in group discussions and community chats.",
+          ],
+        },
+      ],
     },
-  };
-  
+    "Boosted Engagement": {
+      className: "engagement-metrics",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Encourage more participation by lowering the barrier to interaction.",
+            "Reactions offer a frictionless way for users to stay active in conversations.",
+            "Track the most used reactions to understand what resonates with your users.",
+          ],
+        },
+      ],
+    },
+    "Lightweight & Real-Time": {
+      className: "real-time-updates",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "All reactions update in real-time, making chats feel lively and current.",
+            "Built to be lightweight and responsive, even in high-traffic chats.",
+            "Seamless integration with your existing chat infrastructure.",
+          ],
+        },
+      ],
+    },
+  },
+};

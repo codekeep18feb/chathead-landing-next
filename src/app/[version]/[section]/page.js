@@ -20,26 +20,26 @@ import {
 } from "./data/cloudmagaeSections";
 
 const contentMap = {
-  "cloud-managed-auth": {
+  "instant-auth-chat": {
     "to-whom": [
       {
         type: "component",
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={cloudManagedToWhomContent}
           />
         ),
       },
     ],
-    "provides": [
+    provides: [
       {
         type: "component",
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={cloudManagedProvidesContent}
           />
         ),
@@ -51,7 +51,7 @@ const contentMap = {
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={cmsChatOnlyHowItWorksContent}
           />
         ),
@@ -63,33 +63,33 @@ const contentMap = {
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={exampleUsageContent}
           />
         ),
       },
     ],
   },
-  "locally-managed-auth": {
+  "byo-auth-chat": {
     "to-whom": [
       {
         type: "component",
         element: (
           <ToWhomContent
             key="2"
-            version="locally-managed-auth"
+            version="byo-auth-chat"
             config={localmagaeContent}
           />
         ),
       },
     ],
-    "provides": [
+    provides: [
       {
         type: "component",
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={cmsChatOnlyProvidesContent}
           />
         ),
@@ -101,7 +101,7 @@ const contentMap = {
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={cloudManagedHowItWorksContent}
           />
         ),
@@ -113,33 +113,33 @@ const contentMap = {
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={cloudManagedExampleUsageContent}
           />
         ),
       },
     ],
   },
-  "plugin-driven": {
+  "cms-ready-chat": {
     "to-whom": [
       {
         type: "component",
         element: (
           <ToWhomContent
             key="3"
-            version="plugin-driven"
+            version="cms-ready-chat"
             config={pluginmagaeContent}
           />
         ),
       },
     ],
-    "provides": [
+    provides: [
       {
         type: "component",
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={plugChatOnlyProvidesContent}
           />
         ),
@@ -151,7 +151,7 @@ const contentMap = {
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={plugChatOnlyHowItWorksContent}
           />
         ),
@@ -163,7 +163,7 @@ const contentMap = {
         element: (
           <ToWhomContent
             key="1"
-            version="cloud-managed-auth"
+            version="instant-auth-chat"
             config={cmsExampleUsageContent}
           />
         ),

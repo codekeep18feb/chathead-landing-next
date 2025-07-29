@@ -7,7 +7,7 @@ const payload = {
           content: [
             {
               tag_type: "h2",
-              text: `Cloud Managed Auth + Chat (Simple Site)`,
+              text: `Instant Auth + Chat + Chat (Simple Site)`,
             },
             {
               tag_type: "p",
@@ -283,7 +283,7 @@ const payload = {
           content: [
             {
               tag_type: "h2",
-              text: `Locally Managed Auth + Chat (Complex Sites)`,
+              text: `BYO Auth Chat + Chat (Complex Sites)`,
             },
             {
               tag_type: "p",
@@ -528,7 +528,7 @@ To verify the execution order, consider adding log statements both at the setup 
           content: [
             {
               tag_type: "h2",
-              text: `Locally Managed Auth + Chat (Wordpress)`,
+              text: `BYO Auth Chat + Chat (Wordpress)`,
             },
             {
               tag_type: "p",

@@ -3,14 +3,14 @@ const payload = {
   V1: [
     {
       tag_type: "h2",
-      text: `Cloud Managed Auth [V1]`,
+      text: `Instant Auth + Chat [V1]`,
     },
 
-{
-  tag_type: "p",
-  text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.
+    {
+      tag_type: "p",
+      text: `This type of chat application is tailored for simple websites built with HTML, JavaScript, and CSS, typically used as informational sites. It is ideal for scenarios where the existing product lacks built-in authentication but requires the seamless integration of both authentication and chat functionality.
 `,
-},
+    },
     {
       tag_type: "div",
       children: [
@@ -56,8 +56,6 @@ const payload = {
           tag_type: "p",
           text: "To integrate Chat into your app, do the following:",
         },
-
-     
 
         {
           tag_type: "ol",
@@ -270,7 +268,7 @@ const payload = {
   V2: [
     {
       tag_type: "h2",
-      text: `Locally Managed Auth + Chat (Complex Sites) -  [V2]`,
+      text: `BYO Auth Chat + Chat (Complex Sites) -  [V2]`,
     },
     {
       tag_type: "p",
@@ -397,13 +395,10 @@ const payload = {
                 },
               ],
             },
-
-            
           ],
         },
 
-
- {
+        {
           tag_type: "callout",
           type: "info",
           title: "Additional Notes",
@@ -436,7 +431,7 @@ const payload = {
           tag_type: "h3",
           text: "Onboarding api",
         },
-      
+
         {
           tag_type: "p",
           text: `To ensure users can access chat features and are visible in the MagicChat Admin Panel, you must onboard them upon registration.`,
@@ -451,8 +446,6 @@ const payload = {
           tag_type: "h3",
           text: `Ways to Onboard Users`,
         },
-
-       
 
         {
           tag_type: "feature_options",
@@ -473,8 +466,6 @@ const payload = {
                 {
                   tag_type: "div",
                   children: [
-
-                  
                     {
                       tag_type: "img",
                       src: "Asset/onboarding_via_rest_endpoint_payload.png",
@@ -533,7 +524,7 @@ const payload = {
           ],
         },
 
-         {
+        {
           tag_type: "h2",
           text: `Ensure you call the onboarding API immediately after user signup.`,
         },
@@ -554,7 +545,7 @@ const payload = {
   V3: [
     {
       tag_type: "h2",
-      text: `Locally Managed Auth + Chat (Wordpress)`,
+      text: `BYO Auth Chat + Chat (Wordpress)`,
     },
     {
       tag_type: "p",
