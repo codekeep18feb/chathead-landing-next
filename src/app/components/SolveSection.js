@@ -9,15 +9,15 @@ const SolveSection = () => {
       <div className="solve-content">
         <h1>What do we Solve</h1>
         <p>
-          No-code chatbot platform for Lead Gen, AI answers & Live Agent
-          Chat — "All in one".
+          No-code chatbot platform for Lead Gen, AI answers & Live Agent Chat —
+          "All in one".
         </p>
         {/* <div className="email-input">
                     <input type="email" placeholder="Enter your email id" />
                     <button>Get Started Free</button>
                 </div> */}
         <div className="email-input">
-          <a href="http://dev.addchat.tech/schedule_demo">
+          <a href="https://admin.magicchat.io/schedule_demo">
             <button>Schedule Demo</button>
           </a>
         </div>

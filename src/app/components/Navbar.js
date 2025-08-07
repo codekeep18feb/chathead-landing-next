@@ -157,12 +157,12 @@ const Navbar = () => {
 
         <div className={styles["auth-buttons"]}>
           <li>
-            <a href="http://dev.addchat.tech/login">
+            <a href="https://admin.magicchat.io/login">
               <button className={styles.login}>Log-in</button>
             </a>
           </li>
           <li>
-            <a href="http://dev.addchat.tech/signup">
+            <a href="https://admin.magicchat.io/signup">
               <button className={styles.signup}>Sign-up</button>
             </a>
           </li>
