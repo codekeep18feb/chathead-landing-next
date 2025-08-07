@@ -211,17 +211,18 @@
   border: 1px solid var(--white-text-color);
   cursor: pointer;
   flex-shrink: 0;
+  padding: 8px;
 }
-.callout .content-link {
+/* .callout .content-link {
   border-radius: 6px;
   border: none;
-}
+} */
 .view-full-implementation {
   margin-top: 15px;
   outline: none;
   border: none;
   background-color: forestgreen;
-  padding: 10px 20px;
+  padding: 18px 20px;
   border-radius: 6px;
   font-size: 16px;
 }

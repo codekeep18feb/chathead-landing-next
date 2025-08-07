@@ -1074,6 +1074,52 @@ const payload = {
             },
           ],
         },
+
+        {
+          tag_type: "h3",
+          text: "Logout Cleanup",
+        },
+        {
+          tag_type: "p",
+          text: "Since authentication is managed locally within your own platform, it is essential to also clean up the MagicChat session when a user logs out from your system.",
+        },
+        {
+          tag_type: "callout",
+          type: "warning",
+          title: "Important Cleanup Step",
+          children: [
+            {
+              tag_type: "p",
+              text: "Failing to call this method may result in session persistence, causing the chatbox to remain visible after logout.",
+            },
+          ],
+        },
+        {
+          tag_type: "h4",
+          text: "Usage",
+        },
+        {
+          tag_type: "code_with_copy",
+          code: `window.magicchat_io.logout?.();`,
+          language: "javascript",
+        },
+        {
+          tag_type: "p",
+          text: "You should call this method immediately when your user logs out. It ensures MagicChat cleans up all user-related sessions and data.",
+        },
+        {
+          tag_type: "h4",
+          text: "Example Implementation",
+        },
+        {
+          tag_type: "p",
+          text: "See the following GitHub example where logout cleanup is properly handled:",
+        },
+        {
+          tag_type: "a",
+          href: "https://github.com/magicchat-core/example__v2/blob/402cbcd3d07fc8cca952fdf6ed1c18b5a2a90b1a/templates/base.html#L95",
+          text: "Logout Example on GitHub",
+        },        
         {
           tag_type: "callout",
           type: "info",
@@ -1088,6 +1134,10 @@ const payload = {
 
                 {
                   text: "For bulk onboarding of existing users, contact our support team for batch processing options",
+                },
+
+                {
+                  text: "Don't miss to logout to perform cleanup whenever user is logging out of your platform.",
                 },
               ],
             },
