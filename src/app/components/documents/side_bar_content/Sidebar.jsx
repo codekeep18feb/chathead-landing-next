@@ -14,7 +14,7 @@ export default function Sidebar({ selectedFilter }) {
 
   const ContentByVersion = {
     V1: [
-      {
+      { 
         tag_type: "ol",
         items: [
           {
@@ -37,6 +37,15 @@ export default function Sidebar({ selectedFilter }) {
                   show: true,
                   type: "internal",
                   targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
+                }
+              },
+              {
+                tag_type: "li",
+                text: "Code Example",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div.renderingToolSty_callout__7ZUMr.renderingToolSty_callout-info__gccVq > div:nth-child(2) > div > button"
                 }
               },
              
@@ -83,7 +92,15 @@ export default function Sidebar({ selectedFilter }) {
                   targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
                 }
               },
-              
+              {
+                tag_type: "li",
+                text: "Code Example",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
+                }
+              },
               {
                 tag_type: "li",
                 text: "Backend Integration",
@@ -181,7 +198,15 @@ export default function Sidebar({ selectedFilter }) {
                   targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
                 }
               },
-              
+              {
+                tag_type: "li",
+                text: "Code Example",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
+                }
+              },
               
               
             ],
