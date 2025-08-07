@@ -134,7 +134,19 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: `<script>\n document.addEventListener("DOMContentLoaded", () => {\n const isLoggedIn = localStorage.getItem("token");\n if (!isLoggedIn) {\n window.magicchat_io.setUp(\n "v2_app1",\n "bXlraW5nX19TRVBSQVRPUl9fdjJfYXBwMQ=="\n );\n }\n });\n</script>`,
+                          text: `
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const isLoggedIn = localStorage.getItem("token");
+    if (!isLoggedIn) {
+      window.magicchat_io.setUp(
+        "<YOUR_MAGICCHAT_API_NAME>",
+        "<YOUR_MAGICCHAT_API_KEY>"
+      );
+    }
+  });
+</script>
+`,
                         },
                         {
                           tag_type: "callout",
@@ -229,7 +241,14 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script>\n  document.addEventListener("DOMContentLoaded", async function () {\n    const token = localStorage.getItem("tezkit_token");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>',
+                          text: `<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (token) {
+      await window.magicchat_io.initialize(token);
+    } 
+  });
+</script>`,
                         },
                         {
                           tag_type: "callout",
@@ -574,7 +593,7 @@ const payload = {
             {
               tag_type: "a",
               href: "https://github.com/magicchat-core/example__v1/blob/36f2c0984cea15932538cb448823df83a8aa98dd/index.html#L33",
-              text: "View Full Implementation Example",
+              text: "Code Implementation Example",
             },
             {
               tag_type: "callout",
@@ -731,7 +750,17 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script>\n  document.addEventListener("DOMContentLoaded", () => {\n    const isLoggedIn = localStorage.getItem("token");\n    if (!isLoggedIn) {\n      window.magicchat_io.setUp(\n        "v2_app1",\n        "bXlraW5nX19TRVBSQVRPUl9fdjJfYXBwMQ=="\n      );\n    }\n  });\n</script>',
+                          text: `<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const isLoggedIn = localStorage.getItem("token");
+    if (!isLoggedIn) {
+      window.magicchat_io.setUp(
+        "<YOUR_MAGICCHAT_API_NAME>",
+        "<YOUR_MAGICCHAT_API_KEY>"
+      );
+    }
+  });
+</script>`,
                         },
                       ],
                     },
@@ -749,7 +778,14 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script>\n  document.addEventListener("DOMContentLoaded", async function () {\n    const token = localStorage.getItem("tezkit_token");\n    if (token) {\n      await window.magicchat_io.initialize(token);\n    } \n  });\n</script>',
+                          text: `<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const token = localStorage.getItem("tezkit_token");
+    if (token) {
+      await window.magicchat_io.initialize(token);
+    } 
+  });
+</script>`,
                         },
                       ],
                     },
@@ -819,7 +855,7 @@ const payload = {
             {
               tag_type: "a",
               href: "https://github.com/magicchat-core/example__v2/blob/402cbcd3d07fc8cca952fdf6ed1c18b5a2a90b1a/templates/base.html#L152",
-              text: "View Full Implementation Example",
+              text: "Code Implementation Example",
             },
             {
               tag_type: "callout",
@@ -1222,6 +1258,321 @@ const payload = {
               desc: "MagicChat WordPress Integration Tutorial",
             },
           ],
+        },
+      ],
+    },
+  ],
+  V4: [
+    {
+      tag_type: "h2",
+      text: `No Auth  but  Chat  [V4]`,
+    },
+    {
+      tag_type: "p",
+      text: `This chat application is designed specifically for complex sites or apps have no built-in authentication and niether want one but chat functionality only.`,
+    },
+
+    //prerequisite?
+    {
+      tag_type: "div",
+      children: [
+        { tag_type: "h2", text: "Prerequisite" },
+
+        {
+          tag_type: "ol",
+          items: [
+            {
+              text: "Signup/Login to your account at MagicChat.",
+              link_parts: [
+                {
+                  text: "Signup/Login",
+                  link: "https://www.google.com/",
+                },
+              ],
+            },
+
+            {
+              tag_type: "li",
+              text: "Create a New App and be sure to select Version V2 during setup.",
+            },
+
+            {
+              tag_type: "li",
+              text: "Navigate to the App Details page and note your: , App Name, API Key, Tenant ID",
+            },
+          ],
+        },
+      ],
+    },
+
+    {
+      tag_type: "div",
+      children: [
+        { tag_type: "h2", text: "Project setup" },
+
+        {
+          tag_type: "h4",
+          text: "Client Side Integration",
+        },
+        {
+          tag_type: "p",
+          text: "To integrate it into your app, Do the following.",
+        },
+
+        {
+          tag_type: "div",
+          className: "custom-ordered-list",
+          children: [
+            {
+              tag_type: "div",
+              className: "custom-list-item",
+              children: [
+                {
+                  tag_type: "div",
+                  className: "list-item-header",
+                  text: "1. Load The Scripts",
+                },
+                {
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "p",
+                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "It should ideally be placed head of the root file.",
+                        },
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.1.8/bundle.js">\n</script>',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              tag_type: "div",
+              className: "custom-list-item",
+              children: [
+                {
+                  tag_type: "div",
+                  className: "list-item-header ",
+                  text: "2. Running Magicchat Setup Requires two steps",
+                },
+                {
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h4",
+                          text: "Step 1 – Initialize on first Logged-Out Screens",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
+                        },
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: `
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        const token = localStorage.getItem("tezkit_token");
+        if (!token) {
+          await window.magicchat_io.setUp(
+            "<YOUR_MAGICCHAT_API_NAME>", // app_name
+            "<YOUR_MAGICCHAT_API_KEY>", // api_key
+          );
+
+        } 
+      });
+    </script> `,
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h4",
+                          text: "Step 2 – Initialize on first Logged-In Screens",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
+                        },
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: `
+     <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        const token = "NO_AUTH_REQUIRED" 
+        if (token) {
+          await window.magicchat_io.initialize(token);
+        } 
+      });
+    </script>                      `,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          tag_type: "callout",
+          type: "info",
+          title: "Implementation Best Practices",
+          children: [
+            {
+              tag_type: "h4",
+              text: "Centralized Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route):",
+            },
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Combine both setUp and initialize logic in a single location",
+                },
+                {
+                  text: "This ensures the chatbox renders consistently across all routes",
+                },
+                {
+                  text: "Avoids code duplication across screens",
+                },
+              ],
+            },
+            {
+              tag_type: "h4",
+              text: "Route-Specific Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "To limit chat functionality to specific routes:",
+            },
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Initialize only on screens where chat is needed",
+                },
+                {
+                  text: "Use the initialize method on specific route components",
+                },
+                {
+                  text: "Provides more control over chat visibility",
+                },
+              ],
+            },
+            {
+              tag_type: "h4",
+              text: "Example Implementation",
+            },
+            {
+              tag_type: "p",
+              text: "See this complete example implementation in our GitHub repository:",
+            },
+            {
+              tag_type: "a",
+              href: "https://github.com/magicchat-core/example__v1/blob/a763750701c35a8a42c7521bacc0fdd9ae7cc98f/index.html#L37",
+              text: "Code Implementation Example",
+            },
+            {
+              tag_type: "callout",
+              type: "info",
+              title: "Future Improvements",
+              children: [
+                {
+                  tag_type: "p",
+                  text: "We're working to simplify route-specific implementations in upcoming releases.",
+                },
+              ],
+            },
+          ],
+        },
+        
+        {
+          tag_type: "p",
+          text: "Successfully onboarded users will appear in the MagicChat Admin Panel with their associated applications.",
+        },
+        {
+          tag_type: "steps",
+          items: [
+            {
+              title: "Admin Panel - Onboarded Users",
+              content: [
+                {
+                  tag_type: "img",
+                  src: "Asset/onboarded_user.png",
+                  alt: "MagicChat Admin Panel showing onboarded users",
+                },
+              ],
+            },
+            {
+              title: "Admin Panel - No Users",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "Applications without onboarded users will display an empty state:",
+                },
+                {
+                  tag_type: "img",
+                  src: "Asset/no_users_admin.png",
+                  alt: "MagicChat Admin Panel showing no onboarded users",
+                },
+              ],
+            },
+          ],
+        },
+       
+        {
+          tag_type: "callout",
+          type: "info",
+          title: "User persists only till session",
+          children: [
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Means if browser is closed and reopen it will be considered as new user.",
+                },
+
+              ],
+            },
+          ],
+        },
+        {
+          tag_type: "video",
+          src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
+          desc: "Demo for V2",
         },
       ],
     },

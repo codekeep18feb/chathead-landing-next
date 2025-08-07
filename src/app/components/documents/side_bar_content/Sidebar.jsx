@@ -154,6 +154,51 @@ export default function Sidebar({ selectedFilter }) {
           }
         }
       }
+    ],
+    V4: [
+      {
+        tag_type: "ol",
+        items: [
+          {
+            tag_type: "li",
+            text: "Integration",
+            sub_items: [
+              {
+                tag_type: "li",
+                text: "Prerequisite",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
+                }
+              },
+              {
+                tag_type: "li",
+                text: "Client Integration",
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
+                }
+              },
+              
+              
+              
+            ],
+            link_configuration: {
+              show: true,
+              type: "internal",
+              targetSelector: ".content-inner-heading"
+            }
+          }
+        ],
+        property: {
+          collapse: {
+            collapsable: true,
+            fc_non_collapsable: true,
+          }
+        }
+      }
     ]
   };
 
