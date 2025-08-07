@@ -17,6 +17,10 @@ import {
   plugChatOnlyHowItWorksContent,
   plugChatOnlyProvidesContent,
   pluginmagaeContent,
+  noAuthChatToWhomContent,
+  noAuthChatProvidesContent,
+  noAuthChatHowItWorksContent,
+  noAuthChatExampleUsageContent,
 } from "./data/cloudmagaeSections";
 
 const contentMap = {
@@ -165,6 +169,56 @@ const contentMap = {
             key="1"
             version="instant-auth-chat"
             config={cmsExampleUsageContent}
+          />
+        ),
+      },
+    ],
+  },
+  "no-auth-only-chat": {
+    "to-whom": [
+      {
+        type: "component",
+        element: (
+          <ToWhomContent
+            key="1"
+            version="no-auth-only-chat"
+            config={noAuthChatToWhomContent}
+          />
+        ),
+      },
+    ],
+    provides: [
+      {
+        type: "component",
+        element: (
+          <ToWhomContent
+            key="1"
+            version="no-auth-only-chat"
+            config={noAuthChatProvidesContent}
+          />
+        ),
+      },
+    ],
+    "how-it-works": [
+      {
+        type: "component",
+        element: (
+          <ToWhomContent
+            key="1"
+            version="no-auth-only-chat"
+            config={noAuthChatHowItWorksContent}
+          />
+        ),
+      },
+    ],
+    "example-usage": [
+      {
+        type: "component",
+        element: (
+          <ToWhomContent
+            key="1"
+            version="no-auth-only-chat"
+            config={noAuthChatExampleUsageContent}
           />
         ),
       },

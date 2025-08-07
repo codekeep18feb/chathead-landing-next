@@ -94,6 +94,11 @@ const demoImages = {
     "/Asset/afterChatAdd.png",
     "/Asset/afterModalOpen.png",
   ],
+  "No Auth Only Chat": [
+    "/Asset/beforeChatAdd.png",
+    "/Asset/afterChatAdd.png",
+    "/Asset/afterModalOpen.png",
+  ],
   "CMS-Ready Chat": [
     "/Asset/beforeChatAdd.png",
     "/Asset/afterChatAdd.png",
@@ -142,20 +147,23 @@ const HowSection = () => {
         <div className={styles["left-side"]}>
           <h2>Services Summary</h2>
           <ul className={styles["peer-list"]}>
-            {["Instant Auth + Chat", "BYO Auth Chat", "CMS-Ready Chat"].map(
-              (option) => (
-                <li
-                  key={option}
-                  onClick={() => handleOptionClick(option)}
-                  style={{
-                    backgroundColor: selectedOption === option ? "#4d6bdf" : "",
-                    color: selectedOption === option ? "white" : "",
-                  }}
-                >
-                  {option}
-                </li>
-              )
-            )}
+            {[
+              "Instant Auth + Chat",
+              "BYO Auth Chat",
+              "CMS-Ready Chat",
+              "No Auth Only Chat",
+            ].map((option) => (
+              <li
+                key={option}
+                onClick={() => handleOptionClick(option)}
+                style={{
+                  backgroundColor: selectedOption === option ? "#4d6bdf" : "",
+                  color: selectedOption === option ? "white" : "",
+                }}
+              >
+                {option}
+              </li>
+            ))}
           </ul>
 
           <ul className={styles["peer-list"]} style={{ marginTop: "10px" }}>
@@ -232,11 +240,14 @@ const VersionContent = ({ version, onWatchDemo, onBack }) => {
             <h4>{`[${version}]  - “Turn Visitors into Logged-In, Engaged Users.” `}</h4>
           ) : version == "BYO Auth Chat" ? (
             <h4>{`[${version}]  - “Already Have Login? Just Add Chat.”`}</h4>
+          ) : version == "CMS-Ready Chat" ? (
+            <h4>{`[${version}]  - “Drop-In Chat for Your CMS.”`}</h4>
           ) : (
-            <h4>{`[${version}]  - “Drop-In Chat for Your CMS.” `}</h4>
+            <h4>{`[${version}]  - “No Auth.” `}</h4>
           )}
           <ContentRows version={version} onWatchDemo={onWatchDemo} />
         </section>
+        {/* CMS-Ready Chat */}
       </div>
     </div>
   );
@@ -289,6 +300,7 @@ const ContentCard = ({ title, version }) => {
     "Instant Auth + Chat": "instant-auth-chat",
     "BYO Auth Chat": "byo-auth-chat",
     "CMS-Ready Chat": "cms-ready-chat",
+    "No Auth Only Chat": "no-auth-only-chat",
   };
 
   const slugMap = {
@@ -348,6 +360,33 @@ const ContentCard = ({ title, version }) => {
         "Ideal for client-server or monolithic architectures with built-in (or planned) authentication.",
         "Great for service providers, support-focused businesses, and mid to large-scale chat call centers.",
         "Perfect for modern architectures — works seamlessly with any authentication system (authentication-agnostic).",
+      ],
+    },
+    "No Auth Only Chat": {
+      "for Whom": [
+        "Products or websites that don’t require user login or signup.",
+        "Apps that prioritize instant engagement over user identification.",
+        "Landing pages, blogs, or tools that want chat without managing user accounts.",
+        "Ideal for anonymous, frictionless conversations with AI or human agents.",
+      ],
+      Provides: [
+        "Embeds a customizable chatbox into any interface—web or mobile.",
+        "Enables users to start chatting instantly—no login, no signup required.",
+        "Supports AI-driven chat or connects to live admins without collecting user info.",
+        "Includes an admin panel to monitor and manage conversations in real-time.",
+      ],
+      "How Does it work": [
+        "Simply embed the Magicchat script into your app or website.",
+        "Visitors can immediately interact with the AI bot or leave messages.",
+        "Admins can reply in real-time or catch up later via the admin dashboard.",
+        "No authentication flow is involved—users remain anonymous by default.",
+      ],
+      "Example Usage": [
+        "Perfect for marketing or campaign pages that need instant visitor interaction.",
+        "Great for personal portfolios, CV websites, or info kiosks wanting AI chat support.",
+        "Useful for idea validation pages and MVPs where user login isn’t necessary.",
+        "Ideal for creators, indie hackers, or solopreneurs needing plug-and-play chat.",
+        "Fits educational or advisory blogs offering guided AI help without friction.",
       ],
     },
     "CMS-Ready Chat": {

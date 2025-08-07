@@ -251,6 +251,76 @@ export const pluginmagaeContent = {
   },
 };
 
+export const noAuthChatToWhomContent = {
+  label: "To Whom",
+  heading: "No Auth Only Chat",
+  description:
+    "Frictionless, anonymous chat for instant engagement—no login or signup needed.",
+  imageSrc: `${basePath}/Asset/matrimony_banner.png`,
+  sections: {
+    "Anonymous Engagement": {
+      className: "messaging-experience",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Products or pages that want instant user interaction without collecting personal info.",
+            "Ideal for anonymous support, feedback collection, or AI interactions.",
+            "Great for use cases where speed and simplicity matter more than user accounts.",
+          ],
+        },
+      ],
+    },
+    "No Login Required": {
+      className: "voice-video",
+      image: `${basePath}/Asset/voice_video.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Apps or tools that don’t require authentication or user identity.",
+            "Visitors can instantly chat—no friction, no barriers to entry.",
+            "Perfect for early-stage MVPs, landing pages, and micro-sites.",
+          ],
+        },
+      ],
+    },
+    "Frictionless Setup": {
+      className: "scale-millions",
+      image: `${basePath}/Asset/scale_millions.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Designed for creators and indie developers who want plug-and-play chat.",
+            "No backend setup, login forms, or user handling needed.",
+            "Embed and go live within minutes.",
+          ],
+        },
+      ],
+    },
+    "AI-Only or Offline Support": {
+      className: "moderation-control",
+      image: `${basePath}/Asset/moderation_control.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Let users interact with an AI assistant or drop offline messages for admins.",
+            "Fits help desks, educational sites, and advisory blogs needing basic chat.",
+            "Real-time human response or async reply—no identity tracking involved.",
+          ],
+        },
+      ],
+    },
+  },
+};
+
 // object for Provides
 export const cloudManagedProvidesContent = {
   label: "Provides",
@@ -421,6 +491,72 @@ export const plugChatOnlyProvidesContent = {
     },
   },
 };
+export const noAuthChatProvidesContent = {
+  label: "Provides",
+  heading: "What It Provides",
+  description:
+    "Instant, anonymous chat capabilities—no login, no signup. Just drop it in and go live.",
+  imageSrc: `${basePath}/Asset/matrimony_banner.png`,
+  sections: {
+    "Anonymous Chatbox": {
+      className: "chatbox-integration",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Embeds a customizable chatbox into any website or app without requiring user login.",
+            "Visitors can start chatting immediately with AI or human support—no friction.",
+          ],
+        },
+      ],
+    },
+    "AI-Driven Conversations": {
+      className: "ai-support",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Respond instantly with smart AI trained on your app’s FAQs or custom data.",
+            "Deliver answers 24/7 even when human agents are offline.",
+          ],
+        },
+      ],
+    },
+    "Offline Message Support": {
+      className: "offline-support",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Visitors can leave messages anytime—admins can respond later from the dashboard.",
+            "Maintains conversation history even without user accounts.",
+          ],
+        },
+      ],
+    },
+    "Admin Control Panel": {
+      className: "admin-tools",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Manage and reply to chats through a powerful admin panel.",
+            "Track conversations, set up automated replies, and moderate in real-time.",
+          ],
+        },
+      ],
+    },
+  },
+};
+
 
 // object for how it works
 
@@ -607,6 +743,58 @@ export const plugChatOnlyHowItWorksContent = {
     },
   },
 };
+export const noAuthChatHowItWorksContent = {
+  label: "How It Works",
+  heading: "How It Works",
+  description:
+    "Set up instant, anonymous chat in minutes—no authentication or backend setup required.",
+  imageSrc: `${basePath}/Asset/matrimony_banner.png`,
+  sections: {
+    "Embed Script": {
+      className: "chatbox-integration",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Copy and paste the Magicchat embed script into your HTML or React component.",
+            "No backend or auth configuration needed—just drop it in.",
+          ],
+        },
+      ],
+    },
+    "Instant Anonymous Access": {
+      className: "auth-ui-kit",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Users can start chatting immediately with AI or human agents.",
+            "Conversations are anonymous and require no signup or login.",
+          ],
+        },
+      ],
+    },
+    "Admin Notification & Reply": {
+      className: "dashboard-insights",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Admins receive new messages via the dashboard and can respond in real-time or asynchronously.",
+            "Supports real-time chat, offline replies, and history tracking per visitor session.",
+          ],
+        },
+      ],
+    },
+  },
+};
+
 
 // object for Example Usage
 export const exampleUsageContent = {
@@ -841,6 +1029,58 @@ export const cloudManagedReactionsFeature = {
             "All reactions update in real-time, making chats feel lively and current.",
             "Built to be lightweight and responsive, even in high-traffic chats.",
             "Seamless integration with your existing chat infrastructure.",
+          ],
+        },
+      ],
+    },
+  },
+};
+
+export const noAuthChatExampleUsageContent = {
+  label: "Example Usage",
+  heading: "Example Usage",
+  description:
+    "Best suited for websites and tools that prioritize instant communication over user login or identity tracking.",
+  imageSrc: `${basePath}/Asset/matrimony_banner.png`,
+  sections: {
+    "Marketing & Landing Pages": {
+      className: "auth-ui-kit",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Perfect for capturing leads or engaging users directly on campaign and landing pages.",
+            "Encourages instant interaction without any barriers to entry.",
+          ],
+        },
+      ],
+    },
+    "Creator & Personal Sites": {
+      className: "chatbox-integration",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Ideal for personal portfolios, blogs, or resume sites looking to engage visitors through chat.",
+            "Gives creators a way to interact without managing user accounts or logins.",
+          ],
+        },
+      ],
+    },
+    "Lightweight MVPs & Tools": {
+      className: "dashboard-insights",
+      image: `${basePath}/Asset/messaging_experience.png`,
+      content: [
+        {
+          type: "group",
+          className: "normal-text",
+          texts: [
+            "Great for MVPs and experimental tools that need chat functionality without authentication complexity.",
+            "Helps test ideas quickly with real user feedback, all without requiring signups.",
           ],
         },
       ],
