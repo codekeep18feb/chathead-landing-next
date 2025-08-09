@@ -90,7 +90,7 @@ const payload = {
                   tag_type: "li",
                   text: "Step 1 – Initialize on Logged-Out Screens",
                   extra_text:
-                    "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
+                    "Run the setUp function on the very first screen, where user lands first when they come to the product.This typically applies to your app's landing page or root URL (/).",
                   code: `<script>
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
@@ -118,7 +118,7 @@ const payload = {
                   tag_type: "li",
                   text: "Step 2 – Initialize on Logged-In Screens",
                   extra_text:
-                    "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
+                    "Run the initialize function on any screen  where you want the chatbot to appear (e.g., bottom right corner).",
                   code: `<script>
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
@@ -355,7 +355,7 @@ const payload = {
                   tag_type: "li",
                   text: "Step 1 – Initialize on Logged-Out Screens",
                   extra_text:
-                    "Run the setUp function when the user is first detected as logged out. This typically applies to your app's landing page or root URL (/), where no authentication token is present.",
+                    "Run the setUp function on the very first screen, where user lands first when they come to the product.This typically applies to your app's landing page or root URL (/).",
                   code: `<script>
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
@@ -383,7 +383,7 @@ const payload = {
                   tag_type: "li",
                   text: "Step 2 – Initialize on Logged-In Screens",
                   extra_text:
-                    "Run the initialize function on any screen that is accessible after login, where you want the chatbot to appear (e.g., bottom right corner).",
+                    "Run the initialize function on any screen  where you want the chatbot to appear (e.g., bottom right corner).",
                   code: `<script>
   document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("tezkit_token");
