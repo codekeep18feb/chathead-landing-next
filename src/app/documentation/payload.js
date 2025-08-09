@@ -268,7 +268,7 @@ const payload = {
         },
         {
           tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v1/blob/36f2c0984cea15932538cb448823df83a8aa98dd/index.html#L33",
+          href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
           text: "View Implementation Example",
         },
 
@@ -740,7 +740,7 @@ const payload = {
         },
         {
           tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v1/blob/36f2c0984cea15932538cb448823df83a8aa98dd/index.html#L33",
+          href: "https://github.com/magicchat-core/example__v2/blob/c92055559f06e1a06154d81dc777f07e0d6dffce/templates/base.html#L158",
           text: "View Implementation Example",
         },
 
@@ -1442,7 +1442,7 @@ const payload = {
         },
         {
           tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v1/blob/36f2c0984cea15932538cb448823df83a8aa98dd/index.html#L33",
+          href: "https://github.com/magicchat-core/example__v1/blob/dcd14cf06de9b13dd7e79e59c499e7bf294c8cb8/index.html#L39",
           text: "View Implementation Example",
         },
 
