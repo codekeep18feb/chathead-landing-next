@@ -122,7 +122,7 @@ const payload = {
                   },
                   {
                     "tag_type": "p",
-                    "text": "Execute the setUp function on your application's entry point (typically the landing page or root URL). This applies to screens users encounter before authentication."
+                    "text": "Execute the setUp function on your application's entry point (typically the landing page or root URL). This applies to screen users encounter before authentication."
                   },
                   {
                     "tag_type": "code",
@@ -259,68 +259,58 @@ const payload = {
     "href": "https://github.com/magicchat-core/example__v1/blob/36f2c0984cea15932538cb448823df83a8aa98dd/index.html#L33",
     "text": "View Implementation Example"
   },
+  
   {
-    "tag_type": "callout",
-    "type": "info",
-    "title": "Implementation Best Practices",
-    "children": [
-      {
-        "tag_type": "h4",
-        "text": "Centralized Implementation"
-      },
-      {
-        "tag_type": "p",
-        "text": "For applications with shared layouts (e.g., main index.js or root components):"
-      },
-      {
-        "tag_type": "ul",
-        "items": [
-          {
-            "text": "Combine setUp and initialize in your root component"
-          },
-          {
-            "text": "Ensures consistent chat availability across routes"
-          },
-          {
-            "text": "Eliminates redundant code"
-          }
-        ]
-      },
-      {
-        "tag_type": "h4",
-        "text": "Route-Specific Implementation"
-      },
-      {
-        "tag_type": "p",
-        "text": "To restrict chat functionality to specific routes:"
-      },
-      {
-        "tag_type": "ul",
-        "items": [
-          {
-            "text": "Execute setUp during initial application load"
-          },
-          {
-            "text": "Call initialize only on target route components"
-          },
-          {
-            "text": "Provides granular control over chat visibility"
-          }
-        ]
-      },
-      {
-        "tag_type": "callout",
-        "type": "info",
-        "title": "Upcoming Improvements",
-        "children": [
-          {
-            "tag_type": "p",
-            "text": "We're simplifying route-specific implementations in future releases."
-          }
-        ]
-      }
-    ]
-  },
+  tag_type: "tabs",
+  items: [
+    {
+      label: "Centralized Implementation",
+      content: [
+        {
+          tag_type: "h4",
+          text: "Centralized Implementation",
+        },
+        {
+          tag_type: "p",
+          text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route):",
+        },
+        {
+          tag_type: "ul",
+          items: [
+            { text: "Combine both setUp and initialize logic in a single location" },
+            { text: "This ensures the chatbox renders consistently across all routes" },
+            { text: "Avoids code duplication across screens" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Route-Specific Implementation",
+      content: [
+        {
+          tag_type: "h4",
+          text: "Route-Specific Implementation",
+        },
+        {
+          tag_type: "p",
+          text: "To limit chat functionality to specific routes:",
+        },
+        {
+          tag_type: "ul",
+          items: [
+            { text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed" },
+            { text: "Use the initialize method on specific route components" },
+            { text: "Provides more control over chat visibility" },
+          ],
+        },
+      ],
+    }
+    
+    
+  ],
+}
+,
+
   {
           tag_type: "tabs",
           items: [
