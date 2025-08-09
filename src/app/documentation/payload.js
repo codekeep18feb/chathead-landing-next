@@ -467,7 +467,7 @@ const payload = {
                           text: "Elements will render as:",
                           sub_items: [
                             { text: "Login/Signup buttons when logged out" },
-                            { text: "User avatar + dropdown when logged in" },
+                            // { text: "User avatar + dropdown when logged in" },
                           ],
                         },
                       ],
@@ -477,17 +477,13 @@ const payload = {
                 {
                   tag_type: "callout",
                   type: "info",
-                  title: "Available Authentication Components",
+                  title: "Available Authentication Components to be styled",
                   children: [
                     {
                       tag_type: "table",
                       headers: ["Component", "Selector", "Description"],
                       rows: [
-                        [
-                          "User Avatar",
-                          ".tezkit-user-avatar",
-                          "Profile picture with dropdown menu",
-                        ],
+
                         [
                           "Login Button",
                           ".tezkit-login-btn",
@@ -498,11 +494,7 @@ const payload = {
                           ".tezkit-signup-btn",
                           "Triggers registration flow",
                         ],
-                        [
-                          "User Menu",
-                          ".tezkit-user-menu",
-                          "Dropdown with profile options",
-                        ],
+                        
                       ],
                     },
                   ],
