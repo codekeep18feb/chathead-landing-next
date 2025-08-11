@@ -4,6 +4,9 @@ const payload = {
     {
       tag_type: "h2",
       text: "Instant Auth + Chat [V1]",
+      selector_uid:"my_unique_project_setup_selector_id",
+
+
     },
     {
       tag_type: "p",
@@ -15,6 +18,8 @@ const payload = {
         {
           tag_type: "h2",
           text: "Prerequisites",
+          selector_uid:"v1_prerequisites",
+
         },
         {
           tag_type: "p",
@@ -46,10 +51,13 @@ const payload = {
     },
     {
       tag_type: "div",
+      selector_uid:"my_unique_project_setup_selector_id2",
       children: [
         {
           tag_type: "h2",
           text: "Project Setup",
+          selector_uid:"v1_client_integration",
+
         },
         {
           tag_type: "p",
@@ -261,6 +269,7 @@ const payload = {
         {
           tag_type: "h4",
           text: "Example Implementation",
+          selector_uid:"v1_code_example",
         },
         {
           tag_type: "p",
@@ -540,7 +549,10 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" },
+        { tag_type: "h2", 
+          text: "Prerequisite" ,
+          selector_uid:"v2_prerequisites",
+        },
 
         {
           tag_type: "ol",
@@ -577,6 +589,7 @@ const payload = {
         {
           tag_type: "h4",
           text: "Client Side Integration",
+          selector_uid:"v2_client_integration",
         },
         {
           tag_type: "p",
@@ -733,6 +746,7 @@ const payload = {
         {
           tag_type: "h4",
           text: "Example Implementation",
+          selector_uid:"v2_code_example",
         },
         {
           tag_type: "p",
@@ -804,6 +818,7 @@ const payload = {
         {
           tag_type: "h2",
           text: "Backend Integration",
+          selector_uid:"v2_backend_integration",
         },
         {
           tag_type: "p",
@@ -1095,7 +1110,9 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" },
+        { tag_type: "h2", text: "Prerequisite",
+          selector_uid:"v3_prerequisites",
+         },
 
         {
           tag_type: "p",
@@ -1134,6 +1151,7 @@ const payload = {
         {
           tag_type: "h2",
           text: "Project Setup",
+          selector_uid:"v3_client_integration",
         },
         {
           tag_type: "h3",
@@ -1238,7 +1256,9 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" },
+        { tag_type: "h2", text: "Prerequisite",
+          selector_uid:"v4_prerequisites",
+         },
 
         {
           tag_type: "ol",
@@ -1270,7 +1290,9 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Project setup" },
+        { tag_type: "h2", text: "Project setup",
+          selector_uid:"v4_client_integration",
+         },
 
         {
           tag_type: "h4",
@@ -1435,6 +1457,7 @@ const payload = {
         {
           tag_type: "h4",
           text: "Example Implementation",
+          selector_uid:"v4_code_example",     
         },
         {
           tag_type: "p",

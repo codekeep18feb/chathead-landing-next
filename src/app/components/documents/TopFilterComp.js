@@ -28,14 +28,15 @@ const FilterComp = ({ setSelectedFilter }) => {
     ],
   };
 
-  const handleSelectVersionType = (key) => {
-    setSelectedVersionType(key);
-    setSelectedFilter({
-      app_type: selectedAppType,
-      version_type: key,
-    });
-    setShowMobileFilters(false);
-  };
+const handleSelectVersionType = (key) => {
+  setSelectedVersionType(key);
+  setSelectedFilter((prev) => ({
+    ...prev,
+    version_type: key,
+  }));
+  setShowMobileFilters(false);
+};
+
 
   const renderOptions = (options, selectedValue, handler) => {
     return options.map(({ key, label }) => (
