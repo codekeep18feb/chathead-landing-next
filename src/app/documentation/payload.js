@@ -364,7 +364,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/header_ful.png",
+                  src: "/Asset/magicChatImg/full_header_mode.png",
                   alt: "MagicChat Full Header Implementation",
                 },
               ],
@@ -459,7 +459,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/header_less.png",
+                  src: "/Asset/magicChatImg/header_less_mode.png",
                   alt: "Custom Authentication Placement",
                 },
                 {
