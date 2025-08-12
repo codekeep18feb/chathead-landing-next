@@ -18,7 +18,7 @@ const payload = {
         },
         {
           tag_type: "p",
-          text: "To integrate chat into your application, complete the following steps:",
+          text: "To add chat to your application, follow these steps:",
         },
         {
           tag_type: "ol",
@@ -34,7 +34,7 @@ const payload = {
             },
             {
               tag_type: "li",
-              text: "Create a New App and be sure to select Version V1 during setup.",
+              text: "Create a new app and be sure to select Version `Instant Auth + Chat` (V1) during setup",
             },
             {
               tag_type: "li",
@@ -99,16 +99,395 @@ const payload = {
                   ],
                 },
               ],
-            },
+            }
+
+            ,
+
             {
-              tag_type: "div",
-              className: "custom-list-item",
-              children: [
+              tag_type: "h3",
+              text: "2. Authentication UI Placment",
+            },
+
+            {
+              tag_type: "p",
+              text: "Since you are opting for the Auth Service, you have two options for Authentication UI placement. You can choose based on your convenience.",
+            },
+
+            {
+              tag_type: "tabs",
+              items: [
+                {
+                  label: "Full Header Mode",
+                  content: [
+                    {
+                      tag_type: "h3",
+                      text: "Complete Authentication Header Solution",
+                    },
+                    {
+                      tag_type: "p",
+                      text: "When you set Third parameter (header_req) to true. MagicChat will automatically add a fully functional header to your application that includes:",
+                    },
+                    {
+                      tag_type: "ul",
+                      items: [
+                        { text: "User authentication controls (login/logout)" },
+                        { text: "User profile management" },
+                        { text: "Notification indicators" },
+                        { text: "Branding area" },
+                        { text: "Responsive navigation menu" },
+                      ],
+                    },
+                    {
+                      tag_type: "callout",
+                      type: "info",
+                      title: "Best For",
+                      children: [
+                        {
+                          tag_type: "p",
+                          text: "Applications without an existing header or those looking for a complete out-of-the-box authentication solution.",
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "img",
+                      src: "Asset/header_ful.png",
+                      alt: "MagicChat Full Header Implementation",
+                    },
+
+
+                  ],
+                },
+                {
+                  label: "Header-Less Mode",
+                  content: [
+                    {
+                      tag_type: "h3",
+                      text: "Custom Authentication Placement",
+                    },
+                    {
+                      tag_type: "p",
+                      text: "Set Third parameter (header_req) to false if you already have a header or want to place authentication components in specific locations..",
+                    },
+                    {
+                      tag_type: "img",
+                      src: "Asset/header_less.png",
+                      alt: "Custom Authentication Placement",
+                    },
+                    {
+                      tag_type: "steps",
+                      items: [
+                        {
+                          title: "Step 1: Place Authentication Components",
+                          content: [
+                            {
+                              tag_type: "p",
+                              text: "Add this container where you want authentication controls to appear:",
+                            },
+                            {
+                              tag_type: "code_with_copy",
+                              code: `<div id="tezkit-auth-area" ></div>`,
+                            },
+                          ],
+                        },
+                        {
+                          title: "Step 2: Initialize MagicChat",
+                          content: [
+                            {
+                              tag_type: "code_with_copy",
+                              code: `await window.magicchat_io.setUp(
+          "<Your App Name>", 
+          "<Your Api Key>", 
+          false, // DISABLE MAGICCHAT HEADER
+        );`,
+                              language: "javascript",
+                            },
+                          ],
+                        },
+
+                        {
+                          title: "Step 3: Customize Styling (Optional)",
+                          content: [
+                            {
+                              tag_type: "p",
+                              text: "Add CSS to match your existing design:",
+                            },
+                            {
+                              tag_type: "code_with_copy",
+                              code: `#tezkit-auth-area {
+  display: inline-flex;
+  gap: 10px; /* space between buttons */
+  align-items: center;
+}
+
+#tezkit-auth-area button {
+  background-color:orange;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#tezkit-auth-area button:hover {
+  background-color: #4338ca;
+  transform: translateY(-1px);
+}
+
+#tezkit-auth-area button:active {
+  transform: translateY(1px);
+  background-color: #3730a3;
+}`,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+
+                    {
+                      tag_type: "callout",
+                      type: "warning",
+                      title: "Important Implementation Notes",
+                      children: [
+                        {
+                          tag_type: "ul",
+                          items: [
+                            {
+                              text: "Place the container in your header or wherever authentication should appear",
+                            },
+                            {
+                              text: "Multiple containers are supported for complex layouts",
+                            },
+                            {
+                              text: "Components automatically adapt to authentication state",
+                            },
+                            {
+                              text: "Elements will render as:",
+                              sub_items: [
+                                { text: "Login/Signup buttons when logged out" },
+                                // { text: "User avatar + dropdown when logged in" },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "callout",
+                      type: "info",
+                      title: "Available Authentication Components to be styled",
+                      children: [
+                        {
+                          tag_type: "table",
+                          headers: ["Component", "Selector", "Description"],
+                          rows: [
+                            [
+                              "Login Button",
+                              ".tezkit-login-btn",
+                              "Triggers login flow",
+                            ],
+                            [
+                              "Signup Button",
+                              ".tezkit-signup-btn",
+                              "Triggers registration flow",
+                            ],
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            }
+
+            ,
+
+
+          ],
+        },
+
+        {
+          tag_type: "div",
+          className: "custom-list-item",
+          children: [
+            {
+              tag_type: "h3",
+              className: "list-item-header",
+              text: "3. Decide the placement of the Magicchat chat box in your app.",
+            },
+
+          ],
+        },
+        {
+          tag_type: "tabs",
+          items: [
+            {
+              label: "Centralized Implementation:",
+              content: [
+                {
+                  tag_type: "h4",
+                  text: "Centralized Implementation: ",
+                },
+                {
+                  tag_type: "p",
+                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
+                },
+
+
+                {
+                  tag_type: "p",
+
+                  text: "This ensures the chatbox renders consistently across all routes ",
+                },
+                {
+                  text: "and avoids code duplication across screens.",
+
+                  tag_type: "p",
+
+
+                },
+
+                {
+                  tag_type: "h4",
+                  text: "Final Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
+                },
+
+
+
                 {
                   tag_type: "div",
-                  className: "list-item-header",
-                  text: "2. MagicChat Setup Requires Two Steps",
+                  className: "sub-items-container",
+                  children: [
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h4",
+                          text: "Step 1 + Step 2 – Show the chatbox on all pages under a specific root route.",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
+                        },
+                        {
+                          tag_type: "code_with_copy",
+                          code: `
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    // Step 1: Initial setup
+    await window.magicchat_io.setUp(
+      "<MAGICCHAT_APP_NAME>",
+      "<MAGICCHAT_API_KEY>", 
+      false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
+    );
+    
+    // Step 2: Initialize chat
+    await window.magicchat_io.initialize({"app_version":"V1"});
+  });
+</script>`,
+                          language: "javascript",
+                        },
+                        {
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
+                            {
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_name",
+                                  "string",
+                                  "Unique application identifier",
+                                ],
+                                ["api_key", "string", "Base64 encoded API key"],
+                                [
+                                  "header_req",
+                                  "boolean",
+                                  "Display header with user controls",
+                                ],
+                              ],
+                            },
+                            {
+                              tag_type: "callout",
+                              type: "warning",
+                              title: "Critical Requirement",
+                              children: [
+                                {
+                                  tag_type: "p",
+                                  text: "The setUp function must execute before initialize in all cases.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+
+                  ],
                 },
+                {
+                  tag_type: "h4",
+                  text: "Example Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "View complete implementation examples in our GitHub repository:",
+                },
+                {
+                  tag_type: "a",
+                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  text: "View Implementation Example",
+                },
+              ],
+            },
+            {
+              label: "Route-Specific Implementation",
+              content: [
+                {
+                  tag_type: "h4",
+                  text: "Route-Specific Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "To limit chat functionality to specific routes:",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+
+                      text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
+                    },
+                    {
+
+                      text: "Use the initialize method on specific route components",
+                    },
+                    {
+
+                      text: "Provides more control over chat visibility"
+                    },
+                  ]
+                }
+                ,
+
+                {
+                  tag_type: "h4",
+                  text: "Final Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
+                },
+
+
                 {
                   tag_type: "div",
                   className: "sub-items-container",
@@ -122,7 +501,7 @@ const payload = {
                         },
                         {
                           tag_type: "p",
-                          text: "Execute the setUp function on your application's entry point (typically the landing page or root URL). This applies to screen users encounter before authentication.",
+                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
                         },
                         {
                           tag_type: "code",
@@ -131,9 +510,9 @@ const payload = {
 <script>
   document.addEventListener("DOMContentLoaded", async function () {
     await window.magicchat_io.setUp(
-      "<MAGICCHAT_APP_NAME>", // app_name
-      "<MAGICCHAT_API_KEY>", // api_key
-      false, // header_req (true by default)
+      "<MAGICCHAT_APP_NAME>", 
+      "<MAGICCHAT_API_KEY>", 
+      true, // for 'Full Header Mode' pass true(true by default)
     );
   });
 </script>`,
@@ -228,295 +607,96 @@ const payload = {
                     },
                   ],
                 },
+
+                //                 {
+                //                   tag_type: "h3",
+                //                   text: "Running `setUp` at initial load.",
+                //                 },
+                //                 {
+                //                   tag_type: "code_with_copy",
+                //                   code: `
+                // <script>
+                //   document.addEventListener("DOMContentLoaded", async function () {
+                //     // Step 1: Initial setup
+                //     await window.magicchat_io.setUp(
+                //       "<MAGICCHAT_APP_NAME>",
+                //       "<MAGICCHAT_API_KEY>", 
+                //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
+                //     );
+                //   });
+                // </script>`,
+                //                   language: "javascript",
+                //                 },
+
+
+                //                 {
+                //                   tag_type: "h3",
+                //                   text: "Running `initialize` at the screen we would like to see chat box to appear.",
+                //                 },
+
+                //                 {
+                //                   tag_type: "code_with_copy",
+                //                   code: `
+                // <script>
+                //   document.addEventListener("DOMContentLoaded", async function () {
+                //     // Step 2: Initialize chat
+                //     await window.magicchat_io.initialize({"app_version":"V1"});
+                //   });
+                // </script>`,
+                //                   language: "javascript",
+                //                 },
+                {
+                  tag_type: "h4",
+                  text: "Example Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "View complete implementation examples in our GitHub repository:",
+                },
+                {
+                  tag_type: "a",
+                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  text: "View Implementation Example",
+                },
               ],
             },
           ],
-        },
-        {
-          tag_type: "h4",
-          text: "Final Implementation",
-        },
-        {
-          tag_type: "p",
-          text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
-        },
-        {
-          tag_type: "code_with_copy",
-          code: `
-<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    // Step 1: Initial setup
-    await window.magicchat_io.setUp(
-      "<MAGICCHAT_APP_NAME>",
-      "<MAGICCHAT_API_KEY>", 
-      false
-    );
-    
-    // Step 2: Initialize chat
-    await window.magicchat_io.initialize({"app_version":"V1"});
-  });
-</script>`,
-          language: "javascript",
-        },
-        {
-          tag_type: "h4",
-          text: "Example Implementation",
-        },
-        {
-          tag_type: "p",
-          text: "View complete implementation examples in our GitHub repository:",
-        },
-        {
-          tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
-          text: "View Implementation Example",
         },
 
-        {
-          tag_type: "tabs",
-          items: [
-            {
-              label: "Centralized Implementation",
-              content: [
-                {
-                  tag_type: "h4",
-                  text: "Centralized Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route):",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "Combine both setUp and initialize logic in a single location",
-                    },
-                    {
-                      text: "This ensures the chatbox renders consistently across all routes",
-                    },
-                    { text: "Avoids code duplication across screens" },
-                  ],
-                },
-              ],
-            },
-            {
-              label: "Route-Specific Implementation",
-              content: [
-                {
-                  tag_type: "h4",
-                  text: "Route-Specific Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "To limit chat functionality to specific routes:",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
-                    },
-                    {
-                      text: "Use the initialize method on specific route components",
-                    },
-                    { text: "Provides more control over chat visibility" },
-                  ],
-                },
-              ],
-            },
-          ],
+          {
+          tag_type: "p",
+          text: "Successfully onboarded users will appear in the MagicChat Admin Panel with their associated applications.",
         },
         {
-          tag_type: "tabs",
+          tag_type: "steps",
           items: [
             {
-              label: "Full Header Mode",
+              title: "Admin Panel - Onboarded Users",
               content: [
                 {
-                  tag_type: "h3",
-                  text: "Complete Authentication Header Solution",
+                  tag_type: "img",
+                  src: "Asset/onboarded_user.png",
+                  alt: "MagicChat Admin Panel showing onboarded users",
                 },
+              ],
+            },
+            {
+              title: "Admin Panel - No Users",
+              content: [
                 {
                   tag_type: "p",
-                  text: "When you set `header_req` to `true`, MagicChat will automatically add a fully functional header to your application that includes:",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    { text: "User authentication controls (login/logout)" },
-                    { text: "User profile management" },
-                    { text: "Notification indicators" },
-                    { text: "Branding area" },
-                    { text: "Responsive navigation menu" },
-                  ],
-                },
-                {
-                  tag_type: "callout",
-                  type: "info",
-                  title: "Best For",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Applications without an existing header or those looking for a complete out-of-the-box authentication solution.",
-                    },
-                  ],
+                  text: "Applications without onboarded users will display an empty state:",
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/header_ful.png",
-                  alt: "MagicChat Full Header Implementation",
-                },
-              ],
-            },
-            {
-              label: "Header-Less Mode",
-              content: [
-                {
-                  tag_type: "h3",
-                  text: "Custom Authentication Placement",
-                },
-                {
-                  tag_type: "p",
-                  text: "Set `header_req` to `false` when you already have a header or want to place authentication components in specific locations.",
-                },
-                {
-                  tag_type: "steps",
-                  items: [
-                    {
-                      title: "Step 1: Initialize MagicChat",
-                      content: [
-                        {
-                          tag_type: "code_with_copy",
-                          code: `await window.magicchat_io.setUp(
-          "<Your App Name>", 
-          "<Your Api Key>", 
-          JSON.stringify({
-            "chat_opener_theme": {
-              "backgroundColor": "rgb(41, 48, 78)" // Chat button color
-            }
-          }),
-          false, // DISABLE MAGICCHAT HEADER
-          "/dashboard" // Redirect after login
-        );`,
-                          language: "javascript",
-                        },
-                      ],
-                    },
-                    {
-                      title: "Step 2: Place Authentication Components",
-                      content: [
-                        {
-                          tag_type: "p",
-                          text: "Add this container where you want authentication controls to appear:",
-                        },
-                        {
-                          tag_type: "code_with_copy",
-                          code: `<div id="tezkit-auth-area" ></div>`,
-                        },
-                      ],
-                    },
-                    {
-                      title: "Step 3: Customize Styling (Optional)",
-                      content: [
-                        {
-                          tag_type: "p",
-                          text: "Add CSS to match your existing design:",
-                        },
-                        {
-                          tag_type: "code_with_copy",
-                          code: `#tezkit-auth-area {
-  display: inline-flex;
-  gap: 10px; /* space between buttons */
-  align-items: center;
-}
-
-#tezkit-auth-area button {
-  background-color:orange;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-#tezkit-auth-area button:hover {
-  background-color: #4338ca;
-  transform: translateY(-1px);
-}
-
-#tezkit-auth-area button:active {
-  transform: translateY(1px);
-  background-color: #3730a3;
-}`,
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  tag_type: "img",
-                  src: "Asset/header_less.png",
-                  alt: "Custom Authentication Placement",
-                },
-                {
-                  tag_type: "callout",
-                  type: "warning",
-                  title: "Important Implementation Notes",
-                  children: [
-                    {
-                      tag_type: "ul",
-                      items: [
-                        {
-                          text: "Place the container in your header or wherever authentication should appear",
-                        },
-                        {
-                          text: "Multiple containers are supported for complex layouts",
-                        },
-                        {
-                          text: "Components automatically adapt to authentication state",
-                        },
-                        {
-                          text: "Elements will render as:",
-                          sub_items: [
-                            { text: "Login/Signup buttons when logged out" },
-                            // { text: "User avatar + dropdown when logged in" },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  tag_type: "callout",
-                  type: "info",
-                  title: "Available Authentication Components to be styled",
-                  children: [
-                    {
-                      tag_type: "table",
-                      headers: ["Component", "Selector", "Description"],
-                      rows: [
-                        [
-                          "Login Button",
-                          ".tezkit-login-btn",
-                          "Triggers login flow",
-                        ],
-                        [
-                          "Signup Button",
-                          ".tezkit-signup-btn",
-                          "Triggers registration flow",
-                        ],
-                      ],
-                    },
-                  ],
+                  src: "Asset/no_users_admin.png",
+                  alt: "MagicChat Admin Panel showing no onboarded users",
                 },
               ],
             },
           ],
         },
+        
         {
           tag_type: "video",
           src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
@@ -632,15 +812,67 @@ const payload = {
                 },
               ],
             },
+           
+          ],
+        },
+
+       
+        
+
+
+
+        {
+          tag_type: "div",
+          className: "custom-list-item",
+          children: [
             {
-              tag_type: "div",
-              className: "custom-list-item",
-              children: [
+              tag_type: "h3",
+              className: "list-item-header",
+              text: "2. Decide the placement of the Magicchat chat box in your app.",
+            },
+
+          ],
+        },
+        {
+          tag_type: "tabs",
+          items: [
+            {
+              label: "Centralized Implementation:",
+              content: [
                 {
-                  tag_type: "div",
-                  className: "list-item-header ",
-                  text: "2. Running Magicchat Setup Requires two steps",
+                  tag_type: "h4",
+                  text: "Centralized Implementation: ",
                 },
+                {
+                  tag_type: "p",
+                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
+                },
+
+
+                {
+                  tag_type: "p",
+
+                  text: "This ensures the chatbox renders consistently across all routes ",
+                },
+                {
+                  text: "and avoids code duplication across screens.",
+
+                  tag_type: "p",
+
+
+                },
+
+                {
+                  tag_type: "h4",
+                  text: "Final Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
+                },
+
+
+
                 {
                   tag_type: "div",
                   className: "sub-items-container",
@@ -650,67 +882,15 @@ const payload = {
                       children: [
                         {
                           tag_type: "h4",
-                          text: "Step 1 – Initialize on first Logged-Out Screens",
+                          text: "Step 1 + Step 2 – Show the chatbox on all pages under a specific root route.",
                         },
                         {
                           tag_type: "p",
-                          text: "Run the setUp function on the very first screen, where user lands first when they come to the product.This typically applies to your app's landing page or root URL (/).",
+                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
                         },
                         {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: ` await window.magicchat_io.setUp(
-                "<MAGICCHAT_APP_NAME>", // app_name
-                "<MAGICCHAT_API_KEY>", // api_key
-              false, // header_req (true by default)
-              );`,
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h4",
-                          text: "Step 2 – Initialize on pages wherever you want to show chat icon to appear.",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "Run the initialize function on any screen  where you want the chatbot to appear (e.g., bottom right corner).",
-                        },
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: `
-   <script>
-      document.addEventListener("DOMContentLoaded", async function () {
-
-            await window.magicchat_io.initialize({"app_version":"V2"});
-
-
-      });
-    </script>    `,
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          tag_type: "h4",
-          text: "Final Implementation",
-        },
-        {
-          tag_type: "p",
-          text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
-        },
-        {
-          tag_type: "code_with_copy",
-          code: `
+                          tag_type: "code_with_copy",
+                          code: `
 <script>
   document.addEventListener("DOMContentLoaded", async () => {
     const profileData = await window.profileDataPromise; // Change this line to match how your application retrieves profile data
@@ -728,47 +908,56 @@ const payload = {
     }
   });
 </script>`,
-          language: "javascript",
-        },
-        {
-          tag_type: "h4",
-          text: "Example Implementation",
-        },
-        {
-          tag_type: "p",
-          text: "View complete implementation examples in our GitHub repository:",
-        },
-        {
-          tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v2/blob/c92055559f06e1a06154d81dc777f07e0d6dffce/templates/base.html#L158",
-          text: "View Implementation Example",
-        },
+                          language: "javascript",
+                        },
+                        {
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
+                            {
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_name",
+                                  "string",
+                                  "Unique application identifier",
+                                ],
+                                ["api_key", "string", "Base64 encoded API key"],
+                                
+                              ],
+                            },
+                            {
+                              tag_type: "callout",
+                              type: "warning",
+                              title: "Critical Requirement",
+                              children: [
+                                {
+                                  tag_type: "p",
+                                  text: "The setUp function must execute before initialize in all cases.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
 
-        {
-          tag_type: "tabs",
-          items: [
-            {
-              label: "Centralized Implementation",
-              content: [
+                  ],
+                },
                 {
                   tag_type: "h4",
-                  text: "Centralized Implementation",
+                  text: "Example Implementation",
                 },
                 {
                   tag_type: "p",
-                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route):",
+                  text: "View complete implementation examples in our GitHub repository:",
                 },
                 {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "Combine both setUp and initialize logic in a single location",
-                    },
-                    {
-                      text: "This ensures the chatbox renders consistently across all routes",
-                    },
-                    { text: "Avoids code duplication across screens" },
-                  ],
+                  tag_type: "a",
+                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  text: "View Implementation Example",
                 },
               ],
             },
@@ -787,19 +976,218 @@ const payload = {
                   tag_type: "ul",
                   items: [
                     {
+
                       text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
                     },
                     {
+
                       text: "Use the initialize method on specific route components",
                     },
-                    { text: "Provides more control over chat visibility" },
+                    {
+
+                      text: "Provides more control over chat visibility"
+                    },
+                  ]
+                }
+                ,
+
+                {
+                  tag_type: "h4",
+                  text: "Final Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
+                },
+
+
+                {
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h4",
+                          text: "Step 1 – Setup on Initial Landing Pages",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
+                        },
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: `
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const profileData = await window.profileDataPromise; // Change this line to match how your application retrieves profile data
+
+    if (!profileData) {
+      await window.magicchat_io.setUp(
+        "v2_app1",
+        "bGVnYWwxMTFfX1NFUFJBVE9SX192Ml9hcHAx"
+      );
+    } 
+  });
+</script>`,
+                        },
+                        {
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
+                            {
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_name",
+                                  "string",
+                                  "Unique application identifier",
+                                ],
+                                ["api_key", "string", "Base64 encoded API key"],
+                                
+                              ],
+                            },
+                            {
+                              tag_type: "callout",
+                              type: "warning",
+                              title: "Critical Requirement",
+                              children: [
+                                {
+                                  tag_type: "p",
+                                  text: "The setUp function must execute before initialize in all cases.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h4",
+                          text: "Step 2 – Initialize Chat on Target Pages",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "Execute the initialize function on any page where the chat interface should appear (e.g., in the bottom-right corner).",
+                        },
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: `
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const profileData = await window.profileDataPromise; // Change this line to match how your application retrieves profile data
+
+    if (profileData) {
+      await window.magicchat_io.initialize({
+        app_version: "V2",
+        uid: profileData.username,
+      });
+    }
+  });
+</script>`,
+                        },
+                        {
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
+                            {
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_version",
+                                  "string",
+                                  "MagicChat application version",
+                                ],
+                              ],
+                            },
+                            {
+                              tag_type: "mesgTip",
+                              title: "Version Validation",
+                              children: [
+                                {
+                                  tag_type: "p",
+                                  text: "Verify the correct app_version is specified.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   ],
+                },
+
+                //                 {
+                //                   tag_type: "h3",
+                //                   text: "Running `setUp` at initial load.",
+                //                 },
+                //                 {
+                //                   tag_type: "code_with_copy",
+                //                   code: `
+                // <script>
+                //   document.addEventListener("DOMContentLoaded", async function () {
+                //     // Step 1: Initial setup
+                //     await window.magicchat_io.setUp(
+                //       "<MAGICCHAT_APP_NAME>",
+                //       "<MAGICCHAT_API_KEY>", 
+                //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
+                //     );
+                //   });
+                // </script>`,
+                //                   language: "javascript",
+                //                 },
+
+
+                //                 {
+                //                   tag_type: "h3",
+                //                   text: "Running `initialize` at the screen we would like to see chat box to appear.",
+                //                 },
+
+                //                 {
+                //                   tag_type: "code_with_copy",
+                //                   code: `
+                // <script>
+                //   document.addEventListener("DOMContentLoaded", async function () {
+                //     // Step 2: Initialize chat
+                //     await window.magicchat_io.initialize({"app_version":"V1"});
+                //   });
+                // </script>`,
+                //                   language: "javascript",
+                //                 },
+                {
+                  tag_type: "h4",
+                  text: "Example Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "View complete implementation examples in our GitHub repository:",
+                },
+                {
+                  tag_type: "a",
+                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  text: "View Implementation Example",
                 },
               ],
             },
           ],
         },
+       
+        
 
+           {
+          tag_type: "h1",
+          text: "Connecting Magicchat to Your Product’s Authentication",
+        },
         //Backend side integration
         {
           tag_type: "h2",
@@ -1330,15 +1718,68 @@ const payload = {
                 },
               ],
             },
+           
+            
+          ],
+        },
+
+       
+       
+{
+          tag_type: "div",
+          className: "custom-list-item",
+          children: [
             {
-              tag_type: "div",
-              className: "custom-list-item",
-              children: [
+              tag_type: "h3",
+              className: "list-item-header",
+              text: "2. Decide the placement of the Magicchat chat box in your app.",
+            },
+
+          ],
+        },
+
+
+
+        {
+          tag_type: "tabs",
+          items: [
+            {
+              label: "Centralized Implementation:",
+              content: [
                 {
-                  tag_type: "div",
-                  className: "list-item-header ",
-                  text: "2. Running Magicchat Setup Requires two steps",
+                  tag_type: "h4",
+                  text: "Centralized Implementation: ",
                 },
+                {
+                  tag_type: "p",
+                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
+                },
+
+
+                {
+                  tag_type: "p",
+
+                  text: "This ensures the chatbox renders consistently across all routes ",
+                },
+                {
+                  text: "and avoids code duplication across screens.",
+
+                  tag_type: "p",
+
+
+                },
+
+                {
+                  tag_type: "h4",
+                  text: "Final Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
+                },
+
+
+
                 {
                   tag_type: "div",
                   className: "sub-items-container",
@@ -1348,129 +1789,77 @@ const payload = {
                       children: [
                         {
                           tag_type: "h4",
-                          text: "Step 1 – Initialize on first Logged-Out Screens",
+                          text: "Step 1 + Step 2 – Show the chatbox on all pages under a specific root route.",
                         },
                         {
                           tag_type: "p",
-                          text: "Run the setUp function on the very first screen, where user lands first when they come to the product.This typically applies to your app's landing page or root URL (/).",
+                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
                         },
                         {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: `
-    <script>
-      document.addEventListener("DOMContentLoaded", async function () {
-        const token = localStorage.getItem("tezkit_token");
-        if (!token) {
-          await window.magicchat_io.setUp(
-            "<YOUR_MAGICCHAT_API_NAME>", 
-            "<YOUR_MAGICCHAT_API_KEY>"
-          );
-
-        } 
-      });
-    </script> `,
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h4",
-                          text: "Step 2 – Initialize on pages wherever you want to show chat icon to appear.",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "Run the initialize function on any screen  where you want the chatbot to appear (e.g., bottom right corner).",
-                        },
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: `
-     <script>
-      document.addEventListener("DOMContentLoaded", async function () {
-        const token = "NO_AUTH_REQUIRED" 
-        if (token) {
-          await window.magicchat_io.initialize(token);
-        } 
-      });
-    </script>                      `,
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          tag_type: "h4",
-          text: "Final Implementation",
-        },
-        {
-          tag_type: "p",
-          text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
-        },
-        {
-          tag_type: "code_with_copy",
-          code: `
+                          tag_type: "code_with_copy",
+                          code: `
 <script>
   document.addEventListener("DOMContentLoaded", async function () {
     // Step 1: Initial setup
     await window.magicchat_io.setUp(
       "<MAGICCHAT_APP_NAME>",
       "<MAGICCHAT_API_KEY>", 
-      false
     );
     
     // Step 2: Initialize chat
     await window.magicchat_io.initialize({"app_version":"V4"});
   });
 </script>`,
-          language: "javascript",
-        },
-        {
-          tag_type: "h4",
-          text: "Example Implementation",
-        },
-        {
-          tag_type: "p",
-          text: "View complete implementation examples in our GitHub repository:",
-        },
-        {
-          tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v1/blob/dcd14cf06de9b13dd7e79e59c499e7bf294c8cb8/index.html#L39",
-          text: "View Implementation Example",
-        },
+                          language: "javascript",
+                        },
+                        {
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
+                            {
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_name",
+                                  "string",
+                                  "Unique application identifier",
+                                ],
+                                ["api_key", "string", "Base64 encoded API key"],
+                               
+                              ],
+                            },
+                            {
+                              tag_type: "callout",
+                              type: "warning",
+                              title: "Critical Requirement",
+                              children: [
+                                {
+                                  tag_type: "p",
+                                  text: "The setUp function must execute before initialize in all cases.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
 
-        {
-          tag_type: "tabs",
-          items: [
-            {
-              label: "Centralized Implementation",
-              content: [
+                  ],
+                },
                 {
                   tag_type: "h4",
-                  text: "Centralized Implementation",
+                  text: "Example Implementation",
                 },
                 {
                   tag_type: "p",
-                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route):",
+                  text: "View complete implementation examples in our GitHub repository:",
                 },
                 {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "Combine both setUp and initialize logic in a single location",
-                    },
-                    {
-                      text: "This ensures the chatbox renders consistently across all routes",
-                    },
-                    { text: "Avoids code duplication across screens" },
-                  ],
+                  tag_type: "a",
+                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  text: "View Implementation Example",
                 },
               ],
             },
@@ -1489,13 +1878,201 @@ const payload = {
                   tag_type: "ul",
                   items: [
                     {
+
                       text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
                     },
                     {
+
                       text: "Use the initialize method on specific route components",
                     },
-                    { text: "Provides more control over chat visibility" },
+                    {
+
+                      text: "Provides more control over chat visibility"
+                    },
+                  ]
+                }
+                ,
+
+                {
+                  tag_type: "h4",
+                  text: "Final Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
+                },
+
+
+                {
+                  tag_type: "div",
+                  className: "sub-items-container",
+                  children: [
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h4",
+                          text: "Step 1 – Setup on Initial Landing Pages",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
+                        },
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: `
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    // Step 1: Initial setup
+    await window.magicchat_io.setUp(
+      "<MAGICCHAT_APP_NAME>",
+      "<MAGICCHAT_API_KEY>", 
+    );
+  });
+</script>`,
+                        },
+                        {
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
+                            {
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_name",
+                                  "string",
+                                  "Unique application identifier",
+                                ],
+                                ["api_key", "string", "Base64 encoded API key"],
+                                [
+                                  "header_req",
+                                  "boolean",
+                                  "Display header with user controls",
+                                ],
+                              ],
+                            },
+                            {
+                              tag_type: "callout",
+                              type: "warning",
+                              title: "Critical Requirement",
+                              children: [
+                                {
+                                  tag_type: "p",
+                                  text: "The setUp function must execute before initialize in all cases.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tag_type: "div",
+                      children: [
+                        {
+                          tag_type: "h4",
+                          text: "Step 2 – Initialize Chat on Target Pages",
+                        },
+                        {
+                          tag_type: "p",
+                          text: "Execute the initialize function on any page where the chat interface should appear (e.g., in the bottom-right corner).",
+                        },
+                        {
+                          tag_type: "code",
+                          show_copy: true,
+                          text: `
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    // Step 2: Initialize chat
+    await window.magicchat_io.initialize({"app_version":"V4"});
+  });
+</script>`,
+                        },
+                        {
+                          tag_type: "callout",
+                          type: "info",
+                          title: "Parameter Details",
+                          children: [
+                            {
+                              tag_type: "table",
+                              headers: ["Parameter", "Type", "Description"],
+                              rows: [
+                                [
+                                  "app_version",
+                                  "string",
+                                  "MagicChat application version",
+                                ],
+                              ],
+                            },
+                            {
+                              tag_type: "mesgTip",
+                              title: "Version Validation",
+                              children: [
+                                {
+                                  tag_type: "p",
+                                  text: "Verify the correct app_version is specified.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   ],
+                },
+
+                //                 {
+                //                   tag_type: "h3",
+                //                   text: "Running `setUp` at initial load.",
+                //                 },
+                //                 {
+                //                   tag_type: "code_with_copy",
+                //                   code: `
+                // <script>
+                //   document.addEventListener("DOMContentLoaded", async function () {
+                //     // Step 1: Initial setup
+                //     await window.magicchat_io.setUp(
+                //       "<MAGICCHAT_APP_NAME>",
+                //       "<MAGICCHAT_API_KEY>", 
+                //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
+                //     );
+                //   });
+                // </script>`,
+                //                   language: "javascript",
+                //                 },
+
+
+                //                 {
+                //                   tag_type: "h3",
+                //                   text: "Running `initialize` at the screen we would like to see chat box to appear.",
+                //                 },
+
+                //                 {
+                //                   tag_type: "code_with_copy",
+                //                   code: `
+                // <script>
+                //   document.addEventListener("DOMContentLoaded", async function () {
+                //     // Step 2: Initialize chat
+                //     await window.magicchat_io.initialize({"app_version":"V1"});
+                //   });
+                // </script>`,
+                //                   language: "javascript",
+                //                 },
+                {
+                  tag_type: "h4",
+                  text: "Example Implementation",
+                },
+                {
+                  tag_type: "p",
+                  text: "View complete implementation examples in our GitHub repository:",
+                },
+                {
+                  tag_type: "a",
+                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  text: "View Implementation Example",
                 },
               ],
             },

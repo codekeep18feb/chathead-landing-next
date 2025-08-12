@@ -96,7 +96,7 @@ const Document = () => {
         <ContentRenderer
           key={4444}
           content={content}
-          // current_mode={"HEADERLESS"}
+        // current_mode={"HEADERLESS"}
         />
       </div>
     );
@@ -166,16 +166,14 @@ const Document = () => {
                 {renderContent()}
                 <div className={styles.integration_successful}>
                   <p>
-                    Congratulations Integration Should be Successfully Done by
-                    now!
+                    Congratulations! Your integration should now be successful!
                   </p>
                   <p>
                     Your users can now sign up and seamlessly chat with the
                     Admin Team, enabling two-way communication.
                   </p>
                   <p>
-                    Please Contact Our Support Team if you faced any issues.
-                    Thank You!
+                    Please contact our Support Team if you encounter any issues. Thank you!
                   </p>
                 </div>
               </>
