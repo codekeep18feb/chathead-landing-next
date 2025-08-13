@@ -771,6 +771,27 @@ const payload = {
       ],
     },
 
+      {
+      tag_type: "callout",
+      type: "info",
+      title: "Starter Code",
+      children: [
+         {
+          tag_type: "p",
+          text: "Clone the starter repo to use it on.",
+        },        {
+          tag_type: "h4",
+          text: "git clone -b starter https://github.com/magicchat-core/example__v2.git",
+        },
+
+        {
+          tag_type: "a",
+          href: "https://github.com/magicchat-core/example__v2/blob/7ec2a65b53196c872248887981c887f6e716e82a/index.html#L1",
+          text: "Starter Code",
+        },
+      ],
+    },
+
     {
       tag_type: "div",
       children: [
@@ -1196,7 +1217,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/magicchat-core/example__v2/blob/49ddc1e61d1c5c22dc551efad4883b570c4db531/templates/base.html#L158",
                   text: "View Implementation Example",
                 },
               ],
@@ -1537,7 +1558,6 @@ const payload = {
         },
       ],
     },
-
     {
       tag_type: "div",
       children: [
@@ -1673,6 +1693,27 @@ const payload = {
               text: "Navigate to the App Details page and note your: , App Name, API Key, Tenant ID",
             },
           ],
+        },
+      ],
+    },
+
+      {
+      tag_type: "callout",
+      type: "info",
+      title: "Starter Code",
+      children: [
+         {
+          tag_type: "p",
+          text: "Clone the starter repo to use it on.",
+        },        {
+          tag_type: "h4",
+          text: "git clone -b starter https://github.com/magicchat-core/example__v4.git",
+        },
+
+        {
+          tag_type: "a",
+          href: "https://github.com/magicchat-core/example__v4/blob/2d861f59be69b1a1355593435917cde8a1d90fad/index.html#L1",
+          text: "Starter Code",
         },
       ],
     },
@@ -1880,7 +1921,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/magicchat-core/example__v4/blob/2d861f59be69b1a1355593435917cde8a1d90fad/index.html#L39",
                   text: "View Implementation Example",
                 },
               ],
