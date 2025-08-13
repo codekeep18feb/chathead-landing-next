@@ -44,6 +44,28 @@ const payload = {
         },
       ],
     },
+
+    {
+      tag_type: "callout",
+      type: "info",
+      title: "Starter Code",
+      children: [
+         {
+          tag_type: "p",
+          text: "Clone the starter repo to use it on.",
+        },        {
+          tag_type: "h4",
+          text: "git clone -b starter https://github.com/magicchat-core/example__v1.git",
+        },
+
+        {
+          tag_type: "a",
+          href: "https://github.com/magicchat-core/example__v1/blob/b8e477db9d9d00d6c183b338c0b8b9cab4a7b8a3/index.html#L1",
+          text: "Starter Code",
+        },
+      ],
+    },
+
     {
       tag_type: "div",
       children: [
@@ -663,7 +685,7 @@ const payload = {
           ],
         },
 
-          {
+        {
           tag_type: "p",
           text: "Successfully onboarded users will appear in the MagicChat Admin Panel with their associated applications.",
         },
@@ -696,7 +718,7 @@ const payload = {
             },
           ],
         },
-        
+
         {
           tag_type: "video",
           src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
@@ -812,12 +834,12 @@ const payload = {
                 },
               ],
             },
-           
+
           ],
         },
 
-       
-        
+
+
 
 
 
@@ -925,7 +947,7 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-                                
+
                               ],
                             },
                             {
@@ -1048,7 +1070,7 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-                                
+
                               ],
                             },
                             {
@@ -1181,10 +1203,10 @@ const payload = {
             },
           ],
         },
-       
-        
 
-           {
+
+
+        {
           tag_type: "h1",
           text: "Connecting Magicchat to Your Product’s Authentication",
         },
@@ -1718,14 +1740,14 @@ const payload = {
                 },
               ],
             },
-           
-            
+
+
           ],
         },
 
-       
-       
-{
+
+
+        {
           tag_type: "div",
           className: "custom-list-item",
           children: [
@@ -1827,7 +1849,7 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-                               
+
                               ],
                             },
                             {
