@@ -27,7 +27,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div:nth-child(1) > h2"
+                  selector_uid: "v1_prerequisites" ,
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div:nth-child(1) > h2"
                 }
               },
               {
@@ -36,7 +37,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
+                  selector_uid: "v1_client_integration", 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
                 }
               },
               {
@@ -45,7 +47,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div.renderingToolSty_callout__7ZUMr.renderingToolSty_callout-info__gccVq > div:nth-child(2) > div > button"
+                  selector_uid: "v1_code_example" ,
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div.renderingToolSty_callout__7ZUMr.renderingToolSty_callout-info__gccVq > div:nth-child(2) > div > button"
                 }
               },
              
@@ -80,7 +83,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
+                  selector_uid: "v2_prerequisites" ,
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
                 }
               },
               {
@@ -89,7 +93,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
+                  selector_uid: "v2_client_integration" 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
                 }
               },
               {
@@ -98,7 +103,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
+                  selector_uid: "v2_code_example" 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
                 }
               },
               {
@@ -107,7 +113,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(6)"
+                  selector_uid: "v2_backend_integration"  ,
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(6)"
                 }
               },
               
@@ -141,7 +148,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
+                  selector_uid: "v3_prerequisites", 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
                 }
               },
               {
@@ -150,7 +158,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
+                  selector_uid: "v3_client_integration", 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
                 }
               },
               
@@ -186,7 +195,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
+                  selector_uid: "v4_prerequisites" 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
                 }
               },
               {
@@ -195,7 +205,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
+                  selector_uid: "v4_client_integration" 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
                 }
               },
               {
@@ -204,7 +215,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
+                  selector_uid: "v4_code_example" 
+                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
                 }
               },
               
