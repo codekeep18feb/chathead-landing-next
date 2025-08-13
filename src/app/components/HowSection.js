@@ -85,24 +85,22 @@ const tabData = [
 
 const demoImages = {
   "Instant Auth + Chat": [
-    "/Asset/beforeChatAdd.png",
-    "/Asset/afterChatAdd.png",
-    "/Asset/afterModalOpen.png",
+    "/Asset/magicChatImg/v1_beforeChatAdd.png",
+    "/Asset/magicChatImg/v1_afterChatAdd.png",
+    "/Asset/magicChatImg/afterModalOpen.png",
   ],
   "BYO Auth Chat": [
-    "/Asset/beforeChatAdd.png",
-    "/Asset/afterChatAdd.png",
-    "/Asset/afterModalOpen.png",
+    "/Asset/magicChatImg/v2_beforeChatAdd.png",
+    "/Asset/magicChatImg/v2_afterChatAdd.png",
+    // "/Asset/magicChatImg/afterModalOpen.png",
   ],
   "No Auth Only Chat": [
-    "/Asset/beforeChatAdd.png",
-    "/Asset/afterChatAdd.png",
-    "/Asset/afterModalOpen.png",
+    "/Asset/magicChatImg/v4_beforeChatAdd.png",
+    "/Asset/magicChatImg/v4_afterChatAdd.png",
   ],
   "CMS-Ready Chat": [
-    "/Asset/beforeChatAdd.png",
-    "/Asset/afterChatAdd.png",
-    "/Asset/afterModalOpen.png",
+    "/Asset/magicChatImg/v3_beforeChatAdd.png",
+    "/Asset/magicChatImg/v3_afterChatAdd.png",
   ],
 };
 
