@@ -15,6 +15,7 @@ const payload = {
         {
           tag_type: "h2",
           text: "Prerequisites",
+          selector_uid: "v1_prerequisites",
         },
         {
           tag_type: "p",
@@ -50,10 +51,11 @@ const payload = {
       type: "info",
       title: "Starter Code",
       children: [
-         {
+        {
           tag_type: "p",
           text: "Clone the starter repo to use it on.",
-        },        {
+        },
+        {
           tag_type: "h4",
           text: "git clone -b starter https://github.com/magicchat-core/example__v1.git",
         },
@@ -72,6 +74,7 @@ const payload = {
         {
           tag_type: "h2",
           text: "Project Setup",
+          selector_uid: "v1_client_integration",
         },
         {
           tag_type: "p",
@@ -121,9 +124,7 @@ const payload = {
                   ],
                 },
               ],
-            }
-
-            ,
+            },
 
             {
               tag_type: "h3",
@@ -175,8 +176,6 @@ const payload = {
                       src: "Asset/magicChatImg/full_header_mode.png",
                       alt: "MagicChat Full Header Implementation",
                     },
-
-
                   ],
                 },
                 {
@@ -288,7 +287,9 @@ const payload = {
                             {
                               text: "Elements will render as:",
                               sub_items: [
-                                { text: "Login/Signup buttons when logged out" },
+                                {
+                                  text: "Login/Signup buttons when logged out",
+                                },
                                 // { text: "User avatar + dropdown when logged in" },
                               ],
                             },
@@ -322,11 +323,7 @@ const payload = {
                   ],
                 },
               ],
-            }
-
-            ,
-
-
+            },
           ],
         },
 
@@ -339,7 +336,6 @@ const payload = {
               className: "list-item-header",
               text: "3. Decide the placement of the Magicchat chat box in your app.",
             },
-
           ],
         },
         {
@@ -357,7 +353,6 @@ const payload = {
                   text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
                 },
 
-
                 {
                   tag_type: "p",
 
@@ -367,8 +362,6 @@ const payload = {
                   text: "and avoids code duplication across screens.",
 
                   tag_type: "p",
-
-
                 },
 
                 {
@@ -379,8 +372,6 @@ const payload = {
                   tag_type: "p",
                   text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
                 },
-
-
 
                 {
                   tag_type: "div",
@@ -452,12 +443,12 @@ const payload = {
                         },
                       ],
                     },
-
                   ],
                 },
                 {
                   tag_type: "h4",
                   text: "Example Implementation",
+                  selector_uid: "v1_code_example",
                 },
                 {
                   tag_type: "p",
@@ -485,21 +476,16 @@ const payload = {
                   tag_type: "ul",
                   items: [
                     {
-
                       text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
                     },
                     {
-
                       text: "Use the initialize method on specific route components",
                     },
                     {
-
-                      text: "Provides more control over chat visibility"
+                      text: "Provides more control over chat visibility",
                     },
-                  ]
-                }
-                ,
-
+                  ],
+                },
                 {
                   tag_type: "h4",
                   text: "Final Implementation",
@@ -508,7 +494,6 @@ const payload = {
                   tag_type: "p",
                   text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
                 },
-
 
                 {
                   tag_type: "div",
@@ -642,14 +627,13 @@ const payload = {
                 //     // Step 1: Initial setup
                 //     await window.magicchat_io.setUp(
                 //       "<MAGICCHAT_APP_NAME>",
-                //       "<MAGICCHAT_API_KEY>", 
+                //       "<MAGICCHAT_API_KEY>",
                 //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
                 //     );
                 //   });
                 // </script>`,
                 //                   language: "javascript",
                 //                 },
-
 
                 //                 {
                 //                   tag_type: "h3",
@@ -742,7 +726,9 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" },
+        { tag_type: "h2", text: "Prerequisite",
+          selector_uid: "v2_prerequisites",
+          },
 
         {
           tag_type: "ol",
@@ -772,9 +758,33 @@ const payload = {
     },
 
     {
+      tag_type: "callout",
+      type: "info",
+      title: "Starter Code",
+      children: [
+        {
+          tag_type: "p",
+          text: "Clone the starter repo to use it on.",
+        },
+        {
+          tag_type: "h4",
+          text: "git clone -b starter https://github.com/magicchat-core/example__v2.git",
+        },
+
+        {
+          tag_type: "a",
+          href: "https://github.com/magicchat-core/example__v2/blob/7ec2a65b53196c872248887981c887f6e716e82a/index.html#L1",
+          text: "Starter Code",
+        },
+      ],
+    },
+
+    {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Project setup" },
+        { tag_type: "h2", text: "Project setup", 
+          selector_uid: "v2_client_integration",
+         },
 
         {
           tag_type: "h4",
@@ -834,14 +844,8 @@ const payload = {
                 },
               ],
             },
-
           ],
         },
-
-
-
-
-
 
         {
           tag_type: "div",
@@ -852,7 +856,6 @@ const payload = {
               className: "list-item-header",
               text: "2. Decide the placement of the Magicchat chat box in your app.",
             },
-
           ],
         },
         {
@@ -870,7 +873,6 @@ const payload = {
                   text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
                 },
 
-
                 {
                   tag_type: "p",
 
@@ -880,8 +882,6 @@ const payload = {
                   text: "and avoids code duplication across screens.",
 
                   tag_type: "p",
-
-
                 },
 
                 {
@@ -892,8 +892,6 @@ const payload = {
                   tag_type: "p",
                   text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
                 },
-
-
 
                 {
                   tag_type: "div",
@@ -947,7 +945,6 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-
                               ],
                             },
                             {
@@ -965,12 +962,13 @@ const payload = {
                         },
                       ],
                     },
-
                   ],
                 },
                 {
                   tag_type: "h4",
                   text: "Example Implementation",
+                  selector_uid: "v2_code_example",
+
                 },
                 {
                   tag_type: "p",
@@ -998,21 +996,16 @@ const payload = {
                   tag_type: "ul",
                   items: [
                     {
-
                       text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
                     },
                     {
-
                       text: "Use the initialize method on specific route components",
                     },
                     {
-
-                      text: "Provides more control over chat visibility"
+                      text: "Provides more control over chat visibility",
                     },
-                  ]
-                }
-                ,
-
+                  ],
+                },
                 {
                   tag_type: "h4",
                   text: "Final Implementation",
@@ -1021,7 +1014,6 @@ const payload = {
                   tag_type: "p",
                   text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
                 },
-
 
                 {
                   tag_type: "div",
@@ -1070,7 +1062,6 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-
                               ],
                             },
                             {
@@ -1161,14 +1152,13 @@ const payload = {
                 //     // Step 1: Initial setup
                 //     await window.magicchat_io.setUp(
                 //       "<MAGICCHAT_APP_NAME>",
-                //       "<MAGICCHAT_API_KEY>", 
+                //       "<MAGICCHAT_API_KEY>",
                 //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
                 //     );
                 //   });
                 // </script>`,
                 //                   language: "javascript",
                 //                 },
-
 
                 //                 {
                 //                   tag_type: "h3",
@@ -1196,15 +1186,13 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/magicchat-core/example__v2/blob/49ddc1e61d1c5c22dc551efad4883b570c4db531/templates/base.html#L158",
                   text: "View Implementation Example",
                 },
               ],
             },
           ],
         },
-
-
 
         {
           tag_type: "h1",
@@ -1214,6 +1202,8 @@ const payload = {
         {
           tag_type: "h2",
           text: "Backend Integration",
+          selector_uid: "v2_backend_integration",
+
         },
         {
           tag_type: "p",
@@ -1505,7 +1495,9 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" },
+        { tag_type: "h2", text: "Prerequisite",
+          selector_uid: "v3_prerequisites",
+         },
 
         {
           tag_type: "p",
@@ -1537,13 +1529,13 @@ const payload = {
         },
       ],
     },
-
     {
       tag_type: "div",
       children: [
         {
           tag_type: "h2",
           text: "Project Setup",
+          selector_uid: "v3_client_integration",
         },
         {
           tag_type: "h3",
@@ -1648,7 +1640,9 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" },
+        { tag_type: "h2", text: "Prerequisite",
+          selector_uid: "v4_prerequisites",
+         },
 
         {
           tag_type: "ol",
@@ -1678,9 +1672,33 @@ const payload = {
     },
 
     {
+      tag_type: "callout",
+      type: "info",
+      title: "Starter Code",
+      children: [
+        {
+          tag_type: "p",
+          text: "Clone the starter repo to use it on.",
+        },
+        {
+          tag_type: "h4",
+          text: "git clone -b starter https://github.com/magicchat-core/example__v4.git",
+        },
+
+        {
+          tag_type: "a",
+          href: "https://github.com/magicchat-core/example__v4/blob/2d861f59be69b1a1355593435917cde8a1d90fad/index.html#L1",
+          text: "Starter Code",
+        },
+      ],
+    },
+
+    {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Project setup" },
+        { tag_type: "h2", text: "Project setup",
+          selector_uid: "v4_client_integration",
+         },
 
         {
           tag_type: "h4",
@@ -1740,12 +1758,8 @@ const payload = {
                 },
               ],
             },
-
-
           ],
         },
-
-
 
         {
           tag_type: "div",
@@ -1756,11 +1770,8 @@ const payload = {
               className: "list-item-header",
               text: "2. Decide the placement of the Magicchat chat box in your app.",
             },
-
           ],
         },
-
-
 
         {
           tag_type: "tabs",
@@ -1777,7 +1788,6 @@ const payload = {
                   text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
                 },
 
-
                 {
                   tag_type: "p",
 
@@ -1787,8 +1797,6 @@ const payload = {
                   text: "and avoids code duplication across screens.",
 
                   tag_type: "p",
-
-
                 },
 
                 {
@@ -1799,8 +1807,6 @@ const payload = {
                   tag_type: "p",
                   text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
                 },
-
-
 
                 {
                   tag_type: "div",
@@ -1849,7 +1855,6 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-
                               ],
                             },
                             {
@@ -1867,12 +1872,12 @@ const payload = {
                         },
                       ],
                     },
-
                   ],
                 },
                 {
                   tag_type: "h4",
                   text: "Example Implementation",
+                  selector_uid: "v4_code_example",
                 },
                 {
                   tag_type: "p",
@@ -1880,7 +1885,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/magicchat-core/example__v4/blob/2d861f59be69b1a1355593435917cde8a1d90fad/index.html#L39",
                   text: "View Implementation Example",
                 },
               ],
@@ -1900,21 +1905,16 @@ const payload = {
                   tag_type: "ul",
                   items: [
                     {
-
                       text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
                     },
                     {
-
                       text: "Use the initialize method on specific route components",
                     },
                     {
-
-                      text: "Provides more control over chat visibility"
+                      text: "Provides more control over chat visibility",
                     },
-                  ]
-                }
-                ,
-
+                  ],
+                },
                 {
                   tag_type: "h4",
                   text: "Final Implementation",
@@ -1923,7 +1923,6 @@ const payload = {
                   tag_type: "p",
                   text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
                 },
-
 
                 {
                   tag_type: "div",
@@ -2058,14 +2057,13 @@ const payload = {
                 //     // Step 1: Initial setup
                 //     await window.magicchat_io.setUp(
                 //       "<MAGICCHAT_APP_NAME>",
-                //       "<MAGICCHAT_API_KEY>", 
+                //       "<MAGICCHAT_API_KEY>",
                 //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
                 //     );
                 //   });
                 // </script>`,
                 //                   language: "javascript",
                 //                 },
-
 
                 //                 {
                 //                   tag_type: "h3",
