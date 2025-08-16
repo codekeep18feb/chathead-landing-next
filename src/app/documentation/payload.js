@@ -114,7 +114,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.2/bundle.js"></script>',
+                          text: '<script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>',
                         },
                       ],
                     },
@@ -826,7 +826,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.2/bundle.js">\n</script>',
+                          text: '<script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
                         },
                       ],
                     },
@@ -1732,7 +1732,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.2/bundle.js">\n</script>',
+                          text: '<script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
                         },
                       ],
                     },

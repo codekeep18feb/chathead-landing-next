@@ -25,7 +25,7 @@ export default function Home() {
       />
       {/* Load Magicchat bundle */}
       <Script
-        src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.2/bundle.js"
+        src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"
         strategy="afterInteractive"
         onLoad={handleMagicChatInit}
       />
