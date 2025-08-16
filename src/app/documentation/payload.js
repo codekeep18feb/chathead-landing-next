@@ -50,10 +50,10 @@ const payload = {
       type: "info",
       title: "Starter Code",
       children: [
-         {
+        {
           tag_type: "p",
           text: "Clone the starter repo to use it on.",
-        },        {
+        }, {
           tag_type: "h4",
           text: "git clone -b starter https://github.com/magicchat-core/example__v1.git",
         },
@@ -114,7 +114,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.1/bundle.js"></script>',
+                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.2/bundle.js"></script>',
                         },
                       ],
                     },
@@ -826,7 +826,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.1/bundle.js">\n</script>',
+                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.2/bundle.js">\n</script>',
                         },
                       ],
                     },
@@ -1732,7 +1732,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.1/bundle.js">\n</script>',
+                          text: '<script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.3.2/bundle.js">\n</script>',
                         },
                       ],
                     },
