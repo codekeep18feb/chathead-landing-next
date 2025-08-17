@@ -719,11 +719,11 @@ const payload = {
           ],
         },
 
-        {
-          tag_type: "video",
-          src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-          desc: "Headful Mode Implementation Demo",
-        },
+        // {
+        //   tag_type: "video",
+        //   src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
+        //   desc: "Headful Mode Implementation Demo",
+        // },
       ],
     },
   ],
