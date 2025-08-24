@@ -2135,21 +2135,21 @@ const payload = {
           ],
         },
 
-        {
-          tag_type: "callout",
-          type: "info",
-          title: "User persists only till session",
-          children: [
-            {
-              tag_type: "ul",
-              items: [
-                {
-                  text: "Means if browser is closed and reopen it will be considered as new user.",
-                },
-              ],
-            },
-          ],
-        },
+        // {
+        //   tag_type: "callout",
+        //   type: "info",
+        //   title: "User persists only till session",
+        //   children: [
+        //     {
+        //       tag_type: "ul",
+        //       items: [
+        //         {
+        //           text: "Means if browser is closed and reopen it will be considered as new user.",
+        //         },
+        //       ],
+        //     },
+        //   ],
+        // },
         // {
         //   tag_type: "video",
         //   src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
