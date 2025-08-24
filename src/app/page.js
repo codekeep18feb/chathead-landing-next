@@ -8,8 +8,8 @@ import EngagementSection from "../app/components/EngagementSection";
 export default function Home() {
   const handleMagicChatInit = async () => {
     await window.magicchat_io.setUp(
-      "magicchat_support_app", // app_name
-      "bWFnaWNjaGF0U3VwcG9ydF9fU0VQUkFUT1JfX21hZ2ljY2hhdF9zdXBwb3J0X2FwcA==", // api_key
+      "magicchat_app", // app_name
+      "bWFnaWNjaGF0X19TRVBSQVRPUl9fbWFnaWNjaGF0X2FwcA==", // api_key
       false // header_req (true by default)
     );
 
