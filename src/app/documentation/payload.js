@@ -1483,11 +1483,11 @@ const payload = {
             },
           ],
         },
-        {
-          tag_type: "video",
-          src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-          desc: "Demo for V2",
-        },
+        // {
+        //   tag_type: "video",
+        //   src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
+        //   desc: "Demo for V2",
+        // },
       ],
     },
   ],
@@ -2150,11 +2150,11 @@ const payload = {
             },
           ],
         },
-        {
-          tag_type: "video",
-          src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-          desc: "Demo for V2",
-        },
+        // {
+        //   tag_type: "video",
+        //   src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
+        //   desc: "Demo for V2",
+        // },
       ],
     },
   ],
