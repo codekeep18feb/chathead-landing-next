@@ -1611,26 +1611,7 @@ const payload = {
               ],
             },
           ],
-        },
-        {
-          tag_type: "div",
-          // className: styles["video-container"],
-          children: [
-            {
-              tag_type: "h4",
-              text: "Integration Walkthrough",
-            },
-            {
-              tag_type: "p",
-              text: "Watch this tutorial below for complete setup instructions:",
-            },
-            {
-              tag_type: "video",
-              src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-              desc: "MagicChat WordPress Integration Tutorial",
-            },
-          ],
-        },
+        }
       ],
     },
   ],
