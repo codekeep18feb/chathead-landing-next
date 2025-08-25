@@ -205,13 +205,16 @@
   border: none;
   outline: none;
   background: transparent;
-  width: 24px;
-  height: 24px;
+  /* width: 24px;
+  height: 24px; */
   border-radius: 50%;
   border: 1px solid var(--white-text-color);
   cursor: pointer;
   flex-shrink: 0;
-  padding: 8px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* .callout .content-link {
   border-radius: 6px;
