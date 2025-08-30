@@ -458,7 +458,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     if (config.type === "internal") {
       return (
         <button
-          onClick={() => handleScroll(config.targetSelector)}
+          // onClick={() => handleScroll(config.targetSelector)}
+          onClick={() => handleScroll(config.selector_uid)}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
@@ -593,7 +594,8 @@ const ContentRenderer = ({ content }) => {
         <button
           onClick={() => {
             try {
-              const element = document.querySelector(config.targetSelector);
+              // const element = document.querySelector(config.targetSelector);
+              const element = document.getElementById(config.selector_uid);
               if (element) element.scrollIntoView({ behavior: "smooth" });
             } catch (e) {
               console.error("Scroll error:", e);
@@ -645,15 +647,37 @@ const ContentRenderer = ({ content }) => {
             );
 
           case "h2":
-            return (
-              <h2 key={index} className={styles["content-heading"]}>
-                {item.text}
-              </h2>
-            );
+            // return (
+            //   <h2 key={index} className={styles["content-heading"]}>
+            //     {item.text}
+            //   </h2>
+            // );
+            if (item.hasOwnProperty("selector_uid")) {
+              console.log("hwsdfdsfsererew are we??");
+              return (
+                <h2
+                  key={index}
+                  className={styles["content-heading"]}
+                  id={item.selector_uid}
+                >
+                  {item.text}
+                </h2>
+              );
+            } else {
+              console.log("areweyouewarhwererew are we??");
+
+              return (
+                <h2 key={index} className={styles["content-heading"]}>
+                  {item.text}
+                </h2>
+              );
+            }
 
           case "h4":
             return (
-              <h2 key={index} className={styles["content-inner-heading"]}>
+              <h2  key={index}
+                className={styles["content-inner-heading"]}
+                id={item.selector_uid}>
                 {item.text}
               </h2>
             );
