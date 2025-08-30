@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import "./pricing.css";
+import styles from "./pricing.module.css";
 // import RazorpayCheckout from "./RazorpayCheckout";
 import ComparisonTable from "./ComparisonTable";
 
@@ -17,130 +17,150 @@ function Pricing() {
     });
   };
 
+  const pricingData = {
+    monthly: { label: "Monthly Plan", price: 30, display: "$30/month" },
+    yearly: { label: "Yearly Plan", price: 300, display: "$300/year (2 months free)" },
+  };
+
   const plans = {
     monthly: [
       {
-        type: "Basic",
+        type: "Launch 🚀",
         price: "₹0/month",
-        description: "A perfect plan to start with basic features.",
-        subheading: "Best for Testing, Prototype, MVP etc purposes.",
+        description: "Perfect for testing, MVPs & early-stage projects.",
+        subheading: "Best for individuals exploring MagicChat.",
         features: [
-          "All the Features available to experience right out of the box.",
-          "100 users",
+          "AI Bot: Intent detection & auto-routing",
+          "Lead Gen with Q&A Context: Quick Q&A + lead capture",
+          "Live Chat with support",
+          "100 Monthly Active Users",
           "1 Admin + 3 Support Users",
+          "File uploads up to 50 MB",
+          "30-day Chat History",
+          "Basic Email Notifications",
+          "Powered by MagicChat branding",
         ],
-        buttonLabel: "Get Started",
+        buttonLabel: "Get Started Free",
       },
       {
-        type: "Advance",
-        description: "Best for small teams and individuals.",
-        subheading: "Grow your experience with better resources",
+        type: "Growth 🌱",
+        description: "Ideal for startups & small teams ready to scale.",
+        subheading: "Most Popular",
         features: [
-          "All the Features available to experience right out of the box.",
-          "1000 users",
+          "Everything in Launch, plus:",
+          "AI Bot: Enhanced capabilities with smart replies",
+          "Lead Gen with Q&A Context: Customizable Q&A trees + auto-email leads",
+          "1000 Monthly Active Users",
           "1 Admin + 30 Support Users",
+          "File uploads up to 100 MB",
+          "120-day Chat History",
+          "Advanced Email Notifications",
+          "Priority Support",
+          "Remove MagicChat Branding",
         ],
-        buttonLabel: "Subscribe Now",
+        buttonLabel: "Upgrade Now",
       },
     ],
     yearly: [
       {
-        type: "Basic",
+        type: "Launch 🚀",
         price: "₹0/year",
-        description: "A perfect plan to start with basic features.",
-        subheading: "For individuals exploring the service",
+        description: "Perfect for testing, MVPs & early-stage projects.",
+        subheading: "Best for individuals exploring MagicChat.",
         features: [
-          "Access to limited features",
-          "1 project limit",
-          "Community support",
+          "AI Bot: Intent detection & auto-routing",
+          "Lead Gen with Q&A Context: Quick Q&A + lead capture",
+          "Live Chat with support",
+          "100 Monthly Active Users",
+          "1 Admin + 3 Support Users",
+          "File uploads up to 50 MB",
+          "30-day Chat History",
+          "Basic Email Notifications",
+          "Powered by MagicChat branding",
         ],
-        buttonLabel: "Get Started",
+        buttonLabel: "Get Started Free",
       },
       {
-        type: "Advance",
-        description: "Best for small teams and individuals.",
-        subheading: "Grow your experience with better resources",
-        features: ["Unlimited projects", "Email support", "Advance analytics"],
-        buttonLabel: "Subscribe Now",
+        type: "Growth 🌱",
+        description: "Ideal for startups & small teams ready to scale.",
+        subheading: "Most Popular",
+        features: [
+          "Everything in Launch, plus:",
+          "AI Bot: Enhanced capabilities with smart replies",
+          "Lead Gen with Q&A Context: Customizable Q&A trees + auto-email leads",
+          "1000 Monthly Active Users",
+          "1 Admin + 30 Support Users",
+          "File uploads up to 100 MB",
+          "120-day Chat History",
+          "Advanced Email Notifications",
+          "Priority Support",
+          "Remove MagicChat Branding",
+        ],
+        buttonLabel: "Upgrade Now",
       },
     ],
   };
 
-  const pricingData = {
-    monthly: {
-      label: "Monthly Plan",
-      price: 30,
-      display: "$30/month",
-    },
-    yearly: {
-      label: "Yearly Plan",
-      price: 300,
-      display: "$300/year",
-    },
-  };
-
   return (
-    <div>
-      <div className="heading_wrapper">
+  <div className={styles.pricing3Page}>
+      <div className={styles.headingWrapper}>
         <h1>Flexible Plans & Pricing</h1>
         <p>
-          All-in-one Chat, Bot & Lead Gen Platform — Simple Plans, Full Power.
+          Full-featured chat platform at industry-leading prices. Start free and
+          grow as your business scales — no hidden fees, no surprises.
         </p>
       </div>
 
-      <div className="tabs-container">
+      <div className={styles.tabsContainer}>
         <button
-          className={`tab-button ${billingCycle === "monthly" ? "active" : ""}`}
+          className={`${styles.tabButton} ${billingCycle === "monthly" ? styles.activeTabButton : ""}`}
           onClick={() => setBillingCycle("monthly")}
         >
           Monthly
         </button>
         <button
-          className={`tab-button ${billingCycle === "yearly" ? "active" : ""}`}
+          className={`${styles.tabButton} ${billingCycle === "yearly" ? styles.activeTabButton : ""}`}
           onClick={() => setBillingCycle("yearly")}
         >
-          Yearly
+          Yearly (2 months free)
         </button>
       </div>
 
-      <div className="plans-container">
+      <div className={styles.plansContainer}>
         {plans[billingCycle].map((plan, index) => {
-          const isBasic = plan.type === "Advance";
+          const isGrowth = plan.type.includes("Growth");
           return (
-            <div
-              key={index}
-              className={`plan-card ${
-                isBasic ? "basic" : plan.type.toLowerCase()
-              }`}
-            >
-              <h2 className="plan-title">{plan.type}</h2>
-              <p className="plan-subheading">{plan.subheading}</p>
-              <p className="plan-price">
-                {isBasic ? pricingData[billingCycle].display : plan.price}
-              </p>
-              <p className="plan-description">{plan.description}</p>
+            <div key={index} className={`${styles.planCard} ${isGrowth ? styles.highlight : ""}`}>
+              <div className={styles.planHeader}>
+                <h2 className={styles.planTitle}>{plan.type}</h2>
+                {isGrowth && <span className={styles.popularBadge}>Most Popular</span>}
+              </div>
 
-              <ul className="plan-features">
+              <p className={styles.planSubheading}>{plan.subheading}</p>
+              <p className={styles.planPrice}>{isGrowth ? pricingData[billingCycle].display : plan.price}</p>
+              <p className={styles.planDescription}>{plan.description}</p>
+
+              <ul className={styles.planFeatures}>
                 {plan.features.map((feature, idx) => (
                   <li key={idx}>{feature}</li>
                 ))}
               </ul>
 
-              {/* {isBasic ? (
+              {/* {isGrowth ? (
                 <RazorpayCheckout
                   cost={pricingData[billingCycle].price}
                   planName={pricingData[billingCycle].label}
                 />
               ) : (
-                <button className="plan-button">{plan.buttonLabel}</button>
+                <button className={styles.planButton}>{plan.buttonLabel}</button>
               )} */}
             </div>
           );
         })}
       </div>
 
-      <div className="see-all-button-wrapper">
-        <button onClick={scrollToComparison}>See All Features</button>
+      <div className={styles.seeAllButtonWrapper}>
+        <button onClick={scrollToComparison}>See Full Comparison</button>
       </div>
 
       <div ref={comparisonRef}>
