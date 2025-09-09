@@ -3,7 +3,20 @@ import styles from "./filterSty.module.css";
 import { FaFilter } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 
-const FilterComp = ({ setSelectedFilter }) => {
+
+const versionSlugMap = {
+  V1: "instant-auth",
+  V2: "byo-auth",
+  V3: "cms-chat",
+  V4: "no-auth",
+};
+
+// Reverse mapping for URL → key
+const slugVersionMap = Object.fromEntries(
+  Object.entries(versionSlugMap).map(([key, slug]) => [slug, key])
+);
+
+const FilterComp = ({ setSelectedFilter, router }) => {
   const [selectedAppType, setSelectedAppType] = useState(null);
   const [selectedVersionType, setSelectedVersionType] = useState("V1"); // default
   const [showMobileFilters, setShowMobileFilters] = useState(false);
@@ -35,6 +48,9 @@ const FilterComp = ({ setSelectedFilter }) => {
       version_type: key,
     });
     setShowMobileFilters(false);
+
+     const slug = versionSlugMap[key];
+    router.push(`/documentation/${slug}`);
   };
 
   const renderOptions = (options, selectedValue, handler) => {

@@ -1,4 +1,11 @@
 // Example payload with additional tags and Lorem Ipsum content
+export const versionSlugMap = {
+  V1: "instant-auth",
+  V2: "byo-auth",
+  V3: "cms-chat",
+  V4: "no-auth",
+};
+
 const payload = {
   V1: [
     {

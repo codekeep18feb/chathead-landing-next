@@ -195,4 +195,8 @@ const DocumentWithSuspense = () => (
   </Suspense>
 );
 
+export function DocumentationRedirect() {
+  redirect("/documentation/instant-auth"); 
+}
+
 export default DocumentWithSuspense;
