@@ -4,22 +4,11 @@ import { FaFilter } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 
 
-const versionSlugMap = {
-  V1: "instant-auth",
-  V2: "byo-auth",
-  V3: "cms-chat",
-  V4: "no-auth",
-};
-
-// Reverse mapping for URL → key
-const slugVersionMap = Object.fromEntries(
-  Object.entries(versionSlugMap).map(([key, slug]) => [slug, key])
-);
-
-const FilterComp = ({ setSelectedFilter, router }) => {
+const FilterComp = ({ setSelectedFilter, initialVersionType }) => {
   const [selectedAppType, setSelectedAppType] = useState(null);
-  const [selectedVersionType, setSelectedVersionType] = useState("V1"); // default
+  const [selectedVersionType, setSelectedVersionType] = useState(initialVersionType || "V1"); // default
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,6 +21,14 @@ const FilterComp = ({ setSelectedFilter, router }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+    // Update selectedFilter whenever selectedVersionType changes
+  useEffect(() => {
+    setSelectedFilter({
+      app_type: selectedAppType,
+      version_type: selectedVersionType,
+    });
+  }, [selectedVersionType, selectedAppType, setSelectedFilter]);
+
   const filterOptions = {
     version_types: [
       { key: "V1", label: "Instant Auth + Chat" },
@@ -43,14 +40,11 @@ const FilterComp = ({ setSelectedFilter, router }) => {
 
   const handleSelectVersionType = (key) => {
     setSelectedVersionType(key);
-    setSelectedFilter({
-      app_type: selectedAppType,
-      version_type: key,
-    });
+    // setSelectedFilter({
+    //   app_type: selectedAppType,
+    //   version_type: key,
+    // });
     setShowMobileFilters(false);
-
-     const slug = versionSlugMap[key];
-    router.push(`/documentation/${slug}`);
   };
 
   const renderOptions = (options, selectedValue, handler) => {

@@ -1,28 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import TopFilterComp from "../../components/documents/TopFilterComp";
-import payload from "@/app/video_test/payload";
-import { versionSlugMap } from "../payload";
 import ContentRenderer from "@/app/testing_documents/rendering_tools";
+import payload, { versionSlugMap } from "../payload";
 
 export default function DocumentationClient({ version }) {
   const router = useRouter();
-  const pathname = usePathname();
-  const [selectedVersionType, setSelectedVersionType] = useState("V1");
+
+  // Map slug to version key
+  const mappedVersion =
+    Object.keys(versionSlugMap).find((key) => versionSlugMap[key] === version) ||
+    "V1";
+
+  const [selectedVersionType, setSelectedVersionType] = useState(mappedVersion);
+  const [selectedFilter, setSelectedFilter] = useState({
+    app_type: null,
+    version_type: mappedVersion,
+  });
 
   useEffect(() => {
-    const mappedVersion = Object.keys(versionSlugMap).find(
-      (key) => versionSlugMap[key] === version
-    ) || "V1";
+    // Sync the selected version type when the URL changes
     setSelectedVersionType(mappedVersion);
-  }, [version]);
+    setSelectedFilter({
+      app_type: null,
+      version_type: mappedVersion,
+    });
+  }, [mappedVersion]);
 
   const handleSelectVersionType = (key) => {
-    setSelectedVersionType(key);
-    const slug = versionSlugMap[key];
-    router.push(`/documentation/${slug}`);
+    if (key !== selectedVersionType) {
+      const slug = versionSlugMap[key];
+      router.push(`/documentation/${slug}`);
+    }
   };
 
   const content = payload[selectedVersionType];
@@ -30,11 +41,13 @@ export default function DocumentationClient({ version }) {
   return (
     <div className="documentation-page">
       <TopFilterComp
-        selectedVersionType={selectedVersionType}
-        handleSelectVersionType={handleSelectVersionType}
+        initialVersionType={selectedVersionType}
+        setSelectedFilter={({ version_type }) =>
+          handleSelectVersionType(version_type)
+        }
       />
-      <ContentRenderer content={content} />
-      <p>Current path: {pathname}</p>
+      {content && <ContentRenderer content={content} />}
+      <p>Current version: {selectedVersionType}</p>
     </div>
   );
 }
