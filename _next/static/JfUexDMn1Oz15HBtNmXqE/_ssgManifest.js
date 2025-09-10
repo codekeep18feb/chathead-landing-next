@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002F[version]\u002F[section]","\u002Fdocumentation\u002F[version]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
