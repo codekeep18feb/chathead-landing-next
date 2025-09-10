@@ -1,0 +1,185 @@
+.pricing3Page {
+  height: 100vh;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.headingWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.headingWrapper h1 {
+  font-size: 2.5rem;
+  color: #1f2937;
+  margin: 3rem 0 0 0;
+}
+
+.headingWrapper p {
+  margin: 0.5rem 0;
+  color: #6b7280;
+}
+
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem auto;
+  width: 500px;
+}
+
+.tabButton {
+  background: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: black;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+}
+
+.activeTabButton {
+  background: linear-gradient(45deg, #99e9a5, #4d6bdf);
+  box-shadow: 0px 4px 10px #b0bff9;
+  color: white;
+}
+
+.tabButton:not(.activeTabButton):hover {
+  background: #4d6bdf;
+}
+
+.plansContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.planCard {
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
+  border: none;
+  border-radius: 15px;
+  padding: 2.5rem;
+  width: 430px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.planCard:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.planCard::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(75, 51, 234, 0.1), transparent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+.planCard:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.planCard h2 {
+  font-size: 1.8rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.planCard p {
+  margin: 0.5rem 0;
+  color: #6b7280;
+}
+
+.planPrice {
+  font-size: 2rem;
+  color: #3b82f6;
+  font-weight: bold;
+  padding: 1rem 0;
+}
+
+.planFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.planFeatures li {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.planFeatures li::before {
+  content: "✔";
+  color: #10b981;
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+
+.planButton {
+  background: linear-gradient(to right, #99e9a5, #4d6bdf);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 1rem;
+}
+
+.planButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.highlight {
+  border: 3px solid #4d6bdf;
+}
+
+.seeAllButtonWrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.seeAllButtonWrapper button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.seeAllButtonWrapper button:hover {
+  transform: translateY(-2px);
+}
+
+.seeAllButtonWrapper button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
