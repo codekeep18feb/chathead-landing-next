@@ -3,6 +3,7 @@ import ReactionsPage from "@/app/components/platform_items/reactions/page";
 import DeliveryReports from "@/app/components/platform_items/delivery-reports/page";
 import LiveStatus from "@/app/components/platform_items/live-status/page";
 import EmailNotifications from "@/app/components/platform_items/email-notifications/page";
+import Integration from "@/app/components/platform_items/integration/page";
 
 
 export async function generateStaticParams() {
@@ -12,6 +13,7 @@ export async function generateStaticParams() {
     "delivery-reports",
     "live-status",
     "email-notifications",
+    // "integration"
     // ...
   ];
 
@@ -28,6 +30,8 @@ export default async function FeaturePage  ({ params }) {
     "delivery-reports": <DeliveryReports/>,
     "live-status": <LiveStatus/>,
     "email-notifications": <EmailNotifications/>,
+    // "integration" : <Integration/>
+    
 
 
     // ...

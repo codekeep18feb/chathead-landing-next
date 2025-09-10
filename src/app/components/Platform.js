@@ -46,8 +46,8 @@ const Platform = () => {
               <div
                 className="card"
                 key={index}
-                // onClick={() => handleCardClick("/documentation")}
-                 onClick={() => handleCardClick(item.subHeading)}
+                onClick={() => handleCardClick("/documentation")}
+                //  onClick={() => handleCardClick(item.subHeading)}
               >
                 <div className="card-header">
                   <div className="icon_wrapper">
