@@ -181,7 +181,7 @@ const payload = {
                     },
                     {
                       tag_type: "img",
-                      src: "Asset/magicChatImg/full_header_mode.png",
+                      src: "/Asset/magicChatImg/full_header_mode.png",
                       alt: "MagicChat Full Header Implementation",
                     },
 
@@ -201,7 +201,7 @@ const payload = {
                     },
                     {
                       tag_type: "img",
-                      src: "Asset/magicChatImg/header_less_mode.png",
+                      src: "/Asset/magicChatImg/header_less_mode.png",
                       alt: "Custom Authentication Placement",
                     },
                     {
@@ -707,7 +707,7 @@ const payload = {
               content: [
                 {
                   tag_type: "img",
-                  src: "Asset/onboarded_user.png",
+                  src: "/Asset/onboarded_user.png",
                   alt: "MagicChat Admin Panel showing onboarded users",
                 },
               ],
@@ -721,7 +721,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/no_users_admin.png",
+                  src: "/Asset/no_users_admin.png",
                   alt: "MagicChat Admin Panel showing no onboarded users",
                 },
               ],
@@ -1258,7 +1258,7 @@ const payload = {
               content: [
                 {
                   tag_type: "img",
-                  src: "Asset/onboarded_user.png",
+                  src: "/Asset/onboarded_user.png",
                   alt: "MagicChat Admin Panel showing onboarded users",
                 },
               ],
@@ -1272,7 +1272,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/no_users_admin.png",
+                  src: "/Asset/no_users_admin.png",
                   alt: "MagicChat Admin Panel showing no onboarded users",
                 },
               ],
@@ -1387,7 +1387,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/onboarding_via_admin.png",
+                  src: "/Asset/onboarding_via_admin.png",
                   alt: "MagicChat Admin Panel user onboarding interface",
                 },
                 {
@@ -1604,7 +1604,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/add_credentials_wp.png",
+                  src: "/Asset/add_credentials_wp.png",
                   alt: "MagicChat credentials configuration in WordPress",
                 },
               ],
@@ -1618,7 +1618,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/fashoni_chat_opener_visible.png",
+                  src: "/Asset/fashoni_chat_opener_visible.png",
                   alt: "MagicChat opener visible on website",
                 },
               ],
@@ -2108,7 +2108,7 @@ const payload = {
               content: [
                 {
                   tag_type: "img",
-                  src: "Asset/onboarded_user.png",
+                  src: "/Asset/onboarded_user.png",
                   alt: "MagicChat Admin Panel showing onboarded users",
                 },
               ],
@@ -2122,7 +2122,7 @@ const payload = {
                 },
                 {
                   tag_type: "img",
-                  src: "Asset/no_users_admin.png",
+                  src: "/Asset/no_users_admin.png",
                   alt: "MagicChat Admin Panel showing no onboarded users",
                 },
               ],
