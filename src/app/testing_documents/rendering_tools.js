@@ -632,7 +632,7 @@ const ContentRenderer = ({ content }) => {
         switch (item.tag_type) {
           case "img":
             return (
-              <div className="content-list-img" key={index}>
+              <div className={styles["content-list-img"]} key={index}>
                 <img src={item.src} alt={item.alt || ""} />
               </div>
             );

@@ -3,10 +3,12 @@ import styles from "./filterSty.module.css";
 import { FaFilter } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 
-const FilterComp = ({ setSelectedFilter }) => {
+
+const FilterComp = ({ setSelectedFilter, initialVersionType }) => {
   const [selectedAppType, setSelectedAppType] = useState(null);
-  const [selectedVersionType, setSelectedVersionType] = useState("V1"); // default
+  const [selectedVersionType, setSelectedVersionType] = useState(initialVersionType || "V1"); // default
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,6 +21,14 @@ const FilterComp = ({ setSelectedFilter }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+    // Update selectedFilter whenever selectedVersionType changes
+  useEffect(() => {
+    setSelectedFilter({
+      app_type: selectedAppType,
+      version_type: selectedVersionType,
+    });
+  }, [selectedVersionType, selectedAppType, setSelectedFilter]);
+
   const filterOptions = {
     version_types: [
       { key: "V1", label: "Instant Auth + Chat" },
@@ -30,10 +40,10 @@ const FilterComp = ({ setSelectedFilter }) => {
 
   const handleSelectVersionType = (key) => {
     setSelectedVersionType(key);
-    setSelectedFilter({
-      app_type: selectedAppType,
-      version_type: key,
-    });
+    // setSelectedFilter({
+    //   app_type: selectedAppType,
+    //   version_type: key,
+    // });
     setShowMobileFilters(false);
   };
 

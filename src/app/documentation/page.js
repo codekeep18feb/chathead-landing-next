@@ -195,4 +195,5 @@ const DocumentWithSuspense = () => (
   </Suspense>
 );
 
+
 export default DocumentWithSuspense;
