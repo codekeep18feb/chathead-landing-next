@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002F[version]\u002F[section]","\u002Fdocumentation\u002F[version]","\u002Fplatform\u002F[feature]","\u002Fresources\u002F[addChat_blog]","\u002Fsolutions\u002F[useCase]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
