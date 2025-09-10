@@ -6,9 +6,15 @@ import { platformList } from "../data/platformData";
 const Platform = () => {
   const router = useRouter();
 
-  const handleCardClick = (subHeading) => {
-    // router.push(path);
-    router.push(`/platform/${subHeading.toLowerCase().replace(/ /g, "-")}`);
+   const handleCardClick = (item, isIntegration = false) => {
+    if (isIntegration) {
+      // Go to static path
+      router.push("/documentation");
+    } else {
+      // Dynamic slug route for features
+      const slug = item.subHeading.toLowerCase().replace(/\s+/g, "-");
+      router.push(`/platform/${slug}`);
+    }
   };
 
   return (
@@ -24,7 +30,8 @@ const Platform = () => {
                 className="card"
                 key={index}
                 //  onClick={() => handleCardClick(`/${item.subHeading.toLowerCase().replace(/ /g, '-')}`)}
-                onClick={() => handleCardClick(item.subHeading)}
+                // onClick={() => handleCardClick(item.subHeading)}
+                onClick={() => handleCardClick(item)}
               >
                 <div className="card-header">
                   <div className="icon_wrapper">
@@ -46,8 +53,9 @@ const Platform = () => {
               <div
                 className="card"
                 key={index}
-                onClick={() => handleCardClick("/documentation")}
+                // onClick={() => handleCardClick("/documentation")}
                 //  onClick={() => handleCardClick(item.subHeading)}
+                onClick={() => handleCardClick(item, true)} 
               >
                 <div className="card-header">
                   <div className="icon_wrapper">
