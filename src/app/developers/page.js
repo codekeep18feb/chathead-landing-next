@@ -7,7 +7,49 @@ function DevelopersRootPage() {
     <div className="platform-container">
       <div className="platform-sections">
         <div className="platform-section">
-          <a href="/documentation">Read documentation page</a>
+          <h2 className="text-xl font-semibold mb-4">v1 Documentation</h2>
+          <ul className="space-y-2">
+            <li>
+              <a
+                href="https://magicchat.io/documentation/instant-auth"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instant Auth
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://magicchat.io/documentation/byo-auth"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Bring Your Own Auth
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://magicchat.io/documentation/cms-chat"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CMS Chat
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://magicchat.io/documentation/no-auth"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                No Auth
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
