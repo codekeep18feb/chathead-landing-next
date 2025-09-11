@@ -9,6 +9,11 @@ function DevelopersRootPage() {
         <div className="platform-section">
           <h2 className="text-xl font-semibold mb-4">v1 Documentation</h2>
           <ul className="space-y-2">
+
+            <li >
+              <a href="/documentation">Full Documentation</a>
+            </li>
+
             <li>
               <a
                 href="https://magicchat.io/documentation/instant-auth"
@@ -16,7 +21,7 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Instant Auth
+                Instant Auth + Chat (V1)
               </a>
             </li>
             <li>
@@ -26,7 +31,8 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Bring Your Own Auth
+                           BYO Auth (V2)
+
               </a>
             </li>
             <li>
@@ -36,7 +42,7 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                CMS Chat
+                CMS Chat (V3)
               </a>
             </li>
             <li>
@@ -46,7 +52,7 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                No Auth
+                No Auth but only Chat (V4)
               </a>
             </li>
           </ul>
