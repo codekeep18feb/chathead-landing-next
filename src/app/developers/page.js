@@ -44,22 +44,7 @@ function DevelopersRootPage() {
               </a>
             </li>
 
-            <li>
-              <a
-                href="https://magicchat.io/documentation/byo-auth"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block p-4 border rounded-xl shadow-sm hover:shadow-md transition bg-white"
-              >
-                <h2 className="text-lg font-semibold text-blue-600">
-                  🔑 Bring Your Own Auth (V2)
-                </h2>
-                <p className="text-gray-500 text-sm">
-                  Use your existing authentication system and integrate MagicChat.
-                </p>
-              </a>
-            </li>
-
+        
             <li>
               <a
                 href="https://magicchat.io/documentation/cms-chat"
