@@ -3,6 +3,7 @@
 import React from "react";
 
 function DevelopersRootPage() {
+  console.log("how many times it renderes?")
   return (
     <div className="platform-container p-6">
       <div className="platform-sections max-w-2xl mx-auto">
@@ -47,7 +48,7 @@ function DevelopersRootPage() {
 
             <li>
               <a
-                href="https://magicchat.io/documentation/byo-auth"
+                href="https://magicchat.io/documentation/byo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block p-4 border rounded-xl shadow-sm hover:shadow-md transition bg-white"

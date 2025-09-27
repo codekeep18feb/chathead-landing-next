@@ -18,8 +18,8 @@ function Pricing() {
   };
 
   const pricingData = {
-    monthly: { label: "Monthly Plan", price: 30, display: "$30/month" },
-    yearly: { label: "Yearly Plan", price: 300, display: "$300/year (2 months free)" },
+    monthly: { label: "Monthly Plan", price: 30, display: "₹4000/month" },
+    yearly: { label: "Yearly Plan", price: 300, display: "₹40000/year (2 months free)" },
   };
 
   const plans = {

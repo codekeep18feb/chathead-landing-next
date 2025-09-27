@@ -74,14 +74,14 @@ const contentMap = {
       },
     ],
   },
-  "byo-auth-chat": {
+  "byo": {
     "to-whom": [
       {
         type: "component",
         element: (
           <ToWhomContent
             key="2"
-            version="byo-auth-chat"
+            version="byo"
             config={localmagaeContent}
           />
         ),

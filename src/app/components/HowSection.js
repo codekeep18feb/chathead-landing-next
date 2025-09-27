@@ -275,7 +275,7 @@ const ContentCard = ({ title, version }) => {
 
   // const routePrefix = {
   //   "Instant Auth + Chat": "instant-auth-chat",
-  //   "BYO Auth Chat": "byo-auth-chat",
+  //   "BYO Auth Chat": "byo",
   //   "CMS-Ready Chat": "cms-ready-chat",
   // };
 
@@ -298,7 +298,7 @@ const ContentCard = ({ title, version }) => {
 
   const routePrefix = {
     "Instant Auth + Chat": "instant-auth-chat",
-    "BYO Auth Chat": "byo-auth-chat",
+    "BYO Auth Chat": "byo",
     "CMS-Ready Chat": "cms-ready-chat",
     "No Auth Only Chat": "no-auth-only-chat",
   };

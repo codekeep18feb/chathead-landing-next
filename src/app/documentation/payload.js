@@ -1,7 +1,7 @@
 // Example payload with additional tags and Lorem Ipsum content
 export const versionSlugMap = {
   V1: "instant-auth",
-  V2: "byo-auth",
+  V2: "byo",
   V3: "cms-chat",
   V4: "no-auth",
 };
@@ -752,7 +752,7 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" , selector_uid: "v2_prerequisites",},
+        { tag_type: "h2", text: "Prerequisite", selector_uid: "v2_prerequisites", },
 
         {
           tag_type: "ol",
@@ -784,7 +784,7 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Project setup" , selector_uid: "v2_client_integration",},
+        { tag_type: "h2", text: "Project setup", selector_uid: "v2_client_integration", },
 
         {
           tag_type: "h4",
@@ -1517,7 +1517,7 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" , selector_uid: "v3_prerequisites",},
+        { tag_type: "h2", text: "Prerequisite", selector_uid: "v3_prerequisites", },
 
         {
           tag_type: "p",
@@ -1642,7 +1642,7 @@ const payload = {
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite" , selector_uid: "v4_prerequisites",},
+        { tag_type: "h2", text: "Prerequisite", selector_uid: "v4_prerequisites", },
 
         {
           tag_type: "ol",
@@ -1867,7 +1867,7 @@ const payload = {
                 {
                   tag_type: "h4",
                   text: "Example Implementation",
-                   selector_uid: "v4_code_example",
+                  selector_uid: "v4_code_example",
                 },
                 {
                   tag_type: "p",
