@@ -1,0 +1,84 @@
+/* Container for full page */
+.platformContainer {
+  background: linear-gradient(135deg, #f9fafb, #eef2ff);
+  min-height: 100vh;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Card wrapper in the center */
+.platformSections {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  max-width: 42rem; /* ~672px (like max-w-2xl) */
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.platformSections:hover {
+  transform: translateY(-2px);
+}
+
+/* Section block */
+.platformSection h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.platformSection p {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* List spacing */
+.platformSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.platformSection ul li {
+  margin-bottom: 1rem;
+}
+
+/* Card links */
+.platformSection ul li a {
+  display: block;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.platformSection ul li a:hover {
+  background: #f0f9ff;
+  border-color: #93c5fd;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Card heading */
+.platformSection ul li a h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+}
+
+/* Card description */
+.platformSection ul li a p {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin: 0;
+}
