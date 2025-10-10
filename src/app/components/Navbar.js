@@ -64,9 +64,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <Link href="/" className={styles.logoImg}>
         <img src={`${basePath}/Asset/linkedin_logo.jpeg`} alt="Magicchat" />
-        </Link>
         <h2>Magicchat</h2>
       </div>
 

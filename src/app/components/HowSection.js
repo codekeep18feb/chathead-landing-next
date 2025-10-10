@@ -39,48 +39,48 @@ const slides = {
     },
   ],
 
-  p2p: [
-    {
-      image: "/Asset/p2p_firstImg.png",
-      sections: [
-        {
-          heading: "What is Peer to Peer (P2P)",
-          paragraph:
-            "P2P chat is used when a product requires users to communicate directly with other users on the platform — without admin involvement. It's ideal for platforms focused on community, collaboration, or direct messaging between users.",
-          list: [
-            "Enables user-to-user interaction through private or group chat.",
-            "Supports use cases like social media platforms, online marketplaces, or forums.",
-            "Common in gaming platforms for team communication or matchmaking.",
-            "Perfect for collaboration tools where users need to coordinate in real time.",
-            "Provides built-in chat without having to build a full messaging backend from scratch.",
-          ],
-        },
-      ],
-    },
-    {
-      image: "/Asset/defultpage_p2p.png",
-      sections: [
-        {
-          heading: "End-to-End Encryption",
-          paragraph: "Security features in P2P chat.",
-        },
-      ],
-    },
-    {
-      image: "/Asset/p2p_secondImg.png",
-      sections: [
-        {
-          heading: "End-to-End Encryption",
-          paragraph: "Security features in P2P chat.",
-        },
-      ],
-    },
-  ],
+  // p2p: [
+  //   {
+  //     image: "/Asset/p2p_firstImg.png",
+  //     sections: [
+  //       {
+  //         heading: "What is Peer to Peer (P2P)",
+  //         paragraph:
+  //           "P2P chat is used when a product requires users to communicate directly with other users on the platform — without admin involvement. It's ideal for platforms focused on community, collaboration, or direct messaging between users.",
+  //         list: [
+  //           "Enables user-to-user interaction through private or group chat.",
+  //           "Supports use cases like social media platforms, online marketplaces, or forums.",
+  //           "Common in gaming platforms for team communication or matchmaking.",
+  //           "Perfect for collaboration tools where users need to coordinate in real time.",
+  //           "Provides built-in chat without having to build a full messaging backend from scratch.",
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     image: "/Asset/defultpage_p2p.png",
+  //     sections: [
+  //       {
+  //         heading: "End-to-End Encryption",
+  //         paragraph: "Security features in P2P chat.",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     image: "/Asset/p2p_secondImg.png",
+  //     sections: [
+  //       {
+  //         heading: "End-to-End Encryption",
+  //         paragraph: "Security features in P2P chat.",
+  //       },
+  //     ],
+  //   },
+  // ],
 };
 
 const tabData = [
   { label: "P2A", content: <Slider slides={slides.p2a} /> },
-  { label: "P2P", content: <Slider slides={slides.p2p} /> },
+  // { label: "P2P", content: <Slider slides={slides.p2p} /> },
 ];
 
 const demoImages = {
@@ -177,7 +177,7 @@ const HowSection = () => {
                 color: showTabs ? "white" : "",
               }}
             >
-              P2A vs P2P
+              P2A
             </li>
           </ul>
         </div>
