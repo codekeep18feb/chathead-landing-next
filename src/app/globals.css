@@ -41,6 +41,8 @@
   --section-bg: linear-gradient(145deg, var(--dark-primary-color), #1a1c1b);
   --card-bg: #272b2d;
   --border-glow: rgba(75, 207, 158, 0.4);
+    --nav-bg: linear-gradient(135deg, #1a1c1b, #222525);
+  --nav-hover: #2b2e30;
 }
 
 /* Body Styles */
