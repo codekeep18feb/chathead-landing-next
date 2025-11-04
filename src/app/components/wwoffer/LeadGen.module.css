@@ -1,5 +1,5 @@
 .leadGenSection {
-  padding: 5rem 8rem;
+  padding: 5rem 0rem;
   text-align: center;
   background: var(--section-bg-alt);
   color: var(--s-color);
@@ -35,16 +35,18 @@
   opacity: 0.85;
 }
 
-/* Grid */
+/* ✅ Flex layout: 3 per row with equal height */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin: 3rem 0;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
+  gap: 2.5rem;
+  margin: 3rem auto;
+  max-width: 1100px; /* 👈 ensures 3 cards per row */
 }
 
+/* ✅ Base card */
 .card {
   background: var(--card-bg);
   border-radius: 18px;
@@ -52,18 +54,36 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   padding: 2rem 1.8rem;
   text-align: left;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* ✅ Optional width pattern for multiple cards */
+.card:nth-child(1) { width: 320px; }
+.card:nth-child(2) { width: 390px; }
+.card:nth-child(3) { width: 280px; }
+.card:nth-child(4) { width: 320px; }
+.card:nth-child(5) { width: 260px; }
+.card:nth-child(6) { width: 400px; }
+.card:nth-child(7) { width: 385px; }
+.card:nth-child(8) { width: 255px; }
+.card:nth-child(9) { width: 330px; }
+.card:nth-child(10) { width: 535px; }
+
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.02);
   box-shadow: 0 0 30px rgba(252, 128, 131, 0.35);
 }
 
+/* ✅ Content */
 .icon {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: var(--sub1-btn-color);
+  color: var(--sub1-btn-color); /* matches your theme accent */
 }
 
 .cardTitle {
@@ -77,33 +97,30 @@
   font-size: 0.98rem;
   color: var(--s-color);
   line-height: 1.6;
+  flex-grow: 1;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .leadGenSection {
-    padding: 4rem 3rem;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .leadGenSection {
-    padding: 3rem 1.5rem;
-  }
-
-  .title {
-    font-size: 1.75rem;
-  }
-
+/* ✅ Responsive */
+@media (max-width: 1200px) {
   .grid {
-    gap: 1.5rem;
+    max-width: 900px;
   }
-
   .card {
-    padding: 1.8rem 1.2rem;
+    width: 45% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .leadGenSection {
+    padding: 3.5rem 2rem;
+  }
+  .grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    max-width: 100%;
+  }
+  .card {
+    width: 100% !important;
   }
 }
