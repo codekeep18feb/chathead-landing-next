@@ -15,17 +15,19 @@ import ExpectedResults from "./ExpectedResults";
 import PricingPlans from "./PricingPlans";
 import RoadmapNext from "./RoadmapNext";
 import WhyChooseNow from "./WhyChooseNow";
+import HowToGetStarted from "./HowToGetStarted";
 
 export default function MagicChatOverview() {
   return (
     <section className={styles.overviewWrapper}>
+      <HowToGetStarted/>
       <OverviewIntro />
       <PlatformFeatures />
       <ProblemsSolved />
-      <Differentiators />
-      <TargetAudience />
+      {/* <Differentiators /> */}
+      {/* <TargetAudience /> */}
       <HowItWorks />
-      <DataSecurity />
+      {/* <DataSecurity /> */}
       <Scalability />
       <ExpectedResults />
       <PricingPlans />

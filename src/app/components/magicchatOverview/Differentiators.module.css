@@ -14,7 +14,21 @@
   color: var(--headings-color);
   margin-bottom: 2rem;
 }
-
+.offer_warp{
+  border: 1px solid red;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+.offerCards{
+  border: 3px solid green;
+}
+.offerCards_content{
+  border: 1px solid red;
+}
+.offerCards_icons{
+  border: 1px solid yellow;
+}
 .bullets {
   list-style: none;
   padding: 0;
