@@ -24,6 +24,9 @@
   --primary-gradient: linear-gradient(45deg, #99e9a5, #4d6bdf);
   --border-gradient: linear-gradient(to bottom, #4d6bdf, #99e9a5);
   
+    --bg-light: #f8f9fb;
+  --border-color: #e5e5e5;
+  --card-bg: #ffffff;
 }
 
 /* Body Styles */

@@ -1,0 +1,73 @@
+.pricingSection {
+  background: var(--bg-light);
+  padding: 5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.pricingHeader h2 {
+  font-size: 2.2rem;
+  color: var(--heading-color);
+}
+
+.pricingHeader p {
+  color: var(--text-color);
+  margin-top: 0.5rem;
+}
+
+.pricingSummary {
+  max-width: 1000px;
+  margin: 3rem auto;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.pricingRowHeader,
+.pricingRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr 2fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.pricingRowHeader {
+  background: #f0f4fa;
+  font-weight: 700;
+  color: #333;
+}
+
+.pricingRow {
+  border-top: 1px solid #eee;
+  color: var(--text-color);
+}
+
+.annualNote {
+  margin-top: 1rem;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.final {
+  background: #eef6ff;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  margin-top: 4rem;
+}
+
+.subscribeBtn {
+  margin-top: 1.5rem;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.subscribeBtn:hover {
+  background: #005bcc;
+}

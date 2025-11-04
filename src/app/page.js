@@ -5,6 +5,7 @@ import SolveSection from "../app/components/SolveSection";
 import HowSection from "../app/components/HowSection";
 import EngagementSection from "../app/components/EngagementSection";
 import WhatWeOfferSection from "./components/wwoffer/WhatWeOffer";
+import MagicChatOverview from "@/app/components/magicchatOverview/MagicChatOverview";
 
 export default function Home() {
   const handleMagicChatInit = async () => {
@@ -33,6 +34,7 @@ export default function Home() {
 
       <SolveSection />
       <WhatWeOfferSection/>
+      <MagicChatOverview />
       <HowSection />
       <EngagementSection />
     </>

@@ -1,0 +1,40 @@
+.section {
+  max-width: 950px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #f4f8ff;
+  border-radius: 12px;
+}
+
+.section h2 {
+  color: var(--heading-color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.section p {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.section h3 {
+  color: var(--primary-color);
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.subscribeBtn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.subscribeBtn:hover {
+  background: #005bcc;
+}

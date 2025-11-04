@@ -1,0 +1,32 @@
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin-bottom: 1rem;
+}
+
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.bullets li {
+  background: var(--bg-light);
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.section p {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  color: var(--text-color);
+}

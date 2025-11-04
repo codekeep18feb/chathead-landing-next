@@ -1,0 +1,23 @@
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin-bottom: 1.5rem;
+}
+
+.bullets {
+  list-style: none;
+  padding: 0;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.bullets li {
+  padding: 0.5rem 0;
+}
