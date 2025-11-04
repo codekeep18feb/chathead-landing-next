@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./WhatWeOffer.module.css";
+import styles from "./RagChatbotFeatures.module.css";
 
 const RagChatbotFeatures = () => {
   const features = [

@@ -1,25 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./WhatWeOffer.module.css";
+
 import LiveUserChat from "./LiveUserChat";
 import RuleBasedQNA from "./RuleBasedQNA";
 import LeadGen from "./LeadGen";
 import RagChatbotFeatures from "./RagChatbotFeatures";
 
-const WhatWeOfferSection = () => {
+const WhatWeOffer = () => {
+  const [activeTab, setActiveTab] = useState("Live User Chat");
+
+  const tabs = [
+    { name: "Live User Chat", label: "💬 Live User Chat" },
+    { name: "Rule-Based Q&A", label: "⚙️ Rule-Based Q&A" },
+    { name: "Lead Generation", label: "🎯 Lead Generation" },
+    { name: "RAG Chatbot", label: "🤖 RAG Chatbot" },
+  ];
+
+  const renderComponent = () => {
+    switch (activeTab) {
+      case "Live User Chat":
+        return <LiveUserChat />;
+      case "Rule-Based Q&A":
+        return <RuleBasedQNA />;
+      case "Lead Generation":
+        return <LeadGen />;
+      case "RAG Chatbot":
+        return <RagChatbotFeatures />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <section className={styles["WhatWeOffer-section"]}>
-      <h2 className={styles.heading}>What We Offer</h2>
-      <p className={styles.subheading}>
-        Everything you need to turn visitors into customers — powered by AI, built for teams.
-      </p>
+    <section className={styles.offerSection}>
+      <h2 className={styles.mainTitle}>What We Offer</h2>
 
-      <LiveUserChat />
-      <RuleBasedQNA />
-      <LeadGen />
+      <div className={styles.tabContainer}>
+        {tabs.map((tab) => (
+          <button
+            key={tab.name}
+            className={`${styles.tabButton} ${
+              activeTab === tab.name ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab(tab.name)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-      <RagChatbotFeatures />
+      <div className={styles.tabContent}>{renderComponent()}</div>
     </section>
   );
 };
 
-export default WhatWeOfferSection;
+export default WhatWeOffer;
