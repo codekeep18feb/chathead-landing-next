@@ -19,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div style={{background: "#202322", }}>
       {/* Load Socket.io */}
       <Script
         src="https://cdn.socket.io/4.1.2/socket.io.min.js"
@@ -37,6 +37,6 @@ export default function Home() {
       <MagicChatOverview />
       <HowSection />
       <EngagementSection />
-    </>
+    </div>
   );
 }

@@ -3,16 +3,18 @@
   margin: 0 auto;
   text-align: center;
   padding: 4rem 2rem;
+  background: var(--section-bg);
+  border-radius: 12px;
 }
 
 .section h2 {
   font-size: 2.2rem;
-  color: var(--heading-color);
+  color: var(--headings-color);
   margin-bottom: 1rem;
 }
 
 .section p {
-  color: var(--text-color);
+  color: var(--s-color);
   line-height: 1.8;
   font-size: 1.1rem;
   max-width: 850px;

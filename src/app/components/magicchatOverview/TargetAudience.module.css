@@ -3,11 +3,14 @@
   margin: 0 auto;
   padding: 4rem 2rem;
   text-align: center;
+  background: var(--section-bg);
+  border-radius: 12px;
+  color: var(--s-color);
 }
 
 .section h2 {
   font-size: 2rem;
-  color: var(--heading-color);
+  color: var(--headings-color);
   margin-bottom: 2rem;
 }
 
@@ -18,9 +21,9 @@
 
 .bullets li {
   margin: 0.8rem 0;
-  background: var(--bg-light);
+  background: var(--card-bg);
   border-radius: 8px;
   padding: 1rem;
   line-height: 1.6;
-  color: var(--text-color);
+  color: var(--s-color);
 }

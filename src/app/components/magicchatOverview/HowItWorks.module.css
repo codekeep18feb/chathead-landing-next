@@ -3,12 +3,15 @@
   margin: 0 auto;
   padding: 4rem 2rem;
   text-align: center;
+  background: var(--section-bg);
+  border-radius: 12px;
+  color: var(--s-color);
 }
 
 .section h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: var(--heading-color);
+  color: var(--headings-color);
 }
 
 .cardsGrid {
@@ -19,20 +22,21 @@
 
 .card {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-glow);
   border-radius: 12px;
   padding: 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--s-color);
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 20px var(--border-glow);
 }
 
 .stepNumber {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--primary-color);
+  color: var(--new-secondary-color);
   margin-bottom: 0.5rem;
 }

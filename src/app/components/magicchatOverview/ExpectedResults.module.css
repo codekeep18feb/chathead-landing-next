@@ -3,11 +3,14 @@
   margin: 0 auto;
   padding: 4rem 2rem;
   text-align: center;
+  background: var(--section-bg);
+  border-radius: 12px;
+  color: var(--s-color);
 }
 
 .section h2 {
   font-size: 2rem;
-  color: var(--heading-color);
+  color: var(--headings-color);
   margin-bottom: 1rem;
 }
 
@@ -18,15 +21,15 @@
 }
 
 .bullets li {
-  background: var(--bg-light);
+  background: var(--card-bg);
   border-radius: 6px;
   padding: 0.8rem;
   margin-bottom: 0.5rem;
-  color: var(--text-color);
+  color: var(--s-color);
 }
 
 .section p {
   margin-top: 1rem;
   font-size: 1.05rem;
-  color: var(--text-color);
+  color: var(--s-color);
 }

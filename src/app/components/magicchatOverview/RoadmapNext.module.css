@@ -3,21 +3,31 @@
   margin: 0 auto;
   padding: 4rem 2rem;
   text-align: center;
+  background: var(--section-bg);
+  border-radius: 16px;
+  box-shadow: 0 0 20px var(--border-glow);
+  border: 1px solid rgba(156, 178, 86, 0.2);
 }
 
 .section h2 {
   font-size: 2rem;
-  color: var(--heading-color);
+  color: var(--headings-color);
   margin-bottom: 1.5rem;
+  text-shadow: 0 0 8px rgba(156, 178, 86, 0.3);
 }
 
 .bullets {
   list-style: none;
   padding: 0;
-  color: var(--text-color);
+  color: var(--s-color);
   margin-bottom: 1.5rem;
 }
 
 .bullets li {
   padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bullets li:last-child {
+  border-bottom: none;
 }

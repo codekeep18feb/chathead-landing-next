@@ -1,28 +1,29 @@
 .pricingSection {
-  background: var(--bg-light);
+  background: var(--section-bg);
   padding: 5rem 2rem;
   border-radius: 16px;
   text-align: center;
+  color: var(--s-color);
 }
 
 .pricingHeader h2 {
   font-size: 2.2rem;
-  color: var(--heading-color);
+  color: var(--headings-color);
 }
 
 .pricingHeader p {
-  color: var(--text-color);
+  color: var(--s-color);
   margin-top: 0.5rem;
 }
 
 .pricingSummary {
   max-width: 1000px;
   margin: 3rem auto;
-  background: white;
-  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  border: 1px solid var(--border-glow);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 12px var(--border-glow);
 }
 
 .pricingRowHeader,
@@ -34,24 +35,24 @@
 }
 
 .pricingRowHeader {
-  background: #f0f4fa;
+  background: var(--dark-primary-color);
   font-weight: 700;
-  color: #333;
+  color: var(--headings-color);
 }
 
 .pricingRow {
-  border-top: 1px solid #eee;
-  color: var(--text-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--s-color);
 }
 
 .annualNote {
   margin-top: 1rem;
-  color: #333;
+  color: var(--s-color);
   font-size: 0.95rem;
 }
 
 .final {
-  background: #eef6ff;
+  background: var(--card-bg);
   padding: 3rem 2rem;
   border-radius: 12px;
   margin-top: 4rem;
@@ -59,8 +60,8 @@
 
 .subscribeBtn {
   margin-top: 1.5rem;
-  background: var(--primary-color);
-  color: #fff;
+  background: var(--sub-btn-color);
+  color: var(--white-text);
   border: none;
   border-radius: 8px;
   padding: 0.8rem 1.6rem;
@@ -69,5 +70,5 @@
 }
 
 .subscribeBtn:hover {
-  background: #005bcc;
+  background: var(--sub1-btn-color);
 }

@@ -3,20 +3,21 @@
   margin: 0 auto;
   padding: 5rem 2rem;
   text-align: center;
-  background: var(--section-bg, #f9fafb);
+  background: var(--section-bg);
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 20px var(--border-glow);
   transition: all 0.3s ease;
+  color: var(--s-color);
 }
 
 .section:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0 28px var(--border-glow);
 }
 
 .section h2 {
   font-size: 2.2rem;
-  color: var(--heading-color, #111);
+  color: var(--headings-color);
   margin-bottom: 2rem;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -25,7 +26,7 @@
 .section h3 {
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  color: var(--primary-color, #3b82f6);
+  color: var(--new-secondary-color);
   font-size: 1.4rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -46,7 +47,7 @@
   padding-left: 2rem;
   font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--text-color, #444);
+  color: var(--s-color);
   transition: color 0.3s ease;
 }
 
@@ -56,14 +57,10 @@
   left: 0;
   top: 0;
   font-size: 1.1rem;
-  color: var(--primary-color, #3b82f6);
+  color: var(--new-secondary-color);
   transition: transform 0.3s ease;
 }
 
-.bullets li:hover::before {
-  transform: scale(1.2) rotate(10deg);
-}
-
 .bullets li:hover {
-  color: var(--heading-color, #111);
+  color: var(--white-text);
 }

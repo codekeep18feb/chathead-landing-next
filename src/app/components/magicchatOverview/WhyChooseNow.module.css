@@ -3,31 +3,32 @@
   margin: 0 auto;
   text-align: center;
   padding: 4rem 2rem;
-  background: #f4f8ff;
+  background: var(--section-bg);
   border-radius: 12px;
+  color: var(--s-color);
 }
 
 .section h2 {
-  color: var(--heading-color);
+  color: var(--headings-color);
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 .section p {
-  color: var(--text-color);
+  color: var(--s-color);
   line-height: 1.7;
   margin-bottom: 1rem;
 }
 
 .section h3 {
-  color: var(--primary-color);
+  color: var(--new-secondary-color);
   margin-top: 1.5rem;
   font-size: 1.4rem;
 }
 
 .subscribeBtn {
-  background: var(--primary-color);
-  color: white;
+  background: var(--sub-btn-color);
+  color: var(--white-text);
   border: none;
   padding: 0.8rem 1.6rem;
   border-radius: 8px;
@@ -36,5 +37,5 @@
 }
 
 .subscribeBtn:hover {
-  background: #005bcc;
+  background: var(--sub1-btn-color);
 }

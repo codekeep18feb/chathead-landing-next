@@ -3,4 +3,6 @@
   flex-direction: column;
   gap: 5rem;
   padding: 6rem 2rem;
+  background: var(--dark-primary-color);
+  color: var(--s-color);
 }
