@@ -1,0 +1,76 @@
+.section {
+  max-width: 1070px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--headings-color);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
+  text-align: center;
+}
+
+.section h3 {
+  font-size: 1.3rem;
+  color: var(--sub-btn-color);
+  margin-bottom: 1rem;
+}
+
+.cardWarp {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.bullets {
+  flex: 1;
+  list-style: none;
+  padding: 2rem;
+  margin: 0;
+  background: var(--card-bg);
+  border: 1px solid rgba(75, 207, 158, 0.15);
+  box-shadow: 0 0 12px rgba(75, 207, 158, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0.8rem 0;
+  padding: 0.6rem 0;
+  color: var(--s-color);
+  line-height: 1.6;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.bullets:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 25px rgba(75, 207, 158, 0.25);
+  border-color: rgba(75, 207, 158, 0.4);
+}
+.iconCircle {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(75, 207, 158, 0.15);
+  color: var(--sub-btn-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.bullets li:hover .iconCircle {
+  background: var(--sub-btn-color);
+  color: #fff;
+}

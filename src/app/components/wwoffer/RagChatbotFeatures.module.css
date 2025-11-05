@@ -1,0 +1,122 @@
+
+/* ✅ Base card */
+.card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid rgba(75, 207, 158, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 2rem 1.8rem;
+  text-align: left;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ✅ Optional width variation for multiple cards */
+.card:nth-child(1) { width: 320px; }
+.card:nth-child(2) { width: 390px; }
+.card:nth-child(3) { width: 280px; }
+.card:nth-child(4) { width: 320px; }
+.card:nth-child(5) { width: 260px; }
+.card:nth-child(6) { width: 400px; }
+.card:nth-child(7) { width: 385px; }
+.card:nth-child(8) { width: 255px; }
+.card:nth-child(9) { width: 330px; }
+.card:nth-child(10) { width: 320px; }
+.card:nth-child(11) { width: 260px; }
+.card:nth-child(12) { width: 355px;}
+
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 30px rgba(75, 207, 158, 0.35);
+}
+
+.benefit {
+  font-size: 0.95rem;
+  color: var(--white-text);
+  line-height: 1.5;
+  background: rgba(75, 207, 158, 0.08);
+  border-left: 4px solid var(--sub-btn-color);
+  padding: 0.8rem 1rem;
+  border-radius: 0 8px 8px 0;
+  margin-top: 0.8rem;
+}
+
+/* ✅ CTA Section (kept same as your original) */
+.cta {
+  margin-top: 4rem;
+  text-align: center;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(75, 207, 158, 0.15);
+}
+
+.cta h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--headings-color);
+}
+
+.cta p {
+  color: var(--s-color);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  opacity: 0.85;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.primary,
+.secondary {
+  font-size: 1rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.primary {
+  background: var(--sub-btn-color);
+  color: var(--white-text);
+  box-shadow: 0 0 15px rgba(75, 207, 158, 0.3);
+}
+
+.primary:hover {
+  background: #3fb489;
+  box-shadow: 0 0 25px rgba(75, 207, 158, 0.5);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--sub1-btn-color);
+  border: 2px solid var(--sub1-btn-color);
+}
+
+.secondary:hover {
+  background: var(--sub1-btn-color);
+  color: var(--white-text);
+}
+
+/* ✅ Responsive */
+@media (max-width: 1200px) {
+  .card {
+    width: 45% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100% !important;
+  }
+}

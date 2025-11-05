@@ -1,0 +1,128 @@
+.final {
+  position: relative;
+  text-align: center;
+  padding: 6rem 2rem;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: var(--dark-primary-color);
+  color: var(--white-text);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.05);
+}
+
+/* Subtle grid overlay for depth */
+.final::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Soft blurred glow shapes */
+.final::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  bottom: 200px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(76,207,158,0.08), transparent 70%);
+  filter: blur(50px);
+  z-index: 0;
+}
+
+/* Section Heading */
+.final h3 {
+  position: relative;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--headings-color);
+  margin-bottom: 2.5rem;
+  z-index: 1;
+}
+
+/* Metrics container */
+.metrics {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  z-index: 1;
+}
+
+/* Each metric card */
+.metric {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  min-width: 200px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.metric:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.45);
+}
+.metric strong {
+    color: var(--white-text);
+}
+/* Glowing circle around emoji */
+.iconCircle {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  margin: 0 auto 1rem auto;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 20px rgba(75, 207, 158, 0.25);
+  position: relative;
+}
+
+.iconCircle::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(75,207,158,0.4);
+  opacity: 0.7;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 0.2; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* CTA Button */
+.subscribeBtn {
+  position: relative;
+  margin-top: 3rem;
+  background: transparent;
+  border: 1.5px solid var(--new-secondary-color);
+  color: var(--new-secondary-color);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.9rem 2.4rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.subscribeBtn:hover {
+  background: var(--new-secondary-color);
+  color: var(--dark-primary-color);
+  box-shadow: 0 0 25px rgba(156,178,86,0.4);
+}

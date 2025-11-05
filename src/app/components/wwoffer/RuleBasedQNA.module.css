@@ -1,0 +1,63 @@
+.card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid rgba(75, 207, 158, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 2rem 1.8rem;
+  text-align: left;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ✅ Optional: unique width pattern (if you have multiple QnA cards) */
+.card:nth-child(1) {
+  width: 320px;
+}
+.card:nth-child(2) {
+  width: 390px;
+}
+.card:nth-child(3) {
+  width: 280px;
+}
+.card:nth-child(4) {
+  width: 320px;
+}
+.card:nth-child(5) {
+  width: 260px;
+}
+.card:nth-child(6) {
+  width: 400px;
+}
+.card:nth-child(7) {
+  width: 385px;
+}
+.card:nth-child(8) {
+  width: 255px;
+}
+.card:nth-child(9) {
+  width: 330px;
+}
+.card:nth-child(10) {
+  width: 535px;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 30px rgba(75, 207, 158, 0.35);
+}
+/* ✅ Responsive */
+@media (max-width: 1200px) {
+  .card {
+    width: 45% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100% !important;
+  }
+}

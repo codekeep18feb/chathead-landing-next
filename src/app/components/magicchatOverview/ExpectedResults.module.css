@@ -1,0 +1,103 @@
+.section {
+  /* max-width: 1070px; */
+  margin: 0 auto;
+  padding: 2rem 5rem;
+  text-align: center;
+  color: var(--s-color);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(75, 207, 158, 0.1),
+    transparent 60%
+  );
+  /* animation: spin 10s linear infinite; */
+  z-index: 0;
+  opacity: 0.35;
+   background: var(--dual-gradient);
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.heading {
+  font-size: 2.4rem;
+  margin-bottom: 3rem;
+  color: var(--headings-color);
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+}
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  animation: fadeInUp 0.8s ease both;
+}
+.emoji {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+.value {
+  font-size: 2.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4bcf9e, #00ffaa);
+  background-clip: text;
+  -webkit-background-clip: text; /* Keep this for Chrome/Safari */
+  -webkit-text-fill-color: transparent;
+}
+
+
+@keyframes glow {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.6);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+.text {
+  font-size: 1rem;
+  color: var(--muted-color, #b4b4b4);
+  margin-top: 0.3rem;
+}
+.note {
+  font-size: 1.1rem;
+  color: var(--muted-color, #aaa);
+  margin-top: 3rem;
+  font-style: italic;
+  z-index: 1;
+  position: relative;
+} /* subtle animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -4,6 +4,8 @@ import Script from "next/script";
 import SolveSection from "../app/components/SolveSection";
 import HowSection from "../app/components/HowSection";
 import EngagementSection from "../app/components/EngagementSection";
+import WhatWeOfferSection from "./components/wwoffer/WhatWeOffer";
+import MagicChatOverview from "@/app/components/magicchatOverview/MagicChatOverview";
 
 export default function Home() {
   const handleMagicChatInit = async () => {
@@ -17,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div style={{background: "#202322", width: "100%", maxWidth: "1440px", border:"3px solid red" , margin: "0px auto"}}>
       {/* Load Socket.io */}
       <Script
         src="https://cdn.socket.io/4.1.2/socket.io.min.js"
@@ -31,8 +33,10 @@ export default function Home() {
       />
 
       <SolveSection />
-      <HowSection />
+      <WhatWeOfferSection/>
+      <MagicChatOverview />
+      {/* <HowSection /> */}
       <EngagementSection />
-    </>
+    </div>
   );
 }

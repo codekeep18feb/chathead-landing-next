@@ -1,0 +1,64 @@
+.offerSection {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: var(--section-bg-alt);
+  border-radius: 20px;
+  color: var(--s-color);
+  margin: 0 auto;
+}
+
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--headings-color);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
+}
+
+/* Tabs */
+.tabContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.tabButton {
+  background: transparent;
+  border: 1px solid rgba(156, 178, 86, 0.25);
+  color: var(--s-color);
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+.tabButton:hover {
+  background: rgba(156, 178, 86, 0.15);
+  border-color: var(--sub-btn-color);
+  color: var(--sub-btn-color);
+}
+
+.active {
+  background: var(--sub-btn-color);
+  color: #fff;
+  border-color: var(--sub-btn-color);
+  box-shadow: 0 0 20px rgba(75, 207, 158, 0.3);
+}
+@media (max-width: 768px) {
+  .offerSection {
+    padding: 4rem 2rem;
+  }
+
+  .mainTitle {
+    font-size: 2rem;
+  }
+
+  .tabButton {
+    min-width: 140px;
+    font-size: 0.95rem;
+  }
+}

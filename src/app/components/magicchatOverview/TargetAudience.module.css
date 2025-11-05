@@ -1,0 +1,220 @@
+.section {
+  max-width: 1170px;
+  margin: 0 auto;
+  color: var(--s-color);
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.innerWarp{
+  padding: 20px;
+  background-color: var(--section-bg);
+  border-radius: 10px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 25px;
+}
+
+.row:first-child {
+  grid-template-columns: 2fr 1fr;
+}
+
+.box {
+  background: rgba(75, 207, 158, 0.08);
+  border: 1px solid rgba(75, 207, 158, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  color: var(--white-color);
+  text-align: left;
+  box-shadow: 0 0 12px rgba(75, 207, 158, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(75, 207, 158, 0.15);
+}
+
+/* Inner card layout */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.emoji {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--headings-color);
+}
+
+.pain {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* 🟢 Enhanced ul/li styling */
+.card ul {
+  margin-top: 0.6rem;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.card ul li {
+  padding: 0.3rem 0.8rem 0.3rem 1.8rem; /* increased left padding for tick gap */
+  font-size: 0.9rem;
+  line-height: 1.5;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+/* small checkmark bullet */
+.card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0.6rem; /* keeps it slightly left of text */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  color: rgba(75, 207, 158, 0.85);
+  opacity: 0.9;
+}
+
+
+
+.ideal {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.heading {
+  font-size: 2.3rem;
+  text-align: center;
+  color: var(--white-color);
+  margin-bottom: 1.5rem;
+}
+
+.intro {
+  text-align: center;
+  max-width: 700px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  color: var(--white-color);
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.wide {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.5) 0%,     /* bright mint */
+    rgba(252, 128, 131, 0.4) 40%,   /* coral pink */
+    rgba(156, 178, 86, 0.45) 100%   /* olive green */
+  );
+  background-size: 300% 300%;        /* larger spread for movement */
+  animation: gradientShift 4s ease-in-out infinite; /* faster cycle */
+  border: 1px solid rgba(75, 207, 158, 0.5);
+  box-shadow: 0 0 40px rgba(75, 207, 158, 0.2);
+  /* padding: 3rem 2rem; */
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+   display: flex;
+  justify-content: center;  
+  align-items: center;      
+  text-align: center; 
+  flex-direction: column;
+}
+
+/* glowing overlay */
+.wide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(252, 128, 131, 0.4),
+    rgba(75, 207, 158, 0.2) 60%,
+    transparent 80%
+  );
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.wide:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 35px rgba(75, 207, 158, 0.3);
+}
+/* .wide h2 {
+  background: linear-gradient(90deg, #4bcf9e, #fc8083, #9cb256, #4bcf9e);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s linear infinite;
+} */
+.ideal strong {
+  color: var(--sub1-btn-color);
+}
+.card h3 {
+  color: var(--sub-btn-color);
+}
+
+/* responsive design */
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .box {
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.9rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+  }
+}

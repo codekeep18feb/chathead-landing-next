@@ -1,0 +1,98 @@
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: var(--section-bg);
+  border-radius: 16px;
+  color: var(--s-color);
+  width: 100%;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--headings-color);
+    margin-bottom: 3rem;
+    text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
+    text-align: center;
+}
+
+/* 🟢 FLEX instead of grid */
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* 🟢 Base card styling */
+.card {
+  background: var(--card-bg);
+  border: 1px solid rgba(75, 207, 158, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--s-color);
+  box-shadow: 0 0 10px rgba(75, 207, 158, 0.1);
+  flex-grow: 1;
+  min-width: 180px;
+}
+
+.card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 25px rgba(75, 207, 158, 0.25);
+}
+
+/* 🟢 Step number */
+.stepNumber {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #4bcf9e, #9cb256);
+  box-shadow: 0 0 10px rgba(75, 207, 158, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover .stepNumber {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(75, 207, 158, 0.8);
+}
+
+/* 🟢 Custom widths for first row (3 cards) */
+.cardWide {
+  flex: 1.5;
+}
+.cardMedium {
+  flex: 1.2;
+}
+.cardNarrow {
+  flex: 0.9;
+}
+
+/* 🟢 Even layout for remaining 2 cards (2nd row) */
+.cardEven {
+  flex: 1 1 48%;
+}
+
+/* 🟢 Responsive: fallback to equal cards */
+@media (max-width: 900px) {
+  .cardsContainer {
+    flex-direction: column;
+  }
+
+  .card,
+  .cardWide,
+  .cardMedium,
+  .cardNarrow,
+  .cardEven {
+    width: 100%;
+  }
+}
