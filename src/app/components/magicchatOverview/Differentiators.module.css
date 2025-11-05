@@ -5,16 +5,16 @@
   overflow: hidden;
   width: 100%;
   max-width: 1070px;
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .heading {
-font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--headings-color);
-    margin-bottom: 3rem;
-    text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
-    text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--headings-color);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
+  text-align: center;
 }
 
 .timeline {
@@ -38,8 +38,8 @@ font-size: 2.5rem;
 }
 
 .icon {
-  min-width: 3rem;
-  min-height: 3rem;
+  min-width: 4.5rem;
+  min-height: 4.5rem;
   background: linear-gradient(135deg, #4bcf9e, #9cb256);
   border-radius: 50%;
   display: flex;
@@ -48,9 +48,13 @@ font-size: 2.5rem;
   font-size: 1.4rem;
   color: var(--white-text-color);
   box-shadow: 0 0 15px rgba(75, 207, 158, 0.4);
-  margin-left: -3.3rem;
+  margin-left: -4rem;
   z-index: 2;
   flex-shrink: 0;
+  margin-top: 5rem;
+}
+.icon svg {
+  color: var(--white-color);
 }
 
 .content {
@@ -138,7 +142,8 @@ font-size: 2.5rem;
 }
 
 @keyframes pulseLine {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(75, 207, 158, 0.6);
   }
   50% {

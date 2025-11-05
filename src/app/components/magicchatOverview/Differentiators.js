@@ -1,10 +1,14 @@
 import React from "react";
+import { FiDollarSign, FiTrendingUp, FiSettings } from "react-icons/fi";
+import { AiOutlineFieldTime } from "react-icons/ai";
+import { MdOutlineIntegrationInstructions } from "react-icons/md";
+
 import styles from "./Differentiators.module.css";
 
 export default function Differentiators() {
   const differentiators = [
     {
-      icon: "⚡",
+      icon: <AiOutlineFieldTime size={36} color="#fff" />,
       title: "Saves You Time",
       points: [
         "One-Time Integration: Add a simple drag-and-drop snippet once — no recurring setup or maintenance.",
@@ -13,7 +17,7 @@ export default function Differentiators() {
       ],
     },
     {
-      icon: "💰",
+      icon: <FiDollarSign size={36} color="#fff" />,
       title: "Reduces Cost",
       points: [
         "In-Built RAG Chatbot: Get a robust, AI-powered chatbot without paying per-query fees to external LLMs like OpenAI or DeepSeek.",
@@ -22,7 +26,7 @@ export default function Differentiators() {
       ],
     },
     {
-      icon: "📈",
+      icon: <FiTrendingUp size={36} color="#fff" />,
       title: "Scales Effortlessly",
       points: [
         "Built for All Sizes: Start small, grow big — MagicChat adapts from solo startups to enterprise-scale setups.",
@@ -31,7 +35,7 @@ export default function Differentiators() {
       ],
     },
     {
-      icon: "🧠",
+      icon: <FiSettings size={36} color="#fff" />,
       title: "Gives You Total Control",
       points: [
         "Deep Customization Without Code: Control tone, design, chatbot behavior, triggers, and logic — all from the admin dashboard.",
@@ -40,7 +44,7 @@ export default function Differentiators() {
       ],
     },
     {
-      icon: "🪄",
+      icon: <MdOutlineIntegrationInstructions size={36} color="#fff" />,
       title: "Simplifies Integration & Auth",
       points: [
         "Auth-Agnostic Design: Works with or without your product’s authentication.",
