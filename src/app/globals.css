@@ -43,6 +43,32 @@
   --border-glow: rgba(75, 207, 158, 0.4);
     --nav-bg: linear-gradient(135deg, #1a1c1b, #222525);
   --nav-hover: #2b2e30;
+
+  --primary-gradient: linear-gradient(
+  to bottom,
+  var(--new-primary-color),
+  var(--dark-primary-color)
+);
+
+--accent-gradient: linear-gradient(
+  135deg,
+  var(--new-secondary-color),
+  var(--sub-btn-color)
+);
+
+--dual-gradient: linear-gradient(
+  135deg,
+  var(--sub-btn-color),
+  var(--sub1-btn-color)
+);
+
+--section-gradient: linear-gradient(
+  145deg,
+  var(--dark-primary-color) 0%,
+  var(--new-primary-color) 40%,
+  var(--new-secondary-color) 100%
+);
+
 }
 
 /* Body Styles */

@@ -24,11 +24,11 @@ export default function MagicChatOverview() {
       <OverviewIntro />
       <PlatformFeatures />
       <ProblemsSolved />
-      {/* <Differentiators /> */}
-      {/* <TargetAudience /> */}
+      <Differentiators />
+      <TargetAudience />
       <HowItWorks />
       {/* <DataSecurity /> */}
-      <Scalability />
+      {/* <Scalability /> */}
       <ExpectedResults />
       <PricingPlans />
       <RoadmapNext />

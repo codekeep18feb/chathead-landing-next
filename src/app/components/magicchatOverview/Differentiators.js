@@ -2,71 +2,74 @@ import React from "react";
 import styles from "./Differentiators.module.css";
 
 export default function Differentiators() {
+  const differentiators = [
+    {
+      icon: "⚡",
+      title: "Saves You Time",
+      points: [
+        "One-Time Integration: Add a simple drag-and-drop snippet once — no recurring setup or maintenance.",
+        "Instant Updates: Any admin change (chat UI, flow, text, or rules) goes live instantly — no redeploys or user re-logins.",
+        "Real-Time Admin Control: Modify, preview, and apply updates without waiting on developer cycles.",
+      ],
+    },
+    {
+      icon: "💰",
+      title: "Reduces Cost",
+      points: [
+        "In-Built RAG Chatbot: Get a robust, AI-powered chatbot without paying per-query fees to external LLMs like OpenAI or DeepSeek.",
+        "Low-Cost Infrastructure: No hidden AI or API costs; your RAG engine runs within MagicChat’s optimized framework.",
+        "Free Tier With Everything: Build, test, and deploy with full features. Pay only when you scale.",
+      ],
+    },
+    {
+      icon: "📈",
+      title: "Scales Effortlessly",
+      points: [
+        "Built for All Sizes: Start small, grow big — MagicChat adapts from solo startups to enterprise-scale setups.",
+        "One-Click Multi-Tenant Mode: Manage multiple clients, projects, or products in one dashboard.",
+        "Enterprise Features: Team collaboration, secure chat routing, offline notifications, and easy data migration.",
+      ],
+    },
+    {
+      icon: "🧠",
+      title: "Gives You Total Control",
+      points: [
+        "Deep Customization Without Code: Control tone, design, chatbot behavior, triggers, and logic — all from the admin dashboard.",
+        "Instant Client Sync: Admin changes are broadcast to all live clients automatically.",
+        "Flexible Architecture: Every configuration, from colors to logic, can be adjusted visually.",
+      ],
+    },
+    {
+      icon: "🪄",
+      title: "Simplifies Integration & Auth",
+      points: [
+        "Auth-Agnostic Design: Works with or without your product’s authentication.",
+        "Inbuilt Auto-Scaling Auth System: Plug-and-play login flow available if needed.",
+        "CMS Plugins: Ready for WordPress; more platforms (Shopify, Webflow, etc.) coming soon.",
+        "No Code Dependency: Developers integrate once, then business users take over.",
+      ],
+    },
+  ];
+
   return (
-    <div className={`${styles.section} ${styles.split}`}>
-      <div>
-        <h2>How are we different from others?</h2>
-        {/* <div className={styles.offer_warp}>
-          <div className={styles.offerCards}>
-            <div className={styles.offerCards_content}>
-              <span>1</span>
-              <h4>Built for Teams</h4>
-              <p>
-                Multi-admin collaboration with live routing and permissions.
-              </p>
-            </div>
-            <div className={styles.offerCards_icons}>Icon</div>
-          </div>
+    <section className={styles.section}>
+      <h2 className={styles.heading}>How are we different from others?</h2>
 
-          <div className={styles.offerCards}>
-            <div className={styles.offerCards_content}>
-              <span>2</span>
-              <h4>True AI, Real Data</h4>
-              <p>Trained from your actual content, not pre-filled templates.</p>
+      <div className={styles.timeline}>
+        {differentiators.map((item, index) => (
+          <div key={index} className={styles.timelineItem}>
+            <div className={styles.icon}>{item.icon}</div>
+            <div className={styles.content}>
+              <h3>{item.title}</h3>
+              <ul>
+                {item.points.map((point, i) => (
+                  <li key={i}>{point}</li>
+                ))}
+              </ul>
             </div>
-            <div className={styles.offerCards_icons}>Icon</div>
           </div>
-
-          <div className={styles.offerCards}>
-            <div className={styles.offerCards_content}>
-              <span>3</span>
-              <h4>Your Data Stays Yours</h4>
-              <p>
-                Private by design, never shared or used for external training.
-              </p>
-            </div>
-            <div className={styles.offerCards_icons}>Icon</div>
-          </div>
-
-          <div className={styles.offerCards}>
-            <div className={styles.offerCards_content}>
-              <span>4</span>
-              <h4>Set Up in Minutes</h4>
-              <p>
-                Connect your site, upload docs, and go live — no developers
-                needed.
-              </p>
-            </div>
-            <div className={styles.offerCards_icons}>Icon</div>
-          </div>
-
-          <div className={styles.offerCards}>
-            <div className={styles.offerCards_content}>
-              <span>4</span>
-              <h4>Lightweight and Fast</h4>
-              <p>Optimized for performance, even on low-bandwidth websites.</p>
-            </div>
-            <div className={styles.offerCards_icons}>Icon</div>
-          </div>
-        </div> */}
-        <ul className={styles.bullets}>
-          <li>👨‍👩‍👧 <b>Built for Teams</b> — Multi-admin collaboration with live routing and permissions.</li>
-          <li>🤖 <b>True AI, Real Data</b> — Trained from your actual content, not pre-filled templates.</li>
-          <li>🔒 <b>Your Data Stays Yours</b> — Private by design, never shared or used for external training.</li>
-          <li>⚡ <b>Set Up in Minutes</b> — Connect your site, upload docs, and go live — no developers needed.</li>
-          <li>🪶 <b>Lightweight and Fast</b> — Optimized for performance, even on low-bandwidth websites.</li>
-        </ul>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
