@@ -9,11 +9,12 @@
 }
 
 .section h2 {
-  color: var(--headings-color);
-  font-size: 2.2rem;
-  margin-bottom: 3rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+ font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--headings-color);
+    margin-bottom: 3rem;
+    text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
+    text-align: center;
 }
 
 .sectionContent {
@@ -48,7 +49,7 @@
 }
 
 .cardHeader h3 {
-  color: var(--new-secondary-color);
+  color: var(--sub-btn-color);
   font-size: 1.4rem;
   font-weight: 600;
   text-transform: uppercase;

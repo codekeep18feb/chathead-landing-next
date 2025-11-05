@@ -3,20 +3,23 @@
   margin: 0 auto;
   text-align: center;
   padding: 4rem 2rem;
-    width: 100%;
+  width: 100%;
   border-radius: 12px;
 }
 
 .section h2 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: var(--headings-color);
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
 }
 
 .section p {
-  color: var(--s-color);
-  line-height: 1.8;
-  font-size: 1.1rem;
-  max-width: 850px;
-  margin: 0 auto;
+font-size: 1.125rem;
+    color: var(--s-color);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+    opacity: 0.85;
 }

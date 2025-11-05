@@ -71,7 +71,7 @@ export default function PlatformFeatures() {
   ];
 
   return (
-    <section className={`${styles.section} ${styles.cardsSection}`}>
+    <section className={styles.section}>
       <h2>What features do we provide?</h2>
 
       <div className={styles.cardWarp}>
