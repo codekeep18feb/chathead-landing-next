@@ -37,7 +37,6 @@
   gap: 1.5rem;
   margin: 3rem auto;
   max-width: 1070px; /* 👈 this limits layout to 3 per row */
-  border: 2px solid green;
 }
 .card {
   background: var(--card-bg);

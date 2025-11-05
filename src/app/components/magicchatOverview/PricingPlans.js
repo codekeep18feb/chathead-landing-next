@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./PricingPlans.module.css";
+import FinalValue from "./FinalValue";
 
 const PricingPlans = () => {
   return (
@@ -15,9 +16,7 @@ const PricingPlans = () => {
       {/* --- New Pricing Overview Content --- */}
       <div className={styles.pricingSummary}>
         <h3>How much does it cost?</h3>
-        <p>
-          We grow as you grow — with simple, transparent pricing.
-        </p>
+        <p>We grow as you grow — with simple, transparent pricing.</p>
 
         <div className={styles.pricingTable}>
           <div className={styles.pricingRowHeader}>
@@ -31,7 +30,9 @@ const PricingPlans = () => {
             <span>🚀 Launch</span>
             <span>Individuals & MVPs</span>
             <span>Free Forever</span>
-            <span>Basic AI Bot, Lead Capture, 2 Agents, Unlimited Websites</span>
+            <span>
+              Basic AI Bot, Lead Capture, 2 Agents, Unlimited Websites
+            </span>
           </div>
 
           <div className={styles.pricingRow}>
@@ -53,27 +54,14 @@ const PricingPlans = () => {
         </div>
 
         <p className={styles.annualNote}>
-          👉 <strong>Annual Plans</strong> include 2 months free + priority support.
+          👉 <strong>Annual Plans</strong> include 2 months free + priority
+          support.
         </p>
       </div>
 
       {/* --- Existing Card-based Visual Overview --- */}
- 
 
-      <div className={styles.final}>
-        <h3>Value That Scales With You</h3>
-        <p>
-          💸 ROI in 30 days • 🚀 40% more lead conversions • ⏱ Save 10+ hours
-          weekly on customer support.
-        </p>
-        <a
-          href="https://magicchat.io/pricing"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className={styles.subscribeBtn}>See Full Pricing →</button>
-        </a>
-      </div>
+      <FinalValue/>
     </section>
   );
 };

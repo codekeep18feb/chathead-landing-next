@@ -1,29 +1,119 @@
 .pricingSection {
-  background: var(--section-bg);
-  padding: 5rem 2rem;
-  border-radius: 16px;
+  position: relative;
+  padding: 6rem 0rem;
+  border-radius: 24px;
   text-align: center;
   color: var(--s-color);
+  overflow: hidden;
+  padding-bottom: 0px;
+}
+
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pricingHeader {
+  max-width: 750px;
+  margin: 0 auto 3.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .pricingHeader h2 {
-  font-size: 2.2rem;
-  color: var(--headings-color);
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #4bcf9e, #00ffaa, #fc8083);
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+  background-clip: text;
+  -webkit-background-clip: text; /* Keep this for Chrome/Safari */
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .pricingHeader p {
-  color: var(--s-color);
-  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
 }
 
+/* ---------- Pricing Summary ---------- */
 .pricingSummary {
-  max-width: 1000px;
-  margin: 3rem auto;
-  background: var(--card-bg);
-  border: 1px solid var(--border-glow);
-  border-radius: 10px;
+  max-width: 1100px;
+  margin: 4rem auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 25px rgba(75, 207, 158, 0.2);
   overflow: hidden;
-  box-shadow: 0 0 12px var(--border-glow);
+  position: relative;
+  z-index: 2;
+}
+
+.pricingSummary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #4bcf9e, #00ffaa, #fc8083);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  z-index: -1;
+  animation: borderGlow 6s ease infinite;
+}
+
+@keyframes borderGlow {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.pricingSummary h3 {
+  font-size: 1.9rem;
+  color: var(--headings-color);
+  margin-top: 2rem;
+}
+
+.pricingSummary > p {
+  margin: 0.5rem 0 2rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Pricing Table ---------- */
+.pricingTable {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
 }
 
 .pricingRowHeader,
@@ -31,44 +121,53 @@
   display: grid;
   grid-template-columns: 1.2fr 1.2fr 1fr 2fr;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.4rem 1.2rem;
+  align-items: center;
 }
 
 .pricingRowHeader {
-  background: var(--dark-primary-color);
+  background: rgba(255, 255, 255, 0.08);
   font-weight: 700;
+  text-transform: uppercase;
   color: var(--headings-color);
+  letter-spacing: 0.5px;
 }
 
 .pricingRow {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--s-color);
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.pricingRow:hover {
+  background: rgba(75, 207, 158, 0.12);
+}
+
+.pricingRow:nth-child(3) {
+  background: linear-gradient(
+    90deg,
+    rgba(75, 207, 158, 0.15),
+    rgba(252, 128, 131, 0.1)
+  );
+  border-left: 4px solid #4bcf9e;
+  font-weight: 600;
+}
+
+.pricingRow span:nth-child(3) {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #4bcf9e;
+}
+
+.pricingRow span:first-child {
+  font-size: 1.1rem;
 }
 
 .annualNote {
-  margin-top: 1rem;
-  color: var(--s-color);
-  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.05rem;
 }
-
-.final {
-  background: var(--card-bg);
-  padding: 3rem 2rem;
-  border-radius: 12px;
-  margin-top: 4rem;
-}
-
-.subscribeBtn {
-  margin-top: 1.5rem;
-  background: var(--sub-btn-color);
-  color: var(--white-text);
-  border: none;
-  border-radius: 8px;
-  padding: 0.8rem 1.6rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.subscribeBtn:hover {
-  background: var(--sub1-btn-color);
+.annualNote strong {
+  color: var(--sub1-btn-color);
 }

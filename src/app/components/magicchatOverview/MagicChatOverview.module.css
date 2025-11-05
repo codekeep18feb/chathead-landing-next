@@ -1,9 +1,8 @@
 .overviewWrapper {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  /* gap: 5rem; */
   /* padding: 6rem 4rem; */
   background: var(--dark-primary-color);
   color: var(--s-color);
-  border: 2px solid yellowgreen;
 }
