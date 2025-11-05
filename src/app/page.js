@@ -35,7 +35,7 @@ export default function Home() {
       <SolveSection />
       <WhatWeOfferSection/>
       <MagicChatOverview />
-      <HowSection />
+      {/* <HowSection /> */}
       <EngagementSection />
     </div>
   );
