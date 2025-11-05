@@ -75,7 +75,8 @@
 body {
   /* font-family: "Lexend", sans-serif; */
   font-family: Arial, sans-serif;
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
+  background-color: black;
 }
 
 /* Header Styles */

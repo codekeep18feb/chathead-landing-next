@@ -1,28 +1,32 @@
 // src/app/components/SolveSection.js
 import React from "react";
-import reaction from "../../../public/Asset/heroImg.svg";
-import Image from "next/image";
-import styles from "./SolveSection.module.css"
 
 const SolveSection = () => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
-    <section className={styles["solve-section"]}>
-      <div className={styles["solve-content"]}>
+    <section className="solve-section">
+      <div className="solve-content">
         <h1>What do we Solve</h1>
         <p>
           No-code chatbot platform for Lead Gen, AI answers & Live Agent Chat —
           "All in one".
         </p>
-        <div className={styles["email-input"]}>
+        {/* <div className="email-input">
+                    <input type="email" placeholder="Enter your email id" />
+                    <button>Get Started Free</button>
+                </div> */}
+        <div className="email-input">
           <a href="https://admin.magicchat.io/schedule_demo">
             <button>Schedule Demo</button>
           </a>
         </div>
       </div>
-      <div className={styles["solve-image"]}>
-        <Image src={reaction} alt="Message Reactions" />
+      <div className="solve-image">
+        <img
+          src={`${basePath}/Asset/banner_img_chat.png`}
+          alt="Chat Solution"
+        />
       </div>
     </section>
   );

@@ -19,18 +19,18 @@ export default function Home() {
   };
 
   return (
-    <div style={{background: "#202322", width: "100%", maxWidth: "1440px", border:"3px solid red" , margin: "0px auto"}}>
+    <div style={{background: "#202322", width: "100%", margin: "0px auto"}}>
       {/* Load Socket.io */}
       <Script
         src="https://cdn.socket.io/4.1.2/socket.io.min.js"
         strategy="beforeInteractive"
       />
       {/* Load Magicchat bundle */}
-      <Script
+      {/* <Script
         src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"
         strategy="afterInteractive"
         onLoad={handleMagicChatInit}
-      />
+      /> */}
 
       <SolveSection />
       <WhatWeOfferSection/>
