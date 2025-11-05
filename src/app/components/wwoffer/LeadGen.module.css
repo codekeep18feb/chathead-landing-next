@@ -1,50 +1,4 @@
-.leadGenSection {
-  padding: 5rem 0rem;
-  text-align: center;
-  background: var(--section-bg-alt);
-  color: var(--s-color);
-  border-top: 1px solid rgba(252, 128, 131, 0.15);
-  border-radius: 20px;
-  box-shadow: inset 0 0 15px rgba(252, 128, 131, 0.08);
-  transition: background 0.3s ease;
-}
 
-.leadGenSection:hover {
-  box-shadow: 0 0 25px rgba(252, 128, 131, 0.25);
-}
-
-/* Header */
-.header {
-  margin-bottom: 3rem;
-}
-
-.title {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--headings-color);
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px rgba(252, 128, 131, 0.3);
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  color: var(--s-color);
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.7;
-  opacity: 0.85;
-}
-
-/* ✅ Flex layout: 3 per row with equal height */
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
-  gap: 2.5rem;
-  margin: 3rem auto;
-  max-width: 1100px; /* 👈 ensures 3 cards per row */
-}
 
 /* ✅ Base card */
 .card {
@@ -79,47 +33,16 @@
   box-shadow: 0 0 30px rgba(252, 128, 131, 0.35);
 }
 
-/* ✅ Content */
-.icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--sub1-btn-color); /* matches your theme accent */
-}
 
-.cardTitle {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--headings-color);
-  margin-bottom: 0.6rem;
-}
-
-.description {
-  font-size: 0.98rem;
-  color: var(--s-color);
-  line-height: 1.6;
-  flex-grow: 1;
-}
 
 /* ✅ Responsive */
 @media (max-width: 1200px) {
-  .grid {
-    max-width: 900px;
-  }
   .card {
     width: 45% !important;
   }
 }
 
 @media (max-width: 768px) {
-  .leadGenSection {
-    padding: 3.5rem 2rem;
-  }
-  .grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.8rem;
-    max-width: 100%;
-  }
   .card {
     width: 100% !important;
   }

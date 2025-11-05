@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./LiveUserChat.module.css";
+import tabContents from "./TabContent.module.css"
 import {
   FaUsersCog,
   FaExchangeAlt,
@@ -78,21 +79,21 @@ const LiveUserChat = () => {
   ];
 
   return (
-    <section className={styles.liveChatSection}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Live User Chat — Real-Time Collaboration Hub</h2>
-        <p className={styles.subtitle}>
+    <section className={tabContents.tabContentsWarp}>
+      <header className={tabContents.header}>
+        <h2 className={tabContents.title}>Live User Chat — Real-Time Collaboration Hub</h2>
+        <p className={tabContents.subtitle}>
           Power your customer support with seamless, real-time teamwork — built
           for multi-agent communication and modern engagement.
         </p>
       </header>
 
-      <div className={styles.grid}>
+      <div className={tabContents.grid}>
         {features.map((feature, index) => (
           <div key={index} className={styles.card}>
-            <div className={styles.icon}>{feature.icon}</div>
-            <h3 className={styles.cardTitle}>{feature.title}</h3>
-            <p className={styles.description}>{feature.description}</p>
+            <div className={tabContents.icon}>{feature.icon}</div>
+            <h3 className={tabContents.cardTitle}>{feature.title}</h3>
+            <p className={tabContents.description}>{feature.description}</p>
           </div>
         ))}
       </div>

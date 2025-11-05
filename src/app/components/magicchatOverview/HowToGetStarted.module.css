@@ -3,6 +3,9 @@
   background: var(--dark-primary-color, #111);
   color: var(--white-text-color, #fff);
   text-align: center;
+  max-width: 1070px;
+  margin: auto;
+  width: 100%;
 }
 
 .heading {
@@ -92,25 +95,21 @@
   /* transform: translateY(70px); */
   transform: translateY(100px);
   right: 30px;
-
 }
 
 .top-left {
   /* transform: translateY(-50px); */
   transform: translateY(-20px);
-
 }
 
 .top-center {
   /* transform: translateY(-80px); */
   transform: translateY(-20px);
-
 }
 
 .top-right {
   /* transform: translateY(-40px); */
   transform: translateY(-70px);
-
 }
 
 .bottom-right {

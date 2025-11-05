@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./RagChatbotFeatures.module.css";
+import tabContents from "./TabContent.module.css"
 
 const RagChatbotFeatures = () => {
   const features = [
@@ -94,21 +95,21 @@ const RagChatbotFeatures = () => {
   ];
 
   return (
-    <section className={styles.ragSection}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>RAG Chatbot — Your Intelligent Document Assistant</h2>
-        <p className={styles.subtitle}>
+    <section className={tabContents.ragSection}>
+      <header className={tabContents.header}>
+        <h2 className={tabContents.title}>RAG Chatbot — Your Intelligent Document Assistant</h2>
+        <p className={tabContents.subtitle}>
           Powered by 12 specialized AI capabilities working together to read,
           understand, and respond with complete accuracy.
         </p>
       </header>
 
-      <div className={styles.grid}>
+      <div className={tabContents.grid}>
         {features.map((feature, index) => (
           <div key={index} className={styles.card}>
-            <div className={styles.icon}>{feature.icon}</div>
-            <h3 className={styles.cardTitle}>{feature.title}</h3>
-            <p className={styles.description}>{feature.description}</p>
+            <div className={tabContents.icon}>{feature.icon}</div>
+            <h3 className={tabContents.cardTitle}>{feature.title}</h3>
+            <p className={tabContents.description}>{feature.description}</p>
             <p className={styles.benefit}>
               <strong>You get:</strong> {feature.benefit}
             </p>

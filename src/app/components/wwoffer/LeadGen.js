@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./LeadGen.module.css";
+import tabContents from "./TabContent.module.css"
 import {
   FaEnvelopeOpenText,
   FaDatabase,
@@ -43,21 +44,21 @@ const LeadGen = () => {
   ];
 
   return (
-    <section className={styles.leadGenSection}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Lead Generation — Convert Conversations to Customers</h2>
-        <p className={styles.subtitle}>
+    <section className={tabContents.tabContentsWarp}>
+      <header className={tabContents.header}>
+        <h2 className={tabContents.title}>Lead Generation — Convert Conversations to Customers</h2>
+        <p className={tabContents.subtitle}>
           Capture, qualify, and route leads instantly inside your chat — removing the
           friction of traditional forms.
         </p>
       </header>
 
-      <div className={styles.grid}>
+      <div className={tabContents.grid}>
         {features.map((feature, index) => (
           <div key={index} className={styles.card}>
-            <div className={styles.icon}>{feature.icon}</div>
-            <h3 className={styles.cardTitle}>{feature.title}</h3>
-            <p className={styles.description}>{feature.description}</p>
+            <div className={tabContents.icon}>{feature.icon}</div>
+            <h3 className={tabContents.cardTitle}>{feature.title}</h3>
+            <p className={tabContents.description}>{feature.description}</p>
           </div>
         ))}
       </div>
