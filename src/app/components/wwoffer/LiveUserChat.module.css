@@ -1,6 +1,6 @@
 /* ✅ Base card */
 .card {
-  background: var(--card-bg);
+  background: var(--background-color);
   border-radius: 18px;
   border: 1px solid rgba(75, 207, 158, 0.2);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -28,7 +28,7 @@
 
 .card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 30px rgba(75, 207, 158, 0.35);
+  box-shadow: 0 0 30px #b6c4ff;
 }
 
 

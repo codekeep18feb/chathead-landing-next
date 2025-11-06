@@ -9,7 +9,7 @@
 .section h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--headings-color);
+  color: var(--text-color);
   margin-bottom: 3rem;
   text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
   text-align: center;
@@ -17,7 +17,7 @@
 
 .section h3 {
   font-size: 1.3rem;
-  color: var(--sub-btn-color);
+  color: var(--subbtn-color);
   margin-bottom: 1rem;
 }
 
@@ -63,7 +63,7 @@
   width: 40px;
   height: 40px;
   background: rgba(75, 207, 158, 0.15);
-  color: var(--sub-btn-color);
+  color: var(--subbtn-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -71,6 +71,6 @@
   transition: background 0.3s ease, color 0.3s ease;
 }
 .bullets li:hover .iconCircle {
-  background: var(--sub-btn-color);
+  background: var(--subbtn-color);
   color: #fff;
 }

@@ -11,7 +11,7 @@
 .heading {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--headings-color);
+  color: var(--text-color);
   margin-bottom: 3rem;
   text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
   text-align: center;
@@ -69,7 +69,7 @@
 .content h3 {
   margin-bottom: 1rem;
   font-size: 1.4rem;
-  color: var(--sub-btn-color);
+  color: var(--subbtn-color);
 }
 
 .content ul {

@@ -1,7 +1,6 @@
-
 /* ✅ Base card */
 .card {
-  background: var(--card-bg);
+  background: var(--background-color);
   border-radius: 18px;
   border: 1px solid rgba(75, 207, 158, 0.2);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -16,36 +15,61 @@
 }
 
 /* ✅ Optional width variation for multiple cards */
-.card:nth-child(1) { width: 320px; }
-.card:nth-child(2) { width: 390px; }
-.card:nth-child(3) { width: 280px; }
-.card:nth-child(4) { width: 320px; }
-.card:nth-child(5) { width: 260px; }
-.card:nth-child(6) { width: 400px; }
-.card:nth-child(7) { width: 385px; }
-.card:nth-child(8) { width: 255px; }
-.card:nth-child(9) { width: 330px; }
-.card:nth-child(10) { width: 320px; }
-.card:nth-child(11) { width: 260px; }
-.card:nth-child(12) { width: 355px;}
-
+.card:nth-child(1) {
+  width: 320px;
+}
+.card:nth-child(2) {
+  width: 390px;
+}
+.card:nth-child(3) {
+  width: 280px;
+}
+.card:nth-child(4) {
+  width: 320px;
+}
+.card:nth-child(5) {
+  width: 260px;
+}
+.card:nth-child(6) {
+  width: 400px;
+}
+.card:nth-child(7) {
+  width: 385px;
+}
+.card:nth-child(8) {
+  width: 255px;
+}
+.card:nth-child(9) {
+  width: 330px;
+}
+.card:nth-child(10) {
+  width: 320px;
+}
+.card:nth-child(11) {
+  width: 260px;
+}
+.card:nth-child(12) {
+  width: 355px;
+}
 
 .card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 30px rgba(75, 207, 158, 0.35);
+  box-shadow: 0 0 30px #b6c4ff;
 }
 
 .benefit {
   font-size: 0.95rem;
-  color: var(--white-text);
+  color: var(--text-color);
   line-height: 1.5;
-  background: rgba(75, 207, 158, 0.08);
-  border-left: 4px solid var(--sub-btn-color);
+  background: var(--light-subbtn-color);
+  border-left: 4px solid var(--subbtn-color);
   padding: 0.8rem 1rem;
   border-radius: 0 8px 8px 0;
   margin-top: 0.8rem;
 }
-
+.benefit strong {
+  color: var(--sub1-btn-color);
+}
 /* ✅ CTA Section (kept same as your original) */
 .cta {
   margin-top: 4rem;
@@ -58,7 +82,7 @@
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--headings-color);
+  color: var(--text-color);
 }
 
 .cta p {
@@ -87,8 +111,8 @@
 }
 
 .primary {
-  background: var(--sub-btn-color);
-  color: var(--white-text);
+  background: var(--subbtn-color);
+  color: var(--text-color);
   box-shadow: 0 0 15px rgba(75, 207, 158, 0.3);
 }
 
@@ -105,7 +129,7 @@
 
 .secondary:hover {
   background: var(--sub1-btn-color);
-  color: var(--white-text);
+  color: var(--text-color);
 }
 
 /* ✅ Responsive */

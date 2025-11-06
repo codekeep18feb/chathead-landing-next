@@ -1,16 +1,16 @@
 .offerSection {
   padding: 4rem 2rem;
   text-align: center;
-  background: var(--section-bg-alt);
+  background: var(--background-color);
   border-radius: 20px;
-  color: var(--s-color);
+  color: var(--text-color);
   margin: 0 auto;
 }
 
 .mainTitle {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--headings-color);
+  color: var(--text-color);
   margin-bottom: 3rem;
   text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
 }
@@ -27,7 +27,7 @@
 .tabButton {
   background: transparent;
   border: 1px solid rgba(156, 178, 86, 0.25);
-  color: var(--s-color);
+  color: var(--text-color);
   font-size: 1rem;
   padding: 0.8rem 1.5rem;
   border-radius: 30px;
@@ -37,15 +37,15 @@
 }
 
 .tabButton:hover {
-  background: rgba(156, 178, 86, 0.15);
-  border-color: var(--sub-btn-color);
-  color: var(--sub-btn-color);
+  background: var(--light-subbtn-color);
+  border-color: var(--subbtn-color);
+  color: var(--subbtn-color);
 }
 
 .active {
-  background: var(--sub-btn-color);
+  background: var(--subbtn-color);
   color: #fff;
-  border-color: var(--sub-btn-color);
+  border-color: var(--subbtn-color);
   box-shadow: 0 0 20px rgba(75, 207, 158, 0.3);
 }
 @media (max-width: 768px) {

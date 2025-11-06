@@ -9,7 +9,7 @@
 }
 
 .section h2 {
-  color: var(--headings-color);
+  color: var(--text-color);
   font-size: 2rem;
   margin-bottom: 1rem;
 }

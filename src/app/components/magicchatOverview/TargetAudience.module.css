@@ -55,7 +55,7 @@
 .title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: var(--headings-color);
+  color: var(--text-color);
 }
 
 .pain {
@@ -197,7 +197,7 @@
   color: var(--sub1-btn-color);
 }
 .card h3 {
-  color: var(--sub-btn-color);
+  color: var(--subbtn-color);
 }
 
 /* responsive design */
