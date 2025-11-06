@@ -14,7 +14,7 @@
     font-weight: 700;
     color: var(--text-color);
     margin-bottom: 3rem;
-    text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
+    /* text-shadow: 0 0 12px rgba(75, 207, 158, 0.3); */
     text-align: center;
 }
 
