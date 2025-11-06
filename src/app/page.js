@@ -26,11 +26,11 @@ export default function Home() {
         strategy="beforeInteractive"
       />
       {/* Load Magicchat bundle */}
-      <Script
+      {/* <Script
         src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"
         strategy="afterInteractive"
         onLoad={handleMagicChatInit}
-      />
+      /> */}
 
       <SolveSection />
       <WhatWeOfferSection/>

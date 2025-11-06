@@ -52,7 +52,7 @@ export default function HowToGetStarted() {
                C200,100 380,140 480,80 
                S780,100 940,220"
             fill="none"
-            stroke="rgba(255,255,255,0.3)"
+            stroke="rgba(189, 46, 255, 0.3)"
             strokeWidth="3"
             strokeDasharray="10 8"
             strokeLinecap="round"

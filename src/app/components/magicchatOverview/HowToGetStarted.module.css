@@ -1,7 +1,7 @@
 .wrapper {
   padding: 4rem 2rem;
-  background: var(--dark-primary-color, #111);
-  color: var(--white-text-color, #fff);
+  background: var(--white-text);
+  color: var(--text-color);
   text-align: center;
   max-width: 1070px;
   margin: auto;
@@ -36,6 +36,9 @@ font-size: 2.5rem;
   z-index: 1;
   pointer-events: none;
 }
+.flowLine svg {
+  color: var(--subbtn-color);
+}
 
 .step {
   position: relative;
@@ -56,26 +59,26 @@ font-size: 2.5rem;
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: var(--new-primary-color, #2f3336);
+  background: var(--subbtn-color);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: var(--subbtn-color, #4bcf9e);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  color: var(--white-text);
+  box-shadow: 0 8px 22px #a370ce;
   border: 1px solid rgba(255, 255, 255, 0.03);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .icon:hover {
   transform: scale(1.1);
-  box-shadow: 0 10px 28px rgba(75, 207, 158, 0.45);
+  box-shadow: 0 10px 28px #a370ce;
 }
 
 .text {
   margin-top: 0.75rem;
   font-size: 0.95rem;
-  color: #d9d9d9;
+  color: var(--text-color);
   width: 180px;
 }
 
