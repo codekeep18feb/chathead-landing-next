@@ -17,7 +17,7 @@
 
 .section p {
 font-size: 1.125rem;
-    color: var(--s-color);
+    color: var(--text-color);
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.7;
