@@ -74,7 +74,7 @@
   padding-left: 2rem;
   font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--s-color);
+  color: var(--text-color);
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
