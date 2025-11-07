@@ -9,7 +9,7 @@ import clinetChat from "../../../public/Asset/magicChatImg/clinetChatModal_full.
 const SolveSection = () => {
   return (
     <section className={styles["solve-section"]}>
-      <div className="solve-content">
+      <div className={styles["solve-content"]}>
         <h1>What do we Solve</h1>
         <p>
           No-code chatbot platform for Lead Gen, AI answers & Live Agent Chat —
@@ -19,7 +19,7 @@ const SolveSection = () => {
                     <input type="email" placeholder="Enter your email id" />
                     <button>Get Started Free</button>
                 </div> */}
-        <div className="email-input">
+        <div className={styles["email-input"]}>
           <a href="https://admin.magicchat.io/schedule_demo">
             <button>Schedule Demo</button>
           </a>

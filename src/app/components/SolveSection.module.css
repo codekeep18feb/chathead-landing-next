@@ -4,10 +4,34 @@
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
-  background: radial-gradient(circle at top right, #f5e9ff, #e8f0ff, #fff);
+  background: linear-gradient(135deg, #dbe5ff 0%, #e6d8f7 50%, #dff7e4 100%);
   overflow: hidden;
   position: relative;
-  height: 70vh
+  height: 70vh;
+}
+
+.solve-content {
+  width: 100%;
+  max-width: 1200px; /* Limit the width */
+  margin: 0 auto; /* Centering the content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Center text */
+}
+.email-input button {
+  padding: 15px 20px;
+  background: var(--primary-gradient);
+  border: none;
+  border-radius: 4px;
+  color: var(--white-text-color);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.email-input button:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 /* Headings & Text */
@@ -28,7 +52,7 @@
 
 /* Button */
 .email-input button {
-  background: linear-gradient(135deg, #6e56cf, #a675e4);
+  background:var(--primary-gradient);
   border: none;
   color: white;
   padding: 0.9rem 2rem;
