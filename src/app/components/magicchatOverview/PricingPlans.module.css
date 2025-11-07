@@ -163,6 +163,7 @@
    =========================================================== */
 
 /* 📱 Extra Small Devices (Phones <480px) */
+/* 📱 Extra Small Devices (Phones <480px) */
 @media (max-width: 480px) {
   .pricingSection {
     padding: 4rem 1rem;
@@ -182,46 +183,35 @@
     padding: 1rem;
   }
 
-  /* --- Convert Table to Card Layout --- */
-  .pricingTable {
-    display: block;
-    border: none;
-    min-width: 0;
-  }
-
-  .pricingTable thead {
-    display: none;
-  }
-
-  .pricingTable tbody {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .pricingTable tr {
-    display: flex;
-    flex-direction: column;
-    background: rgba(255, 255, 255, 0.03);
-    margin-bottom: 1rem;
+  /* --- Keep Table Scrollable --- */
+  .tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
     border-radius: 12px;
-    padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
   }
 
+  .tableWrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tableWrapper::-webkit-scrollbar-thumb {
+    background: rgba(155, 155, 155, 0.3);
+    border-radius: 4px;
+  }
+
+  .pricingTable {
+    min-width: 700px;
+    border-radius: 12px;
+  }
+
+  .pricingTable th,
   .pricingTable td {
-    border: none;
-    display: flex;
-    justify-content: space-between;
-    padding: 0.6rem 0;
+    padding: 0.9rem;
     font-size: 0.95rem;
-  }
-
-  .pricingTable td::before {
-    content: attr(data-label);
-    font-weight: 700;
-    color: var(--subbtn-color);
-    margin-right: 1rem;
-    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .pricingSummary h3 {
@@ -232,6 +222,7 @@
     font-size: 0.95rem;
   }
 }
+
 
 /* 📱 Small Tablets (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
