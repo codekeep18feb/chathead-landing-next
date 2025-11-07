@@ -19,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{width: "100%", maxWidth: "1440px", border:"3px solid red" , margin: "0px auto"}}>
+    <div className="body_contnet_section">
       {/* Load Socket.io */}
       <Script
         src="https://cdn.socket.io/4.1.2/socket.io.min.js"

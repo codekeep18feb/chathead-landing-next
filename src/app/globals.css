@@ -554,6 +554,11 @@ body {
   padding: 10px 0px;
   color: #4e4e4e;
 }
+.body_contnet_section{
+      width: 100%;
+    min-width: 1440px;
+    margin: 0px auto;
+}
 /* Media Queries */
 @media (max-width: 768px) {
   .platform-container {
