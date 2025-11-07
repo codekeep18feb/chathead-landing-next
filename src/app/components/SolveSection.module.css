@@ -3,12 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6rem 2rem;
-  background: radial-gradient(circle at top left, #f5e9ff, #e8f0ff, #fff);
+  padding: 4rem 2rem;
+  background: radial-gradient(circle at top right, #f5e9ff, #e8f0ff, #fff);
   overflow: hidden;
   position: relative;
+  height: 70vh
 }
 
+/* Headings & Text */
 .solve-section h1 {
   font-size: 3rem;
   color: #222;
@@ -24,6 +26,7 @@
   margin-bottom: 2rem;
 }
 
+/* Button */
 .email-input button {
   background: linear-gradient(135deg, #6e56cf, #a675e4);
   border: none;
@@ -40,13 +43,14 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Image container */
 .solve-image {
   position: relative;
   width: 100%;
   max-width: 950px;
-  height: 550px;
+  height: 850px;
   margin-top: 3rem;
-  perspective: 2000px; /* gives 3D depth */
+  perspective: 2000px; /* adds 3D depth */
 }
 
 /* Base image styling */
@@ -56,33 +60,139 @@
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
   transform-style: preserve-3d;
   transition: all 0.6s ease;
+  right: 0;
+  cursor: pointer;
 }
 
-/* First image (bottom layer) */
-.solve-image :global(img:nth-child(1)) {
-  top: 60px;
-  left: -40px;
-  transform: rotateY(-15deg) rotateX(5deg) scale(0.95);
+/* Bottom layer */
+.solve-image :global(img:nth-child(3)) {
+  top: -200px;
+  right: -727px;
+  transform: rotateY(-26deg) rotateX(46deg) scale(0.92);
   z-index: 1;
 }
 
-/* Second image (middle layer) */
+/* Middle layer */
 .solve-image :global(img:nth-child(2)) {
-  top: 0;
-  left: 60px;
-  transform: rotateY(10deg) rotateX(3deg) translateZ(20px);
+  top: -390px;
+  right: -125px;
+  transform: rotateY(-23deg) rotateX(30deg) translateZ(-558px);
   z-index: 2;
 }
 
-/* Third image (top layer) */
-.solve-image :global(img:nth-child(3)) {
-  top: -40px;
-  left: 120px;
-  transform: rotateY(20deg) rotateX(8deg) translateZ(40px);
+/* Top layer */
+.solve-image :global(img:nth-child(1)) {
+  top: -365px;
+  right: 120px;
+  transform: rotateY(-18deg) rotateX(40deg) translateZ(-315px);
   z-index: 3;
 }
 
-/* Optional subtle animation on hover */
-.solve-image:hover :global(img) {
-  transform: rotateY(0deg) rotateX(0deg) translateZ(0px) scale(1.02);
+/* Hover behavior — only z-index changes */
+.solve-image :global(img:hover) {
+  z-index: 10;
+}
+
+/* Optional: slight dimming of non-hovered images */
+.solve-image:hover :global(img:not(:hover)) {
+  opacity: 0.9;
+}
+
+/* ---------------- RESPONSIVENESS ---------------- */
+
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .solve-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .solve-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .solve-section p {
+    font-size: 1.1rem;
+    max-width: 500px;
+  }
+
+  .solve-image {
+    max-width: 750px;
+    height: 650px;
+  }
+
+  .solve-image :global(img:nth-child(3)) {
+    top: -160px;
+    right: -500px;
+    transform: rotateY(-24deg) rotateX(40deg) scale(0.9);
+  }
+
+  .solve-image :global(img:nth-child(2)) {
+    top: -300px;
+    right: -80px;
+    transform: rotateY(-22deg) rotateX(28deg) translateZ(-400px);
+  }
+
+  .solve-image :global(img:nth-child(1)) {
+    top: -280px;
+    right: 80px;
+    transform: rotateY(-18deg) rotateX(35deg) translateZ(-250px);
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .solve-section {
+    padding: 3rem 1rem;
+  }
+
+  .solve-section h1 {
+    font-size: 2rem;
+  }
+
+  .solve-section p {
+    font-size: 1rem;
+  }
+
+  .solve-image {
+    max-width: 100%;
+    height: 500px;
+  }
+
+  .solve-image :global(img) {
+    position: relative;
+    right: auto;
+    top: auto;
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    transform: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .solve-image :global(img:hover) {
+    z-index: 10;
+  }
+
+  .solve-image:hover :global(img:not(:hover)) {
+    opacity: 1;
+  }
+}
+
+/* Extra small (max-width: 480px) */
+@media (max-width: 480px) {
+  .solve-section h1 {
+    font-size: 1.7rem;
+  }
+
+  .solve-section p {
+    font-size: 0.95rem;
+  }
+
+  .email-input button {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.95rem;
+  }
+
+  .solve-image {
+    height: auto;
+  }
 }

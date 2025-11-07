@@ -37,7 +37,7 @@ export default function Home() {
       <br></br>
 
         <br></br>
-      <SolveSectioncopy />
+      {/* <SolveSectioncopy /> */}
       <WhatWeOfferSection/>
       <MagicChatOverview />
       {/* <HowSection /> */}
