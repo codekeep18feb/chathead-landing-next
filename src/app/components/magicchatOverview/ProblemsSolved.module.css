@@ -88,11 +88,6 @@ color: var(--new-secondary-color);
 transition: transform 0.3s ease;
 }
 
-.bullets li:hover {
-  color: var(--white-text-color);
-  /* transform: translateX(5px); */
-}
-
 .bullets li:hover::before {
   transform: scale(1.3);
 }

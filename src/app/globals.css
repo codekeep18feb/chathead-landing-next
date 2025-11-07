@@ -46,11 +46,11 @@
   --nav-bg: linear-gradient(135deg, #1a1c1b, #222525);
   --nav-hover: #2b2e30;
 
-  --primary-gradient: linear-gradient(
+  /* --primary-gradient: linear-gradient(
     to bottom,
     var(--new-primary-color),
     var(--dark-primary-color)
-  );
+  ); */
 
   --accent-gradient: linear-gradient(
     135deg,

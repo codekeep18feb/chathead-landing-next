@@ -40,7 +40,8 @@
 .icon {
   min-width: 4.5rem;
   min-height: 4.5rem;
-  background: linear-gradient(135deg, #4bcf9e, #9cb256);
+  /* background: linear-gradient(135deg, #4bcf9e, #9cb256); */
+    background: var(--primary-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -58,12 +59,13 @@
 }
 
 .content {
-  background: var(--new-primary-color);
+ background: var(--background-color);
   border-radius: 16px;
   padding: 1.8rem 2rem;
   width: 100%;
-  box-shadow: 0 0 15px rgba(156, 178, 86, 0.08);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
+  color: var(--text-color);
 }
 
 .content h3 {
