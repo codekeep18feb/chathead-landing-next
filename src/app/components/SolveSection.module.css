@@ -179,7 +179,7 @@
 
   .solve-image {
     max-width: 100%;
-    height: 500px;
+    height: 700px;
   }
 
   .solve-image :global(img) {
@@ -215,8 +215,8 @@
     padding: 0.8rem 1.6rem;
     font-size: 0.95rem;
   }
-
+/* 
   .solve-image {
     height: auto;
-  }
+  } */
 }
