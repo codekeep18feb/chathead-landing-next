@@ -1,14 +1,11 @@
 // src/app/components/SolveSection.js
 import React from "react";
-import styles from "./SolveSection.module.css";
-import Image from "next/image";
-import adminChat from "../../../public/Asset/magicChatImg/adminChat.png";
-import credential from "../../../public/Asset/magicChatImg/credential.png";
-import clinetChat from "../../../public/Asset/magicChatImg/clinetChatModal_full.png";
 
-const SolveSection = () => {
+const SolveSectioncopy = () => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
   return (
-    <section className={styles["solve-section"]}>
+    <section className="solve-section">
       <div className="solve-content">
         <h1>What do we Solve</h1>
         <p>
@@ -25,13 +22,14 @@ const SolveSection = () => {
           </a>
         </div>
       </div>
-      <div className={styles["solve-image"]}>
-        <Image src={adminChat} alt="adminChat" />
-        <Image src={credential} alt="credential" />
-        <Image src={clinetChat} alt="clinetChat" />
+      <div className="solve-image">
+        <img
+          src={`${basePath}/Asset/banner_img_chat.png`}
+          alt="Chat Solution"
+        />
       </div>
     </section>
   );
 };
 
-export default SolveSection;
+export default SolveSectioncopy;
