@@ -1,3 +1,8 @@
+/* ===========================================================
+   🌟 PRICING PLANS STYLES — Magic Chat
+   =========================================================== */
+
+/* ---------- Section Wrapper ---------- */
 .pricingSection {
   position: relative;
   padding: 6rem 0rem;
@@ -72,62 +77,64 @@
   font-size: 1.1rem;
 }
 
-/* ---------- Table ---------- */
+/* ---------- Table Wrapper ---------- */
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+}
+
+/* ---------- Table Styles ---------- */
 .pricingTable {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
   border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 1.5rem;
 }
 
-.pricingRowHeader,
-.pricingRow {
-  display: grid;
-  grid-template-columns: 1.2fr 1.2fr 1fr 2fr;
-  gap: 1rem;
-  padding: 1.4rem 1.2rem;
-  align-items: center;
-}
-
-.pricingRowHeader {
+.pricingTable thead {
   background: rgba(255, 255, 255, 0.08);
+}
+
+.pricingTable th,
+.pricingTable td {
+  padding: 1.2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pricingTable th {
   font-weight: 700;
   text-transform: uppercase;
   color: var(--subbtn-color);
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
-.pricingRowHeader span {
-  color: var(--subbtn-color);
+.pricingTable td {
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-.pricingRow {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.35s ease;
-  position: relative;
-}
-
-.pricingRow:hover {
+.pricingTable tr:hover {
   background: rgba(75, 207, 158, 0.12);
+  transition: background 0.3s ease;
 }
 
-.pricingRow:nth-child(3) {
+.highlightRow {
   background: linear-gradient(90deg, #4bcf7e26, #ca80fc1a);
   border-left: 4px solid #4bcf9e;
   font-weight: 600;
 }
 
-.pricingRow span:nth-child(3) {
+.pricingTable td:nth-child(3) {
   font-weight: 700;
-  font-size: 1.05rem;
   color: var(--subbtn-color);
 }
 
-.pricingRow span:first-child {
-  font-size: 1.1rem;
-}
-
+/* ---------- Annual Note ---------- */
 .annualNote {
   margin-bottom: 2rem;
   color: var(--text-color);
@@ -151,9 +158,9 @@
   }
 }
 
-/* -------------------------------------- */
-/* ✅ RESPONSIVE BREAKPOINTS */
-/* -------------------------------------- */
+/* ===========================================================
+   ✅ RESPONSIVE BREAKPOINTS
+   =========================================================== */
 
 /* 📱 Extra Small Devices (Phones <480px) */
 @media (max-width: 480px) {
@@ -175,19 +182,46 @@
     padding: 1rem;
   }
 
-  .pricingRowHeader,
-  .pricingRow {
-    grid-template-columns: 1fr;
-    text-align: left;
+  /* --- Convert Table to Card Layout --- */
+  .pricingTable {
+    display: block;
+    border: none;
+    min-width: 0;
+  }
+
+  .pricingTable thead {
+    display: none;
+  }
+
+  .pricingTable tbody {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricingTable tr {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 1rem;
+    border-radius: 12px;
     padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .pricingRow span:first-child {
-    font-size: 1rem;
+  .pricingTable td {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
   }
 
-  .pricingRow span:nth-child(3) {
-    font-size: 1rem;
+  .pricingTable td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--subbtn-color);
+    margin-right: 1rem;
+    text-transform: uppercase;
   }
 
   .pricingSummary h3 {
@@ -202,7 +236,7 @@
 /* 📱 Small Tablets (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .pricingSection {
-    padding: 5rem 2rem;
+    padding: 5rem 0rem;
   }
 
   .pricingHeader h2 {
@@ -217,35 +251,32 @@
     padding: 1.5rem;
   }
 
-  .pricingRowHeader,
-  .pricingRow {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
+  .pricingTable {
+    min-width: 600px;
   }
 }
 
-/* 💻 Medium Devices (769px - 1024px) → Tablets & small laptops */
+/* 💻 Medium Devices (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .pricingSection {
-    padding: 6rem 3rem;
+    padding: 6rem 0rem;
   }
 
   .pricingHeader h2 {
     font-size: 2.2rem;
   }
 
-  .pricingRowHeader,
-  .pricingRow {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-  }
-
   .pricingSummary h3 {
     font-size: 1.7rem;
   }
+
+  .pricingTable th,
+  .pricingTable td {
+    padding: 1rem;
+  }
 }
 
-/* 🖥️ Large Devices (1025px - 1440px) → Laptops / Desktops */
+/* 🖥️ Large Devices (1025px - 1440px) */
 @media (min-width: 1025px) and (max-width: 1440px) {
   .pricingSection {
     padding: 6rem 4rem;
@@ -255,13 +286,12 @@
     font-size: 2.6rem;
   }
 
-  .pricingRowHeader,
-  .pricingRow {
-    grid-template-columns: 1.2fr 1.2fr 1fr 2fr;
+  .pricingSummary h3 {
+    font-size: 1.8rem;
   }
 }
 
-/* 🖥️ Extra Large Devices (1441px - 1920px) → Large Monitors */
+/* 🖥️ Extra Large Devices (1441px - 1920px) */
 @media (min-width: 1441px) and (max-width: 1920px) {
   .pricingSection {
     padding: 7rem 6rem;
@@ -277,6 +307,15 @@
 
   .pricingSummary h3 {
     font-size: 2rem;
+  }
+
+  .pricingTable th,
+  .pricingTable td {
+    padding: 1.4rem 1rem;
+  }
+
+  .annualNote {
+    font-size: 1.2rem;
   }
 }
 
@@ -295,14 +334,13 @@
     padding: 3rem;
   }
 
-  .pricingRowHeader,
-  .pricingRow {
-    grid-template-columns: 1.5fr 1.5fr 1fr 2fr;
-    gap: 1.5rem;
-  }
-
   .pricingSummary h3 {
     font-size: 2.2rem;
+  }
+
+  .pricingTable th,
+  .pricingTable td {
+    padding: 1.6rem 1.2rem;
   }
 
   .annualNote {

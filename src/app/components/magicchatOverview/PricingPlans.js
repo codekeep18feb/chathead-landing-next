@@ -13,44 +13,45 @@ const PricingPlans = () => {
         </p>
       </div>
 
-      {/* --- New Pricing Overview Content --- */}
+      {/* --- Pricing Table Section --- */}
       <div className={styles.pricingSummary}>
         <h3>How much does it cost?</h3>
         <p>We grow as you grow — with simple, transparent pricing.</p>
 
-        <div className={styles.pricingTable}>
-          <div className={styles.pricingRowHeader}>
-            <span>Plan</span>
-            <span>Best For</span>
-            <span>Monthly Price</span>
-            <span>Key Highlights</span>
-          </div>
-
-          <div className={styles.pricingRow}>
-            <span>🚀 Launch</span>
-            <span>Individuals & MVPs</span>
-            <span>Free Forever</span>
-            <span>
-              Basic AI Bot, Lead Capture, 2 Agents, Unlimited Websites
-            </span>
-          </div>
-
-          <div className={styles.pricingRow}>
-            <span>🌟 Starter</span>
-            <span>Small Teams</span>
-            <span>₹999/month</span>
-            <span>Enhanced AI Bot, 4 Agents, 500 Users, Basic Analytics</span>
-          </div>
-
-          <div className={styles.pricingRow}>
-            <span>🌱 Growth</span>
-            <span>Startups & Agencies</span>
-            <span>₹2499/month</span>
-            <span>
-              Advanced AI + RAG Engine, 20 Agents, 1K+ Users, API Access,
-              Branding Removal
-            </span>
-          </div>
+        <div className={styles.tableWrapper}>
+          <table className={styles.pricingTable}>
+            <thead>
+              <tr>
+                <th>Plan</th>
+                <th>Best For</th>
+                <th>Monthly Price</th>
+                <th>Key Highlights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🚀 Launch</td>
+                <td>Individuals & MVPs</td>
+                <td>Free Forever</td>
+                <td>Basic AI Bot, Lead Capture, 2 Agents, Unlimited Websites</td>
+              </tr>
+              <tr className={styles.highlightRow}>
+                <td>🌟 Starter</td>
+                <td>Small Teams</td>
+                <td>₹999/month</td>
+                <td>Enhanced AI Bot, 4 Agents, 500 Users, Basic Analytics</td>
+              </tr>
+              <tr >
+                <td>🌱 Growth</td>
+                <td>Startups & Agencies</td>
+                <td>₹2499/month</td>
+                <td>
+                  Advanced AI + RAG Engine, 20 Agents, 1K+ Users, API Access,
+                  Branding Removal
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <p className={styles.annualNote}>
@@ -59,9 +60,7 @@ const PricingPlans = () => {
         </p>
       </div>
 
-      {/* --- Existing Card-based Visual Overview --- */}
-
-      <FinalValue/>
+      <FinalValue />
     </section>
   );
 };

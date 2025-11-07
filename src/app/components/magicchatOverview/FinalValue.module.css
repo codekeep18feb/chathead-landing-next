@@ -176,7 +176,7 @@
 /* 📱 Small Tablets (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .final {
-    padding: 5rem 2rem;
+    padding: 5rem 0rem;
   }
 
   .final h3 {
@@ -206,7 +206,7 @@
 /* 💻 Medium Devices (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .final {
-    padding: 6rem 3rem;
+    padding: 6rem 0rem;
   }
 
   .final h3 {
