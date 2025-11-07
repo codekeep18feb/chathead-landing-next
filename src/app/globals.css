@@ -28,7 +28,9 @@
 
   --bg-light: #f8f9fb;
   --border-color: #e5e5e5;
-  --card-bg: #ffffff;
+  --cards-bg: #ffffff;
+--animated-gradient-color: linear-gradient(135deg, #4d6bdf 0%, #a370ce 40%, #92ffbf 100%);
+
 
   /* themes update */
   --new-primary-color: #2f3336;

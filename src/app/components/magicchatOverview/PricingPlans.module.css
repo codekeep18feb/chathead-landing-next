@@ -1,9 +1,9 @@
 .pricingSection {
   position: relative;
   padding: 6rem 0rem;
-  border-radius: 24px;
+  /* border-radius: 24px; */
   text-align: center;
-  color: var(--s-color);
+  color: var(--text-color);
   overflow: hidden;
   padding-bottom: 0px;
 }
@@ -29,7 +29,7 @@
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 3rem;
-  text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
+  /* text-shadow: 0 0 12px rgba(75, 207, 158, 0.3); */
   text-align: center;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .pricingHeader p {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-color);
   margin-top: 0.8rem;
   font-size: 1.1rem;
   line-height: 1.7;
@@ -71,7 +71,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(135deg, #4bcf9e, #00ffaa, #fc8083);
+  background: var(--animated-gradient-color);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -96,7 +96,7 @@
 .pricingSummary h3 {
   font-size: 1.9rem;
   margin-top: 2rem;
- color: var(--white-color);
+  color: var(--text-color);
 }
 
 .pricingSummary > p {
@@ -113,7 +113,7 @@
   margin-bottom: 1.5rem;
 }
 .pricingRowHeader span {
-  color: #4bcf9e;
+  color: var(--subbtn-color);
 }
 .pricingRowHeader,
 .pricingRow {
@@ -143,11 +143,7 @@
 }
 
 .pricingRow:nth-child(3) {
-  background: linear-gradient(
-    90deg,
-    rgba(75, 207, 158, 0.15),
-    rgba(252, 128, 131, 0.1)
-  );
+  background: linear-gradient(90deg, #4bcf7e26, #ca80fc1a);
   border-left: 4px solid #4bcf9e;
   font-weight: 600;
 }
@@ -155,7 +151,7 @@
 .pricingRow span:nth-child(3) {
   font-weight: 700;
   font-size: 1.05rem;
-  color: #4bcf9e;
+  color: var(--subbtn-color);
 }
 
 .pricingRow span:first-child {
@@ -164,7 +160,7 @@
 
 .annualNote {
   margin-bottom: 2rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-color);
   font-size: 1.05rem;
 }
 .annualNote strong {

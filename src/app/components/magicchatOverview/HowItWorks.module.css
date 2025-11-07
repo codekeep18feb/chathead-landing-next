@@ -3,9 +3,9 @@
   margin: 0 auto;
   padding: 4rem 2rem;
   text-align: center;
-  background: var(--section-bg);
+  /* background: var(--section-bg); */
   border-radius: 16px;
-  color: var(--s-color);
+  color: var(--text-color);
   width: 100%;
 }
 
@@ -29,8 +29,8 @@
 
 /* 🟢 Base card styling */
 .card {
-  background: var(--card-bg);
-  border: 1px solid rgba(75, 207, 158, 0.15);
+ background: var(--background-color);
+border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 16px;
   padding: 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -38,11 +38,12 @@
   box-shadow: 0 0 10px rgba(75, 207, 158, 0.1);
   flex-grow: 1;
   min-width: 180px;
+  color: var(--text-color);
 }
 
 .card:hover {
   transform: scale(1.04);
-  box-shadow: 0 0 25px rgba(75, 207, 158, 0.25);
+ box-shadow: 0 0 30px #b6c4ff;
 }
 
 /* 🟢 Step number */
@@ -57,7 +58,7 @@
   font-size: 1.4rem;
   font-weight: bold;
   color: #fff;
-  background: linear-gradient(135deg, #4bcf9e, #9cb256);
+  background: var(--primary-gradient);
   box-shadow: 0 0 10px rgba(75, 207, 158, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
