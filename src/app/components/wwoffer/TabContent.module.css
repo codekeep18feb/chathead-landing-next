@@ -4,14 +4,16 @@
   color: var(--text-color);
   border-top: 1px solid rgba(75, 207, 158, 0.15);
   transition: background 0.3s ease;
+  padding: 4rem 2rem;
 }
+
 .header {
   margin-bottom: 3rem;
   padding-top: 20px;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
@@ -27,6 +29,7 @@
   line-height: 1.7;
   opacity: 0.85;
 }
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -36,8 +39,8 @@
   margin: 3rem auto;
   max-width: 1070px;
   width: 100%;
-  margin-bottom: 0px;
 }
+
 .card {
   background: var(--background-color);
   border-radius: 18px;
@@ -45,13 +48,19 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   padding: 2rem 1.8rem;
   text-align: left;
-  flex: 0 0 auto;
+  flex: 1 1 calc(33.333% - 1.5rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-self: stretch;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 280px;
 }
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(75, 207, 158, 0.25);
+}
+
 .icon {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -71,21 +80,177 @@
   line-height: 1.6;
   flex-grow: 1;
 }
-@media (max-width: 1200px) {
+
+/* =====================================
+   RESPONSIVE MEDIA QUERIES
+===================================== */
+
+/* Ultra-wide / 4K screens (≥1600px) */
+@media (min-width: 1600px) {
+  .tabContentsWarp {
+    padding: 6rem 4rem;
+  }
+
+  .title {
+    font-size: 2.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+    max-width: 1000px;
+  }
+
   .grid {
-    max-width: 900px;
+    max-width: 1300px;
+    gap: 2.5rem;
+  }
+
+  .card {
+    padding: 2.5rem 2.2rem;
+    flex: 1 1 calc(25% - 2rem);
+  }
+
+  .icon {
+    font-size: 2.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .liveChatSection {
+/* Large desktop (1200px–1599px) */
+@media (max-width: 1599px) and (min-width: 1200px) {
+  .tabContentsWarp {
+    padding: 5rem 3rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    flex: 1 1 calc(33.333% - 1.5rem);
+  }
+}
+
+/* Laptops (992px–1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .tabContentsWarp {
+    padding: 4rem 2rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .grid {
+    max-width: 900px;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 1.5rem);
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablets (768px–991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .tabContentsWarp {
     padding: 3.5rem 2rem;
   }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
   .grid {
     flex-direction: column;
     align-items: center;
-    gap: 1.8rem;
-    max-width: 100%;
+    max-width: 90%;
   }
 
+  .card {
+    flex: 1 1 100%;
+    max-width: 600px;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+  }
+}
+
+/* Large mobile (576px–767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .tabContentsWarp {
+    padding: 3rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    max-width: 90%;
+  }
+
+  .grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+/* Small mobile (≤575px) */
+@media (max-width: 575px) {
+  .tabContentsWarp {
+    padding: 2.5rem 0rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .card {
+    width: 100%;
+    padding: 1.5rem 1.2rem;
+    border-radius: 14px;
+  }
+
+  .icon {
+    font-size: 1.6rem;
+  }
+
+  .cardTitle {
+    font-size: 1.1rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
 }

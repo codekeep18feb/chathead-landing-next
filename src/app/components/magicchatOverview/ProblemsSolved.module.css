@@ -6,33 +6,32 @@
   text-align: center;
   background: var(--section-bg-alt);
   border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
+/* ✅ Headings */
 .section h2 {
- font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-color);
-    margin-bottom: 3rem;
-    /* text-shadow: 0 0 12px rgba(75, 207, 158, 0.3); */
-    text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 3rem;
+  text-align: center;
+  transition: font-size 0.3s ease;
 }
 
+/* ✅ Layout */
 .sectionContent {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   gap: 2rem;
   position: relative;
+  transition: all 0.3s ease;
 }
 
 .divider {
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--subbtn-color),
-    transparent
-  );
+  background: linear-gradient(to bottom, transparent, var(--subbtn-color), transparent);
   border-radius: 1px;
 }
 
@@ -40,7 +39,9 @@
   flex: 1;
   padding: 2rem 2.5rem;
   text-align: left;
+  transition: all 0.3s ease;
 }
+
 .cardHeader {
   display: flex;
   align-items: center;
@@ -61,7 +62,7 @@
   color: var(--subbtn-color);
 }
 
-/* 🟢 Bullet styling */
+/* ✅ Bullet styling */
 .bullets {
   list-style: none;
   padding: 0;
@@ -80,20 +81,70 @@
 
 .bullets li::before {
   content: "✨";
- position: absolute;
-left: 0;
-top: 0;
-font-size: 1.1rem;
-color: var(--new-secondary-color);
-transition: transform 0.3s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.1rem;
+  color: var(--new-secondary-color);
+  transition: transform 0.3s ease;
 }
 
 .bullets li:hover::before {
   transform: scale(1.3);
 }
 
-/* 🟢 Responsive behavior */
-@media (max-width: 900px) {
+/* ✅ Responsive Design — all device ranges */
+
+/* 🔹 Small Mobile (≤480px) */
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 1.2rem;
+    border-radius: 14px;
+  }
+
+  .section h2 {
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .sectionContent {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .cardHeader {
+    justify-content: center;
+  }
+
+  .cardHeader h3 {
+    font-size: 1.1rem;
+  }
+
+  .bullets li {
+    font-size: 0.95rem;
+    padding-left: 1.5rem;
+  }
+
+  .divider {
+    display: none;
+  }
+}
+
+/* 🔹 Medium Mobile (481px–767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .section {
+    padding: 4rem 1.8rem;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+  }
+
   .sectionContent {
     flex-direction: column;
     gap: 3rem;
@@ -105,13 +156,102 @@ transition: transform 0.3s ease;
 
   .card {
     text-align: center;
+    padding: 1.8rem;
   }
 
   .cardHeader {
     justify-content: center;
   }
+}
+
+/* 🔹 Tablets (768px–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section {
+    padding: 5rem 2.5rem;
+  }
+
+  .section h2 {
+    font-size: 2.2rem;
+  }
+
+  .sectionContent {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .card {
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+/* 🔹 Laptops (1024px–1365px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .section {
+    padding: 5rem 3rem;
+  }
+
+  .section h2 {
+    font-size: 2.4rem;
+  }
+
+  .sectionContent {
+    gap: 2.5rem;
+  }
+
+  .card {
+    padding: 2.2rem;
+  }
+}
+
+/* 🔹 Desktops (1366px–1919px) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .section {
+    max-width: 1200px;
+    padding: 6rem 4rem;
+  }
+
+  .section h2 {
+    font-size: 2.6rem;
+  }
+
+  .sectionContent {
+    gap: 3rem;
+  }
+
+  .card {
+    padding: 2.5rem 3rem;
+  }
+}
+
+/* 🔹 Large Desktop / TV (≥1920px) */
+@media (min-width: 1920px) {
+  .section {
+    max-width: 1600px;
+    padding: 8rem 5rem;
+  }
+
+  .section h2 {
+    font-size: 3rem;
+  }
+
+  .cardHeader h3 {
+    font-size: 1.6rem;
+  }
 
   .bullets li {
-    padding-left: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .card {
+    padding: 3rem 4rem;
+  }
+
+  .sectionContent {
+    gap: 4rem;
   }
 }

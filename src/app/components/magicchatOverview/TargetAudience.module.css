@@ -8,12 +8,14 @@
   gap: 1.5rem;
   background: var(--background-color);
 }
+
 .innerWarp {
   padding: 4rem 2rem;
   background-color: var(--section-bg);
   border-radius: 10px;
   margin: 0 10rem;
 }
+
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -30,7 +32,6 @@
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 12px;
   padding: 2rem;
-  color: var(--white-color);
   text-align: left;
   box-shadow: 0 0 12px rgba(75, 207, 158, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -42,7 +43,7 @@
   box-shadow: 0 6px 18px rgba(75, 207, 158, 0.15);
 }
 
-/* Inner card layout */
+/* Card layout */
 .card {
   display: flex;
   flex-direction: column;
@@ -66,7 +67,7 @@
   line-height: 1.6;
 }
 
-/* 🟢 Enhanced ul/li styling */
+/* Bullet points */
 .card ul {
   margin-top: 0.6rem;
   padding-left: 0;
@@ -77,18 +78,17 @@
 }
 
 .card ul li {
-  padding: 0.3rem 0.8rem 0.3rem 1.8rem; /* increased left padding for tick gap */
+  padding: 0.3rem 0.8rem 0.3rem 1.8rem;
   font-size: 0.9rem;
   line-height: 1.5;
   position: relative;
   transition: all 0.25s ease;
 }
 
-/* small checkmark bullet */
 .card ul li::before {
   content: "✔";
   position: absolute;
-  left: 0.6rem; /* keeps it slightly left of text */
+  left: 0.6rem;
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.85rem;
@@ -119,18 +119,7 @@
   color: var(--white-color);
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
+/* Gradient wide box */
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -144,18 +133,11 @@
 }
 
 .wide {
-  /* background: linear-gradient(
-    135deg,
-    rgba(75, 207, 158, 0.5) 0%,    
-    rgba(252, 128, 131, 0.4) 40%,   
-    rgba(156, 178, 86, 0.45) 100%  
-  ); */
   background: var(--animated-gradient-color);
-  background-size: 300% 300%; /* larger spread for movement */
-  animation: gradientShift 4s ease-in-out infinite; /* faster cycle */
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease-in-out infinite;
   border: 1px solid rgba(75, 207, 158, 0.5);
   box-shadow: 0 0 40px rgba(75, 207, 158, 0.2);
-  /* padding: 3rem 2rem; */
   border-radius: 20px;
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -168,7 +150,6 @@
   flex-direction: column;
 }
 
-/* glowing overlay */
 .wide::before {
   content: "";
   position: absolute;
@@ -187,13 +168,7 @@
   transform: translateY(-6px);
   box-shadow: 0 8px 35px rgba(75, 207, 158, 0.3);
 }
-/* .wide h2 {
-  background: linear-gradient(90deg, #4bcf9e, #fc8083, #9cb256, #4bcf9e);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 3s linear infinite;
-} */
+
 .ideal strong {
   color: var(--sub1-btn-color);
 }
@@ -201,21 +176,104 @@
   color: var(--subbtn-color);
 }
 
-/* responsive design */
-@media (max-width: 768px) {
+/* -------------------------------------- */
+/* ✅ RESPONSIVE BREAKPOINTS */
+/* -------------------------------------- */
+
+/* Extra Small Devices (Phones <480px) */
+@media (max-width: 480px) {
+  .innerWarp {
+    margin: 0rem;
+    padding: 2rem 1rem;
+  }
+  .heading {
+    font-size: 1.7rem;
+  }
+  .intro {
+    font-size: 0.9rem;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .row:first-child {
+    grid-template-columns: 1fr;
+  }
+  .box {
+    padding: 1.2rem;
+  }
+  .emoji {
+    font-size: 1.6rem;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .innerWarp {
+    margin: 0 2rem;
+    padding: 3rem 1.5rem;
+  }
   .row {
     grid-template-columns: 1fr;
   }
-
-  .box {
-    padding: 1.5rem;
-  }
-
   .heading {
-    font-size: 1.9rem;
+    font-size: 2rem;
   }
-
   .intro {
     font-size: 1rem;
+  }
+}
+
+/* Medium Devices (769px - 1024px) → Tablets & small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .innerWarp {
+    margin: 0 4rem;
+  }
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .heading {
+    font-size: 2.1rem;
+  }
+}
+
+/* Large Devices (1025px - 1440px) → Laptops / Desktops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .innerWarp {
+    margin: 0rem 2rem;
+    padding: 2rem;
+  }
+  .heading {
+    font-size: 2.4rem;
+  }
+}
+
+/* Extra Large Devices (1441px - 1920px) → Large Monitors */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .innerWarp {
+    margin: 0 12rem;
+  }
+  .heading {
+    font-size: 2.6rem;
+  }
+}
+
+/* Ultra Wide Screens / TVs (1921px and up) */
+@media (min-width: 1921px) {
+  .innerWarp {
+    margin: 0 20rem;
+    padding: 6rem 3rem;
+  }
+  .heading {
+    font-size: 3rem;
+  }
+  .intro {
+    font-size: 1.2rem;
+  }
+  .box {
+    padding: 2.5rem;
   }
 }

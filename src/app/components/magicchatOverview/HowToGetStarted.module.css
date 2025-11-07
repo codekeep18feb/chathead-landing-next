@@ -9,13 +9,15 @@
 }
 
 .heading {
-font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-color);
-    margin-bottom: 3rem;
-    /* text-shadow: 0 0 12px rgba(75, 207, 158, 0.3); */
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 3rem;
 }
 
+/* ===========================
+   FLOW STRUCTURE
+=========================== */
 .flowContainer {
   position: relative;
   max-width: 1270px;
@@ -25,6 +27,7 @@ font-size: 2.5rem;
   justify-content: space-between;
   align-items: center;
   margin-top: 5rem;
+  flex-wrap: nowrap;
 }
 
 .flowLine {
@@ -36,10 +39,14 @@ font-size: 2.5rem;
   z-index: 1;
   pointer-events: none;
 }
+
 .flowLine svg {
   color: var(--subbtn-color);
 }
 
+/* ===========================
+   STEPS
+=========================== */
 .step {
   position: relative;
   z-index: 3;
@@ -48,6 +55,7 @@ font-size: 2.5rem;
   align-items: center;
   text-align: center;
   gap: 20px;
+  transition: transform 0.3s ease;
 }
 
 .iconWrap {
@@ -65,24 +73,24 @@ font-size: 2.5rem;
   justify-content: center;
   font-size: 1.5rem;
   color: var(--white-text);
-  box-shadow: 0 8px 22px #a370ce;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 8px 22px rgba(163, 112, 206, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .icon:hover {
   transform: scale(1.1);
-  box-shadow: 0 10px 28px #a370ce;
+  box-shadow: 0 10px 28px rgba(163, 112, 206, 0.8);
 }
 
 .text {
-  margin-top: 0.75rem;
   font-size: 0.95rem;
   color: var(--text-color);
   width: 180px;
+  margin-top: 0.75rem;
 }
 
-/* === Move title above icon for step 1, 3, and 5 === */
+/* Steps 1, 3, 5 — text above icon */
 .step:nth-child(1),
 .step:nth-child(3),
 .step:nth-child(5) {
@@ -96,38 +104,83 @@ font-size: 2.5rem;
   margin-bottom: 0.75rem;
 }
 
-/* === Whiteboard-style vertical offsets === */
+/* ===========================
+   CUSTOM POSITIONING
+=========================== */
 .bottom-left {
-  /* transform: translateY(70px); */
-  transform: translateY(100px);
-  right: 30px;
+  transform: translateY(80px);
 }
 
 .top-left {
-  /* transform: translateY(-50px); */
   transform: translateY(-20px);
 }
 
 .top-center {
-  /* transform: translateY(-80px); */
-  transform: translateY(-20px);
+  transform: translateY(-40px);
 }
 
 .top-right {
-  /* transform: translateY(-40px); */
-  transform: translateY(-70px);
+  transform: translateY(-60px);
 }
 
 .bottom-right {
-  /* transform: translateY(70px); */
-  transform: translateY(100px);
-  right: -15px;
+  transform: translateY(80px);
 }
 
-/* === Responsive === */
-@media (max-width: 880px) {
+/* ===========================
+   RESPONSIVE STYLES
+=========================== */
+
+/* === Mobile First === */
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 2.5rem 1rem;
+    border-radius: 10px;
+  }
+
+  .heading {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
   .flowContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0;
+    margin-top: 2rem;
+  }
+
+  .flowLine {
+    display: none;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .text {
+    width: 90%;
+    font-size: 0.9rem;
+  }
+
+  .step {
+    transform: none !important;
     flex-direction: column;
+  }
+}
+
+/* Small Devices (481px–767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .flowContainer {
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
   }
 
@@ -135,14 +188,140 @@ font-size: 2.5rem;
     display: none;
   }
 
-  .step {
-    transform: none !important;
-    flex-direction: column;
+  .icon {
+    width: 58px;
+    height: 58px;
+    font-size: 1.3rem;
   }
 
   .text {
-    width: 90%;
-    margin-top: 0.8rem;
-    margin-bottom: 0;
+    width: 85%;
+    font-size: 0.9rem;
+  }
+
+  .step {
+    transform: none !important;
+  }
+}
+
+/* Medium Devices (768px–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heading {
+    font-size: 2.2rem;
+  }
+
+  .flowContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  .icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+  }
+
+  .text {
+    width: 200px;
+    font-size: 1rem;
+  }
+
+  .step {
+    transform: none !important;
+  }
+}
+
+/* Large Devices (1024px–1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .heading {
+    font-size: 2.4rem;
+  }
+
+  .icon {
+    width: 68px;
+    height: 68px;
+    font-size: 1.6rem;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+}
+
+/* Extra Large (1280px–1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .wrapper {
+    max-width: 1200px;
+    padding: 6rem 4rem;
+  }
+
+  .heading {
+    font-size: 2.8rem;
+  }
+
+  .flowContainer {
+    padding: 4rem 1rem;
+  }
+
+  .icon {
+    width: 75px;
+    height: 75px;
+    font-size: 1.8rem;
+  }
+
+  .text {
+    width: 220px;
+    font-size: 1.05rem;
+  }
+}
+
+/* Ultra HD (1536px–1919px) */
+@media (min-width: 1536px) and (max-width: 1919px) {
+  .wrapper {
+    max-width: 1400px;
+    padding: 7rem 5rem;
+  }
+
+  .heading {
+    font-size: 3rem;
+  }
+
+  .icon {
+    width: 85px;
+    height: 85px;
+    font-size: 2rem;
+  }
+
+  .text {
+    width: 240px;
+    font-size: 1.1rem;
+  }
+}
+
+/* 2K–4K (1920px and above) */
+@media (min-width: 1920px) {
+  .wrapper {
+    max-width: 1600px;
+    padding: 8rem 6rem;
+  }
+
+  .heading {
+    font-size: 3.5rem;
+  }
+
+  .flowContainer {
+    padding: 5rem 2rem;
+  }
+
+  .icon {
+    width: 100px;
+    height: 100px;
+    font-size: 2.2rem;
+  }
+
+  .text {
+    width: 260px;
+    font-size: 1.2rem;
   }
 }

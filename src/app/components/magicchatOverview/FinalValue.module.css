@@ -3,10 +3,10 @@
   text-align: center;
   padding: 6rem 2rem;
   overflow: hidden;
- background: var(--background-color);
+  background: var(--background-color);
   color: var(--text-color);
-  /* box-shadow: 0 0 50px rgba(0, 0, 0, 0.05); */
 }
+
 .final::before {
   content: "";
   position: absolute;
@@ -25,16 +25,12 @@
   height: 500px;
   bottom: 200px;
   right: -150px;
-  background: radial-gradient(
-    circle,
-    rgba(77, 107, 223, 0.12),
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(77, 107, 223, 0.12), transparent 70%);
   filter: blur(60px);
   z-index: 0;
 }
 
-/* Section Heading */
+/* ---------- Heading ---------- */
 .final h3 {
   position: relative;
   font-size: 2.3rem;
@@ -44,7 +40,7 @@
   z-index: 1;
 }
 
-/* Metrics container */
+/* ---------- Metrics Container ---------- */
 .metrics {
   position: relative;
   display: flex;
@@ -54,7 +50,7 @@
   z-index: 1;
 }
 
-/* Metric card */
+/* ---------- Metric Card ---------- */
 .metric {
   background: var(--cards-bg);
   backdrop-filter: blur(10px);
@@ -75,7 +71,7 @@
   color: var(--heading-color);
 }
 
-/* Icon Circle (emoji container) */
+/* ---------- Icon Circle ---------- */
 .iconCircle {
   width: 65px;
   height: 65px;
@@ -116,6 +112,7 @@
   }
 }
 
+/* ---------- Subscribe Button ---------- */
 .subscribeBtn {
   position: relative;
   margin-top: 3rem;
@@ -135,4 +132,182 @@
   background: var(--subbtn-color);
   color: var(--white-text-color);
   box-shadow: 0 0 25px rgba(77, 107, 223, 0.35);
+}
+
+/* -------------------------------------- */
+/* ✅ RESPONSIVE BREAKPOINTS */
+/* -------------------------------------- */
+
+/* 📱 Extra Small Devices (Phones <480px) */
+@media (max-width: 480px) {
+  .final {
+    padding: 4rem 1rem;
+  }
+
+  .final h3 {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .metrics {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .metric {
+    width: 100%;
+    min-width: unset;
+    padding: 1.2rem;
+  }
+
+  .iconCircle {
+    width: 55px;
+    height: 55px;
+    font-size: 1.6rem;
+  }
+
+  .subscribeBtn {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* 📱 Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .final {
+    padding: 5rem 2rem;
+  }
+
+  .final h3 {
+    font-size: 1.9rem;
+  }
+
+  .metrics {
+    gap: 1.5rem;
+  }
+
+  .metric {
+    flex: 1 1 45%;
+  }
+
+  .iconCircle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.7rem;
+  }
+
+  .subscribeBtn {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+  }
+}
+
+/* 💻 Medium Devices (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .final {
+    padding: 6rem 3rem;
+  }
+
+  .final h3 {
+    font-size: 2.1rem;
+  }
+
+  .metrics {
+    gap: 2rem;
+  }
+
+  .metric {
+    flex: 1 1 30%;
+  }
+
+  .iconCircle {
+    width: 65px;
+    height: 65px;
+  }
+
+  .subscribeBtn {
+    font-size: 1.05rem;
+  }
+}
+
+/* 🖥️ Large Devices (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .final {
+    padding: 7rem 5rem;
+  }
+
+  .final h3 {
+    font-size: 2.4rem;
+  }
+
+  .metrics {
+    gap: 2.5rem;
+  }
+
+  .metric {
+    flex: 1 1 22%;
+  }
+
+  .iconCircle {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* 🖥️ Extra Large (1441px - 1920px) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .final {
+    padding: 8rem 6rem;
+  }
+
+  .final h3 {
+    font-size: 2.6rem;
+  }
+
+  .metric {
+    padding: 2rem 3rem;
+    min-width: 260px;
+  }
+
+  .iconCircle {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .subscribeBtn {
+    font-size: 1.1rem;
+  }
+}
+
+/* 📺 Ultra Wide Screens / TVs (1921px and up) */
+@media (min-width: 1921px) {
+  .final {
+    padding: 10rem 10rem;
+  }
+
+  .final h3 {
+    font-size: 3rem;
+  }
+
+  .metrics {
+    gap: 3rem;
+  }
+
+  .metric {
+    min-width: 300px;
+    padding: 2.5rem 3.5rem;
+  }
+
+  .iconCircle {
+    width: 90px;
+    height: 90px;
+    font-size: 2.2rem;
+  }
+
+  .subscribeBtn {
+    font-size: 1.2rem;
+    padding: 1rem 3rem;
+  }
 }

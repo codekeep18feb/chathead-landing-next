@@ -6,17 +6,20 @@
   width: 100%;
   max-width: 1070px;
   margin: 0 auto;
+  transition: all 0.3s ease;
 }
 
+/* === Heading === */
 .heading {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 3rem;
-  text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
   text-align: center;
+  transition: font-size 0.3s ease;
 }
 
+/* === Timeline Layout === */
 .timeline {
   position: relative;
   margin: 0 auto;
@@ -37,11 +40,11 @@
   transform: translateY(-4px);
 }
 
+/* === Icon === */
 .icon {
   min-width: 4.5rem;
   min-height: 4.5rem;
-  /* background: linear-gradient(135deg, #4bcf9e, #9cb256); */
-    background: var(--primary-gradient);
+  background: var(--primary-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -54,17 +57,19 @@
   flex-shrink: 0;
   margin-top: 5rem;
 }
+
 .icon svg {
   color: var(--white-color);
 }
 
+/* === Content === */
 .content {
- background: var(--background-color);
+  background: var(--background-color);
   border-radius: 16px;
   padding: 1.8rem 2rem;
   width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, padding 0.3s ease;
   color: var(--text-color);
 }
 
@@ -86,46 +91,7 @@
   font-size: 1.05rem;
 }
 
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 0.2rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, rgba(75, 207, 158, 0.4), transparent);
-}
-
-/* Subtle animation */
-.timelineItem {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeUp 0.8s forwards;
-}
-
-.timelineItem:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.timelineItem:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.timelineItem:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.timelineItem:nth-child(4) {
-  animation-delay: 0.4s;
-}
-.timelineItem:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* === Timeline Line === */
 .timeline::before {
   content: "";
   position: absolute;
@@ -144,8 +110,7 @@
 }
 
 @keyframes pulseLine {
-  0%,
-  100% {
+  0%, 100% {
     box-shadow: 0 0 10px rgba(75, 207, 158, 0.6);
   }
   50% {
@@ -153,22 +118,205 @@
   }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* === Animation === */
+.timelineItem {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s forwards;
+}
+
+.timelineItem:nth-child(1) { animation-delay: 0.1s; }
+.timelineItem:nth-child(2) { animation-delay: 0.2s; }
+.timelineItem:nth-child(3) { animation-delay: 0.3s; }
+.timelineItem:nth-child(4) { animation-delay: 0.4s; }
+.timelineItem:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================================
+   🧭 RESPONSIVE DESIGN
+   Covers small → extra-large → 4K TV displays
+=========================================== */
+
+/* 🔹 Small Mobile (≤480px) */
+@media (max-width: 480px) {
   .section {
-    padding: 4rem 2rem;
+    padding: 3rem 1rem;
+  }
+
+  .heading {
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
   }
 
   .timeline {
-    padding-left: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .timelineItem {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .icon {
+    margin-left: -15px;
+    margin-top: 0;
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+    font-size: 1.1rem;
+  }
+
+  .content {
+    padding: 1.2rem 1.4rem;
+  }
+
+  .content h3 {
+    font-size: 1.2rem;
+  }
+
+  .content li {
+    font-size: 0.95rem;
+  }
+
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+  }
+}
+
+/* 🔹 Medium Mobile (481px–767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .timeline {
+    padding-left: 1.2rem;
+  }
+
+  .timelineItem {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .icon {
+    margin-left: -37rem;
+    margin-top: 1rem;
   }
 
   .content {
     padding: 1.5rem;
   }
+}
+
+/* 🔹 Tablets (768px–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section {
+    padding: 4.5rem 2rem;
+  }
 
   .heading {
-    font-size: 1.8rem;
-    margin-bottom: 3rem;
+    font-size: 2.2rem;
+  }
+
+  .timeline {
+    padding-left: 1.8rem;
+  }
+
+  .icon {
+    margin-left: -3rem;
+    min-width: 4rem;
+    min-height: 4rem;
+  }
+
+  .content {
+    padding: 1.6rem 1.8rem;
+  }
+}
+
+/* 🔹 Laptops (1024px–1365px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .section {
+    padding: 5rem 2.5rem;
+  }
+
+  .heading {
+    font-size: 2.3rem;
+  }
+
+  .timeline {
+    padding-left: 2rem;
+  }
+
+  .content {
+    padding: 1.8rem 2rem;
+  }
+}
+
+/* 🔹 Desktops (1366px–1919px) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .section {
+    max-width: 1200px;
+    padding: 6rem 3rem;
+  }
+
+  .heading {
+    font-size: 2.6rem;
+  }
+
+  .icon {
+    min-width: 5rem;
+    min-height: 5rem;
+  }
+
+  .content {
+    padding: 2rem 2.2rem;
+  }
+}
+
+/* 🔹 Large Desktop / 4K TV (≥1920px) */
+@media (min-width: 1920px) {
+  .section {
+    max-width: 1600px;
+    padding: 8rem 5rem;
+  }
+
+  .heading {
+    font-size: 3rem;
+  }
+
+  .timeline {
+    max-width: 1100px;
+    padding-left: 3rem;
+  }
+
+  .icon {
+    min-width: 6rem;
+    min-height: 6rem;
+    font-size: 1.6rem;
+    margin-left: -10rem;
+  }
+
+  .content {
+    padding: 2.5rem 3rem;
+  }
+
+  .content h3 {
+    font-size: 1.6rem;
+  }
+
+  .content li {
+    font-size: 1.2rem;
   }
 }

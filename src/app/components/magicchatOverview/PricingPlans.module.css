@@ -1,23 +1,14 @@
 .pricingSection {
   position: relative;
   padding: 6rem 0rem;
-  /* border-radius: 24px; */
   text-align: center;
   color: var(--text-color);
   overflow: hidden;
-  padding-bottom: 0px;
   background: var(--background-color);
+  padding-bottom: 0px;
 }
 
-@keyframes rotateGlow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
+/* ---------- Header ---------- */
 .pricingHeader {
   max-width: 750px;
   margin: 0 auto 3.5rem;
@@ -30,20 +21,7 @@
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 3rem;
-  /* text-shadow: 0 0 12px rgba(75, 207, 158, 0.3); */
   text-align: center;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 .pricingHeader p {
@@ -64,6 +42,7 @@
   overflow: hidden;
   position: relative;
   z-index: 2;
+  padding: 2rem;
 }
 
 .pricingSummary::before {
@@ -82,18 +61,6 @@
   animation: borderGlow 6s ease infinite;
 }
 
-@keyframes borderGlow {
-  0% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
 .pricingSummary h3 {
   font-size: 1.9rem;
   margin-top: 2rem;
@@ -105,7 +72,7 @@
   font-size: 1.1rem;
 }
 
-/* ---------- Pricing Table ---------- */
+/* ---------- Table ---------- */
 .pricingTable {
   display: flex;
   flex-direction: column;
@@ -113,9 +80,7 @@
   overflow: hidden;
   margin-bottom: 1.5rem;
 }
-.pricingRowHeader span {
-  color: var(--subbtn-color);
-}
+
 .pricingRowHeader,
 .pricingRow {
   display: grid;
@@ -131,6 +96,10 @@
   text-transform: uppercase;
   color: var(--subbtn-color);
   letter-spacing: 0.5px;
+}
+
+.pricingRowHeader span {
+  color: var(--subbtn-color);
 }
 
 .pricingRow {
@@ -164,6 +133,179 @@
   color: var(--text-color);
   font-size: 1.05rem;
 }
+
 .annualNote strong {
   color: var(--sub1-btn-color);
+}
+
+/* ---------- Animations ---------- */
+@keyframes borderGlow {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* -------------------------------------- */
+/* ✅ RESPONSIVE BREAKPOINTS */
+/* -------------------------------------- */
+
+/* 📱 Extra Small Devices (Phones <480px) */
+@media (max-width: 480px) {
+  .pricingSection {
+    padding: 4rem 1rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricingHeader p {
+    font-size: 0.95rem;
+  }
+
+  .pricingSummary {
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  .pricingRowHeader,
+  .pricingRow {
+    grid-template-columns: 1fr;
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .pricingRow span:first-child {
+    font-size: 1rem;
+  }
+
+  .pricingRow span:nth-child(3) {
+    font-size: 1rem;
+  }
+
+  .pricingSummary h3 {
+    font-size: 1.5rem;
+  }
+
+  .annualNote {
+    font-size: 0.95rem;
+  }
+}
+
+/* 📱 Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .pricingSection {
+    padding: 5rem 2rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2rem;
+  }
+
+  .pricingHeader p {
+    font-size: 1rem;
+  }
+
+  .pricingSummary {
+    padding: 1.5rem;
+  }
+
+  .pricingRowHeader,
+  .pricingRow {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+}
+
+/* 💻 Medium Devices (769px - 1024px) → Tablets & small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .pricingSection {
+    padding: 6rem 3rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2.2rem;
+  }
+
+  .pricingRowHeader,
+  .pricingRow {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .pricingSummary h3 {
+    font-size: 1.7rem;
+  }
+}
+
+/* 🖥️ Large Devices (1025px - 1440px) → Laptops / Desktops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .pricingSection {
+    padding: 6rem 4rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2.6rem;
+  }
+
+  .pricingRowHeader,
+  .pricingRow {
+    grid-template-columns: 1.2fr 1.2fr 1fr 2fr;
+  }
+}
+
+/* 🖥️ Extra Large Devices (1441px - 1920px) → Large Monitors */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .pricingSection {
+    padding: 7rem 6rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2.8rem;
+  }
+
+  .pricingSummary {
+    max-width: 1300px;
+  }
+
+  .pricingSummary h3 {
+    font-size: 2rem;
+  }
+}
+
+/* 📺 Ultra Wide Screens / TVs (1921px and up) */
+@media (min-width: 1921px) {
+  .pricingSection {
+    padding: 8rem 8rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 3rem;
+  }
+
+  .pricingSummary {
+    max-width: 1600px;
+    padding: 3rem;
+  }
+
+  .pricingRowHeader,
+  .pricingRow {
+    grid-template-columns: 1.5fr 1.5fr 1fr 2fr;
+    gap: 1.5rem;
+  }
+
+  .pricingSummary h3 {
+    font-size: 2.2rem;
+  }
+
+  .annualNote {
+    font-size: 1.2rem;
+  }
 }

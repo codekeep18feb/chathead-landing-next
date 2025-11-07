@@ -93,6 +93,7 @@ body {
   /* font-family: "Lexend", sans-serif; */
   font-family: Arial, sans-serif;
   background-color: var(--background-color);
+  /* overflow-x: hidden */
 }
 
 /* Header Styles */
@@ -348,55 +349,10 @@ body {
 }
 .body_contnet_section {
   width: 100%;
-  min-width: 1440px;
   margin: 0px auto;
 }
 /* Media Queries */
 @media (max-width: 768px) {
-  .platform-container {
-    padding: 0px;
-    margin-top: 40px;
-  }
-  .platform-section {
-    padding: 0px;
-  }
-  .newcard-list {
-    grid-template-columns: none;
-  }
-
-  .burger-icon {
-    display: block;
-  }
-  .solve-section {
-    flex-direction: column;
-  }
-  .solve-content {
-    width: 100%;
-    padding: 120px 20px 20px 20px;
-  }
-  .solve-content h1 {
-    font-size: 32px;
-  }
-  .email-input {
-    width: 400px;
-  }
-  .email-input button {
-    padding: 10px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .solve-image {
-    width: 100%;
-    background: var(--primary-gradient);
-    height: auto;
-    padding: 30px 30px 0px 0px;
-  }
-  .solve-image img {
-    margin: 0 auto;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-  }
   .how-section {
     display: block;
     flex-direction: column;
@@ -494,36 +450,10 @@ body {
     margin-bottom: 20px; /* Add margin for spacing */
     background-color: orange;
   }
-  .engagement-section {
-    text-align: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-    width: 100%;
-    height: auto;
-  }
-  .engagement-section h2 {
-    font-size: 32px;
-  }
-  .engagement-section p {
-    font-size: 16px;
-  }
-  .engagement-content {
-    display: block;
-    width: 100%;
-  }
-  .engagement-item {
-    margin-bottom: 20px;
-  }
+
 }
 
 @media (max-width: 425px) {
-  .email-input {
-    width: 100%;
-  }
-  .email-input button {
-    padding: 12px 10px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
   .chat-type-content ul {
     margin: 0px;
   }
@@ -534,28 +464,7 @@ body {
     height: auto;
     padding: 10px;
   }
-  .green_bg {
-    background-image: url(../../public/Asset/green_bg.png);
-    background-position: center;
-    background-size: auto;
-  }
-  .blue_bg {
-    background-image: url(../../public/Asset/blue_bg_mob.png);
-    background-position: center;
-    background-size: auto;
-  }
-  .engagement-item {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-  }
-  .engagement-item img {
-    width: 200px;
-    height: auto;
-    margin-top: 20px;
-  }
-  .section-title {
+   .section-title {
     font-size: 16px;
   }
   .card {
@@ -575,5 +484,22 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@media (max-width: 1024px) {
+  .body_contnet_section {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .body_contnet_section {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .body_contnet_section {
+    padding: 0rem;
   }
 }

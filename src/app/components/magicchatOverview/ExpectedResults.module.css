@@ -1,5 +1,4 @@
 .section {
-  /* max-width: 1070px; */
   margin: 0 auto;
   padding: 2rem 5rem;
   text-align: center;
@@ -8,8 +7,10 @@
   overflow: hidden;
   width: 100%;
   background: var(--border-gradient);
+  border-radius: 16px;
 }
 
+/* Heading */
 .heading {
   font-size: 2.4rem;
   margin-bottom: 3rem;
@@ -18,15 +19,18 @@
   position: relative;
   z-index: 1;
 }
+
+/* Metrics grid */
 .metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   justify-content: center;
   gap: 3rem;
   position: relative;
   z-index: 1;
-
 }
+
+/* Each metric item */
 .metric {
   display: flex;
   flex-direction: column;
@@ -34,21 +38,42 @@
   gap: 0.3rem;
   animation: fadeInUp 0.8s ease both;
 }
+
+/* Emoji */
 .emoji {
   font-size: 2rem;
   margin-bottom: 0.3rem;
 }
+
+/* Value text */
 .value {
   font-size: 2.6rem;
   font-weight: 700;
-  /* background: linear-gradient(90deg, #4bcf9e, #00ffaa); */
   background: white;
   background-clip: text;
-  -webkit-background-clip: text; /* Keep this for Chrome/Safari */
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: glow 3s ease-in-out infinite;
 }
 
+/* Description */
+.text {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-top: 0.3rem;
+}
 
+/* Note text */
+.note {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-top: 3rem;
+  font-style: italic;
+  z-index: 1;
+  position: relative;
+}
+
+/* Animations */
 @keyframes glow {
   0% {
     filter: brightness(1);
@@ -60,19 +85,7 @@
     filter: brightness(1);
   }
 }
-.text {
-  font-size: 1rem;
-  color: var(--text-color);
-  margin-top: 0.3rem;
-}
-.note {
-  font-size: 1.1rem;
-  color: var(--text-color);
-  margin-top: 3rem;
-  font-style: italic;
-  z-index: 1;
-  position: relative;
-} /* subtle animation */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -81,5 +94,128 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* -------------------------------------- */
+/* ✅ RESPONSIVE BREAKPOINTS */
+/* -------------------------------------- */
+
+/* 📱 Extra Small Devices (Phones <480px) */
+@media (max-width: 480px) {
+  .section {
+    padding: 2rem 1rem;
+  }
+  .heading {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .metrics {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+  .value {
+    font-size: 2rem;
+  }
+  .emoji {
+    font-size: 1.8rem;
+  }
+  .text {
+    font-size: 0.9rem;
+  }
+  .note {
+    font-size: 0.95rem;
+    margin-top: 2rem;
+  }
+}
+
+/* 📱 Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .section {
+    padding: 3rem 2rem;
+  }
+  .heading {
+    font-size: 2rem;
+  }
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .value {
+    font-size: 2.2rem;
+  }
+  .text {
+    font-size: 0.95rem;
+  }
+}
+
+/* 💻 Medium Devices (769px - 1024px) → Tablets & small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section {
+    padding: 3.5rem 3rem;
+  }
+  .heading {
+    font-size: 2.3rem;
+  }
+  .metrics {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .value {
+    font-size: 2.4rem;
+  }
+}
+
+/* 🖥️ Large Devices (1025px - 1440px) → Laptops / Desktops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .section {
+    padding: 4rem 4rem;
+  }
+  .heading {
+    font-size: 2.6rem;
+  }
+  .metrics {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* 🖥️ Extra Large Devices (1441px - 1920px) → Large Monitors */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .section {
+    max-width: 1500px;
+    padding: 5rem 5rem;
+  }
+  .heading {
+    font-size: 2.8rem;
+  }
+  .value {
+    font-size: 2.8rem;
+  }
+  .text {
+    font-size: 1.05rem;
+  }
+}
+
+/* 📺 Ultra Wide Screens / TVs (1921px and up) */
+@media (min-width: 1921px) {
+  .section {
+    max-width: 1800px;
+    padding: 6rem 6rem;
+  }
+  .heading {
+    font-size: 3rem;
+  }
+  .value {
+    font-size: 3rem;
+  }
+  .emoji {
+    font-size: 2.5rem;
+  }
+  .text {
+    font-size: 1.1rem;
+  }
+  .note {
+    font-size: 1.2rem;
   }
 }

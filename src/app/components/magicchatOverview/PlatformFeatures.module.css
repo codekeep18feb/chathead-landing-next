@@ -1,5 +1,4 @@
 .section {
-  /* max-width: 1070px; */
   margin: 0 auto;
   padding: 4rem 2rem;
   width: 100%;
@@ -11,7 +10,6 @@
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 3rem;
-  /* text-shadow: 0 0 12px rgba(75, 207, 158, 0.3); */
   text-align: center;
 }
 
@@ -26,6 +24,7 @@
   align-items: stretch;
   gap: 2rem;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 0 10rem;
 }
 
@@ -42,6 +41,14 @@
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  max-width: 380px;
+  width: 100%;
+}
+
+.bullets:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 30px #b6c4ff;
+  border-color: var(--subbtn-color);
 }
 
 .bullets li {
@@ -52,14 +59,10 @@
   padding: 0.6rem 0;
   color: var(--text-color);
   line-height: 1.6;
-  transition: transform 0.2s ease, background 0.3s ease;
   font-size: 0.98rem;
+  transition: transform 0.2s ease, background 0.3s ease;
 }
-.bullets:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 30px #b6c4ff;
-  border-color: var(--subbtn-color);
-}
+
 .iconCircle {
   flex-shrink: 0;
   width: 40px;
@@ -72,7 +75,199 @@
   justify-content: center;
   transition: background 0.3s ease, color 0.3s ease;
 }
+
 .bullets li:hover .iconCircle {
   background: var(--subbtn-color);
   color: #fff;
+}
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+=========================== */
+
+/* Extra Small Devices (Phones under 480px) */
+@media (max-width: 480px) {
+  .section {
+    padding: 2.5rem 1rem;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .cardWarp {
+    flex-direction: column;
+    margin: 0;
+    gap: 1.5rem;
+  }
+
+  .bullets {
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .bullets li {
+    font-size: 0.9rem;
+  }
+
+  .iconCircle {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Small Devices (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .section {
+    padding: 3rem 1.5rem;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+  }
+
+  .cardWarp {
+    flex-direction: column;
+    gap: 1.8rem;
+    margin: 0 1rem;
+  }
+
+  .bullets {
+    padding: 1.8rem;
+  }
+
+  .iconCircle {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Medium Devices (Tablets - 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .section h2 {
+    font-size: 2.2rem;
+  }
+
+  .cardWarp {
+    gap: 2rem;
+    margin: 0 3rem;
+  }
+
+  .bullets {
+    flex: 1 1 calc(50% - 2rem);
+    padding: 2rem;
+  }
+
+  .iconCircle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Large Devices (Laptops - 1024px to 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .section {
+    padding: 5rem 3rem;
+  }
+
+  .section h2 {
+    font-size: 2.4rem;
+  }
+
+  .cardWarp {
+    margin: 0 6rem;
+  }
+
+  .bullets {
+    flex: 1 1 calc(33.333% - 2rem);
+    padding: 2rem;
+  }
+}
+
+/* Extra Large Devices (Desktops - 1280px to 1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .section {
+    padding: 6rem 4rem;
+  }
+
+  .section h2 {
+    font-size: 2.8rem;
+  }
+
+  .cardWarp {
+    margin: 0 8rem;
+  }
+
+  .bullets {
+    max-width: 400px;
+    padding: 2.2rem;
+  }
+
+  .iconCircle {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* 4K / Ultra HD Screens (1536px and above) */
+@media (min-width: 1536px) {
+  .section {
+    padding: 7rem 5rem;
+    max-width: 1500px;
+  }
+
+  .section h2 {
+    font-size: 3rem;
+  }
+
+  .cardWarp {
+    margin: 0 2rem;
+  }
+
+  .bullets {
+    max-width: 500px;
+    padding: 2.5rem;
+  }
+
+  .iconCircle {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* TV Screens / 2K–4K (1920px and above) */
+@media (min-width: 1920px) {
+  .section {
+    padding: 8rem 6rem;
+    max-width: 1600px;
+  }
+
+  .section h2 {
+    font-size: 3.5rem;
+  }
+
+  .cardWarp {
+    margin: 0 12rem;
+    gap: 3rem;
+  }
+
+  .bullets {
+    max-width: 480px;
+    padding: 3rem;
+    border-radius: 16px;
+  }
+
+  .bullets li {
+    font-size: 1.1rem;
+  }
+
+  .iconCircle {
+    width: 56px;
+    height: 56px;
+  }
 }

@@ -5,6 +5,8 @@
   border-radius: 20px;
   color: var(--text-color);
   margin: 0 auto;
+  /* width: 100%; */
+  border: 1px solid red;
 }
 
 .mainTitle {
@@ -12,7 +14,6 @@
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 3rem;
-  /* text-shadow: 0 0 12px rgba(75, 207, 158, 0.3); */
 }
 
 /* Tabs */
@@ -48,9 +49,38 @@
   border-color: var(--subbtn-color);
   box-shadow: 0 0 20px var(--subbtn_hover_effect);
 }
-@media (max-width: 768px) {
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+=========================== */
+
+/* Extra Small Devices (Phones under 480px) */
+@media (max-width: 480px) {
   .offerSection {
-    padding: 4rem 2rem;
+    padding: 2rem 1rem;
+    border-radius: 12px;
+  }
+
+  .mainTitle {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .tabButton {
+    min-width: 120px;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .tabContainer {
+    gap: 0.6rem;
+  }
+}
+
+/* Small Devices (Phones in landscape, small tablets - 481px to 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .offerSection {
+    padding: 3.5rem 1.5rem;
   }
 
   .mainTitle {
@@ -59,6 +89,89 @@
 
   .tabButton {
     min-width: 140px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Medium Devices (Tablets - 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .offerSection {
+    padding: 4rem 2rem;
+  }
+
+  .mainTitle {
+    font-size: 2.2rem;
+  }
+
+  .tabButton {
+    min-width: 160px;
+    font-size: 1rem;
+  }
+}
+
+/* Large Devices (Laptops - 1024px to 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .offerSection {
+    padding: 5rem 3rem;
+  }
+
+  .mainTitle {
+    font-size: 2.4rem;
+  }
+
+  .tabButton {
+    min-width: 180px;
+    font-size: 1.05rem;
+  }
+}
+
+/* Extra Large Devices (Desktops - 1280px to 1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .offerSection {
+    padding: 6rem 4rem;
+  }
+
+  .mainTitle {
+    font-size: 2.7rem;
+  }
+
+  .tabButton {
+    min-width: 200px;
+    font-size: 1.1rem;
+  }
+}
+
+/* 4K / Ultra-Wide Screens (1536px and above) */
+@media (min-width: 1536px) {
+  .offerSection {
+    padding: 7rem 5rem;
+    max-width: 1600px;
+  }
+
+  .mainTitle {
+    font-size: 3rem;
+  }
+
+  .tabButton {
+    min-width: 220px;
+    font-size: 1.15rem;
+    padding: 1rem 2rem;
+  }
+}
+
+/* TV / Ultra HD Screens (1920px and above) */
+@media (min-width: 1920px) {
+  .offerSection {
+    padding: 8rem 6rem;
+    max-width: 1800px;
+  }
+
+  .mainTitle {
+    font-size: 3.5rem;
+  }
+
+  .tabButton {
+    min-width: 240px;
+    font-size: 1.2rem;
   }
 }

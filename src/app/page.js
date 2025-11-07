@@ -6,7 +6,6 @@ import HowSection from "../app/components/HowSection";
 import EngagementSection from "../app/components/EngagementSection";
 import WhatWeOfferSection from "./components/wwoffer/WhatWeOffer";
 import MagicChatOverview from "@/app/components/magicchatOverview/MagicChatOverview";
-import SolveSectioncopy from "./components/SolveSectioncopy";
 
 export default function Home() {
   const handleMagicChatInit = async () => {
@@ -37,7 +36,6 @@ export default function Home() {
       <br></br>
 
         <br></br>
-      {/* <SolveSectioncopy /> */}
       <WhatWeOfferSection/>
       <MagicChatOverview />
       {/* <HowSection /> */}
