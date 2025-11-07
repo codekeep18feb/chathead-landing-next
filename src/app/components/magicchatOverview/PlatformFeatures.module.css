@@ -1,9 +1,9 @@
 .section {
-  max-width: 1070px;
+  /* max-width: 1070px; */
   margin: 0 auto;
   padding: 4rem 2rem;
-  border-radius: 20px;
   width: 100%;
+  background: var(--background-color);
 }
 
 .section h2 {
@@ -26,6 +26,7 @@
   align-items: stretch;
   gap: 2rem;
   flex-wrap: wrap;
+  margin: 0 10rem;
 }
 
 .bullets {
@@ -33,7 +34,7 @@
   list-style: none;
   padding: 2rem;
   margin: 0;
-  background: var(--background-color);
+  background: var(--white-text-color);
   border: 1px solid rgba(75, 207, 158, 0.2);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
@@ -52,6 +53,7 @@
   color: var(--text-color);
   line-height: 1.6;
   transition: transform 0.2s ease, background 0.3s ease;
+  font-size: 0.98rem;
 }
 .bullets:hover {
   transform: scale(1.04);

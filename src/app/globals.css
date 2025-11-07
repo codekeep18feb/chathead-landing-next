@@ -16,7 +16,7 @@
   --white-text-color: #fff;
   --background-color: #e9edff;
   --subbtn-color: #a370ce;
-    --light-subbtn-color: #f4e6ff;
+  --light-subbtn-color: #f4e6ff;
   --radial-gradient-color: radial-gradient(
     circle,
     #2ecc71 10%,
@@ -29,8 +29,22 @@
   --bg-light: #f8f9fb;
   --border-color: #e5e5e5;
   --cards-bg: #ffffff;
---animated-gradient-color: linear-gradient(135deg, #4d6bdf 0%, #a370ce 40%, #92ffbf 100%);
+  --animated-gradient-color: linear-gradient(
+    135deg,
+    #4d6bdf 0%,
+    #a370ce 40%,
+    #92ffbf 100%
+  );
+  --subbtn_hover_effect: #dfb8ff;
 
+  /* Shadows */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  /* Optional colored glow shadows */
+  --shadow-glow-primary: 0 0 20px rgba(77, 107, 223, 0.4);
+  --shadow-glow-secondary: 0 0 25px rgba(163, 112, 206, 0.4);
 
   /* themes update */
   --new-primary-color: #2f3336;

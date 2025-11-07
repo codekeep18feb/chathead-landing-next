@@ -3,7 +3,7 @@
   text-align: center;
   padding: 6rem 2rem;
   overflow: hidden;
-  background: var(--bg-light);
+ background: var(--background-color);
   color: var(--text-color);
   /* box-shadow: 0 0 50px rgba(0, 0, 0, 0.05); */
 }
@@ -116,13 +116,12 @@
   }
 }
 
-/* CTA Button */
 .subscribeBtn {
   position: relative;
   margin-top: 3rem;
   background: transparent;
-  border: 1.5px solid var(--primary-color);
-  color: var(--primary-color);
+  border: 1.5px solid var(--subbtn-color);
+  color: var(--subbtn-color);
   font-weight: 600;
   font-size: 1.05rem;
   padding: 0.9rem 2.4rem;
@@ -133,7 +132,7 @@
 }
 
 .subscribeBtn:hover {
-  background: var(--primary-color);
+  background: var(--subbtn-color);
   color: var(--white-text-color);
   box-shadow: 0 0 25px rgba(77, 107, 223, 0.35);
 }

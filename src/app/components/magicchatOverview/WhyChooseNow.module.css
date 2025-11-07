@@ -15,7 +15,6 @@
   object-fit: cover;
 }
 
-
 .section {
   position: relative;
   flex: 1;
@@ -25,7 +24,6 @@
   color: #ffffff;
   overflow: hidden;
 }
-
 
 @keyframes floatBlob {
   from {
@@ -37,12 +35,11 @@
 }
 
 .chooesWrap h2 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: var(--text-color);
-    margin-bottom: 2rem;
-    letter-spacing: 0.5px;
-
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
 }
 
 .chooesWrap p {
@@ -55,20 +52,20 @@
 }
 
 .chooesWrap h3 {
-font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    color: #04b4fa;
-    text-shadow: 0 0 12px rgb(0 155 255 / 60%);
-    position: relative;
-    z-index: 1;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #eec612;
+  text-shadow: 0 0 12px rgba(255, 217, 0, 0.774);
+  position: relative;
+  z-index: 1;
 }
 .subscribeBtn {
   position: relative;
   margin-top: 3rem;
   background: transparent;
-  border: 1.5px solid var(--primary-color);
-  color: var(--primary-color);
+  border: 1.5px solid var(--subbtn-color);
+  color: var(--subbtn-color);
   font-weight: 600;
   font-size: 1.05rem;
   padding: 0.9rem 2.4rem;
@@ -79,12 +76,10 @@ font-size: 1.3rem;
 }
 
 .subscribeBtn:hover {
-  background: var(--primary-color);
+  background: var(--subbtn-color);
   color: var(--white-text-color);
   box-shadow: 0 0 25px rgba(77, 107, 223, 0.35);
 }
-
-
 
 /* Responsive */
 @media (max-width: 900px) {

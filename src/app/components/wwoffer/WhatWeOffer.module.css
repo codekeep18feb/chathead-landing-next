@@ -46,7 +46,7 @@
   background: var(--subbtn-color);
   color: #fff;
   border-color: var(--subbtn-color);
-  box-shadow: 0 0 20px rgba(75, 207, 158, 0.3);
+  box-shadow: 0 0 20px var(--subbtn_hover_effect);
 }
 @media (max-width: 768px) {
   .offerSection {

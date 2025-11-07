@@ -5,7 +5,7 @@
   color: var(--text-color);
   overflow: hidden;
   isolation: isolate;
-  background: var(--bg-light);
+  background: var(--white-text-color);
 }
 
 /* Floating accent blobs (light mode friendly) */
@@ -29,7 +29,7 @@
   right: -10%;
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle at center, rgba(77, 107, 223, 0.25), transparent 70%);
+  background: radial-gradient(circle at center,  rgba(153, 233, 165, 0.3), transparent 70%);
   filter: blur(120px);
   z-index: -1;
   animation: floatBlob 14s ease-in-out infinite alternate-reverse;

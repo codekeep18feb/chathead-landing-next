@@ -2,10 +2,10 @@
 
 /* ✅ Base card */
 .card {
-  background: var(--background-color);
+  background: var(--white-text-color);
   border-radius: 18px;
-  border: 1px solid rgba(252, 128, 131, 0.2);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(75, 207, 158, 0.2);
+   box-shadow: var(--shadow-soft);
   padding: 2rem 1.8rem;
   text-align: left;
   flex: 0 0 auto;
@@ -15,6 +15,7 @@
   align-self: stretch;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 /* ✅ Optional width pattern for multiple cards */
 .card:nth-child(1) { width: 320px; }
@@ -29,9 +30,10 @@
 .card:nth-child(10) { width: 535px; }
 
 .card:hover {
-  transform: translateY(-6px) scale(1.02);
-   box-shadow: 0 0 30px #b6c4ff;
+  transform: scale(1.02);
+  box-shadow: var(--shadow-glow-primary);
 }
+
 
 
 
