@@ -1,3 +1,8 @@
+/* ===========================================================
+   🌟 HOW TO GET STARTED STYLES — Magic Chat
+   =========================================================== */
+
+/* ---------- Wrapper ---------- */
 .wrapper {
   padding: 4rem 2rem;
   background: var(--white-text);
@@ -90,7 +95,7 @@
   margin-top: 0.75rem;
 }
 
-/* Steps 1, 3, 5 — text above icon */
+/* Steps 1, 3, 5 — text above icon (desktop only) */
 .step:nth-child(1),
 .step:nth-child(3),
 .step:nth-child(5) {
@@ -131,7 +136,7 @@
    RESPONSIVE STYLES
 =========================== */
 
-/* === Mobile First === */
+/* === 📱 Mobile First — 0 to 480px === */
 @media (max-width: 480px) {
   .wrapper {
     padding: 2.5rem 1rem;
@@ -144,31 +149,75 @@
   }
 
   .flowContainer {
-    flex-wrap: wrap;
+    flex-direction: column; /* stack vertically */
+    align-items: center;
     justify-content: center;
     gap: 2rem;
     padding: 0;
     margin-top: 2rem;
   }
-
+ .step:nth-child(1),
+.step:nth-child(3),
+.step:nth-child(5) {
+  flex-direction: column;
+}
   .flowLine {
-    display: none;
+    display: none; /* hide connecting line */
+  }
+
+  .step {
+    width: 100%;
+    max-width: 280px;
+    position: relative;
+    transform: none !important;
+    flex-direction: column; /* 🟢 force icon above, text below */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .step::before {
+content: attr(data-step);
+        position: absolute;
+        top: 40%;
+        left: 0%;
+        transform: translateX(-50%);
+        background: var(--subbtn-color);
+        color: var(--white-text);
+        font-weight: 700;
+        font-size: 0.9rem;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: flex
+;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(163, 112, 206, 0.5);
+        z-index: 5;
+        background: var(--primary-gradient);
   }
 
   .icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
   }
 
   .text {
     width: 90%;
     font-size: 0.9rem;
+    margin-top: 0.75rem;
   }
 
-  .step {
+  /* reset all transforms (even custom ones) */
+  .bottom-left,
+  .top-left,
+  .top-center,
+  .top-right,
+  .bottom-right {
     transform: none !important;
-    flex-direction: column;
   }
 }
 
@@ -188,6 +237,40 @@
     display: none;
   }
 
+  .step {
+    width: 100%;
+    max-width: 280px;
+    position: relative;
+    transform: none !important;
+    flex-direction: column; /* 🟢 force icon above, text below */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .step::before {
+content: attr(data-step);
+        position: absolute;
+        top: 40%;
+        left: 0%;
+        transform: translateX(-50%);
+        background: var(--subbtn-color);
+        color: var(--white-text);
+        font-weight: 700;
+        font-size: 0.9rem;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: flex
+;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(163, 112, 206, 0.5);
+        z-index: 5;
+        background: var(--primary-gradient);
+  }
+
   .icon {
     width: 58px;
     height: 58px;
@@ -197,10 +280,6 @@
   .text {
     width: 85%;
     font-size: 0.9rem;
-  }
-
-  .step {
-    transform: none !important;
   }
 }
 
@@ -324,9 +403,4 @@
     width: 260px;
     font-size: 1.2rem;
   }
-}
-@media (min-width: 1920px) and (max-width: 3200px) {
-.wrapper {
-  border: 5px solid red;
-}
 }

@@ -110,7 +110,8 @@
 }
 
 @keyframes pulseLine {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(75, 207, 158, 0.6);
   }
   50% {
@@ -125,11 +126,21 @@
   animation: fadeUp 0.8s forwards;
 }
 
-.timelineItem:nth-child(1) { animation-delay: 0.1s; }
-.timelineItem:nth-child(2) { animation-delay: 0.2s; }
-.timelineItem:nth-child(3) { animation-delay: 0.3s; }
-.timelineItem:nth-child(4) { animation-delay: 0.4s; }
-.timelineItem:nth-child(5) { animation-delay: 0.5s; }
+.timelineItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.timelineItem:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.timelineItem:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.timelineItem:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.timelineItem:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 @keyframes fadeUp {
   to {
@@ -182,6 +193,7 @@
 
   .content li {
     font-size: 0.95rem;
+    text-align: left;
   }
 
   .timeline::before {
@@ -217,6 +229,9 @@
 
   .content {
     padding: 1.5rem;
+  }
+  .content li {
+    text-align: left;
   }
 }
 
