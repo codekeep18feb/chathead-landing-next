@@ -219,7 +219,7 @@ export default function IndustryPageTemplate({
             className: "easy-setup",
             images: [
               {
-                src: `${basePath}/Asset/codegif.gif`,
+                src: `${basePath}/Asset/plugnplay.svg`,
                 heading: "Zero Code Setup Demo",
               },
             ],
