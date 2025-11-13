@@ -246,11 +246,11 @@ export default function IndustryPageTemplate({
             images: [
               {
                 src: `${basePath}/Asset/magicChatImg/AffordablePricing.png`,
-                heading: "Heading..........",
+                heading: "Affordable Pricing",
               },
               {
                 src: `${basePath}/Asset/magicChatImg/AffordablePricing2.png`,
-                heading: "Heading..........",
+                heading: "Affordable Pricing",
               },
             ],
             content: [
@@ -276,11 +276,11 @@ export default function IndustryPageTemplate({
             images: [
               {
                 src: `${basePath}/Asset/magicChatImg/nologin_noproble.png`,
-                heading: "Heading..........",
+                heading: "Auth Agnostic",
               },
               {
                 src: `${basePath}/Asset/magicChatImg/nologin_noproble2.png`,
-                heading: "Heading..........",
+                heading: "Auth Agnostic",
               },
             ],
             content: [
@@ -306,11 +306,11 @@ export default function IndustryPageTemplate({
             images: [
               {
                 src: `${basePath}/Asset/magicChatImg/Framework.png`,
-                heading: "Heading..........",
+                heading: "Works Anywhere JavaScript Runs",
               },
               {
                 src: `${basePath}/Asset/magicChatImg/Framework2.png`,
-                heading: "Heading..........",
+                heading: "Works Anywhere JavaScript Runs",
               },
             ],
             content: [
