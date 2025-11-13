@@ -18,7 +18,11 @@ export default function WhyChooseNow() {
         <h3>
           💫 Start today, and let AI work for you — not the other way around.
         </h3>
-        <button className={styles.subscribeBtn}>Try MagicChat Free →</button>
+
+        <a href="https://admin.magicchat.io/signup" className={styles.linkWrap}>
+  <button className={styles.subscribeBtn}>Try MagicChat Free →</button>
+</a>
+
       </div>
     </section>
   );

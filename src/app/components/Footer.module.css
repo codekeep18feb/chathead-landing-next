@@ -1,0 +1,94 @@
+.footer {
+  width: 100%;
+  background: #0f0f0f;
+  color: #e8e8e8;
+  padding: 60px 40px 30px;
+  font-family: sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+}
+
+.column h4 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.column ul li {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: #c8c8c8;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.column ul li:hover {
+  color: #ffffff;
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: #cccccc;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.ctaBtn {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.ctaBtn:hover {
+  background: #e2e2e2;
+}
+
+.bottomBar {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #999999;
+  padding-top: 20px;
+  border-top: 1px solid #222222;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .footer {
+    padding: 50px 20px 25px;
+  }
+
+  .ctaBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .brand {
+    font-size: 1.3rem;
+  }
+}

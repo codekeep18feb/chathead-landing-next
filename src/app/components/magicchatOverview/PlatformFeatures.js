@@ -15,60 +15,61 @@ import {
 
 export default function PlatformFeatures() {
   const coreFeatures = [
-    {
-      icon: <FaBrain />,
-      title: "AI Chatbot trained from your content",
-      desc: "Turn your website, docs, and FAQs into a 24/7 smart assistant.",
-    },
-    {
-      icon: <FaComments />,
-      title: "Live Chat with Multi-Admin Access",
-      desc: "Collaborate seamlessly across your team in real time.",
-    },
-    {
-      icon: <FaInbox />,
-      title: "Unified Inbox",
-      desc: "Manage all customer messages from one clean dashboard.",
-    },
-    {
-      icon: <FaPalette />,
-      title: "Custom Widgets & Themes",
-      desc: "Tailor your chat look and feel — no code required.",
-    },
-    {
-      icon: <FaChartLine />,
-      title: "Real-time Analytics",
-      desc: "Track engagement, conversation quality, and response efficiency.",
-    },
-  ];
+  {
+    icon: <FaBrain />,
+    title: "AI Chatbot Trained on Your Content",
+    desc: "Turn your website, docs, and FAQs into a 24/7 smart assistant.",
+  },
+  {
+    icon: <FaComments />,
+    title: "Live Chat with Team Collaboration",
+    desc: "Chat with customers and collaborate across agents in real time.",
+  },
+  {
+    icon: <FaInbox />,
+    title: "Unified Inbox",
+    desc: "Manage conversations from all your websites in one place.",
+  },
+  {
+    icon: <FaPalette />,
+    title: "Custom Widgets & Themes",
+    desc: "Fully customize your chat’s look from the Admin—no code changes needed.",
+  },
+  {
+    icon: <FaChartLine />,
+    title: "Lead Generation Tools",
+    desc: "Create lead forms, capture leads instantly, and auto-email responses.",
+  },
+];
 
-  const advancedFeatures = [
-    {
-      icon: <FaCogs />,
-      title: "RAG Chat Engine",
-      desc: "Retrieval-augmented AI trained on your own content for factual, context-aware responses.",
-    },
-    {
-      icon: <FaGlobe />,
-      title: "Omnichannel Support",
-      desc: "Integrate with Web, WhatsApp, Slack, Telegram, or custom apps.",
-    },
-    {
-      icon: <FaUserFriends />,
-      title: "Smart Human Handover",
-      desc: "Automatically routes complex chats to live agents when AI is uncertain.",
-    },
-    {
-      icon: <FaPlug />,
-      title: "API + SDK Access",
-      desc: "Build custom integrations and workflows.",
-    },
-    {
-      icon: <FaUserShield />,
-      title: "Role-Based Access Control (RBAC)",
-      desc: "Manage team permissions and maintain privacy across workspaces.",
-    },
-  ];
+const advancedFeatures = [
+  {
+    icon: <FaCogs />,
+    title: "RAG Chat Engine",
+    desc: "AI powered by retrieval to deliver factual, context-aware answers.",
+  },
+  {
+    icon: <FaGlobe />,
+    title: "Team Collaboration",
+    desc: "Collaborate effortlessly across customer chats with shared workflows.",
+  },
+  {
+    icon: <FaUserFriends />,
+    title: "Smart Human Handover",
+    desc: "Auto-routes complex queries to live agents when AI is uncertain.",
+  },
+  {
+    icon: <FaPlug />,
+    title: "Simpler Integration",
+    desc: "One-line CDN embed with instant Admin-pushed updates—no redeploys.",
+  },
+  {
+    icon: <FaUserShield />,
+    title: "Role-Based Access Control (RBAC)",
+    desc: "Assign permissions and control access across your team.",
+  },
+];
+
 
   return (
     <section className={styles.section}>
