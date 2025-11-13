@@ -41,7 +41,7 @@ export default function HowToGetStarted() {
       <h2 className={styles.heading}>How to Get Started</h2>
 
       <div className={styles.flowContainer}>
-        {/* More natural multi-curve dotted path */}
+        {/* Multi-curve dotted path (desktop only) */}
         <svg
           className={styles.flowLine}
           viewBox="0 0 1000 320"
@@ -52,15 +52,20 @@ export default function HowToGetStarted() {
                C200,100 380,140 480,80 
                S780,100 940,220"
             fill="none"
-            stroke="rgba(255,255,255,0.3)"
+            stroke="rgba(189, 46, 255, 0.3)"
             strokeWidth="3"
             strokeDasharray="10 8"
             strokeLinecap="round"
           />
         </svg>
 
+        {/* Render Steps */}
         {steps.map((step) => (
-          <div key={step.id} className={`${styles.step} ${styles[step.pos]}`}>
+          <div
+            key={step.id}
+            className={`${styles.step} ${styles[step.pos]}`}
+            data-step={step.id}
+          >
             <div className={styles.iconWrap}>
               <div className={styles.icon}>{step.icon}</div>
             </div>

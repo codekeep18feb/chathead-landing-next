@@ -3,6 +3,6 @@
   flex-direction: column;
   /* gap: 5rem; */
   /* padding: 6rem 4rem; */
-  background: var(--dark-primary-color);
-  color: var(--s-color);
+  background: var(--white-text-color);
+  color: var(--text-color);
 }

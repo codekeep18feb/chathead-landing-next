@@ -6,16 +6,18 @@
   padding: 5rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: wrap; /* for mobile responsiveness */
+  flex-wrap: wrap; /* Enables wrapping for small screens */
 }
 
+/* Left image */
 .chooesWrap div:first-child img {
   width: 100%;
   max-width: 500px;
   object-fit: cover;
+  border-radius: 1rem;
 }
 
-
+/* Right section */
 .section {
   position: relative;
   flex: 1;
@@ -25,7 +27,6 @@
   color: #ffffff;
   overflow: hidden;
 }
-
 
 @keyframes floatBlob {
   from {
@@ -37,19 +38,18 @@
 }
 
 .chooesWrap h2 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: var(--headings-color);
-    margin-bottom: 2rem;
-    letter-spacing: 0.5px;
-
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
 }
 
 .chooesWrap p {
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 1.8rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-color);
   position: relative;
   z-index: 1;
 }
@@ -58,17 +58,18 @@
   font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 2rem;
-  color: #ffd700;
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+  color: #eec612;
+  text-shadow: 0 0 12px rgba(255, 217, 0, 0.774);
   position: relative;
   z-index: 1;
 }
+
 .subscribeBtn {
   position: relative;
   margin-top: 3rem;
   background: transparent;
-  border: 1.5px solid var(--new-secondary-color);
-  color: var(--new-secondary-color);
+  border: 1.5px solid var(--subbtn-color);
+  color: var(--subbtn-color);
   font-weight: 600;
   font-size: 1.05rem;
   padding: 0.9rem 2.4rem;
@@ -79,17 +80,53 @@
 }
 
 .subscribeBtn:hover {
-  background: var(--new-secondary-color);
-  color: var(--dark-primary-color);
-  box-shadow: 0 0 25px rgba(156,178,86,0.4);
+  background: var(--subbtn-color);
+  color: var(--white-text-color);
+  box-shadow: 0 0 25px rgba(77, 107, 223, 0.35);
 }
 
+/* 🌍 RESPONSIVE BREAKPOINTS */
 
-/* Responsive */
-@media (max-width: 900px) {
+/* Small phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .chooesWrap {
+    flex-direction: column-reverse;
+    padding: 3rem 1rem;
+    gap: 2rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .chooesWrap h2 {
+    font-size: 1.6rem;
+  }
+
+  .chooesWrap h3 {
+    font-size: 1rem;
+  }
+
+  .chooesWrap p {
+    font-size: 0.9rem;
+  }
+
+  .subscribeBtn {
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+  }
+
+  .chooesWrap div:first-child img {
+    max-width: 90%;
+  }
+}
+
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
   .chooesWrap {
     flex-direction: column-reverse;
     gap: 2rem;
+    padding: 4rem 1.5rem;
   }
 
   .section {
@@ -97,10 +134,106 @@
   }
 
   .chooesWrap h2 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .chooesWrap h3 {
+    font-size: 1.15rem;
+  }
+
+  .chooesWrap p {
+    font-size: 1rem;
+  }
+
+  .subscribeBtn {
+    font-size: 0.95rem;
+    padding: 0.85rem 2.2rem;
+  }
+}
+
+/* Laptops (769px - 1200px) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .chooesWrap {
+    flex-direction: row;
+    gap: 2.5rem;
+    padding: 5rem 3rem;
+  }
+
+  .section {
+    padding: 3rem 2rem;
+  }
+
+  .chooesWrap h2 {
+    font-size: 2.2rem;
+  }
+
+  .chooesWrap h3 {
+    font-size: 1.25rem;
+  }
+
+  .chooesWrap p {
+    font-size: 1.05rem;
+  }
+}
+
+/* Desktops (1201px - 1600px) */
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .chooesWrap {
+    gap: 3rem;
+    padding: 6rem 4rem;
+  }
+
+  .section {
+    padding: 3.5rem 2.5rem;
+  }
+
+  .chooesWrap h2 {
+    font-size: 2.6rem;
+  }
+
+  .chooesWrap h3 {
+    font-size: 1.3rem;
+  }
+
+  .chooesWrap p {
+    font-size: 1.1rem;
+  }
+
+  .chooesWrap div:first-child img {
+    max-width: 550px;
+  }
+}
+
+/* Extra large screens / TVs (1601px and above) */
+@media (min-width: 1601px) {
+  .chooesWrap {
+    gap: 4rem;
+    padding: 8rem 6rem;
+    max-width: 1600px;
+  }
+
+  .section {
+    padding: 4rem 3rem;
+  }
+
+  .chooesWrap h2 {
+    font-size: 3rem;
+  }
+
+  .chooesWrap h3 {
+    font-size: 1.5rem;
+  }
+
+  .chooesWrap p {
     font-size: 1.2rem;
+  }
+
+  .subscribeBtn {
+    font-size: 1.1rem;
+    padding: 1rem 2.8rem;
+  }
+
+  .chooesWrap div:first-child img {
+    max-width: 650px;
   }
 }

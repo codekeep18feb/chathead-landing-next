@@ -1,47 +1,14 @@
-/* .section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  text-align: center;
-  background: var(--section-bg);
-  border-radius: 16px;
-  box-shadow: 0 0 20px var(--border-glow);
-  border: 1px solid rgba(156, 178, 86, 0.2);
-}
-
-.section h2 {
-  font-size: 2rem;
-  color: var(--headings-color);
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 8px rgba(156, 178, 86, 0.3);
-}
-
-.bullets {
-  list-style: none;
-  padding: 0;
-  color: var(--s-color);
-  margin-bottom: 1.5rem;
-}
-
-.bullets li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.bullets li:last-child {
-  border-bottom: none;
-} */
-
-
 .section {
   position: relative;
   padding: 5rem 2rem;
   text-align: center;
-  color: var(--s-color);
+  color: var(--text-color);
   overflow: hidden;
   isolation: isolate;
+  background: var(--white-text-color);
 }
 
+/* Floating accent blobs */
 .section::before {
   content: "";
   position: absolute;
@@ -49,7 +16,7 @@
   left: 2%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle at center, rgba(76, 175, 80, 0.25), transparent 70%);
+  background: radial-gradient(circle at center, rgba(153, 233, 165, 0.3), transparent 70%);
   filter: blur(100px);
   z-index: -1;
   animation: floatBlob 12s ease-in-out infinite alternate;
@@ -62,7 +29,7 @@
   right: -10%;
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle at center, rgba(33, 150, 243, 0.2), transparent 70%);
+  background: radial-gradient(circle at center, rgba(153, 233, 165, 0.3), transparent 70%);
   filter: blur(120px);
   z-index: -1;
   animation: floatBlob 14s ease-in-out infinite alternate-reverse;
@@ -77,14 +44,16 @@
   }
 }
 
+/* Heading */
 .section h2 {
   font-size: 2.4rem;
   font-weight: 700;
-  color: var(--headings-color);
+  color: var(--heading-color);
   margin-bottom: 2rem;
   letter-spacing: 0.5px;
 }
 
+/* Bullet list */
 .bullets {
   list-style: none;
   padding: 0;
@@ -95,10 +64,11 @@
   gap: 1.2rem;
 }
 
+/* Bullet items */
 .bullets li {
   position: relative;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
   padding: 1rem 1.5rem;
   border-radius: 12px;
   font-size: 1.1rem;
@@ -106,22 +76,23 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  backdrop-filter: blur(8px);
   transition: all 0.3s ease;
-  border-left: 3px solid var(--headings-color);
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 4px 10px rgba(77, 107, 223, 0.08);
 }
 
 .bullets li:hover {
   transform: translateY(-4px) scale(1.02);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+  background: var(--light-primary-color);
+  border-color: var(--secondary-color);
+  box-shadow: 0 6px 15px rgba(77, 107, 223, 0.18);
 }
 
 .bullets li::before {
   content: "✨";
   font-size: 1.3rem;
   animation: pulse 3s infinite;
+  color: var(--secondary-color);
 }
 
 @keyframes pulse {
@@ -135,10 +106,143 @@
   }
 }
 
+/* Paragraph text */
 .section p {
   max-width: 600px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--light-text-color);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+/* 🌍 RESPONSIVE BREAKPOINTS */
+
+/* Small phones (max 480px) */
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bullets li {
+    font-size: 0.95rem;
+    padding: 0.8rem 1rem;
+    gap: 0.6rem;
+  }
+
+  .section p {
+    font-size: 0.9rem;
+  }
+
+  .section::before,
+  .section::after {
+    width: 220px;
+    height: 220px;
+    filter: blur(70px);
+  }
+}
+
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+  }
+
+  .bullets {
+    max-width: 500px;
+    gap: 1rem;
+  }
+
+  .bullets li {
+    font-size: 1rem;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+  }
+
+  .section::before,
+  .section::after {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Laptops (769px - 1200px) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .section {
+    padding: 5rem 3rem;
+  }
+
+  .section h2 {
+    font-size: 2.2rem;
+  }
+
+  .bullets {
+    max-width: 650px;
+  }
+
+  .bullets li {
+    font-size: 1.05rem;
+  }
+
+  .section::before,
+  .section::after {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+/* Desktops (1201px - 1600px) */
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .section {
+    padding: 6rem 4rem;
+  }
+
+  .section h2 {
+    font-size: 2.6rem;
+  }
+
+  .bullets {
+    max-width: 700px;
+  }
+
+  .bullets li {
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra large screens / TVs (1601px and above) */
+@media (min-width: 1601px) {
+  .section {
+    padding: 8rem 6rem;
+  }
+
+  .section h2 {
+    font-size: 3rem;
+  }
+
+  .bullets li {
+    font-size: 1.25rem;
+    padding: 1.2rem 2rem;
+  }
+
+  .section p {
+    font-size: 1.1rem;
+  }
+
+  .section::before,
+  .section::after {
+    width: 550px;
+    height: 550px;
+    filter: blur(160px);
+  }
 }

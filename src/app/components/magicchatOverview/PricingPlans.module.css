@@ -1,22 +1,19 @@
+/* ===========================================================
+   🌟 PRICING PLANS STYLES — Magic Chat
+   =========================================================== */
+
+/* ---------- Section Wrapper ---------- */
 .pricingSection {
   position: relative;
   padding: 6rem 0rem;
-  border-radius: 24px;
   text-align: center;
-  color: var(--s-color);
+  color: var(--text-color);
   overflow: hidden;
+  background: var(--background-color);
   padding-bottom: 0px;
 }
 
-@keyframes rotateGlow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
+/* ---------- Header ---------- */
 .pricingHeader {
   max-width: 750px;
   margin: 0 auto 3.5rem;
@@ -27,26 +24,13 @@
 .pricingHeader h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--headings-color);
+  color: var(--text-color);
   margin-bottom: 3rem;
-  text-shadow: 0 0 12px rgba(75, 207, 158, 0.3);
   text-align: center;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .pricingHeader p {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-color);
   margin-top: 0.8rem;
   font-size: 1.1rem;
   line-height: 1.7;
@@ -63,6 +47,7 @@
   overflow: hidden;
   position: relative;
   z-index: 2;
+  padding: 2rem;
 }
 
 .pricingSummary::before {
@@ -71,7 +56,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(135deg, #4bcf9e, #00ffaa, #fc8083);
+  background: var(--animated-gradient-color);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -81,6 +66,86 @@
   animation: borderGlow 6s ease infinite;
 }
 
+.pricingSummary h3 {
+  font-size: 1.9rem;
+  margin-top: 2rem;
+  color: var(--text-color);
+}
+
+.pricingSummary > p {
+  margin: 0.5rem 0 2rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Table Wrapper ---------- */
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+}
+
+/* ---------- Table Styles ---------- */
+.pricingTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.pricingTable thead {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pricingTable th,
+.pricingTable td {
+  padding: 1.2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pricingTable th {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--subbtn-color);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.pricingTable td {
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.pricingTable tr:hover {
+  background: rgba(75, 207, 158, 0.12);
+  transition: background 0.3s ease;
+}
+
+.highlightRow {
+  background: linear-gradient(90deg, #4bcf7e26, #ca80fc1a);
+  border-left: 4px solid #4bcf9e;
+  font-weight: 600;
+}
+
+.pricingTable td:nth-child(3) {
+  font-weight: 700;
+  color: var(--subbtn-color);
+}
+
+/* ---------- Annual Note ---------- */
+.annualNote {
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  font-size: 1.05rem;
+}
+
+.annualNote strong {
+  color: var(--sub1-btn-color);
+}
+
+/* ---------- Animations ---------- */
 @keyframes borderGlow {
   0% {
     opacity: 0.8;
@@ -93,80 +158,183 @@
   }
 }
 
-.pricingSummary h3 {
-  font-size: 1.9rem;
-  margin-top: 2rem;
- color: var(--white-color);
+/* ===========================================================
+   ✅ RESPONSIVE BREAKPOINTS
+   =========================================================== */
+
+/* 📱 Extra Small Devices (Phones <480px) */
+/* 📱 Extra Small Devices (Phones <480px) */
+@media (max-width: 480px) {
+  .pricingSection {
+    padding: 4rem 1rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricingHeader p {
+    font-size: 0.95rem;
+  }
+
+  .pricingSummary {
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  /* --- Keep Table Scrollable --- */
+  .tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .tableWrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tableWrapper::-webkit-scrollbar-thumb {
+    background: rgba(155, 155, 155, 0.3);
+    border-radius: 4px;
+  }
+
+  .pricingTable {
+    min-width: 700px;
+    border-radius: 12px;
+  }
+
+  .pricingTable th,
+  .pricingTable td {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  .pricingSummary h3 {
+    font-size: 1.5rem;
+  }
+
+  .annualNote {
+    font-size: 0.95rem;
+  }
 }
 
-.pricingSummary > p {
-  margin: 0.5rem 0 2rem;
-  font-size: 1.1rem;
+
+/* 📱 Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .pricingSection {
+    padding: 5rem 0rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2rem;
+  }
+
+  .pricingHeader p {
+    font-size: 1rem;
+  }
+
+  .pricingSummary {
+    padding: 1.5rem;
+  }
+
+  .pricingTable {
+    min-width: 600px;
+  }
 }
 
-/* ---------- Pricing Table ---------- */
-.pricingTable {
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-}
-.pricingRowHeader span {
-  color: #4bcf9e;
-}
-.pricingRowHeader,
-.pricingRow {
-  display: grid;
-  grid-template-columns: 1.2fr 1.2fr 1fr 2fr;
-  gap: 1rem;
-  padding: 1.4rem 1.2rem;
-  align-items: center;
+/* 💻 Medium Devices (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .pricingSection {
+    padding: 6rem 0rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2.2rem;
+  }
+
+  .pricingSummary h3 {
+    font-size: 1.7rem;
+  }
+
+  .pricingTable th,
+  .pricingTable td {
+    padding: 1rem;
+  }
 }
 
-.pricingRowHeader {
-  background: rgba(255, 255, 255, 0.08);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--sub-btn-color);
-  letter-spacing: 0.5px;
+/* 🖥️ Large Devices (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .pricingSection {
+    padding: 6rem 4rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2.6rem;
+  }
+
+  .pricingSummary h3 {
+    font-size: 1.8rem;
+  }
 }
 
-.pricingRow {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.35s ease;
-  position: relative;
+/* 🖥️ Extra Large Devices (1441px - 1920px) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .pricingSection {
+    padding: 7rem 6rem;
+  }
+
+  .pricingHeader h2 {
+    font-size: 2.8rem;
+  }
+
+  .pricingSummary {
+    max-width: 1300px;
+  }
+
+  .pricingSummary h3 {
+    font-size: 2rem;
+  }
+
+  .pricingTable th,
+  .pricingTable td {
+    padding: 1.4rem 1rem;
+  }
+
+  .annualNote {
+    font-size: 1.2rem;
+  }
 }
 
-.pricingRow:hover {
-  background: rgba(75, 207, 158, 0.12);
-}
+/* 📺 Ultra Wide Screens / TVs (1921px and up) */
+@media (min-width: 1921px) {
+  .pricingSection {
+    padding: 8rem 8rem;
+  }
 
-.pricingRow:nth-child(3) {
-  background: linear-gradient(
-    90deg,
-    rgba(75, 207, 158, 0.15),
-    rgba(252, 128, 131, 0.1)
-  );
-  border-left: 4px solid #4bcf9e;
-  font-weight: 600;
-}
+  .pricingHeader h2 {
+    font-size: 3rem;
+  }
 
-.pricingRow span:nth-child(3) {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: #4bcf9e;
-}
+  .pricingSummary {
+    max-width: 1600px;
+    padding: 3rem;
+  }
 
-.pricingRow span:first-child {
-  font-size: 1.1rem;
-}
+  .pricingSummary h3 {
+    font-size: 2.2rem;
+  }
 
-.annualNote {
-  margin-bottom: 2rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.05rem;
-}
-.annualNote strong {
-  color: var(--sub1-btn-color);
+  .pricingTable th,
+  .pricingTable td {
+    padding: 1.6rem 1.2rem;
+  }
+
+  .annualNote {
+    font-size: 1.2rem;
+  }
 }
