@@ -11,33 +11,39 @@ const EngagementSection = () => {
     <section className={styles['engagement-section']}>
       <h2>Customer Engagement made easy</h2>
       <p>
-        This can help Business to quickly implement a chat solution into their platforms.
+        Give your users a smooth, modern chat experience that fits right inside your product.
       </p>
+
       <div className={styles['engagement-content']}>
+
         <div className={`${styles['engagement-item']} ${styles.green_bg}`}>
           <p>
-            Reply to specific messages by hovering and clicking the down icon. Keep your conversations organized!
+            Reply directly to any message with quick threaded responses. Keep conversations clean and easy to follow.
           </p>
           <Image src={reply} alt="Reply to messages" />
         </div>
+
         <div className={`${styles['engagement-item']} ${styles.blue_bg}`}>
           <p>
-            Get real-time updates on your message status. Know when your message is delivered and read!
+            See real-time delivery and read receipts. Know exactly when someone has seen or replied to your message.
           </p>
           <Image src={deliveryStatus} alt="Real-Time Updates" />
         </div>
+
         <div className={`${styles['engagement-item']} ${styles.green_bg}`}>
           <p>
-            Express yourself instantly with message reactions! Add emojis to share your feelings in real-time!
+            Express yourself with emoji reactions. Add quick emotions and make conversations feel natural and human.
           </p>
           <Image src={reaction} alt="Message Reactions" />
         </div>
+
         <div className={`${styles['engagement-item']} ${styles.blue_bg}`}>
           <p>
-            Easily share messages with others by using the forward option. Keep the conversation flowing!
+            Share documents, PDFs, images, and text together in a single message. Perfect for quick and efficient communication.
           </p>
           <Image src={formword} alt="Forward Messages" />
         </div>
+
       </div>
     </section>
   );
