@@ -1,9 +1,6 @@
 // page.js
 import DetailContent from "./DetailContent";
 import ToWhomContent from "./ToWhomContent";
-import ProvidesContent from "./ProvidesContent";
-import HowItWorkContent from "./HowItWorkContent";
-import ExampleUsageContent from "./ExampleUsageContent";
 import {
   cloudManagedExampleUsageContent,
   cloudManagedHowItWorksContent,
