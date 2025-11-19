@@ -2,7 +2,6 @@
 
 import Script from "next/script";
 import SolveSection from "../app/components/SolveSection";
-import HowSection from "../app/components/HowSection";
 import EngagementSection from "../app/components/EngagementSection";
 import WhatWeOfferSection from "./components/wwoffer/WhatWeOffer";
 import MagicChatOverview from "@/app/components/magicchatOverview/MagicChatOverview";
@@ -38,7 +37,6 @@ export default function Home() {
         <br></br>
       <WhatWeOfferSection/>
       <MagicChatOverview />
-      {/* <HowSection /> */}
       <EngagementSection />
     </div>
   );
