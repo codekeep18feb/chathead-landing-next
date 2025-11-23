@@ -68,7 +68,7 @@ const payload = {
 
         {
           tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v1/blob/b8e477db9d9d00d6c183b338c0b8b9cab4a7b8a3/index.html#L1",
+          href: "https://github.com/magicchat-core/example__v1/tree/starter",
           text: "Starter Code",
         },
       ],
@@ -475,7 +475,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/magicchat-core/example__v1",
                   text: "View Implementation Example",
                 },
               ],
