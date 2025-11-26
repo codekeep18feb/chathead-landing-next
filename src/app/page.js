@@ -10,8 +10,8 @@ import MagicChatOverview from "@/app/components/magicchatOverview/MagicChatOverv
 export default function Home() {
   const handleMagicChatInit = async () => {
     await window.magicchat_io.setUp(
-      "magicchat", // app_name
-      "TWFnaWNDaGF0IFN1cHBvcnQgVGVhbV9fU0VQUkFUT1JfX21hZ2ljY2hhdA==", // api_key
+      "MagicChat", // app_name
+      "TWFnaWNDaGF0IFN1cHBvcnRfX1NFUFJBVE9SX19NYWdpY0NoYXQ=", // api_key
       false // header_req (true by default)
     );
 
@@ -26,17 +26,17 @@ export default function Home() {
         strategy="beforeInteractive"
       />
       {/* Load Magicchat bundle */}
-      {/* <Script
+      <Script
         src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"
         strategy="afterInteractive"
         onLoad={handleMagicChatInit}
-      /> */}
+      />
 
       <SolveSection />
       <br></br>
 
-        <br></br>
-      <WhatWeOfferSection/>
+      <br></br>
+      <WhatWeOfferSection />
       <MagicChatOverview />
       {/* <HowSection /> */}
       <EngagementSection />

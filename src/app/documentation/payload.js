@@ -14,7 +14,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: "This chat application solution is designed for simple websites built with HTML, JavaScript, and CSS, typically informational sites. It's ideal for products lacking built-in authentication that require seamless integration of both authentication and chat functionality.",
+      text: "Perfect for MVPs or new apps without built-in authentication. It provides lightweight MagicChat auth to quickly onboard users and enable chat. Later, you can migrate to other authentication systems and upgrade your chat version without losing onboarded users.",
     },
     {
       tag_type: "div",
@@ -745,7 +745,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: `This chat application is designed specifically for complex sites or apps built with JavaScript on both the client and server sides. It is ideal for products that already have built-in authentication and are looking to seamlessly integrate robust chat functionality.`,
+      text: `Designed for apps with their own backend and authentication, letting you fully control user onboarding, sync, and logout while integrating robust MagicChat features.`,
     },
 
     //prerequisite?
@@ -1635,7 +1635,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: `This chat application is designed specifically for complex sites or apps have no built-in authentication and niether want one but chat functionality only.`,
+      text: `Add instant chat to any app or site without requiring authentication—perfect for visitor-only engagement or public-facing platforms.`,
     },
 
     //prerequisite?
