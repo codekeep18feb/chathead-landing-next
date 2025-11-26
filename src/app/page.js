@@ -10,8 +10,8 @@ import MagicChatOverview from "@/app/components/magicchatOverview/MagicChatOverv
 export default function Home() {
   const handleMagicChatInit = async () => {
     await window.magicchat_io.setUp(
-      "Magicchat.io", // app_name
-      "TWFnaWNDaGF0IFN1cHBvcnRfX1NFUFJBVE9SX19NYWdpY2NoYXQuaW8=", // api_key
+      "MagicChat", // app_name
+      "TWFnaWNDaGF0IFN1cHBvcnRfX1NFUFJBVE9SX19NYWdpY0NoYXQ=", // api_key
       false // header_req (true by default)
     );
 
