@@ -684,7 +684,7 @@ const payload = {
             },
             {
               tag_type: "h3",
-              text: `This chat application is designed specifically for Wordpress using native wp authentication. It is ideal for products that already have built-in authentication probably using some plugin and are looking to seamlessly integrate robust chat functionality.`,
+              text: `Built specifically for WordPress, this version leverages native WP authentication—making it ideal for products that already use WordPress or plugin-based login systems and want to seamlessly integrate powerful, full-featured chat without reinventing their user management flow.`,
             },
 
             //prerequisite?

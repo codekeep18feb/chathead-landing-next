@@ -14,7 +14,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: "Perfect for MVPs or new apps without built-in authentication. It provides lightweight MagicChat auth to quickly onboard users and enable chat. Later, you can migrate to other authentication systems and upgrade your chat version without losing onboarded users.",
+      text: "Perfect for MVPs or new apps without built-in authentication, this version provides lightweight MagicChat auth to onboard users instantly and enable chat with minimal setup. As your product evolves, you can seamlessly migrate to any external authentication system and upgrade to a more advanced MagicChat version without losing existing users or chat history.",
     },
     {
       tag_type: "div",
@@ -745,7 +745,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: `Designed for apps with their own backend and authentication, letting you fully control user onboarding, sync, and logout while integrating robust MagicChat features.`,
+      text: `Designed for products with their own backend and authentication, this version gives you full control over user onboarding, syncing, and logout while seamlessly integrating powerful MagicChat capabilities.`,
     },
 
     //prerequisite?
@@ -1510,7 +1510,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: `This chat application is designed specifically for Wordpress using native wp authentication. It is ideal for products that already have built-in authentication probably using some plugin and are looking to seamlessly integrate robust chat functionality.`,
+      text: `Built specifically for WordPress, this version leverages native WP authentication—making it ideal for products that already use WordPress or plugin-based login systems and want to seamlessly integrate powerful, full-featured chat without reinventing their user management flow.`,
     },
 
     //prerequisite?
