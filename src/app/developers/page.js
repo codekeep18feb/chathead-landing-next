@@ -29,7 +29,7 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h2>⚡ Instant Auth + Chat (V1)</h2>
+                <h2>⚡[V1] Instant Auth + Chat </h2>
                 <p>Quickest way to get started with authentication and chat built-in.</p>
               </a>
             </li>

@@ -10,7 +10,7 @@ const payload = {
   V1: [
     {
       tag_type: "h2",
-      text: "Instant Auth + Chat [V1]",
+      text: "[V1] Instant Auth + Chat",
     },
     {
       tag_type: "p",
@@ -741,7 +741,7 @@ const payload = {
   V2: [
     {
       tag_type: "h2",
-      text: `BYO (Bring Your Own) Auth  +  Chat  [V2]`,
+      text: `[V2] BYO (Bring Your Own) Auth  +  Chat`,
     },
     {
       tag_type: "p",
@@ -1506,7 +1506,7 @@ const payload = {
   V3: [
     {
       tag_type: "h2",
-      text: `CMS-Ready Chat (Wordpress) [V3]`,
+      text: `[V3] CMS-Ready Chat (Wordpress)`,
     },
     {
       tag_type: "p",
@@ -1631,7 +1631,7 @@ const payload = {
   V4: [
     {
       tag_type: "h2",
-      text: `No Auth  but  Chat  [V4]`,
+      text: `[V4] No Auth  but  Chat`,
     },
     {
       tag_type: "p",
