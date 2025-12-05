@@ -1309,7 +1309,7 @@ const payload = {
                 {
                   tag_type: "code_with_copy",
                   code: `curl --location 'https://auth.addchat.tech/dev/onboarding' \\
-      --header 'X-API-Key: YOUR_API_KEY' \\
+      --header 'X-API-Key: APP_REST_API_KEY' \\
       --header 'Content-Type: application/json' \\
       --data '{
         "uid": "unique_user_identifier_123",
