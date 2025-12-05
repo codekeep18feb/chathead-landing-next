@@ -1635,7 +1635,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: `Add instant chat to any app or site without requiring authentication—perfect for visitor-only engagement or public-facing platforms.`,
+      text: `Perfect for demos, landing pages, early MVPs, and static sites where users can be created instantly and chat works out-of-the-box — and as your product grows with real authentication, user identity, roles, permissions, moderation, billing, and real customers, you can seamlessly switch and migrate to the full backend-powered version.`,
     },
 
     //prerequisite?
