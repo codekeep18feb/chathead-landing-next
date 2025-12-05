@@ -40,7 +40,7 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h2>⚡ BYO Auth + Chat (V2)</h2>
+                <h2>🔐[V2] BYO Auth + Chat</h2>
                 <p>
                   Bring your own authentication, pair it with chat powered by MagicChat.
                 </p>
@@ -53,7 +53,7 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h2>📰 CMS Chat (V3)</h2>
+                <h2>📰[V3] CMS Chat</h2>
                 <p>Seamlessly embed chat inside your CMS-powered site or app.</p>
               </a>
             </li>
@@ -64,7 +64,7 @@ function DevelopersRootPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h2>💬 No Auth, Chat Only (V4)</h2>
+                <h2>💬[V4] No Auth, Chat Only</h2>
                 <p>Lightweight option: embed chat without requiring authentication.</p>
               </a>
             </li>
