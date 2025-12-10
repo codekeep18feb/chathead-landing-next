@@ -4,61 +4,215 @@ import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import Modal from "./Modal";
 
 const featureDescriptions = {
-  "Live Chat": "Two-way live chat between visitors and your support team.",
-  "Live Status Indicator": "Shows whether agents are online or offline.",
-  "Max-file Attach Size": "Maximum file size a user can upload in chat.",
-  "Data Retention": "Duration chat history is stored before deletion.",
-  "Multi-Admin": "Number of admins and support users included.",
-  "AI Bot": "AI assistant that answers questions, detects user intent, and routes chats to live agents when needed.",
-  "Trainable Chatbot Agents": "Instantly train your AI bot with content from your website — no manual setup needed.",
-  "Lead Gen (FAQ)": "Capture leads via FAQ flows and contact forms.",
-  "Lead Gen Analytics": "Reports on lead capture performance.",
-  "Auto Email to Leads": "Automatically emails leads after form submission.",
-  "Basic Notification": "Simple email alerts for new messages.",
-  "Advanced Notification": "Rules, templates, and triggers for email alerts.",
-  "Remove Branding": "Option to remove 'Powered by MagicChat' branding.",
-  "Priority Support": "Get faster help from our support team.",
-  "Monthly Active Users": "Number of unique users who interact with your chat per month.",
-  "Agents": "Number of chatbot agents you can create and train.",
+  "Monthly Active Users": "Total unique users who interact with your chat and authentication services per month.",
+  "Agents": "Number of AI chatbot agents you can create and train with custom knowledge.",
   "Unlimited Websites": "Use MagicChat on unlimited websites with a single plan.",
+  "Multi-Admin": "Number of admin and support users included in the plan.",
+  "Auth Layer Websites": "Number of websites where you can use MagicChat's built-in authentication system.",
+  "AI Messages / month": "Monthly limit for AI chatbot interactions (no LLM token costs).",
+  "Knowledge Base per Agent": "Maximum amount of training data per AI agent.",
+  "Live Chat": "Two-way live chat between visitors and your support team.",
+  "File Upload Size": "Maximum file size users can upload in live chat conversations.",
+  "Data Retention": "Duration chat history is stored before deletion.",
+  "AI Bot": "AI assistant that answers questions, detects user intent, and routes chats to live agents when needed.",
+  "Basic AI Bot": "Simple AI with intent detection and basic responses.",
+  "Enhanced AI Bot": "AI with smart replies and improved contextual understanding.",
+  "Advanced AI": "Custom-trained AI with fine-tuning and multi-language support.",
+  "Enterprise-grade AI": "Multi-model AI routing with advanced configuration options.",
+  "Lead Capture Forms": "Capture leads via forms, FAQ flows, and conversational interfaces.",
+  "Advanced Lead Capture": "Forms with analytics, conditional logic, and custom fields.",
+  "Customizable Q&A Trees": "Create branching conversation paths for lead qualification.",
+  "Auto Email to Leads": "Automatically sends follow-up emails to captured leads.",
+  "Email Notifications": "Alerts for new messages and support requests.",
+  "Custom Email Templates": "Create branded email templates for notifications.",
+  "Remove Branding": "Option to remove 'Powered by MagicChat' from your chat interface.",
+  "Priority Support": "Get faster help from our support team.",
+  "Advanced Analytics": "Detailed reports and insights on chat performance and lead conversion.",
   "API Access": "Programmatic access to MagicChat features for custom integrations.",
+  "Webhook Support": "Receive real-time notifications for chat events.",
+  "Custom Workflows": "Build automated workflows and business rules.",
+  "Multi-language Support": "AI support for multiple languages.",
+  "Security & Compliance": "GDPR-ready security features and data protection.",
+  "SLA": "Service Level Agreement for uptime and reliability.",
+  "Dedicated Account Manager": "Single point of contact for support and strategy.",
+  "Phone Support": "Direct phone access to support team.",
+  "Custom Domains": "Use your own domain for chat services (e.g., chat.yourcompany.com).",
+  "White-label SDK": "Embed fully branded chat into mobile apps and websites.",
+  "Custom Integrations": "Integration support for CRM, helpdesk, and other business tools.",
+  "24/7 Priority Support": "Round-the-clock premium support availability.",
+  "Custom API Rate Limits": "Tailored API rate limits for your needs.",
+  "Multi-region Hosting": "Data hosting across multiple geographic regions.",
+  "Custom AI Training": "Train AI models specifically for your use case.",
+  "Audit Logs": "Comprehensive logs for security and compliance.",
+  "Quarterly Business Reviews": "Regular strategy sessions to optimize usage.",
 };
 
 const plans = [
   { name: "Launch 🚀" },
   { name: "Starter 🌟" },
   { name: "Growth 🌱", popular: true },
+  { name: "Scale ⚡" },
+  { name: "Enterprise 🏢" },
 ];
 
 const groupedFeatures = {
   "Core Features": [
-    { label: "Monthly Active Users", values: ["100", "500", "1k - 10k (scalable)"] },
-    { label: "Agents", values: ["Up to 2", "Up to 4", "Up to 20"] },
-    { label: "Unlimited Websites", values: [true, true, true] },
-    { label: "Multi-Admin", values: ["1 Admin + 1 Support User", "1 Admin + 5 Support Users", "1 Admin + 30 Support Users"] },
+    {
+      label: "Monthly Active Users",
+      values: ["100 (Live Chat & Auth)", "1,000 (Live Chat & Auth)", "5,000 (Live Chat & Auth)", "25,000 (Live Chat & Auth)", "Custom"]
+    },
+    {
+      label: "Agents",
+      values: ["Up to 1", "Up to 5", "Up to 15", "Up to 50", "Unlimited"]
+    },
+    {
+      label: "Unlimited Websites",
+      values: [true, true, true, true, true]
+    },
+    {
+      label: "Auth Layer Websites",
+      values: ["1", "3", "10", "25", "Unlimited"]
+    },
   ],
-  "Live Chat": [
-    { label: "Live Chat", values: [true, true, true] },
-    { label: "Live Status Indicator", values: [true, true, true] },
-    { label: "Max-file Attach Size", values: ["25MB", "50MB", "100MB"] },
-    { label: "Data Retention", values: ["15 days", "30 days", "120 days"] },
+  "AI Chat Features": [
+    {
+      label: "AI Messages / month",
+      values: ["100", "5,000", "10,000+ (scalable)", "20,000+ (scalable)", "Unlimited"]
+    },
+    {
+      label: "Knowledge Base per Agent",
+      values: ["5 MB", "100 MB", "500 MB", "2 GB", "Custom"]
+    },
+    {
+      label: "AI Bot Type",
+      values: ["Basic AI Bot", "Enhanced AI Bot", "Advanced AI", "Enterprise-grade AI", "Custom AI"]
+    },
+    {
+      label: "Multi-language Support",
+      values: [false, false, true, true, true]
+    },
   ],
-  "AI Chat": [
-    { label: "AI Bot", values: [true, true, true] },
-    { label: "Trainable Chatbot Agents", values: ["2 chatbot agents (trainable on up to 20 URLs each)", "4 chatbot agents (trainable on up to 50 URLs each)", "20 chatbot agents (trainable on up to 100 URLs each)"] },
+  "Live Chat Features": [
+    {
+      label: "Live Chat",
+      values: [true, true, true, true, true]
+    },
+    {
+      label: "File Upload Size",
+      values: ["25 MB", "100 MB", "250 MB", "500 MB", "Custom"]
+    },
+    {
+      label: "Data Retention",
+      values: ["15 days", "180 days", "2 years", "5 years", "Custom"]
+    },
   ],
-  "Knowledge Base & Lead Generation": [
-    { label: "Lead Gen (FAQ)", values: [true, true,true] },
-    { label: "Lead Gen Analytics", values: [true, true,true] },
-    { label: "Auto Email to Leads", values: [false, true,true] },
+  "Lead Generation": [
+    {
+      label: "Lead Capture Forms",
+      values: [true, true, true, true, true]
+    },
+    {
+      label: "Advanced Lead Capture",
+      values: [false, true, true, true, true]
+    },
+    {
+      label: "Customizable Q&A Trees",
+      values: [false, false, true, true, true]
+    },
+    {
+      label: "Auto Email to Leads",
+      values: [false, true, true, true, true]
+    },
+    {
+      label: "Advanced Analytics",
+      values: [false, false, true, true, true]
+    },
   ],
-  "Email Notification": [
-    { label: "Basic Notification", values: [true, true, true] },
-    { label: "Advanced Notification", values: [false, true, true] },
+  "Email & Notifications": [
+    {
+      label: "Email Notifications",
+      values: [true, true, true, true, true]
+    },
+    {
+      label: "Custom Email Templates",
+      values: [false, true, true, true, true]
+    },
   ],
-  "Branding & Support": [
-    { label: "Remove Branding", values: [false, true, true] },
-    { label: "Priority Support", values: [false, true, true] },
+  "Integrations & API": [
+    {
+      label: "API Access",
+      values: [false, false, true, true, true]
+    },
+    {
+      label: "Webhook Support",
+      values: [false, false, true, true, true]
+    },
+    {
+      label: "Custom Workflows",
+      values: [false, false, true, true, true]
+    },
+    {
+      label: "Custom Integrations",
+      values: [false, false, false, true, true]
+    },
+  ],
+  "Branding & Customization": [
+    {
+      label: "Remove Branding",
+      values: [false, true, true, true, true]
+    },
+    {
+      label: "Custom Domains",
+      values: [false, false, false, "2 included", "Unlimited"]
+    },
+    {
+      label: "White-label SDK",
+      values: [false, false, false, true, true]
+    },
+  ],
+  "Support & SLAs": [
+    {
+      label: "Priority Support",
+      values: [false, true, true, true, true]
+    },
+    {
+      label: "Dedicated Account Manager",
+      values: [false, false, false, true, true]
+    },
+    {
+      label: "Phone Support",
+      values: [false, false, false, true, true]
+    },
+    {
+      label: "24/7 Priority Support",
+      values: [false, false, false, false, true]
+    },
+    {
+      label: "SLA",
+      values: [false, false, false, "99.9% uptime", "Custom"]
+    },
+  ],
+  "Enterprise Features": [
+    {
+      label: "Custom API Rate Limits",
+      values: [false, false, false, false, true]
+    },
+    {
+      label: "Multi-region Hosting",
+      values: [false, false, false, false, true]
+    },
+    {
+      label: "Custom AI Training",
+      values: [false, false, false, false, true]
+    },
+    {
+      label: "Audit Logs",
+      values: [false, false, false, false, true]
+    },
+    {
+      label: "Quarterly Business Reviews",
+      values: [false, false, false, false, true]
+    },
   ],
 };
 
@@ -95,8 +249,8 @@ const ComparisonTable = () => {
   };
 
   const renderFeatureValue = (value) => {
-    if (value === true) return <span className={styles.true}>✔️</span>;
-    if (value === false) return <span className={styles.false}>❌</span>;
+    if (value === true) return <span className={styles.true}>✔</span>;
+    if (value === false) return <span className={styles.false}>✘</span>;
     return value;
   };
 
