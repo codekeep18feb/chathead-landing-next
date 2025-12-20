@@ -60,160 +60,20 @@ const groupedFeatures = {
     {
       label: "Monthly Active Users",
       values: ["100 (Live Chat & Auth)", "1,000 (Live Chat & Auth)", "5,000 (Live Chat & Auth)", "25,000 (Live Chat & Auth)", "Custom"]
-    },
-    {
-      label: "Agents",
-      values: ["Up to 1", "Up to 5", "Up to 15", "Up to 50", "Unlimited"]
-    },
-    {
-      label: "Unlimited Websites",
-      values: [true, true, true, true, true]
-    },
-    {
-      label: "Auth Layer Websites",
-      values: ["1", "3", "10", "25", "Unlimited"]
-    },
+    }
   ],
   "AI Chat Features": [
     {
       label: "AI Messages / month",
       values: ["100", "5,000", "10,000+ (scalable)", "20,000+ (scalable)", "Unlimited"]
     },
-    {
-      label: "Knowledge Base per Agent",
-      values: ["5 MB", "100 MB", "500 MB", "2 GB", "Custom"]
-    },
-    {
-      label: "AI Bot Type",
-      values: ["Basic AI Bot", "Enhanced AI Bot", "Advanced AI", "Enterprise-grade AI", "Custom AI"]
-    },
+    
     {
       label: "Multi-language Support",
       values: [false, false, true, true, true]
     },
-  ],
-  "Live Chat Features": [
-    {
-      label: "Live Chat",
-      values: [true, true, true, true, true]
-    },
-    {
-      label: "File Upload Size",
-      values: ["25 MB", "100 MB", "250 MB", "500 MB", "Custom"]
-    },
-    {
-      label: "Data Retention",
-      values: ["15 days", "180 days", "2 years", "5 years", "Custom"]
-    },
-  ],
-  "Lead Generation": [
-    {
-      label: "Lead Capture Forms",
-      values: [true, true, true, true, true]
-    },
-    {
-      label: "Advanced Lead Capture",
-      values: [false, true, true, true, true]
-    },
-    {
-      label: "Customizable Q&A Trees",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Auto Email to Leads",
-      values: [false, true, true, true, true]
-    },
-    {
-      label: "Advanced Analytics",
-      values: [false, false, true, true, true]
-    },
-  ],
-  "Email & Notifications": [
-    {
-      label: "Email Notifications",
-      values: [true, true, true, true, true]
-    },
-    {
-      label: "Custom Email Templates",
-      values: [false, true, true, true, true]
-    },
-  ],
-  "Integrations & API": [
-    {
-      label: "API Access",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Webhook Support",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Custom Workflows",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Custom Integrations",
-      values: [false, false, false, true, true]
-    },
-  ],
-  "Branding & Customization": [
-    {
-      label: "Remove Branding",
-      values: [false, true, true, true, true]
-    },
-    {
-      label: "Custom Domains",
-      values: [false, false, false, "2 included", "Unlimited"]
-    },
-    {
-      label: "White-label SDK",
-      values: [false, false, false, true, true]
-    },
-  ],
-  "Support & SLAs": [
-    {
-      label: "Priority Support",
-      values: [false, true, true, true, true]
-    },
-    {
-      label: "Dedicated Account Manager",
-      values: [false, false, false, true, true]
-    },
-    {
-      label: "Phone Support",
-      values: [false, false, false, true, true]
-    },
-    {
-      label: "24/7 Priority Support",
-      values: [false, false, false, false, true]
-    },
-    {
-      label: "SLA",
-      values: [false, false, false, "99.9% uptime", "Custom"]
-    },
-  ],
-  "Enterprise Features": [
-    {
-      label: "Custom API Rate Limits",
-      values: [false, false, false, false, true]
-    },
-    {
-      label: "Multi-region Hosting",
-      values: [false, false, false, false, true]
-    },
-    {
-      label: "Custom AI Training",
-      values: [false, false, false, false, true]
-    },
-    {
-      label: "Audit Logs",
-      values: [false, false, false, false, true]
-    },
-    {
-      label: "Quarterly Business Reviews",
-      values: [false, false, false, false, true]
-    },
-  ],
+  ]
+  
 };
 
 const ComparisonTable = () => {
