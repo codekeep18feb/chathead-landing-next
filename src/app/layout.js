@@ -40,7 +40,7 @@ export default function RootLayout({ children}) {
         />
       </head>
       <body>
-        <Header onLinkHover={onLinkHover} onNavLeave={onNavLeave} />
+        {/* <Header onLinkHover={onLinkHover} onNavLeave={onNavLeave} /> */}
         {children}
         <Modal
           content={
@@ -52,7 +52,7 @@ export default function RootLayout({ children}) {
           visible={modalVisible}
           onClose={closeModal}
         />
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
