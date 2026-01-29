@@ -120,7 +120,7 @@ function Component1() {
   );
 }
 
-/* ---------------- Component 2 ---------------- */
+/* ------------------ Component 2 ---------------- */
 function Component2() {
   return (
     <div>
