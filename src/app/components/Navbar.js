@@ -65,7 +65,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <Link href="/" className={styles.logoImg}>
-        <img src={`${basePath}/Asset/linkedin_logo.jpeg`} alt="Magicchat" />
+          <img src={`${basePath}/Asset/linkedin_logo.jpeg`} alt="Magicchat" />
         </Link>
         <h2>Magicchat</h2>
       </div>
@@ -95,7 +95,7 @@ const Navbar = () => {
               {/* <a onClick={() => handleItemClick("platform", "/platform")} className={styles.link}>
                 Platform
               </a> */}
-                <Link href="/platform" legacyBehavior>
+              <Link href="/platform" >
                 Platform
               </Link>
               <div className={styles.nextArrow}>&gt;</div>
@@ -116,7 +116,7 @@ const Navbar = () => {
               {/* <a onClick={() => handleItemClick("solutions", "/solutions")} className={styles.link}>
                 Solutions
               </a> */}
-               <Link href="/solutions" legacyBehavior>
+              <Link href="/solutions" >
                 Solutions
               </Link>
               <div className={styles.nextArrow}>&gt;</div>
@@ -137,7 +137,7 @@ const Navbar = () => {
               {/* <a onClick={() => handleItemClick("developers", "/developers")} className={styles.link}>
                 Developers
               </a> */}
-               <Link href="/developers" legacyBehavior>
+              <Link href="/developers" >
                 Developers
               </Link>
               <div className={styles.nextArrow}>&gt;</div>
@@ -155,7 +155,7 @@ const Navbar = () => {
             onMouseEnter={() => { if (!isMobile) setHoveredContentKey("resources"); }}
           >
             <li className={styles.links}>
-              <Link href="/resources" legacyBehavior>
+              <Link href="/resources" >
                 Resources
               </Link>
               {/* <a onClick={() => handleItemClick("resources", "/resources")} className={styles.link}>
@@ -174,7 +174,7 @@ const Navbar = () => {
 
 
           <li onMouseEnter={handleCloseModal}>
-            <Link href="/pricing" legacyBehavior>
+            <Link href="/pricing" >
               Pricing
             </Link>
           </li>
