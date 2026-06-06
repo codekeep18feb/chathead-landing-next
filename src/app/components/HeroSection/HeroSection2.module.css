@@ -1,0 +1,722 @@
+/* components/ui/Hero.module.css - Unique 3D Interactive Version */
+
+.heroSection {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 4rem;
+  border-radius: 0;
+  background: radial-gradient(circle at 20% 50%, #0a0a2a 0%, #000000 100%);
+}
+
+/* Animated gradient orbs */
+.heroSection::before {
+  content: "";
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.4) 0%,
+    transparent 70%
+  );
+  top: -20vmax;
+  left: -20vmax;
+  animation: floatOrb 20s ease-in-out infinite;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.heroSection::after {
+  content: "";
+  position: absolute;
+  width: 50vmax;
+  height: 50vmax;
+  background: radial-gradient(
+    circle,
+    rgba(118, 75, 162, 0.4) 0%,
+    transparent 70%
+  );
+  bottom: -20vmax;
+  right: -20vmax;
+  animation: floatOrb 25s ease-in-out infinite reverse;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(10%, 10%) rotate(120deg);
+  }
+  66% {
+    transform: translate(-5%, 15%) rotate(240deg);
+  }
+}
+
+/* Particle Canvas */
+.particlesCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Main Container */
+.heroContainer {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left Content - Animated Typography */
+.heroContent {
+  animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1.2rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.5px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(102, 126, 234, 0.5);
+  }
+}
+
+.heroBadgeDot {
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Animated Text Reveal */
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: white;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.revealLine {
+  display: block;
+  overflow: hidden;
+}
+
+.revealWord {
+  display: inline-block;
+  animation: revealWord 0.6s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: gradientShift 3s linear infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes revealWord {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* Animated CTA Buttons */
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.9rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+.btnSecondary {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.btnIcon {
+  transition: transform 0.3s ease;
+}
+
+.btn:hover .btnIcon {
+  transform: translateX(5px);
+}
+
+/* Right Side - Interactive Video with Overlay */
+.heroVisual {
+  position: relative;
+  animation: fadeInScale 0.8s ease-out 0.2s both;
+  border-radius: 12px;
+  height: 500px;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradient Overlay on Video */
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 16, 23, 0.25) 0%,
+    rgba(24, 19, 28, 0.4) 50%,
+    rgba(7, 6, 7, 0.2) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+  transition: all 0.4s ease;
+}
+
+.videoWrapper:hover .videoOverlay {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.35) 0%,
+    rgba(118, 75, 162, 0.5) 50%,
+    rgba(240, 147, 251, 0.3) 100%
+  );
+  mix-blend-mode: soft-light;
+}
+
+.codeWindow {
+  background: #1e1e2e;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: rotateY(5deg) rotateX(5deg);
+  transition: transform 0.4s ease;
+}
+
+.codeWindow:hover {
+  transform: rotateY(0deg) rotateX(0deg);
+}
+
+.windowHeader {
+  background: #2a2a3a;
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.windowDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.windowDot:nth-child(1) {
+  background: #ff5f56;
+}
+.windowDot:nth-child(2) {
+  background: #ffbd2e;
+}
+.windowDot:nth-child(3) {
+  background: #27c93f;
+}
+
+.windowTitle {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: monospace;
+}
+
+.codeContent {
+  padding: 1.5rem;
+  background: #1a1a2a;
+}
+
+.codeLine {
+  font-family: "Fira Code", monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  display: flex;
+  gap: 1rem;
+  opacity: 0;
+  animation: codeReveal 0.5s ease forwards;
+}
+
+.lineNumber {
+  color: rgba(255, 255, 255, 0.3);
+  user-select: none;
+}
+
+.lineCode {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.keyword {
+  color: #c678dd;
+}
+.function {
+  color: #61afef;
+}
+.string {
+  color: #98c379;
+}
+.variable {
+  color: #e5c07b;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: white;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes codeReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Typing indicator */
+.typingIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50px;
+  width: fit-content;
+}
+
+.typingDot {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: typingDot 1.4s infinite;
+}
+
+.typingDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typingDot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* Stats Row */
+.heroStats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.statIcon {
+  font-size: 1.8rem;
+}
+
+.statInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.statNumber {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .heroSubtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroButtons {
+    justify-content: center;
+  }
+
+  .heroStats {
+    justify-content: center;
+  }
+
+  .codeWindow {
+    max-width: 500px;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .codeWindow:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    min-height: auto;
+  }
+
+  .heroContainer {
+    padding: 2rem 1.5rem;
+  }
+
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .heroStats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .codeContent {
+    padding: 1rem;
+  }
+
+  .codeLine {
+    font-size: 0.7rem;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+
+  .heroBadge {
+    font-size: 0.7rem;
+    padding: 0.35rem 1rem;
+  }
+
+  .statIcon {
+    font-size: 1.2rem;
+  }
+
+  .statNumber {
+    font-size: 1rem;
+  }
+
+  .codeLine {
+    font-size: 0.6rem;
+  }
+}
+
+/* Dark mode refinements */
+[data-theme="dark"] .heroSection {
+  background: radial-gradient(circle at 20% 50%, #0a0a1a 0%, #000000 100%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .heroSection::before,
+  .heroSection::after,
+  .heroBadge,
+  .revealWord,
+  .codeLine,
+  .btn,
+  .typingDot {
+    animation: none;
+  }
+
+  .revealWord {
+    opacity: 1;
+    transform: none;
+  }
+
+  .codeLine {
+    opacity: 1;
+  }
+}
+
+/* Mouse-following glow effect */
+.glowSpot {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.12) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  transition: transform 0.02s ease;
+  will-change: transform;
+}
+
+/* Enhanced hover effect for particles canvas */
+.particlesCanvas {
+  transition: filter 0.3s ease;
+  will-change: filter;
+}
+
+.heroSection:hover .particlesCanvas {
+  filter: hue-rotate(10deg) brightness(1.05);
+}
+
+/* Scroll parallax effect */
+.heroSection {
+  transition:
+    opacity 0.1s ease,
+    transform 0.1s ease;
+  will-change: opacity, transform;
+}
+
+/* Enhanced stat numbers with count-up animation */
+.statNumber {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.stat:hover .statNumber {
+  transform: scale(1.05);
+  color: #667eea;
+}
+
+/* CTA button enhanced animation */
+.btnPrimary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btnPrimary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btnPrimary:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Confetti button effect */
+.btnPrimary:active {
+  transform: scale(0.98);
+}
+
+/* Responsive adjustments for glow spot */
+@media (max-width: 768px) {
+  .glowSpot {
+    display: none;
+  }
+}
+
+/* Scroll reveal animation for stats */
+.heroStats {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: statsReveal 0.6s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes statsReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

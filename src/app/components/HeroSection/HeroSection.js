@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./HeroSection.module.css";
-import ChatComponent from "./ChatComponent";
+import ChatComponent from "../ChatComponent";
 
 const HeroSection = () => {
   const [currentVideo, setCurrentVideo] = useState(0);
