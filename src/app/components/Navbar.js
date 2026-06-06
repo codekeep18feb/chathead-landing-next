@@ -60,7 +60,6 @@ const Navbar = () => {
         return null;
     }
   };
-
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
@@ -71,8 +70,9 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`${styles["burger-icon"]} ${!menuOpen ? styles["animate-fade"] : ""
-          }`}
+        className={`${styles["burger-icon"]} ${
+          !menuOpen ? styles["animate-fade"] : ""
+        }`}
         onClick={toggleMenu}
       >
         {menuOpen ? <HiOutlineX size={28} /> : <HiOutlineMenuAlt3 size={28} />}
@@ -83,21 +83,35 @@ const Navbar = () => {
         onClick={toggleMenu}
       ></div>
 
-      <ul className={`${styles["nav-links"]} ${menuOpen ? styles.active : ""}`} id="nav-links">
+      <ul
+        className={`${styles["nav-links"]} ${menuOpen ? styles.active : ""}`}
+        id="nav-links"
+      >
         <div className={styles.navList}>
+          <li>
+            <Link
+              href="/herosection"
+              onClick={() => {
+                setMenuOpen(false);
+                document.body.style.overflow = "auto";
+              }}
+            >
+              Hero section
+            </Link>
+          </li>
 
           {/* Platform */}
           <div
             className={styles.hoverWrapper}
-            onMouseEnter={() => { if (!isMobile) setHoveredContentKey("platform"); }}
+            onMouseEnter={() => {
+              if (!isMobile) setHoveredContentKey("platform");
+            }}
           >
             <li className={styles.links}>
               {/* <a onClick={() => handleItemClick("platform", "/platform")} className={styles.link}>
                 Platform
               </a> */}
-              <Link href="/platform" >
-                Platform
-              </Link>
+              <Link href="/platform">Platform</Link>
               <div className={styles.nextArrow}>&gt;</div>
             </li>
             {hoveredContentKey === "platform" && (
@@ -110,15 +124,15 @@ const Navbar = () => {
           {/* Solutions */}
           <div
             className={styles.hoverWrapper}
-            onMouseEnter={() => { if (!isMobile) setHoveredContentKey("solutions"); }}
+            onMouseEnter={() => {
+              if (!isMobile) setHoveredContentKey("solutions");
+            }}
           >
             <li className={styles.links}>
               {/* <a onClick={() => handleItemClick("solutions", "/solutions")} className={styles.link}>
                 Solutions
               </a> */}
-              <Link href="/solutions" >
-                Solutions
-              </Link>
+              <Link href="/solutions">Solutions</Link>
               <div className={styles.nextArrow}>&gt;</div>
             </li>
             {hoveredContentKey === "solutions" && (
@@ -131,15 +145,15 @@ const Navbar = () => {
           {/* Developers */}
           <div
             className={styles.hoverWrapper}
-            onMouseEnter={() => { if (!isMobile) setHoveredContentKey("developers"); }}
+            onMouseEnter={() => {
+              if (!isMobile) setHoveredContentKey("developers");
+            }}
           >
             <li className={styles.links}>
               {/* <a onClick={() => handleItemClick("developers", "/developers")} className={styles.link}>
                 Developers
               </a> */}
-              <Link href="/developers" >
-                Developers
-              </Link>
+              <Link href="/developers">Developers</Link>
               <div className={styles.nextArrow}>&gt;</div>
             </li>
             {hoveredContentKey === "developers" && (
@@ -152,12 +166,12 @@ const Navbar = () => {
           {/* Resources */}
           <div
             className={styles.hoverWrapper}
-            onMouseEnter={() => { if (!isMobile) setHoveredContentKey("resources"); }}
+            onMouseEnter={() => {
+              if (!isMobile) setHoveredContentKey("resources");
+            }}
           >
             <li className={styles.links}>
-              <Link href="/resources" >
-                Resources
-              </Link>
+              <Link href="/resources">Resources</Link>
               {/* <a onClick={() => handleItemClick("resources", "/resources")} className={styles.link}>
                 Resources
               </a> */}
@@ -170,15 +184,9 @@ const Navbar = () => {
             )}
           </div>
 
-
-
-
           <li onMouseEnter={handleCloseModal}>
-            <Link href="/pricing" >
-              Pricing
-            </Link>
+            <Link href="/pricing">Pricing</Link>
           </li>
-
         </div>
 
         <div className={styles["auth-buttons"]}>
@@ -198,13 +206,15 @@ const Navbar = () => {
       {(hoveredContentKey || isMobile) && (
         <>
           <div
-            className={`${styles.nav_overlay} ${hoveredContentKey ? styles.active : ""
-              }`}
+            className={`${styles.nav_overlay} ${
+              hoveredContentKey ? styles.active : ""
+            }`}
             onClick={handleCloseModal}
           ></div>
           <div
-            className={`${styles.modalDropdown} ${hoveredContentKey ? styles.active : ""
-              }`}
+            className={`${styles.modalDropdown} ${
+              hoveredContentKey ? styles.active : ""
+            }`}
             onClick={handleCloseModal}
             onMouseLeave={handleCloseModal}
           >
