@@ -175,9 +175,8 @@ export default function Hero() {
           </h1>
 
           <p className={styles.heroSubtitle}>
-            Modern publishing tricks and practical code tips for components and
-            Markdown. Write interactive docs, build component libraries, and
-            create amazing developer experiences.
+            No-code chatbot platform for Lead Gen, AI answers & Live Agent Chat
+            — "All in one".
           </p>
           <div className={styles.heroBadge}>
             <span className={styles.heroBadgeDot}></span>
