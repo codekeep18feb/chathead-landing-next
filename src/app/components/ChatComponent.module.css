@@ -61,12 +61,20 @@
 
 .messagesList {
   max-height: 380px;
-  overflow-y: hidden;
+  overflow-y: auto;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   scroll-behavior: smooth;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+}
+
+.messagesList::-webkit-scrollbar {
+  display: none;
 }
 
 .messageItem {

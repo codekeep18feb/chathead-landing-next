@@ -9,19 +9,14 @@ const ChatComponent = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isBooking, setIsBooking] = useState(false);
-  const messagesEndRef = useRef(null);
+  const [isRestarting, setIsRestarting] = useState(false);
   const messagesListRef = useRef(null);
   let messageIndex = 0;
   let isActive = true;
+  let restartTimeout = null;
 
   // Available time slots
-  const timeSlots = [
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "3:00 PM",
-    "4:00 PM",
-  ];
+  const timeSlots = ["10:00 AM", "11:00 AM", "12:00 PM", "3:00 PM", "4:00 PM"];
 
   // Generate next 7 days for booking
   const getAvailableDates = () => {
@@ -32,7 +27,6 @@ const ChatComponent = () => {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
 
-      // Skip weekends if needed
       const dayOfWeek = date.getDay();
       if (dayOfWeek !== 0 && dayOfWeek !== 6) {
         dates.push({
@@ -52,7 +46,6 @@ const ChatComponent = () => {
 
   const availableDates = getAvailableDates();
 
-  // Complete conversation flow with date picker as an assistant message
   const conversationFlow = [
     {
       text: "Hi there! How can I help you today?",
@@ -133,30 +126,117 @@ const ChatComponent = () => {
     },
     {
       type: "assistant",
-      isDatePicker: true, // Special flag to indicate this is a date picker message
+      isDatePicker: true, 
       brand: "ChatHead AI",
       avatar: "🤖",
       user: "AI Assistant",
-    }
+    },
   ];
 
   const smoothScrollToBottom = () => {
-    if (messagesListRef.current) {
-      messagesListRef.current.scrollTo({
-        top: messagesListRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
+    setTimeout(() => {
+      if (messagesListRef.current) {
+        messagesListRef.current.scrollTo({
+          top: messagesListRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
   };
 
-  const handleBooking = () => {
-    if (selectedDate && selectedTime) {
+  const resetConversation = () => {
+    // Clear all messages
+    setMessages([]);
+    setShowDatePicker(false);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setIsBooking(false);
+    messageIndex = 0;
+    isActive = true;
+
+    // Small delay to ensure cleanup
+    setTimeout(() => {
+      // Restart the conversation
+      startConversation();
+    }, 500);
+  };
+
+  const startConversation = () => {
+    let localMessageIndex = 0;
+    isActive = true;
+
+    const addMessage = () => {
+      if (!isActive) return;
+
+      if (localMessageIndex < conversationFlow.length) {
+        if (
+          conversationFlow[localMessageIndex].type === "assistant" &&
+          localMessageIndex > 0 &&
+          !conversationFlow[localMessageIndex].isDatePicker
+        ) {
+          setIsTyping(true);
+          setTimeout(() => {
+            if (!isActive) return;
+            setIsTyping(false);
+            addActualMessage();
+          }, 1500);
+        } else {
+          addActualMessage();
+        }
+      }
+    };
+
+    const addActualMessage = () => {
+      if (!isActive) return;
+
+      const message = conversationFlow[localMessageIndex];
+
+      if (message.isDatePicker) {
+        setTimeout(() => {
+          setShowDatePicker(true);
+          smoothScrollToBottom();
+        }, 500);
+        localMessageIndex++;
+        return;
+      }
+
+      const newMessage = {
+        id: Date.now() + Math.random(),
+        ...message,
+        timestamp: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      };
+
+      setMessages((prev) => [...prev, newMessage]);
+      smoothScrollToBottom();
+      localMessageIndex++;
+
+      if (localMessageIndex < conversationFlow.length) {
+        const delay = Math.random() * 2000 + 1000;
+        setTimeout(addMessage, delay);
+      }
+    };
+
+    const timeout = setTimeout(addMessage, 1000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  };
+
+  const handleBooking = (date, time) => {
+    const bookingDate = date || selectedDate;
+    const bookingTime = time || selectedTime;
+
+    if (bookingDate && bookingTime) {
       setIsBooking(true);
 
       // Add booking confirmation message
       const bookingMessage = {
         id: Date.now(),
-        text: `Great! Your consultation is booked for ${selectedDate.formatted} at ${selectedTime}. You'll receive a confirmation email shortly. 📅✅`,
+        text: `Great! Your consultation is booked for ${bookingDate.formatted} at ${bookingTime}. You'll receive a confirmation email shortly. 📅✅`,
         brand: "ChatHead AI",
         avatar: "🤖",
         type: "assistant",
@@ -168,6 +248,7 @@ const ChatComponent = () => {
       };
 
       setMessages((prev) => [...prev, bookingMessage]);
+      smoothScrollToBottom();
 
       // Add follow-up message
       setTimeout(() => {
@@ -185,46 +266,70 @@ const ChatComponent = () => {
         };
         setMessages((prev) => [...prev, followUpMessage]);
         smoothScrollToBottom();
+
+        // Add thank you message after follow-up
+        setTimeout(() => {
+          const thankYouMessage = {
+            id: Date.now() + 2,
+            text: "Thank you! 🙏",
+            brand: "John Doe",
+            avatar: "👤",
+            type: "user",
+            user: "Customer",
+            timestamp: new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+          };
+          setMessages((prev) => [...prev, thankYouMessage]);
+          smoothScrollToBottom();
+
+          // Add a small delay, then restart the conversation
+          setTimeout(() => {
+            // Clear all messages and restart
+            setMessages([]);
+            setShowDatePicker(false);
+            setSelectedDate(null);
+            setSelectedTime(null);
+            messageIndex = 0;
+
+            // Start new conversation after a brief pause
+            setTimeout(() => {
+              startConversation();
+            }, 1000);
+          }, 2000);
+        }, 1500);
       }, 2000);
 
-      // Hide date picker
-      setShowDatePicker(false);
-      setIsBooking(false);
-
-      // Reset booking selection after 5 seconds
+      // Hide date picker after a delay
       setTimeout(() => {
-        setSelectedDate(null);
-        setSelectedTime(null);
-      }, 5000);
+        setShowDatePicker(false);
+      }, 500);
+
+      setIsBooking(false);
     }
   };
 
   // Auto-select date, time, and confirm booking
   useEffect(() => {
-    if (showDatePicker && availableDates.length > 0) {
-      // Step 1: Auto-select first available date after 1 second
+    if (showDatePicker && availableDates.length > 0 && !isRestarting) {
       const dateTimeout = setTimeout(() => {
-        setSelectedDate(availableDates[0]);
+        const firstDate = availableDates[0];
+        setSelectedDate(firstDate);
         smoothScrollToBottom();
 
-        // Step 2: Auto-select first time slot after 1.5 seconds
         const timeTimeout = setTimeout(() => {
-          if (selectedDate || availableDates[0]) {
-            setSelectedTime(timeSlots[1]);
-            smoothScrollToBottom();
+          const secondTimeSlot = timeSlots[1];
+          setSelectedTime(secondTimeSlot);
+          smoothScrollToBottom();
 
-            // Step 3: Auto-confirm booking after 1.5 seconds
-            const bookingTimeout = setTimeout(() => {
-              if (
-                (selectedDate || availableDates[0]) &&
-                (selectedTime || timeSlots[1])
-              ) {
-                handleBooking();
-              }
-            }, 1500);
+          const bookingTimeout = setTimeout(() => {
+            if (firstDate && secondTimeSlot) {
+              handleBooking(firstDate, secondTimeSlot);
+            }
+          }, 1500);
 
-            return () => clearTimeout(bookingTimeout);
-          }
+          return () => clearTimeout(bookingTimeout);
         }, 1500);
 
         return () => clearTimeout(timeTimeout);
@@ -232,84 +337,16 @@ const ChatComponent = () => {
 
       return () => clearTimeout(dateTimeout);
     }
-  }, [showDatePicker]);
+  }, [showDatePicker, isRestarting]);
 
+  // Initial conversation start
   useEffect(() => {
-    const addMessage = () => {
-      if (!isActive) return;
-
-      if (messageIndex < conversationFlow.length) {
-        // Show typing indicator for assistant messages (but not for date picker)
-        if (
-          conversationFlow[messageIndex].type === "assistant" &&
-          messageIndex > 0 &&
-          !conversationFlow[messageIndex].isDatePicker
-        ) {
-          setIsTyping(true);
-          setTimeout(() => {
-            if (!isActive) return;
-            setIsTyping(false);
-            addActualMessage();
-          }, 1500);
-        } else {
-          addActualMessage();
-        }
-      }
-    };
-
-    const addActualMessage = () => {
-      if (!isActive) return;
-
-      const message = conversationFlow[messageIndex];
-      
-      // Check if this is a date picker message
-      if (message.isDatePicker) {
-        setTimeout(() => {
-          setShowDatePicker(true);
-          smoothScrollToBottom();
-        }, 500);
-        messageIndex++;
-        // Continue to next message
-        if (messageIndex < conversationFlow.length) {
-          const delay = Math.random() * 2000 + 1000;
-          setTimeout(addMessage, delay);
-        }
-        return;
-      }
-      
-      const newMessage = {
-        id: Date.now(),
-        ...message,
-        timestamp: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-      };
-
-      setMessages((prev) => {
-        const updated = [...prev, newMessage];
-        if (updated.length > 12) {
-          return updated.slice(-12);
-        }
-        return updated;
-      });
-
-      smoothScrollToBottom();
-      messageIndex++;
-
-      // Random delay between messages
-      if (messageIndex < conversationFlow.length) {
-        const delay = Math.random() * 2000 + 1000;
-        setTimeout(addMessage, delay);
-      }
-    };
-
-    const timeout = setTimeout(addMessage, 1000);
+    const cleanup = startConversation();
 
     return () => {
       isActive = false;
-      clearTimeout(timeout);
-      setIsTyping(false);
+      if (restartTimeout) clearTimeout(restartTimeout);
+      if (cleanup) cleanup();
     };
   }, []);
 
@@ -320,7 +357,7 @@ const ChatComponent = () => {
   return (
     <div className={styles.chatContainer}>
       <div className={styles.messagesList} ref={messagesListRef}>
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <div
             key={message.id}
             className={`${styles.messageItem} ${message.type === "assistant" ? styles.assistantMessage : styles.userMessage}`}
@@ -336,7 +373,6 @@ const ChatComponent = () => {
           </div>
         ))}
 
-        {/* Date Picker Component as Assistant Message */}
         {showDatePicker && (
           <div className={`${styles.messageItem} ${styles.assistantMessage}`}>
             <div className={styles.messageAvatar}>🤖</div>
@@ -344,7 +380,10 @@ const ChatComponent = () => {
               <div className={styles.messageHeader}>
                 <span className={styles.messageBrand}>ChatHead AI</span>
                 <span className={styles.messageTime}>
-                  {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  {new Date().toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </span>
               </div>
               <div className={styles.datePickerContainer}>
@@ -353,41 +392,38 @@ const ChatComponent = () => {
                     <span>📅 Select Date & Time</span>
                   </div>
 
-                  {/* Date Selection - Auto selected */}
                   <div className={styles.dateSection}>
                     <div className={styles.dateOptions}>
                       {availableDates.map((date) => (
                         <button
                           key={date.value}
-                          className={`${styles.dateButton} ${selectedDate?.value === date.value || (!selectedDate && date === availableDates[0]) ? styles.selectedDate : ""}`}
+                          className={`${styles.dateButton} ${selectedDate?.value === date.value ? styles.selectedDate : ""}`}
                           style={{ pointerEvents: "none" }}
                         >
                           {date.formatted}
-                          {!selectedDate && date === availableDates[0] && " ✓"}
+                          {selectedDate?.value === date.value && " ✓"}
                         </button>
                       ))}
                     </div>
                   </div>
 
-                  {/* Time Selection - Auto selected */}
                   {selectedDate && (
                     <div className={styles.timeSection}>
                       <div className={styles.timeOptions}>
                         {timeSlots.map((time) => (
                           <button
                             key={time}
-                            className={`${styles.timeButton} ${selectedTime === time || (!selectedTime && time === timeSlots[1]) ? styles.selectedTime : ""}`}
+                            className={`${styles.timeButton} ${selectedTime === time ? styles.selectedTime : ""}`}
                             style={{ pointerEvents: "none" }}
                           >
                             {time}
-                            {!selectedTime && time === timeSlots[1] && " ✓"}
+                            {selectedTime === time && " ✓"}
                           </button>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  {/* Confirm Button - Auto clicked */}
                   {selectedDate && selectedTime && (
                     <button
                       className={styles.confirmBookingButton}
@@ -403,7 +439,6 @@ const ChatComponent = () => {
           </div>
         )}
 
-        {/* Typing indicator */}
         {isTyping && (
           <div className={styles.typingIndicator}>
             <div className={styles.typingAvatar}>🤖</div>
@@ -414,8 +449,6 @@ const ChatComponent = () => {
             </div>
           </div>
         )}
-
-        <div ref={messagesEndRef} />
       </div>
     </div>
   );
