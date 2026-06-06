@@ -144,22 +144,6 @@ const ChatComponent = () => {
     }, 100);
   };
 
-  const resetConversation = () => {
-    // Clear all messages
-    setMessages([]);
-    setShowDatePicker(false);
-    setSelectedDate(null);
-    setSelectedTime(null);
-    setIsBooking(false);
-    messageIndex = 0;
-    isActive = true;
-
-    // Small delay to ensure cleanup
-    setTimeout(() => {
-      // Restart the conversation
-      startConversation();
-    }, 500);
-  };
 
   const startConversation = () => {
     let localMessageIndex = 0;
@@ -219,7 +203,7 @@ const ChatComponent = () => {
       }
     };
 
-    const timeout = setTimeout(addMessage, 1000);
+    const timeout = setTimeout(addMessage, 1500);
 
     return () => {
       clearTimeout(timeout);
@@ -233,7 +217,6 @@ const ChatComponent = () => {
     if (bookingDate && bookingTime) {
       setIsBooking(true);
 
-      // Add booking confirmation message
       const bookingMessage = {
         id: Date.now(),
         text: `Great! Your consultation is booked for ${bookingDate.formatted} at ${bookingTime}. You'll receive a confirmation email shortly. 📅✅`,
@@ -310,7 +293,7 @@ const ChatComponent = () => {
     }
   };
 
-  // Auto-select date, time, and confirm booking
+
   useEffect(() => {
     if (showDatePicker && availableDates.length > 0 && !isRestarting) {
       const dateTimeout = setTimeout(() => {
@@ -401,7 +384,7 @@ const ChatComponent = () => {
                           style={{ pointerEvents: "none" }}
                         >
                           {date.formatted}
-                          {selectedDate?.value === date.value && " ✓"}
+                          {selectedDate?.value === date.value}
                         </button>
                       ))}
                     </div>
@@ -417,7 +400,7 @@ const ChatComponent = () => {
                             style={{ pointerEvents: "none" }}
                           >
                             {time}
-                            {selectedTime === time && " ✓"}
+                            {selectedTime === time}
                           </button>
                         ))}
                       </div>
