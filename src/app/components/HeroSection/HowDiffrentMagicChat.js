@@ -4,10 +4,11 @@ import { AiOutlineFieldTime } from "react-icons/ai";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
 import styles from "./HowDiffrentMagicChat.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HowDiffrentMagicChat() {
   const [activeTab, setActiveTab] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
 
   const differentiators = [
     {
@@ -60,6 +61,16 @@ export default function HowDiffrentMagicChat() {
 
   const activeDifferentiator = differentiators[activeTab];
 
+  useEffect(() => {
+    if (!autoPlay) return;
+
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % differentiators.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [autoPlay, differentiators.length]);
+
   return (
     <section className={styles.section}>
       <div style={{ maxWidth: "1200px" }}>
@@ -72,7 +83,10 @@ export default function HowDiffrentMagicChat() {
               <button
                 key={index}
                 className={`${styles.tabButton} ${activeTab === index ? styles.activeTab : ""}`}
-                onClick={() => setActiveTab(index)}
+                onClick={() => {
+                  setActiveTab(index);
+                  setAutoPlay(false);
+                }}
               >
                 <span className={styles.tabIcon}>{item.icon}</span>
                 <span className={styles.tabTitle}>{item.title}</span>
@@ -81,7 +95,7 @@ export default function HowDiffrentMagicChat() {
           </div>
 
           {/* Content Panel */}
-          <div className={styles.contentPanel}>
+          <div className={styles.contentPanel} key={activeTab}>
             <div className={styles.panelHeader}>
               <div className={styles.panelIcon}>
                 {activeDifferentiator.icon}
