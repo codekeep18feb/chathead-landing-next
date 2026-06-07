@@ -23,6 +23,11 @@ const HeroSectionPage = () => {
       <br />
 
       <HowDiffrentMagicChat />
+
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 };
