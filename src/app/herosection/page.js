@@ -2,6 +2,7 @@ import React from "react";
 import HeroSection from "../components/HeroSection/HeroSection";
 import Hero from "../components/HeroSection/HeroSection2";
 import HowDiffrentMagicChat from "../components/HeroSection/HowDiffrentMagicChat";
+import ProblemsSolved from "../components/HeroSection/ProblemsSolved";
 
 export const metadata = {
   title: "Hero Section | Magicchat",
@@ -28,6 +29,8 @@ const HeroSectionPage = () => {
       <br />
       <br />
       <br />
+
+      <ProblemsSolved/>
     </>
   );
 };

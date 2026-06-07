@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Sliding light animation for purple -->
+    <linearGradient id="slideLightPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" />
+      <stop offset="40%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" />
+      <stop offset="50%" style="stop-color:rgba(139,92,246,0.15);stop-opacity:0.15" />
+      <stop offset="60%" style="stop-color:rgba(139,92,246,0.25);stop-opacity:0.25" />
+      <stop offset="70%" style="stop-color:rgba(139,92,246,0.15);stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" />
+      <animate attributeName="x1" values="-100%;200%" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="0%;300%" dur="4s" repeatCount="indefinite"/>
+    </linearGradient>
+    
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="purpleGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#bgGrad2)" rx="12"/>
+  <rect width="400" height="300" fill="url(#slideLightPurple)" rx="12"/>
+  
+  <g opacity="0.3">
+    <circle cx="50" cy="50" r="1.5" fill="#8b5cf6">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="350" cy="80" r="1" fill="#06b6d4">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="150" cy="250" r="1.5" fill="#8b5cf6">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <circle cx="200" cy="140" r="50" fill="url(#purpleGrad)" opacity="0.9"/>
+  <text x="200" y="135" text-anchor="middle" font-size="16" fill="#ffffff" font-weight="bold">AI Hub</text>
+  <text x="200" y="152" text-anchor="middle" font-size="10" fill="#e9d5ff">MagicChat</text>
+  
+  <g>
+    <circle cx="80" cy="80" r="22" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="80" y="85" text-anchor="middle" font-size="10" fill="#94a3b8">💬</text>
+    <line x1="102" y1="85" x2="150" y2="125" stroke="#8b5cf6" stroke-width="2"/>
+    
+    <circle cx="80" cy="160" r="22" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="80" y="165" text-anchor="middle" font-size="10" fill="#94a3b8">⚡</text>
+    <line x1="102" y1="165" x2="150" y2="155" stroke="#8b5cf6" stroke-width="2"/>
+    
+    <circle cx="320" cy="80" r="22" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="320" y="85" text-anchor="middle" font-size="10" fill="#94a3b8">🎯</text>
+    <line x1="298" y1="85" x2="250" y2="125" stroke="#8b5cf6" stroke-width="2"/>
+    
+    <circle cx="320" cy="160" r="22" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="320" y="165" text-anchor="middle" font-size="10" fill="#94a3b8">🤖</text>
+    <line x1="298" y1="165" x2="250" y2="155" stroke="#8b5cf6" stroke-width="2"/>
+    
+    <circle cx="200" cy="60" r="22" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="200" y="65" text-anchor="middle" font-size="10" fill="#94a3b8">✨</text>
+    <line x1="200" y1="82" x2="200" y2="90" stroke="#8b5cf6" stroke-width="2"/>
+    
+    <circle cx="200" cy="230" r="22" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="200" y="235" text-anchor="middle" font-size="10" fill="#94a3b8">👥</text>
+    <line x1="200" y1="190" x2="200" y2="208" stroke="#8b5cf6" stroke-width="2"/>
+  </g>
+  
+  <circle cx="200" cy="140" r="60" fill="none" stroke="#8b5cf6" stroke-width="1.5" opacity="0.3">
+    <animate attributeName="r" from="60" to="80" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.3" to="0" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="200" cy="140" r="70" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.2">
+    <animate attributeName="r" from="70" to="95" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    <animate attributeName="opacity" from="0.2" to="0" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  
+  <circle cx="200" cy="275" r="15" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="200" y="280" text-anchor="middle" font-size="12" fill="#94a3b8">😊</text>
+  
+  <g opacity="0.8">
+    <text x="140" y="270" font-size="18" fill="#10b981">✓</text>
+    <text x="250" y="270" font-size="18" fill="#10b981">✓</text>
+  </g>
+ </svg>
