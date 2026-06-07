@@ -3,6 +3,8 @@ import HeroSection from "../components/HeroSection/HeroSection";
 import Hero from "../components/HeroSection/HeroSection2";
 import HowDiffrentMagicChat from "../components/HeroSection/HowDiffrentMagicChat";
 import ProblemsSolved from "../components/HeroSection/ProblemsSolved";
+import PlatformFeaturesTimeline from "../components/HeroSection/PlatformFeaturesPage";
+import HowToGetStartedPage from "../components/HeroSection/HowToGetStartedPage";
 
 export const metadata = {
   title: "Hero Section | Magicchat",
@@ -30,7 +32,20 @@ const HeroSectionPage = () => {
       <br />
       <br />
 
-      <ProblemsSolved/>
+      <ProblemsSolved />
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <PlatformFeaturesTimeline />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <HowToGetStartedPage />
     </>
   );
 };
