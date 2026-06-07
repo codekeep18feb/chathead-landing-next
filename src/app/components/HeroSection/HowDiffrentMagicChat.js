@@ -9,6 +9,7 @@ import styles from "./HowDiffrentMagicChat.module.css";
 export default function HowDiffrentMagicChat() {
   const [activeTab, setActiveTab] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef(null);
 
   const differentiators = [
@@ -68,6 +69,10 @@ export default function HowDiffrentMagicChat() {
   const activeDifferentiator = differentiators[activeTab];
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (!autoPlay) return;
 
     const interval = setInterval(() => {
@@ -97,6 +102,15 @@ export default function HowDiffrentMagicChat() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // State for particle positions (only used on client)
+  const [particlePositions, setParticlePositions] = useState([]);
+
+  useEffect(() => {
+    // Generate random positions only on client side
+    const positions = Array(20).fill(null).map(() => `${Math.random() * 100}%`);
+    setParticlePositions(positions);
+  }, []);
+
   return (
     <section ref={sectionRef} className={styles.section}>
       {/* Animated background elements */}
@@ -106,17 +120,23 @@ export default function HowDiffrentMagicChat() {
       <div className={styles.gridOverlay} />
       
       <div className={styles.container}>
-        {/* Floating particles */}
-        <div className={styles.particles}>
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className={styles.particle} style={{
-              '--delay': `${i * 0.5}s`,
-              '--duration': `${3 + (i % 5)}s`,
-              '--size': `${3 + (i % 7)}px`,
-              '--start-x': `${Math.random() * 100}%`,
-            }} />
-          ))}
-        </div>
+        {/* Floating particles - only render after mounted with suppressHydrationWarning */}
+        {mounted && (
+          <div className={styles.particles} suppressHydrationWarning>
+            {particlePositions.map((position, i) => (
+              <div
+                key={i}
+                className={styles.particle}
+                style={{
+                  '--delay': `${i * 0.5}s`,
+                  '--duration': `${3 + (i % 5)}s`,
+                  '--size': `${3 + (i % 7)}px`,
+                  '--start-x': position,
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         <h2 className={styles.heading}>
           <span className={styles.headingGlow}>How are we different</span>
