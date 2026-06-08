@@ -64,9 +64,9 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <Link href="/" className={styles.logoImg}>
-          <img src={`${basePath}/Asset/linkedin_logo.jpeg`} alt="Magicchat" />
+          <img src={`${basePath}/logo/sageion-logo.svg`} alt="Sageion" />
         </Link>
-        <h2>Magicchat</h2>
+        <h2>Sageion</h2>
       </div>
 
       <div
