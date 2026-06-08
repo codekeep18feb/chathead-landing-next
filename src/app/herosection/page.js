@@ -8,6 +8,7 @@ import HowToGetStartedPage from "../components/HeroSection/HowToGetStartedPage";
 import TargetAudiencePage from "../components/HeroSection/TargetAudiencePage";
 import WhatWeOffer from "../components/HeroSection/whatWeOffer/WhatWeOffer";
 import OverviewIntro from "../components/magicchatOverview/OverviewIntro";
+import HowItWorksPage from "../components/HeroSection/HowItWorksPage";
 
 export const metadata = {
   title: "Hero Section | Magicchat",
@@ -34,6 +35,11 @@ const HeroSectionPage = () => {
         <HowToGetStartedPage />
         <OverviewIntro />
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <HowItWorksPage />
       {/* <Hero /> */}
       <br />
       <br />
