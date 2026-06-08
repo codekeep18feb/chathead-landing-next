@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import styles from "./HowToGetStartedPage.module.css";
 import { FaHome, FaCubes, FaKey, FaShip, FaCode } from "react-icons/fa";
@@ -37,92 +37,77 @@ const steps = [
 ];
 
 export default function HowToGetStartedPage() {
-  const [showFlowLine, setShowFlowLine] = useState(false);
-  const [animationProgress, setAnimationProgress] = useState(0);
+  const [lineProgress, setLineProgress] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowFlowLine(true);
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 1;
+      setLineProgress(Math.min(progress, 100));
       
-      // Simulate progress for the line
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 2;
-        setAnimationProgress(progress);
-        if (progress >= 100) {
-          clearInterval(interval);
-        }
-      }, 80);
+      if (progress >= 20 && activeStep < 1) setActiveStep(1);
+      if (progress >= 40 && activeStep < 2) setActiveStep(2);
+      if (progress >= 60 && activeStep < 3) setActiveStep(3);
+      if (progress >= 80 && activeStep < 4) setActiveStep(4);
+      if (progress >= 95 && activeStep < 5) setActiveStep(5);
       
-      return () => clearInterval(interval);
-    }, 1400);
+      if (progress >= 100) clearInterval(interval);
+    }, 60);
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => clearInterval(interval);
+  }, [activeStep]);
+
+  const totalLength = 2000;
+  const dashOffset = totalLength * (1 - lineProgress / 100);
 
   return (
     <section className={styles.wrapper}>
       <h2 className={styles.heading}>How to Get Started</h2>
 
       <div className={styles.flowContainer}>
-        {/* Multi-curve dotted path (desktop only) */}
+        {/* Dashed Line */}
         <svg
-          className={`${styles.flowLine} ${showFlowLine ? styles.flowLineVisible : ""}`}
+          className={styles.flowLine}
           viewBox="0 0 1000 320"
           preserveAspectRatio="none"
         >
-          <defs>
-            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(189, 46, 255, 0.3)" />
-              <stop offset={`${animationProgress}%`} stopColor="rgba(189, 46, 255, 0.8)" />
-              <stop offset="100%" stopColor="rgba(189, 46, 255, 0.3)" />
-            </linearGradient>
-            
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          
+          {/* Background dashed line */}
           <path
-            d="M60,220 
-               C200,100 380,140 480,80 
-               S780,100 940,220"
+            d="M60,220 C200,100 380,140 480,80 S780,100 940,220"
             fill="none"
-            stroke="url(#lineGradient)"
-            strokeWidth="3"
-            strokeDasharray="10 8"
+            stroke="var(--border-color)"
+            strokeWidth="2"
+            strokeDasharray="6 8"
             strokeLinecap="round"
-            filter="url(#glow)"
+          />
+          
+          {/* Animated line that grows */}
+          <path
+            d="M60,220 C200,100 380,140 480,80 S780,100 940,220"
+            fill="none"
+            stroke="var(--sub-btn-color)"
+            strokeWidth="2"
+            strokeDasharray={totalLength}
+            strokeDashoffset={dashOffset}
+            strokeLinecap="round"
+            className={styles.animatedLine}
           />
         </svg>
 
-        {/* Animated dots along the path */}
-        <div className={styles.pathDots}>
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className={styles.pathDot}
-              style={{
-                animationDelay: `${1.4 + (i * 0.2)}s`,
-                opacity: showFlowLine ? 1 : 0,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Render Steps */}
+        {/* Steps */}
         {steps.map((step) => (
           <div
             key={step.id}
-            className={`${styles.step} ${styles[step.pos]}`}
-            data-step={step.id}
+            className={`${styles.step} ${styles[step.pos]} ${activeStep >= step.id ? styles.active : ''}`}
           >
             <div className={styles.iconWrap}>
-              <div className={styles.icon}>{step.icon}</div>
+              <div className={styles.icon}>
+                {step.icon}
+              </div>
+              {activeStep >= step.id && (
+                <div className={styles.checkmark}>✓</div>
+              )}
             </div>
             <div className={styles.text}>{step.title}</div>
           </div>
