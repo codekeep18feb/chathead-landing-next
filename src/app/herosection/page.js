@@ -13,6 +13,7 @@ import ExpectedResultsPage from "../components/HeroSection/ExpectedResultsPage";
 import PricingPlansPage from "../components/HeroSection/PricingPlansPage";
 import RoadmapNextPage from "../components/HeroSection/RoadmapNextPage";
 import WhyChooseNowPage from "../components/HeroSection/WhyChooseNowPage";
+import EngagementSectionPage from "../components/HeroSection/EngagementSectionPage";
 
 export const metadata = {
   title: "Hero Section | Magicchat",
@@ -42,12 +43,9 @@ const HeroSectionPage = () => {
       <ExpectedResultsPage />
       <PricingPlansPage />
       <RoadmapNextPage />
-      {/* <Hero /> */}
-      <br />
-      <br />
-      <br />
-      <br />
       <WhyChooseNowPage />
+      <EngagementSectionPage />
+      {/* <Hero /> */}
 
       <br />
       <br />
