@@ -1,0 +1,565 @@
+/* RoadmapNextPage.module.css - Light Background Version */
+.section {
+  position: relative;
+  padding: 5rem 2rem;
+  background: linear-gradient(165deg, #F8FAFC 0%, #F1F5F9 100%);
+  overflow: hidden;
+}
+
+/* Light Decorative Background Elements */
+.lightBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.softBlob1 {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(75, 207, 158, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatBlob 20s ease-in-out infinite;
+}
+
+.softBlob2 {
+  position: absolute;
+  bottom: -15%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatBlob 25s ease-in-out infinite reverse;
+}
+
+@keyframes floatBlob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+}
+
+.dotsPattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(75, 207, 158, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.4;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background: rgba(75, 207, 158, 0.12);
+  border: 1px solid rgba(75, 207, 158, 0.3);
+  border-radius: 40px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #2B9B7A;
+  margin-bottom: 1rem;
+}
+
+.header h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1E293B;
+  margin-bottom: 0.5rem;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #4BCF9E, #6366F1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #64748B;
+  font-size: 1rem;
+}
+
+/* Timeline Container */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Central Timeline Line */
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40px;
+  bottom: 40px;
+  width: 3px;
+  background: rgba(75, 207, 158, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.lineProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(180deg, #4BCF9E, #6366F1, #4BCF9E);
+  animation: lineGrow 1.5s ease-out forwards;
+  transform-origin: top;
+}
+
+@keyframes lineGrow {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* Connector Line between nodes */
+.connectorLine {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 80px;
+  background: rgba(75, 207, 158, 0.15);
+  overflow: hidden;
+}
+
+.connectorLine:first-of-type {
+  top: -80px;
+}
+
+.connectorProgress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(180deg, #6366F1, #4BCF9E);
+  animation: connectorGrow 0.8s ease-out forwards;
+  animation-delay: var(--delay);
+  transform-origin: bottom;
+}
+
+@keyframes connectorGrow {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* Timeline Nodes */
+.timelineNode {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+  animation: nodeReveal 0.6s ease backwards;
+  animation-delay: calc(0.2s * var(--index, 0));
+}
+
+.timelineNode:nth-child(2) { --index: 1; }
+.timelineNode:nth-child(3) { --index: 2; }
+.timelineNode:nth-child(4) { --index: 3; }
+
+@keyframes nodeReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Node Marker - Centered */
+.nodeMarker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 3;
+}
+
+.markerRing {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border: 2px solid #4BCF9E;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(75, 207, 158, 0.15);
+}
+
+.timelineNode:hover .markerRing {
+  transform: scale(1.15);
+  border-color: #4BCF9E;
+  box-shadow: 0 8px 25px rgba(75, 207, 158, 0.3);
+  background: linear-gradient(145deg, #F8FAFC, #FFFFFF);
+}
+
+.nodeIcon {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.timelineNode:hover .nodeIcon {
+  transform: scale(1.1);
+}
+
+/* Pulse Animation */
+.nodePulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  background: rgba(75, 207, 158, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseRing 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Glow behind marker */
+.markerGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(75, 207, 158, 0.12), transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.timelineNode:hover .markerGlow {
+  opacity: 1;
+  animation: glowExpand 0.8s ease-out;
+}
+
+@keyframes glowExpand {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Content Cards */
+.nodeContent {
+  position: relative;
+  width: calc(50% - 60px);
+  background: white;
+  backdrop-filter: blur(0px);
+  border-radius: 20px;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid #E2E8F0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Alternate card sides */
+.timelineNode:nth-child(odd) .nodeContent {
+  margin-right: auto;
+  margin-left: 47px;
+  text-align: left;
+}
+
+.timelineNode:nth-child(even) .nodeContent {
+  margin-left: auto;
+  margin-right: 47px;
+  text-align: left;
+}
+
+/* Card hover effect */
+.timelineNode:hover .nodeContent {
+  background: white;
+  border-color: #4BCF9E;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(75, 207, 158, 0.12);
+}
+
+/* Card accent corner */
+.cardAccent {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, transparent 50%, rgba(75, 207, 158, 0.08) 50%);
+  border-radius: 0 0 20px 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.timelineNode:hover .cardAccent {
+  background: linear-gradient(135deg, transparent 50%, rgba(75, 207, 158, 0.15) 50%);
+}
+
+/* Card header */
+.nodeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.nodeHeader h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin: 0;
+}
+
+/* Card description */
+.nodeContent p {
+  font-size: 0.85rem;
+  color: #64748B;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+/* Status badge */
+.statusBadge {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.timelineNode:hover .statusBadge {
+  transform: scale(1.05);
+}
+
+.statusBadge.upcoming {
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.statusBadge.in-progress {
+  background: rgba(75, 207, 158, 0.1);
+  color: #2B9B7A;
+  border: 1px solid rgba(75, 207, 158, 0.2);
+  animation: statusPulse 2s ease infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(75, 207, 158, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(75, 207, 158, 0);
+  }
+}
+
+.statusBadge.planned {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4F46E5;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* Footer Note */
+.footerNote {
+  max-width: 700px;
+  margin: 3rem auto 0;
+  padding: 1.2rem 1.5rem;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  z-index: 2;
+  animation: footerSlide 0.6s ease 0.8s backwards;
+}
+
+@keyframes footerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.noteIcon {
+  font-size: 1.5rem;
+}
+
+.footerNote p {
+  color: #475569;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===========================================================
+   RESPONSIVE DESIGN
+   =========================================================== */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+  
+  .header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .timelineLine {
+    left: 30px;
+    transform: translateX(0);
+  }
+  
+  .nodeMarker {
+    left: 30px;
+    transform: translateX(0);
+  }
+  
+  .markerRing {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .nodeIcon {
+    font-size: 1.3rem;
+  }
+  
+  .nodePulse {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .timelineNode:nth-child(odd) .nodeContent,
+  .timelineNode:nth-child(even) .nodeContent {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+    margin-right: 0;
+  }
+  
+  .connectorLine {
+    left: 30px;
+    transform: translateX(0);
+    width: 2px;
+  }
+  
+  .nodeContent {
+    padding: 0.8rem 1rem;
+  }
+  
+  .nodeHeader h3 {
+    font-size: 1rem;
+  }
+  
+  .nodeContent p {
+    font-size: 0.75rem;
+  }
+  
+  .footerNote {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .timeline {
+    max-width: 750px;
+  }
+  
+  .nodeContent {
+    width: calc(50% - 50px);
+  }
+  
+  .timelineNode:nth-child(odd) .nodeContent {
+    margin-left: 50px;
+  }
+  
+  .timelineNode:nth-child(even) .nodeContent {
+    margin-right: 50px;
+  }
+  
+  .markerRing {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .nodeIcon {
+    font-size: 1.5rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .timeline {
+    max-width: 1000px;
+  }
+  
+  .nodeContent {
+    width: calc(50% - 70px);
+  }
+  
+  .nodeHeader h3 {
+    font-size: 1.3rem;
+  }
+  
+  .nodeContent p {
+    font-size: 0.95rem;
+  }
+}
