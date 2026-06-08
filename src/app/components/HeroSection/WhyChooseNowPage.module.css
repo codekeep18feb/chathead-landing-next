@@ -1,0 +1,660 @@
+/* WhyChooseNowPage.module.css - Enhanced with Animations & Your Gradient */
+
+/* Main Container */
+.gridWrap {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem 6rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2rem;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gridWrap.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animated Background Elements */
+.animatedBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245, 197, 66, 0.2), transparent);
+  bottom: -150px;
+  right: -100px;
+  animation-delay: 5s;
+}
+
+.orb3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+  top: 50%;
+  left: 50%;
+  animation-delay: 10s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+/* Particles Effect */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 40%, rgba(255,255,255,0.15) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 50px 50px, 80px 80px;
+  animation: particleMove 30s linear infinite;
+}
+
+@keyframes particleMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Header Section */
+.headerSection {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f5c542;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.mainTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #f5c542, #ffd700, #f5c542);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.blinkingCursor {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+}
+
+.titleUnderline {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #f5c542, #ffd700, #f5c542);
+  margin: 1.5rem auto 0;
+  border-radius: 3px;
+  animation: widthGrow 0.8s ease-out;
+}
+
+@keyframes widthGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80px;
+  }
+}
+
+/* Content Grid */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 3rem;
+}
+
+/* Stats Card */
+.statsCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.statsCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: shine 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.statsCard:hover::before {
+  opacity: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.floatingIcon {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.counterWrapper {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.bigStat {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #f5c542;
+  text-shadow: 0 2px 10px rgba(245, 197, 66, 0.3);
+}
+
+.counterNumber {
+  display: inline-block;
+  animation: countUp 2s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.statLabel {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+.statDivider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  margin: 1.5rem 0;
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.statItem {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-5px);
+}
+
+.statValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.statName {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+}
+
+.subscribeBtn {
+  width: 100%;
+  background: white;
+  border: none;
+  color: #667eea;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.subscribeBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.subscribeBtn:hover::before {
+  left: 100%;
+}
+
+.subscribeBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  color: #764ba2;
+}
+
+.btnArrow {
+  transition: transform 0.3s ease;
+}
+
+.subscribeBtn:hover .btnArrow {
+  transform: translateX(5px);
+}
+
+/* Testimonial Grid */
+.testimonialGrid2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.testimonialCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out backwards;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.testimonialCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.testimonialCard:hover .quoteIcon {
+  transform: scale(1.2);
+  opacity: 0.15;
+}
+
+.rating {
+  color: #f5c542;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star {
+  animation: starPop 0.3s ease-out backwards;
+  display: inline-block;
+}
+
+@keyframes starPop {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.testimonialText {
+  color: #1e293b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.authorAvatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  animation: avatarPop 0.4s ease-out;
+}
+
+@keyframes avatarPop {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.authorInfo {
+  flex: 1;
+}
+
+.authorName {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.875rem;
+}
+
+.authorTitle {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.quoteIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 4rem;
+  color: #667eea;
+  opacity: 0.1;
+  font-family: serif;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* Trust Section */
+.trustSection {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.pulseRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(245, 197, 66, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+}
+
+.trustBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 60px;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: badgeSlide 0.6s ease-out;
+}
+
+@keyframes badgeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.trustIcon, .sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .gridWrap {
+    padding: 3rem 2rem;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .testimonialGrid2x2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .mainTitle {
+    font-size: 2rem;
+  }
+  
+  .badge {
+    font-size: 0.7rem;
+  }
+  
+  .statsCard {
+    order: 2;
+  }
+  
+  .testimonialGrid2x2 {
+    order: 1;
+  }
+  
+  .trustBadge {
+    font-size: 0.75rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .gridWrap {
+    padding: 2rem 1rem;
+  }
+  
+  .mainTitle {
+    font-size: 1.5rem;
+  }
+  
+  .bigStat {
+    font-size: 2.5rem;
+  }
+  
+  .statRow {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .statValue {
+    font-size: 1rem;
+  }
+  
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .trustBadge {
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+  }
+}

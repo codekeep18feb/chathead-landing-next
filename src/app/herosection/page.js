@@ -12,6 +12,7 @@ import HowItWorksPage from "../components/HeroSection/HowItWorksPage";
 import ExpectedResultsPage from "../components/HeroSection/ExpectedResultsPage";
 import PricingPlansPage from "../components/HeroSection/PricingPlansPage";
 import RoadmapNextPage from "../components/HeroSection/RoadmapNextPage";
+import WhyChooseNowPage from "../components/HeroSection/WhyChooseNowPage";
 
 export const metadata = {
   title: "Hero Section | Magicchat",
@@ -22,11 +23,6 @@ const HeroSectionPage = () => {
   return (
     <>
       <HeroSection />
-      <br />
-      <br />
-      <br />
-      <br />
-
       <div
         style={{
           boxShadow:
@@ -38,55 +34,37 @@ const HeroSectionPage = () => {
         <HowToGetStartedPage />
         <OverviewIntro />
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
+      <PlatformFeaturesTimeline />
+      <ProblemsSolved />
+      <HowDiffrentMagicChat />
+      <TargetAudiencePage />
       <HowItWorksPage />
-      <br />
-      <br />
-      <br />
-      <br />
       <ExpectedResultsPage />
-       <br />
-      <br />
-      <br />
-      <br />
-      <PricingPlansPage/>
-       <br />
-      <br />
-      <br />
-      <br />
-      <RoadmapNextPage/>
+      <PricingPlansPage />
+      <RoadmapNextPage />
       {/* <Hero /> */}
       <br />
       <br />
       <br />
       <br />
-
-      <HowDiffrentMagicChat />
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-      <ProblemsSolved />
+      <WhyChooseNowPage />
 
       <br />
       <br />
       <br />
       <br />
 
-      <PlatformFeaturesTimeline />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <br />
       <br />
       <br />
       <br />
 
       {/* <HowToGetStartedPage /> */}
-
-      <TargetAudiencePage />
     </>
   );
 };
