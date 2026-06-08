@@ -1,0 +1,174 @@
+/* ExpectedResults.module.css - Version 2 */
+.section {
+  padding: 3rem 2rem;
+  background: #0a0f0d;
+  font-family: 'Courier New', monospace;
+}
+
+.dashboardFrame {
+  max-width: 1300px;
+  margin: 0 auto;
+  background: #0d1210;
+  border: 1px solid #2a3a32;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background: #0a0f0d;
+  border-bottom: 1px solid #2a3a32;
+}
+
+.ledIndicator {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ledRed, .ledGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ledRed {
+  background: #ff4444;
+  box-shadow: 0 0 5px #ff4444;
+  animation: blink 1s infinite;
+}
+
+.ledGreen {
+  background: #4BCF9E;
+  box-shadow: 0 0 5px #4BCF9E;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.dashboardTitle {
+  font-size: 0.75rem;
+  color: #4BCF9E;
+  letter-spacing: 1px;
+}
+
+.signalBars {
+  display: flex;
+  gap: 2px;
+}
+
+.signalBars span {
+  width: 4px;
+  height: 8px;
+  background: #4BCF9E;
+}
+
+.signalBars span:nth-child(2) { height: 12px; }
+.signalBars span:nth-child(3) { height: 16px; }
+
+.heading {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #4BCF9E;
+  padding: 2rem 1rem 0;
+  margin: 0;
+  font-family: monospace;
+}
+
+.blinkCursor {
+  animation: blinkCursor 1s step-end infinite;
+  color: #4BCF9E;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.gaugeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.gaugeCard {
+  background: #0a0f0d;
+  border: 1px solid #1a2a24;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.gaugeCard:hover {
+  border-color: #4BCF9E;
+  transform: translateY(-5px);
+}
+
+.gaugeEmoji {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.gaugeWrapper {
+  margin: 1rem 0;
+}
+
+.gaugeSvg {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+.gaugeNumber {
+  font-size: 1.4rem;
+  font-weight: 800;
+  fill: #4BCF9E;
+  font-family: monospace;
+}
+
+.gaugeMax {
+  font-size: 0.7rem;
+  fill: rgba(255, 255, 255, 0.4);
+  font-family: monospace;
+}
+
+.gaugeText {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.5rem;
+  font-family: monospace;
+}
+
+.terminalNote {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #2a3a32;
+  background: #0a0f0d;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #4BCF9E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.prompt {
+  color: #ff4444;
+}
+
+.blinkingBlock {
+  animation: blink 1s step-end infinite;
+}
+
+@media (max-width: 768px) {
+  .heading { font-size: 1rem; padding: 1rem 0.5rem 0; }
+  .gaugeGrid { padding: 1rem; gap: 1rem; }
+  .gaugeNumber { font-size: 1rem; }
+  .terminalNote { font-size: 0.7rem; flex-wrap: wrap; }
+}
