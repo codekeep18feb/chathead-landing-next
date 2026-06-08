@@ -1,5 +1,3 @@
-/* HowDiffrentMagicChat.module.css */
-
 .section {
   padding: 5rem 2rem;
   position: relative;
@@ -11,7 +9,6 @@
   --scroll-progress: 0;
 }
 
-/* Animated Background Orbs */
 .bgOrb1 {
   position: absolute;
   top: -20%;
@@ -89,7 +86,7 @@
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1320px;
   margin: 0 auto;
   position: relative;
   z-index: 2;

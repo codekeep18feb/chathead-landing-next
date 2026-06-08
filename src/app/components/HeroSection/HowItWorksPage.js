@@ -14,7 +14,7 @@ export default function HowItWorksPage() {
   return (
     <div className={styles.section}>
       <div className={styles.stickyNote}>
-        <h2>How does it work?</h2>
+        <h2 className={styles.mainTitle}>How does it work?</h2>
         <p>Five steps to your own AI chatbot</p>
       </div>
 

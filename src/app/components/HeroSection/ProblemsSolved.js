@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ProblemsSolved.module.css";
 import { FaRegTimesCircle, FaMagic } from "react-icons/fa";
 import Image from "next/image";
+import HowItWorksPage from "./HowItWorksPage";
 
 export default function ProblemsSolved() {
   return (
@@ -134,6 +135,8 @@ export default function ProblemsSolved() {
           </div>
         </div>
       </div>
+
+      <HowItWorksPage/>
     </section>
   );
 }

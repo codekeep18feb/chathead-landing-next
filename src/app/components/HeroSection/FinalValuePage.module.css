@@ -6,11 +6,17 @@
   position: relative;
   text-align: center;
   padding: 4rem 5rem;
-  margin-top: 4rem;
+  margin: 0 auto;
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
   border-radius: 48px;
   overflow: hidden;
   isolation: isolate;
+  max-width: 1320px;
+  width: 100%;
+  margin-top: 4rem;
+  box-shadow:
+    0 30px 60px -12px rgba(0, 0, 0, 0.2),
+    0 0 0 2px rgba(16, 185, 129, 0.15);
 }
 
 /* Background Shapes */
@@ -28,8 +34,12 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .shapeCross {
@@ -104,8 +114,15 @@
 }
 
 @keyframes sparkle {
-  0%, 100% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 1; transform: scale(1.2); }
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 /* Content */
@@ -131,8 +148,13 @@
 }
 
 @keyframes floatBadge {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .fireIcon {
@@ -147,7 +169,11 @@
 }
 
 .gradientText {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -183,9 +209,15 @@
   opacity: 0;
 }
 
-.metric[data-delay="0"] { animation-delay: 0s; }
-.metric[data-delay="100"] { animation-delay: 0.1s; }
-.metric[data-delay="200"] { animation-delay: 0.2s; }
+.metric[data-delay="0"] {
+  animation-delay: 0s;
+}
+.metric[data-delay="100"] {
+  animation-delay: 0.1s;
+}
+.metric[data-delay="200"] {
+  animation-delay: 0.2s;
+}
 
 @keyframes fadeInUp {
   from {
@@ -205,7 +237,12 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-pink));
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color),
+    var(--accent-pink)
+  );
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
@@ -228,14 +265,22 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.2rem auto;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    rgba(16, 185, 129, 0.1) 100%
+  );
   color: var(--primary-color);
   transition: all 0.3s ease;
 }
 
 .metric:hover .iconCircle {
   transform: scale(1.05);
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
   color: white;
 }
 
@@ -316,7 +361,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
   color: white;
   font-weight: 600;
   font-size: 1rem;
@@ -407,7 +456,9 @@
     padding: 0.9rem 1.5rem;
   }
 
-  .shapeRing, .shapeCross, .shapeSparkles {
+  .shapeRing,
+  .shapeCross,
+  .shapeSparkles {
     display: none;
   }
 }

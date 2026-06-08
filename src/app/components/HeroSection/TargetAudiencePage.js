@@ -4,6 +4,8 @@ import styles from "./TargetAudiencePage.module.css";
 import { RiPlayCircleLine, RiPauseCircleLine } from "react-icons/ri";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import Image from "next/image";
+import ExpectedResultsPage from "./ExpectedResultsPage";
+import RoadmapNextPage from "./RoadmapNextPage";
 
 export default function TargetAudiencePage() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -284,6 +286,8 @@ export default function TargetAudiencePage() {
           </div>
         </div>
       </div>
+      <ExpectedResultsPage />
+      <RoadmapNextPage/>
     </section>
   );
 }

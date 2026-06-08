@@ -1,24 +1,40 @@
-/* HowToGetStartedPage.module.css - Clean Minimal Version */
-
 .wrapper {
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   background: var(--bg-light);
   text-align: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: auto;
   width: 100%;
+  border-radius: 20px;
 }
-
 .heading {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--heading-color);
+  font-weight: 600;
+  background-clip: text;
   margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  background: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-/* ===========================
-   FLOW STRUCTURE
-=========================== */
+.heading::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--subbtn-color),
+    var(--sub1-btn-color)
+  );
+  border-radius: 3px;
+}
 .flowContainer {
   position: relative;
   max-width: 1000px;
@@ -133,8 +149,6 @@
   line-height: 1.4;
   font-size: 16px;
 }
-
-/* Steps 1, 3, 5 — text above icon */
 .step:nth-child(1),
 .step:nth-child(3),
 .step:nth-child(5) {
@@ -147,10 +161,6 @@
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
-
-/* ===========================
-   CUSTOM POSITIONING
-=========================== */
 .bottom-left {
   transform: translateY(80px);
 }
@@ -171,11 +181,6 @@
   transform: translateY(80px);
 }
 
-/* ===========================
-   RESPONSIVE STYLES
-=========================== */
-
-/* Tablet */
 @media (max-width: 968px) {
   .wrapper {
     padding: 3rem 1.5rem;
@@ -214,8 +219,6 @@
     width: 160px;
   }
 }
-
-/* Mobile */
 @media (max-width: 640px) {
   .wrapper {
     padding: 2rem 1rem;
@@ -251,7 +254,6 @@
   }
 }
 
-/* Large screens */
 @media (min-width: 1280px) {
   .flowContainer {
     max-width: 1200px;

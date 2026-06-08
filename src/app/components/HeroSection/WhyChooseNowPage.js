@@ -44,13 +44,13 @@ export default function WhyChooseNowPage() {
       <div className={styles.headerSection}>
         <div className={styles.badge}>✨ The AI Standard</div>
         <h2 className={styles.mainTitle}>
-          Why <span className={styles.gradientText}>MagicChat</span>
+          Why <span>MagicChat </span>
           <span className={styles.blinkingCursor}> now?</span>
         </h2>
         <p className={styles.subtitle}>
           AI isn't coming — it's already the standard.
         </p>
-        <div className={styles.titleUnderline}></div>
+        {/* <div className={styles.titleUnderline}></div> */}
       </div>
 
       {/* Content Grid */}

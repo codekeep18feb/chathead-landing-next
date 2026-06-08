@@ -1,14 +1,12 @@
 "use client";
-// ExpectedResultsPage.jsx - Version 1
+// ExpectedResultsPage.jsx - Light Theme Version
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./ExpectedResultsPage.module.css";
 
-
-
 export default function ExpectedResultsPage() {
   const results = [
-    { emoji: "⚡", value: 60, max: 100, suffix: "%", text: "Faster response times", color: "#FFD700" },
-    { emoji: "🧩", value: 40, max: 100, suffix: "%", text: "Fewer repetitive tickets", color: "#4BCF9E" },
+    { emoji: "⚡", value: 60, max: 100, suffix: "%", text: "Faster response times", color: "#4BCF9E" },
+    { emoji: "🧩", value: 40, max: 100, suffix: "%", text: "Fewer repetitive tickets", color: "#4D6BDF" },
     { emoji: "💰", value: 2, max: 5, suffix: "×", text: "Higher conversion rates", color: "#FF6B6B" },
     { emoji: "⏱️", value: 10, max: 15, suffix: "hrs", text: "Saved per week", color: "#A855F7" },
   ];
@@ -97,7 +95,7 @@ function AnalogGauge({ value, max, suffix, text, emoji, color, index }) {
           <path
             d="M 30 100 A 70 70 0 0 1 170 100"
             fill="none"
-            stroke="rgba(255,255,255,0.08)"
+            stroke="rgba(0, 0, 0, 0.08)"
             strokeWidth="12"
             strokeLinecap="round"
           />
@@ -116,7 +114,7 @@ function AnalogGauge({ value, max, suffix, text, emoji, color, index }) {
           <g transform={`rotate(${rotation}, 100, 100)`}>
             <line x1="100" y1="100" x2="100" y2="40" stroke={color} strokeWidth="3" strokeLinecap="round" />
             <circle cx="100" cy="100" r="8" fill={color} />
-            <circle cx="100" cy="100" r="4" fill="#1a1f1d" />
+            <circle cx="100" cy="100" r="4" fill="#ffffff" />
           </g>
           {/* Center number display */}
           <text x="100" y="85" textAnchor="middle" className={styles.gaugeNumber}>

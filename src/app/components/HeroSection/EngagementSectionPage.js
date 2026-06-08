@@ -119,10 +119,7 @@ const EngagementSectionPage = () => {
         <div className={styles["header-badge"]}>
           <span className={styles.pulse}></span>✨ Modern Messaging Platform
         </div>
-        <h2>
-          Customer Engagement
-          <span className={styles.gradientText}> made easy</span>
-        </h2>
+        <h2 className={styles.mainTitle}>Customer Engagement made easy</h2>
         <p>
           Give your users a smooth, modern chat experience that fits right
           inside your product.

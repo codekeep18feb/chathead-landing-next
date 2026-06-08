@@ -4,7 +4,7 @@
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -28,15 +28,35 @@
   padding: 0 0.75rem;
   min-width: 0;
 }
-
 .heading {
   font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 600;
+  background-clip: text;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  background: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   text-align: center;
-  color: #1a1a1a;
-  margin: 0 0 1rem 0;
-  letter-spacing: -0.02em;
+  display: block;
+}
+
+.heading::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--subbtn-color),
+    var(--sub1-btn-color)
+  );
+  border-radius: 3px;
 }
 
 .card {
@@ -44,12 +64,13 @@
   border-radius: 1rem;
   overflow: hidden;
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
   position: relative;
-  
 }
 
 .card:hover {
@@ -89,7 +110,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.02) 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 50%,
+    rgba(0, 0, 0, 0.02) 100%
+  );
   pointer-events: none;
 }
 
@@ -159,14 +184,30 @@
 }
 
 /* Staggered animation for list items */
-.bullets li:nth-child(1) { animation-delay: 0.1s; }
-.bullets li:nth-child(2) { animation-delay: 0.15s; }
-.bullets li:nth-child(3) { animation-delay: 0.2s; }
-.bullets li:nth-child(4) { animation-delay: 0.25s; }
-.bullets li:nth-child(5) { animation-delay: 0.3s; }
-.bullets li:nth-child(6) { animation-delay: 0.35s; }
-.bullets li:nth-child(7) { animation-delay: 0.4s; }
-.bullets li:nth-child(8) { animation-delay: 0.45s; }
+.bullets li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.bullets li:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.bullets li:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.bullets li:nth-child(4) {
+  animation-delay: 0.25s;
+}
+.bullets li:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.bullets li:nth-child(6) {
+  animation-delay: 0.35s;
+}
+.bullets li:nth-child(7) {
+  animation-delay: 0.4s;
+}
+.bullets li:nth-child(8) {
+  animation-delay: 0.45s;
+}
 
 .bullets li::before {
   content: "•";
@@ -175,7 +216,9 @@
   color: #9ca3af;
   font-weight: bold;
   font-size: 1rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .card:hover .bullets li::before {
@@ -219,7 +262,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -270,7 +314,7 @@
   .cardIcon {
     font-size: 1.75rem;
   }
-  
+
   .bullets li {
     font-size: 0.875rem;
     opacity: 1;
@@ -298,12 +342,12 @@
   .bullets li::before {
     transition: none;
   }
-  
+
   .bullets li {
     animation: none;
     opacity: 1;
   }
-  
+
   .rightCard .cardIcon {
     animation: none;
   }

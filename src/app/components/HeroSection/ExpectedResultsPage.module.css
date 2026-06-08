@@ -1,17 +1,21 @@
-/* ExpectedResults.module.css - Version 2 */
+/* ExpectedResultsPage.module.css - Light Theme */
+
 .section {
   padding: 3rem 2rem;
-  background: #0a0f0d;
-  font-family: 'Courier New', monospace;
+  /* background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%); */
+  /* background: transparent; */
+  width: 100%;
 }
 
 .dashboardFrame {
   max-width: 1300px;
   margin: 0 auto;
-  background: #0d1210;
-  border: 1px solid #2a3a32;
-  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: var(--shadow-strong);
+  transition: all 0.3s ease;
 }
 
 .dashboardHeader {
@@ -19,8 +23,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 1.5rem;
-  background: #0a0f0d;
-  border-bottom: 1px solid #2a3a32;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .ledIndicator {
@@ -28,32 +32,39 @@
   gap: 0.5rem;
 }
 
-.ledRed, .ledGreen {
+.ledRed,
+.ledGreen {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
 
 .ledRed {
-  background: #ff4444;
-  box-shadow: 0 0 5px #ff4444;
+  background: #ff6b6b;
+  box-shadow: 0 0 5px #ff6b6b;
   animation: blink 1s infinite;
 }
 
 .ledGreen {
-  background: #4BCF9E;
-  box-shadow: 0 0 5px #4BCF9E;
+  background: #4bcf9e;
+  box-shadow: 0 0 5px #4bcf9e;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .dashboardTitle {
   font-size: 0.75rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .signalBars {
@@ -64,29 +75,43 @@
 .signalBars span {
   width: 4px;
   height: 8px;
-  background: #4BCF9E;
+  background: #4bcf9e;
 }
 
-.signalBars span:nth-child(2) { height: 12px; }
-.signalBars span:nth-child(3) { height: 16px; }
+.signalBars span:nth-child(2) {
+  height: 12px;
+}
+.signalBars span:nth-child(3) {
+  height: 16px;
+}
 
 .heading {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 2rem;
+  position: relative;
+  display: block;
+  color: #1e293b;
   text-align: center;
-  font-size: 1.6rem;
-  color: #4BCF9E;
-  padding: 2rem 1rem 0;
+  background: #fafcff;
   margin: 0;
-  font-family: monospace;
+  letter-spacing: -0.5px;
 }
 
 .blinkCursor {
   animation: blinkCursor 1s step-end infinite;
-  color: #4BCF9E;
+  color: #4bcf9e;
+  font-weight: 700;
 }
 
 @keyframes blinkCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .gaugeGrid {
@@ -97,17 +122,19 @@
 }
 
 .gaugeCard {
-  background: #0a0f0d;
-  border: 1px solid #1a2a24;
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
   padding: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .gaugeCard:hover {
-  border-color: #4BCF9E;
+  border-color: #4bcf9e;
   transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(75, 207, 158, 0.12);
 }
 
 .gaugeEmoji {
@@ -128,47 +155,100 @@
 .gaugeNumber {
   font-size: 1.4rem;
   font-weight: 800;
-  fill: #4BCF9E;
-  font-family: monospace;
+  fill: #1e293b;
 }
 
 .gaugeMax {
   font-size: 0.7rem;
-  fill: rgba(255, 255, 255, 0.4);
-  font-family: monospace;
+  fill: #94a3b8;
 }
 
 .gaugeText {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 0.5rem;
-  font-family: monospace;
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: 0.75rem;
+  font-weight: 500;
 }
 
 .terminalNote {
   padding: 1rem 1.5rem;
-  border-top: 1px solid #2a3a32;
-  background: #0a0f0d;
-  font-family: monospace;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
   font-size: 0.85rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  font-weight: 500;
 }
 
 .prompt {
-  color: #ff4444;
+  color: #ff6b6b;
+  font-weight: 700;
 }
 
 .blinkingBlock {
   animation: blink 1s step-end infinite;
+  color: #4bcf9e;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-  .heading { font-size: 1rem; padding: 1rem 0.5rem 0; }
-  .gaugeGrid { padding: 1rem; gap: 1rem; }
-  .gaugeNumber { font-size: 1rem; }
-  .terminalNote { font-size: 0.7rem; flex-wrap: wrap; }
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .heading {
+    font-size: 1.2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .gaugeGrid {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .gaugeNumber {
+    font-size: 1.1rem;
+  }
+
+  .terminalNote {
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .gaugeCard {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .gaugeEmoji {
+    font-size: 1.5rem;
+  }
+
+  .gaugeText {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .gaugeGrid {
+    gap: 2rem;
+  }
+
+  .heading {
+    font-size: 2.5rem;
+  }
+
+  .gaugeNumber {
+    font-size: 1.6rem;
+  }
 }

@@ -8,13 +8,19 @@
 }
 
 .section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 50%;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #4BCF9E, #4BCF9E, transparent);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #4bcf9e,
+    #4bcf9e,
+    transparent
+  );
   transform: translateX(-50%);
   opacity: 0.3;
 }
@@ -25,18 +31,37 @@
   padding: 1rem;
 }
 
-.stickyNote h2 {
-  font-size: 3rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #4BCF9E, #B6C4FF);
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  background-clip: text;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  background: var(--primary-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  margin: 0;
+}
+
+.mainTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--subbtn-color),
+    var(--sub1-btn-color)
+  );
+  border-radius: 3px;
 }
 
 .stickyNote p {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.761);
   font-size: 1.1rem;
   margin-top: 0.5rem;
 }
@@ -50,7 +75,7 @@
 .zigzagItem {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 6rem;
 }
 
 .left {
@@ -77,13 +102,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #4BCF9E;
+  border: 2px dashed #4bcf9e;
   transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
 .zigzagItem:hover .iconCircle {
   transform: scale(1.05) rotate(5deg);
-  border: 2px solid #4BCF9E;
+  border: 2px solid #4bcf9e;
   box-shadow: 0 0 30px rgba(75, 207, 158, 0.3);
 }
 
@@ -94,7 +119,7 @@
 .lineConnector {
   width: 2px;
   height: 60px;
-  background: linear-gradient(180deg, #4BCF9E, transparent);
+  background: linear-gradient(180deg, #4bcf9e, transparent);
   margin-top: 1rem;
 }
 
@@ -106,7 +131,7 @@
   padding: 1.8rem 2rem;
   position: relative;
   transition: all 0.3s ease;
-  border: 1px solid rgba(75, 207, 158, 0.1);
+  border: 1px solid rgba(75, 207, 159, 0.316);
 }
 
 .zigzagItem:hover .contentBlock {
@@ -121,7 +146,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  background: #4BCF9E;
+  background: #4bcf9e;
   color: #0f1a1a;
   border-radius: 20px;
   margin-bottom: 0.8rem;
@@ -139,8 +164,8 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  border-top: 2px solid #4BCF9E;
-  border-right: 2px solid #4BCF9E;
+  border-top: 2px solid #4bcf9e;
+  border-right: 2px solid #4bcf9e;
 }
 
 .left .arrow {
@@ -157,19 +182,41 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .section::before { display: none; }
-  
-  .zigzagItem, .left, .right {
+  .section::before {
+    display: none;
+  }
+
+  .zigzagItem,
+  .left,
+  .right {
     flex-direction: column !important;
     gap: 1rem;
   }
-  
-  .visualBlock { flex-direction: row; gap: 1rem; width: 100%; justify-content: center; }
-  .lineConnector { display: none; }
-  .iconCircle { width: 70px; height: 70px; }
-  .icon { font-size: 2rem; }
-  .contentBlock { width: 100%; }
-  .arrow { display: none; }
-  
-  .stickyNote h2 { font-size: 2rem; }
+
+  .visualBlock {
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .lineConnector {
+    display: none;
+  }
+  .iconCircle {
+    width: 70px;
+    height: 70px;
+  }
+  .icon {
+    font-size: 2rem;
+  }
+  .contentBlock {
+    width: 100%;
+  }
+  .arrow {
+    display: none;
+  }
+
+  .mainTitle {
+    font-size: 2rem;
+  }
 }

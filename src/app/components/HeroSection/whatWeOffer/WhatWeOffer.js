@@ -1,11 +1,13 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import styles from "./WhatWeOffer.module.css";
+import styles from "./WhatWeOfferPage.module.css";
 
 import LiveUserChat from "./LiveUserChat";
 import RuleBasedQNA from "./RuleBasedQNA";
 import LeadGen from "./LeadGen";
 import RagChatbotFeatures from "./RagChatbotFeatures";
+import HowToGetStartedPage from "../HowToGetStartedPage";
+import OverviewIntro from "../../magicchatOverview/OverviewIntro";
 
 const WhatWeOffer = () => {
   const [activeTab, setActiveTab] = useState("Live User Chat");
@@ -51,6 +53,9 @@ const WhatWeOffer = () => {
       </div>
 
       <div className={styles.tabContent}>{renderComponent()}</div>
+
+      <HowToGetStartedPage />
+      <OverviewIntro />
     </section>
   );
 };
