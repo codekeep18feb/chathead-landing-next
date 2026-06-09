@@ -13,7 +13,7 @@
   background-color: white;
 }
 .navbar.scrolled {
-  background-color: var(--primary-gradient);
+  background-color: var(--primary-gradientss);
 }
 
 .logo {
@@ -109,10 +109,11 @@
   font-size: 16px;
   font-weight: 600;
   transition: transform 0.3s ease; /* Smooth hover effect */
+    background: var(--primary-gradientss);
 }
 
 .login {
-  background: var(--primary-gradient);
+  /* background: var(--primary-gradientss); */
   color: var(--white-text-color);
 }
 

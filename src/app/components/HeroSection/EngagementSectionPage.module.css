@@ -81,7 +81,7 @@
   margin: 2rem 0rem;
   position: relative;
   display: inline-block;
-  background: var(--primary-gradient);
+  background: var(--primary-gradientss);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;

@@ -22,7 +22,7 @@
 }
 .email-input button {
   padding: 15px 20px;
-  background: var(--primary-gradient);
+  background: var(--primary-gradientss);
   border: none;
   border-radius: 4px;
   color: var(--white-text-color);
@@ -52,7 +52,7 @@
 
 /* Button */
 .email-input button {
-  background:var(--primary-gradient);
+  background:var(--primary-gradientss);
   border: none;
   color: white;
   padding: 0.9rem 2rem;

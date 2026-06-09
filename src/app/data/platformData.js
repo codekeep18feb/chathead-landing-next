@@ -23,6 +23,13 @@ export const platformList = {
       text: "Receive instant email alerts for important events.",
     },
   ],
+  aiAgentConfiguration: [
+    {
+      icon: "fa-solid fa-puzzle-piece",
+      subHeading: "AI Agent Configuration",
+      text: "Configuration AI Agent into your product.",
+    },
+  ],
   integration: [
     {
       icon: "fa-solid fa-puzzle-piece",
