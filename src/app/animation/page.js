@@ -3,7 +3,7 @@ import styles from "./Animation.module.css";
 import BgAnimation from "../components/BgAnimation";
 import SectionBgAnimation from "../components/SectionBgAnimation";
 import ShapeBgAnimation from "../components/ShapeBgAnimation";
-import AutoBgAnimation from "../components/AutoBgAnimation";
+import AutoBgAnimationDesign from "../components/AutoBgAnimationDesign";
 
 const page = () => {
   return (
@@ -11,7 +11,8 @@ const page = () => {
       {/* <BgAnimation /> */}
       {/* <SectionBgAnimation /> */}
       {/* <ShapeBgAnimation/> */}
-      <AutoBgAnimation />
+      {/* <AutoBgAnimation /> */}
+      <AutoBgAnimationDesign/>
     </div>
   );
 };

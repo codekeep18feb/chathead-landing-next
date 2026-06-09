@@ -1,0 +1,274 @@
+/* components/BgAnimation.module.css */
+
+.bgAnimationContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particleCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+/* Grid Lines */
+.gridLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(77, 107, 223, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 107, 223, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 2;
+  pointer-events: none;
+  animation: gridFloat 20s linear infinite;
+}
+
+@keyframes gridFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+/* Floating Orbs */
+.floatingOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+  animation: floatOrb 15s ease-in-out infinite;
+}
+
+.floatingOrb:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(77, 107, 223, 0.4), rgba(77, 107, 223, 0));
+  top: -150px;
+  left: -150px;
+  animation-delay: 0s;
+}
+
+.floatingOrb:nth-child(2) {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(163, 112, 206, 0.3), rgba(163, 112, 206, 0));
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 5s;
+  animation-duration: 20s;
+}
+
+.floatingOrb:nth-child(3) {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(77, 107, 223, 0.35), rgba(77, 107, 223, 0));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+  animation-duration: 18s;
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, 50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 40px) scale(0.95);
+  }
+}
+
+/* Gradient Border */
+.gradientBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid transparent;
+  animation: borderPulse 3s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: rgba(77, 107, 223, 0.05);
+  }
+  50% {
+    border-color: rgba(163, 112, 206, 0.15);
+  }
+}
+
+/* Glitch Overlay */
+.glitchOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(77, 107, 223, 0.02) 0px,
+    rgba(77, 107, 223, 0.02) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.5;
+  animation: glitchShift 8s linear infinite;
+}
+
+@keyframes glitchShift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateY(1px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateY(-1px);
+  }
+}
+
+/* Animated Lines */
+.animatedLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.animatedLines svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Mouse Follower - Optional, can be removed or kept as decorative */
+.mouseFollower {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(77, 107, 223, 0.08), transparent);
+  pointer-events: none;
+  z-index: 6;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
+  opacity: 0;
+  animation: fadeInFollower 2s ease-in forwards;
+}
+
+@keyframes fadeInFollower {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floatingOrb:nth-child(1) {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .floatingOrb:nth-child(2) {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .floatingOrb:nth-child(3) {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .gridLines {
+    background-size: 30px 30px;
+  }
+}
+
+/* Optional: Add a subtle vignette effect */
+.bgAnimationContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* Optional: Scanning line effect */
+.bgAnimationContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(77, 107, 223, 0.05),
+    transparent
+  );
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 8;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Performance optimization for animations */
+@media (prefers-reduced-motion: reduce) {
+  .floatingOrb,
+  .gridLines,
+  .gradientBorder,
+  .glitchOverlay,
+  .animatedLines line {
+    animation: none;
+  }
+  
+  .bgAnimationContainer::before {
+    animation: none;
+  }
+}
