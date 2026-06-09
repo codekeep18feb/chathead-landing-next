@@ -111,7 +111,7 @@ const Navbar = () => {
               {/* <a onClick={() => handleItemClick("platform", "/platform")} className={styles.link}>
                 Platform
               </a> */}
-              <Link href="/platform">Platform</Link>
+              <Link href="/platform">Features</Link>
               <div className={styles.nextArrow}>&gt;</div>
             </li>
             {hoveredContentKey === "platform" && (
@@ -164,7 +164,7 @@ const Navbar = () => {
           </div>
 
           {/* Resources */}
-          <div
+          {/* <div
             className={styles.hoverWrapper}
             onMouseEnter={() => {
               if (!isMobile) setHoveredContentKey("resources");
@@ -172,9 +172,7 @@ const Navbar = () => {
           >
             <li className={styles.links}>
               <Link href="/resources">Resources</Link>
-              {/* <a onClick={() => handleItemClick("resources", "/resources")} className={styles.link}>
-                Resources
-              </a> */}
+         
               <div className={styles.nextArrow}>&gt;</div>
             </li>
             {hoveredContentKey === "resources" && (
@@ -182,7 +180,7 @@ const Navbar = () => {
                 <Resources />
               </div>
             )}
-          </div>
+          </div> */}
 
           <li onMouseEnter={handleCloseModal}>
             <Link href="/pricing">Pricing</Link>
