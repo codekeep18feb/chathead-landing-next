@@ -1,0 +1,283 @@
+/* components/AutoBgAnimation.module.css */
+
+.autoBgContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.autoCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Wave Gradients */
+.waveGradient1 {
+  position: absolute;
+  top: 10%;
+  left: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(77, 107, 223, 0.15), transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: waveMove1 15s ease-in-out infinite;
+}
+
+.waveGradient2 {
+  position: absolute;
+  bottom: 10%;
+  right: -20%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(163, 112, 206, 0.12), transparent 70%);
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: waveMove2 18s ease-in-out infinite;
+}
+
+@keyframes waveMove1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(100px, -50px) scale(1.2);
+  }
+  66% {
+    transform: translate(-50px, 50px) scale(0.9);
+  }
+}
+
+@keyframes waveMove2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-80px, 60px) scale(1.1);
+  }
+  66% {
+    transform: translate(60px, -40px) scale(0.95);
+  }
+}
+
+/* Rotating Rings */
+.rotatingRing1 {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(77, 107, 223, 0.2);
+  border-radius: 50%;
+  animation: rotateRing 20s linear infinite;
+}
+
+.rotatingRing2 {
+  position: absolute;
+  bottom: 20%;
+  left: 8%;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(163, 112, 206, 0.15);
+  border-radius: 50%;
+  animation: rotateRing 25s linear infinite reverse;
+}
+
+.ringDot {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, var(--primary-color), var(--new-secondary-color));
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: ringDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ringDotPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.5);
+  }
+}
+
+/* Pulsing Orbs */
+.pulseOrb1 {
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(77, 107, 223, 0.3), transparent);
+  border-radius: 50%;
+  animation: pulseOrb 4s ease-in-out infinite;
+  filter: blur(30px);
+}
+
+.pulseOrb2 {
+  position: absolute;
+  bottom: 30%;
+  right: 25%;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(0, 255, 209, 0.25), transparent);
+  border-radius: 50%;
+  animation: pulseOrb 5s ease-in-out infinite 1s;
+  filter: blur(30px);
+}
+
+@keyframes pulseOrb {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.6;
+  }
+}
+
+/* Floating Dots Grid */
+.floatingDots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(77, 107, 223, 0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: dotsFloat 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dotsFloat {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+/* Flow Lines */
+.flowLine1 {
+  position: absolute;
+  top: 25%;
+  left: -10%;
+  width: 120%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(77, 107, 223, 0.2),
+    rgba(163, 112, 206, 0.2),
+    transparent
+  );
+  animation: flowRight 8s linear infinite;
+  filter: blur(2px);
+}
+
+.flowLine2 {
+  position: absolute;
+  bottom: 35%;
+  right: -10%;
+  width: 120%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(0, 255, 209, 0.15),
+    rgba(77, 107, 223, 0.15),
+    transparent
+  );
+  animation: flowLeft 10s linear infinite;
+  filter: blur(2px);
+}
+
+.flowLine3 {
+  position: absolute;
+  top: 60%;
+  left: -5%;
+  width: 110%;
+  height: 1.5px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(163, 112, 206, 0.18),
+    rgba(77, 107, 223, 0.18),
+    transparent
+  );
+  animation: flowRight 12s linear infinite;
+  filter: blur(2px);
+}
+
+@keyframes flowRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes flowLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .waveGradient1,
+  .waveGradient2 {
+    transform: scale(0.6);
+  }
+  
+  .rotatingRing1,
+  .rotatingRing2 {
+    transform: scale(0.5);
+  }
+  
+  .floatingDots {
+    background-size: 20px 20px;
+  }
+  
+  .flowLine1,
+  .flowLine2,
+  .flowLine3 {
+    display: none;
+  }
+}

@@ -88,6 +88,18 @@ const Navbar = () => {
         id="nav-links"
       >
         <div className={styles.navList}>
+             <li>
+            <Link
+              href="/animation"
+              onClick={() => {
+                setMenuOpen(false);
+                document.body.style.overflow = "auto";
+              }}
+            >
+              BG Animation
+            </Link>
+          </li>
+
           <li>
             <Link
               href="/herosection"

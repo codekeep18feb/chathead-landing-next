@@ -1,0 +1,195 @@
+/* Create new file: components/SectionBgAnimation.module.css */
+
+.sectionBgContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.nodeCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  cursor: default;
+}
+
+/* Circuit Lines SVG */
+.circuitLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Data Particles */
+.dataParticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dataParticle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(135deg, var(--primary-color), var(--new-secondary-color));
+  border-radius: 50%;
+  animation: floatParticle linear infinite;
+  opacity: 0;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(50px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Gradient Overlays */
+.gradientOverlay1 {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(77, 107, 223, 0.03), transparent 50%);
+  animation: rotateGradient 20s linear infinite;
+  pointer-events: none;
+}
+
+.gradientOverlay2 {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 70% 80%, rgba(163, 112, 206, 0.03), transparent 50%);
+  animation: rotateGradient 25s linear infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes rotateGradient {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scanning Line Effect */
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    var(--primary-color),
+    var(--new-secondary-color),
+    transparent
+  );
+  animation: scan 8s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Binary Rain Effect */
+.binaryRain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  font-family: monospace;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.binaryColumn {
+  position: absolute;
+  top: -100%;
+  color: rgba(77, 107, 223, 0.15);
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  animation: binaryFall linear infinite;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+@keyframes binaryFall {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .binaryRain {
+    display: none;
+  }
+  
+  .circuitLines {
+    opacity: 0.2;
+  }
+  
+  .gradientOverlay1,
+  .gradientOverlay2 {
+    opacity: 0.5;
+  }
+}
