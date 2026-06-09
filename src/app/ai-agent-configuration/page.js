@@ -155,7 +155,7 @@ const AiAgentWorkflowInfo = () => {
           <div className={styles.shape5}></div>
           <div className={styles.shape6}></div>
         </div>
-        
+
         {/* Content on top of shapes */}
         <div className={styles.heroContent}>
           <div className={styles.heroBadge}>✨ AI Agent Infrastructure</div>
@@ -199,52 +199,62 @@ const AiAgentWorkflowInfo = () => {
       </section>
 
       {/* ───── Rest of your sections remain the same ───── */}
-      {/* Problem/Solution Section */}
-      <section aria-label="Problem and Solution" style={{ marginBottom: "100px" }}>
+      {/* ───── Problem/Solution Section ───── */}
+      <section
+        aria-label="Problem and Solution"
+        style={{ marginBottom: "100px" }}
+        className={styles.problemSolution}
+      >
         <h2 className={styles.sectionTitle}>
           The Gap Between Chatbots and Your Business
         </h2>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "24px",
-          }}
-        >
+        <div className={styles.problemGridModern}>
           {PROBLEM_SOLUTION.map((item, i) => (
-            <div key={i} className={styles.problemCard}>
-              <div className={styles.problemLabel}>❌ The Problem</div>
-              <p className={styles.problemText}>"{item.problem}"</p>
-              <div className={styles.solutionLabel}>✅ Our Solution</div>
-              <p className={styles.solutionText}>{item.solution}</p>
+            <div key={i} className={styles.problemCardModern}>
+              <div className={styles.problemImageWrapper}>
+                <img
+                  src={`/images/problem${i + 1}.jpg`}
+                  alt={`Problem illustration ${i + 1}`}
+                  className={styles.problemImageModern}
+                />
+                <div className={styles.problemTextOverlay}>
+                  <div className={styles.problemBadge}>❌ PROBLEM</div>
+                  <p className={styles.problemQuote}>"{item.problem}"</p>
+                </div>
+              </div>
+              <div className={styles.solutionArrow}>
+                <div className={styles.arrowIcon}>↓</div>
+                <div className={styles.solutionBadge}>✅ SOLUTION</div>
+              </div>
+              <p className={styles.solutionTextModern}>{item.solution}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Value Props Section */}
-      <section aria-label="Value Propositions" style={{ marginBottom: "100px" }}>
+      {/* Value Props Section - Animated Counters */}
+      <section aria-label="Value Propositions" className={styles.valueSection}>
         <h2 className={styles.sectionTitle}>More Than Just "How It Works"</h2>
         <p className={styles.sectionSubtitle}>
           The outcome matters more than the process. Here's what you unlock.
         </p>
-        {VALUE_PROPS.map((vp, i) => (
-          <div
-            key={vp.title}
-            className={styles.valuePropCard}
-            style={{ flexDirection: i % 2 === 0 ? "row" : "row-reverse" }}
-          >
-            <div style={{ flex: 1 }}>
-              <div className={styles.valuePropIcon}>{vp.icon}</div>
-              <h3 className={styles.valuePropTitle}>{vp.title}</h3>
-              <p className={styles.valuePropDesc}>{vp.description}</p>
+        <div className={styles.animatedGrid}>
+          {VALUE_PROPS.map((vp, i) => (
+            <div key={vp.title} className={styles.animatedCard}>
+              <div className={styles.animatedIconWrapper}>
+                <div className={styles.animatedIcon}>{vp.icon}</div>
+              </div>
+              <h3 className={styles.animatedTitle}>{vp.title}</h3>
+              <p className={styles.animatedDesc}>{vp.description}</p>
+              <div className={styles.animatedStatWrapper}>
+                <div className={styles.animatedStat}>{vp.stat}</div>
+                <div className={styles.animatedStatLabel}>{vp.statLabel}</div>
+              </div>
+              <div className={styles.animatedBorder}></div>
             </div>
-            <div className={styles.statBox}>
-              <div className={styles.statBoxValue}>{vp.stat}</div>
-              <div className={styles.statBoxLabel}>{vp.statLabel}</div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       {/* Benefits Grid Section */}
