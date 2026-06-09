@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import styles from "./AiAgentWorkflowInfo.module.css";
 
 // ------------------------------------------------------------------
 // Story-driven sections
@@ -123,9 +124,6 @@ const useCountUp = (end, duration = 1800, startCounting = false) => {
   return count;
 };
 
-// ------------------------------------------------------------------
-// Main Component
-// ------------------------------------------------------------------
 const AiAgentWorkflowInfo = () => {
   const [startCount, setStartCount] = useState(false);
   const statsRef = useRef(null);
@@ -146,152 +144,64 @@ const AiAgentWorkflowInfo = () => {
   const intents = useCountUp(200, 1500, startCount);
 
   return (
-    <div
-      style={{
-        fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-        color: "#111827",
-        maxWidth: "1100px",
-        margin: "0 auto",
-        padding: "80px 24px",
-        background: "#fff",
-      }}
-    >
-      {/* ───── Hero ───── */}
-      <div style={{ textAlign: "center", marginBottom: "100px" }}>
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "6px 18px",
-            borderRadius: "100px",
-            backgroundColor: "#F3F4F6",
-            color: "#4F46E5",
-            fontSize: "13px",
-            fontWeight: 600,
-            marginBottom: "28px",
-            letterSpacing: "0.5px",
-          }}
-        >
-          ✨ AI Agent Infrastructure
+    <section className={styles.container}>
+      <section className={styles.heroSection}>
+        {/* Animated Background Shapes */}
+        <div className={styles.shapesContainer}>
+          <div className={styles.shape1}></div>
+          <div className={styles.shape2}></div>
+          <div className={styles.shape3}></div>
+          <div className={styles.shape4}></div>
+          <div className={styles.shape5}></div>
+          <div className={styles.shape6}></div>
         </div>
-        <h1
-          style={{
-            fontSize: "clamp(40px, 6vw, 64px)",
-            fontWeight: 800,
-            lineHeight: 1.1,
-            marginBottom: "24px",
-            letterSpacing: "-0.03em",
-          }}
-        >
-          Give Your Chatbot the
-          <br />
-          Power to{" "}
-          <span
-            style={{
-              background:
-                "linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Actually Do Things
-          </span>
-        </h1>
-        <p
-          style={{
-            fontSize: "19px",
-            color: "#6B7280",
-            maxWidth: "580px",
-            margin: "0 auto 40px",
-            lineHeight: 1.7,
-            fontWeight: 400,
-          }}
-        >
-          Stop building chatbots that can only chat. Our infrastructure layer
-          connects your conversational AI directly to your backend systems – no
-          engineers, no sprints, no complexity.
-        </p>
-        <div style={{ display: "flex", gap: "14px", justifyContent: "center" }}>
-          <button
-            style={{
-              padding: "16px 32px",
-              background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "10px",
-              fontSize: "16px",
-              fontWeight: 600,
-              cursor: "pointer",
-              boxShadow: "0 6px 24px rgba(79,70,229,0.25)",
-            }}
-          >
-            See the Platform →
-          </button>
-          <button
-            style={{
-              padding: "16px 32px",
-              backgroundColor: "#fff",
-              color: "#4F46E5",
-              border: "1.5px solid #E5E7EB",
-              borderRadius: "10px",
-              fontSize: "16px",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            Talk to Us
-          </button>
-        </div>
-      </div>
-
-      {/* ───── Stats ───── */}
-      <div
-        ref={statsRef}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "60px",
-          flexWrap: "wrap",
-          marginBottom: "100px",
-        }}
-      >
-        {[
-          { value: industries, suffix: "+", label: "Industries" },
-          { value: intents, suffix: "+", label: "Pre-built Intents" },
-          { value: 5, suffix: " min", label: "Average Setup" },
-        ].map((stat) => (
-          <div key={stat.label} style={{ textAlign: "center" }}>
-            <div
-              style={{ fontSize: "44px", fontWeight: 800, color: "#4F46E5" }}
-            >
-              {stat.value}
-              {stat.suffix}
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#6B7280",
-                fontWeight: 500,
-                marginTop: "4px",
-              }}
-            >
-              {stat.label}
-            </div>
+        
+        {/* Content on top of shapes */}
+        <div className={styles.heroContent}>
+          <div className={styles.heroBadge}>✨ AI Agent Infrastructure</div>
+          <h1 className={styles.heroTitle}>
+            Give Your Chatbot the
+            <br />
+            Power to{" "}
+            <span className={styles.gradientText}>Actually Do Things</span>
+          </h1>
+          <p className={styles.heroSubtitle}>
+            Stop building chatbots that can only chat. Our infrastructure layer
+            connects your conversational AI directly to your backend systems –
+            no engineers, no sprints, no complexity.
+          </p>
+          <div className={styles.buttonGroup}>
+            <button className={styles.primaryButton}>See the Platform →</button>
+            <button className={styles.secondaryButton}>Talk to Us</button>
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* ───── Problem / Solution ───── */}
-      <div style={{ marginBottom: "100px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "clamp(28px, 4vw, 38px)",
-            fontWeight: 700,
-            marginBottom: "48px",
-          }}
+        {/* Stats Section - Inside Hero Section */}
+        <div
+          ref={statsRef}
+          className={styles.statsContainer}
+          aria-label="Statistics"
         >
+          {[
+            { value: industries, suffix: "+", label: "Industries" },
+            { value: intents, suffix: "+", label: "Pre-built Intents" },
+            { value: 5, suffix: " min", label: "Average Setup" },
+          ].map((stat) => (
+            <div key={stat.label} className={styles.statItem}>
+              <div className={styles.statValue}>
+                {stat.value}
+                {stat.suffix}
+              </div>
+              <div className={styles.statLabel}>{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ───── Rest of your sections remain the same ───── */}
+      {/* Problem/Solution Section */}
+      <section aria-label="Problem and Solution" style={{ marginBottom: "100px" }}>
+        <h2 className={styles.sectionTitle}>
           The Gap Between Chatbots and Your Business
         </h2>
         <div
@@ -302,214 +212,58 @@ const AiAgentWorkflowInfo = () => {
           }}
         >
           {PROBLEM_SOLUTION.map((item, i) => (
-            <div
-              key={i}
-              style={{
-                borderRadius: "14px",
-                border: "1px solid #E5E7EB",
-                padding: "32px",
-                backgroundColor: "#fff",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "14px",
-                  color: "#DC2626",
-                  fontWeight: 600,
-                  marginBottom: "8px",
-                }}
-              >
-                ❌ The Problem
-              </div>
-              <p
-                style={{
-                  fontSize: "15px",
-                  color: "#4B5563",
-                  lineHeight: 1.6,
-                  marginBottom: "20px",
-                  fontStyle: "italic",
-                }}
-              >
-                "{item.problem}"
-              </p>
-              <div
-                style={{
-                  fontSize: "14px",
-                  color: "#059669",
-                  fontWeight: 600,
-                  marginBottom: "8px",
-                }}
-              >
-                ✅ Our Solution
-              </div>
-              <p
-                style={{
-                  fontSize: "15px",
-                  color: "#111827",
-                  lineHeight: 1.6,
-                  fontWeight: 500,
-                }}
-              >
-                {item.solution}
-              </p>
+            <div key={i} className={styles.problemCard}>
+              <div className={styles.problemLabel}>❌ The Problem</div>
+              <p className={styles.problemText}>"{item.problem}"</p>
+              <div className={styles.solutionLabel}>✅ Our Solution</div>
+              <p className={styles.solutionText}>{item.solution}</p>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* ───── Value Props ───── */}
-      <div style={{ marginBottom: "100px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "clamp(28px, 4vw, 38px)",
-            fontWeight: 700,
-            marginBottom: "16px",
-          }}
-        >
-          More Than Just "How It Works"
-        </h2>
-        <p
-          style={{
-            textAlign: "center",
-            fontSize: "16px",
-            color: "#6B7280",
-            marginBottom: "56px",
-          }}
-        >
+      {/* Value Props Section */}
+      <section aria-label="Value Propositions" style={{ marginBottom: "100px" }}>
+        <h2 className={styles.sectionTitle}>More Than Just "How It Works"</h2>
+        <p className={styles.sectionSubtitle}>
           The outcome matters more than the process. Here's what you unlock.
         </p>
         {VALUE_PROPS.map((vp, i) => (
           <div
             key={vp.title}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "40px",
-              padding: "40px",
-              marginBottom: "20px",
-              borderRadius: "16px",
-              backgroundColor: i % 2 === 0 ? "#F9FAFB" : "#fff",
-              border: "1px solid #F3F4F6",
-              flexDirection: i % 2 === 0 ? "row" : "row-reverse",
-            }}
+            className={styles.valuePropCard}
+            style={{ flexDirection: i % 2 === 0 ? "row" : "row-reverse" }}
           >
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: "40px", marginBottom: "16px" }}>
-                {vp.icon}
-              </div>
-              <h3
-                style={{
-                  fontSize: "22px",
-                  fontWeight: 700,
-                  marginBottom: "12px",
-                }}
-              >
-                {vp.title}
-              </h3>
-              <p
-                style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7 }}
-              >
-                {vp.description}
-              </p>
+              <div className={styles.valuePropIcon}>{vp.icon}</div>
+              <h3 className={styles.valuePropTitle}>{vp.title}</h3>
+              <p className={styles.valuePropDesc}>{vp.description}</p>
             </div>
-            <div
-              style={{
-                width: "160px",
-                height: "160px",
-                borderRadius: "20px",
-                backgroundColor: "#EEF2FF",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
-              <div
-                style={{ fontSize: "36px", fontWeight: 800, color: "#4F46E5" }}
-              >
-                {vp.stat}
-              </div>
-              <div
-                style={{ fontSize: "13px", color: "#6B7280", fontWeight: 500 }}
-              >
-                {vp.statLabel}
-              </div>
+            <div className={styles.statBox}>
+              <div className={styles.statBoxValue}>{vp.stat}</div>
+              <div className={styles.statBoxLabel}>{vp.statLabel}</div>
             </div>
           </div>
         ))}
-      </div>
+      </section>
 
-      {/* ───── Benefits Grid ───── */}
-      <div style={{ marginBottom: "100px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "clamp(28px, 4vw, 38px)",
-            fontWeight: 700,
-            marginBottom: "48px",
-          }}
-        >
-          Built for Teams, Not Engineers
-        </h2>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "20px",
-          }}
-        >
+      {/* Benefits Grid Section */}
+      <section aria-label="Benefits" style={{ marginBottom: "100px" }}>
+        <h2 className={styles.sectionTitle}>Built for Teams, Not Engineers</h2>
+        <div className={styles.benefitsGrid}>
           {BENEFITS.map((b) => (
-            <div
-              key={b.title}
-              style={{
-                padding: "28px",
-                borderRadius: "12px",
-                border: "1px solid #E5E7EB",
-                backgroundColor: "#fff",
-                transition: "box-shadow 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.boxShadow =
-                  "0 8px 24px rgba(0,0,0,0.06)")
-              }
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
-            >
-              <div style={{ fontSize: "28px", marginBottom: "12px" }}>
-                {b.icon}
-              </div>
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  marginBottom: "6px",
-                }}
-              >
-                {b.title}
-              </h3>
-              <p
-                style={{ fontSize: "14px", color: "#6B7280", lineHeight: 1.6 }}
-              >
-                {b.description}
-              </p>
+            <div key={b.title} className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>{b.icon}</div>
+              <h3 className={styles.benefitTitle}>{b.title}</h3>
+              <p className={styles.benefitDesc}>{b.description}</p>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* ───── Social Proof ───── */}
-      <div style={{ marginBottom: "100px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "clamp(28px, 4vw, 38px)",
-            fontWeight: 700,
-            marginBottom: "48px",
-          }}
-        >
-          Trusted by Teams Like Yours
-        </h2>
+      {/* Social Proof Section */}
+      <section aria-label="Testimonials" style={{ marginBottom: "100px" }}>
+        <h2 className={styles.sectionTitle}>Trusted by Teams Like Yours</h2>
         <div
           style={{
             display: "grid",
@@ -518,94 +272,33 @@ const AiAgentWorkflowInfo = () => {
           }}
         >
           {SOCIAL_PROOF.map((p, i) => (
-            <div
-              key={i}
-              style={{
-                padding: "32px",
-                borderRadius: "14px",
-                border: "1px solid #E5E7EB",
-                backgroundColor: "#FAFAFA",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "15px",
-                  lineHeight: 1.7,
-                  color: "#374151",
-                  fontStyle: "italic",
-                  marginBottom: "16px",
-                }}
-              >
-                "{p.quote}"
-              </p>
-              <div style={{ fontSize: "13px", color: "#6B7280" }}>
+            <div key={i} className={styles.testimonialCard}>
+              <p className={styles.testimonialQuote}>"{p.quote}"</p>
+              <div className={styles.testimonialAuthor}>
                 <strong>{p.role}</strong> · {p.industry}
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* ───── CTA ───── */}
-      <div
-        style={{
-          textAlign: "center",
-          padding: "70px 40px",
-          background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-          borderRadius: "24px",
-          color: "#fff",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "clamp(24px, 4vw, 36px)",
-            fontWeight: 700,
-            marginBottom: "16px",
-          }}
-        >
+      {/* CTA Section */}
+      <section aria-label="Call to Action" className={styles.ctaSection}>
+        <h2 className={styles.ctaTitle}>
           Ready to Make Your Chatbot Actually Work?
         </h2>
-        <p
-          style={{
-            fontSize: "16px",
-            color: "#C7D2FE",
-            marginBottom: "36px",
-            maxWidth: "460px",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
+        <p className={styles.ctaSubtitle}>
           Join the teams turning conversations into conversions.
         </p>
-        <button
-          style={{
-            padding: "16px 36px",
-            backgroundColor: "#fff",
-            color: "#4F46E5",
-            border: "none",
-            borderRadius: "10px",
-            fontSize: "16px",
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          Get Started →
-        </button>
-      </div>
+        <button className={styles.ctaButton}>Get Started →</button>
+      </section>
 
-      {/* ───── Footer ───── */}
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "60px",
-          color: "#D1D5DB",
-          fontSize: "12px",
-        }}
-      >
+      {/* Footer Note */}
+      <footer className={styles.footerNote}>
         Replace testimonials and stats with your actual data. Add illustrations
         or abstract 3D visuals in place of solid colors.
-      </div>
-    </div>
+      </footer>
+    </section>
   );
 };
 
