@@ -3,9 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./AiAgentWorkflowInfo.module.css";
 
-// ------------------------------------------------------------------
-// Story-driven sections
-// ------------------------------------------------------------------
+
 const VALUE_PROPS = [
   {
     icon: "💬",
@@ -105,9 +103,7 @@ const SOCIAL_PROOF = [
   },
 ];
 
-// ------------------------------------------------------------------
-// Animated Counter (kept minimal)
-// ------------------------------------------------------------------
+
 const useCountUp = (end, duration = 1800, startCounting = false) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -292,21 +288,45 @@ const AiAgentWorkflowInfo = () => {
         </div>
       </section>
 
-      {/* Social Proof Section */}
-      <section aria-label="Testimonials" style={{ marginBottom: "100px" }}>
+      {/* Social Proof Section - Image Top Layout */}
+      <section aria-label="Testimonials" className={styles.testimonialwraper}>
         <h2 className={styles.sectionTitle}>Trusted by Teams Like Yours</h2>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "24px",
-          }}
-        >
+        <p className={styles.sectionSubtitle}>Real people, real results</p>
+
+        <div className={styles.testimonialMasonryAlt}>
           {SOCIAL_PROOF.map((p, i) => (
-            <div key={i} className={styles.testimonialCard}>
-              <p className={styles.testimonialQuote}>"{p.quote}"</p>
-              <div className={styles.testimonialAuthor}>
-                <strong>{p.role}</strong> · {p.industry}
+            <div key={i} className={styles.testimonialCardImageTop}>
+              <div className={styles.imageTopContainer}>
+                <img
+                  src={`/images/testimonial${i + 1}.jpg`}
+                  alt={`${p.role}`}
+                  className={styles.imageTop}
+                />
+                <div className={styles.imageOverlayDark}></div>
+
+                {/* Heading that shows before hover */}
+                <div className={styles.cardHeading}>
+                  <div className={styles.cardHeadingIcon}>“</div>
+                  <h3 className={styles.cardHeadingTitle}>Customer Story</h3>
+                  <p className={styles.cardHeadingSubtitle}>
+                    {p.industry} · {p.role}
+                  </p>
+                  <div className={styles.cardHeadingHint}>Hover to read →</div>
+                </div>
+
+                <div className={styles.imageTopBadge}>
+                  <span>⭐ Verified Review</span>
+                </div>
+              </div>
+
+              <div className={styles.contentBottom}>
+                <div className={styles.quoteMarkSmall}>“</div>
+                <p className={styles.quoteText}>{p.quote}</p>
+                <div className={styles.authorBottom}>
+                  <strong>{p.role}</strong>
+                  <span>{p.industry}</span>
+                </div>
+                <div className={styles.ratingStars}>★★★★★</div>
               </div>
             </div>
           ))}
@@ -314,14 +334,41 @@ const AiAgentWorkflowInfo = () => {
       </section>
 
       {/* CTA Section */}
-      <section aria-label="Call to Action" className={styles.ctaSection}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Make Your Chatbot Actually Work?
-        </h2>
-        <p className={styles.ctaSubtitle}>
-          Join the teams turning conversations into conversions.
-        </p>
-        <button className={styles.ctaButton}>Get Started →</button>
+      {/* CTA Section - Gradient Glow */}
+      <section aria-label="Call to Action" className={styles.ctaGlowSection}>
+        <div className={styles.ctaGlowOrb}></div>
+        <div className={styles.ctaGlowOrb2}></div>
+        <div className={styles.ctaContent}>
+          <div className={styles.ctaPulseRing}>
+            <span className={styles.ctaPulseText}>🚀 Limited Offer</span>
+          </div>
+          <h2 className={styles.ctaGlowTitle}>
+            Ready to Transform Your <br />
+            <span className={styles.ctaGradientText}>Customer Experience?</span>
+          </h2>
+          <p className={styles.ctaGlowSubtitle}>
+            Join the AI revolution and see results in days, not months.
+          </p>
+          <div className={styles.ctaGlowButtons}>
+            <button className={styles.ctaGlowButton}>
+              Start Free Trial
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M5 12H19M19 12L12 5M19 12L12 19"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+            <button className={styles.ctaOutlineButton}>Schedule Demo</button>
+          </div>
+          <div className={styles.ctaTrustSignals}>
+            <span>🔒 Secure & Encrypted</span>
+            <span>⚡ Instant Setup</span>
+            <span>💳 No Credit Card Required</span>
+          </div>
+        </div>
       </section>
 
       {/* Footer Note */}
