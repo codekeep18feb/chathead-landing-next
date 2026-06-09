@@ -258,14 +258,35 @@ const AiAgentWorkflowInfo = () => {
       </section>
 
       {/* Benefits Grid Section */}
-      <section aria-label="Benefits" style={{ marginBottom: "100px" }}>
-        <h2 className={styles.sectionTitle}>Built for Teams, Not Engineers</h2>
-        <div className={styles.benefitsGrid}>
-          {BENEFITS.map((b) => (
-            <div key={b.title} className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>{b.icon}</div>
-              <h3 className={styles.benefitTitle}>{b.title}</h3>
-              <p className={styles.benefitDesc}>{b.description}</p>
+      {/* Benefits Grid Section - Zigzag Layout */}
+      <section aria-label="Benefits" className={styles.valuePrpWrap}>
+        <div className={styles.benefitsStickyNote}>
+          <h2 className={styles.benefitsMainTitle}>
+            Built for Teams, Not Engineers
+          </h2>
+          <p className={styles.benefitsSubtitle}>
+            Six powerful features that make the difference
+          </p>
+        </div>
+
+        <div className={styles.benefitsZigzagContainer}>
+          {BENEFITS.map((b, i) => (
+            <div
+              key={b.title}
+              className={`${styles.benefitsZigzagItem} ${i % 2 === 0 ? styles.benefitsLeft : styles.benefitsRight}`}
+            >
+              <div className={styles.benefitsVisualBlock}>
+                <div className={styles.benefitsIconCircle}>
+                  <span className={styles.benefitsIcon}>{b.icon}</span>
+                </div>
+                <div className={styles.benefitsLineConnector} />
+              </div>
+              <div className={styles.benefitsContentBlock}>
+                <div className={styles.benefitsStepBadge}>FEATURE {i + 1}</div>
+                <h3 className={styles.benefitsStepTitle}>{b.title}</h3>
+                <p className={styles.benefitsStepText}>{b.description}</p>
+                <div className={styles.benefitsArrow} />
+              </div>
             </div>
           ))}
         </div>
