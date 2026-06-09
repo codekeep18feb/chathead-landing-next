@@ -314,7 +314,10 @@
   .nav-links.active {
     transform: translateX(0);
   }
-
+  .nav_overlay {
+    background-color: transparent;
+    backdrop-filter: unset;
+  }
   .nav_overlay.active {
     display: block;
   }
