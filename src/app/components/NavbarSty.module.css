@@ -26,6 +26,7 @@
   justify-content: center;
   gap: 12px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .logoImg {
@@ -83,8 +84,8 @@
 }
 
 .nav-links a:hover {
-  color: #1a1a2e;
-  background-color: rgba(0, 0, 0, 0.03);
+  color: #667eea;
+  font-weight: bold;
 }
 
 .link {
@@ -122,13 +123,37 @@
   color: #667eea;
 }
 
-/* Auth Buttons */
+/* Auth Buttons - Desktop */
 .auth-buttons {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  margin-left: 20px;
+}
+
+/* Mobile Auth Buttons - Hidden by default */
+.mobile-auth-buttons {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.mobile-auth-buttons a {
+  width: 100%;
+}
+
+.mobile-auth-buttons .login,
+.mobile-auth-buttons .signup {
+  width: 100%;
+  text-align: center;
+  padding: 12px 24px;
+}
+
+/* Desktop only - hide on mobile */
+.desktop-only {
+  display: flex;
 }
 
 .login,
@@ -146,7 +171,7 @@
 .login {
   color: white;
   box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
-  background: var(--primary-gradientss);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .login:hover {
@@ -195,19 +220,25 @@
 }
 
 .nav_overlay {
-  display: none;
   position: fixed;
-  top: 0;
+  top: 75px;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  align-items: center;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.657);
+  backdrop-filter: blur(5px);
   height: 100%;
   width: 100%;
   z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  height: 100vh;
+}
+
+.nav_overlay.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .modalDropdown {
@@ -216,13 +247,15 @@
   left: 50%;
   transform: translateX(-50%) translateY(-20px);
   background: white;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.05);
   z-index: 950;
   padding: 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: none;
   width: 90%;
-  max-width: 1200px;
+  max-width: 1280px;
   border-radius: 20px;
   max-height: 80vh;
   overflow: hidden;
@@ -233,6 +266,30 @@
   transform: translateX(-50%) translateY(0);
   display: block;
   opacity: 1;
+}
+
+/* Content wrapper with smooth animation */
+.modalContentWrapper {
+  padding: 2rem;
+  animation: fadeContent 0.3s ease;
+}
+
+@keyframes fadeContent {
+  0% {
+    opacity: 0.6;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Disable animation on mobile */
+@media (max-width: 1024px) {
+  .modalContentWrapper {
+    animation: none;
+  }
 }
 
 .modalDropdown .closeBtn {
@@ -267,13 +324,14 @@
   .navbar {
     padding: 1rem 2rem;
   }
-  
+
   .nav-links a {
     padding: 8px 12px;
     font-size: 14px;
   }
-  
-  .login, .signup {
+
+  .login,
+  .signup {
     padding: 8px 20px;
   }
 }
@@ -287,6 +345,20 @@
 
   .burger-icon {
     display: block;
+  }
+
+  /* Hide desktop auth buttons on mobile */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Show mobile auth buttons when menu is open */
+  .mobile-auth-buttons {
+    display: none;
+  }
+
+  .nav-links.active .mobile-auth-buttons {
+    display: flex;
   }
 
   .nav-links {
@@ -314,10 +386,12 @@
   .nav-links.active {
     transform: translateX(0);
   }
-  .nav_overlay {
+
+  /* .nav_overlay {
     background-color: transparent;
     backdrop-filter: unset;
-  }
+  } */
+
   .nav_overlay.active {
     display: block;
   }
@@ -362,19 +436,9 @@
     display: none;
   }
 
+  /* Remove the old auth-buttons styling from mobile */
   .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    margin-left: 0;
-    width: 100%;
-    margin-top: 20px;
-    gap: 12px;
-  }
-
-  .login, .signup {
-    width: 100%;
-    text-align: center;
-    padding: 12px 24px;
+    display: none !important;
   }
 
   .modalDropdown {
@@ -425,7 +489,8 @@
     padding: 70px 20px 20px;
   }
 
-  .login, .signup {
+  .mobile-auth-buttons .login,
+  .mobile-auth-buttons .signup {
     padding: 10px 20px;
     font-size: 14px;
   }

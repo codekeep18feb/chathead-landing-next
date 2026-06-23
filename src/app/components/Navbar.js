@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Platform from "./Platform";
@@ -14,7 +14,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredContentKey, setHoveredContentKey] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [closeTimeout, setCloseTimeout] = useState(null);
   const router = useRouter();
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,6 +28,15 @@ const Navbar = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+      }
+    };
+  }, [closeTimeout]);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -44,9 +55,51 @@ const Navbar = () => {
     document.body.style.overflow = "auto";
   };
 
+  const handleMouseEnter = (key) => {
+    if (!isMobile) {
+      // Clear any pending close timeout
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        setCloseTimeout(null);
+      }
+      setHoveredContentKey(key);
+    }
+  };
+
+  const handleMouseLeaveDropdown = () => {
+    if (!isMobile) {
+      const timeout = setTimeout(() => {
+        setHoveredContentKey(null);
+      }, 200);
+      setCloseTimeout(timeout);
+    }
+  };
+
+  const handleMouseEnterDropdown = () => {
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      setCloseTimeout(null);
+    }
+  };
+
+  const handleLogoClick = () => {
+    // Close mobile menu if open
+    if (menuOpen) {
+      setMenuOpen(false);
+      document.body.style.overflow = "auto";
+    }
+    // Close dropdown modal if open
+    if (hoveredContentKey) {
+      setHoveredContentKey(null);
+    }
+    // Navigate to home
+    router.push("/");
+  };
+
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-  const renderHoveredContent = () => {
+  // Render content based on hovered key
+  const renderContent = () => {
     switch (hoveredContentKey) {
       case "platform":
         return <Platform />;
@@ -60,12 +113,14 @@ const Navbar = () => {
         return null;
     }
   };
+
   return (
     <nav className={styles.navbar}>
-      <div className={styles.logo}>
-        <Link href="/" className={styles.logoImg}>
+      {/* Logo with click handler */}
+      <div className={styles.logo} onClick={handleLogoClick}>
+        <div className={styles.logoImg}>
           <img src={`${basePath}/logo/sageion-logo.svg`} alt="Sageion" />
-        </Link>
+        </div>
         <h2>Sageion</h2>
       </div>
 
@@ -88,135 +143,80 @@ const Navbar = () => {
         id="nav-links"
       >
         <div className={styles.navList}>
-          <li>
-            <Link
-              href="/herosection"
-              onClick={() => {
-                setMenuOpen(false);
-                document.body.style.overflow = "auto";
-              }}
-            >
-              Hero section
-            </Link>
-          </li>
-
           {/* Platform */}
           <div
             className={styles.hoverWrapper}
-            onMouseEnter={() => {
-              if (!isMobile) setHoveredContentKey("platform");
-            }}
+            onMouseEnter={() => handleMouseEnter("platform")}
           >
             <li className={styles.links}>
-              {/* <a onClick={() => handleItemClick("platform", "/platform")} className={styles.link}>
-                Platform
-              </a> */}
               <Link href="/platform">Features</Link>
               <div className={styles.nextArrow}>&gt;</div>
             </li>
-            {hoveredContentKey === "platform" && (
-              <div className={`${styles.modalDropdown} ${styles.active}`}>
-                <Platform />
-              </div>
-            )}
           </div>
 
           {/* Solutions */}
           <div
             className={styles.hoverWrapper}
-            onMouseEnter={() => {
-              if (!isMobile) setHoveredContentKey("solutions");
-            }}
+            onMouseEnter={() => handleMouseEnter("solutions")}
           >
             <li className={styles.links}>
-              {/* <a onClick={() => handleItemClick("solutions", "/solutions")} className={styles.link}>
-                Solutions
-              </a> */}
               <Link href="/solutions">Solutions</Link>
               <div className={styles.nextArrow}>&gt;</div>
             </li>
-            {hoveredContentKey === "solutions" && (
-              <div className={`${styles.modalDropdown} ${styles.active}`}>
-                <Solutions onCloseModal={handleCloseModal} />
-              </div>
-            )}
           </div>
 
           {/* Developers */}
           <div
             className={styles.hoverWrapper}
-            onMouseEnter={() => {
-              if (!isMobile) setHoveredContentKey("developers");
-            }}
+            onMouseEnter={() => handleMouseEnter("developers")}
           >
             <li className={styles.links}>
-              {/* <a onClick={() => handleItemClick("developers", "/developers")} className={styles.link}>
-                Developers
-              </a> */}
               <Link href="/developers">Developers</Link>
               <div className={styles.nextArrow}>&gt;</div>
             </li>
-            {hoveredContentKey === "developers" && (
-              <div className={`${styles.modalDropdown} ${styles.active}`}>
-                <Developers />
-              </div>
-            )}
           </div>
 
-          {/* Resources */}
-          {/* <div
-            className={styles.hoverWrapper}
-            onMouseEnter={() => {
-              if (!isMobile) setHoveredContentKey("resources");
-            }}
-          >
-            <li className={styles.links}>
-              <Link href="/resources">Resources</Link>
-         
-              <div className={styles.nextArrow}>&gt;</div>
-            </li>
-            {hoveredContentKey === "resources" && (
-              <div className={`${styles.modalDropdown} ${styles.active}`}>
-                <Resources />
-              </div>
-            )}
-          </div> */}
-
-          <li onMouseEnter={handleCloseModal}>
+          {/* Pricing */}
+          <li>
             <Link href="/pricing">Pricing</Link>
           </li>
         </div>
 
-        <div className={styles["auth-buttons"]}>
-          <li>
-            <a href="https://admin.magicchat.io/login">
-              <button className={styles.login}>Log-in</button>
-            </a>
-          </li>
-          <li>
-            <a href="https://admin.magicchat.io/signup">
-              <button className={styles.signup}>Sign-up</button>
-            </a>
-          </li>
+        {/* Mobile Auth Buttons - Only visible on mobile when menu is open */}
+        <div className={`${styles["mobile-auth-buttons"]}`}>
+          <a href="https://admin.magicchat.io/login">
+            <button className={styles.login}>Log-in</button>
+          </a>
+          <a href="https://admin.magicchat.io/signup">
+            <button className={styles.signup}>Sign-up</button>
+          </a>
         </div>
       </ul>
 
-      {(hoveredContentKey || isMobile) && (
+      {/* Desktop Auth Buttons - Hidden on mobile */}
+      <div className={`${styles["auth-buttons"]} ${styles["desktop-only"]}`}>
+        <a href="https://admin.magicchat.io/login">
+          <button className={styles.login}>Log-in</button>
+        </a>
+        <a href="https://admin.magicchat.io/signup">
+          <button className={styles.signup}>Sign-up</button>
+        </a>
+      </div>
+
+      {/* Modal Dropdown */}
+      {hoveredContentKey && (
         <>
           <div
-            className={`${styles.nav_overlay} ${
-              hoveredContentKey ? styles.active : ""
-            }`}
+            className={`${styles.nav_overlay} ${styles.active}`}
             onClick={handleCloseModal}
           ></div>
           <div
-            className={`${styles.modalDropdown} ${
-              hoveredContentKey ? styles.active : ""
-            }`}
-            onClick={handleCloseModal}
-            onMouseLeave={handleCloseModal}
+            ref={dropdownRef}
+            className={`${styles.modalDropdown} ${styles.active}`}
+            onMouseEnter={handleMouseEnterDropdown}
+            onMouseLeave={handleMouseLeaveDropdown}
           >
-            {renderHoveredContent()}
+            <div className={styles.modalContentWrapper}>{renderContent()}</div>
           </div>
         </>
       )}

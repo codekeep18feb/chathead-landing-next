@@ -6,6 +6,7 @@ import HowSection from "../app/components/HowSection";
 import EngagementSection from "../app/components/EngagementSection";
 import WhatWeOfferSection from "./components/wwoffer/WhatWeOffer";
 import MagicChatOverview from "@/app/components/magicchatOverview/MagicChatOverview";
+import HeroSectionPage from "./herosection/page";
 
 export default function Home() {
   const handleMagicChatInit = async () => {
@@ -31,14 +32,16 @@ export default function Home() {
         onLoad={handleMagicChatInit}
       />
 
-      <SolveSection />
-      <br></br>
+      {/* <SolveSection /> */}
+      {/* <br></br>
 
-      <br></br>
-      <WhatWeOfferSection />
-      <MagicChatOverview />
+      <br></br> */}
+      {/* <WhatWeOfferSection /> */}
+      {/* <MagicChatOverview /> */}
       {/* <HowSection /> */}
-      <EngagementSection />
+      {/* <EngagementSection /> */}
+
+      <HeroSectionPage />
     </div>
   );
 }

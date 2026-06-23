@@ -15,10 +15,10 @@ import RoadmapNextPage from "../components/HeroSection/RoadmapNextPage";
 import WhyChooseNowPage from "../components/HeroSection/WhyChooseNowPage";
 import EngagementSectionPage from "../components/HeroSection/EngagementSectionPage";
 
-export const metadata = {
-  title: "Hero Section | Magicchat",
-  description: "What do we solve",
-};
+// export const metadata = {
+//   title: "Hero Section | Magicchat",
+//   description: "What do we solve",
+// };
 
 const HeroSectionPage = () => {
   return (
