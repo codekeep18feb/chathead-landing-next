@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 import styles from "./AiAgentWorkflowInfo.module.css";
 import HeroSection from "../components/reuseableComponents/HeroSection";
+import CardsReuse from "../components/reuseableComponents/CardsReuse";
+import ReusableCTASection from "../components/reuseableComponents/ReusableCTASection";
 
 // ─── Value Props (Focus on Outcomes) ─────────────────────────────
 const VALUE_PROPS = [
@@ -200,8 +202,11 @@ const AiAgentWorkflowInfo = () => {
       {/* ─── Problem / Solution ───────────────────────────────────────── */}
       <section className={styles.problemSolution}>
         <h2 className={styles.sectionTitle}>
-          The Gap Between Chatbots and Business Outcomes
+          The Gap Between{" "}
+          <span className={styles.highlight}>Chatbots and Business</span>{" "}
+          Outcomes
         </h2>
+
         <div className={styles.problemGridModern}>
           {PROBLEM_SOLUTION.map((item, i) => (
             <div key={i} className={styles.problemCardModern}>
@@ -228,7 +233,11 @@ const AiAgentWorkflowInfo = () => {
 
       {/* ─── How It Works ────────────────────────────────────────────── */}
       <section className={styles.howItWorksSection}>
-        <h2 className={styles.sectionTitle}>Get Started in 3 Simple Steps</h2>
+        <h2 className={styles.sectionTitle}>
+          Get Started in{" "}
+          <span className={styles.highlight}>3 Simple Steps</span>
+        </h2>
+
         <p className={styles.sectionSubtitle}>
           No SDKs, no middleware, no custom code. Just your API and our
           platform.
@@ -245,39 +254,22 @@ const AiAgentWorkflowInfo = () => {
       </section>
 
       {/* ─── Value Props ──────────────────────────────────────────────── */}
-      <section className={styles.valueSection}>
-        <h2 className={styles.sectionTitle}>
-          Designed for Developers,
-          <br /> Built for Everyone
-        </h2>
-        <p className={styles.sectionSubtitle}>
-          Connect your APIs in minutes. Reuse them everywhere. No engineering
-          sprint required.
-        </p>
-        <div className={styles.animatedGrid}>
-          {VALUE_PROPS.map((vp) => (
-            <div key={vp.title} className={styles.animatedCard}>
-              <div className={styles.animatedIconWrapper}>
-                <div className={styles.animatedIcon}>{vp.icon}</div>
-              </div>
-              <h3 className={styles.animatedTitle}>{vp.title}</h3>
-              <p className={styles.animatedDesc}>{vp.description}</p>
-              <div className={styles.animatedStatWrapper}>
-                <div className={styles.animatedStat}>{vp.stat}</div>
-                <div className={styles.animatedStatLabel}>{vp.statLabel}</div>
-              </div>
-              <div className={styles.animatedBorder}></div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <CardsReuse
+        title="Designed for Developers, Built for Everyone"
+        subtitle="Connect your APIs in minutes. Reuse them everywhere. No engineering sprint required."
+        items={VALUE_PROPS}
+        columns={3}
+        showStats={true}
+      />
 
       {/* ─── Benefits ──────────────────────────────────────────────────── */}
       <section className={styles.valuePrpWrap}>
         <div className={styles.benefitsStickyNote}>
-          <h2 className={styles.benefitsMainTitle}>
-            Built for Teams, Not Just Engineers
+          <h2 className={styles.sectionTitle}>
+            Built for Teams,{" "}
+            <span className={styles.highlight}>Not Just Engineers</span>
           </h2>
+
           <p className={styles.benefitsSubtitle}>
             Eight capabilities that make the difference
           </p>
@@ -307,7 +299,10 @@ const AiAgentWorkflowInfo = () => {
 
       {/* ─── Social Proof ─────────────────────────────────────────────── */}
       <section className={styles.testimonialwraper}>
-        <h2 className={styles.sectionTitle}>Trusted by Teams Like Yours</h2>
+        <h2 className={styles.sectionTitle}>
+          Trusted by Teams <span className={styles.highlight}>Like Yours</span>
+        </h2>
+
         <p className={styles.sectionSubtitle}>Real people, real results</p>
         <div className={styles.testimonialMasonryAlt}>
           {SOCIAL_PROOF.map((p, i) => (
@@ -346,7 +341,7 @@ const AiAgentWorkflowInfo = () => {
       </section>
 
       {/* ─── CTA ───────────────────────────────────────────────────────── */}
-      <section className={styles.ctaGlowSection}>
+      {/* <section className={styles.ctaGlowSection}>
         <div className={styles.ctaGlowOrb}></div>
         <div className={styles.ctaGlowOrb2}></div>
         <div className={styles.ctaContent}>
@@ -382,7 +377,9 @@ const AiAgentWorkflowInfo = () => {
             <span>💳 No Credit Card Required</span>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <ReusableCTASection />
 
       <footer className={styles.footerNote}>
         Replace testimonials and stats with your actual data. Add illustrations

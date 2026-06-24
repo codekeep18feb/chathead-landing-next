@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./LiveChatFeatures.module.css";
 import HeroSection from "../components/reuseableComponents/HeroSection";
+import CardsReuse from "../components/reuseableComponents/CardsReuse";
+import ReusableCTASection from "../components/reuseableComponents/ReusableCTASection";
 
 const FEATURES = [
   {
@@ -70,6 +72,18 @@ const FEATURES = [
   },
 ];
 
+// Transform FEATURES for CardsReuse format
+const FEATURES_FOR_CARDS = FEATURES.map((f) => ({
+  icon: f.icon,
+  title: f.title,
+  description: f.description,
+  // Use tag as stat if you want to show it, or create custom stat
+  stat: f.tag,
+  statLabel: "Feature Tag",
+  // Keep original data for custom rendering if needed
+  _original: f,
+}));
+
 const COMPETITIVE_ADVANTAGES = [
   {
     icon: "🚫",
@@ -125,7 +139,7 @@ const LiveChatFeatures = () => {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -147,9 +161,9 @@ const LiveChatFeatures = () => {
         title="Live Chat That Actually"
         highlightedText="Works for Teams"
         subtitle="Not just text forwarding. Real-time status, team collaboration, intelligent routing, and multi-brand support—all in one platform."
-        stats={stats} // Using stats from parent
-        showButtons={false} // Hide buttons
-        showShapes={true} // Keep shapes
+        stats={stats}
+        showButtons={false}
+        showShapes={true}
       />
 
       {/* ─── Problem / Solution ───────────────────────────────────────── */}
@@ -182,6 +196,7 @@ const LiveChatFeatures = () => {
       </div>
 
       {/* ─── Competitive Advantages ───────────────────────────────────── */}
+
       <div className={styles.advantagesSection}>
         <div className={styles.advantagesHeader}>
           <h2 className={styles.sectionTitle}>
@@ -193,58 +208,61 @@ const LiveChatFeatures = () => {
           </p>
         </div>
 
-        <div className={styles.advantagesGrid}>
+        <div className={styles.advantagesGridTimeline}>
           {COMPETITIVE_ADVANTAGES.map((adv, idx) => (
-            <div
-              key={idx}
-              className={`${styles.advantageCard} ${isVisible ? styles.visible : ""}`}
-              style={{ animationDelay: `${idx * 0.15}s` }}
-            >
-              <div className={styles.advantageIconWrapper}>
-                <span className={styles.advantageIcon}>{adv.icon}</span>
+            <div key={idx} className={styles.advantagesCardTimeline}>
+              <div className={styles.advantagesTimelineConnector}>
+                <div
+                  className={styles.advantagesTimelineDot}
+                  style={{
+                    background: [`#ef4444`, `#3b82f6`, `#10b981`, `#8b5cf6`][
+                      idx
+                    ],
+                  }}
+                ></div>
+                {idx < 3 && (
+                  <div
+                    className={styles.advantagesTimelineLine}
+                    style={{
+                      borderColor: [`#ef4444`, `#3b82f6`, `#10b981`][idx],
+                    }}
+                  ></div>
+                )}
               </div>
-              <h3 className={styles.advantageTitle}>{adv.title}</h3>
-              <p className={styles.advantageDescription}>{adv.description}</p>
-              <div className={styles.advantageGlow}></div>
+              <div className={styles.advantagesCardTimelineContent}>
+                <div
+                  className={styles.advantagesTimelineIcon}
+                  style={{
+                    background: `${[`#ef4444`, `#3b82f6`, `#10b981`, `#8b5cf6`][idx]}20`,
+                  }}
+                >
+                  {adv.icon}
+                </div>
+                <div>
+                  <h3>{adv.title}</h3>
+                  <p>{adv.description}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* ─── Features Grid ────────────────────────────────────────────── */}
+      {/* ─── Features Grid using CardsReuse ───────────────────────────── */}
       <div className={styles.featuresSection}>
-        <div className={styles.featuresHeader}>
-          <h2 className={styles.sectionTitle}>
-            Advanced Live Chat{" "}
-            <span className={styles.highlight}>Features</span>
-          </h2>
-          <p className={styles.sectionSubtitle}>
-            Everything you need for professional, team-based live chat support
-          </p>
-        </div>
-
-        <div className={styles.featuresGrid}>
-          {FEATURES.map((feature, idx) => (
-            <div
-              key={idx}
-              className={`${styles.featureCard} ${styles[feature.gradient]}`}
-              onMouseEnter={() => setActiveFeature(idx)}
-              onMouseLeave={() => setActiveFeature(0)}
-            >
-              <div className={styles.featureIconWrapper}>
-                <span className={styles.featureIcon}>{feature.icon}</span>
-              </div>
-              <div className={styles.featureTag}>{feature.tag}</div>
-              <h3 className={styles.featureTitle}>{feature.title}</h3>
-              <p className={styles.featureDescription}>{feature.description}</p>
-              <div className={styles.featureHoverGlow}></div>
-            </div>
-          ))}
-        </div>
+        <CardsReuse
+          title="Advanced Live Chat Features"
+          subtitle="Everything you need for professional, team-based live chat support"
+          items={FEATURES_FOR_CARDS}
+          columns={4}
+          showStats={true}
+          cardClassName={styles.featureCardReuse}
+          gridClassName={styles.featuresGridReuse}
+        />
       </div>
 
       {/* ─── Comparison Table ─────────────────────────────────────────── */}
-      <div className={styles.comparisonSection}>
+      {/* <div className={styles.comparisonSection}>
         <h2 className={styles.sectionTitle}>
           Live Chat <span className={styles.highlight}>vs</span> The Rest
         </h2>
@@ -283,6 +301,50 @@ const LiveChatFeatures = () => {
             <div className={styles.winnerBadge}>🏆 Clear Winner</div>
           </div>
         </div>
+      </div> */}
+
+      <div className={styles.comparisonSection}>
+        <h2 className={styles.sectionTitle}>
+          Live Chat <span className={styles.highlight}>vs</span> The Rest
+        </h2>
+
+        <div className={styles.comparisonSplitLayout}>
+          <div className={styles.comparisonLeft}>
+            <div className={styles.comparisonBadge}>❌ Basic</div>
+            <h3 className={styles.comparisonLeftTitle}>Basic Chat Providers</h3>
+            <ul className={styles.comparisonListAlt}>
+              <li>📝 Text-only delivery</li>
+              <li>📧 Basic inbox-style messaging</li>
+              <li>👤 Single user mode only</li>
+              <li>🔄 No real-time status</li>
+              <li>🏢 One brand per dashboard</li>
+              <li>📊 Limited history access</li>
+            </ul>
+          </div>
+
+          <div className={styles.comparisonDivider}>
+            <div className={styles.comparisonArrow}>→</div>
+            <div className={styles.comparisonVs}>VS</div>
+          </div>
+
+          <div className={styles.comparisonRight}>
+            <div className={styles.comparisonBadge}>⭐ Pro</div>
+            <h3 className={styles.comparisonRightTitle}>
+              Our Live Chat Platform
+            </h3>
+            <ul className={`${styles.comparisonListAlt} ${styles.winnerList}`}>
+              <li>✅ Rich media, reactions, replies</li>
+              <li>⚡ Real-time status & delivery reports</li>
+              <li>👥 Solo/Team toggle</li>
+              <li>🛡️ Advanced RBAC</li>
+              <li>🏢 Multiple brand support</li>
+              <li>📊 Switch between personal/all history</li>
+              <li>🔐 Session management</li>
+              <li>🎯 Intelligent join chat routing</li>
+            </ul>
+            <div className={styles.winnerBadge}>🏆 Clear Winner</div>
+          </div>
+        </div>
       </div>
 
       {/* ─── Use Cases ────────────────────────────────────────────────── */}
@@ -291,75 +353,70 @@ const LiveChatFeatures = () => {
           Perfect for <span className={styles.highlight}>Every Team</span>
         </h2>
 
-        <div className={styles.usecaseGrid}>
-          <div className={styles.usecaseCard}>
-            <span className={styles.usecaseIcon}>🛒</span>
-            <h3>E-commerce Support</h3>
-            <p>
-              Handle multiple brands with dedicated agents, real-time order
-              updates, and rich media for product queries.
-            </p>
-          </div>
-          <div className={styles.usecaseCard}>
-            <span className={styles.usecaseIcon}>💼</span>
-            <h3>SaaS Teams</h3>
-            <p>
-              Scale support with RBAC, session management, and seamless team
-              collaboration across multiple products.
-            </p>
-          </div>
-          <div className={styles.usecaseCard}>
-            <span className={styles.usecaseIcon}>🏥</span>
-            <h3>Healthcare & Services</h3>
-            <p>
-              Secure session management, audit trails, and role-based access for
-              sensitive client communications.
-            </p>
-          </div>
-          <div className={styles.usecaseCard}>
-            <span className={styles.usecaseIcon}>🌐</span>
-            <h3>Global Enterprises</h3>
-            <p>
-              Multi-brand support with customized UIs per region, team routing,
-              and comprehensive history management.
-            </p>
-          </div>
+        <div className={styles.usecaseGridVisual}>
+          {[
+            {
+              icon: "🛒",
+              title: "E-commerce Support",
+              desc: "Handle multiple brands with dedicated agents, real-time order updates, and rich media for product queries.",
+              bg: "linear-gradient(135deg, #667eea, #764ba2)",
+            },
+            {
+              icon: "💼",
+              title: "SaaS Teams",
+              desc: "Scale support with RBAC, session management, and seamless team collaboration across multiple products.",
+              bg: "linear-gradient(135deg, #f093fb, #f5576c)",
+            },
+            {
+              icon: "🏥",
+              title: "Healthcare & Services",
+              desc: "Secure session management, audit trails, and role-based access for sensitive client communications.",
+              bg: "linear-gradient(135deg, #4facfe, #00f2fe)",
+            },
+            {
+              icon: "🌐",
+              title: "Global Enterprises",
+              desc: "Multi-brand support with customized UIs per region, team routing, and comprehensive history management.",
+              bg: "linear-gradient(135deg, #43e97b, #38f9d7)",
+            },
+          ].map((item, idx) => (
+            <div key={idx} className={styles.usecaseCardVisual}>
+              <div
+                className={styles.usecaseCardVisualBg}
+                style={{ background: item.bg }}
+              ></div>
+              <div className={styles.usecaseCardVisualContent}>
+                <span className={styles.usecaseIconVisual}>{item.icon}</span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+                <div className={styles.usecaseCardVisualTag}>
+                  <span>✨ Recommended</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-
       {/* ─── CTA ───────────────────────────────────────────────────────── */}
-      <div className={styles.ctaSection}>
-        <div className={styles.ctaContent}>
-          <div className={styles.ctaIcon}>💬</div>
-          <h2 className={styles.ctaTitle}>
-            Ready to Experience <br />
-            <span className={styles.gradientText}>Live Agility?</span>
-          </h2>
-          <p className={styles.ctaSubtitle}>
-            Stop settling for basic text delivery. Get the complete live chat
-            platform that actually works for teams.
-          </p>
-          <div className={styles.ctaButtons}>
-            <button className={styles.ctaPrimary}>
-              Start Free Trial
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12H19M19 12L12 5M19 12L12 19"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-            <button className={styles.ctaSecondary}>See Live Demo</button>
-          </div>
-          <div className={styles.ctaTrust}>
-            <span>🔒 Secure & Encrypted</span>
-            <span>⚡ Instant Setup</span>
-            <span>💳 No Credit Card</span>
-          </div>
-        </div>
-      </div>
+      <ReusableCTASection
+        badgeText="💬 Live Chat"
+        title="Ready to Experience"
+        highlightedText="Live Agility?"
+        subtitle="Stop settling for basic text delivery. Get the complete live chat platform that actually works for teams."
+        primaryButtonText="Start Free Trial"
+        secondaryButtonText="See Live Demo"
+        trustSignals={[
+          "🔒 Secure & Encrypted",
+          "⚡ Instant Setup",
+          "💳 No Credit Card",
+        ]}
+        onPrimaryClick={() => {
+          handleFreeTrial();
+        }}
+        onSecondaryClick={() => {
+          handleLiveDemo();
+        }}
+      />
     </section>
   );
 };
