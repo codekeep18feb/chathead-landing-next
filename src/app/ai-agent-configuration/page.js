@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 
 import styles from "./AiAgentWorkflowInfo.module.css";
+import HeroSection from "../components/reuseableComponents/HeroSection";
 
 // ─── Value Props (Focus on Outcomes) ─────────────────────────────
 const VALUE_PROPS = [
@@ -180,7 +181,7 @@ const AiAgentWorkflowInfo = () => {
       ([entry]) => {
         if (entry.isIntersecting) setStartCount(true);
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     if (statsRef.current) observer.observe(statsRef.current);
     return () => observer.disconnect();
@@ -194,52 +195,7 @@ const AiAgentWorkflowInfo = () => {
   return (
     <section className={styles.container}>
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
-      <section className={styles.heroSection}>
-        <div className={styles.shapesContainer}>
-          <div className={styles.shape1}></div>
-          <div className={styles.shape2}></div>
-          <div className={styles.shape3}></div>
-          <div className={styles.shape4}></div>
-          <div className={styles.shape5}></div>
-          <div className={styles.shape6}></div>
-        </div>
-
-        <div className={styles.heroContent}>
-          <div className={styles.heroBadge}>⚡ Intent‑Driven Infrastructure</div>
-          <h1 className={styles.heroTitle}>
-            Turn Your Chatbot Into a
-            <br />
-            <span className={styles.gradientText}>Real‑Time Action Engine</span>
-          </h1>
-          <p className={styles.heroSubtitle}>
-            Connect your AI bot directly to your backend APIs – single endpoints
-            or complex chains. Authenticated or unauthenticated. All without
-            writing a single line of code.
-          </p>
-          <div className={styles.buttonGroup}>
-            <button className={styles.primaryButton}>See the Platform →</button>
-            <button className={styles.secondaryButton}>Book a Demo</button>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div ref={statsRef} className={styles.statsContainer}>
-          {[
-            { value: industries, suffix: "+", label: "Industries" },
-            { value: intents, suffix: "+", label: "Pre‑built Intents" },
-            { value: apiCalls, suffix: "+", label: "API Calls Supported" },
-            { value: 3, suffix: " min", label: "Avg. Config Time" },
-          ].map((stat) => (
-            <div key={stat.label} className={styles.statItem}>
-              <div className={styles.statValue}>
-                {stat.value}
-                {stat.suffix}
-              </div>
-              <div className={styles.statLabel}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <HeroSection />
 
       {/* ─── Problem / Solution ───────────────────────────────────────── */}
       <section className={styles.problemSolution}>
@@ -274,7 +230,8 @@ const AiAgentWorkflowInfo = () => {
       <section className={styles.howItWorksSection}>
         <h2 className={styles.sectionTitle}>Get Started in 3 Simple Steps</h2>
         <p className={styles.sectionSubtitle}>
-          No SDKs, no middleware, no custom code. Just your API and our platform.
+          No SDKs, no middleware, no custom code. Just your API and our
+          platform.
         </p>
         <div className={styles.howItWorksGrid}>
           {HOW_IT_WORKS.map((item) => (
@@ -290,10 +247,12 @@ const AiAgentWorkflowInfo = () => {
       {/* ─── Value Props ──────────────────────────────────────────────── */}
       <section className={styles.valueSection}>
         <h2 className={styles.sectionTitle}>
-          Designed for Developers,<br /> Built for Everyone
+          Designed for Developers,
+          <br /> Built for Everyone
         </h2>
         <p className={styles.sectionSubtitle}>
-          Connect your APIs in minutes. Reuse them everywhere. No engineering sprint required.
+          Connect your APIs in minutes. Reuse them everywhere. No engineering
+          sprint required.
         </p>
         <div className={styles.animatedGrid}>
           {VALUE_PROPS.map((vp) => (
@@ -395,11 +354,13 @@ const AiAgentWorkflowInfo = () => {
             <span className={styles.ctaPulseText}>🚀 Free Trial</span>
           </div>
           <h2 className={styles.ctaGlowTitle}>
-            Connect Your APIs Today.<br />
+            Connect Your APIs Today.
+            <br />
             <span className={styles.ctaGradientText}>Launch Tomorrow.</span>
           </h2>
           <p className={styles.ctaGlowSubtitle}>
-            See exactly how your API connects to our platform. No commitment, no engineering overhead.
+            See exactly how your API connects to our platform. No commitment, no
+            engineering overhead.
           </p>
           <div className={styles.ctaGlowButtons}>
             <button className={styles.ctaGlowButton}>
@@ -424,7 +385,8 @@ const AiAgentWorkflowInfo = () => {
       </section>
 
       <footer className={styles.footerNote}>
-        Replace testimonials and stats with your actual data. Add illustrations or abstract 3D visuals in place of solid colors.
+        Replace testimonials and stats with your actual data. Add illustrations
+        or abstract 3D visuals in place of solid colors.
       </footer>
     </section>
   );

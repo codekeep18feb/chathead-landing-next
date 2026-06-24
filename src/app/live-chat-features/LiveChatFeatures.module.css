@@ -1,4 +1,3 @@
-/* LiveChatFeatures.module.css */
 .container {
   font-family:
     "Inter",
@@ -10,184 +9,6 @@
   color: #1a1a2e;
   background: #f8f9fe;
   overflow: hidden;
-}
-
-/* ─── Hero Section ──────────────────────────────────────────────────── */
-.heroSection {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  overflow: hidden;
-  padding: 4rem 2rem;
-}
-
-.heroBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.orb1,
-.orb2,
-.orb3 {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.6;
-}
-
-.orb1 {
-  width: 600px;
-  height: 600px;
-  top: -200px;
-  right: -200px;
-  background: radial-gradient(circle, #667eea, transparent);
-  animation: float 20s ease-in-out infinite;
-}
-
-.orb2 {
-  width: 500px;
-  height: 500px;
-  bottom: -200px;
-  left: -200px;
-  background: radial-gradient(circle, #764ba2, transparent);
-  animation: float 25s ease-in-out infinite reverse;
-}
-
-.orb3 {
-  width: 300px;
-  height: 300px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent);
-  animation: pulse 8s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(30px, -30px) scale(1.1);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.5);
-    opacity: 0.6;
-  }
-}
-
-.heroContent {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 900px;
-}
-
-.heroBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 10px 24px;
-  border-radius: 100px;
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.pulseDot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: #4ade80;
-  border-radius: 50%;
-  animation: pulseDot 2s ease-in-out infinite;
-}
-
-@keyframes pulseDot {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.5;
-  }
-}
-
-.heroTitle {
-  font-size: clamp(44px, 6vw, 72px);
-  font-weight: 800;
-  color: white;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  letter-spacing: -0.02em;
-}
-
-.gradientText {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.heroSubtitle {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
-  margin: 0 auto 48px;
-  line-height: 1.7;
-}
-
-.statsGrid {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  flex-wrap: wrap;
-  padding: 32px 40px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.statItem {
-  text-align: center;
-}
-
-.statValue {
-  font-size: 44px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #667eea, #f093fb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.statLabel {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
-  margin-top: 4px;
 }
 
 /* ─── Section Titles ──────────────────────────────────────────────────── */
@@ -849,52 +670,16 @@
     grid-template-columns: 1fr;
     max-width: 600px;
   }
-
-  .statsGrid {
-    gap: 30px;
-    padding: 24px;
-  }
-
-  .statValue {
-    font-size: 32px;
-  }
 }
 
 @media (max-width: 768px) {
-  .heroSection {
-    min-height: auto;
+  .problemSection,
+  .advantagesSection,
+  .featuresSection,
+  .comparisonSection,
+  .usecaseSection,
+  .ctaSection {
     padding: 60px 20px;
-  }
-
-  .heroTitle {
-    font-size: 36px;
-  }
-
-  .heroSubtitle {
-    font-size: 17px;
-  }
-
-  .statsGrid {
-    flex-direction: column;
-    gap: 16px;
-    padding: 20px;
-  }
-
-  .statItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .statValue {
-    font-size: 28px;
-  }
-
-  .statLabel {
-    font-size: 13px;
-    margin: 0;
   }
 
   .problemGrid,
@@ -921,22 +706,9 @@
     align-items: center;
     gap: 12px;
   }
-
-  .problemSection,
-  .advantagesSection,
-  .featuresSection,
-  .comparisonSection,
-  .usecaseSection,
-  .ctaSection {
-    padding: 60px 20px;
-  }
 }
 
 @media (max-width: 480px) {
-  .heroTitle {
-    font-size: 28px;
-  }
-
   .sectionTitle {
     font-size: 28px;
   }
