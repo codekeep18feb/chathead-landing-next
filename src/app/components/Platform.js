@@ -10,6 +10,8 @@ const Platform = () => {
   const handleCardClick = (item, type) => {
     if (type === "aiAgentConfiguration") {
       router.push("/ai-agent-configuration");
+    } else if (type === "liveChatFeatures") {
+      router.push("/live-chat-features");
     } else if (type === "integration") {
       router.push("/documentation");
     } else {
@@ -23,9 +25,9 @@ const Platform = () => {
       {/* Left Side - Image */}
       <div className={styles.imageSection}>
         <div className={styles.imageWrapper}>
-          <img 
-            src="/images/platform.png" 
-            alt="Platform Illustration" 
+          <img
+            src="/images/platform.png"
+            alt="Platform Illustration"
             className={styles.platformImage}
           />
           <div className={styles.imageOverlay}>
@@ -38,9 +40,9 @@ const Platform = () => {
       {/* Right Side - Content */}
       <div className={styles.contentSection}>
         <div className={styles.platformSections}>
-          {/* Features Section */}
-          <div className={styles.platformSection}>
-            <h2 className={styles.sectionTitle}>Features</h2>
+          {/* Live Chat Section */}
+          {/* <div className={styles.platformSection}>
+            <h2 className={styles.sectionTitle}>Live Chat</h2>
             <div className={styles.cardList}>
               {platformList.features.map((item, index) => (
                 <div
@@ -58,17 +60,15 @@ const Platform = () => {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* AI Agent Configuration Section */}
+          </div> */}
           <div className={styles.platformSection}>
-            <h2 className={styles.sectionTitle}>AI Agent Configuration</h2>
+            <h2 className={styles.sectionTitle}>LIVE CHAT</h2>
             <div className={styles.cardList}>
-              {platformList.aiAgentConfiguration.map((item, index) => (
+              {platformList.liveChatFeatures.map((item, index) => (
                 <div
                   className={styles.card}
                   key={index}
-                  onClick={() => handleCardClick(item, "aiAgentConfiguration")}
+                  onClick={() => handleCardClick(item, "liveChatFeatures")}
                 >
                   <div className={styles.cardHeader}>
                     <div className={styles.iconWrapper}>
@@ -81,16 +81,15 @@ const Platform = () => {
               ))}
             </div>
           </div>
-
-          {/* Integration Section */}
+          {/* AI Agent Configuration Section */}
           <div className={styles.platformSection}>
-            <h2 className={styles.sectionTitle}>Integration</h2>
+            <h2 className={styles.sectionTitle}>AI Agent Configuration</h2>
             <div className={styles.cardList}>
-              {platformList.integration.map((item, index) => (
+              {platformList.aiAgentConfiguration.map((item, index) => (
                 <div
                   className={styles.card}
                   key={index}
-                  onClick={() => handleCardClick(item, "integration")}
+                  onClick={() => handleCardClick(item, "aiAgentConfiguration")}
                 >
                   <div className={styles.cardHeader}>
                     <div className={styles.iconWrapper}>

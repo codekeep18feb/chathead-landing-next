@@ -30,11 +30,11 @@ export const platformList = {
       text: "Configuration AI Agent into your product.",
     },
   ],
-  integration: [
+  liveChatFeatures: [
     {
-      icon: "fa-solid fa-puzzle-piece",
-      subHeading: "Integration",
-      text: "Please follow the documentation to integrate it into your product.",
+      icon: "fa-solid fa-comments",
+      subHeading: "Live Chat Features",
+      text: "Provide real-time customer support with messaging, notifications, chat history, and agent assistance.",
     },
   ],
 };
