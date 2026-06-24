@@ -268,7 +268,7 @@
 
 /* ─── Features Section ───────────────────────────────────────────────── */
 .featuresSection {
-  padding: 4rem 2rem;
+  padding: 0rem 2rem;
   background: var(--bg-light, #f8f9fe);
 }
 
