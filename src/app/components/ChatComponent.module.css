@@ -1,5 +1,6 @@
+/* ChatComponent.module.css */
+
 .chatContainer {
-  /* position: fixed; */
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -8,14 +9,16 @@
   margin-bottom: 80px;
   z-index: 1;
   animation: slideInBottom 0.5s ease-out;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-
 .chatHeader {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
   padding: 16px 20px;
   display: flex;
@@ -23,7 +26,7 @@
   align-items: center;
   color: white;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .chatHeaderInfo {
@@ -39,6 +42,7 @@
   border-radius: 50%;
   animation: pulse 2s infinite;
   box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+  flex-shrink: 0;
 }
 
 .chatTitle {
@@ -50,13 +54,14 @@
 }
 
 .chatBadge {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(4px);
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 10px;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
 }
 
 .messagesList {
@@ -67,9 +72,7 @@
   flex-direction: column;
   gap: 14px;
   scroll-behavior: smooth;
-
   scrollbar-width: none;
-
   -ms-overflow-style: none;
 }
 
@@ -100,15 +103,10 @@
   flex-direction: row-reverse;
 }
 
-
 .messageAvatar {
   width: 36px;
   height: 36px;
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.8),
-    rgba(118, 75, 162, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
   backdrop-filter: blur(4px);
   border-radius: 50%;
   display: flex;
@@ -126,11 +124,7 @@
 }
 
 .userMessage .messageAvatar {
-  background: linear-gradient(
-    135deg,
-    rgba(240, 147, 251, 0.8),
-    rgba(245, 87, 108, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(240, 147, 251, 0.8), rgba(245, 87, 108, 0.8));
   order: 2;
 }
 
@@ -141,7 +135,6 @@
   max-width: 83%;
 }
 
-/* Message Header */
 .messageHeader {
   display: flex;
   gap: 10px;
@@ -163,9 +156,8 @@
   font-weight: 500;
 }
 
-/* Message Text with Glass Effect */
 .messageText {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
   padding: 10px 14px;
   border-radius: 14px;
@@ -175,7 +167,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   word-wrap: break-word;
   transition: all 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .messageText:hover {
@@ -200,17 +192,12 @@
   border-radius: 12px;
   margin: 5px 0;
   animation: fadeIn 0.3s ease-out;
-  /* border: 1px solid rgba(255, 255, 255, 0.2); */
 }
 
 .typingAvatar {
   width: 32px;
   height: 32px;
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.8),
-    rgba(118, 75, 162, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
   backdrop-filter: blur(4px);
   border-radius: 50%;
   display: flex;
@@ -218,6 +205,7 @@
   justify-content: center;
   font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
 }
 
 .typingDots {
@@ -242,13 +230,12 @@
   animation-delay: 0.4s;
 }
 
-/* Chat Input Area with Glass Effect */
 .chatInput {
   display: flex;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   gap: 10px;
   align-items: center;
 }
@@ -256,33 +243,30 @@
 .inputField {
   flex: 1;
   padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 25px;
   font-size: 13px;
   outline: none;
   transition: all 0.2s ease;
   color: white;
+  min-width: 0;
 }
 
 .inputField::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .inputField:focus {
   border-color: rgba(102, 126, 234, 0.8);
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
 }
 
 .sendButton {
   padding: 8px 20px;
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.8),
-    rgba(118, 75, 162, 0.8)
-  );
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
   backdrop-filter: blur(4px);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -291,15 +275,13 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .sendButton:hover:not(:disabled) {
   transform: translateY(-1px);
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.9),
-    rgba(118, 75, 162, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
@@ -308,15 +290,78 @@
   cursor: not-allowed;
 }
 
-/* Additional Glass Effect Variations */
-.glassCard {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+/* Date picker as message */
+.datePickerContainer {
+  margin-top: 5px;
+  width: 100%;
 }
 
+.datePickerCard {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.datePickerHeader {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.dateSection,
+.timeSection {
+  margin-bottom: 15px;
+}
+
+.dateOptions,
+.timeOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dateButton,
+.timeButton {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  color: white;
+  font-size: 10px;
+  transition: all 0.2s ease;
+  cursor: default;
+  flex: 1;
+  min-width: 60px;
+  text-align: center;
+}
+
+.selectedDate,
+.selectedTime {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.confirmBookingButton {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+  cursor: default;
+}
+
+/* Animations */
 @keyframes slideInBottom {
   from {
     transform: translateY(100%);
@@ -328,7 +373,6 @@
   }
 }
 
-/* Enhanced slide from bottom with better easing */
 @keyframes slideInFromBottom {
   0% {
     opacity: 0;
@@ -337,17 +381,6 @@
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes slideInFromBottomScale {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
   }
 }
 
@@ -385,7 +418,27 @@
   }
 }
 
-/* Responsive Design */
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .chatContainer {
+    width: 340px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Large tablets */
+@media (max-width: 820px) {
+  .chatContainer {
+    width: 320px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Mobile devices */
 @media (max-width: 768px) {
   .chatContainer {
     bottom: 10px;
@@ -393,10 +446,14 @@
     left: 10px;
     width: auto;
     max-width: calc(100% - 20px);
+    border-radius: 16px;
+    margin-bottom: 60px;
   }
 
   .messagesList {
     max-height: 350px;
+    padding: 14px;
+    gap: 12px;
   }
 
   .messageText {
@@ -414,111 +471,326 @@
 
   .chatBadge {
     font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  .chatHeader {
+    padding: 14px 16px;
+  }
+
+  .messageAvatar {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .chatInput {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  .inputField {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .sendButton {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .datePickerCard {
+    padding: 12px;
+  }
+
+  .dateButton,
+  .timeButton {
+    font-size: 9px;
+    padding: 6px 10px;
+    min-width: 50px;
   }
 }
 
+/* Small mobile devices */
 @media (max-width: 480px) {
   .chatContainer {
     bottom: 5px;
     right: 5px;
     left: 5px;
+    max-width: calc(100% - 10px);
+    border-radius: 12px;
+    margin-bottom: 40px;
   }
 
   .messagesList {
-    max-height: 300px;
-    padding: 12px;
+    max-height: 280px;
+    padding: 10px;
+    gap: 10px;
   }
 
   .messageAvatar {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     font-size: 14px;
   }
 
   .messageBrand {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .messageText {
     font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 12px;
+  }
+
+  .messageWrapper {
+    max-width: 85%;
+  }
+
+  .chatTitle {
+    font-size: 12px;
+  }
+
+  .chatBadge {
+    font-size: 8px;
+    padding: 2px 6px;
+  }
+
+  .chatHeader {
+    padding: 10px 12px;
+  }
+
+  .chatHeaderInfo {
+    gap: 6px;
+  }
+
+  .onlineDot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .chatInput {
+    padding: 8px 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .inputField {
+    font-size: 11px;
+    padding: 6px 10px;
+    min-width: 60%;
+  }
+
+  .sendButton {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .typingAvatar {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .typingDots span {
+    width: 6px;
+    height: 6px;
+  }
+
+  .datePickerHeader {
+    font-size: 12px;
+  }
+
+  .datePickerCard {
+    padding: 10px;
+  }
+
+  .dateButton,
+  .timeButton {
+    font-size: 8px;
+    padding: 4px 8px;
+    min-width: 40px;
+  }
+
+  .confirmBookingButton {
+    font-size: 12px;
+    padding: 8px;
   }
 }
 
+/* Very small phones */
+@media (max-width: 360px) {
+  .chatContainer {
+    border-radius: 8px;
+    bottom: 3px;
+    right: 3px;
+    left: 3px;
+    max-width: calc(100% - 6px);
+    margin-bottom: 30px;
+  }
+
+  .messagesList {
+    max-height: 200px;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .chatHeader {
+    padding: 8px 10px;
+  }
+
+  .chatTitle {
+    font-size: 10px;
+  }
+
+  .chatBadge {
+    font-size: 7px;
+    padding: 2px 5px;
+  }
+
+  .messageText {
+    font-size: 10px;
+    padding: 5px 8px;
+    border-radius: 10px;
+  }
+
+  .messageAvatar {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .chatInput {
+    padding: 6px 8px;
+    gap: 4px;
+  }
+
+  .inputField {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+
+  .sendButton {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  .messageBrand {
+    font-size: 9px;
+  }
+
+  .messageTime {
+    font-size: 7px;
+  }
+
+  .dateButton,
+  .timeButton {
+    font-size: 7px;
+    padding: 3px 6px;
+    min-width: 35px;
+  }
+
+  .confirmBookingButton {
+    font-size: 10px;
+    padding: 6px;
+  }
+}
+
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .chatContainer {
+    bottom: 5px;
+    right: 10px;
+    width: 300px;
+    max-height: 85vh;
+  }
+
+  .messagesList {
+    max-height: 150px;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .chatHeader {
+    padding: 8px 12px;
+  }
+
+  .messageText {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .messageAvatar {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .chatInput {
+    padding: 6px 10px;
+  }
+
+  .inputField {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .sendButton {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+}
+
+/* Fallback for browsers without backdrop-filter */
 @supports not (backdrop-filter: blur(12px)) {
   .chatContainer {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .chatHeader {
     background: rgba(0, 0, 0, 0.8);
   }
 
   .messageText {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.15);
   }
 
   .userMessage .messageText {
     background: linear-gradient(135deg, #667eea, #764ba2);
   }
-}
-/* Date picker as message */
-.datePickerContainer {
-  margin-top: 5px;
-  width: 100%;
+
+  .chatInput {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .inputField {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .datePickerCard {
+    background: rgba(0, 0, 0, 0.8);
+  }
 }
 
-.datePickerCard {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+/* High DPI screens */
+@media (min-width: 1400px) {
+  .chatContainer {
+    width: 420px;
+    bottom: 30px;
+    right: 30px;
+  }
 
-.datePickerHeader {
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 15px;
-  text-align: center;
-}
+  .messagesList {
+    max-height: 450px;
+  }
 
-.dateSection, .timeSection {
-  margin-bottom: 15px;
-}
+  .messageText {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
 
-.dateOptions, .timeOptions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.dateButton, .timeButton {
-  padding: 8px;
-  background: transparent;
-  /* backdrop-filter: blur(4px); */
-  border: none;
-  outline: none;
-  border-radius: 20px;
-  color: white;
-  font-size: 10px;
-  transition: all 0.2s ease;
-  cursor: default;
-}
-
-.selectedDate, .selectedTime {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-}
-
-.confirmBookingButton {
-  width: 100%;
-  padding: 10px;
-  background: linear-gradient(135deg, #4ade80, #22c55e);
-  border: none;
-  border-radius: 25px;
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  margin-top: 10px;
-  cursor: default;
+  .chatTitle {
+    font-size: 17px;
+  }
 }

@@ -17,9 +17,7 @@ const HeroSection = () => {
           autoPlay
           muted
           playsInline
-          onEnded={() =>
-            setCurrentVideo((prev) => (prev + 1) % videos.length)
-          }
+          onEnded={() => setCurrentVideo((prev) => (prev + 1) % videos.length)}
         >
           <source src={videos[currentVideo]} type="video/mp4" />
         </video>
@@ -29,23 +27,23 @@ const HeroSection = () => {
         <div className={styles.hero_content}>
           <div className={styles.container}>
             <h1 className={styles.title}>
-              Move beyond deflection. Deliver real resolutions.
-              <span className={styles.highlight}>Resolutions</span>
+              One AI platform. Every 
+              <span className={styles.highlight}>Conversation.</span>
             </h1>
 
             <p className={styles.subtitle}>
-              No-code chatbot platform for Lead Gen, AI answers &
-              Live Agent Chat — "All in one".
+              No-code chatbot platform for Lead Gen, AI answers & Live Agent
+              Chat — "All in one".
             </p>
 
-            <button className={styles.learnMoreBtn}>
-              Schedule Demo →
-            </button>
+            <button className={styles.learnMoreBtn}>Schedule Demo →</button>
           </div>
         </div>
       </div>
 
-      <ChatComponent />
+      <div className={styles.chatPart}>
+        <ChatComponent />
+      </div>
     </section>
   );
 };
