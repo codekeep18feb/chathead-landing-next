@@ -1,0 +1,272 @@
+.wrapper {
+  padding: 5rem 2rem;
+  background: var(--bg-light);
+  text-align: center;
+  max-width: 1400px;
+  margin: auto;
+  width: 100%;
+  border-radius: 20px;
+}
+.heading {
+  font-size: 2.5rem;
+  font-weight: 600;
+  background-clip: text;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  background: var(--primary-gradientss);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.heading::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--subbtn-color),
+    var(--sub1-btn-color)
+  );
+  border-radius: 3px;
+}
+.flowContainer {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5rem;
+  flex-wrap: nowrap;
+  min-height: 400px;
+}
+
+.flowLine {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 320px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.animatedLine {
+  transition: stroke-dashoffset 0.04s linear;
+  will-change: stroke-dashoffset;
+}
+
+/* ===========================
+   STEPS
+=========================== */
+.step {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step.active .icon {
+  background: var(--sub-btn-color);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(75, 207, 158, 0.2);
+}
+
+.step.active .text {
+  color: var(--sub-btn-color);
+  font-weight: 600;
+}
+
+.iconWrap {
+  position: relative;
+  z-index: 4;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--white-text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.checkmark {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  background: var(--sub-btn-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: white;
+  font-weight: bold;
+  border: 2px solid var(--bg-light);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  pointer-events: none;
+}
+
+.step.active .checkmark {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.text {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  width: 150px;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  line-height: 1.4;
+  font-size: 16px;
+}
+.step:nth-child(1),
+.step:nth-child(3),
+.step:nth-child(5) {
+  flex-direction: column-reverse;
+}
+
+.step:nth-child(1) .text,
+.step:nth-child(3) .text,
+.step:nth-child(5) .text {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.bottom-left {
+  transform: translateY(80px);
+}
+
+.top-left {
+  transform: translateY(-20px);
+}
+
+.top-center {
+  transform: translateY(-40px);
+}
+
+.top-right {
+  transform: translateY(-60px);
+}
+
+.bottom-right {
+  transform: translateY(80px);
+}
+
+@media (max-width: 968px) {
+  .wrapper {
+    padding: 3rem 1.5rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .flowContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .flowLine {
+    display: none;
+  }
+
+  .step {
+    transform: none !important;
+    flex-direction: column !important;
+    width: calc(50% - 1rem);
+    opacity: 1;
+  }
+
+  .step:nth-child(1) .text,
+  .step:nth-child(3) .text,
+  .step:nth-child(5) .text {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .text {
+    width: 160px;
+  }
+}
+@media (max-width: 640px) {
+  .wrapper {
+    padding: 2rem 1rem;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .step {
+    width: 100%;
+    max-width: 260px;
+    opacity: 1;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .text {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .checkmark {
+    bottom: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    font-size: 0.6rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .flowContainer {
+    max-width: 1200px;
+  }
+
+  .icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.6rem;
+  }
+
+  .text {
+    width: 180px;
+    font-size: 0.9rem;
+  }
+}

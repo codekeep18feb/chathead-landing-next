@@ -1,0 +1,160 @@
+.offerSection {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--background-color) 0%,
+    rgba(75, 207, 158, 0.05) 100%
+  );
+  border-radius: 40px;
+  color: var(--text-color);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.offerSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--subbtn-color),
+    transparent
+  );
+}
+
+.offerSection::after {
+  content: "✨";
+  position: absolute;
+  font-size: 300px;
+  opacity: 0.03;
+  bottom: -50px;
+  right: -50px;
+  pointer-events: none;
+  transform: rotate(-15deg);
+}
+
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  background-clip: text;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  background: var(--primary-gradientss);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.mainTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--subbtn-color),
+    var(--sub1-btn-color)
+  );
+  border-radius: 3px;
+}
+
+/* Tabs */
+.tabContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.tabButton {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(75, 207, 158, 0.2);
+  color: var(--text-color);
+  font-size: 1rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.tabButton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(75, 207, 158, 0.3), transparent);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.tabButton:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.tabButton:hover {
+  border-color: var(--subbtn-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(75, 207, 158, 0.2);
+}
+
+.active {
+  background: linear-gradient(
+    135deg,
+    var(--subbtn-color),
+    var(--sub1-btn-color)
+  );
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 5px 20px rgba(75, 207, 158, 0.4);
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .offerSection {
+    padding: 3rem 1rem;
+  }
+
+  .mainTitle {
+    font-size: 2rem;
+  }
+
+  .tabButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}

@@ -23,11 +23,18 @@ export const platformList = {
       text: "Receive instant email alerts for important events.",
     },
   ],
-  integration: [
+  aiAgentConfiguration: [
     {
       icon: "fa-solid fa-puzzle-piece",
-      subHeading: "Integration",
-      text: "Please follow the documentation to integrate it into your product.",
+      subHeading: "AI Agent Configuration",
+      text: "Configuration AI Agent into your product.",
+    },
+  ],
+  liveChatFeatures: [
+    {
+      icon: "fa-solid fa-comments",
+      subHeading: "Live Chat Features",
+      text: "Provide real-time customer support with messaging, notifications, chat history, and agent assistance.",
     },
   ],
 };

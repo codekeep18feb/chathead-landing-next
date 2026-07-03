@@ -1,0 +1,646 @@
+/* TargetAudiencePage.module.css */
+.section {
+  width: 100%;
+  min-height: 100vh;
+  /* background: var(--background-color); */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+}
+
+/* .section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, var(--light-primary-color), transparent 60%);
+  pointer-events: none;
+} */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.heading {
+font-size: 2.5rem;
+font-weight: 600;
+background-clip: text;
+margin-bottom: 3rem;
+position: relative;
+display: inline-block;
+background: var(--primary-gradientss);
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+}
+
+.heading::after {
+content: "";
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 3px;
+background: linear-gradient(
+90deg,
+var(--subbtn-color),
+var(--sub1-btn-color)
+);
+border-radius: 3px;
+}
+
+.highlight {
+  background: var(--border-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.intro {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--light-text-color);
+}
+
+/* Carousel Layout */
+.carousel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: stretch;
+  background: var(--cards-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 32px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  position: relative;
+  min-height: 650px;
+  height: auto;
+  box-shadow: var(--shadow-strong);
+  transition: all 0.3s ease;
+}
+
+/* Left Side - Content */
+.contentSide {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+/* Fixed height containers to prevent jumping */
+.category {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--light-secondary-color);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--new-secondary-color);
+  margin-bottom: 1.5rem;
+  width: fit-content;
+  height: 34px;
+}
+
+.categoryDot {
+  width: 8px;
+  height: 8px;
+  background: var(--sub-btn-color);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Fixed height for title - accommodates longest title */
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  min-height: 100px;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Fixed height for pain point */
+.painPoint {
+  display: flex;
+  gap: 0.75rem;
+  background: var(--light-primary-color);
+  padding: 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  min-height: 100px;
+  height: auto;
+}
+
+.painIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.painPoint p {
+  color: var(--light-text-color);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.painPoint strong {
+  color: var(--primary-color);
+}
+
+/* Fixed height for feature list - accommodates 5 items */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  min-height: 200px;
+  height: auto;
+}
+
+.featureList li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--light-text-color);
+  font-size: 0.95rem;
+  opacity: 0;
+  animation: slideInItem 0.3s ease forwards;
+  min-height: 32px;
+}
+
+.featureList li::before {
+  content: "✓";
+  color: var(--sub-btn-color);
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Fixed height for ideal section */
+.ideal {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  min-height: 80px;
+  height: auto;
+}
+
+.idealIcon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.ideal p {
+  color: var(--heading-color);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ideal strong {
+  color: var(--primary-color);
+}
+
+/* Navigation Buttons - Fixed height */
+.navButtonsLeft {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  height: 52px;
+}
+
+.prevBtnLeft, .nextBtnLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  width: 40px;
+  height: 40px;
+  background: var(--white-text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.prevBtnLeft:hover, .nextBtnLeft:hover {
+  background: var(--sub-btn-color);
+  border-color: var(--sub-btn-color);
+  color: var(--white-text-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-secondary);
+}
+
+/* Slide Indicator Dots - Fixed height */
+.slideIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  margin-bottom: 1rem;
+  height: 24px;
+}
+
+.indicatorDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-color);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicatorDot:hover {
+  background: var(--sub-btn-color);
+  transform: scale(1.2);
+}
+
+.activeIndicatorDot {
+  width: 24px;
+  border-radius: 10px;
+  background: var(--sub-btn-color);
+}
+
+/* Progress Bar Container - Fixed height */
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 32px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 3px;
+  background: var(--border-color);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--sub-btn-color);
+  border-radius: 3px;
+  animation: progress 5s linear forwards;
+}
+
+/* Auto-play Button */
+.autoPlayBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: var(--white-text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--sub-btn-color);
+  flex-shrink: 0;
+}
+
+.autoPlayBtn:hover {
+  background: var(--sub-btn-color);
+  border-color: var(--sub-btn-color);
+  color: var(--white-text-color);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow-secondary);
+}
+
+/* Right Side - Image */
+.imageSide {
+  background: linear-gradient(135deg, var(--light-primary-color), var(--light-secondary-color));
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 550px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  box-shadow: var(--shadow-medium);
+}
+
+/* Image Container - Full cover */
+.imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+/* Light Black Overlay */
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Smooth content transitions - Crossfade effect */
+.contentWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.fadeEnter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.fadeEnterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fadeExit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fadeExitActive {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Staggered animations for list items */
+.featureList li {
+  opacity: 0;
+  animation: slideInItem 0.4s ease forwards;
+}
+
+.featureList li:nth-child(1) { animation-delay: 0.05s; }
+.featureList li:nth-child(2) { animation-delay: 0.1s; }
+.featureList li:nth-child(3) { animation-delay: 0.15s; }
+.featureList li:nth-child(4) { animation-delay: 0.2s; }
+.featureList li:nth-child(5) { animation-delay: 0.25s; }
+
+/* Prevent layout shifts */
+.card > * {
+  flex-shrink: 0;
+}
+
+/* Ensure consistent spacing */
+.contentSide {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.contentSide::-webkit-scrollbar {
+  width: 4px;
+}
+
+.contentSide::-webkit-scrollbar-track {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.contentSide::-webkit-scrollbar-thumb {
+  background: var(--sub-btn-color);
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInItem {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .carousel {
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: auto;
+  }
+  
+  .contentSide {
+    padding: 2rem;
+    order: 2;
+  }
+  
+  .imageSide {
+    padding: 2rem;
+    order: 1;
+    min-height: 350px;
+  }
+  
+  .imageWrapper {
+    min-height: 350px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    min-height: 70px;
+  }
+  
+  .painPoint {
+    min-height: auto;
+  }
+  
+  .featureList {
+    min-height: auto;
+  }
+  
+  .ideal {
+    min-height: auto;
+  }
+  
+  .navButtonsLeft {
+    margin-bottom: 1rem;
+    height: 44px;
+  }
+  
+  .prevBtnLeft, .nextBtnLeft {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .autoPlayBtn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .slideIndicator {
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .heading {
+    font-size: 1.8rem;
+  }
+  
+  .intro {
+    font-size: 0.9rem;
+  }
+  
+  .contentSide {
+    padding: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    min-height: 60px;
+  }
+  
+  .featureList li {
+    font-size: 0.85rem;
+    min-height: 28px;
+  }
+  
+  .indicatorDot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .activeIndicatorDot {
+    width: 20px;
+  }
+  
+  .navButtonsLeft {
+    gap: 0.75rem;
+    height: 40px;
+  }
+  
+  .prevBtnLeft, .nextBtnLeft {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .autoPlayBtn {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .progressContainer {
+    gap: 0.5rem;
+    height: 28px;
+  }
+  
+  .slideIndicator {
+    height: 18px;
+  }
+  
+  .category {
+    height: 30px;
+  }
+}

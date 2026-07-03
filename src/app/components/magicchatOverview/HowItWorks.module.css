@@ -55,7 +55,7 @@
   font-size: 1.4rem;
   font-weight: bold;
   color: #fff;
-  background: var(--primary-gradient);
+  background: var(--primary-gradientss);
   box-shadow: 0 0 10px rgba(75, 207, 158, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

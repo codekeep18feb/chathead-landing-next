@@ -1,0 +1,515 @@
+/* Shared Feature Card Styles - Used across all tabs */
+
+/* Unique Grid with Parallax Effect */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 3rem auto;
+  max-width: 1400px;
+  position: relative;
+}
+
+/* Premium Card Design - Enhanced with Vibrant Colors */
+.card {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.15) 0%,
+    rgba(99, 102, 241, 0.08) 50%,
+    rgba(236, 72, 153, 0.05) 100%
+  );
+  border-radius: 32px;
+  border: 1px solid rgba(75, 207, 158, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-15px) rotateX(5deg);
+  box-shadow: 0 30px 60px rgba(75, 207, 158, 0.3);
+  border-color: rgba(75, 207, 158, 0.6);
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.25) 0%,
+    rgba(99, 102, 241, 0.15) 50%,
+    rgba(236, 72, 153, 0.1) 100%
+  );
+}
+
+/* Card Background Enhancement - Colorful */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 20% 30%,
+    rgba(75, 207, 158, 0.08),
+    rgba(99, 102, 241, 0.05),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Corner Accent - Enhanced */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-top: 2px solid var(--subbtn-color);
+  border-right: 2px solid var(--subbtn-color);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1;
+}
+
+.card:hover::after {
+  opacity: 1;
+  width: 60px;
+  height: 60px;
+}
+
+/* Bottom Left Corner Accent */
+.cornerAccent {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-bottom: 2px solid var(--subbtn-color);
+  border-left: 2px solid var(--subbtn-color);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1;
+}
+
+.card:hover .cornerAccent {
+  opacity: 1;
+  width: 60px;
+  height: 60px;
+}
+
+/* Icon Wrapper - Column Layout - FIXED CENTERING */
+.iconWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  width: 100%;
+}
+
+/* Icon with Multiple Animations - FIXED CENTERING */
+.icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: linear-gradient(
+    135deg,
+    var(--subbtn-color),
+    var(--sub1-btn-color),
+    #6366f1,
+    #ec4899
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+  line-height: 1;
+  color: #6366f1;
+}
+
+/* Icon Floating Animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(3deg);
+  }
+  75% {
+    transform: translateY(5px) rotate(-3deg);
+  }
+}
+
+/* Icon Pulse on Hover */
+.card:hover .icon {
+  animation: iconPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background: linear-gradient(
+    135deg,
+    var(--sub1-btn-color),
+    var(--subbtn-color),
+    #ec4899,
+    #6366f1
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes iconPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Icon Ring Effect - FIXED CENTERING */
+.iconWrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(75, 207, 158, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.card:hover .iconWrapper::before {
+  opacity: 1;
+  width: 80px;
+  height: 80px;
+  animation: ringPulse 1s ease-out;
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Title - Centered with Icon */
+.card :global(.cardTitle) {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--text-color) 0%,
+    var(--subbtn-color) 50%,
+    #6366f1 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+/* Title Underline Animation */
+.card :global(.cardTitle)::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--subbtn-color), #6366f1, #ec4899);
+  transition: width 0.4s ease;
+  border-radius: 3px;
+}
+
+.card:hover :global(.cardTitle)::after {
+  width: 60px;
+}
+
+/* Description - Centered Text */
+.card :global(.description) {
+  font-size: 0.95rem;
+  color: var(--s-color);
+  line-height: 1.7;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5rem;
+}
+
+.card:hover :global(.description) {
+  color: var(--text-color);
+  transform: translateY(-2px);
+}
+
+/* Benefit Section Enhanced - Colorful */
+.benefit {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  line-height: 1.6;
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.15) 0%,
+    rgba(99, 102, 241, 0.08) 100%
+  );
+  border-left: 3px solid var(--subbtn-color);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+/* Benefit Glow Effect */
+.benefit::before {
+  content: "✨";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 30px;
+  opacity: 0.15;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.benefit::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(75, 207, 158, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.card:hover .benefit::after {
+  left: 100%;
+}
+
+.card:hover .benefit {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.2) 0%,
+    rgba(99, 102, 241, 0.12) 100%
+  );
+  transform: translateX(5px);
+}
+
+.card:hover .benefit::before {
+  opacity: 0.3;
+  transform: scale(1.1) rotate(15deg);
+}
+
+.benefit strong {
+  color: var(--sub1-btn-color);
+  font-weight: 700;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+/* Glassmorphism Overlay on Hover - Colorful */
+.card .glassOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.08),
+    rgba(99, 102, 241, 0.05),
+    rgba(236, 72, 153, 0.03)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: 32px;
+}
+
+.card:hover .glassOverlay {
+  opacity: 1;
+}
+
+/* Shine Effect */
+.card .shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.card:hover .shine {
+  left: 100%;
+}
+
+/* Different Gradient Variations for Each Card */
+.card:nth-child(1) {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.15) 0%,
+    rgba(99, 102, 241, 0.08) 100%
+  );
+}
+.card:nth-child(2) {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(236, 72, 153, 0.08) 100%
+  );
+}
+.card:nth-child(3) {
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.15) 0%,
+    rgba(245, 158, 11, 0.08) 100%
+  );
+}
+.card:nth-child(4) {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.15) 0%,
+    rgba(75, 207, 158, 0.08) 100%
+  );
+}
+.card:nth-child(5) {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.15) 0%,
+    rgba(75, 207, 158, 0.08) 100%
+  );
+}
+.card:nth-child(6) {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 207, 158, 0.15) 0%,
+    rgba(139, 92, 246, 0.08) 100%
+  );
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .gridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .icon {
+    font-size: 3rem;
+  }
+
+  .iconWrapper::before {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .icon {
+    font-size: 2.8rem;
+  }
+
+  .card :global(.cardTitle) {
+    font-size: 1.2rem;
+  }
+
+  .card :global(.description) {
+    font-size: 0.9rem;
+  }
+
+  .benefit {
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.2rem;
+  }
+
+  .icon {
+    font-size: 2.5rem;
+  }
+
+  .card :global(.cardTitle) {
+    font-size: 1.1rem;
+  }
+
+  .benefit {
+    font-size: 0.8rem;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .icon,
+  .card:hover .icon,
+  .iconWrapper::before {
+    animation: none;
+    transition: none;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+}

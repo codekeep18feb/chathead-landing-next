@@ -1,0 +1,1309 @@
+.container {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--heading-color);
+  margin: 0 auto;
+  background: var(--bg-light);
+  padding-bottom: 1rem;
+}
+
+/* Section Titles */
+.sectionTitle {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--heading-color, #1a1a2e);
+}
+
+.sectionSubtitle {
+  text-align: center;
+  font-size: 16px;
+  color: var(--light-text-color, #6b7280);
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+
+.highlight {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color, #667eea),
+    var(--new-secondary-color, #764ba2)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Problem/Solution Section */
+.problemSolution {
+  padding: 4rem 2rem;
+}
+
+.problemGridModern {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  max-width: 1320px;
+  margin: 0 auto;
+  margin-top: 56px;
+}
+
+.problemCardModern {
+  background: var(--cards-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.problemCardModern:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--primary-color);
+}
+
+.problemCardModern:hover::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--new-secondary-color)
+  );
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  animation: glow 0.3s ease forwards;
+}
+
+@keyframes glow {
+  to {
+    opacity: 1;
+  }
+}
+
+.problemImageWrapper {
+  position: relative;
+  overflow: hidden;
+  height: 280px;
+  cursor: pointer;
+}
+
+.problemImageModern {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(
+    135deg,
+    var(--light-primary-color),
+    var(--light-subbtn-color)
+  );
+}
+
+.problemImageWrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+}
+
+.problemCardModern:hover .problemImageModern {
+  transform: scale(1.05);
+}
+
+.problemTextOverlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
+  backdrop-filter: blur(10px);
+  padding: 24px;
+  transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-top: 3px solid #dc2626;
+}
+
+.problemCardModern:hover .problemTextOverlay {
+  bottom: 0;
+}
+
+.problemBadge {
+  font-size: 12px;
+  color: #dc2626;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.problemQuote {
+  font-size: 14px;
+  color: white;
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0;
+}
+
+.solutionArrow {
+  padding: 20px 24px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.arrowIcon {
+  font-size: 24px;
+  animation: bounce 2s ease-in-out infinite;
+  color: var(--primary-color);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+.solutionBadge {
+  font-size: 12px;
+  color: var(--new-secondary-color);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.solutionTextModern {
+  padding: 0 24px 24px 24px;
+  font-size: 15px;
+  color: var(--heading-color);
+  line-height: 1.7;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Benefits Zigzag Layout */
+.valuePrpWrap {
+  padding: 4rem 10rem;
+}
+
+.benefitsStickyNote {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 1rem;
+}
+
+.benefitsMainTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--new-secondary-color)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.benefitsMainTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--new-secondary-color)
+  );
+  border-radius: 3px;
+}
+
+.benefitsSubtitle {
+  color: var(--light-text-color);
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.benefitsZigzagContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.benefitsZigzagContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--primary-color),
+    var(--new-secondary-color),
+    transparent
+  );
+  transform: translateX(-50%);
+  opacity: 0.3;
+}
+
+.benefitsZigzagItem {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+
+.benefitsLeft {
+  flex-direction: row;
+}
+
+.benefitsRight {
+  flex-direction: row-reverse;
+}
+
+.benefitsVisualBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.benefitsIconCircle {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(
+    135deg,
+    var(--light-primary-color),
+    var(--light-subbtn-color)
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--primary-color);
+  transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+  position: relative;
+  z-index: 2;
+  background-color: var(--cards-bg);
+}
+
+.benefitsZigzagItem:hover .benefitsIconCircle {
+  transform: scale(1.05) rotate(5deg);
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 30px rgba(77, 107, 223, 0.3);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--subbtn-color)
+  );
+}
+
+.benefitsZigzagItem:hover .benefitsIcon {
+  transform: scale(1.1);
+}
+
+.benefitsIcon {
+  font-size: 3rem;
+  transition: all 0.3s ease;
+}
+
+.benefitsLineConnector {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--primary-color), transparent);
+  margin-top: 1rem;
+}
+
+.benefitsContentBlock {
+  flex: 2;
+  background: var(--cards-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 1.8rem 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(77, 107, 223, 0.2);
+  box-shadow: var(--shadow-soft);
+}
+
+.benefitsZigzagItem:hover .benefitsContentBlock {
+  background: linear-gradient(
+    135deg,
+    var(--cards-bg),
+    var(--light-primary-color)
+  );
+  border-color: var(--primary-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.benefitsStepBadge {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--subbtn-color)
+  );
+  color: white;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.benefitsStepTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--heading-color);
+}
+
+.benefitsStepText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--light-text-color);
+}
+
+.benefitsArrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+}
+
+.benefitsLeft .benefitsArrow {
+  top: 50%;
+  left: -12px;
+  transform: translateY(-50%) rotate(-135deg);
+}
+
+.benefitsRight .benefitsArrow {
+  top: 50%;
+  right: -12px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.benefitsZigzagItem:hover .benefitsArrow {
+  animation: arrowPulse 0.6s ease;
+}
+
+@keyframes arrowPulse {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.benefitsZigzagItem:last-child .benefitsLineConnector {
+  display: none;
+}
+
+/* Testimonials Section */
+.testimonialwraper {
+  padding: 4rem 2rem;
+}
+
+.testimonialMasonryAlt {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 30px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.testimonialCardImageTop {
+  position: relative;
+  background: var(--cards-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-color);
+  height: 450px;
+  cursor: pointer;
+}
+
+.testimonialCardImageTop:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-medium);
+}
+
+.imageTopContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.imageTop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonialCardImageTop:hover .imageTop {
+  transform: scale(1.08);
+}
+
+.imageOverlayDark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  transition: all 0.4s ease;
+}
+
+.testimonialCardImageTop:hover .imageOverlayDark {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+
+.cardHeading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+  width: 80%;
+  transition: all 0.4s ease;
+}
+
+.testimonialCardImageTop:hover .cardHeading {
+  opacity: 0;
+  transform: translate(-50%, -60%);
+  visibility: hidden;
+}
+
+.cardHeadingIcon {
+  font-size: 60px;
+  color: var(--primary-color);
+  opacity: 0.9;
+  margin-bottom: 16px;
+  font-family: serif;
+}
+
+.cardHeadingTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.cardHeadingSubtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 16px;
+}
+
+.cardHeadingHint {
+  font-size: 12px;
+  color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.imageTopBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--subbtn-color)
+  );
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.contentBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  backdrop-filter: blur(10px);
+  padding: 24px;
+  border-radius: 20px 20px 0 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  text-align: center;
+}
+
+.testimonialCardImageTop:hover .contentBottom {
+  transform: translateY(0);
+}
+
+.quoteMarkSmall {
+  font-size: 40px;
+  color: var(--primary-color);
+  opacity: 0.8;
+  font-family: serif;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.quoteText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: white;
+  font-style: italic;
+  margin: 15px 0;
+}
+
+.authorBottom strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.authorBottom span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ratingStars {
+  color: #ffc107;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-top: 12px;
+}
+
+.testimonialCardImageTop::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--new-secondary-color)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.testimonialCardImageTop:hover::before {
+  opacity: 1;
+}
+
+/* How It Works Section */
+.howItWorksSection {
+  padding: 4rem 2rem;
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    var(--bg-light) 0%,
+    rgba(77, 107, 223, 0.05) 50%,
+    var(--bg-light) 100%
+  );
+}
+
+.howItWorksSection .sectionTitle {
+  margin-bottom: 16px;
+  color: var(--heading-color);
+}
+
+.howItWorksSection .sectionSubtitle {
+  margin-bottom: 56px;
+  color: var(--light-text-color);
+  font-size: 18px;
+}
+
+.howItWorksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.howItWorksGrid::before {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  width: calc(100% - 120px);
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 0%,
+    var(--new-secondary-color) 50%,
+    var(--primary-color) 100%
+  );
+  transform: translateX(-50%);
+  opacity: 0.3;
+}
+
+.howItWorksCard {
+  background: var(--cards-bg);
+  border-radius: 24px;
+  padding: 40px 32px 36px;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
+  z-index: 1;
+}
+
+.howItWorksCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-medium);
+}
+
+.howItWorksCard::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--new-secondary-color)
+  );
+  border-radius: 24px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.howItWorksCard:hover::after {
+  opacity: 1;
+}
+
+.howItWorksStep {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--subbtn-color)
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+  box-shadow: 0 8px 24px rgba(77, 107, 223, 0.3);
+}
+
+.howItWorksCard:hover .howItWorksStep {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 32px rgba(77, 107, 223, 0.5);
+}
+
+.howItWorksStep::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--new-secondary-color)
+  );
+  opacity: 0.2;
+  filter: blur(8px);
+  z-index: -1;
+  animation: stepGlow 3s ease-in-out infinite;
+}
+
+@keyframes stepGlow {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+.howItWorksTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--heading-color);
+  transition: color 0.3s ease;
+}
+
+/* .howItWorksCard:hover .howItWorksTitle {
+  background: linear-gradient(135deg, var(--primary-color), var(--new-secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+} */
+
+.howItWorksDesc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--light-text-color);
+  margin: 0;
+}
+
+.howItWorksCard:not(:last-child)::before {
+  content: "● ● ●";
+  position: absolute;
+  top: 55px;
+  right: -26px;
+  color: var(--primary-color);
+  font-size: 8px;
+  letter-spacing: 4px;
+  opacity: 0.4;
+  transform: translateX(50%);
+}
+
+.howItWorksCard:last-child::before {
+  display: none;
+}
+
+.howItWorksSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(77, 107, 223, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(0, 255, 209, 0.03) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* CTA Section - Gradient Glow */
+.ctaGlowSection {
+  position: relative;
+  text-align: center;
+  padding: 100px 40px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  overflow: hidden;
+  margin-bottom: 100px;
+  border-radius: 32px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.ctaGlowOrb,
+.ctaGlowOrb2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+.ctaGlowOrb {
+  top: -100px;
+  right: -100px;
+  background: radial-gradient(circle, var(--primary-color), transparent);
+  animation: orbPulse 6s ease-in-out infinite;
+}
+
+.ctaGlowOrb2 {
+  bottom: -100px;
+  left: -100px;
+  background: radial-gradient(circle, var(--new-secondary-color), transparent);
+  animation: orbPulse 8s ease-in-out infinite reverse;
+}
+
+@keyframes orbPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 2;
+}
+
+.ctaPulseRing {
+  display: inline-block;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.ctaPulseText {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaPulseRing::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(77, 107, 223, 0.3);
+  border-radius: 100px;
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.ctaGlowTitle {
+  font-size: 48px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaGradientText {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--new-secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ctaGlowSubtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaGlowButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaGlowButton {
+  padding: 16px 36px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--subbtn-color)
+  );
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.ctaGlowButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(77, 107, 223, 0.4);
+  gap: 16px;
+}
+
+.ctaOutlineButton {
+  padding: 16px 36px;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaOutlineButton:hover {
+  border-color: white;
+  transform: translateY(-3px);
+}
+
+.ctaTrustSignals {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+.ctaTrustSignals span {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footerNote {
+  text-align: center;
+  margin: 60px 0px;
+  color: #9ca3af;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .problemSolution {
+    padding: 4rem 5rem;
+  }
+  .valuePrpWrap {
+    padding: 4rem 5rem;
+  }
+  .animatedGrid {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .problemSolution {
+    padding: 3rem 2rem;
+  }
+  .valuePrpWrap {
+    padding: 3rem 2rem;
+  }
+  .animatedGrid {
+    padding: 0 1rem;
+    gap: 20px;
+  }
+
+  .benefitsZigzagContainer::before {
+    display: none;
+  }
+  .benefitsZigzagItem,
+  .benefitsLeft,
+  .benefitsRight {
+    flex-direction: column !important;
+    gap: 1.5rem;
+  }
+  .benefitsVisualBlock {
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .benefitsLineConnector {
+    display: none;
+  }
+  .benefitsIconCircle {
+    width: 80px;
+    height: 80px;
+  }
+  .benefitsIcon {
+    font-size: 2.5rem;
+  }
+  .benefitsContentBlock {
+    width: 100%;
+    text-align: center;
+  }
+  .benefitsArrow {
+    display: none;
+  }
+  .benefitsMainTitle {
+    font-size: 2rem;
+  }
+
+  .testimonialMasonryAlt {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .testimonialCardImageTop {
+    height: 400px;
+  }
+  .cardHeadingTitle {
+    font-size: 20px;
+  }
+  .contentBottom {
+    padding: 20px;
+  }
+
+  .ctaGlowTitle {
+    font-size: 36px;
+  }
+
+  .howItWorksGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .howItWorksGrid::before {
+    display: none;
+  }
+  .howItWorksCard:not(:last-child)::before {
+    display: none;
+  }
+  .howItWorksSection {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .problemTextOverlay {
+    bottom: 0;
+    position: relative;
+  }
+  .problemCardModern:hover .problemImageModern {
+    transform: scale(1);
+  }
+  .arrowIcon {
+    animation: none;
+  }
+  .animatedTitle {
+    font-size: 20px;
+  }
+  .animatedDesc {
+    font-size: 14px;
+  }
+
+  .ctaGlowSection {
+    padding: 60px 24px;
+  }
+  .ctaGlowButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ctaGlowButton,
+  .ctaOutlineButton {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  .ctaTrustSignals {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .problemGridModern {
+    grid-template-columns: 1fr;
+  }
+  .animatedGrid {
+    grid-template-columns: 1fr;
+  }
+  .benefitsIconCircle {
+    width: 70px;
+    height: 70px;
+  }
+  .benefitsIcon {
+    font-size: 2rem;
+  }
+  .benefitsContentBlock {
+    padding: 1.5rem;
+  }
+
+  .testimonialCardImageTop {
+    height: 380px;
+  }
+  .cardHeadingTitle {
+    font-size: 18px;
+  }
+  .cardHeadingIcon {
+    font-size: 40px;
+  }
+  .cardHeadingHint {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+  .contentBottom {
+    padding: 16px;
+  }
+  .quoteMarkSmall {
+    font-size: 30px;
+  }
+  .quoteText {
+    font-size: 0.8rem;
+    margin: 10px 0;
+  }
+
+  .ctaGlowTitle {
+    font-size: 28px;
+  }
+  .ctaGlowSubtitle {
+    font-size: 16px;
+  }
+
+  .howItWorksGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 400px;
+  }
+  .howItWorksCard {
+    padding: 32px 24px 28px;
+  }
+  .howItWorksStep {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  .howItWorksTitle {
+    font-size: 20px;
+  }
+  .howItWorksDesc {
+    font-size: 14px;
+  }
+  .howItWorksSection .sectionSubtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .howItWorksCard {
+    padding: 24px 16px 20px;
+  }
+  .howItWorksStep {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .howItWorksTitle {
+    font-size: 18px;
+  }
+  .howItWorksDesc {
+    font-size: 13px;
+  }
+}
