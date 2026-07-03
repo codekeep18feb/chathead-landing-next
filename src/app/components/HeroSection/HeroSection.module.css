@@ -1,3 +1,5 @@
+/* HeroSection.module.css */
+
 .solve-section {
   position: relative;
   width: 100%;
@@ -12,10 +14,7 @@
 }
 
 .hero-video {
-  /* width: 100%;
-  height: 100%;
-  object-fit: cover; */
-    width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   transform: scaleX(-1);
@@ -41,29 +40,36 @@
 .hero_content {
   position: absolute;
   top: 0;
-  left: 10rem;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   z-index: 2;
   color: white;
-  /* text-align: center; */
+  padding: 2rem;
 }
 
 .container {
-  max-width: 800px;
-  padding: 0 20px;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 2rem;
   animation: fadeInUp 1s ease-out;
+  text-align: center;
 }
 
 .title {
-  font-size: 4rem;
+  font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 800;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   animation: slideInLeft 0.8s ease-out;
+  line-height: 1.2;
+}
+
+.title br {
+  display: none;
 }
 
 .highlight {
@@ -73,7 +79,7 @@
 }
 
 .highlight::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -85,12 +91,15 @@
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
   margin-bottom: 2rem;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out 0.3s forwards;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.95);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .buttonGroup {
@@ -140,6 +149,26 @@
   color: #ff6b6b;
 }
 
+/* Learn More Button */
+.learnMoreBtn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 32px;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.learnMoreBtn:hover {
+  background: white;
+  color: #333;
+  transform: translateY(-2px);
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -172,62 +201,277 @@
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ========== RESPONSIVE DESIGN - PURE CSS ========== */
+
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 700px;
+    padding: 0 1.5rem;
+  }
+
   .title {
-    font-size: 2.5rem;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
   }
-  
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .hero_content {
+    padding: 1rem;
+    align-items: center;
+  }
+
+  .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .title br {
+    display: block;
+  }
+
   .subtitle {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
-  
+
+  .buttonGroup {
+    gap: 0.8rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .primaryButton,
   .secondaryButton {
     padding: 10px 24px;
     font-size: 0.9rem;
+    min-width: 160px;
   }
-  
-  .buttonGroup {
-    gap: 0.8rem;
+
+  .learnMoreBtn {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    min-width: 160px;
+  }
+
+  /* Improve overlay for mobile - slightly darker */
+  .overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
   }
 }
 
+/* Small mobile devices */
 @media (max-width: 480px) {
+  .hero_content {
+    padding: 0.5rem;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
   .title {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 0.6rem;
   }
-  
+
+  .title br {
+    display: block;
+  }
+
   .subtitle {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    margin-bottom: 1.2rem;
   }
-  
+
   .buttonGroup {
     flex-direction: column;
     align-items: center;
+    gap: 0.6rem;
+    width: 100%;
   }
-  
+
   .primaryButton,
   .secondaryButton {
-    width: 80%;
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+
+  .learnMoreBtn {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+
+  /* Adjust highlight underline for small screens */
+  .highlight::after {
+    bottom: -3px;
+    height: 2px;
   }
 }
-/* Learn More Button */
-.learnMoreBtn {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 12px 32px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px;
+
+/* Very small phones (iPhone SE, etc.) */
+@media (max-width: 380px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .title br {
+    display: block;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  .primaryButton,
+  .secondaryButton,
+  .learnMoreBtn {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    max-width: 240px;
+  }
+  /* .solve-section{
+    height: 70vh;
+  } */
+  .hero_content{
+    height: 40%;
+
+  }
 }
 
-.learnMoreBtn:hover {
-  background: white;
-  color: #333;
-  transform: translateY(-2px);
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .title {
+    font-size: clamp(1.2rem, 3.5vw, 2rem);
+    margin-bottom: 0.3rem;
+  }
+
+  .title br {
+    display: none;
+  }
+
+  .subtitle {
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .learnMoreBtn {
+    margin-top: 10px;
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+
+  .buttonGroup {
+    gap: 0.5rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .title {
+    font-size: clamp(2.5rem, 4vw, 3.2rem);
+  }
+
+  .title br {
+    display: none;
+  }
+}
+
+/* iPad specific */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .container {
+    max-width: 600px;
+  }
+
+  .title {
+    font-size: 2.8rem;
+  }
+
+  .title br {
+    display: none;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1100px;
+  }
+
+  .title {
+    font-size: 5rem;
+  }
+
+  .title br {
+    display: none;
+  }
+
+  .subtitle {
+    font-size: 1.6rem;
+    max-width: 800px;
+  }
+
+  .primaryButton,
+  .secondaryButton,
+  .learnMoreBtn {
+    padding: 14px 40px;
+    font-size: 1.1rem;
+  }
+}
+
+/* 4K screens */
+@media (min-width: 2560px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .title {
+    font-size: 6rem;
+  }
+
+  .title br {
+    display: none;
+  }
+
+  .subtitle {
+    font-size: 2rem;
+    max-width: 1000px;
+  }
+
+  .primaryButton,
+  .secondaryButton,
+  .learnMoreBtn {
+    padding: 18px 48px;
+    font-size: 1.3rem;
+  }
 }
