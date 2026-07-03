@@ -86,7 +86,7 @@ body {
   /* font-family: "Lexend", sans-serif; */
   font-family: Arial, sans-serif;
   background-color: var(--background-color);
-  /* overflow-x: hidden */
+  overflow-x: hidden;
 }
 
 /* Header Styles */
@@ -98,7 +98,6 @@ body {
 .animate-fade {
   animation: fadeIn 0.3s ease-in-out;
 }
-
 
 /* src/app/components/HowSection.css */
 
@@ -191,7 +190,6 @@ body {
   background-color: #ccc;
   cursor: not-allowed;
 }
-
 
 .doc_core_wrapper {
   display: flex;
@@ -305,7 +303,6 @@ body {
     margin-bottom: 20px; /* Add margin for spacing */
     background-color: orange;
   }
-
 }
 
 @media (max-width: 425px) {
@@ -319,7 +316,7 @@ body {
     height: auto;
     padding: 10px;
   }
-   .section-title {
+  .section-title {
     font-size: 16px;
   }
   .card {

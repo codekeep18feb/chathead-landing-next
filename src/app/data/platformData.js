@@ -37,4 +37,13 @@ export const platformList = {
       text: "Provide real-time customer support with messaging, notifications, chat history, and agent assistance.",
     },
   ],
+  // Option 1: Add integration array if you need it
+  integration: [
+    {
+      icon: "fa-solid fa-plug",
+      subHeading: "API Integration",
+      text: "Easily integrate with your existing systems using our robust API.",
+    },
+    // Add more integration items here
+  ],
 };
