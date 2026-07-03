@@ -3,19 +3,24 @@
 .solve-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   overflow: hidden;
 }
 
 .video-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
 }
 
 .hero-video {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  height: 100dvh;
   object-fit: cover;
   transform: scaleX(-1);
 }
@@ -60,7 +65,7 @@
 }
 
 .title {
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-size: 4rem;
   font-weight: 800;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -76,6 +81,7 @@
   color: #99e9a5;
   position: relative;
   display: inline-block;
+  margin-left: 6px;
 }
 
 .highlight::after {
@@ -91,7 +97,7 @@
 }
 
 .subtitle {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.9rem, 2vw, 1.5rem);
   margin-bottom: 2rem;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out 0.3s forwards;
@@ -100,6 +106,7 @@
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
 }
 
 .buttonGroup {
@@ -154,8 +161,8 @@
   background: transparent;
   border: 2px solid white;
   color: white;
-  padding: 12px 32px;
-  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  padding: clamp(10px, 1.2vw, 12px) clamp(24px, 2.5vw, 32px);
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
   font-weight: 600;
   border-radius: 50px;
   cursor: pointer;
@@ -201,277 +208,345 @@
   }
 }
 
-/* ========== RESPONSIVE DESIGN - PURE CSS ========== */
+/* ChatPart - Responsive positioning */
+.chatPart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
 
-/* Tablets and smaller laptops */
+/* Tablet Screens (768px - 1024px) */
 @media (max-width: 1024px) {
+  .chatPart {
+    position: absolute;
+    bottom: 2rem;
+    top: auto;
+    right: 50%;
+    transform: translateX(50%);
+    width: 90%;
+    max-width: 400px;
+    padding: 0;
+  }
+
+  .hero_content {
+    padding: 1.5rem;
+    padding-bottom: 120px;
+  }
+
   .container {
-    max-width: 700px;
     padding: 0 1.5rem;
   }
 
   .title {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Increased */
+  }
+
+  .subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.3rem); /* Increased */
+    max-width: 90%;
+  }
+
+  .learnMoreBtn {
+    padding: 10px 28px;
+    font-size: 0.9rem;
   }
 }
 
-/* Mobile devices */
+/* Mobile Screens (up to 768px) */
 @media (max-width: 768px) {
+  .solve-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+  }
+
+  .video-container {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+  }
+
+  .hero-video {
+    height: 100vh;
+    height: 100dvh;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .chatPart {
+    position: absolute;
+    bottom: 1.5rem;
+    top: auto;
+    right: 50%;
+    transform: translateX(50%);
+    width: 92%;
+    max-width: 350px;
+    padding: 0;
+  }
+
   .hero_content {
     padding: 1rem;
-    align-items: center;
+    padding-bottom: 120px;
   }
 
   .container {
     padding: 0 1rem;
-    max-width: 100%;
   }
 
   .title {
-    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-    margin-bottom: 0.8rem;
+    font-size: clamp(2.2rem, 5vw, 3rem); /* Increased from 1.4rem */
+    margin-bottom: 0.5rem;
   }
 
   .title br {
     display: block;
   }
 
+  .highlight::after {
+    height: 2px;
+    bottom: -3px;
+  }
+
   .subtitle {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-size: clamp(1rem, 2.2vw, 1.2rem); /* Increased from 0.75rem */
     margin-bottom: 1.5rem;
+    max-width: 100%;
     padding: 0 0.5rem;
   }
 
+  .learnMoreBtn {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    min-width: 140px;
+  }
+
   .buttonGroup {
-    gap: 0.8rem;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 0.75rem;
   }
 
   .primaryButton,
   .secondaryButton {
     padding: 10px 24px;
     font-size: 0.9rem;
-    min-width: 160px;
-  }
-
-  .learnMoreBtn {
-    padding: 10px 24px;
-    font-size: 0.9rem;
-    min-width: 160px;
-  }
-
-  /* Improve overlay for mobile - slightly darker */
-  .overlay {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.5) 50%,
-      rgba(0, 0, 0, 0.8) 100%
-    );
   }
 }
 
-/* Small mobile devices */
+/* Small Mobile Screens (up to 480px) */
 @media (max-width: 480px) {
+  .chatPart {
+    bottom: 70%;
+    width: 95%;
+    max-width: 300px;
+  }
+  
+  .solve-section {
+    min-height: 75vh;
+    min-height: 75dvh;
+    height: 75vh;
+    height: 75dvh;
+  }
+  
+  .video-container {
+    min-height: 75vh;
+    min-height: 75dvh;
+    height: 75vh;
+    height: 75dvh;
+  }
+  
+  .hero-video {
+    height: 75vh;
+    height: 75dvh;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  
   .hero_content {
-    padding: 0.5rem;
+    height: 50%;
+    top: 50%;
+    padding: 0px;
+    bottom: 0px;
+  }
+  
+  .overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(24, 18, 18, 0.542) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(38, 38, 38, 0.833) 100%
+    );
+  }
+  
+  .title {
+    font-size: clamp(2rem, 6vw, 2.8rem); /* Increased from 1.2rem */
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem); /* Increased from 0.7rem */
+    margin-bottom: 1rem;
+  }
+
+  .learnMoreBtn {
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    min-width: 120px;
+    margin-top: 5px;
   }
 
   .container {
     padding: 0 0.75rem;
   }
-
-  .title {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: 0.6rem;
-  }
-
-  .title br {
-    display: block;
-  }
-
-  .subtitle {
-    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
-    margin-bottom: 1.2rem;
-  }
-
-  .buttonGroup {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    width: 100%;
-  }
-
-  .primaryButton,
-  .secondaryButton {
-    width: 100%;
-    max-width: 280px;
-    padding: 12px 20px;
-    font-size: 0.85rem;
-  }
-
-  .learnMoreBtn {
-    width: 100%;
-    max-width: 280px;
-    padding: 12px 20px;
-    font-size: 0.85rem;
-  }
-
-  /* Adjust highlight underline for small screens */
-  .highlight::after {
-    bottom: -3px;
-    height: 2px;
-  }
 }
 
-/* Very small phones (iPhone SE, etc.) */
-@media (max-width: 380px) {
-  .title {
-    font-size: 1.4rem;
+/* Extra Small Mobile (up to 360px) */
+@media (max-width: 360px) {
+  .chatPart {
+    bottom: 55%;
+    width: 98%;
+    max-width: 260px;
   }
-
-  .title br {
-    display: block;
-  }
-
-  .subtitle {
-    font-size: 0.75rem;
-  }
-
-  .primaryButton,
-  .secondaryButton,
-  .learnMoreBtn {
-    padding: 10px 16px;
-    font-size: 0.8rem;
-    max-width: 240px;
-  }
-  /* .solve-section{
+  
+  .solve-section,
+  .video-container {
+    min-height: 70vh;
+    min-height: 70dvh;
     height: 70vh;
-  } */
-  .hero_content{
-    height: 40%;
-
+    height: 70dvh;
+  }
+  
+  .hero-video {
+    height: 70vh;
+    height: 70dvh;
+  }
+  
+  .hero_content {
+    height: 45%;
+    top: 46%;
+  }
+  
+  .title {
+    font-size: clamp(1.8rem, 5vw, 2.2rem); /* Increased from 1rem */
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: clamp(0.85rem, 2vw, 0.95rem); /* Increased from 0.6rem */
+    margin-bottom: 0.75rem;
+  }
+  
+  .learnMoreBtn {
+    padding: 4px 12px;
+    font-size: 0.65rem;
+    min-width: 100px;
   }
 }
 
-/* Landscape phones */
-@media (max-height: 500px) and (orientation: landscape) {
+/* Landscape Mobile Phones */
+@media (max-height: 600px) and (orientation: landscape) {
+  .solve-section,
+  .video-container {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+  }
+  
+  .hero-video {
+    height: 100vh;
+    height: 100dvh;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .chatPart {
+    bottom: 0.5rem;
+    width: 85%;
+    max-width: 280px;
+  }
+
+  .hero_content {
+    padding-bottom: 80px;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Increased from 1rem */
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle {
+    font-size: clamp(0.85rem, 1.8vw, 1rem); /* Increased from 0.6rem */
+    margin-bottom: 0.75rem;
+  }
+
+  .learnMoreBtn {
+    padding: 4px 14px;
+    font-size: 0.65rem;
+    margin-top: 5px;
+    min-width: 100px;
+  }
+
   .container {
     padding: 0 1rem;
   }
-
-  .title {
-    font-size: clamp(1.2rem, 3.5vw, 2rem);
-    margin-bottom: 0.3rem;
-  }
-
-  .title br {
-    display: none;
-  }
-
-  .subtitle {
-    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
-    margin-bottom: 0.8rem;
-  }
-
-  .learnMoreBtn {
-    margin-top: 10px;
-    padding: 8px 20px;
-    font-size: 0.8rem;
-  }
-
-  .buttonGroup {
-    gap: 0.5rem;
-  }
-
-  .primaryButton,
-  .secondaryButton {
-    padding: 8px 20px;
-    font-size: 0.8rem;
-  }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .title {
-    font-size: clamp(2.5rem, 4vw, 3.2rem);
-  }
-
-  .title br {
-    display: none;
-  }
-}
-
-/* iPad specific */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .container {
-    max-width: 600px;
-  }
-
-  .title {
-    font-size: 2.8rem;
-  }
-
-  .title br {
-    display: none;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-  }
-}
-
-/* Large screens */
+/* Large Screens (1440px and above) */
 @media (min-width: 1440px) {
   .container {
     max-width: 1100px;
   }
 
   .title {
-    font-size: 5rem;
-  }
-
-  .title br {
-    display: none;
+    font-size: clamp(3rem, 6vw, 5rem);
   }
 
   .subtitle {
-    font-size: 1.6rem;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
     max-width: 800px;
   }
 
-  .primaryButton,
-  .secondaryButton,
-  .learnMoreBtn {
-    padding: 14px 40px;
-    font-size: 1.1rem;
+  .chatPart {
+    padding: 3rem;
   }
 }
 
-/* 4K screens */
+/* 4K Screens */
 @media (min-width: 2560px) {
   .container {
     max-width: 1400px;
   }
 
   .title {
-    font-size: 6rem;
-  }
-
-  .title br {
-    display: none;
+    font-size: clamp(4rem, 5vw, 6rem);
   }
 
   .subtitle {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2vw, 2rem);
     max-width: 1000px;
   }
 
-  .primaryButton,
-  .secondaryButton,
   .learnMoreBtn {
-    padding: 18px 48px;
-    font-size: 1.3rem;
+    padding: 16px 48px;
+    font-size: 1.4rem;
+  }
+}
+
+/* Fix for Safari on iOS */
+@supports (-webkit-touch-callout: none) {
+  .solve-section,
+  .video-container {
+    min-height: -webkit-fill-available;
+  }
+  
+  .hero-video {
+    height: -webkit-fill-available;
   }
 }
