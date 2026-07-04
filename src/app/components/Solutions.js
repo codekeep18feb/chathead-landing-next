@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 import { solutionList } from "../data/solutionList";
 import styles from "./CommonDropdown.module.css";
 
-const Solutions = ({ onCloseModal }) => {
+const Solutions = ({ onCloseModal, onCloseMenu }) => {
   const router = useRouter();
 
   const handleCardClick = (subHeading) => {
+    // Close both the modal and the mobile menu
     if (onCloseModal) onCloseModal();
+    if (onCloseMenu) onCloseMenu();
 
     const slug = subHeading
       .toLowerCase()
@@ -21,7 +23,9 @@ const Solutions = ({ onCloseModal }) => {
   };
 
   const handleCompanyTypeClick = (subHeading) => {
+    // Close both the modal and the mobile menu
     if (onCloseModal) onCloseModal();
+    if (onCloseMenu) onCloseMenu();
     
     const slug = subHeading
       .toLowerCase()

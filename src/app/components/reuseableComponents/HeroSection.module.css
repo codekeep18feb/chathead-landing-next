@@ -533,7 +533,7 @@
   }
 
   .statsContainer {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1.25rem;
     align-items: center;
     padding: 1.25rem 1rem;
@@ -666,7 +666,7 @@
 /* Very small devices - Enhanced for better readability - Row layout */
 @media (max-width: 360px) {
   .heroSection {
-    min-height: 65vh;
+    min-height: 80vh;
     padding: 0.5rem 0.75rem;
     position: relative;
     overflow: hidden;

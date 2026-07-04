@@ -3,9 +3,11 @@
 import Link from "next/link";
 import styles from "./CommonDropdown.module.css";
 
-const Developers = ({ onCloseModal }) => {
+const Developers = ({ onCloseModal, onCloseMenu }) => {
   const handleLinkClick = () => {
+    // Close both the modal and the mobile menu
     if (onCloseModal) onCloseModal();
+    if (onCloseMenu) onCloseMenu();
   };
 
   return (

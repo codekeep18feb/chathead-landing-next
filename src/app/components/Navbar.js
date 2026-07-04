@@ -49,7 +49,7 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => {
-    setMenuOpen(prev => !prev);
+    setMenuOpen((prev) => !prev);
     // Toggle body scroll
     if (!menuOpen) {
       document.body.style.overflow = "hidden";
@@ -144,7 +144,7 @@ const Navbar = () => {
 
   const handleNavItemClick = (key, e) => {
     e.stopPropagation();
-    
+
     if (isMobile) {
       e.preventDefault();
       if (hoveredContentKey === key) {
@@ -176,7 +176,9 @@ const Navbar = () => {
       case "platform":
         return <Platform onCloseMenu={closeMenu} />;
       case "solutions":
-        return <Solutions onCloseModal={handleCloseModal} onCloseMenu={closeMenu} />;
+        return (
+          <Solutions onCloseModal={handleCloseModal} onCloseMenu={closeMenu} />
+        );
       case "developers":
         return <Developers onCloseMenu={closeMenu} />;
       case "resources":
@@ -220,15 +222,19 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("platform")}
             onMouseLeave={handleMouseLeave}
           >
-            <li 
-              className={`${styles.links} ${isMobile && hoveredContentKey === "platform" ? styles.activeLink : ""}`} 
+            <li
+              className={`${styles.links} ${isMobile && hoveredContentKey === "platform" ? styles.activeLink : ""}`}
               onClick={(e) => handleNavItemClick("platform", e)}
             >
               <div className={styles.linkContent}>
                 <Link href="/platform">Features</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "platform" ? <FaChevronUp /> : <FaChevronDown />}
+                    {hoveredContentKey === "platform" ? (
+                      <FaChevronUp />
+                    ) : (
+                      <FaChevronDown />
+                    )}
                   </span>
                 )}
               </div>
@@ -246,21 +252,29 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("solutions")}
             onMouseLeave={handleMouseLeave}
           >
-            <li 
-              className={`${styles.links} ${isMobile && hoveredContentKey === "solutions" ? styles.activeLink : ""}`} 
+            <li
+              className={`${styles.links} ${isMobile && hoveredContentKey === "solutions" ? styles.activeLink : ""}`}
               onClick={(e) => handleNavItemClick("solutions", e)}
             >
               <div className={styles.linkContent}>
                 <Link href="/solutions">Solutions</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "solutions" ? <FaChevronUp /> : <FaChevronDown />}
+                    {hoveredContentKey === "solutions" ? (
+                      <FaChevronUp />
+                    ) : (
+                      <FaChevronDown />
+                    )}
                   </span>
                 )}
               </div>
+
               {isMobile && hoveredContentKey === "solutions" && (
                 <div className={styles.mobileDropdownContent}>
-                  <Solutions onCloseModal={handleCloseModal} onCloseMenu={closeMenu} />
+                  <Solutions
+                    onCloseModal={handleCloseModal}
+                    onCloseMenu={closeMenu}
+                  />
                 </div>
               )}
             </li>
@@ -272,28 +286,39 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("developers")}
             onMouseLeave={handleMouseLeave}
           >
-            <li 
-              className={`${styles.links} ${isMobile && hoveredContentKey === "developers" ? styles.activeLink : ""}`} 
+            <li
+              className={`${styles.links} ${isMobile && hoveredContentKey === "developers" ? styles.activeLink : ""}`}
               onClick={(e) => handleNavItemClick("developers", e)}
             >
               <div className={styles.linkContent}>
                 <Link href="/developers">Developers</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "developers" ? <FaChevronUp /> : <FaChevronDown />}
+                    {hoveredContentKey === "developers" ? (
+                      <FaChevronUp />
+                    ) : (
+                      <FaChevronDown />
+                    )}
                   </span>
                 )}
               </div>
               {isMobile && hoveredContentKey === "developers" && (
                 <div className={styles.mobileDropdownContent}>
-                  <Developers onCloseMenu={closeMenu} />
+                  <Developers
+                    onCloseModal={handleCloseModal}
+                    onCloseMenu={closeMenu}
+                  />
                 </div>
               )}
             </li>
           </div>
 
           {/* Pricing - No arrow icon, separate click handler */}
-          <li className={styles.links} onClick={handlePricingClick} style={{display:"flex"}}>
+          <li
+            className={styles.links}
+            onClick={handlePricingClick}
+            style={{ display: "flex" }}
+          >
             <Link href="/pricing">Pricing</Link>
           </li>
         </div>
@@ -310,7 +335,9 @@ const Navbar = () => {
       </ul>
 
       {/* Desktop Auth Buttons - Hidden on mobile */}
-      <div className={`${styles["auth-buttons"]} ${isMobile ? styles.hidden : ""}`}>
+      <div
+        className={`${styles["auth-buttons"]} ${isMobile ? styles.hidden : ""}`}
+      >
         <a href="https://admin.magicchat.io/login">
           <button className={styles.login}>Log-in</button>
         </a>
