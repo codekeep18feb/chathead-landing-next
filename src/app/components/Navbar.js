@@ -148,6 +148,10 @@ const Navbar = () => {
     router.push("/pricing");
   };
 
+    const handleCardClick = (e) => {
+    router.push("/card");
+  };
+
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   // Render content based on hovered key
@@ -301,6 +305,10 @@ const Navbar = () => {
           {/* Pricing - No arrow icon, separate click handler */}
           <li className={styles.links} onClick={handlePricingClick} style={{display:"flex"}}>
             <Link href="/pricing">Pricing</Link>
+          </li>
+
+           <li className={styles.links} onClick={handleCardClick} style={{display:"flex"}}>
+            <Link href="/card">Cards</Link>
           </li>
         </div>
 
