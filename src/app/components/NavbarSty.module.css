@@ -191,7 +191,7 @@
 
 /* Burger Icon */
 .burger-icon {
-  display: none;
+  display: none !important;;
   font-size: 24px;
   cursor: pointer;
   color: #1a1a2e;
@@ -204,7 +204,7 @@
 }
 
 .burger-icon.visible {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }
@@ -232,6 +232,7 @@
   pointer-events: none;
   transition: opacity 0.3s ease;
   height: 100vh;
+  z-index: 999;
 }
 
 .nav_overlay.active {
@@ -415,7 +416,7 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 100%;
+    /* width: 100%; */
     height: 100vh;
     background: white;
     flex-direction: column;
@@ -426,6 +427,7 @@
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     gap: 0;
+     width: 320px;
   }
 
   .nav-links.active {

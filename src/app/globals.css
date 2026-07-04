@@ -88,7 +88,11 @@ body {
   background-color: var(--background-color);
   overflow-x: hidden;
 }
-
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
 /* Header Styles */
 .header {
   /* position: fixed; */
