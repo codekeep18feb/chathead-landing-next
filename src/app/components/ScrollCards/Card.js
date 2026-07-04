@@ -21,99 +21,130 @@ export default function Card({
 
   const positionFromTop = total - index;
   
-  // Dramatic stacking effect
+  // Cinematic slide overlap
   const y = useTransform(
     scrollYProgress,
     [0, 0.2, 0.5, 0.8, 1],
     [
-      120 + (positionFromTop - 1) * 40,
-      80 + (positionFromTop - 1) * 25,
-      40 + (positionFromTop - 1) * 12,
-      15 + (positionFromTop - 1) * 5,
+      150 + (positionFromTop - 1) * 50,
+      100 + (positionFromTop - 1) * 30,
+      50 + (positionFromTop - 1) * 15,
+      20 + (positionFromTop - 1) * 5,
       0
     ]
   );
 
-  // Scale decreases as cards stack
+  // Scale with cinematic zoom
   const scale = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.6, 1],
+    [0, 0.4, 0.7, 1],
     [
-      0.85 - (positionFromTop - 1) * 0.02,
-      0.90 - (positionFromTop - 1) * 0.015,
-      0.95 - (positionFromTop - 1) * 0.01,
+      0.75 - (positionFromTop - 1) * 0.015,
+      0.85 - (positionFromTop - 1) * 0.01,
+      0.95 - (positionFromTop - 1) * 0.005,
       1
     ]
   );
 
-  // Rotation for organic feel
-  const rotateZ = useTransform(
+  // Cinematic tilt
+  const rotateX = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
+    [0, 0.4, 0.7, 1],
+    [8, 5, 2, 0]
+  );
+
+  const rotateY = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.6, 1],
     [
-      (index % 2 === 0 ? 3 : -3) - (positionFromTop - 1) * 0.5,
-      (index % 2 === 0 ? 1 : -1) - (positionFromTop - 1) * 0.3,
+      (index % 2 === 0 ? 5 : -5),
+      (index % 2 === 0 ? 3 : -3),
+      (index % 2 === 0 ? 1 : -1),
       0
     ]
   );
 
-  const rotateX = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [12, 6, 0]
-  );
-
-  // Opacity with fade
+  // Opacity
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.3, 0.7, 1],
-    [0.2, 0.4, 0.7, 0.95, 1]
+    [0, 0.15, 0.4, 0.7, 1],
+    [0.15, 0.3, 0.6, 0.9, 1]
   );
 
-  // Dramatic z-index changes
   const zIndex = useTransform(
     scrollYProgress,
     [0, 0.3, 0.6, 0.9, 1],
     [
       index + 1,
-      index + 4,
-      index + 8,
-      index + 12,
-      total + 20 + (total - index) * 2
+      index + 5,
+      index + 10,
+      index + 15,
+      total + 30 + (total - index) * 3
     ]
   );
 
-  // Image with depth
-  const imageY = useTransform(
+  // Parallax layers
+  const bgY = useTransform(
     scrollYProgress,
     [0, 0.3, 0.7, 1],
-    [120, 70, 20, -50]
+    [150, 80, 30, -60]
   );
 
+  const midY = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [100, 50, 15, -30]
+  );
+
+  const fgY = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 20, 5, -15]
+  );
+
+  // Image effects
   const imageScale = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [1.2, 1.1, 1]
+    [1.3, 1.15, 1]
   );
 
-  // Content reveal
-  const contentY = useTransform(
+  const imageBlur = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [60, 30, 10, 0]
+    [0, 0.5, 1],
+    [8, 3, 0]
+  );
+
+  // Content effects
+  const contentX = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.7, 1],
+    [
+      (index % 2 === 0 ? -120 : 120),
+      (index % 2 === 0 ? -60 : 60),
+      (index % 2 === 0 ? -20 : 20),
+      0
+    ]
   );
 
   const contentOpacity = useTransform(
     scrollYProgress,
     [0, 0.2, 0.5, 0.8, 1],
-    [0, 0.3, 0.6, 0.9, 1]
+    [0, 0.2, 0.5, 0.85, 1]
+  );
+
+  // Cinematic vignette
+  const vignetteOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0.8, 0.4, 0]
   );
 
   // Shadow
-  const shadowIntensity = useTransform(
+  const shadowY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [50, 25, 10]
+    [60, 30, 10]
   );
 
   return (
@@ -121,44 +152,51 @@ export default function Card({
       ref={ref}
       className={styles.cardContainer}
       style={{
-        top: `${40 + index * 10}px`,
+        top: `${30 + index * 8}px`,
         zIndex: index + 1,
       }}
     >
       <motion.div
-        className={`${styles.card} ${styles.variation1}`}
+        className={`${styles.card} ${styles.variation2}`}
         style={{
           y,
           scale,
-          rotateZ,
           rotateX,
+          rotateY,
           opacity,
           zIndex,
           backgroundColor: color,
-          boxShadow: `0 ${shadowIntensity}px 60px rgba(0,0,0,0.15)`,
+          boxShadow: `0 ${shadowY}px 80px rgba(0,0,0,0.2)`,
           transformOrigin: "center top",
         }}
         transition={{ 
           type: "spring", 
-          stiffness: 70, 
-          damping: 25 
+          stiffness: 60, 
+          damping: 30 
         }}
       >
+        {/* Cinematic vignette overlay */}
+        <motion.div 
+          className={styles.vignette}
+          style={{ opacity: vignetteOpacity }}
+        />
+
         <div className={styles.left}>
           <motion.div
-            className={styles.indexBadge}
+            className={styles.cinematicBadge}
             style={{
               opacity: contentOpacity,
-              y: contentY,
+              x: useTransform(contentX, x => -x),
             }}
           >
-            <span className={styles.indexNumber}>{String(index + 1).padStart(2, "0")}</span>
+            <span className={styles.projectTag}>PROJECT</span>
+            <span className={styles.projectNumber}>#{String(index + 1).padStart(2, "0")}</span>
           </motion.div>
 
           <motion.h2
             className={styles.title}
             style={{
-              y: contentY,
+              x: contentX,
               opacity: contentOpacity,
             }}
           >
@@ -168,42 +206,33 @@ export default function Card({
           <motion.p
             className={styles.description}
             style={{
-              y: contentY,
-              opacity: useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 0.2, 0.6, 1]),
+              x: contentX,
+              opacity: useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [0, 0.1, 0.4, 1]),
             }}
           >
             {description}
           </motion.p>
 
           <motion.div
-            className={styles.stats}
+            className={styles.quote}
             style={{
-              y: contentY,
-              opacity: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 0.1, 0.5, 1]),
+              x: contentX,
+              opacity: useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 0.05, 0.3, 0.8]),
             }}
           >
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>99%</span>
-              <span className={styles.statLabel}>Satisfaction</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>50K+</span>
-              <span className={styles.statLabel}>Users</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>4.9★</span>
-              <span className={styles.statLabel}>Rating</span>
-            </div>
+            <span className={styles.quoteIcon}>"</span>
+            <span className={styles.quoteText}>Transforming ideas into reality</span>
+            <span className={styles.quoteIcon}>"</span>
           </motion.div>
 
           <motion.div
             className={styles.button}
             style={{
-              y: contentY,
-              opacity: useTransform(scrollYProgress, [0, 0.6, 0.9, 1], [0, 0.1, 0.5, 1]),
+              x: contentX,
+              opacity: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 0.05, 0.3, 1]),
             }}
           >
-            <span>Learn More →</span>
+            <span>Discover →</span>
           </motion.div>
         </div>
 
@@ -213,15 +242,13 @@ export default function Card({
             alt={title}
             className={styles.image}
             style={{
-              y: imageY,
+              y: bgY,
               scale: imageScale,
+              filter: `blur(${imageBlur}px)`,
             }}
           />
-          <div className={styles.imageGradient} />
+          <div className={styles.parallaxOverlay} />
         </div>
-
-        {/* Corner decoration */}
-        <div className={styles.cornerDecoration} />
       </motion.div>
     </div>
   );
