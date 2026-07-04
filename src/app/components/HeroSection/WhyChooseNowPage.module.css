@@ -11,13 +11,13 @@
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(
-    45deg,
-    #8ec5fc 0%,
-    #8dd3ff 25%,
-    #a1d8ff 50%,
-    #c1d2ff 75%,
-    #e0c3ff 100%
-  );
+  45deg,
+  #d9efff 0%,
+  #def5ff 25%,
+  #e7f6ff 50%,
+  #f1ecff 75%,
+  #f8efff 100%
+);
 }
 
 .gridWrap.visible {
@@ -462,7 +462,7 @@
   color: white;
   font-weight: 700;
   font-size: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 60px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -703,11 +703,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgb(111, 188, 242);
+  background: rgb(162, 211, 246);
   backdrop-filter: blur(10px);
   padding: 0.75rem 1.5rem;
   border-radius: 60px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-color);
   font-size: 0.875rem;
   font-weight: 500;
   border: 1px solid rgba(75, 207, 158, 0.2);
