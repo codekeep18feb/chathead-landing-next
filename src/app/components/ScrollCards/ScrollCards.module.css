@@ -1,42 +1,11 @@
+/* Base styles - shared across all variations */
 .section {
   position: relative;
   width: 100%;
-  background: linear-gradient(180deg, #0a0e1a 0%, #13162b 50%, #0a0e1a 100%);
-  padding: 80px 0 300px;
+  background: #0a0e1a;
+  padding: 60px 0 300px;
   min-height: 100vh;
   overflow: visible;
-}
-
-/* Animated background particles */
-.section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(99, 102, 241, 0.2), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(236, 72, 153, 0.15), transparent),
-    radial-gradient(2px 2px at 50px 160px, rgba(99, 102, 241, 0.2), transparent),
-    radial-gradient(2px 2px at 90px 40px, rgba(236, 72, 153, 0.15), transparent),
-    radial-gradient(2px 2px at 130px 80px, rgba(99, 102, 241, 0.2), transparent);
-  background-size: 200px 200px;
-  background-repeat: repeat;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.section::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(to top, #0a0e1a, transparent);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .wrapper {
@@ -46,18 +15,15 @@
   z-index: 2;
 }
 
-/* Card container - creates space for overlap */
 .cardContainer {
   position: sticky;
   height: 100vh;
   display: flex;
   align-items: center;
   padding: 10px 0;
-  perspective: 1200px;
-  margin-bottom: 10px;
+  perspective: 1500px;
 }
 
-/* Card */
 .card {
   width: 100%;
   min-height: 70vh;
@@ -68,69 +34,253 @@
   position: relative;
   transform-style: preserve-3d;
   will-change: transform;
-  transition: border-color 0.3s ease;
 }
 
-/* Glow effect */
-.cardGlow {
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  background: radial-gradient(ellipse at 50% 50%, 
-    rgba(99, 102, 241, 0.2),
-    rgba(236, 72, 153, 0.1),
-    transparent 70%
-  );
-  border-radius: 28px;
-  z-index: -1;
-  filter: blur(30px);
-  pointer-events: none;
+/* ================================ */
+/* Variation 1: Masonry Stack */
+/* ================================ */
+.variation1 {
+  border-radius: 20px;
 }
 
-/* Left side */
-.left {
-  padding: 60px 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.variation1 .left {
+  padding: 50px 45px;
   background: rgba(255, 255, 255, 0.98);
-  position: relative;
-  z-index: 3;
-  backdrop-filter: blur(10px);
 }
 
-/* Badge with number */
-.badge {
+.indexBadge {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.number {
-  font-size: 48px;
+.indexNumber {
+  font-size: 52px;
   font-weight: 900;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1;
-  letter-spacing: -2px;
 }
 
-.badgeText {
-  font-size: 13px;
-  font-weight: 600;
-  color: #6366f1;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  padding: 4px 16px;
-  background: rgba(99, 102, 241, 0.1);
-  border-radius: 20px;
-  -webkit-text-fill-color: #6366f1;
+.stats {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0 30px;
 }
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.cornerDecoration {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, transparent 50%, #6366f1 50%);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.variation1 .right {
+  background: #f1f5f9;
+}
+
+.imageGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.05));
+  pointer-events: none;
+}
+
+/* ================================ */
+/* Variation 2: Cinematic Parallax */
+/* ================================ */
+.variation2 {
+  border-radius: 16px;
+}
+
+.variation2 .left {
+  padding: 55px 50px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cinematicBadge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.projectTag {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6366f1;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.projectNumber {
+  font-size: 14px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.quote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 24px;
+  padding: 16px 20px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 12px;
+  border-left: 3px solid #6366f1;
+}
+
+.quoteIcon {
+  font-size: 24px;
+  color: #6366f1;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.quoteText {
+  font-size: 15px;
+  font-style: italic;
+  color: #475569;
+  font-weight: 500;
+}
+
+.parallaxOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, transparent 50%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
+}
+
+/* ================================ */
+/* Variation 3: Neon Glow */
+/* ================================ */
+.variation3 {
+  border-radius: 28px;
+  position: relative;
+  overflow: visible;
+}
+
+.variation3 .left {
+  padding: 50px 45px;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.neonGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  transition: all 0.3s ease;
+}
+
+.neonBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.neonNumber {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.neonDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.neonLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 3px;
+  background: rgba(0,0,0,0.05);
+  padding: 3px 12px;
+  border-radius: 12px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.neonTags {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0 28px;
+  flex-wrap: wrap;
+}
+
+.neonTag {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+  background: rgba(255,255,255,0.5);
+}
+
+.neonOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* ================================ */
+/* Shared Styles */
+/* ================================ */
 
 .title {
   font-size: 44px;
@@ -146,64 +296,37 @@
   line-height: 1.7;
   color: #64748b;
   max-width: 480px;
-  margin-bottom: 24px;
 }
 
-/* Tags */
-.tags {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
-
-.tag {
-  font-size: 13px;
-  font-weight: 500;
-  color: #6366f1;
-  padding: 4px 14px;
-  background: rgba(99, 102, 241, 0.08);
-  border-radius: 12px;
-  border: 1px solid rgba(99, 102, 241, 0.1);
-}
-
-/* Button */
 .button {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   font-size: 15px;
   font-weight: 600;
-  color: #6366f1;
+  color: #ffffff;
   cursor: pointer;
   width: fit-content;
-  padding: 12px 28px;
+  padding: 14px 32px;
   border-radius: 14px;
-  background: rgba(99, 102, 241, 0.08);
+  background: #6366f1;
   transition: all 0.3s ease;
-  border: 1px solid rgba(99, 102, 241, 0.1);
+  border: none;
+  margin-top: 10px;
 }
 
 .button:hover {
-  background: rgba(99, 102, 241, 0.15);
-  gap: 16px;
-  transform: translateX(4px);
-  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateX(6px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
 }
 
-.button svg {
-  transition: transform 0.3s ease;
+.button span {
+  position: relative;
 }
 
-.button:hover svg {
-  transform: translateX(4px);
-}
-
-/* Right side - Image */
 .right {
   position: relative;
   overflow: hidden;
-  background: #f1f5f9;
 }
 
 .image {
@@ -214,55 +337,9 @@
   will-change: transform;
 }
 
-.imageOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(99, 102, 241, 0.1) 30%,
-    transparent 70%
-  );
-  pointer-events: none;
-}
-
-/* Decorative line at bottom */
-.cardLine {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7, #8b5cf6, #6366f1);
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-  transform-origin: left;
-}
-
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 0%; }
-  50% { background-position: 100% 0%; }
-}
-
-/* Card shadow/stack indicator */
-.card::before {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 5%;
-  right: 5%;
-  height: 30px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.1), transparent 70%);
-  border-radius: 50%;
-  filter: blur(8px);
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* ---------- Responsive ---------- */
+/* ================================ */
+/* Responsive */
+/* ================================ */
 
 @media (max-width: 1024px) {
   .card {
@@ -271,8 +348,8 @@
   }
 
   .left {
-    padding: 40px 35px;
     order: 2;
+    padding: 40px 35px !important;
   }
 
   .right {
@@ -282,10 +359,6 @@
 
   .title {
     font-size: 36px;
-  }
-
-  .number {
-    font-size: 40px;
   }
 
   .cardContainer {
@@ -304,7 +377,6 @@
     height: auto;
     position: relative;
     margin-bottom: 30px;
-    padding: 5px 0;
   }
 
   .card {
@@ -313,17 +385,11 @@
   }
 
   .left {
-    padding: 28px 24px;
+    padding: 28px 24px !important;
   }
 
   .title {
     font-size: 28px;
-    margin-bottom: 14px;
-  }
-
-  .description {
-    font-size: 15px;
-    margin-bottom: 18px;
   }
 
   .right {
@@ -334,35 +400,25 @@
     padding: 40px 0 120px;
   }
 
-  .number {
+  .stats {
+    gap: 20px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .quote {
+    padding: 12px 16px;
+  }
+
+  .neonNumber {
     font-size: 32px;
   }
 
-  .badgeText {
-    font-size: 11px;
-    padding: 3px 12px;
-  }
-
-  .tags {
-    margin-bottom: 20px;
-  }
-
-  .tag {
-    font-size: 12px;
-    padding: 3px 12px;
-  }
-
   .button {
+    padding: 12px 24px;
     font-size: 14px;
-    padding: 10px 20px;
-  }
-
-  .card::before {
-    display: none;
-  }
-
-  .section::after {
-    height: 100px;
   }
 }
 
@@ -372,7 +428,7 @@
   }
 
   .left {
-    padding: 20px 16px;
+    padding: 20px 16px !important;
   }
 
   .title {
@@ -381,7 +437,6 @@
 
   .description {
     font-size: 14px;
-    line-height: 1.6;
   }
 
   .right {
@@ -392,20 +447,21 @@
     border-radius: 14px;
   }
 
-  .number {
-    font-size: 26px;
+  .indexNumber {
+    font-size: 38px;
   }
 
-  .badge {
-    margin-bottom: 16px;
+  .stats {
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .button {
-    font-size: 13px;
-    padding: 8px 16px;
+  .neonTags {
+    gap: 6px;
   }
 
-  .tag {
+  .neonTag {
     font-size: 11px;
+    padding: 3px 10px;
   }
 }
