@@ -21,54 +21,75 @@ export default function Card({
 
   const positionFromTop = total - index;
   
-  // Cinematic slide overlap
+  // Neon stacking
   const y = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
+    [0, 0.25, 0.55, 0.85, 1],
     [
-      150 + (positionFromTop - 1) * 50,
-      100 + (positionFromTop - 1) * 30,
-      50 + (positionFromTop - 1) * 15,
-      20 + (positionFromTop - 1) * 5,
+      100 + (positionFromTop - 1) * 35,
+      70 + (positionFromTop - 1) * 20,
+      35 + (positionFromTop - 1) * 10,
+      10 + (positionFromTop - 1) * 3,
       0
     ]
   );
 
-  // Scale with cinematic zoom
   const scale = useTransform(
     scrollYProgress,
-    [0, 0.4, 0.7, 1],
+    [0, 0.3, 0.6, 1],
     [
-      0.75 - (positionFromTop - 1) * 0.015,
-      0.85 - (positionFromTop - 1) * 0.01,
-      0.95 - (positionFromTop - 1) * 0.005,
+      0.88 - (positionFromTop - 1) * 0.02,
+      0.92 - (positionFromTop - 1) * 0.015,
+      0.97 - (positionFromTop - 1) * 0.01,
       1
     ]
   );
 
-  // Cinematic tilt
   const rotateX = useTransform(
     scrollYProgress,
     [0, 0.4, 0.7, 1],
-    [8, 5, 2, 0]
+    [15, 8, 3, 0]
   );
 
-  const rotateY = useTransform(
+  const rotateZ = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.6, 1],
+    [0, 0.5, 1],
     [
-      (index % 2 === 0 ? 5 : -5),
-      (index % 2 === 0 ? 3 : -3),
-      (index % 2 === 0 ? 1 : -1),
+      (index % 3 === 0 ? 4 : index % 3 === 1 ? -4 : 2),
+      (index % 3 === 0 ? 2 : index % 3 === 1 ? -2 : 1),
       0
     ]
   );
 
-  // Opacity
+  // Neon glow intensity
+  const glowIntensity = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0.2, 0.6, 1]
+  );
+
+  // Colors for neon effect
+  const neonColors = [
+    "#6366f1", // Purple
+    "#ec4899", // Pink
+    "#14b8a6", // Teal
+    "#f59e0b", // Amber
+    "#8b5cf6", // Violet
+  ];
+
+  const neonColor = neonColors[index % neonColors.length];
+
+  // Glow effect
+  const glowSize = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [20, 40, 60]
+  );
+
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.4, 0.7, 1],
-    [0.15, 0.3, 0.6, 0.9, 1]
+    [0, 0.1, 0.3, 0.6, 1],
+    [0.2, 0.4, 0.7, 0.95, 1]
   );
 
   const zIndex = useTransform(
@@ -76,75 +97,44 @@ export default function Card({
     [0, 0.3, 0.6, 0.9, 1],
     [
       index + 1,
-      index + 5,
-      index + 10,
-      index + 15,
-      total + 30 + (total - index) * 3
+      index + 6,
+      index + 12,
+      index + 18,
+      total + 40 + (total - index) * 4
     ]
-  );
-
-  // Parallax layers
-  const bgY = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [150, 80, 30, -60]
-  );
-
-  const midY = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [100, 50, 15, -30]
-  );
-
-  const fgY = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 20, 5, -15]
   );
 
   // Image effects
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [90, 50, 15, -40]
+  );
+
   const imageScale = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [1.3, 1.15, 1]
+    [1.15, 1.08, 1]
   );
 
-  const imageBlur = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [8, 3, 0]
-  );
-
-  // Content effects
+  // Content
   const contentX = useTransform(
     scrollYProgress,
-    [0, 0.4, 0.7, 1],
-    [
-      (index % 2 === 0 ? -120 : 120),
-      (index % 2 === 0 ? -60 : 60),
-      (index % 2 === 0 ? -20 : 20),
-      0
-    ]
+    [0, 0.3, 0.6, 1],
+    [-80, -50, -20, 0]
   );
 
   const contentOpacity = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
+    [0, 0.15, 0.4, 0.7, 1],
     [0, 0.2, 0.5, 0.85, 1]
   );
 
-  // Cinematic vignette
-  const vignetteOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [0.8, 0.4, 0]
-  );
-
   // Shadow
-  const shadowY = useTransform(
+  const shadowSpread = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [60, 30, 10]
+    [5, 15, 25]
   );
 
   return (
@@ -152,45 +142,54 @@ export default function Card({
       ref={ref}
       className={styles.cardContainer}
       style={{
-        top: `${30 + index * 8}px`,
+        top: `${50 + index * 12}px`,
         zIndex: index + 1,
       }}
     >
       <motion.div
-        className={`${styles.card} ${styles.variation2}`}
+        className={`${styles.card} ${styles.variation3}`}
         style={{
           y,
           scale,
           rotateX,
-          rotateY,
+          rotateZ,
           opacity,
           zIndex,
           backgroundColor: color,
-          boxShadow: `0 ${shadowY}px 80px rgba(0,0,0,0.2)`,
+          boxShadow: `0 ${shadowSpread}px 80px rgba(99, 102, 241, ${glowIntensity * 0.15})`,
           transformOrigin: "center top",
+          border: `2px solid rgba(99, 102, 241, ${glowIntensity * 0.3})`,
         }}
         transition={{ 
           type: "spring", 
-          stiffness: 60, 
-          damping: 30 
+          stiffness: 90, 
+          damping: 22 
         }}
       >
-        {/* Cinematic vignette overlay */}
-        <motion.div 
-          className={styles.vignette}
-          style={{ opacity: vignetteOpacity }}
+        {/* Neon glow behind card */}
+        <motion.div
+          className={styles.neonGlow}
+          style={{
+            opacity: glowIntensity,
+            width: glowSize,
+            height: glowSize,
+            background: `radial-gradient(circle, ${neonColor}44, transparent 70%)`,
+          }}
         />
 
         <div className={styles.left}>
           <motion.div
-            className={styles.cinematicBadge}
+            className={styles.neonBadge}
             style={{
               opacity: contentOpacity,
-              x: useTransform(contentX, x => -x),
+              x: contentX,
             }}
           >
-            <span className={styles.projectTag}>PROJECT</span>
-            <span className={styles.projectNumber}>#{String(index + 1).padStart(2, "0")}</span>
+            <span className={styles.neonNumber} style={{ color: neonColor }}>
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <span className={styles.neonDot} style={{ backgroundColor: neonColor }} />
+            <span className={styles.neonLabel}>LIVE</span>
           </motion.div>
 
           <motion.h2
@@ -214,15 +213,24 @@ export default function Card({
           </motion.p>
 
           <motion.div
-            className={styles.quote}
+            className={styles.neonTags}
             style={{
               x: contentX,
-              opacity: useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 0.05, 0.3, 0.8]),
+              opacity: useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 0.05, 0.3, 1]),
             }}
           >
-            <span className={styles.quoteIcon}>"</span>
-            <span className={styles.quoteText}>Transforming ideas into reality</span>
-            <span className={styles.quoteIcon}>"</span>
+            {['Innovation', 'Design', 'Tech'].map((tag, i) => (
+              <span 
+                key={i} 
+                className={styles.neonTag}
+                style={{ 
+                  borderColor: neonColor + '44',
+                  color: neonColor 
+                }}
+              >
+                {tag}
+              </span>
+            ))}
           </motion.div>
 
           <motion.div
@@ -230,9 +238,10 @@ export default function Card({
             style={{
               x: contentX,
               opacity: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 0.05, 0.3, 1]),
+              backgroundColor: neonColor,
             }}
           >
-            <span>Discover →</span>
+            <span>Explore Now →</span>
           </motion.div>
         </div>
 
@@ -242,12 +251,16 @@ export default function Card({
             alt={title}
             className={styles.image}
             style={{
-              y: bgY,
+              y: imageY,
               scale: imageScale,
-              filter: `blur(${imageBlur}px)`,
             }}
           />
-          <div className={styles.parallaxOverlay} />
+          <motion.div 
+            className={styles.neonOverlay}
+            style={{
+              background: `linear-gradient(135deg, ${neonColor}22 0%, transparent 60%)`,
+            }}
+          />
         </div>
       </motion.div>
     </div>
