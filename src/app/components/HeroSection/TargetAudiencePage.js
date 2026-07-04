@@ -162,7 +162,9 @@ export default function TargetAudiencePage() {
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.heading}>
-            Who Is <span className={styles.highlight}>MagicChat</span> Best For?
+            Who Is MagicChat
+             {/* <span className={styles.highlight}>MagicChat</span> */}
+              Best For?
           </h2>
           <p className={styles.intro}>
             MagicChat is built for teams who want powerful, fast, and low-cost

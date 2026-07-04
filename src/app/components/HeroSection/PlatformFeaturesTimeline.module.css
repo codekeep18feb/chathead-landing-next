@@ -216,15 +216,20 @@
 
 .header h2 {
   font-size: 3rem;
-  font-weight: 800;
-  background: var(--animated-gradient-color);
+  letter-spacing: -0.05rem;
+  font-weight: 500;
+  line-height: 1.2;
+  /* background: var(--animated-gradient-color);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background-clip: text; */
   margin-bottom: 1.5rem;
   animation: titleFloat 3s ease-in-out infinite;
   position: relative;
   z-index: 2;
+  color: var(--heading-color);
+  color: #fff;
+
 }
 
 @keyframes titleFloat {
