@@ -102,13 +102,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #4bcf9e;
+  border: 2px dashed #205ae3;
   transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
 .zigzagItem:hover .iconCircle {
   transform: scale(1.05) rotate(5deg);
-  border: 2px solid #4bcf9e;
+  border: 2px solid var(--primary-gradientss);
   box-shadow: 0 0 30px rgba(75, 207, 158, 0.3);
 }
 

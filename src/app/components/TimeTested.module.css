@@ -33,7 +33,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, #f5f5f5 , #99e9a5, #f5f5f5);
+  background: linear-gradient(to bottom, #f5f5f5 , var(--secondaryy-color), #f5f5f5);
   z-index: 1;
 }
 

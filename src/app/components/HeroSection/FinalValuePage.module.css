@@ -192,7 +192,7 @@
   background: linear-gradient(
     135deg,
     var(--primary-color) 0%,
-    var(--secondary-color) 100%
+    var(--secondaryy-color) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
@@ -260,7 +260,7 @@
   background: linear-gradient(
     90deg,
     var(--primary-color),
-    var(--secondary-color),
+    var(--secondaryy-color),
     var(--accent-pink)
   );
   transform: scaleX(0);

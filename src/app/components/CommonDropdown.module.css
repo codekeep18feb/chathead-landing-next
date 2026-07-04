@@ -380,7 +380,7 @@
 .platformSection:nth-child(2) .card:hover .iconWrapper {
   background: linear-gradient(
     135deg,
-    var(--secondary-color),
+    var(--secondaryy-color),
     var(--primary-color)
   );
 }

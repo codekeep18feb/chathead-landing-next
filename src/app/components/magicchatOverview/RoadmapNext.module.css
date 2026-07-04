@@ -84,7 +84,7 @@
 .bullets li:hover {
   transform: translateY(-4px) scale(1.02);
   background: var(--light-primary-color);
-  border-color: var(--secondary-color);
+  border-color: var(--secondaryy-color);
   box-shadow: 0 6px 15px rgba(77, 107, 223, 0.18);
 }
 
@@ -92,7 +92,7 @@
   content: "✨";
   font-size: 1.3rem;
   animation: pulse 3s infinite;
-  color: var(--secondary-color);
+  color: var(--secondaryy-color);
 }
 
 @keyframes pulse {

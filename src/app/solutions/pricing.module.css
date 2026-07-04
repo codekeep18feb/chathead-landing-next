@@ -45,7 +45,7 @@
 }
 
 .activeTabButton {
-  background: linear-gradient(45deg, #99e9a5, #4d6bdf);
+  background: linear-gradient(45deg, var(--secondaryy-color), #4d6bdf);
   box-shadow: 0px 4px 10px #b0bff9;
   color: white;
 }
@@ -138,7 +138,7 @@
 }
 
 .planButton {
-  background: linear-gradient(to right, #99e9a5, #4d6bdf);
+  background: linear-gradient(to right, var(--secondaryy-color), #4d6bdf);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
