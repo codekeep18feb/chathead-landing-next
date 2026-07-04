@@ -230,11 +230,8 @@
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--subbtn-color),
-    var(--sub1-btn-color)
-  );
+  background: var(--primary-gradientss);
+
   border-radius: 3px;
 }
 

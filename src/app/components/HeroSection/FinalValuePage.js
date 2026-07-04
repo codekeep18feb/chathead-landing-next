@@ -58,8 +58,10 @@ export default function FinalValuePage() {
           Join 10,000+ happy customers
         </div>
 
-        <h3>
-          Value That <span className={styles.gradientText}>Scales</span> With You
+        <h3 className={styles.heading}>
+          Value That Scales
+          {/* <span className={styles.gradientText}>Scales</span> */}
+           With You
         </h3>
         <p className={styles.subtitle}>
           Join thousands of companies that have transformed their customer support
