@@ -1,0 +1,102 @@
+.container {
+  width: 100%;
+  max-width: 350px;
+  height: 400px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.front {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  transform: rotateY(0deg);
+}
+
+.back {
+  background: linear-gradient(135deg, #1e1b4b, #312e81);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.emoji {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.frontTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.frontDesc {
+  font-size: 15px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.flipHint {
+  margin-top: 20px;
+  font-size: 13px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+
+.backTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.features li {
+  padding: 8px 0;
+  font-size: 15px;
+  opacity: 0.9;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.flipButton {
+  padding: 12px 36px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  color: #6366f1;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.flipButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}

@@ -3,6 +3,7 @@
 import styles from "./ScrollCards.module.css";
 import Card from "./Card";
 import GlassCard from "./GlassCard";
+import FlipCard from "./FlipCard";
 
 export default function ScrollCards({ cards = [] }) {
   return (
@@ -17,6 +18,8 @@ export default function ScrollCards({ cards = [] }) {
         //   />
 
           <GlassCard  key={index} index={index} total={cards.length} {...card}/>
+        //   <FlipCard  key={index} index={index} total={cards.length} {...card} />
+
         ))}
       </div>
     </section>
