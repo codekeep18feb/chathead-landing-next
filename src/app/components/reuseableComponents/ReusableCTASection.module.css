@@ -219,7 +219,8 @@
   }
 
   .ctaTrustSignals {
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
     align-items: center;
     gap: 12px;
   }
@@ -263,6 +264,7 @@
   .ctaGlowSection {
     padding: 40px 16px;
     border-radius: 16px;
+    margin-bottom: 30px;
   }
 
   .ctaPulseText {

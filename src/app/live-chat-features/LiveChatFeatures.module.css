@@ -1,28 +1,32 @@
-/* LiveChatFeatures.module.css - Clean Version */
+/* LiveChatFeatures.module.css - Fully Responsive */
 
 .container {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   color: var(--heading-color, #1a1a2e);
   background: var(--bg-light, #f8f9fe);
   padding-bottom: 1rem;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ─── Section Titles ──────────────────────────────────────────────────── */
 .sectionTitle {
   text-align: center;
-  font-size: clamp(28px, 4vw, 38px);
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 0.75rem;
   color: var(--heading-color, #1a1a2e);
+  padding: 0 1rem;
 }
 
 .sectionSubtitle {
   text-align: center;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 2vw, 1rem);
   color: var(--light-text-color, #6b7280);
   max-width: 600px;
-  margin: 0 auto 48px;
+  margin: 0 auto 2.5rem;
   line-height: 1.6;
+  padding: 0 1rem;
 }
 
 .highlight {
@@ -41,14 +45,14 @@
 
 /* ─── Problem Section ────────────────────────────────────────────────── */
 .problemSection {
-  padding: 4rem 2rem;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
   background: var(--bg-light, #f8f9fe);
 }
 
 .problemGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
   max-width: 1320px;
   margin: 0 auto;
 }
@@ -56,7 +60,7 @@
 .problemCard {
   background: var(--cards-bg, white);
   border-radius: 20px;
-  padding: 32px;
+  padding: clamp(1.5rem, 3vw, 2rem);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--border-color, #e5e7eb);
   box-shadow: var(--shadow-soft, 0 4px 20px rgba(0, 0, 0, 0.06));
@@ -89,33 +93,35 @@
 
 .problemHeader {
   display: flex;
-  gap: 16px;
+  gap: 0.75rem;
   align-items: flex-start;
 }
 
 .problemIcon {
-  font-size: 28px;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
   flex-shrink: 0;
 }
 
 .problemText {
-  font-size: 16px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   color: var(--heading-color, #1f2937);
   font-weight: 500;
   line-height: 1.6;
   font-style: italic;
+  margin: 0;
 }
 
 .solutionDivider {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin: 20px 0;
+  gap: 1rem;
+  margin: 1.25rem 0;
   color: var(--light-text-color, #9ca3af);
+  flex-wrap: wrap;
 }
 
 .arrowDown {
-  font-size: 20px;
+  font-size: 1.25rem;
   animation: bounce 2s ease-in-out infinite;
   color: var(--primary-color, #667eea);
 }
@@ -126,7 +132,7 @@
 }
 
 .solutionLabel {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--primary-color, #667eea);
   letter-spacing: 1px;
@@ -135,21 +141,21 @@
 
 .solutionContent {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: flex-start;
-  padding: 16px;
+  padding: 1rem;
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
   border-radius: 12px;
   border-left: 3px solid var(--primary-color, #667eea);
 }
 
 .solutionIcon {
-  font-size: 20px;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 
 .solutionText {
-  font-size: 15px;
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
   color: var(--heading-color, #374151);
   line-height: 1.6;
   margin: 0;
@@ -157,26 +163,26 @@
 
 /* ─── Advantages Timeline ───────────────────────────────────────────── */
 .advantagesSection {
-  padding: 4rem 2rem;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
   background: linear-gradient(180deg, var(--bg-light, #ffffff), var(--bg-light, #f8f9fe));
 }
 
 .advantagesHeader {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto 48px;
+  margin: 0 auto 2.5rem;
 }
 
 .advantagesGridTimeline {
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 1.25rem 0;
 }
 
 .advantagesCardTimeline {
   display: flex;
-  gap: 24px;
-  margin-bottom: 20px;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 1.25rem;
 }
 
 .advantagesCardTimeline:last-child {
@@ -187,13 +193,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 8px;
+  padding-top: 0.5rem;
   flex-shrink: 0;
 }
 
 .advantagesTimelineDot {
-  width: 16px;
-  height: 16px;
+  width: clamp(0.875rem, 1.5vw, 1rem);
+  height: clamp(0.875rem, 1.5vw, 1rem);
   border-radius: 50%;
   border: 3px solid white;
   box-shadow: 0 0 0 3px currentColor;
@@ -210,7 +216,7 @@
   height: 60px;
   border-left: 2px dashed;
   opacity: 0.3;
-  margin: 4px 0;
+  margin: 0.25rem 0;
 }
 
 .advantagesCardTimeline:last-child .advantagesTimelineLine {
@@ -219,10 +225,10 @@
 
 .advantagesCardTimelineContent {
   display: flex;
-  gap: 20px;
+  gap: clamp(1rem, 2vw, 1.25rem);
   align-items: flex-start;
   background: var(--cards-bg, white);
-  padding: 24px;
+  padding: clamp(1.25rem, 2.5vw, 1.5rem);
   border-radius: 16px;
   border: 1px solid var(--border-color, #e5e7eb);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -237,13 +243,13 @@
 }
 
 .advantagesTimelineIcon {
-  width: 56px;
-  height: 56px;
+  width: clamp(2.5rem, 4vw, 3.5rem);
+  height: clamp(2.5rem, 4vw, 3.5rem);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
@@ -253,14 +259,14 @@
 }
 
 .advantagesCardTimelineContent h3 {
-  font-size: 18px;
+  font-size: clamp(1rem, 2vw, 1.125rem);
   font-weight: 700;
-  margin: 0 0 8px 0;
+  margin: 0 0 0.5rem 0;
   color: var(--heading-color, #1a1a2e);
 }
 
 .advantagesCardTimelineContent p {
-  font-size: 15px;
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
   color: var(--light-text-color, #6b7280);
   line-height: 1.7;
   margin: 0;
@@ -268,7 +274,7 @@
 
 /* ─── Features Section ───────────────────────────────────────────────── */
 .featuresSection {
-  padding: 0rem 2rem;
+  padding: clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem);
   background: var(--bg-light, #f8f9fe);
 }
 
@@ -279,14 +285,14 @@
 
 /* ─── Comparison Section ────────────────────────────────────────────── */
 .comparisonSection {
-  padding: 4rem 2rem;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
   background: var(--bg-light, #ffffff);
 }
 
 .comparisonSplitLayout {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 40px;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
   max-width: 1100px;
   margin: 0 auto;
   align-items: center;
@@ -296,10 +302,11 @@
 .comparisonRight {
   background: var(--cards-bg, white);
   border-radius: 24px;
-  padding: 40px 32px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
   border: 1px solid var(--border-color, #e5e7eb);
   transition: all 0.4s ease;
   box-shadow: var(--shadow-soft, 0 4px 20px rgba(0, 0, 0, 0.06));
+  width: 100%;
 }
 
 .comparisonLeft:hover {
@@ -331,13 +338,13 @@
 
 .comparisonBadge {
   display: inline-block;
-  padding: 4px 16px;
+  padding: 0.25rem 1rem;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .comparisonLeft .comparisonBadge {
@@ -352,21 +359,22 @@
 
 .comparisonLeftTitle,
 .comparisonRightTitle {
-  font-size: 22px;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
   font-weight: 700;
   color: var(--heading-color, #1a1a2e);
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .comparisonDivider {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .comparisonArrow {
-  font-size: 32px;
+  font-size: clamp(1.75rem, 3vw, 2rem);
   color: var(--primary-color, #667eea);
   animation: arrowSlide 2s ease-in-out infinite;
 }
@@ -377,11 +385,11 @@
 }
 
 .comparisonVs {
-  font-size: 20px;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 800;
   color: var(--primary-color, #667eea);
   background: var(--bg-light, #f8f9fe);
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   border-radius: 50%;
   border: 2px solid var(--primary-color, #667eea);
 }
@@ -393,13 +401,14 @@
 }
 
 .comparisonListAlt li {
-  padding: 10px 0;
-  font-size: 15px;
+  padding: 0.625rem 0;
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
   color: var(--heading-color, #374151);
   border-bottom: 1px solid var(--border-color, #f3f4f6);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
+  word-break: break-word;
 }
 
 .comparisonListAlt li:last-child {
@@ -414,18 +423,18 @@
 .winnerList li::before {
   content: "✦";
   color: #fbbf24;
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 
 .winnerBadge {
   display: inline-block;
-  margin-top: 24px;
-  padding: 10px 24px;
+  margin-top: 1.5rem;
+  padding: 0.625rem 1.5rem;
   background: linear-gradient(135deg, var(--primary-color, #667eea), var(--subbtn-color, #764ba2));
   color: white;
   border-radius: 100px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   text-align: center;
   width: 100%;
   transition: all 0.3s ease;
@@ -438,14 +447,14 @@
 
 /* ─── Use Cases Visual Cards ────────────────────────────────────────── */
 .usecaseSection {
-  padding: 4rem 2rem;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
   background: linear-gradient(180deg, var(--bg-light, #f8f9fe), var(--bg-light, #ffffff));
 }
 
 .usecaseGridVisual {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
   max-width: 1320px;
   margin: 0 auto;
 }
@@ -453,10 +462,10 @@
 .usecaseCardVisual {
   position: relative;
   border-radius: 24px;
-  padding: 40px 32px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 280px;
+  min-height: clamp(200px, 40vw, 280px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -485,9 +494,9 @@
 }
 
 .usecaseIconVisual {
-  font-size: 56px;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
   transition: all 0.4s ease;
 }
 
@@ -496,25 +505,25 @@
 }
 
 .usecaseCardVisualContent h3 {
-  font-size: 22px;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
   color: var(--heading-color, #1a1a2e);
 }
 
 .usecaseCardVisualContent p {
-  font-size: 15px;
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
   color: var(--light-text-color, #6b7280);
   line-height: 1.7;
-  margin: 0 0 16px 0;
+  margin: 0 0 1rem 0;
 }
 
 .usecaseCardVisualTag {
   display: inline-block;
-  padding: 4px 16px;
+  padding: 0.25rem 1rem;
   background: var(--cards-bg, white);
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--primary-color, #667eea);
   box-shadow: var(--shadow-soft, 0 4px 20px rgba(0, 0, 0, 0.06));
@@ -530,12 +539,12 @@
 .ctaSection {
   position: relative;
   text-align: center;
-  padding: 100px 40px;
+  padding: clamp(3rem, 10vw, 6rem) clamp(1.5rem, 5vw, 2.5rem);
   background: linear-gradient(135deg, #1a1a2e, #16213e);
   overflow: hidden;
   border-radius: 32px;
   max-width: 1320px;
-  margin: 80px auto 0;
+  margin: clamp(2rem, 6vw, 5rem) auto 0;
 }
 
 .ctaSection::before {
@@ -575,65 +584,69 @@
 }
 
 .ctaIcon {
-  font-size: 64px;
-  margin-bottom: 24px;
+  font-size: clamp(3rem, 8vw, 4rem);
+  margin-bottom: 1.5rem;
 }
 
 .ctaTitle {
-  font-size: clamp(36px, 4vw, 52px);
+  font-size: clamp(1.75rem, 6vw, 3.25rem);
   font-weight: 800;
   color: white;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
   line-height: 1.2;
 }
 
 .ctaSubtitle {
-  font-size: 18px;
+  font-size: clamp(1rem, 2vw, 1.125rem);
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
   line-height: 1.7;
+  padding: 0 1rem;
 }
 
 .ctaButtons {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   justify-content: center;
-  margin-bottom: 32px;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
 .ctaPrimary {
-  padding: 16px 36px;
+  padding: 0.875rem 2.25rem;
   background: linear-gradient(135deg, var(--primary-color, #667eea), var(--subbtn-color, #764ba2));
   color: white;
   border: none;
   border-radius: 50px;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
   transition: all 0.3s ease;
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  min-height: 48px;
+  justify-content: center;
 }
 
 .ctaPrimary:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
-  gap: 16px;
+  gap: 1rem;
 }
 
 .ctaSecondary {
-  padding: 16px 36px;
+  padding: 0.875rem 2.25rem;
   background: transparent;
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 48px;
 }
 
 .ctaSecondary:hover {
@@ -645,38 +658,41 @@
 .ctaTrust {
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: clamp(1rem, 3vw, 2rem);
   flex-wrap: wrap;
 }
 
 .ctaTrust span {
-  font-size: 14px;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   color: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 /* ─── Responsive ──────────────────────────────────────────────────────── */
-@media (max-width: 1200px) {
-  .problemSection,
-  .advantagesSection,
-  .featuresSection,
-  .comparisonSection,
-  .usecaseSection {
-    padding: 4rem 3rem;
+
+/* Tablet and smaller laptops */
+@media (max-width: 1024px) {
+  .problemGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .usecaseGridVisual {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 968px) {
+/* Small tablets and large phones */
+@media (max-width: 768px) {
   .comparisonSplitLayout {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 1.5rem;
   }
   
   .comparisonDivider {
     flex-direction: row;
-    padding: 8px 0;
+    padding: 0.5rem 0;
   }
   
   .comparisonArrow {
@@ -689,142 +705,192 @@
   }
   
   .problemGrid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .problemSection,
-  .advantagesSection,
-  .featuresSection,
-  .comparisonSection,
-  .usecaseSection {
-    padding: 3rem 1.5rem;
-  }
-
-  .problemGrid {
     grid-template-columns: 1fr;
   }
-
+  
   .usecaseGridVisual {
     grid-template-columns: 1fr 1fr;
   }
-
-  .ctaSection {
-    padding: 60px 24px;
-    margin: 40px 20px 0;
-  }
-
-  .ctaButtons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ctaPrimary,
-  .ctaSecondary {
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
-  }
-
-  .ctaTrust {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
+  
   .advantagesCardTimelineContent {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 1.25rem;
   }
-
-  .advantagesTimelineDot {
-    width: 14px;
-    height: 14px;
-  }
-
-  .advantagesTimelineLine {
-    height: 40px;
-  }
-
+  
   .advantagesCardTimelineContent:hover {
     transform: translateX(0);
   }
-
-  .advantagesCardTimelineContent h3 {
-    font-size: 17px;
+  
+  .advantagesTimelineDot {
+    width: 12px;
+    height: 12px;
   }
-
-  .advantagesCardTimelineContent p {
-    font-size: 14px;
+  
+  .advantagesTimelineLine {
+    height: 40px;
   }
-
-  .comparisonLeft,
-  .comparisonRight {
-    padding: 24px 20px;
-  }
-}
-
-@media (max-width: 640px) {
-  .usecaseGridVisual {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .sectionTitle {
-    font-size: 28px;
-  }
-
-  .usecaseCardVisual {
-    min-height: 220px;
-    padding: 32px 24px;
-  }
-
-  .comparisonLeft,
-  .comparisonRight {
-    padding: 24px 20px;
-  }
-
-  .advantagesSection {
+  
+  .ctaSection {
     padding: 3rem 1.5rem;
+    margin: 2rem 1rem 0;
+    border-radius: 24px;
   }
-
-  .advantagesGridTimeline {
-    padding: 0;
+  
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
   }
-
-  .advantagesCardTimeline {
-    gap: 16px;
+  
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    max-width: 300px;
   }
-
-  .advantagesTimelineIcon {
-    width: 48px;
-    height: 48px;
-    font-size: 24px;
+  
+  .ctaTrust {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
   }
-
-  .ctaTitle {
-    font-size: 28px;
-  }
-
-  .ctaSubtitle {
-    font-size: 16px;
+  
+  .comparisonLeft,
+  .comparisonRight {
+    padding: 1.5rem 1.25rem;
   }
 }
 
+/* Small phones */
 @media (max-width: 480px) {
   .container {
-    padding: 0 16px;
+    padding: 0 0.5rem;
   }
-
+  
   .problemSection,
   .advantagesSection,
   .featuresSection,
   .comparisonSection,
   .usecaseSection {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .usecaseGridVisual {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  
+  .usecaseCardVisual {
+    min-height: 180px;
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .advantagesCardTimeline {
+    gap: 0.75rem;
+  }
+  
+  .advantagesTimelineIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+  
+  .comparisonLeft,
+  .comparisonRight {
+    padding: 1rem 0.875rem;
+  }
+  
+  .ctaSection {
     padding: 2rem 1rem;
+    margin: 1.5rem 0.5rem 0;
+    border-radius: 16px;
+  }
+  
+  .ctaIcon {
+    font-size: 2.5rem;
+  }
+  
+  .ctaTitle {
+    font-size: 1.5rem;
+  }
+  
+  .ctaSubtitle {
+    font-size: 0.875rem;
+  }
+  
+  .ctaPrimary,
+  .ctaSecondary {
+    padding: 0.75rem 1.5rem;
+    max-width: 100%;
+    font-size: 0.875rem;
+    min-height: 44px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .problemCard {
+    padding: 1rem;
+  }
+  
+  .solutionContent {
+    padding: 0.75rem;
+  }
+  
+  .advantagesCardTimelineContent {
+    padding: 1rem;
+  }
+  
+  .comparisonListAlt li {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0;
+  }
+  
+  .winnerBadge {
+    font-size: 0.8125rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .usecaseCardVisual {
+    min-height: 150px;
+    padding: 1rem 1.25rem;
+  }
+  
+  .usecaseIconVisual {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .usecaseCardVisualContent h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .usecaseCardVisualContent p {
+    font-size: 0.8125rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ctaSection {
+    padding: 1.5rem 1rem;
+  }
+  
+  .ctaIcon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ctaTitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .ctaSubtitle {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
   }
 }
