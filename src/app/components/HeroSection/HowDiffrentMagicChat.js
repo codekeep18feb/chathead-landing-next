@@ -139,8 +139,9 @@ export default function HowDiffrentMagicChat() {
         )}
 
         <h2 className={styles.heading}>
-          <span className={styles.headingGlow}>How are we different</span>
-          <span className={styles.headingHighlight}> from others?</span>
+          How are we different from others?
+          {/* <span className={styles.headingGlow}>How are we different</span>
+          <span className={styles.headingHighlight}> from others?</span> */}
         </h2>
 
         <div className={styles.tabContainer}>

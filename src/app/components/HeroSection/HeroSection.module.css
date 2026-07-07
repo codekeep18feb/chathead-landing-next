@@ -78,7 +78,7 @@
 }
 
 .highlight {
-  color: #99e9a5;
+  color: var(--secondaryy-color);
   position: relative;
   display: inline-block;
   margin-left: 6px;
@@ -91,7 +91,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #99e9a5, #b6ffc1);
+  background: linear-gradient(90deg, var(--secondaryy-color), #b6ffc1);
   transform: scaleX(0);
   animation: underlineGrow 0.5s ease-out 0.5s forwards;
 }

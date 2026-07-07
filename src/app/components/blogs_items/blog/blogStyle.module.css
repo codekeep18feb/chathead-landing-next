@@ -139,7 +139,7 @@
   transition: transform 0.3s ease;
   overflow: hidden;
   cursor: pointer;
-  border-bottom: 5px solid var(--secondary-color);
+  border-bottom: 5px solid var(--secondaryy-color);
 }
 
 .article:hover {

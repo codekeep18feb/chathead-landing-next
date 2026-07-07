@@ -7,42 +7,40 @@
   border-radius: 12px;
 }
 
-
 .mainTitle {
-font-size: 2.5rem;
-font-weight: 600;
-background-clip: text;
-margin-bottom: 3rem;
-position: relative;
-display: inline-block;
-background: var(--primary-gradientss);
+  font-size: 3rem;
+  letter-spacing: -0.05rem;
+  font-weight: 500;
+  line-height: 1.2;
+  background-clip: text;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  /* background: var(--primary-gradientss);
 background-clip: text;
 -webkit-background-clip: text;
-color: transparent;
+color: transparent; */
+  color: var(--heading-color);
 }
 
 .mainTitle::after {
-content: "";
-position: absolute;
-bottom: -10px;
-left: 50%;
-transform: translateX(-50%);
-width: 60px;
-height: 3px;
-background: linear-gradient(
-90deg,
-var(--subbtn-color),
-var(--sub1-btn-color)
-);
-border-radius: 3px;
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--primary-gradientss);
+
+  border-radius: 3px;
 }
 
-
 .section p {
-font-size: 1.125rem;
-    color: var(--text-color);
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.7;
-    opacity: 0.85;
+  font-size: 1.125rem;
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+  opacity: 0.85;
 }

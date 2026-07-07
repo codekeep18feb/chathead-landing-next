@@ -76,11 +76,11 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(45deg, #99e9a5, #4d6bdf);
+  background: linear-gradient(45deg, var(--secondaryy-color), #4d6bdf);
 }
 
 .popularTag {
-  background: linear-gradient(45deg, #99e9a5, #4d6bdf);
+  background: linear-gradient(45deg, var(--secondaryy-color), #4d6bdf);
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 15px;

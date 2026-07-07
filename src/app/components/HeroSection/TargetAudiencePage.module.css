@@ -36,32 +36,32 @@
   margin-bottom: 4rem;
 }
 .heading {
-font-size: 2.5rem;
-font-weight: 600;
+  font-size: 3rem;
+  letter-spacing: -0.05rem;
+  font-weight: 500;
+  line-height: 1.2;
+  background-clip: text;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  /* background: var(--primary-gradientss);
 background-clip: text;
-margin-bottom: 3rem;
-position: relative;
-display: inline-block;
-background: var(--primary-gradientss);
-background-clip: text;
--webkit-background-clip: text;
-color: transparent;
+-webkit-background-clip: text; */
+  /* color: transparent; */
+  color: var(--heading-color);
 }
 
 .heading::after {
-content: "";
-position: absolute;
-bottom: -10px;
-left: 50%;
-transform: translateX(-50%);
-width: 60px;
-height: 3px;
-background: linear-gradient(
-90deg,
-var(--subbtn-color),
-var(--sub1-btn-color)
-);
-border-radius: 3px;
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--primary-gradientss);
+
+  border-radius: 3px;
 }
 
 .highlight {
@@ -246,7 +246,8 @@ border-radius: 3px;
   height: 52px;
 }
 
-.prevBtnLeft, .nextBtnLeft {
+.prevBtnLeft,
+.nextBtnLeft {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,7 +266,8 @@ border-radius: 3px;
   box-shadow: var(--shadow-soft);
 }
 
-.prevBtnLeft:hover, .nextBtnLeft:hover {
+.prevBtnLeft:hover,
+.nextBtnLeft:hover {
   background: var(--sub-btn-color);
   border-color: var(--sub-btn-color);
   color: var(--white-text-color);
@@ -358,7 +360,11 @@ border-radius: 3px;
 
 /* Right Side - Image */
 .imageSide {
-  background: linear-gradient(135deg, var(--light-primary-color), var(--light-secondary-color));
+  background: linear-gradient(
+    135deg,
+    var(--light-primary-color),
+    var(--light-secondary-color)
+  );
   height: 100%;
   display: flex;
   align-items: center;
@@ -395,12 +401,14 @@ border-radius: 3px;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.5s ease, opacity 0.3s ease;
+  transition:
+    transform 0.5s ease,
+    opacity 0.3s ease;
 }
 
 /* Light Black Overlay */
 .imageWrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -425,7 +433,9 @@ border-radius: 3px;
 .fadeEnterActive {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
 }
 
 .fadeExit {
@@ -436,7 +446,9 @@ border-radius: 3px;
 .fadeExitActive {
   opacity: 0;
   transform: translateX(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 /* Staggered animations for list items */
@@ -445,11 +457,21 @@ border-radius: 3px;
   animation: slideInItem 0.4s ease forwards;
 }
 
-.featureList li:nth-child(1) { animation-delay: 0.05s; }
-.featureList li:nth-child(2) { animation-delay: 0.1s; }
-.featureList li:nth-child(3) { animation-delay: 0.15s; }
-.featureList li:nth-child(4) { animation-delay: 0.2s; }
-.featureList li:nth-child(5) { animation-delay: 0.25s; }
+.featureList li:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.featureList li:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.featureList li:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.featureList li:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.featureList li:nth-child(5) {
+  animation-delay: 0.25s;
+}
 
 /* Prevent layout shifts */
 .card > * {
@@ -500,7 +522,8 @@ border-radius: 3px;
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -526,55 +549,56 @@ border-radius: 3px;
     gap: 0;
     min-height: auto;
   }
-  
+
   .contentSide {
     padding: 2rem;
     order: 2;
   }
-  
+
   .imageSide {
     padding: 2rem;
     order: 1;
     min-height: 350px;
   }
-  
+
   .imageWrapper {
     min-height: 350px;
   }
-  
+
   .title {
     font-size: 1.5rem;
     min-height: 70px;
   }
-  
+
   .painPoint {
     min-height: auto;
   }
-  
+
   .featureList {
     min-height: auto;
   }
-  
+
   .ideal {
     min-height: auto;
   }
-  
+
   .navButtonsLeft {
     margin-bottom: 1rem;
     height: 44px;
   }
-  
-  .prevBtnLeft, .nextBtnLeft {
+
+  .prevBtnLeft,
+  .nextBtnLeft {
     width: 36px;
     height: 36px;
     font-size: 1rem;
   }
-  
+
   .autoPlayBtn {
     width: 28px;
     height: 28px;
   }
-  
+
   .slideIndicator {
     height: 20px;
   }
@@ -584,62 +608,63 @@ border-radius: 3px;
   .container {
     padding: 2rem 1rem;
   }
-  
+
   .heading {
     font-size: 1.8rem;
   }
-  
+
   .intro {
     font-size: 0.9rem;
   }
-  
+
   .contentSide {
     padding: 1.5rem;
   }
-  
+
   .title {
     font-size: 1.25rem;
     min-height: 60px;
   }
-  
+
   .featureList li {
     font-size: 0.85rem;
     min-height: 28px;
   }
-  
+
   .indicatorDot {
     width: 6px;
     height: 6px;
   }
-  
+
   .activeIndicatorDot {
     width: 20px;
   }
-  
+
   .navButtonsLeft {
     gap: 0.75rem;
     height: 40px;
   }
-  
-  .prevBtnLeft, .nextBtnLeft {
+
+  .prevBtnLeft,
+  .nextBtnLeft {
     width: 32px;
     height: 32px;
   }
-  
+
   .autoPlayBtn {
     width: 26px;
     height: 26px;
   }
-  
+
   .progressContainer {
     gap: 0.5rem;
     height: 28px;
   }
-  
+
   .slideIndicator {
     height: 18px;
   }
-  
+
   .category {
     height: 30px;
   }

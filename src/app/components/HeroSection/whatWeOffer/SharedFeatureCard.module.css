@@ -19,7 +19,7 @@
     rgba(236, 72, 153, 0.05) 100%
   );
   border-radius: 32px;
-  border: 1px solid rgba(75, 207, 158, 0.3);
+  border: 1px solid rgba(75, 82, 207, 0.3);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -33,7 +33,7 @@
 .card:hover {
   transform: translateY(-15px) rotateX(5deg);
   box-shadow: 0 30px 60px rgba(75, 207, 158, 0.3);
-  border-color: rgba(75, 207, 158, 0.6);
+  border-color: rgba(77, 65, 210, 0.6);
   background: linear-gradient(
     135deg,
     rgba(75, 207, 158, 0.25) 0%,
@@ -133,7 +133,7 @@
   position: relative;
   animation: float 3s ease-in-out infinite;
   line-height: 1;
-  color: #6366f1;
+  color: var(--secondaryy-color);
 }
 
 /* Icon Floating Animation */

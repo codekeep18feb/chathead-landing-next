@@ -22,14 +22,22 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 990);
+      const isMobileView = window.innerWidth <= 990;
+      setIsMobile(isMobileView);
+      // Close menu if switching to desktop
+      if (!isMobileView && menuOpen) {
+        setMenuOpen(false);
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+      }
     };
 
     window.addEventListener("resize", handleResize);
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [menuOpen]);
 
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -42,14 +50,28 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
+    // Toggle body scroll
     if (!menuOpen) {
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
     } else {
-      document.body.style.overflow = "auto";
-      document.body.style.position = "static";
-      document.body.style.width = "auto";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
+  };
+
+  // Close menu function - to be called from child components
+  const closeMenu = () => {
+    if (menuOpen) {
+      setMenuOpen(false);
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
+    if (hoveredContentKey) {
+      setHoveredContentKey(null);
     }
   };
 
@@ -63,7 +85,6 @@ const Navbar = () => {
   // Handle mouse enter on nav items
   const handleMouseEnter = (key) => {
     if (!isMobile) {
-      // Clear any pending close timeout
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current);
         hoverTimeoutRef.current = null;
@@ -75,7 +96,6 @@ const Navbar = () => {
   // Handle mouse leave from nav items
   const handleMouseLeave = () => {
     if (!isMobile && !isHoveringDropdownRef.current) {
-      // Start timeout to close dropdown
       hoverTimeoutRef.current = setTimeout(() => {
         setHoveredContentKey(null);
         document.body.style.overflow = "auto";
@@ -112,9 +132,9 @@ const Navbar = () => {
   const handleLogoClick = () => {
     if (menuOpen) {
       setMenuOpen(false);
-      document.body.style.overflow = "auto";
-      document.body.style.position = "static";
-      document.body.style.width = "auto";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     }
     if (hoveredContentKey) {
       setHoveredContentKey(null);
@@ -124,7 +144,7 @@ const Navbar = () => {
 
   const handleNavItemClick = (key, e) => {
     e.stopPropagation();
-    
+
     if (isMobile) {
       e.preventDefault();
       if (hoveredContentKey === key) {
@@ -138,9 +158,9 @@ const Navbar = () => {
   const handlePricingClick = (e) => {
     if (menuOpen) {
       setMenuOpen(false);
-      document.body.style.overflow = "auto";
-      document.body.style.position = "static";
-      document.body.style.width = "auto";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     }
     if (hoveredContentKey) {
       setHoveredContentKey(null);
@@ -154,13 +174,15 @@ const Navbar = () => {
   const renderContent = () => {
     switch (hoveredContentKey) {
       case "platform":
-        return <Platform />;
+        return <Platform onCloseMenu={closeMenu} />;
       case "solutions":
-        return <Solutions onCloseModal={handleCloseModal} />;
+        return (
+          <Solutions onCloseModal={handleCloseModal} onCloseMenu={closeMenu} />
+        );
       case "developers":
-        return <Developers />;
+        return <Developers onCloseMenu={closeMenu} />;
       case "resources":
-        return <Resources />;
+        return <Resources onCloseMenu={closeMenu} />;
       default:
         return null;
     }
@@ -178,7 +200,7 @@ const Navbar = () => {
 
       {/* Burger Icon - Visible below 990px */}
       <div
-        className={`${styles["burger-icon"]} ${isMobile ? styles["visible"] : ""}`}
+        className={`${styles["burger-icon"]} ${isMobile ? styles.visible : ""}`}
         onClick={toggleMenu}
       >
         {menuOpen ? <HiOutlineX size={28} /> : <HiOutlineMenuAlt3 size={28} />}
@@ -200,21 +222,25 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("platform")}
             onMouseLeave={handleMouseLeave}
           >
-            <li 
-              className={`${styles.links} ${isMobile && hoveredContentKey === "platform" ? styles.activeLink : ""}`} 
+            <li
+              className={`${styles.links} ${isMobile && hoveredContentKey === "platform" ? styles.activeLink : ""}`}
               onClick={(e) => handleNavItemClick("platform", e)}
             >
               <div className={styles.linkContent}>
                 <Link href="/platform">Features</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "platform" ? <FaChevronUp /> : <FaChevronDown />}
+                    {hoveredContentKey === "platform" ? (
+                      <FaChevronUp />
+                    ) : (
+                      <FaChevronDown />
+                    )}
                   </span>
                 )}
               </div>
               {isMobile && hoveredContentKey === "platform" && (
                 <div className={styles.mobileDropdownContent}>
-                  <Platform />
+                  <Platform onCloseMenu={closeMenu} />
                 </div>
               )}
             </li>
@@ -226,21 +252,29 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("solutions")}
             onMouseLeave={handleMouseLeave}
           >
-            <li 
-              className={`${styles.links} ${isMobile && hoveredContentKey === "solutions" ? styles.activeLink : ""}`} 
+            <li
+              className={`${styles.links} ${isMobile && hoveredContentKey === "solutions" ? styles.activeLink : ""}`}
               onClick={(e) => handleNavItemClick("solutions", e)}
             >
               <div className={styles.linkContent}>
                 <Link href="/solutions">Solutions</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "solutions" ? <FaChevronUp /> : <FaChevronDown />}
+                    {hoveredContentKey === "solutions" ? (
+                      <FaChevronUp />
+                    ) : (
+                      <FaChevronDown />
+                    )}
                   </span>
                 )}
               </div>
+
               {isMobile && hoveredContentKey === "solutions" && (
                 <div className={styles.mobileDropdownContent}>
-                  <Solutions onCloseModal={handleCloseModal} />
+                  <Solutions
+                    onCloseModal={handleCloseModal}
+                    onCloseMenu={closeMenu}
+                  />
                 </div>
               )}
             </li>
@@ -252,54 +286,39 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("developers")}
             onMouseLeave={handleMouseLeave}
           >
-            <li 
-              className={`${styles.links} ${isMobile && hoveredContentKey === "developers" ? styles.activeLink : ""}`} 
+            <li
+              className={`${styles.links} ${isMobile && hoveredContentKey === "developers" ? styles.activeLink : ""}`}
               onClick={(e) => handleNavItemClick("developers", e)}
             >
               <div className={styles.linkContent}>
                 <Link href="/developers">Developers</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "developers" ? <FaChevronUp /> : <FaChevronDown />}
+                    {hoveredContentKey === "developers" ? (
+                      <FaChevronUp />
+                    ) : (
+                      <FaChevronDown />
+                    )}
                   </span>
                 )}
               </div>
               {isMobile && hoveredContentKey === "developers" && (
                 <div className={styles.mobileDropdownContent}>
-                  <Developers />
+                  <Developers
+                    onCloseModal={handleCloseModal}
+                    onCloseMenu={closeMenu}
+                  />
                 </div>
               )}
             </li>
           </div>
 
-          {/* Resources */}
-          {/* <div
-            className={styles.hoverWrapper}
-            onMouseEnter={() => handleMouseEnter("resources")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <li 
-              className={`${styles.links} ${isMobile && hoveredContentKey === "resources" ? styles.activeLink : ""}`} 
-              onClick={(e) => handleNavItemClick("resources", e)}
-            >
-              <div className={styles.linkContent}>
-                <Link href="/resources">Resources</Link>
-                {isMobile && (
-                  <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "resources" ? <FaChevronUp /> : <FaChevronDown />}
-                  </span>
-                )}
-              </div>
-              {isMobile && hoveredContentKey === "resources" && (
-                <div className={styles.mobileDropdownContent}>
-                  <Resources />
-                </div>
-              )}
-            </li>
-          </div> */}
-
           {/* Pricing - No arrow icon, separate click handler */}
-          <li className={styles.links} onClick={handlePricingClick} style={{display:"flex"}}>
+          <li
+            className={styles.links}
+            onClick={handlePricingClick}
+            style={{ display: "flex" }}
+          >
             <Link href="/pricing">Pricing</Link>
           </li>
         </div>
@@ -316,7 +335,9 @@ const Navbar = () => {
       </ul>
 
       {/* Desktop Auth Buttons - Hidden on mobile */}
-      <div className={`${styles["auth-buttons"]} ${isMobile ? styles["hidden"] : ""}`}>
+      <div
+        className={`${styles["auth-buttons"]} ${isMobile ? styles.hidden : ""}`}
+      >
         <a href="https://admin.magicchat.io/login">
           <button className={styles.login}>Log-in</button>
         </a>

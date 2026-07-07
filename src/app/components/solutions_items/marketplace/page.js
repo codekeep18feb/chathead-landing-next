@@ -5,7 +5,7 @@ import IndustryPageTemplate from "../../IndustryPageTemplate";
 export default function Marketplace() {
   return (
     <>
-      <h1>Marketplace Chat Solutions</h1>
+      {/* <h1>Marketplace Chat Solutions</h1> */}
       <IndustryPageTemplate
         industry_name={"Marketplace"}
         industry_reason={

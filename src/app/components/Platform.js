@@ -4,10 +4,16 @@ import { useRouter } from "next/navigation";
 import { platformList } from "../data/platformData";
 import styles from "./CommonDropdown.module.css";
 
-const Platform = () => {
+const Platform = ({ onCloseMenu }) => {
   const router = useRouter();
 
   const handleCardClick = (item, type) => {
+    // Close the mobile menu first
+    if (onCloseMenu) {
+      onCloseMenu();
+    }
+
+    // Then navigate
     if (type === "aiAgentConfiguration") {
       router.push("/ai-agent-configuration");
     } else if (type === "liveChatFeatures") {
@@ -41,26 +47,6 @@ const Platform = () => {
       <div className={styles.contentSection}>
         <div className={styles.platformSections}>
           {/* Live Chat Section */}
-          {/* <div className={styles.platformSection}>
-            <h2 className={styles.sectionTitle}>Live Chat</h2>
-            <div className={styles.cardList}>
-              {platformList.features.map((item, index) => (
-                <div
-                  className={styles.card}
-                  key={index}
-                  onClick={() => handleCardClick(item, "feature")}
-                >
-                  <div className={styles.cardHeader}>
-                    <div className={styles.iconWrapper}>
-                      <i className={`${styles.cardIcon} ${item.icon}`}></i>
-                    </div>
-                    <h3>{item.subHeading}</h3>
-                  </div>
-                  <p>{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div> */}
           <div className={styles.platformSection}>
             <h2 className={styles.sectionTitle}>LIVE CHAT</h2>
             <div className={styles.cardList}>

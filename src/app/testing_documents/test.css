@@ -1,11 +1,11 @@
-:root {
-  --primary-color: #1b5bff; /* Example color - adjust as needed */
-  --secondary-color: #f5f5f5;
+/* :root {
+  --primary-color: #1b5bff; 
+  --secondaryy-color: #f5f5f5;
   --white-text-color: #ffffff;
   --text-color: #333333;
   --light-text-color: #666666;
   --dark-color: #1a1a1a;
-}
+} */
 
 /* ========== Document Structure ========== */
 .document-container {
@@ -19,7 +19,7 @@
 
 .doc_sidebar {
   width: 350px;
-  background: var(--secondary-color);
+  background: var(--secondaryy-color);
   padding: 12px;
 }
 
