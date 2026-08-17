@@ -168,6 +168,23 @@ const Navbar = () => {
     router.push("/pricing");
   };
 
+
+  
+
+  const handleWhyWeAreSpecial = (e) => {
+    if (menuOpen) {
+      setMenuOpen(false);
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
+    if (hoveredContentKey) {
+      setHoveredContentKey(null);
+    }
+    router.push("/WhyWeAreSpecial");
+  };
+
+
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   // Render content based on hovered key
@@ -320,6 +337,15 @@ const Navbar = () => {
             style={{ display: "flex" }}
           >
             <Link href="/pricing">Pricing</Link>
+          </li>
+
+          {/* Pricing - No arrow icon, separate click handler */}
+          <li
+            className={styles.links}
+            onClick={handleWhyWeAreSpecial}
+            style={{ display: "flex" }}
+          >
+            <Link href="/WhyWeAreSpecial">WhyWeAreSpecial</Link>
           </li>
         </div>
 
