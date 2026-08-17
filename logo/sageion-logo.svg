@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="sageStrokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4d6bdf" />
+      <stop offset="45%" stop-color="#a370ce" />
+      <stop offset="100%" stop-color="#92ffbf" />
+    </linearGradient>
+    <linearGradient id="nodeCoreGradient" x1="20%" y1="20%" x2="80%" y2="80%">
+      <stop offset="0%" stop-color="#4bcf9e" />
+      <stop offset="100%" stop-color="#fc8083" />
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M145 45 C145 25 130 15 100 15 C55 15 40 35 40 55 C40 75 55 85 90 85 L115 85" fill="none" stroke="url(#sageStrokeGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M55 115 L105 115 C145 115 160 125 160 145 C160 170 140 185 100 185 C60 185 45 170 45 145" fill="none" stroke="url(#sageStrokeGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="100" cy="100" r="10" fill="url(#nodeCoreGradient)"/>
+  </g>
+</svg>
