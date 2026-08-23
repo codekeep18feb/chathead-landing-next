@@ -14,6 +14,7 @@ import PricingPlansPage from "../components/HeroSection/PricingPlansPage";
 import RoadmapNextPage from "../components/HeroSection/RoadmapNextPage";
 import WhyChooseNowPage from "../components/HeroSection/WhyChooseNowPage";
 import EngagementSectionPage from "../components/HeroSection/EngagementSectionPage";
+import ClientFeatures from "../components/HeroSection/ClientFeatures/ClientFeatures";
 
 // export const metadata = {
 //   title: "Hero Section | Magicchat",
@@ -24,6 +25,9 @@ const HeroSectionPage = () => {
   return (
     <>
       <HeroSection />
+<ClientFeatures />
+
+      {/* HERE CAN YOU GIVE ME A COMPONENT THAT TELLS WHAT ON THE CLIENT SIDE USER WILL GET/EXPERIENCE */}
       <div
         style={{
           boxShadow:
