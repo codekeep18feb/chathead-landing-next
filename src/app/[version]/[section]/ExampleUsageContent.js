@@ -148,7 +148,7 @@ export default function ExampleUsageContent() {
       />
 
       <FeatureSectionWrapper
-        title="MagicChat for ......."
+        title="Sageion for ......."
         description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
         sections={sections}
       />

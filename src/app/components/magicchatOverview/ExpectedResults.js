@@ -22,7 +22,7 @@ export default function ExpectedResults() {
         ))}
       </div>
       <p className={styles.note}>
-        MagicChat pays for itself — usually within the first month.
+        Sageion pays for itself — usually within the first month.
       </p>
     </section>
   );

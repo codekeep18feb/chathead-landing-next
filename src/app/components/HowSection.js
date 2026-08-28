@@ -316,7 +316,7 @@ const ContentCard = ({ title, version }) => {
         "Products that need both authentication and chat out of the box.",
         "Apps that haven't implemented authentication yet.",
         "Websites aiming to convert visitors into active, authenticated users.",
-        "Ideal for live or AI-powered chat paired with Magicchat’s authentication services.",
+        "Ideal for live or AI-powered chat paired with Sageion’s authentication services.",
       ],
       Provides: [
         "Adds user login, signup, and authentication UI to your app or website.",
@@ -352,7 +352,7 @@ const ContentCard = ({ title, version }) => {
         "Includes an admin panel to manage chats, users, and app settings.",
       ],
       "How Does it work": [
-        "Pass a unique user ID to Magicchat’s onboarding API — this maps users between your system and ours.",
+        "Pass a unique user ID to Sageion’s onboarding API — this maps users between your system and ours.",
         "Ensure you're already storing this ID on your end; the rest works automatically behind the scenes.",
         "Need to onboard existing users? Use the bulk onboarding API to migrate them easily.",
       ],
@@ -376,7 +376,7 @@ const ContentCard = ({ title, version }) => {
         "Includes an admin panel to monitor and manage conversations in real-time.",
       ],
       "How Does it work": [
-        "Simply embed the Magicchat script into your app or website.",
+        "Simply embed the Sageion script into your app or website.",
         "Visitors can immediately interact with the AI bot or leave messages.",
         "Admins can reply in real-time or catch up later via the admin dashboard.",
         "No authentication flow is involved—users remain anonymous by default.",
@@ -402,7 +402,7 @@ const ContentCard = ({ title, version }) => {
         "Includes an admin panel to manage chats, users, and app settings.",
       ],
       "How Does it work": [
-        "Since some platforms (like WordPress, Magento, or Joomla) don't expose user signup events, we onboard users to Magicchat during their first login.",
+        "Since some platforms (like WordPress, Magento, or Joomla) don't expose user signup events, we onboard users to Sageion during their first login.",
         "This ensures seamless real-time registration without needing changes to your existing auth plugins.",
         "Setup is fully automatic — just install the AddChat plugin, activate it, and enter your chat app credentials.",
         "If your framework isn’t supported yet (e.g., Laravel, Drupal, Shopify, Wix), don’t worry — you can request integration directly from us.",

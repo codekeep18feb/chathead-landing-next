@@ -366,7 +366,7 @@ const ClientFeatures = () => {
         <div className={styles.header}>
           <span className={styles.badge}>✨ Enterprise Client Experience</span>
           <h2 className={styles.title}>
-            The <span className={styles.highlight}>MagicChat</span> Experience
+            The <span className={styles.highlight}>Sageion</span> Experience
           </h2>
           <p className={styles.subtitle}>
             Enterprise-grade capabilities delivered with consumer-grade simplicity.
@@ -1120,7 +1120,7 @@ const ClientFeatures = () => {
             <div>
               <h4>Built Different. Built Better.</h4>
               <p>
-                While others offer features, MagicChat delivers experiences. 
+                While others offer features, Sageion delivers experiences. 
                 Every interaction is designed to delight, every workflow is built to convert.
               </p>
             </div>
@@ -1139,7 +1139,7 @@ const ClientFeatures = () => {
         <div className={styles.ctaSection}>
           <div className={styles.ctaContent}>
             <h3>Ready to transform your customer experience?</h3>
-            <p>Join thousands of businesses using MagicChat to delight their customers and grow their business.</p>
+            <p>Join thousands of businesses using Sageion to delight their customers and grow their business.</p>
             <button className={styles.ctaButton}>
               Start Your Free Trial →
               <span className={styles.ctaNote}>No credit card required</span>

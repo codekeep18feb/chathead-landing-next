@@ -105,7 +105,7 @@ const HeartIcon = (
 //                 type: "group",
 //                 className: "normal-text",
 //                 texts: [
-//                   "Ideal for live or AI-powered chat paired with Magicchat’s authentication services.",
+//                   "Ideal for live or AI-powered chat paired with Sageion’s authentication services.",
 //                   "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
 //                   " Lorem Ipsum has been the in dustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 //                 ],
@@ -128,7 +128,7 @@ const HeartIcon = (
 //       />
 
 //       <FeatureSectionWrapper
-//         title="MagicChat for ......."
+//         title="Sageion for ......."
 //         description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
 //         sections={sections}
 //       />
@@ -161,7 +161,7 @@ export default function ToWhomContent({ config, version }) {
       />
 
       <FeatureSectionWrapper
-        title={`MagicChat for ${version}`}
+        title={`Sageion for ${version}`}
         description={config.description}
         sections={sectionsWithRefs}
       />

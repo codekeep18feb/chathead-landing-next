@@ -29,7 +29,7 @@ const PricingPlansPage = () => {
         </h2>
         {/* <p className={styles.terminalSub}>$ ./select-plan --transparent</p> */}
         <p>
-          Start free, scale as you grow. MagicChat pays for itself by increasing
+          Start free, scale as you grow. Sageion pays for itself by increasing
           conversions and reducing support costs.
         </p>
       </div>

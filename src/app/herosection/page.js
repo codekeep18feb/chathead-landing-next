@@ -17,7 +17,7 @@ import EngagementSectionPage from "../components/HeroSection/EngagementSectionPa
 import ClientFeatures from "../components/HeroSection/ClientFeatures/ClientFeatures";
 
 // export const metadata = {
-//   title: "Hero Section | Magicchat",
+//   title: "Hero Section | Sageion",
 //   description: "What do we solve",
 // };
 

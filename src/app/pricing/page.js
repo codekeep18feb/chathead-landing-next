@@ -110,7 +110,7 @@ function Pricing() {
         type: "Launch 🚀",
         planCode: "LAUNCH",
         description: "Perfect for testing, MVPs & early-stage projects.",
-        subheading: "Best for individuals exploring MagicChat",
+        subheading: "Best for individuals exploring Sageion",
         features: [
           "✅ Exclusive: Built-in Auth Layer (1 website included)",
           "Lead capture with Q&A forms",
@@ -123,7 +123,7 @@ function Pricing() {
           "File uploads up to 25 MB (Live Chat)",
           "15-day Chat History",
           "Basic Email Notifications",
-          "MagicChat branding required",
+          "Sageion branding required",
           "Export user data anytime (free)",
           "Basic analytics dashboard",
         ],
@@ -150,7 +150,7 @@ function Pricing() {
           "180-day Chat History",
           "Custom email templates & automations",
           "Advanced analytics dashboard",
-          "Remove MagicChat branding",
+          "Remove Sageion branding",
           "Priority email support",
           "30-day money-back guarantee",
         ],
@@ -177,7 +177,7 @@ function Pricing() {
           "2-year Chat History",
           "Advanced analytics & reporting with exports",
           "Priority Email & Chat Support",
-          "No MagicChat branding",
+          "No Sageion branding",
           "Full API Access with webhooks",
           "Custom workflows & automations",
           "Multi-language AI support",
@@ -256,7 +256,7 @@ function Pricing() {
         type: "Launch 🚀",
         planCode: "LAUNCH",
         description: "Perfect for testing, MVPs & early-stage projects.",
-        subheading: "Best for individuals exploring MagicChat",
+        subheading: "Best for individuals exploring Sageion",
         features: [
           "✅ Exclusive: Built-in Auth Layer (1 website included)",
           "Lead capture with Q&A forms",
@@ -269,7 +269,7 @@ function Pricing() {
           "File uploads up to 25 MB (Live Chat)",
           "15-day Chat History",
           "Basic Email Notifications",
-          "MagicChat branding required",
+          "Sageion branding required",
           "Export user data anytime (free)",
           "Basic analytics dashboard",
         ],
@@ -296,7 +296,7 @@ function Pricing() {
           "180-day Chat History",
           "Custom email templates & automations",
           "Advanced analytics dashboard",
-          "Remove MagicChat branding",
+          "Remove Sageion branding",
           "Priority email support",
           "30-day money-back guarantee",
         ],
@@ -323,7 +323,7 @@ function Pricing() {
           "2-year Chat History",
           "Advanced analytics & reporting with exports",
           "Priority Email & Chat Support",
-          "No MagicChat branding",
+          "No Sageion branding",
           "Full API Access with webhooks",
           "Custom workflows & automations",
           "Multi-language AI support",
@@ -624,35 +624,35 @@ function Pricing() {
               {isEnterprise ? (
                 <button
                   className={styles.planButton}
-                  onClick={() => window.location.href = "https://admin.magicchat.io/pricing"}
+                  onClick={() => window.location.href = "https://admin.sageion.com/pricing"}
                 >
                   {plan.cta}
                 </button>
               ) : isScale ? (
                 <button
                   className={styles.planButton}
-                  onClick={() => window.location.href = "https://admin.magicchat.io/pricing"}
+                  onClick={() => window.location.href = "https://admin.sageion.com/pricing"}
                 >
                   {plan.cta}
                 </button>
               ) : isGrowth ? (
                 <button
                   className={styles.planButton}
-                  onClick={() => window.location.href = "https://admin.magicchat.io/pricing"}
+                  onClick={() => window.location.href = "https://admin.sageion.com/pricing"}
                 >
                   {plan.cta}
                 </button>
               ) : isStarter ? (
                 <button
                   className={styles.planButton}
-                  onClick={() => window.location.href = "https://admin.magicchat.io/pricing"}
+                  onClick={() => window.location.href = "https://admin.sageion.com/pricing"}
                 >
                   {plan.cta}
                 </button>
               ) : (
                 <button
                   className={styles.planButton}
-                  onClick={() => window.location.href = "https://admin.magicchat.io/pricing"}
+                  onClick={() => window.location.href = "https://admin.sageion.com/pricing"}
                 >
                   {plan.buttonLabel}
                 </button>

@@ -36,7 +36,7 @@ export default function ExpectedResultsPage() {
         </div>
         
         <div className={styles.terminalNote}>
-          <span className={styles.prompt}>$</span> MagicChat pays for itself — usually within the first month
+          <span className={styles.prompt}>$</span> Sageion pays for itself — usually within the first month
           <span className={styles.blinkingBlock}>█</span>
         </div>
       </div>

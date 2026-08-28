@@ -143,7 +143,7 @@ const WhyWeAreSpecial = () => {
   const videos = {
     "rag-demo": {
       title: "RAG Engine Demo",
-      description: "See how MagicChat's RAG engine retrieves context from your documents",
+      description: "See how Sageion's RAG engine retrieves context from your documents",
       thumbnail: "/videos/rag-demo-thumbnail.jpg"
     },
     "api-chaining": {
@@ -195,7 +195,7 @@ const WhyWeAreSpecial = () => {
         <div className={styles.navContainer}>
           <div className={styles.navLogo}>
             <span className={styles.logoIcon}>✨</span>
-            <span className={styles.logoText}>MagicChat</span>
+            <span className={styles.logoText}>Sageion</span>
           </div>
           <div className={styles.navLinks}>
             {sections.map((section) => (
@@ -434,7 +434,7 @@ const WhyWeAreSpecial = () => {
           <div className={styles.videoProofSection}>
             <div className={styles.videoProofHeader}>
               <span className={styles.videoProofBadge}>🎬 See It In Action</span>
-              <h3>Watch MagicChat Transform a Business</h3>
+              <h3>Watch Sageion Transform a Business</h3>
             </div>
             <div className={styles.videoProofGrid}>
               <div className={styles.videoProofCard} onClick={() => openVideoModal("rag-demo")}>
@@ -494,7 +494,7 @@ const WhyWeAreSpecial = () => {
               Everything You Need to <span className={styles.gradientText}>Succeed</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              Comprehensive features that make MagicChat the most complete platform for business automation.
+              Comprehensive features that make Sageion the most complete platform for business automation.
             </p>
           </div>
 
@@ -971,7 +971,7 @@ const WhyWeAreSpecial = () => {
               Built Different. <span className={styles.gradientText}>Works Better.</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              The three-layer architecture that makes MagicChat infinitely more powerful.
+              The three-layer architecture that makes Sageion infinitely more powerful.
             </p>
           </div>
 
@@ -1317,7 +1317,7 @@ const WhyWeAreSpecial = () => {
 
           {/* Growth Path */}
           <div className={styles.growthPathSection}>
-            <h3>Your Growth Path with MagicChat</h3>
+            <h3>Your Growth Path with Sageion</h3>
             <div className={styles.growthPathSteps}>
               <div className={styles.growthStep}>
                 <div className={styles.stepNumber}>1</div>
@@ -1355,10 +1355,10 @@ const WhyWeAreSpecial = () => {
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>⚔️ Comparison</span>
             <h2 className={styles.sectionTitle}>
-              MagicChat vs. <span className={styles.gradientText}>The Rest</span>
+              Sageion vs. <span className={styles.gradientText}>The Rest</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              See for yourself why MagicChat is the clear choice.
+              See for yourself why Sageion is the clear choice.
             </p>
           </div>
 
@@ -1366,7 +1366,7 @@ const WhyWeAreSpecial = () => {
             <div className={styles.comparisonRow}>
               <div className={styles.comparisonCellHeader}>Aspect</div>
               <div className={styles.comparisonCellHeader}>Traditional</div>
-              <div className={styles.comparisonCellHeader}>MagicChat</div>
+              <div className={styles.comparisonCellHeader}>Sageion</div>
             </div>
             <div className={styles.comparisonRow}>
               <span>Implementation Time</span>
@@ -1474,7 +1474,7 @@ const WhyWeAreSpecial = () => {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialRating}>★★★★★</div>
               <p className={styles.testimonialText}>
-                "We built 15 complex workflows in 3 weeks with just 1 person. MagicChat saved us months of development."
+                "We built 15 complex workflows in 3 weeks with just 1 person. Sageion saved us months of development."
               </p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.testimonialAvatar}>JP</div>

@@ -16,7 +16,7 @@ const Resources = () => {
       <div className="platform-sections">
         <div className="platform-section">
           <>
-          <h2 className="section-title">MagicChat Blog</h2>
+          <h2 className="section-title">Sageion Blog</h2>
           </>
           <div className="newcard-list">
             {resourcesList.addChat_blog.map((item, index) => (

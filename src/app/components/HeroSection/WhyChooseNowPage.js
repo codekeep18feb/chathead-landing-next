@@ -80,7 +80,7 @@ export default function WhyChooseNowPage() {
             </div>
           </div>
           <a
-            href="https://admin.magicchat.io/signup"
+            href="https://admin.sageion.com/signup"
             className={styles.ctaLink}
           >
             <button className={styles.subscribeBtn}>

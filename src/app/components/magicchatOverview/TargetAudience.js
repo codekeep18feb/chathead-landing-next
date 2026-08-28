@@ -73,9 +73,9 @@ export default function TargetAudience() {
       <div className={styles.innerWarp}>
         <div className={styles.row}>
           <div className={`${styles.box} ${styles.wide}`}>
-            <h2 className={styles.heading}>Who Is MagicChat Best For?</h2>
+            <h2 className={styles.heading}>Who Is Sageion Best For?</h2>
             <p className={styles.intro}>
-              MagicChat is built for teams who want powerful, fast, and low-cost
+              Sageion is built for teams who want powerful, fast, and low-cost
               customer engagement — without needing developers or API setups.
             </p>
           </div>

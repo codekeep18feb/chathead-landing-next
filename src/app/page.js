@@ -21,16 +21,16 @@ export default function Home() {
   return (
     <div className="body_contnet_section">
       {/* Load Socket.io */}
-      <Script
+      {/* <Script
         src="https://cdn.socket.io/4.1.2/socket.io.min.js"
         strategy="beforeInteractive"
-      />
-      {/* Load Magicchat bundle */}
-      <Script
+      /> */}
+      {/* Load Sageion bundle */}
+      {/* <Script
         src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"
         strategy="afterInteractive"
         onLoad={handleMagicChatInit}
-      />
+      /> */}
 
       {/* <SolveSection /> */}
       {/* <br></br>

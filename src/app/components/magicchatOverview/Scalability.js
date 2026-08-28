@@ -4,7 +4,7 @@ import styles from "./Scalability.module.css";
 export default function Scalability() {
   return (
     <div className={styles.section}>
-      <h2>What makes MagicChat scalable?</h2>
+      <h2>What makes Sageion scalable?</h2>
       <ul className={styles.bullets}>
         <li>Cloud-native architecture with auto-scaling and redundancy.</li>
         <li>Handles thousands of simultaneous conversations smoothly.</li>

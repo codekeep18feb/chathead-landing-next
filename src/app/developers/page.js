@@ -25,7 +25,7 @@ function DevelopersRootPage() {
 
             <li>
               <a
-                href="https://magicchat.io/documentation/instant-auth"
+                href="https://sageion.com/documentation/instant-auth"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -36,20 +36,20 @@ function DevelopersRootPage() {
 
             <li>
               <a
-                href="https://magicchat.io/documentation/byo"
+                href="https://sageion.com/documentation/byo"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <h2>🔐[V2] BYO Auth + Chat</h2>
                 <p>
-                  Bring your own authentication, pair it with chat powered by MagicChat.
+                  Bring your own authentication, pair it with chat powered by Sageion.
                 </p>
               </a>
             </li>
 
             <li>
               <a
-                href="https://magicchat.io/documentation/cms-chat"
+                href="https://sageion.com/documentation/cms-chat"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -60,7 +60,7 @@ function DevelopersRootPage() {
 
             <li>
               <a
-                href="https://magicchat.io/documentation/no-auth"
+                href="https://sageion.com/documentation/no-auth"
                 target="_blank"
                 rel="noopener noreferrer"
               >
