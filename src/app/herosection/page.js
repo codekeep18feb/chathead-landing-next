@@ -15,6 +15,7 @@ import RoadmapNextPage from "../components/HeroSection/RoadmapNextPage";
 import WhyChooseNowPage from "../components/HeroSection/WhyChooseNowPage";
 import EngagementSectionPage from "../components/HeroSection/EngagementSectionPage";
 import ClientFeatures from "../components/HeroSection/ClientFeatures/ClientFeatures";
+import AdminFeatures from "../components/HeroSection/AdminFeatures/AdminFeatures";
 
 // export const metadata = {
 //   title: "Hero Section | Sageion",
@@ -34,11 +35,13 @@ const HeroSectionPage = () => {
       >
         <ClientFeatures />
 
+        <AdminFeatures />
+
         <WhatWeOffer />
         {/* <HowToGetStartedPage /> */}
         {/* <OverviewIntro /> */}
       </div>
-       <br />
+      <br />
       <br />
       <br />
       <br />
