@@ -102,7 +102,7 @@ export default function RoadmapNextPage() {
         <div className={styles.noteIcon}>💡</div>
         <p>
           Our roadmap is shaped by user feedback and emerging AI innovation —
-          ensuring MagicChat evolves with your business needs.
+          ensuring Sageion evolves with your business needs.
         </p>
       </div>
     </div>

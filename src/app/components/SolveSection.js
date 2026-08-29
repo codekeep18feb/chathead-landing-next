@@ -20,7 +20,7 @@ const SolveSection = () => {
                     <button>Get Started Free</button>
                 </div> */}
         <div className={styles["email-input"]}>
-          <a href="https://admin.magicchat.io/schedule_demo">
+          <a href="https://admin.sageion.com/schedule_demo">
             <button>Schedule Demo</button>
           </a>
         </div>

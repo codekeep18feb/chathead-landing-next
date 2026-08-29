@@ -21,7 +21,7 @@ export default function Differentiators() {
       title: "Reduces Cost",
       points: [
         "In-Built RAG Chatbot: Get a robust, AI-powered chatbot without paying per-query fees to external LLMs like OpenAI or DeepSeek.",
-        "Low-Cost Infrastructure: No hidden AI or API costs; your RAG engine runs within MagicChat’s optimized framework.",
+        "Low-Cost Infrastructure: No hidden AI or API costs; your RAG engine runs within Sageion’s optimized framework.",
         "Free Tier With Everything: Build, test, and deploy with full features. Pay only when you scale.",
       ],
     },
@@ -29,7 +29,7 @@ export default function Differentiators() {
       icon: <FiTrendingUp size={36} color="#fff" />,
       title: "Scales Effortlessly",
       points: [
-        "Built for All Sizes: Start small, grow big — MagicChat adapts from solo startups to enterprise-scale setups.",
+        "Built for All Sizes: Start small, grow big — Sageion adapts from solo startups to enterprise-scale setups.",
         "One-Click Multi-Tenant Mode: Manage multiple clients, projects, or products in one dashboard.",
         "Enterprise Features: Team collaboration, secure chat routing, offline notifications, and easy data migration.",
       ],

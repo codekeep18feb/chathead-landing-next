@@ -8,11 +8,11 @@ export default function ProblemsSolved() {
       <h2>What problems do we solve — and how?</h2>
 
       <div className={styles.sectionContent}>
-        {/* Without MagicChat */}
+        {/* Without Sageion */}
         <div className={`${styles.card} ${styles.leftCard}`}>
           <div className={styles.cardHeader}>
             <FaRegTimesCircle className={styles.cardIcon} />
-            <h3>Without MagicChat</h3>
+            <h3>Without Sageion</h3>
           </div>
           <ul className={styles.bullets}>
             <li>Customers don’t get instant answers and end up leaving your website.</li>
@@ -27,11 +27,11 @@ export default function ProblemsSolved() {
 
         <div className={styles.divider}></div>
 
-        {/* With MagicChat */}
+        {/* With Sageion */}
         <div className={`${styles.card} ${styles.rightCard}`}>
           <div className={styles.cardHeader}>
             <FaMagic className={styles.cardIcon} />
-            <h3>With MagicChat</h3>
+            <h3>With Sageion</h3>
           </div>
           <ul className={styles.bullets}>
             <li>AI answers common questions instantly, so your team can focus on real issues.</li>

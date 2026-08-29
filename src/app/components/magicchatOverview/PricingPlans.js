@@ -8,7 +8,7 @@ const PricingPlans = () => {
       <div className={styles.pricingHeader}>
         <h2>Pricing That Grows With You!</h2>
         <p>
-          Start free, scale as you grow. MagicChat pays for itself by increasing
+          Start free, scale as you grow. Sageion pays for itself by increasing
           conversions and reducing support costs.
         </p>
       </div>

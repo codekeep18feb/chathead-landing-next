@@ -14,9 +14,11 @@ import PricingPlansPage from "../components/HeroSection/PricingPlansPage";
 import RoadmapNextPage from "../components/HeroSection/RoadmapNextPage";
 import WhyChooseNowPage from "../components/HeroSection/WhyChooseNowPage";
 import EngagementSectionPage from "../components/HeroSection/EngagementSectionPage";
+import ClientFeatures from "../components/HeroSection/ClientFeatures/ClientFeatures";
+import AdminFeatures from "../components/HeroSection/AdminFeatures/AdminFeatures";
 
 // export const metadata = {
-//   title: "Hero Section | Magicchat",
+//   title: "Hero Section | Sageion",
 //   description: "What do we solve",
 // };
 
@@ -31,11 +33,15 @@ const HeroSectionPage = () => {
           borderRadius: "0px 0px 80px 80px",
         }}
       >
+        <ClientFeatures />
+
+        <AdminFeatures />
+
         <WhatWeOffer />
         {/* <HowToGetStartedPage /> */}
         {/* <OverviewIntro /> */}
       </div>
-       <br />
+      <br />
       <br />
       <br />
       <br />

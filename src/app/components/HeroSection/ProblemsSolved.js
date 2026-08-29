@@ -22,14 +22,14 @@ export default function ProblemsSolved() {
         {/* Cards Section */}
         <div className={styles.grid}>
           <div className={`${styles.row} ${styles.twoColRow}`}>
-            {/* Without MagicChat Card */}
+            {/* Without Sageion Card */}
             <div className={styles.col}>
               <div className={`${styles.card} ${styles.leftCard}`}>
                 <div className={styles.cardImageWrapper}>
                   <div className={styles.cardImage}>
                     <Image
                       src="/images/without-magicchat.svg"
-                      alt="Without MagicChat - scattered conversations, manual support, frustrated customers"
+                      alt="Without Sageion - scattered conversations, manual support, frustrated customers"
                       fill
                       className={styles.image}
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -39,7 +39,7 @@ export default function ProblemsSolved() {
                   <div className={styles.imageOverlay} />
                 </div>
                 <div className={styles.cardContent}>
-                  <h3 className={styles.cardTitle}>Without MagicChat</h3>
+                  <h3 className={styles.cardTitle}>Without Sageion</h3>
                   <div className={styles.cardText}>
                     <ul className={styles.bullets}>
                       <li>
@@ -76,14 +76,14 @@ export default function ProblemsSolved() {
               </div>
             </div>
 
-            {/* With MagicChat Card */}
+            {/* With Sageion Card */}
             <div className={styles.col}>
               <div className={`${styles.card} ${styles.rightCard}`}>
                 <div className={styles.cardImageWrapper}>
                   <div className={styles.cardImage}>
                     <Image
                       src="/images/with-magicchat.svg"
-                      alt="With MagicChat - unified AI-powered support, happy customers, organized system"
+                      alt="With Sageion - unified AI-powered support, happy customers, organized system"
                       fill
                       className={styles.image}
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -92,7 +92,7 @@ export default function ProblemsSolved() {
                   <div className={styles.imageOverlay} />
                 </div>
                 <div className={styles.cardContent}>
-                  <h3 className={styles.cardTitle}>With MagicChat</h3>
+                  <h3 className={styles.cardTitle}>With Sageion</h3>
                   <div className={styles.cardText}>
                     <ul className={styles.bullets}>
                       <li>

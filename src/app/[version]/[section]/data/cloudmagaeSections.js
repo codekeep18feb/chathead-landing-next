@@ -61,7 +61,7 @@ export const cloudManagedToWhomContent = {
           type: "group",
           className: "normal-text",
           texts: [
-            "Ideal for live or AI-powered chat paired with Magicchat’s authentication services.",
+            "Ideal for live or AI-powered chat paired with Sageion’s authentication services.",
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
           ],
@@ -91,7 +91,7 @@ export const localmagaeContent = {
           type: "group",
           className: "normal-text",
           texts: [
-            "Pass a unique user ID to Magicchat’s onboarding API — this maps users between your system and ours.",
+            "Pass a unique user ID to Sageion’s onboarding API — this maps users between your system and ours.",
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             " Lorem Ipsum has been the in dustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
           ],
@@ -352,7 +352,7 @@ export const cloudManagedProvidesContent = {
           className: "normal-text",
           texts: [
             "Embeds a customizable chatbox into any interface—web or mobile.",
-            "Easily integrates with your brand and UX, powered by Magicchat.",
+            "Easily integrates with your brand and UX, powered by Sageion.",
           ],
         },
       ],
@@ -404,7 +404,7 @@ export const cmsChatOnlyProvidesContent = {
           className: "normal-text",
           texts: [
             "Embeds a customizable chatbox into any interface—web or mobile.",
-            "Easily integrates with your brand and UX, powered by Magicchat.",
+            "Easily integrates with your brand and UX, powered by Sageion.",
           ],
         },
       ],
@@ -456,7 +456,7 @@ export const plugChatOnlyProvidesContent = {
           className: "normal-text",
           texts: [
             "Embeds a customizable chatbox into any interface—web or mobile.",
-            "Easily integrates with your brand and UX, powered by Magicchat.",
+            "Easily integrates with your brand and UX, powered by Sageion.",
           ],
         },
       ],
@@ -630,7 +630,7 @@ export const cloudManagedHowItWorksContent = {
   label: "How It Works",
   heading: "How It Works",
   description:
-    "Easily onboard new or existing users by syncing your platform with Magicchat using a simple API call.",
+    "Easily onboard new or existing users by syncing your platform with Sageion using a simple API call.",
   imageSrc: `${basePath}/Asset/matrimony_banner.png`,
   sections: {
     "User ID Mapping": {
@@ -641,8 +641,8 @@ export const cloudManagedHowItWorksContent = {
           type: "group",
           className: "normal-text",
           texts: [
-            "Pass a unique user ID to Magicchat’s onboarding API.",
-            "This securely maps users between your system and Magicchat.",
+            "Pass a unique user ID to Sageion’s onboarding API.",
+            "This securely maps users between your system and Sageion.",
           ],
         },
       ],
@@ -694,7 +694,7 @@ export const plugChatOnlyHowItWorksContent = {
           className: "normal-text",
           texts: [
             "Some platforms (like WordPress, Magento, or Joomla) don’t expose signup events.",
-            "We onboard users during their first login to Magicchat automatically.",
+            "We onboard users during their first login to Sageion automatically.",
           ],
         },
       ],
@@ -736,7 +736,7 @@ export const plugChatOnlyHowItWorksContent = {
           className: "normal-text",
           texts: [
             "Using Laravel, Drupal, Shopify, Wix, or others?",
-            "Request integration from Magicchat — we’re expanding support continuously.",
+            "Request integration from Sageion — we’re expanding support continuously.",
           ],
         },
       ],
@@ -758,7 +758,7 @@ export const noAuthChatHowItWorksContent = {
           type: "group",
           className: "normal-text",
           texts: [
-            "Copy and paste the Magicchat embed script into your HTML or React component.",
+            "Copy and paste the Sageion embed script into your HTML or React component.",
             "No backend or auth configuration needed—just drop it in.",
           ],
         },
@@ -801,7 +801,7 @@ export const exampleUsageContent = {
   label: "Example Usage",
   heading: "Example Usage",
   description:
-    "Real-world scenarios where Magicchat helps small businesses, support teams, and content-driven platforms drive instant engagement.",
+    "Real-world scenarios where Sageion helps small businesses, support teams, and content-driven platforms drive instant engagement.",
   imageSrc: `${basePath}/Asset/matrimony_banner.png`,
   sections: {
     "Product-Based Businesses": {

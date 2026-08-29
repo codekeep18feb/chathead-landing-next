@@ -351,10 +351,10 @@ const Navbar = () => {
 
         {/* Mobile Auth Buttons */}
         <div className={`${styles["mobile-auth-buttons"]}`}>
-          <a href="https://admin.magicchat.io/login">
+          <a href="https://admin.sageion.com/login">
             <button className={styles.login}>Log-in</button>
           </a>
-          <a href="https://admin.magicchat.io/signup">
+          <a href="https://admin.sageion.com/signup">
             <button className={styles.signup}>Sign-up</button>
           </a>
         </div>
@@ -364,10 +364,10 @@ const Navbar = () => {
       <div
         className={`${styles["auth-buttons"]} ${isMobile ? styles.hidden : ""}`}
       >
-        <a href="https://admin.magicchat.io/login">
+        <a href="https://admin.sageion.com/login">
           <button className={styles.login}>Log-in</button>
         </a>
-        <a href="https://admin.magicchat.io/signup">
+        <a href="https://admin.sageion.com/signup">
           <button className={styles.signup}>Sign-up</button>
         </a>
       </div>

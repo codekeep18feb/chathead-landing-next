@@ -99,7 +99,7 @@ export default function FinalValuePage() {
         </div>
 
         <a
-          href="https://magicchat.io/pricing"
+          href="https://sageion.com/pricing"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.subscribeBtn}

@@ -108,7 +108,7 @@ export default function DeliveryReports() {
       />
 
       <FeatureSectionWrapper
-        title="MagicChat for Marketplaces"
+        title="Sageion for Marketplaces"
         description="Less friction, Better communication, No platform leakage"
         sections={deliveryReports}
       />

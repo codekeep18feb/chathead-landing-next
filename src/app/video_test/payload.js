@@ -27,7 +27,7 @@ const payload = {
                   tag_type: "ol",
                   items: [
                     {
-                      text: "Signup/Login to your account at MagicChat.",
+                      text: "Signup/Login to your account at Sageion.",
                       link_parts: [
                         {
                           text: "Signup/Login",
@@ -304,7 +304,7 @@ const payload = {
                   tag_type: "ol",
                   items: [
                     {
-                      text: "Signup/Login to your account at MagicChat.",
+                      text: "Signup/Login to your account at Sageion.",
                       link_parts: [
                         {
                           text: "Signup/Login",
@@ -366,7 +366,7 @@ const payload = {
                         },
                         {
                           tag_type: "li",
-                          text: "[setUp] at initial load when user detected loggedout, it should be called to run the setUp for MagicChat once before we initialize the app as the next step",
+                          text: "[setUp] at initial load when user detected loggedout, it should be called to run the setUp for Sageion once before we initialize the app as the next step",
                           // extra_text: "kindly add it below the first script",
                           code: `<script>
   const token = localStorage.getItem('tezkit_token',null);
@@ -490,14 +490,14 @@ const payload = {
       db.session.add(new_user)
       db.session.commit()
   
-      # Step 2: Set up MagicChat credentials securely
+      # Step 2: Set up Sageion credentials securely
       credentials = {
           "APP_API_KEY": os.getenv("ADDCHAT_API_KEY"),
           "app_name": os.getenv("ADDCHAT_APP_NAME"),
           "tenant": os.getenv("ADDCHAT_TENANT")
       }
   
-      # Step 3: Make the MagicChat onboarding API call
+      # Step 3: Make the Sageion onboarding API call
       onboarding_url = "https://gfxb0jf19k.execute-api.ap-south-1.amazonaws.com/prod/onboarding"
       headers = {
           "Accept": "*/*",
@@ -581,14 +581,14 @@ const payload = {
       const newUser = { uid, email, password: hashedPassword };
       db.addUser(newUser);
   
-      // Step 2: Set up MagicChat credentials securely
+      // Step 2: Set up Sageion credentials securely
       const credentials = {
         APP_API_KEY: process.env.ADDCHAT_API_KEY,
         app_name: process.env.ADDCHAT_APP_NAME,
         tenant: process.env.ADDCHAT_TENANT,
       };
   
-      // Step 3: Make the MagicChat onboarding API call
+      // Step 3: Make the Sageion onboarding API call
       const onboardingUrl =
         "https://gfxb0jf19k.execute-api.ap-south-1.amazonaws.com/prod/onboarding";
       const headers = {
@@ -701,7 +701,7 @@ const payload = {
                   tag_type: "ol",
                   items: [
                     {
-                      text: "Signup/Login to your account at MagicChat.",
+                      text: "Signup/Login to your account at Sageion.",
                       link_parts: [
                         {
                           text: "Signup/Login",
@@ -735,11 +735,11 @@ const payload = {
                 },
                 {
                   tag_type: "p",
-                  text: "Install the MagicChat plugin",
+                  text: "Install the Sageion plugin",
                 },
                 {
                   tag_type: "p",
-                  text: "Add the MagicChat Credentials like below",
+                  text: "Add the Sageion Credentials like below",
                 },
                 {
                   tag_type: "img",

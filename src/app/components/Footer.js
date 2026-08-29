@@ -8,13 +8,13 @@ export default function Footer() {
 
         {/* Brand */}
         <div className={styles.column}>
-          <h3 className={styles.brand}>MagicChat</h3>
+          <h3 className={styles.brand}>Sageion</h3>
           <p className={styles.tagline}>
             AI-powered chat for instant support, lead capture, and team collaboration.
           </p>
 
-          <a href="https://magicchat.io" target="_blank" rel="noopener noreferrer">
-            <button className={styles.ctaBtn}>Try MagicChat Free →</button>
+          <a href="https://sageion.com" target="_blank" rel="noopener noreferrer">
+            <button className={styles.ctaBtn}>Try Sageion Free →</button>
           </a>
 
 
@@ -71,7 +71,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.bottomBar}>
-        <p>© {new Date().getFullYear()} MagicChat — All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Sageion — All rights reserved.</p>
       </div>
     </footer>
   );

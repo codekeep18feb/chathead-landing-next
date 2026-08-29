@@ -29,7 +29,7 @@ export default function HowDiffrentMagicChat() {
       gradient: "linear-gradient(135deg, #4bcf9e, #3b82f6)",
       points: [
         "In-Built RAG Chatbot: Get a robust, AI-powered chatbot without paying per-query fees to external LLMs like OpenAI or DeepSeek.",
-        "Low-Cost Infrastructure: No hidden AI or API costs; your RAG engine runs within MagicChat's optimized framework.",
+        "Low-Cost Infrastructure: No hidden AI or API costs; your RAG engine runs within Sageion's optimized framework.",
         "Free Tier With Everything: Build, test, and deploy with full features. Pay only when you scale.",
       ],
     },
@@ -38,7 +38,7 @@ export default function HowDiffrentMagicChat() {
       title: "Scales Effortlessly",
       gradient: "linear-gradient(135deg, #4bcf9e, #8b5cf6)",
       points: [
-        "Built for All Sizes: Start small, grow big — MagicChat adapts from solo startups to enterprise-scale setups.",
+        "Built for All Sizes: Start small, grow big — Sageion adapts from solo startups to enterprise-scale setups.",
         "One-Click Multi-Tenant Mode: Manage multiple clients, projects, or products in one dashboard.",
         "Enterprise Features: Team collaboration, secure chat routing, offline notifications, and easy data migration.",
       ],

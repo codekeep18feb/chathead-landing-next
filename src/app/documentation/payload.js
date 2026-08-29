@@ -14,7 +14,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: "Perfect for MVPs or new apps without built-in authentication, this version provides lightweight MagicChat auth to onboard users instantly and enable chat with minimal setup. As your product evolves, you can seamlessly migrate to any external authentication system and upgrade to a more advanced MagicChat version without losing existing users or chat history.",
+      text: "Perfect for MVPs or new apps without built-in authentication, this version provides lightweight Sageion auth to onboard users instantly and enable chat with minimal setup. As your product evolves, you can seamlessly migrate to any external authentication system and upgrade to a more advanced Sageion version without losing existing users or chat history.",
     },
     {
       tag_type: "div",
@@ -32,7 +32,7 @@ const payload = {
           tag_type: "ol",
           items: [
             {
-              text: "Sign up or log in to your MagicChat account.",
+              text: "Sign up or log in to your Sageion account.",
               link_parts: [
                 {
                   text: "Sign up or log in",
@@ -63,12 +63,12 @@ const payload = {
           text: "Clone the starter repo to use it on.",
         }, {
           tag_type: "h4",
-          text: "git clone -b starter https://github.com/magicchat-core/example__v1.git",
+          text: "git clone -b starter https://github.com/sageion-core/example__v1.git",
         },
 
         {
           tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v1/tree/starter",
+          href: "https://github.com/sageion-core/example__v1/tree/starter",
           text: "Starter Code",
         },
       ],
@@ -123,7 +123,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>',
+                          text: '<script src="https://sageion-core.github.io/prod-ssc-client-cdns/bundle.js"></script>',
                         },
                       ],
                     },
@@ -156,7 +156,7 @@ const payload = {
                     },
                     {
                       tag_type: "p",
-                      text: "When you set Third parameter (header_req) to true. MagicChat will automatically add a fully functional header to your application that includes:",
+                      text: "When you set Third parameter (header_req) to true. Sageion will automatically add a fully functional header to your application that includes:",
                     },
                     {
                       tag_type: "ul",
@@ -182,7 +182,7 @@ const payload = {
                     {
                       tag_type: "img",
                       src: "/Asset/magicChatImg/full_header_mode.png",
-                      alt: "MagicChat Full Header Implementation",
+                      alt: "Sageion Full Header Implementation",
                     },
 
 
@@ -221,7 +221,7 @@ const payload = {
                           ],
                         },
                         {
-                          title: "Step 2: Initialize MagicChat",
+                          title: "Step 2: Initialize Sageion",
                           content: [
                             {
                               tag_type: "code_with_copy",
@@ -346,7 +346,7 @@ const payload = {
             {
               tag_type: "h3",
               className: "list-item-header",
-              text: "3. Decide the placement of the Magicchat chat box in your app.",
+              text: "3. Decide the placement of the Sageion chat box in your app.",
             },
 
           ],
@@ -475,7 +475,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1",
+                  href: "https://github.com/sageion-core/example__v1",
                   text: "View Implementation Example",
                 },
               ],
@@ -619,7 +619,7 @@ const payload = {
                                 [
                                   "app_version",
                                   "string",
-                                  "MagicChat application version",
+                                  "Sageion application version",
                                 ],
                               ],
                             },
@@ -687,7 +687,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
                   text: "View Implementation Example",
                 },
               ],
@@ -697,7 +697,7 @@ const payload = {
 
         {
           tag_type: "p",
-          text: "Successfully onboarded users will appear in the MagicChat Admin Panel with their associated applications.",
+          text: "Successfully onboarded users will appear in the Sageion Admin Panel with their associated applications.",
         },
         {
           tag_type: "steps",
@@ -708,7 +708,7 @@ const payload = {
                 {
                   tag_type: "img",
                   src: "/Asset/onboarded_user.png",
-                  alt: "MagicChat Admin Panel showing onboarded users",
+                  alt: "Sageion Admin Panel showing onboarded users",
                 },
               ],
             },
@@ -722,7 +722,7 @@ const payload = {
                 {
                   tag_type: "img",
                   src: "/Asset/no_users_admin.png",
-                  alt: "MagicChat Admin Panel showing no onboarded users",
+                  alt: "Sageion Admin Panel showing no onboarded users",
                 },
               ],
             },
@@ -745,7 +745,7 @@ const payload = {
     },
     {
       tag_type: "p",
-      text: `Designed for products with their own backend and authentication, this version gives you full control over user onboarding, syncing, and logout while seamlessly integrating powerful MagicChat capabilities.`,
+      text: `Designed for products with their own backend and authentication, this version gives you full control over user onboarding, syncing, and logout while seamlessly integrating powerful Sageion capabilities.`,
     },
 
     //prerequisite?
@@ -758,7 +758,7 @@ const payload = {
           tag_type: "ol",
           items: [
             {
-              text: "Signup/Login to your account at MagicChat.",
+              text: "Signup/Login to your account at Sageion.",
               link_parts: [
                 {
                   text: "Signup/Login",
@@ -836,7 +836,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
+                          text: '<script src="https://sageion-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
                         },
                       ],
                     },
@@ -860,7 +860,7 @@ const payload = {
             {
               tag_type: "h3",
               className: "list-item-header",
-              text: "2. Decide the placement of the Magicchat chat box in your app.",
+              text: "2. Decide the placement of the Sageion chat box in your app.",
             },
 
           ],
@@ -989,7 +989,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
                   text: "View Implementation Example",
                 },
               ],
@@ -1139,7 +1139,7 @@ const payload = {
                                 [
                                   "app_version",
                                   "string",
-                                  "MagicChat application version",
+                                  "Sageion application version",
                                 ],
                               ],
                             },
@@ -1207,7 +1207,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
                   text: "View Implementation Example",
                 },
               ],
@@ -1219,7 +1219,7 @@ const payload = {
 
         {
           tag_type: "h1",
-          text: "Connecting Magicchat to Your Product’s Authentication",
+          text: "Connecting Sageion to Your Product’s Authentication",
         },
         //Backend side integration
         {
@@ -1229,7 +1229,7 @@ const payload = {
         },
         {
           tag_type: "p",
-          text: "For platforms with existing authentication systems, MagicChat requires user onboarding to establish identity mapping between your platform users and MagicChat accounts.",
+          text: "For platforms with existing authentication systems, Sageion requires user onboarding to establish identity mapping between your platform users and Sageion accounts.",
         },
         {
           tag_type: "callout",
@@ -1238,7 +1238,7 @@ const payload = {
           children: [
             {
               tag_type: "p",
-              text: "Each new user must be onboarded with a unique identifier (UID) that serves as the proxy between your platform and MagicChat's user management system.",
+              text: "Each new user must be onboarded with a unique identifier (UID) that serves as the proxy between your platform and Sageion's user management system.",
             },
           ],
         },
@@ -1248,7 +1248,7 @@ const payload = {
         },
         {
           tag_type: "p",
-          text: "Successfully onboarded users will appear in the MagicChat Admin Panel with their associated applications.",
+          text: "Successfully onboarded users will appear in the Sageion Admin Panel with their associated applications.",
         },
         {
           tag_type: "steps",
@@ -1259,7 +1259,7 @@ const payload = {
                 {
                   tag_type: "img",
                   src: "/Asset/onboarded_user.png",
-                  alt: "MagicChat Admin Panel showing onboarded users",
+                  alt: "Sageion Admin Panel showing onboarded users",
                 },
               ],
             },
@@ -1273,7 +1273,7 @@ const payload = {
                 {
                   tag_type: "img",
                   src: "/Asset/no_users_admin.png",
-                  alt: "MagicChat Admin Panel showing no onboarded users",
+                  alt: "Sageion Admin Panel showing no onboarded users",
                 },
               ],
             },
@@ -1326,7 +1326,7 @@ const payload = {
                     [
                       "app_name",
                       "string",
-                      "Your registered MagicChat application name",
+                      "Your registered Sageion application name",
                     ],
                     [
                       "version",
@@ -1383,12 +1383,12 @@ const payload = {
                 },
                 {
                   tag_type: "p",
-                  text: "Manually onboard users through the MagicChat Admin Interface:",
+                  text: "Manually onboard users through the Sageion Admin Interface:",
                 },
                 {
                   tag_type: "img",
                   src: "/Asset/onboarding_via_admin.png",
-                  alt: "MagicChat Admin Panel user onboarding interface",
+                  alt: "Sageion Admin Panel user onboarding interface",
                 },
                 {
                   tag_type: "steps",
@@ -1433,7 +1433,7 @@ const payload = {
         },
         {
           tag_type: "p",
-          text: "Since authentication is managed locally within your own platform, it is essential to also clean up the MagicChat session when a user logs out from your system.",
+          text: "Since authentication is managed locally within your own platform, it is essential to also clean up the Sageion session when a user logs out from your system.",
         },
         {
           tag_type: "callout",
@@ -1457,7 +1457,7 @@ const payload = {
         },
         {
           tag_type: "p",
-          text: "You should call this method immediately when your user logs out. It ensures MagicChat cleans up all user-related sessions and data.",
+          text: "You should call this method immediately when your user logs out. It ensures Sageion cleans up all user-related sessions and data.",
         },
         {
           tag_type: "h4",
@@ -1469,7 +1469,7 @@ const payload = {
         },
         {
           tag_type: "a",
-          href: "https://github.com/magicchat-core/example__v2/blob/402cbcd3d07fc8cca952fdf6ed1c18b5a2a90b1a/templates/base.html#L95",
+          href: "https://github.com/sageion-core/example__v2/blob/402cbcd3d07fc8cca952fdf6ed1c18b5a2a90b1a/templates/base.html#L95",
           text: "Logout Example on GitHub",
         },
         {
@@ -1527,7 +1527,7 @@ const payload = {
           tag_type: "ol",
           items: [
             {
-              text: "Signup/Login to your account at MagicChat.",
+              text: "Signup/Login to your account at Sageion.",
               link_parts: [
                 {
                   text: "Signup/Login",
@@ -1577,7 +1577,7 @@ const payload = {
                   children: [
                     {
                       tag_type: "h4",
-                      text: "MagicChat WordPress Plugin",
+                      text: "Sageion WordPress Plugin",
                     },
                     {
                       tag_type: "a",
@@ -1596,16 +1596,16 @@ const payload = {
           tag_type: "steps",
           items: [
             {
-              title: "Add MagicChat Credentials",
+              title: "Add Sageion Credentials",
               content: [
                 {
                   tag_type: "p",
-                  text: "After installing the plugin, navigate to MagicChat settings in your WordPress admin panel and enter your credentials:",
+                  text: "After installing the plugin, navigate to Sageion settings in your WordPress admin panel and enter your credentials:",
                 },
                 {
                   tag_type: "img",
                   src: "/Asset/add_credentials_wp.png",
-                  alt: "MagicChat credentials configuration in WordPress",
+                  alt: "Sageion credentials configuration in WordPress",
                 },
               ],
             },
@@ -1619,7 +1619,7 @@ const payload = {
                 {
                   tag_type: "img",
                   src: "/Asset/fashoni_chat_opener_visible.png",
-                  alt: "MagicChat opener visible on website",
+                  alt: "Sageion opener visible on website",
                 },
               ],
             },
@@ -1648,7 +1648,7 @@ const payload = {
           tag_type: "ol",
           items: [
             {
-              text: "Signup/Login to your account at MagicChat.",
+              text: "Signup/Login to your account at Sageion.",
               link_parts: [
                 {
                   text: "Signup/Login",
@@ -1726,7 +1726,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
+                          text: '<script src="https://sageion-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
                         },
                       ],
                     },
@@ -1748,7 +1748,7 @@ const payload = {
             {
               tag_type: "h3",
               className: "list-item-header",
-              text: "2. Decide the placement of the Magicchat chat box in your app.",
+              text: "2. Decide the placement of the Sageion chat box in your app.",
             },
 
           ],
@@ -1875,7 +1875,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
                   text: "View Implementation Example",
                 },
               ],
@@ -2020,7 +2020,7 @@ const payload = {
                                 [
                                   "app_version",
                                   "string",
-                                  "MagicChat application version",
+                                  "Sageion application version",
                                 ],
                               ],
                             },
@@ -2088,7 +2088,7 @@ const payload = {
                 },
                 {
                   tag_type: "a",
-                  href: "https://github.com/magicchat-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
+                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
                   text: "View Implementation Example",
                 },
               ],
@@ -2098,7 +2098,7 @@ const payload = {
 
         {
           tag_type: "p",
-          text: "Successfully onboarded users will appear in the MagicChat Admin Panel with their associated applications.",
+          text: "Successfully onboarded users will appear in the Sageion Admin Panel with their associated applications.",
         },
         {
           tag_type: "steps",
@@ -2109,7 +2109,7 @@ const payload = {
                 {
                   tag_type: "img",
                   src: "/Asset/onboarded_user.png",
-                  alt: "MagicChat Admin Panel showing onboarded users",
+                  alt: "Sageion Admin Panel showing onboarded users",
                 },
               ],
             },
@@ -2123,7 +2123,7 @@ const payload = {
                 {
                   tag_type: "img",
                   src: "/Asset/no_users_admin.png",
-                  alt: "MagicChat Admin Panel showing no onboarded users",
+                  alt: "Sageion Admin Panel showing no onboarded users",
                 },
               ],
             },

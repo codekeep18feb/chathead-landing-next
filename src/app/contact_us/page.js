@@ -33,7 +33,7 @@ export default function ContactUs() {
 
     try {
       const response = await fetch(
-        "https://email.magicchat.io/prod/send_email",
+        "https://email.sageion.com/prod/send_email",
         {
           method: "POST",
           headers: {
@@ -74,7 +74,7 @@ export default function ContactUs() {
 
       <div className={styles.infoSection}>
         <h3>📧 Email & 📞 Phone</h3>
-        <p className={styles.contactItem}>Email: support@magicchat.io</p>
+        <p className={styles.contactItem}>Email: support@sageion.com</p>
         <p className={styles.contactItem}>Phone: +91 (798) 231-1249</p>
       </div>
 
