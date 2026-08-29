@@ -706,9 +706,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="api-chaining"
                     images={[
-                      "/AdminImg/VisualAPIChaining/api-1.png",
-                      "/AdminImg/VisualAPIChaining/api-2.png",
-                      "/AdminImg/VisualAPIChaining/api-3.png",
+                      "/AdminImg/Visual-API-Chaining/beforeChain.png",
+                      "/AdminImg/Visual-API-Chaining/chains.png",
+                      "/AdminImg/Visual-API-Chaining/afterChain.png",
                     ]}
                     title="API Chaining Workflow"
                     videoId="api-chaining"
@@ -782,9 +782,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="rag"
                     images={[
-                      "/AdminImg/BuiltInRAGEngine/rag-1.png",
-                      "/AdminImg/BuiltInRAGEngine/rag-2.png",
-                      "/AdminImg/BuiltInRAGEngine/rag-3.png",
+                      "/AdminImg/Built-in-RAG-Engine/rag-1.png",
+                      "/AdminImg/Built-in-RAG-Engine/rag-2.png",
+                      "/AdminImg/Built-in-RAG-Engine/rag-3.png",
                     ]}
                     title="RAG Engine Demo"
                     videoId="rag-demo"
@@ -860,9 +860,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="async-webhooks"
                     images={[
-                      "/AdminImg/TrueAsyncWebhooks/webhook-1.png",
-                      "/AdminImg/TrueAsyncWebhooks/webhook-2.png",
-                      "/AdminImg/TrueAsyncWebhooks/webhook-3.png",
+                      "/AdminImg/True-Async-Webhooks/webhook-1.png",
+                      "/AdminImg/True-Async-Webhooks/webhook-2.png",
+                      "/AdminImg/True-Async-Webhooks/webhook-3.png",
                     ]}
                     title="Async Webhook Flow"
                     videoId="webhook-async"
@@ -936,9 +936,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="screen-gen"
                     images={[
-                      "/AdminImg/DynamicScreenGeneration/screen-1.png",
-                      "/AdminImg/DynamicScreenGeneration/screen-2.png",
-                      "/AdminImg/DynamicScreenGeneration/screen-3.png",
+                      "/AdminImg/Dynamic-Screen-Generation/editer.png",
+                      "/AdminImg/Dynamic-Screen-Generation/response.png",
+                      "/AdminImg/Dynamic-Screen-Generation/preview.png",
                     ]}
                     title="Dynamic Screen Demo"
                     imagePages={imagePages}
@@ -1011,9 +1011,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="live-chat"
                     images={[
-                      "/AdminImg/LiveChatMultiAdmin/chat-1.png",
-                      "/AdminImg/LiveChatMultiAdmin/chat-2.png",
-                      "/AdminImg/LiveChatMultiAdmin/chat-3.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/chat-1.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/chat-2.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/chat-3.png",
                     ]}
                     title="Live Chat Interface"
                     videoId="live-chat"
@@ -1087,9 +1087,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="admin-panel"
                     images={[
-                      "/AdminImg/ComprehensiveAdminPanel/admin-1.png",
-                      "/AdminImg/ComprehensiveAdminPanel/admin-2.png",
-                      "/AdminImg/ComprehensiveAdminPanel/admin-3.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/admin-1.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/admin-2.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/admin-3.png",
                     ]}
                     title="Admin Panel Interface"
                     videoId="admin-panel"
@@ -1163,9 +1163,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="security"
                     images={[
-                      "/AdminImg/EnterpriseGradeSecurity/security-1.png",
-                      "/AdminImg/EnterpriseGradeSecurity/security-2.png",
-                      "/AdminImg/EnterpriseGradeSecurity/security-3.png",
+                      "/AdminImg/Enterprise-Grade-Security/security-1.png",
+                      "/AdminImg/Enterprise-Grade-Security/security-2.png",
+                      "/AdminImg/Enterprise-Grade-Security/security-3.png",
                     ]}
                     title="Security Architecture"
                     imagePages={imagePages}
