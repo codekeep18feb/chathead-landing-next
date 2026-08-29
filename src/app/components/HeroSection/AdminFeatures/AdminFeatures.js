@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./AdminFeatures.module.css";
 
-// Icons
 import {
   FaRocket,
   FaShieldAlt,
@@ -23,16 +23,358 @@ import {
   FaComments,
 } from "react-icons/fa";
 
+/* ============================================================
+   PAGINATION SETTINGS
+   ============================================================ */
+
+const ITEMS_PER_PAGE = 5;
+const IMAGES_PER_PAGE = 2;
+
+/* ============================================================
+   PAGINATED FEATURE LIST
+   ============================================================ */
+
+const PaginatedFeatureList = ({
+  featureId,
+  items,
+  benefit,
+  featurePages,
+  setFeaturePages,
+}) => {
+  const currentPage = featurePages[featureId] || 0;
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+
+  const startIndex = currentPage * ITEMS_PER_PAGE;
+
+  const visibleItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const handlePageChange = (direction) => {
+    setFeaturePages((prev) => {
+      const current = prev[featureId] || 0;
+
+      let nextPage = current;
+
+      if (direction === "next") {
+        nextPage = Math.min(current + 1, totalPages - 1);
+      }
+
+      if (direction === "back") {
+        nextPage = Math.max(current - 1, 0);
+      }
+
+      return {
+        ...prev,
+        [featureId]: nextPage,
+      };
+    });
+  };
+
+  return (
+    <>
+      {/* ========================================================
+          FEATURE LIST
+          ======================================================== */}
+
+      <ul className={styles.featureList}>
+        {visibleItems.map((item, index) => (
+          <li key={`${featureId}-${startIndex + index}`}>{item}</li>
+        ))}
+
+        {/* Keep list height fixed */}
+        {visibleItems.length < ITEMS_PER_PAGE &&
+          Array.from({
+            length: ITEMS_PER_PAGE - visibleItems.length,
+          }).map((_, index) => (
+            <li
+              key={`placeholder-${featureId}-${index}`}
+              className={styles.featureListPlaceholder}
+              aria-hidden="true"
+            >
+              &nbsp;
+            </li>
+          ))}
+      </ul>
+
+      {/* ========================================================
+          BENEFIT
+          ======================================================== */}
+
+      <div className={styles.featureBenefit}>
+        <span>✅ Benefit: {benefit}</span>
+      </div>
+
+      {/* ========================================================
+          TEXT PAGINATION
+          ======================================================== */}
+
+      {items.length > ITEMS_PER_PAGE && (
+        <div className={styles.featurePagination}>
+          <button
+            type="button"
+            className={styles.paginationButton}
+            onClick={() => handlePageChange("back")}
+            disabled={currentPage === 0}
+            aria-label="Previous feature items"
+          >
+            ←
+          </button>
+
+          <span className={styles.paginationInfo}>
+            {currentPage + 1} / {totalPages}
+          </span>
+
+          <button
+            type="button"
+            className={styles.paginationButton}
+            onClick={() => handlePageChange("next")}
+            disabled={currentPage === totalPages - 1}
+            aria-label="Next feature items"
+          >
+            →
+          </button>
+        </div>
+      )}
+    </>
+  );
+};
+
+/* ============================================================
+   PAGINATED FEATURE SCREENSHOT - AUTO SLIDING CAROUSEL
+   ============================================================ */
+
+const FeatureScreenshot = ({
+  featureId,
+  images = [],
+  title,
+  videoId,
+  imagePages,
+  setImagePages,
+  openVideoModal,
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const totalImages = images.length;
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (totalImages > 1 && isAutoPlaying) {
+      autoPlayRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) =>
+          prevIndex === totalImages - 1 ? 0 : prevIndex + 1,
+        );
+      }, 4000); // Slide every 4 seconds
+    }
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [totalImages, isAutoPlaying]);
+
+  // Pause auto-play on hover
+  const handleMouseEnter = () => {
+    setIsAutoPlaying(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoPlaying(true);
+  };
+
+  // Navigation functions
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === totalImages - 1 ? 0 : prevIndex + 1,
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? totalImages - 1 : prevIndex - 1,
+    );
+  };
+
+  // Touch swipe support
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const swipeThreshold = 50;
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  };
+
+  return (
+    <div className={styles.featureVisual}>
+      {/* ========================================================
+          SCREENSHOTS - AUTO SLIDING CAROUSEL
+          ======================================================== */}
+
+      <div
+        className={styles.featureScreenshot}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {images.length > 0 ? (
+          <>
+            <div
+              className={styles.featureScreenshotWrapper}
+              style={{
+                transform: `translateX(-${currentIndex * 100}%)`,
+                transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+              }}
+            >
+              {images.map((image, index) => (
+                <div
+                  key={`${featureId}-slide-${index}`}
+                  className={styles.featureScreenshotSlide}
+                >
+                  <img
+                    src={image}
+                    alt={`${title} screenshot ${index + 1}`}
+                    className={styles.featureScreenshotImage}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Navigation Buttons - Only show if more than 1 image */}
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  className={`${styles.carouselNavButton} ${styles.carouselNavButtonPrev}`}
+                  onClick={prevSlide}
+                  aria-label="Previous screenshot"
+                >
+                  ❮
+                </button>
+
+                <button
+                  type="button"
+                  className={`${styles.carouselNavButton} ${styles.carouselNavButtonNext}`}
+                  onClick={nextSlide}
+                  aria-label="Next screenshot"
+                >
+                  ❯
+                </button>
+
+                {/* Indicators */}
+                <div className={styles.carouselIndicators}>
+                  {images.map((_, index) => (
+                    <button
+                      key={`${featureId}-dot-${index}`}
+                      type="button"
+                      className={`${styles.carouselDot} ${
+                        index === currentIndex ? styles.carouselDotActive : ""
+                      }`}
+                      onClick={() => goToSlide(index)}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+        ) : (
+          <div className={styles.screenshotPlaceholder}>
+            <span className={styles.placeholderIcon}>📋</span>
+            <span>{title}</span>
+            <span className={styles.placeholderSubtext}>
+              Placeholder: Screenshot / Demo here
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* ========================================================
+          WATCH DEMO
+          ======================================================== */}
+
+      {videoId && (
+        <button
+          type="button"
+          className={styles.watchDemoBtn}
+          onClick={() => openVideoModal(videoId)}
+        >
+          <FaPlayCircle /> Watch Demo
+        </button>
+      )}
+    </div>
+  );
+};
+/* ============================================================
+   ADMIN FEATURES
+   ============================================================ */
+
 const AdminFeatures = () => {
   const [activeSection, setActiveSection] = useState("hero");
+
   const [isVisible, setIsVisible] = useState({});
+
   const [expandedFeature, setExpandedFeature] = useState(null);
+
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+
   const [activeVideo, setActiveVideo] = useState(null);
+
+  /*
+   * TEXT PAGINATION
+   *
+   * Example:
+   *
+   * {
+   *   "gen-forms": 0,
+   *   "api-chaining": 1
+   * }
+   */
+  const [featurePages, setFeaturePages] = useState({});
+
+  /*
+   * IMAGE PAGINATION
+   *
+   * Example:
+   *
+   * {
+   *   "gen-forms": 1,
+   *   "api-chaining": 0
+   * }
+   */
+  const [imagePages, setImagePages] = useState({});
+
   const sectionRefs = useRef({});
+
   const observerRef = useRef(null);
 
-  // Intersection Observer for animations
+  /* ============================================================
+     INTERSECTION OBSERVER
+     ============================================================ */
+
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -45,11 +387,15 @@ const AdminFeatures = () => {
           }
         });
       },
-      { threshold: 0.15 },
+      {
+        threshold: 0.15,
+      },
     );
 
     Object.values(sectionRefs.current).forEach((ref) => {
-      if (ref) observerRef.current.observe(ref);
+      if (ref) {
+        observerRef.current.observe(ref);
+      }
     });
 
     return () => {
@@ -59,9 +405,17 @@ const AdminFeatures = () => {
     };
   }, []);
 
+  /* ============================================================
+     FEATURE TOGGLE
+     ============================================================ */
+
   const toggleFeature = (id) => {
-    setExpandedFeature(expandedFeature === id ? null : id);
+    setExpandedFeature((prev) => (prev === id ? null : id));
   };
+
+  /* ============================================================
+     VIDEO MODAL
+     ============================================================ */
 
   const openVideoModal = (videoId) => {
     setActiveVideo(videoId);
@@ -73,7 +427,10 @@ const AdminFeatures = () => {
     setActiveVideo(null);
   };
 
-  // Video data for placeholders
+  /* ============================================================
+     VIDEO DATA
+     ============================================================ */
+
   const videos = {
     "rag-demo": {
       title: "RAG Engine Demo",
@@ -81,26 +438,31 @@ const AdminFeatures = () => {
         "See how Sageion's RAG engine retrieves context from your documents",
       thumbnail: "/videos/rag-demo-thumbnail.jpg",
     },
+
     "api-chaining": {
       title: "API Chaining Demo",
       description: "Complex API workflows built visually in minutes",
       thumbnail: "/videos/api-chaining-thumbnail.jpg",
     },
+
     "form-generation": {
       title: "Generative Forms Demo",
       description: "AI-generated forms with pre-filled data",
       thumbnail: "/videos/form-generation-thumbnail.jpg",
     },
+
     "webhook-async": {
       title: "Async Webhook Demo",
       description: "True async support with no 30-second timeout",
       thumbnail: "/videos/webhook-async-thumbnail.jpg",
     },
+
     "live-chat": {
       title: "Live Chat with Multi-Admin Demo",
       description: "Real-time agent collaboration and routing",
       thumbnail: "/videos/live-chat-thumbnail.jpg",
     },
+
     "admin-panel": {
       title: "Admin Panel Demo",
       description: "Complete control over your AI agents and workflows",
@@ -108,63 +470,130 @@ const AdminFeatures = () => {
     },
   };
 
+  /* ============================================================
+     SECTIONS
+     ============================================================ */
+
   const sections = [
-    { id: "hero", label: "Overview" },
-    { id: "problem", label: "The Problem" },
-    { id: "solution", label: "Our Solution" },
-    { id: "key-features", label: "Key Features" },
-    { id: "time-savings", label: "Time Savings" },
-    { id: "architecture", label: "Architecture" },
-    { id: "workflows", label: "Workflows" },
-    { id: "integrations", label: "Integrations" },
-    { id: "security", label: "Security" },
-    { id: "scalability", label: "Scalability" },
-    { id: "comparison", label: "Comparison" },
-    { id: "testimonials", label: "Testimonials" },
+    {
+      id: "hero",
+      label: "Overview",
+    },
+    {
+      id: "problem",
+      label: "The Problem",
+    },
+    {
+      id: "solution",
+      label: "Our Solution",
+    },
+    {
+      id: "key-features",
+      label: "Key Features",
+    },
+    {
+      id: "time-savings",
+      label: "Time Savings",
+    },
+    {
+      id: "architecture",
+      label: "Architecture",
+    },
+    {
+      id: "workflows",
+      label: "Workflows",
+    },
+    {
+      id: "integrations",
+      label: "Integrations",
+    },
+    {
+      id: "security",
+      label: "Security",
+    },
+    {
+      id: "scalability",
+      label: "Scalability",
+    },
+    {
+      id: "comparison",
+      label: "Comparison",
+    },
+    {
+      id: "testimonials",
+      label: "Testimonials",
+    },
   ];
 
   return (
     <div className={styles.pageWrapper}>
       {/* ============================================================
-      KEY FEATURES SECTION
-      ============================================================ */}
+          KEY FEATURES SECTION
+          ============================================================ */}
+
       <section
         id="key-features"
         className={styles.featuresSection}
-        ref={(el) => (sectionRefs.current["key-features"] = el)}
+        ref={(el) => {
+          sectionRefs.current["key-features"] = el;
+        }}
       >
         <div className={styles.sectionContainer}>
+          {/* ========================================================
+              SECTION HEADER
+              ======================================================== */}
+
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>⚡ Key Features</span>
+
             <h2 className={styles.sectionTitle}>
-              Everything You Need to{" "}
-              <span className={styles.gradientText}>Succeed</span>
+              Everything You Need{" "}
+              <span className={styles.gradientText}>to Succeed</span>
             </h2>
+
             <p className={styles.sectionSubtitle}>
               Comprehensive features that make Sageion the most complete
               platform for business automation.
             </p>
           </div>
 
+          {/* ========================================================
+              FEATURES GRID
+              ======================================================== */}
+
           <div className={styles.featuresGrid}>
-            {/* Feature 1: Generative AI Forms */}
-            <div className={`${styles.featureCard} ${styles.featureExpanded}`}>
+            {/* ======================================================
+                FEATURE 1
+                GENERATIVE AI FORMS
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "gen-forms" ? styles.featureExpanded : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("gen-forms")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#4BCF9E20", color: "#4BCF9E" }}
+                  style={{
+                    background: "#4BCF9E20",
+                    color: "#4BCF9E",
+                  }}
                 >
                   <FaBrain />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>Generative AI Forms</h3>
+
                   <p>
                     Intelligent forms that pre-fill what users already told you
                   </p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "gen-forms" ? (
                     <FaChevronUp />
@@ -178,61 +607,73 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>How It Works</h4>
-                    <ul>
-                      <li>User sends: "Book a room for 2 guests on Dec 25"</li>
-                      <li>AI detects BOOKING intent</li>
-                      <li>
-                        Extracts: {`{ guests: 2, check_in: "2025-12-25" }`}
-                      </li>
-                      <li>Generates form with pre-filled values</li>
-                      <li>User only adds missing info (guest_name, payment)</li>
-                      <li>Complete data → Trigger API → Get results</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: 70% faster form completion</span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="gen-forms"
+                      items={[
+                        'User sends: "Book a room for 2 guests on Dec 25"',
+                        "AI detects BOOKING intent",
+                        `Extracts: { guests: 2, check_in: "2025-12-25" }`,
+                        "Generates form with pre-filled values",
+                        "User only adds missing info (guest_name, payment)",
+                        "Complete data → Trigger API → Get results",
+                      ]}
+                      benefit="70% faster form completion"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>📋</span>
-                        <span>Form Generation Demo</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Screenshot / GIF here
-                        </span>
-                      </div>
-                    </div>
-                    <button
-                      className={styles.watchDemoBtn}
-                      onClick={() => openVideoModal("form-generation")}
-                    >
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="gen-forms"
+                    images={[
+                      "/AdminImg/Generative-AI-Forms/Agencies-Product-Builders.jpg",
+                      "/AdminImg/Generative-AI-Forms/ai-agent-bg.jpg",
+                      "/AdminImg/Generative-AI-Forms/Businesses.jpg",
+                    ]}
+                    title="Form Generation Demo"
+                    videoId="form-generation"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Feature 2: API Chaining */}
-            <div className={styles.featureCard}>
+            {/* ======================================================
+                FEATURE 2
+                API CHAINING
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "api-chaining" ? styles.featureExpanded : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("api-chaining")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#667EEA20", color: "#667EEA" }}
+                  style={{
+                    background: "#667EEA20",
+                    color: "#667EEA",
+                  }}
                 >
                   <FaProjectDiagram />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>Visual API Chaining</h3>
+
                   <p>
                     Complex workflows built without writing a single line of
                     code
                   </p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "api-chaining" ? (
                     <FaChevronUp />
@@ -246,55 +687,69 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>Chain Everything</h4>
-                    <ul>
-                      <li>Conditional logic: If/Else/Else If</li>
-                      <li>Multiple API calls in sequence</li>
-                      <li>Error handling and retry logic</li>
-                      <li>Data transformation between steps</li>
-                      <li>Parallel execution support</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Replace 1000+ lines of code</span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="api-chaining"
+                      items={[
+                        "Conditional logic: If/Else/Else If",
+                        "Multiple API calls in sequence",
+                        "Error handling and retry logic",
+                        "Data transformation between steps",
+                        "Parallel execution support",
+                      ]}
+                      benefit="Replace 1000+ lines of code"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🔗</span>
-                        <span>API Chaining Workflow</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Screenshot / Diagram here
-                        </span>
-                      </div>
-                    </div>
-                    <button
-                      className={styles.watchDemoBtn}
-                      onClick={() => openVideoModal("api-chaining")}
-                    >
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="api-chaining"
+                    images={[
+                      "/AdminImg/VisualAPIChaining/api-1.png",
+                      "/AdminImg/VisualAPIChaining/api-2.png",
+                      "/AdminImg/VisualAPIChaining/api-3.png",
+                    ]}
+                    title="API Chaining Workflow"
+                    videoId="api-chaining"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Feature 3: RAG Engine */}
-            <div className={styles.featureCard}>
+            {/* ======================================================
+                FEATURE 3
+                RAG ENGINE
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "rag" ? styles.featureExpanded : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("rag")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#F59E0B20", color: "#F59E0B" }}
+                  style={{
+                    background: "#F59E0B20",
+                    color: "#F59E0B",
+                  }}
                 >
                   <FaRobot />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>Built-in RAG Engine</h3>
+
                   <p>Context-aware AI without paying per-query to OpenAI</p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "rag" ? (
                     <FaChevronUp />
@@ -308,55 +763,71 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>RAG Capabilities</h4>
-                    <ul>
-                      <li>Ingest websites, PDFs, documents</li>
-                      <li>Semantic search across your knowledge base</li>
-                      <li>Context-aware responses</li>
-                      <li>No token costs — fixed pricing</li>
-                      <li>Perfect session memory</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Unlimited queries, fixed cost</span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="rag"
+                      items={[
+                        "Ingest websites, PDFs, documents",
+                        "Semantic search across your knowledge base",
+                        "Context-aware responses",
+                        "No token costs — fixed pricing",
+                        "Perfect session memory",
+                      ]}
+                      benefit="Unlimited queries, fixed cost"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🧠</span>
-                        <span>RAG Engine Demo</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Screenshot / Animation here
-                        </span>
-                      </div>
-                    </div>
-                    <button
-                      className={styles.watchDemoBtn}
-                      onClick={() => openVideoModal("rag-demo")}
-                    >
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="rag"
+                    images={[
+                      "/AdminImg/BuiltInRAGEngine/rag-1.png",
+                      "/AdminImg/BuiltInRAGEngine/rag-2.png",
+                      "/AdminImg/BuiltInRAGEngine/rag-3.png",
+                    ]}
+                    title="RAG Engine Demo"
+                    videoId="rag-demo"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Feature 4: True Async Webhooks */}
-            <div className={styles.featureCard}>
+            {/* ======================================================
+                FEATURE 4
+                TRUE ASYNC WEBHOOKS
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "async-webhooks"
+                  ? styles.featureExpanded
+                  : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("async-webhooks")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#EC489A20", color: "#EC489A" }}
+                  style={{
+                    background: "#EC489A20",
+                    color: "#EC489A",
+                  }}
                 >
                   <FaWaveSquare />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>True Async Webhooks</h3>
+
                   <p>No 30-second timeout — wait as long as needed</p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "async-webhooks" ? (
                     <FaChevronUp />
@@ -370,57 +841,69 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>Process Anything</h4>
-                    <ul>
-                      <li>No hard timeout (30s, 60s, etc.)</li>
-                      <li>WebSocket callback for results</li>
-                      <li>Dynamic UI updates on completion</li>
-                      <li>Process can take seconds, minutes, hours, or days</li>
-                      <li>Automatic retry and error handling</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>
-                        ✅ Benefit: Handle any process, no matter how long
-                      </span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="async-webhooks"
+                      items={[
+                        "No hard timeout (30s, 60s, etc.)",
+                        "WebSocket callback for results",
+                        "Dynamic UI updates on completion",
+                        "Process can take seconds, minutes, hours, or days",
+                        "Automatic retry and error handling",
+                      ]}
+                      benefit="Handle any process, no matter how long"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🔄</span>
-                        <span>Async Webhook Flow</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Screenshot / Diagram here
-                        </span>
-                      </div>
-                    </div>
-                    <button
-                      className={styles.watchDemoBtn}
-                      onClick={() => openVideoModal("webhook-async")}
-                    >
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="async-webhooks"
+                    images={[
+                      "/AdminImg/TrueAsyncWebhooks/webhook-1.png",
+                      "/AdminImg/TrueAsyncWebhooks/webhook-2.png",
+                      "/AdminImg/TrueAsyncWebhooks/webhook-3.png",
+                    ]}
+                    title="Async Webhook Flow"
+                    videoId="webhook-async"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Feature 5: Dynamic Screen Generation */}
-            <div className={styles.featureCard}>
+            {/* ======================================================
+                FEATURE 5
+                DYNAMIC SCREEN GENERATION
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "screen-gen" ? styles.featureExpanded : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("screen-gen")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#8B5CF620", color: "#8B5CF6" }}
+                  style={{
+                    background: "#8B5CF620",
+                    color: "#8B5CF6",
+                  }}
                 >
                   <FaPaintBrush />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>Dynamic Screen Generation</h3>
+
                   <p>Multiple screens from a single API response</p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "screen-gen" ? (
                     <FaChevronUp />
@@ -434,51 +917,68 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>Screen Capabilities</h4>
-                    <ul>
-                      <li>Template-based rendering (Nunjucks)</li>
-                      <li>Style transformations (bold, highlight, buttons)</li>
-                      <li>Structural transformations (tables, cards, lists)</li>
-                      <li>Media transformations (images, PDFs)</li>
-                      <li>Multiple screens from array data</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>
-                        ✅ Benefit: No hardcoded UI — adapts to your data
-                      </span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="screen-gen"
+                      items={[
+                        "Template-based rendering (Nunjucks)",
+                        "Style transformations (bold, highlight, buttons)",
+                        "Structural transformations (tables, cards, lists)",
+                        "Media transformations (images, PDFs)",
+                        "Multiple screens from array data",
+                      ]}
+                      benefit="No hardcoded UI — adapts to your data"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🎨</span>
-                        <span>Dynamic Screen Demo</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Screenshot / Demo here
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="screen-gen"
+                    images={[
+                      "/AdminImg/DynamicScreenGeneration/screen-1.png",
+                      "/AdminImg/DynamicScreenGeneration/screen-2.png",
+                      "/AdminImg/DynamicScreenGeneration/screen-3.png",
+                    ]}
+                    title="Dynamic Screen Demo"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Feature 6: Live Chat + Multi-Admin */}
-            <div className={styles.featureCard}>
+            {/* ======================================================
+                FEATURE 6
+                LIVE CHAT + MULTI ADMIN
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "live-chat" ? styles.featureExpanded : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("live-chat")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#0EA5E920", color: "#0EA5E9" }}
+                  style={{
+                    background: "#0EA5E920",
+                    color: "#0EA5E9",
+                  }}
                 >
                   <FaComments />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>Live Chat + Multi-Admin</h3>
+
                   <p>Real-time agent collaboration with RBAC</p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "live-chat" ? (
                     <FaChevronUp />
@@ -492,55 +992,69 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>Chat Capabilities</h4>
-                    <ul>
-                      <li>Multi-admin support with role-based access</li>
-                      <li>Unified inbox across all websites</li>
-                      <li>Smart agent routing and handover</li>
-                      <li>Real-time typing indicators</li>
-                      <li>File sharing and rich media</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Enterprise-grade customer support</span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="live-chat"
+                      items={[
+                        "Multi-admin support with role-based access",
+                        "Unified inbox across all websites",
+                        "Smart agent routing and handover",
+                        "Real-time typing indicators",
+                        "File sharing and rich media",
+                      ]}
+                      benefit="Enterprise-grade customer support"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>💬</span>
-                        <span>Live Chat Interface</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Screenshot / Demo here
-                        </span>
-                      </div>
-                    </div>
-                    <button
-                      className={styles.watchDemoBtn}
-                      onClick={() => openVideoModal("live-chat")}
-                    >
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="live-chat"
+                    images={[
+                      "/AdminImg/LiveChatMultiAdmin/chat-1.png",
+                      "/AdminImg/LiveChatMultiAdmin/chat-2.png",
+                      "/AdminImg/LiveChatMultiAdmin/chat-3.png",
+                    ]}
+                    title="Live Chat Interface"
+                    videoId="live-chat"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Feature 7: Admin Panel */}
-            <div className={styles.featureCard}>
+            {/* ======================================================
+                FEATURE 7
+                ADMIN PANEL
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "admin-panel" ? styles.featureExpanded : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("admin-panel")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#F9731620", color: "#F97316" }}
+                  style={{
+                    background: "#F9731620",
+                    color: "#F97316",
+                  }}
                 >
                   <FaCog />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>Comprehensive Admin Panel</h3>
+
                   <p>Complete control without touching code</p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "admin-panel" ? (
                     <FaChevronUp />
@@ -554,55 +1068,69 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>Admin Capabilities</h4>
-                    <ul>
-                      <li>Visual workflow builder</li>
-                      <li>Intent configuration</li>
-                      <li>API integration setup</li>
-                      <li>UI customization</li>
-                      <li>Analytics and monitoring</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Business users take control</span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="admin-panel"
+                      items={[
+                        "Visual workflow builder",
+                        "Intent configuration",
+                        "API integration setup",
+                        "UI customization",
+                        "Analytics and monitoring",
+                      ]}
+                      benefit="Business users take control"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>📊</span>
-                        <span>Admin Panel Interface</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Screenshot / Demo here
-                        </span>
-                      </div>
-                    </div>
-                    <button
-                      className={styles.watchDemoBtn}
-                      onClick={() => openVideoModal("admin-panel")}
-                    >
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="admin-panel"
+                    images={[
+                      "/AdminImg/ComprehensiveAdminPanel/admin-1.png",
+                      "/AdminImg/ComprehensiveAdminPanel/admin-2.png",
+                      "/AdminImg/ComprehensiveAdminPanel/admin-3.png",
+                    ]}
+                    title="Admin Panel Interface"
+                    videoId="admin-panel"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Feature 8: Security & Auth */}
-            <div className={styles.featureCard}>
+            {/* ======================================================
+                FEATURE 8
+                SECURITY
+                ====================================================== */}
+
+            <div
+              className={`${styles.featureCard} ${
+                expandedFeature === "security" ? styles.featureExpanded : ""
+              }`}
+            >
               <div
                 className={styles.featureHeader}
                 onClick={() => toggleFeature("security")}
               >
                 <div
                   className={styles.featureIcon}
-                  style={{ background: "#10B98120", color: "#10B981" }}
+                  style={{
+                    background: "#10B98120",
+                    color: "#10B981",
+                  }}
                 >
                   <FaLock />
                 </div>
+
                 <div className={styles.featureTitle}>
                   <h3>Enterprise-Grade Security</h3>
+
                   <p>No XSS attacks, no stored scripts, complete safety</p>
                 </div>
+
                 <div className={styles.featureToggle}>
                   {expandedFeature === "security" ? (
                     <FaChevronUp />
@@ -616,35 +1144,76 @@ const AdminFeatures = () => {
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
                     <h4>Security Features</h4>
-                    <ul>
-                      <li>No HTML/JS stored in database</li>
-                      <li>Template + transformations applied client-side</li>
-                      <li>Primary + Secondary authentication</li>
-                      <li>Role-Based Access Control (RBAC)</li>
-                      <li>Secure API key management</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Safe, secure, compliant</span>
-                    </div>
+
+                    <PaginatedFeatureList
+                      featureId="security"
+                      items={[
+                        "No HTML/JS stored in database",
+                        "Template + transformations applied client-side",
+                        "Primary + Secondary authentication",
+                        "Role-Based Access Control (RBAC)",
+                        "Secure API key management",
+                      ]}
+                      benefit="Safe, secure, compliant"
+                      featurePages={featurePages}
+                      setFeaturePages={setFeaturePages}
+                    />
                   </div>
 
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🔐</span>
-                        <span>Security Architecture</span>
-                        <span className={styles.placeholderSubtext}>
-                          Placeholder: Security diagram here
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <FeatureScreenshot
+                    featureId="security"
+                    images={[
+                      "/AdminImg/EnterpriseGradeSecurity/security-1.png",
+                      "/AdminImg/EnterpriseGradeSecurity/security-2.png",
+                      "/AdminImg/EnterpriseGradeSecurity/security-3.png",
+                    ]}
+                    title="Security Architecture"
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
                 </div>
               )}
             </div>
           </div>
         </div>
       </section>
+
+      {/* ============================================================
+          VIDEO MODAL
+          ============================================================ */}
+
+      {videoModalOpen && activeVideo && videos[activeVideo] && (
+        <div className={styles.videoModalOverlay} onClick={closeVideoModal}>
+          <div
+            className={styles.videoModal}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={styles.videoModalClose}
+              onClick={closeVideoModal}
+              aria-label="Close video"
+            >
+              ×
+            </button>
+
+            <div className={styles.videoModalContent}>
+              <h3>{videos[activeVideo].title}</h3>
+
+              <p>{videos[activeVideo].description}</p>
+
+              <div className={styles.videoPlaceholder}>
+                <img
+                  src={videos[activeVideo].thumbnail}
+                  alt={videos[activeVideo].title}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ============================================================
       PROBLEM SECTION
       ============================================================ */}

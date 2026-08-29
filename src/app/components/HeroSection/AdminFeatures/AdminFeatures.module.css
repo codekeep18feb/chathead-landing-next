@@ -8,7 +8,8 @@
   color: #1a1a2e;
   overflow-x: hidden;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -56,7 +57,7 @@
 }
 
 .logoText {
-  background: linear-gradient(135deg, #4BCF9E, #667EEA);
+  background: linear-gradient(135deg, #4bcf9e, #667eea);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -88,13 +89,13 @@
 }
 
 .navLinkActive {
-  color: #4BCF9E;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.12);
 }
 
 .navCta {
   padding: 10px 24px;
-  background: linear-gradient(135deg, #4BCF9E, #2d9c73);
+  background: linear-gradient(135deg, #4bcf9e, #2d9c73);
   border: none;
   border-radius: 50px;
   color: #fff;
@@ -137,7 +138,7 @@
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
   font-size: 0.8rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   margin-bottom: 20px;
   letter-spacing: 0.5px;
   font-weight: 600;
@@ -151,7 +152,7 @@
 }
 
 .gradientText {
-  background: linear-gradient(135deg, #4BCF9E, #667EEA);
+  background: linear-gradient(135deg, #4bcf9e, #667eea);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -191,7 +192,11 @@
   right: -10%;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(75, 207, 158, 0.15), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(75, 207, 158, 0.15),
+    transparent 70%
+  );
   border-radius: 50%;
   animation: floatOrb 25s ease-in-out infinite;
 }
@@ -202,7 +207,11 @@
   left: -10%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.12), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.12),
+    transparent 70%
+  );
   border-radius: 50%;
   animation: floatOrb 30s ease-in-out infinite reverse;
 }
@@ -214,7 +223,11 @@
   transform: translate(-50%, -50%);
   width: 900px;
   height: 900px;
-  background: radial-gradient(circle, rgba(75, 207, 158, 0.04), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(75, 207, 158, 0.04),
+    transparent 70%
+  );
   border-radius: 50%;
   animation: pulseOrb 20s ease-in-out infinite;
 }
@@ -228,13 +241,25 @@
 }
 
 @keyframes floatOrb {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.08); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
 }
 
 @keyframes pulseOrb {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.8;
+  }
 }
 
 .heroContent {
@@ -253,7 +278,7 @@
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
   font-size: 0.85rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   margin-bottom: 28px;
   font-weight: 500;
 }
@@ -262,13 +287,20 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #4BCF9E;
+  background: #4bcf9e;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.7); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
 }
 
 .heroTitle {
@@ -279,7 +311,7 @@
 }
 
 .heroHighlight {
-  color: #4BCF9E;
+  color: #4bcf9e;
   display: block;
 }
 
@@ -310,7 +342,7 @@
 .heroStatNumber {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #4BCF9E;
+  color: #4bcf9e;
 }
 
 .heroStatLabel {
@@ -328,7 +360,7 @@
 
 .heroPrimaryBtn {
   padding: 16px 40px;
-  background: linear-gradient(135deg, #4BCF9E, #2d9c73);
+  background: linear-gradient(135deg, #4bcf9e, #2d9c73);
   border: none;
   border-radius: 50px;
   color: #fff;
@@ -500,7 +532,7 @@
 }
 
 .problemStatNegative {
-  color: #EF4444;
+  color: #ef4444;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -580,7 +612,7 @@
   background: rgba(75, 207, 158, 0.1);
   border-radius: 50px;
   font-size: 0.75rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-weight: 600;
 }
 
@@ -602,7 +634,7 @@
   border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: 50px;
   font-size: 0.8rem;
-  color: #EF4444;
+  color: #ef4444;
   margin-bottom: 12px;
   font-weight: 600;
 }
@@ -654,7 +686,7 @@
 
 .videoPlayIcon {
   font-size: 3rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   opacity: 0.6;
   transition: all 0.3s ease;
 }
@@ -785,14 +817,20 @@
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .featureDescription h4 {
   font-size: 1rem;
   margin: 14px 0px;
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-weight: 700;
 }
 
@@ -817,11 +855,11 @@
   padding: 12px 18px;
   background: rgba(75, 207, 158, 0.08);
   border-radius: 10px;
-  border-left: 4px solid #4BCF9E;
+  border-left: 4px solid #4bcf9e;
 }
 
 .featureBenefit span {
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -832,8 +870,42 @@
   gap: 14px;
 }
 
+
 .featureScreenshot {
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+.featureScreenshotImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.featureScreenshotImage:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(75, 207, 158, 0.2);
+}
+
+/* When only 1 image is visible, make it full width */
+.featureScreenshot:has(.featureScreenshotImage:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.featureScreenshot:has(.featureScreenshotImage:only-child) .featureScreenshotImage {
+  aspect-ratio: 16/9;
+}
+
+/* For 3+ images, maintain grid layout */
+.featureScreenshot:has(.featureScreenshotImage:nth-child(3)) {
+  grid-template-columns: 1fr 1fr;
 }
 
 .screenshotPlaceholder {
@@ -849,6 +921,7 @@
   gap: 10px;
   padding: 24px;
   transition: all 0.3s ease;
+  grid-column: 1 / -1;
 }
 
 .screenshotPlaceholder:hover {
@@ -878,7 +951,7 @@
   background: rgba(75, 207, 158, 0.1);
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 10px;
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -926,7 +999,7 @@
 .timeMetricValue {
   font-size: 3rem;
   font-weight: 700;
-  color: #4BCF9E;
+  color: #4bcf9e;
   line-height: 1.2;
 }
 
@@ -945,12 +1018,12 @@
 }
 
 .oldValue {
-  color: #EF4444;
+  color: #ef4444;
   text-decoration: line-through;
 }
 
 .newValue {
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-weight: 700;
 }
 
@@ -980,7 +1053,7 @@
   background: rgba(75, 207, 158, 0.1);
   border-radius: 50px;
   font-size: 0.75rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   margin-bottom: 10px;
   font-weight: 600;
 }
@@ -1008,7 +1081,7 @@
 .caseMetricNumber {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #4BCF9E;
+  color: #4bcf9e;
   display: block;
 }
 
@@ -1031,7 +1104,7 @@
 
 .resultBadge {
   padding: 6px 16px;
-  background: #4BCF9E;
+  background: #4bcf9e;
   border-radius: 50px;
   font-size: 0.75rem;
   color: #fff;
@@ -1080,7 +1153,7 @@
   height: 44px;
   border-radius: 50%;
   background: rgba(75, 207, 158, 0.15);
-  color: #4BCF9E;
+  color: #4bcf9e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1142,7 +1215,7 @@
 }
 
 .layerDetails li svg {
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-size: 0.75rem;
   flex-shrink: 0;
 }
@@ -1348,7 +1421,7 @@
   background: rgba(75, 207, 158, 0.1);
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
@@ -1537,7 +1610,7 @@
   height: 36px;
   border-radius: 50%;
   background: rgba(75, 207, 158, 0.2);
-  color: #4BCF9E;
+  color: #4bcf9e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1613,12 +1686,12 @@
 }
 
 .negative {
-  color: #EF4444;
+  color: #ef4444;
   font-weight: 500;
 }
 
 .positive {
-  color: #4BCF9E;
+  color: #4bcf9e;
   font-weight: 600;
 }
 
@@ -1652,7 +1725,7 @@
 }
 
 .testimonialRating {
-  color: #F59E0B;
+  color: #f59e0b;
   font-size: 1rem;
   margin-bottom: 14px;
   letter-spacing: 2px;
@@ -1676,7 +1749,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4BCF9E, #667EEA);
+  background: linear-gradient(135deg, #4bcf9e, #667eea);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1723,10 +1796,14 @@
 }
 
 .ctaCard::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(75, 207, 158, 0.05), transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(75, 207, 158, 0.05),
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -1742,7 +1819,7 @@
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
   font-size: 0.8rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   margin-bottom: 18px;
   font-weight: 600;
 }
@@ -1772,7 +1849,7 @@
 
 .ctaPrimaryBtn {
   padding: 18px 44px;
-  background: linear-gradient(135deg, #4BCF9E, #2d9c73);
+  background: linear-gradient(135deg, #4bcf9e, #2d9c73);
   border: none;
   border-radius: 50px;
   color: #fff;
@@ -1847,8 +1924,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .videoModalContent {
@@ -1911,7 +1992,7 @@
 
 .videoPlaceholderIcon {
   font-size: 4.5rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   opacity: 0.5;
 }
 
@@ -2195,5 +2276,391 @@
   .growthStep {
     min-width: unset;
     padding: 14px 18px;
+  }
+}
+
+/* ============================================================
+   FEATURE PAGINATION
+   ============================================================ */
+
+.featurePagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 42px;
+  margin-top: 18px;
+  padding: 4px 0;
+}
+
+/* Pagination Buttons */
+
+.paginationButton {
+  background: #f0f4f8;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginationButton:hover {
+  background: #4bcf9e;
+  color: white;
+}
+
+.paginationButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.paginationButton:focus-visible {
+  outline: none;
+  border-color: #4bcf9e;
+  box-shadow: 0 0 0 3px rgba(75, 207, 158, 0.15);
+}
+
+/* Disabled button */
+
+.paginationButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.paginationButton:disabled:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #374151;
+}
+
+/* ============================================================
+   PAGINATION ARROWS
+   ============================================================ */
+
+.paginationButton svg {
+  font-size: 11px;
+  transition: transform 0.2s ease;
+}
+
+.paginationButton:first-child:hover svg {
+  transform: translateX(-2px);
+}
+
+.paginationButton:last-child:hover svg {
+  transform: translateX(2px);
+}
+
+/* ============================================================
+   PAGE INDICATOR
+   ============================================================ */
+
+.paginationInfo {
+  font-size: 14px;
+  color: #5a5a7a;
+  font-weight: 500;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .featurePagination {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .paginationButton {
+    min-width: 82px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .paginationInfo {
+    min-width: 52px;
+    height: 32px;
+    font-size: 11px;
+  }
+}
+
+
+
+/* ============================================================
+   RESPONSIVE - SCREENSHOTS
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .featureScreenshot {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .featureScreenshotImage {
+    aspect-ratio: 16/11;
+    border-radius: 10px;
+  }
+
+  .featureScreenshot:has(.featureScreenshotImage:only-child) .featureScreenshotImage {
+    aspect-ratio: 16/10;
+  }
+}
+
+@media (max-width: 480px) {
+  .featureScreenshot {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .featureScreenshotImage {
+    aspect-ratio: 16/12;
+    border-radius: 8px;
+  }
+
+  .featureScreenshot:has(.featureScreenshotImage:only-child) .featureScreenshotImage {
+    aspect-ratio: 16/9;
+  }
+
+  /* On very small screens, stack images */
+  .featureScreenshot:has(.featureScreenshotImage:nth-child(3)) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* For single image on mobile, make it full width */
+@media (max-width: 480px) {
+  .featureScreenshot:has(.featureScreenshotImage:only-child) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   FEATURE SCREENSHOT - AUTO SLIDING CAROUSEL
+   ============================================================ */
+
+.featureScreenshot {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.02);
+  aspect-ratio: 16/10;
+}
+
+.featureScreenshotWrapper {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.featureScreenshotSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.featureScreenshotImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* ============================================================
+   CAROUSEL INDICATORS
+   ============================================================ */
+
+.carouselIndicators {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.carouselDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carouselDot:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.1);
+}
+
+.carouselDotActive {
+  background: #4bcf9e;
+  width: 24px;
+  border-radius: 6px;
+}
+
+.carouselDotActive:hover {
+  background: #4bcf9e;
+  transform: scale(1);
+}
+
+/* ============================================================
+   CAROUSEL NAVIGATION BUTTONS
+   ============================================================ */
+
+.carouselNavButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 0;
+}
+
+.featureScreenshot:hover .carouselNavButton {
+  opacity: 1;
+}
+
+.carouselNavButton:hover {
+  background: rgba(75, 207, 158, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carouselNavButtonPrev {
+  left: 8px;
+}
+
+.carouselNavButtonNext {
+  right: 8px;
+}
+
+/* ============================================================
+   PLACEHOLDER (when no images)
+   ============================================================ */
+
+.screenshotPlaceholder {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 2px dashed rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.screenshotPlaceholder:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.screenshotPlaceholder .placeholderIcon {
+  font-size: 2.2rem;
+}
+
+.screenshotPlaceholder span {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+}
+
+.screenshotPlaceholder .placeholderSubtext {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .featureScreenshot {
+    aspect-ratio: 16/11;
+  }
+
+  .carouselNavButton {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .carouselIndicators {
+    padding: 4px 10px;
+    gap: 6px;
+    bottom: 8px;
+  }
+
+  .carouselDot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carouselDotActive {
+    width: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featureScreenshot {
+    aspect-ratio: 16/12;
+  }
+
+  .carouselNavButton {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+    opacity: 0.6;
+  }
+
+  .carouselIndicators {
+    padding: 4px 8px;
+    gap: 5px;
+    bottom: 6px;
+  }
+
+  .carouselDot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .carouselDotActive {
+    width: 16px;
   }
 }
