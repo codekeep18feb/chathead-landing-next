@@ -627,9 +627,10 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="gen-forms"
                     images={[
-                      "/AdminImg/Generative-AI-Forms/Agencies-Product-Builders.jpg",
-                      "/AdminImg/Generative-AI-Forms/ai-agent-bg.jpg",
-                      "/AdminImg/Generative-AI-Forms/Businesses.jpg",
+                      "/AdminImg/Generative-AI-Forms/bookingForm.png",
+                      "/AdminImg/Generative-AI-Forms/afterBookingMsg.png",
+                      "/AdminImg/Generative-AI-Forms/genAiForm.png",
+                      "/AdminImg/Generative-AI-Forms/afterbooking.png",
                     ]}
                     title="Form Generation Demo"
                     videoId="form-generation"
@@ -860,9 +861,9 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="async-webhooks"
                     images={[
-                      "/AdminImg/True-Async-Webhooks/webhook-1.png",
-                      "/AdminImg/True-Async-Webhooks/webhook-2.png",
-                      "/AdminImg/True-Async-Webhooks/webhook-3.png",
+                      "/AdminImg/True-Async-Webhooks/withoutWebhook.png",
+                      "/AdminImg/True-Async-Webhooks/withWebhook.png",
+                      // "/AdminImg/True-Async-Webhooks/webhook-3.png",
                     ]}
                     title="Async Webhook Flow"
                     videoId="webhook-async"
@@ -1011,9 +1012,14 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="live-chat"
                     images={[
-                      "/AdminImg/Live-Chat-Multi-Admin/chat-1.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/chat-2.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/chat-3.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/liveuser1.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/liveuser2.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/liveuser3.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/beforeEnableMuliAdmin.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/afterEnableMuliAdmin.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/muliAdminChat1.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/muliAdminChat2.png",
+                      "/AdminImg/Live-Chat-Multi-Admin/inviteSupport.png",
                     ]}
                     title="Live Chat Interface"
                     videoId="live-chat"
@@ -1087,9 +1093,13 @@ const AdminFeatures = () => {
                   <FeatureScreenshot
                     featureId="admin-panel"
                     images={[
-                      "/AdminImg/Comprehensive-Admin-Panel/admin-1.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/admin-2.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/admin-3.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf1.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf2.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf3.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf4.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/apiConf1.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/apiConf2.png",
+                      "/AdminImg/Comprehensive-Admin-Panel/apiConf3.png",
                     ]}
                     title="Admin Panel Interface"
                     videoId="admin-panel"
