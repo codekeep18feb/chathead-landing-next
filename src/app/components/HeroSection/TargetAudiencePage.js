@@ -162,9 +162,9 @@ export default function TargetAudiencePage() {
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.heading}>
-            Who Is Sageion
+            Who Is Sageion 
              {/* <span className={styles.highlight}>Sageion</span> */}
-              Best For?
+               Best For?
           </h2>
           <p className={styles.intro}>
             Sageion is built for teams who want powerful, fast, and low-cost
@@ -288,8 +288,8 @@ export default function TargetAudiencePage() {
           </div>
         </div>
       </div>
-      <ExpectedResultsPage />
-      <RoadmapNextPage/>
+      {/* <ExpectedResultsPage /> */}
+      {/* <RoadmapNextPage/> */}
     </section>
   );
 }

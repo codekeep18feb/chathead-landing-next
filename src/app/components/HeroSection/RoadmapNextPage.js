@@ -41,7 +41,7 @@ export default function RoadmapNextPage() {
 
       <div className={styles.header}>
         <span className={styles.badge}>🚀 ROADMAP</span>
-        <h2 className={styles.mainTitle}>What's next forMagicChat?</h2>
+        <h2 className={styles.mainTitle}>What's next for Sageion?</h2>
         <p className={styles.subtitle}>
           Our journey to revolutionize AI customer support
         </p>

@@ -185,7 +185,7 @@ const PricingPlansPage = () => {
         </div>
       </div>
 
-      <FinalValuePage />
+      {/* <FinalValuePage /> */}
     </section>
   );
 };
