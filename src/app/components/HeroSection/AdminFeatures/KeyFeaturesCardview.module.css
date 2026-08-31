@@ -30,41 +30,31 @@
 
 .cardFeatureItem {
   position: relative;
-
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-
   gap: 48px;
-
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
-
   border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 10px;
-
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
   align-items: center;
-
   overflow: hidden;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
 }
 
 .cardFeatureItem::before {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     135deg,
     rgba(75, 207, 158, 0.02),
     rgba(102, 126, 234, 0.02)
   );
-
   opacity: 0;
-
   transition: opacity 0.5s ease;
-
   pointer-events: none;
 }
 
@@ -74,8 +64,32 @@
 
 .cardFeatureItem:hover {
   transform: translateY(-8px) scale(1.01);
-
   border-color: rgba(75, 207, 158, 0.15);
+}
+
+.cardFeatureItem:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.cardFeatureItem:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.cardFeatureItem:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.cardFeatureItem:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.cardFeatureItem:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.cardFeatureItem:nth-child(6) {
+  animation-delay: 0.3s;
+}
+.cardFeatureItem:nth-child(7) {
+  animation-delay: 0.35s;
+}
+.cardFeatureItem:nth-child(8) {
+  animation-delay: 0.4s;
 }
 
 /* ============================================================
@@ -84,40 +98,25 @@
 
 .cardNumberBadge {
   position: absolute;
-
   top: -12px;
   right: -12px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 44px;
   height: 44px;
-
   font-size: 0.85rem;
   font-weight: 800;
-
   color: #fff;
-
-  background: linear-gradient(
-    135deg,
-    #4bcf9e,
-    #2d9c73
-  );
-
+  background: linear-gradient(135deg, #4bcf9e, #2d9c73);
   border-radius: 50%;
-
   box-shadow: 0 4px 16px rgba(75, 207, 158, 0.3);
-
   z-index: 2;
-
   transition: all 0.3s ease;
 }
 
 .cardFeatureItem:hover .cardNumberBadge {
   transform: scale(1.1) rotate(-10deg);
-
   box-shadow: 0 8px 24px rgba(75, 207, 158, 0.4);
 }
 
@@ -152,12 +151,9 @@
 .cardFeatureText {
   display: flex;
   flex-direction: column;
-
   gap: 16px;
-
   padding: 40px 44px;
   padding-right: 12px;
-
   min-width: 0;
 }
 
@@ -173,24 +169,18 @@
 .cardFeatureHeader {
   display: flex;
   align-items: flex-start;
-
   gap: 18px;
 }
 
 .cardFeatureIcon {
   display: flex;
   flex-shrink: 0;
-
   align-items: center;
   justify-content: center;
-
   width: 56px;
   height: 56px;
-
   font-size: 1.5rem;
-
   border-radius: 16px;
-
   transition: all 0.3s ease;
 }
 
@@ -200,27 +190,21 @@
 
 .cardFeatureTitle {
   flex: 1;
-
   padding-top: 4px;
-
   min-width: 0;
 }
 
 .cardFeatureTitle h3 {
   margin-bottom: 4px;
-
   font-size: 1.3rem;
   font-weight: 800;
-
   color: #1a1a2e;
-
   letter-spacing: -0.02em;
 }
 
 .cardFeatureTitle p {
   font-size: 0.9rem;
   line-height: 1.5;
-
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -230,20 +214,15 @@
 
 .cardFeatureDescription {
   padding: 12px 16px;
-
   margin: 4px 0;
-
   background: rgba(75, 207, 158, 0.04);
-
   border-left: 3px solid #4bcf9e;
-
   border-radius: 8px;
 }
 
 .cardFeatureDescription p {
   font-size: 0.95rem;
   line-height: 1.6;
-
   color: rgba(0, 0, 0, 0.7);
 }
 
@@ -253,22 +232,18 @@
 
 .cardFeatureBody {
   flex: 1;
-
   min-width: 0;
 }
 
 .cardFeatureBody h4 {
   margin: 14px 0;
-
   font-size: 1rem;
   font-weight: 700;
-
   color: #4bcf9e;
 }
 
 .sectionIcon {
   font-size: 0.85rem;
-
   color: #4bcf9e;
 }
 
@@ -278,40 +253,27 @@
 
 .cardFeatureBody ul {
   list-style: none;
-
   padding: 0;
   margin: 0 0 18px;
 }
 
 .cardFeatureBody li {
-  position: relative;
-
-  padding: 8px 0 8px 18px;
-
+  padding: 8px 0;
   font-size: 0.9rem;
-
   color: rgba(0, 0, 0, 0.7);
-
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-
-  transition: all 0.2s ease;
 }
 
-.cardFeatureBody .featureList li::before {
+/* .cardFeatureBody .featureList li::before {
   content: "▸";
-
   position: absolute;
-
   left: 0;
   top: 8px;
-
   color: #4bcf9e;
-
   font-weight: 700;
   font-size: 0.8rem;
-
   flex-shrink: 0;
-}
+} */
 
 .cardFeatureBody .featureList li:last-child {
   border-bottom: none;
@@ -319,7 +281,6 @@
 
 .cardFeatureBody .featureList li:hover {
   padding-left: 22px;
-
   color: #1a1a2e;
 }
 
@@ -329,19 +290,14 @@
 
 .cardFeatureBody .featureBenefit {
   padding: 12px 18px;
-
   background: rgba(75, 207, 158, 0.08);
-
   border-radius: 10px;
-
   border-left: 4px solid #4bcf9e;
-
   margin-top: 8px;
 }
 
 .cardFeatureBody .featureBenefit span {
   color: #4bcf9e;
-
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -353,38 +309,26 @@
 .cardFeatureTags {
   display: flex;
   flex-wrap: wrap;
-
   gap: 8px;
-
   margin-top: 8px;
 }
 
 .featureTag {
   padding: 4px 14px;
-
   font-size: 0.7rem;
   font-weight: 600;
-
   color: rgba(0, 0, 0, 0.5);
-
   background: rgba(0, 0, 0, 0.04);
-
   border: 1px solid rgba(0, 0, 0, 0.04);
-
   border-radius: 50px;
-
   letter-spacing: 0.3px;
-
   transition: all 0.3s ease;
 }
 
 .featureTag:hover {
   color: #4bcf9e;
-
   background: rgba(75, 207, 158, 0.08);
-
   border-color: rgba(75, 207, 158, 0.15);
-
   transform: translateY(-1px);
 }
 
@@ -394,49 +338,28 @@
 
 .cardFeatureVisual {
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   width: 100%;
-
   min-width: 0;
   min-height: 0;
-
   height: auto;
-
   align-self: stretch;
 }
 
-/* ============================================================
-   VISUAL WRAPPER
-   ============================================================ */
-
 .visualWrapper {
   position: relative;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: 100%;
-
   min-height: 0;
-
   overflow: hidden;
-
   border-radius: 20px;
-
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-
   transition: all 0.3s ease;
 }
-/* 
-.cardFeatureItem:hover .visualWrapper {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-} */
 
 /* ============================================================
    SCREENSHOT CONTAINER
@@ -444,41 +367,28 @@
 
 .cardFeatureVisual .featureScreenshot {
   position: relative;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: auto;
-
   min-height: 0;
-
   overflow: hidden;
-
   border-radius: 0;
-
   background: rgba(0, 0, 0, 0.02);
+  line-height: 0;
 }
-
-/* ============================================================
-   ACTUAL IMAGE
-   ============================================================ */
 
 .cardFeatureVisual .featureScreenshot img {
   display: block;
-
   width: 100%;
   height: auto;
-
   min-width: 0;
   min-height: 0;
-
   object-fit: contain;
   object-position: center;
-
   border-radius: 0;
+  max-width: 100%;
 }
 
 /* ============================================================
@@ -487,11 +397,8 @@
 
 .visualOverlay {
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
-
   background: linear-gradient(
     to bottom,
     transparent 50%,
@@ -536,33 +443,98 @@
 }
 
 /* ============================================================
+   PAGINATION INSIDE CARD FEATURES
+   ============================================================ */
+
+.cardFeatureBody .featurePagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 4px 0;
+  min-height: 42px;
+}
+
+.cardFeatureBody .paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  background: #f0f4f8;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cardFeatureBody .paginationButton:hover {
+  background: #4bcf9e;
+  color: white;
+}
+
+.cardFeatureBody .paginationButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cardFeatureBody .paginationButton:disabled:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #374151;
+}
+
+.cardFeatureBody .paginationInfo {
+  font-size: 14px;
+  color: #5a5a7a;
+  font-weight: 500;
+  min-width: 44px;
+  text-align: center;
+}
+
+.cardFeatureBody .featureListPlaceholder {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border-bottom: none;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
    RESPONSIVE - TABLET
    ============================================================ */
 
 @media (max-width: 1024px) {
   .cardFeatureItem {
     grid-template-columns: 1fr;
-
     gap: 32px;
-
     padding: 32px 28px;
-
     align-items: stretch;
   }
-
-  /* ==========================================================
-     TEXT
-     ========================================================== */
 
   .cardFeatureEven .cardFeatureText,
   .cardFeatureOdd .cardFeatureText {
     grid-column: 1 / 2;
     grid-row: 2;
   }
-
-  /* ==========================================================
-     VISUAL
-     ========================================================== */
 
   .cardFeatureEven .cardFeatureVisual,
   .cardFeatureOdd .cardFeatureVisual {
@@ -576,48 +548,32 @@
 
   .cardFeatureVisual {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
-
     align-self: auto;
   }
 
   .visualWrapper {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
-
     border-radius: 16px;
   }
 
   .cardFeatureVisual .featureScreenshot {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
-
     aspect-ratio: auto;
   }
 
   .cardFeatureVisual .featureScreenshot img {
     width: 100%;
-
     height: auto;
-
     min-width: 0;
     min-height: 0;
-
     object-fit: contain;
   }
-
-  /* ==========================================================
-     BORDER
-     ========================================================== */
 
   .cardFeatureEven,
   .cardFeatureOdd {
@@ -628,21 +584,18 @@
   .cardFeatureEven:hover,
   .cardFeatureOdd:hover {
     border-left-color: #4bcf9e;
-    border-right-color: #4bcf9e;
+    /* border-right-color: #4bcf9e; */
   }
-
-  /* ==========================================================
-     BADGE
-     ========================================================== */
 
   .cardNumberBadge {
     top: -8px;
     right: -8px;
-
     width: 38px;
     height: 38px;
-
     font-size: 0.75rem;
+  }
+  .cardFeatureText{
+    padding: 0px;
   }
 }
 
@@ -665,17 +618,10 @@
 
   .cardFeatureItem {
     grid-template-columns: 1fr;
-
     padding: 24px 20px;
-
     gap: 24px;
-
     border-radius: 20px;
   }
-
-  /* ==========================================================
-     HEADER
-     ========================================================== */
 
   .cardFeatureHeader {
     gap: 14px;
@@ -684,9 +630,7 @@
   .cardFeatureIcon {
     width: 48px;
     height: 48px;
-
     font-size: 1.2rem;
-
     border-radius: 14px;
   }
 
@@ -698,10 +642,6 @@
     font-size: 0.8rem;
   }
 
-  /* ==========================================================
-     DESCRIPTION
-     ========================================================== */
-
   .cardFeatureDescription {
     padding: 10px 14px;
   }
@@ -710,67 +650,42 @@
     font-size: 0.85rem;
   }
 
-  /* ==========================================================
-     FEATURE LIST
-     ========================================================== */
-
   .cardFeatureBody .featureList li {
     font-size: 0.85rem;
-
     padding: 6px 0 6px 18px;
   }
 
-  /* ==========================================================
-     VISUAL
-     ========================================================== */
-
   .cardFeatureVisual {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
   }
 
   .visualWrapper {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
-
     border-radius: 14px;
   }
 
   .cardFeatureVisual .featureScreenshot {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
-
     aspect-ratio: auto;
   }
 
   .cardFeatureVisual .featureScreenshot img {
     width: 100%;
-
     height: auto;
-
     min-width: 0;
     min-height: 0;
-
     object-fit: contain;
   }
-
-  /* ==========================================================
-     BADGE
-     ========================================================== */
 
   .cardNumberBadge {
     width: 34px;
     height: 34px;
-
     font-size: 0.7rem;
   }
 }
@@ -794,17 +709,10 @@
 
   .cardFeatureItem {
     grid-template-columns: 1fr;
-
     padding: 18px 14px;
-
     gap: 18px;
-
     border-radius: 16px;
   }
-
-  /* ==========================================================
-     LAYOUT
-     ========================================================== */
 
   .cardFeatureEven .cardFeatureText,
   .cardFeatureOdd .cardFeatureText {
@@ -818,15 +726,9 @@
     grid-row: 1;
   }
 
-  /* ==========================================================
-     HEADER
-     ========================================================== */
-
   .cardFeatureHeader {
     flex-direction: column;
-
     align-items: center;
-
     text-align: center;
   }
 
@@ -834,307 +736,69 @@
     text-align: center;
   }
 
-  /* ==========================================================
-     DESCRIPTION
-     ========================================================== */
-
   .cardFeatureDescription {
     text-align: center;
   }
 
-  /* ==========================================================
-     BODY
-     ========================================================== */
-
   .cardFeatureBody h4 {
-    justify-content: center;
+    text-align: center;
   }
-
-  /* ==========================================================
-     TAGS
-     ========================================================== */
 
   .cardFeatureTags {
     justify-content: center;
   }
 
-  /* ==========================================================
-     VISUAL
-     ========================================================== */
-
   .cardFeatureVisual {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
   }
 
   .visualWrapper {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
-
     border-radius: 12px;
   }
 
   .cardFeatureVisual .featureScreenshot {
     width: 100%;
-
     height: auto;
-
     min-height: 0;
-
     aspect-ratio: auto;
   }
 
   .cardFeatureVisual .featureScreenshot img {
     width: 100%;
-
     height: auto;
-
     min-width: 0;
     min-height: 0;
-
     object-fit: contain;
   }
-
-  /* ==========================================================
-     BADGE
-     ========================================================== */
 
   .cardNumberBadge {
     width: 30px;
     height: 30px;
-
     font-size: 0.65rem;
-
     top: -6px;
     right: -6px;
   }
 
-  /* ==========================================================
-     FEATURE LIST
-     ========================================================== */
-
   .cardFeatureBody .featureList li {
     font-size: 0.8rem;
-
     padding: 5px 0 5px 18px;
   }
 
-  /* ==========================================================
-     BENEFIT
-     ========================================================== */
-
   .cardFeatureBody .featureBenefit {
     padding: 10px 14px;
-
-    font-size: 0.85rem;
   }
 
   .cardFeatureBody .featureBenefit span {
     font-size: 0.8rem;
   }
 
-  /* ==========================================================
-     BACKGROUND
-     ========================================================== */
-
   .cardFeatureEven,
   .cardFeatureOdd {
     background: rgba(255, 255, 255, 0.9);
   }
-
-  /* ==========================================================
-     BUTTONS
-     ========================================================== */
-
-  .watchDemoBtn,
-  .learnMoreBtn {
-    padding: 8px 18px;
-
-    font-size: 0.8rem;
-  }
-}
-
-/* ============================================================
-   PAGINATION INSIDE CARD FEATURES
-   ============================================================ */
-
-.cardFeatureBody .featurePagination {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-
-  margin-top: 18px;
-
-  padding: 4px 0;
-
-  min-height: 42px;
-}
-
-.cardFeatureBody .paginationButton {
-  background: #f0f4f8;
-
-  border: none;
-
-  border-radius: 50%;
-
-  width: 36px;
-  height: 36px;
-
-  font-size: 16px;
-
-  cursor: pointer;
-
-  transition: all 0.2s ease;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-}
-
-.cardFeatureBody .paginationButton:hover {
-  background: #4bcf9e;
-
-  color: white;
-}
-
-.cardFeatureBody .paginationButton:active {
-  transform: translateY(0);
-
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.cardFeatureBody .paginationButton:focus-visible {
-  outline: none;
-
-  border-color: #4bcf9e;
-
-  box-shadow: 0 0 0 3px rgba(75, 207, 158, 0.15);
-}
-
-.cardFeatureBody .paginationButton:disabled {
-  opacity: 0.4;
-
-  cursor: not-allowed;
-
-  transform: none;
-
-  box-shadow: none;
-}
-
-.cardFeatureBody .paginationButton:disabled:hover {
-  background: rgba(255, 255, 255, 0.9);
-
-  border-color: rgba(0, 0, 0, 0.08);
-
-  color: #374151;
-}
-
-/* ============================================================
-   PAGINATION INFO
-   ============================================================ */
-
-.cardFeatureBody .paginationInfo {
-  font-size: 14px;
-
-  color: #5a5a7a;
-
-  font-weight: 500;
-
-  min-width: 44px;
-
-  text-align: center;
-}
-
-/* ============================================================
-   PLACEHOLDER ITEMS
-   ============================================================ */
-
-.cardFeatureBody .featureListPlaceholder {
-  visibility: hidden;
-
-  height: 0;
-
-  padding: 0;
-
-  margin: 0;
-
-  border-bottom: none;
-}
-
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(30px);
-
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-
-    opacity: 1;
-  }
-}
-
-.cardFeatureItem {
-  animation: fadeInUp 0.6s ease forwards;
-
-  opacity: 0;
-}
-
-.cardFeatureItem:nth-child(1) {
-  animation-delay: 0.05s;
-}
-
-.cardFeatureItem:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.cardFeatureItem:nth-child(3) {
-  animation-delay: 0.15s;
-}
-
-.cardFeatureItem:nth-child(4) {
-  animation-delay: 0.2s;
-}
-
-.cardFeatureItem:nth-child(5) {
-  animation-delay: 0.25s;
-}
-
-.cardFeatureItem:nth-child(6) {
-  animation-delay: 0.3s;
-}
-
-.cardFeatureItem:nth-child(7) {
-  animation-delay: 0.35s;
-}
-
-.cardFeatureItem:nth-child(8) {
-  animation-delay: 0.4s;
-}
-
-/* ============================================================
-   EXTRA IMAGE SAFETY
-   ============================================================ */
-
-.cardFeatureVisual img {
-  max-width: 100%;
-}
-
-.cardFeatureVisual .featureScreenshot {
-  line-height: 0;
 }

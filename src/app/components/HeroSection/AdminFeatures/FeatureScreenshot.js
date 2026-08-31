@@ -123,20 +123,6 @@ const FeatureScreenshot = ({
                 >
                   ❯
                 </button>
-
-                <div className={styles.carouselIndicators}>
-                  {images.map((_, index) => (
-                    <button
-                      key={`${featureId}-dot-${index}`}
-                      type="button"
-                      className={`${styles.carouselDot} ${
-                        index === currentIndex ? styles.carouselDotActive : ""
-                      }`}
-                      onClick={() => goToSlide(index)}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
               </>
             )}
           </>
@@ -150,6 +136,23 @@ const FeatureScreenshot = ({
           </div>
         )}
       </div>
+
+      {/* Carousel Indicators - MOVED OUTSIDE the image */}
+      {images.length > 1 && (
+        <div className={styles.carouselIndicators}>
+          {images.map((_, index) => (
+            <button
+              key={`${featureId}-dot-${index}`}
+              type="button"
+              className={`${styles.carouselDot} ${
+                index === currentIndex ? styles.carouselDotActive : ""
+              }`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
 
       {videoId && (
         <button

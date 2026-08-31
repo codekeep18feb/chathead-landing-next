@@ -171,7 +171,6 @@
   overflow: hidden;
 }
 
-/* Hero Background */
 .heroBackground {
   position: absolute;
   inset: 0;
@@ -255,7 +254,6 @@
   }
 }
 
-/* Hero Content */
 .heroContent {
   position: relative;
   z-index: 2;
@@ -416,7 +414,6 @@
   color: rgba(0, 0, 0, 0.4);
 }
 
-/* Hero Visual */
 .heroVisual {
   position: relative;
   z-index: 2;
@@ -609,7 +606,6 @@
   border-radius: 50px;
 }
 
-/* Video Proof */
 .videoProofSection {
   margin-top: 24px;
 }
@@ -729,12 +725,11 @@
   gap: 18px;
 }
 
-/* Feature Cards (Accordion) */
 .featureCard {
   overflow: hidden;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 20px;
+  border-radius: 10px;
   transition: all 0.3s ease;
 }
 
@@ -752,7 +747,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  padding: 22px 28px;
+  padding: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -862,7 +857,10 @@
   gap: 14px;
 }
 
-/* Feature Screenshot Carousel */
+/* ============================================================
+   FEATURE SCREENSHOT - Image Container
+   ============================================================ */
+
 .featureScreenshot {
   position: relative;
   width: 100%;
@@ -904,7 +902,10 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* Carousel Navigation */
+/* ============================================================
+   CAROUSEL NAVIGATION BUTTONS
+   ============================================================ */
+
 .carouselNavButton {
   position: absolute;
   top: 50%;
@@ -943,25 +944,23 @@
   right: 8px;
 }
 
+/* ============================================================
+   CAROUSEL INDICATORS - OUTSIDE THE IMAGE
+   ============================================================ */
+
 .carouselIndicators {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  z-index: 5;
   display: flex;
-  gap: 8px;
-  padding: 6px 12px;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
-  transform: translateX(-50%);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 4px;
 }
 
 .carouselDot {
   width: 10px;
   height: 10px;
   padding: 0;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.15);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -969,12 +968,12 @@
 }
 
 .carouselDot:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(75, 207, 158, 0.5);
   transform: scale(1.1);
 }
 
 .carouselDotActive {
-  width: 24px;
+  width: 28px;
   background: #4bcf9e;
   border-radius: 6px;
 }
@@ -984,7 +983,6 @@
   transform: scale(1);
 }
 
-/* Screenshot Placeholder */
 .screenshotPlaceholder {
   display: flex;
   flex-direction: column;
@@ -1019,7 +1017,6 @@
   color: rgba(0, 0, 0, 0.2);
 }
 
-/* Watch Demo Button */
 .watchDemoBtn {
   display: inline-flex;
   align-items: center;
@@ -1040,8 +1037,6 @@
   background: rgba(75, 207, 158, 0.2);
   transform: translateY(-2px);
 }
-
-/* View Tabs */
 .viewTabs {
   display: flex;
   justify-content: center;
@@ -1066,10 +1061,9 @@
   color: rgba(0, 0, 0, 0.5);
   background: transparent;
   border: none;
-  border-radius: 10px;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 50px;
 }
 
 .viewTab:hover {
@@ -1088,7 +1082,6 @@
   background: rgba(76, 209, 160, 0.271);
 }
 
-/* Feature Pagination */
 .featurePagination {
   display: flex;
   align-items: center;
@@ -1134,6 +1127,14 @@
   font-size: 14px;
   font-weight: 500;
   color: #5a5a7a;
+}
+
+.featureListPlaceholder {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border-bottom: none;
 }
 
 /* ============================================================
@@ -1199,7 +1200,6 @@
   color: #4bcf9e;
 }
 
-/* Case Study */
 .caseStudySection {
   overflow: hidden;
   background: rgba(0, 0, 0, 0.02);
@@ -1416,7 +1416,6 @@
   color: rgba(0, 0, 0, 0.15);
 }
 
-/* Architecture Diagram */
 .architectureDiagram {
   margin-top: 24px;
 }
@@ -1729,7 +1728,6 @@
   border-radius: 50px;
 }
 
-/* Growth Path */
 .growthPathSection {
   padding: 36px 32px;
   background: rgba(0, 0, 0, 0.02);
@@ -2079,7 +2077,7 @@
    17. VIDEO MODAL
    ============================================================ */
 
-.videoModal {
+.videoModalOverlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -2101,7 +2099,7 @@
   }
 }
 
-.videoModalContent {
+.videoModal {
   position: relative;
   width: 100%;
   max-width: 840px;
@@ -2135,8 +2133,20 @@
   transform: rotate(90deg);
 }
 
-.videoModalBody {
+.videoModalContent {
   padding: 24px;
+}
+
+.videoModalContent h3 {
+  margin-bottom: 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.videoModalContent p {
+  margin-bottom: 18px;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .videoPlaceholder {
@@ -2144,53 +2154,23 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 18px;
   aspect-ratio: 16/9;
   background: rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
 }
 
-.videoPlaceholderContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  text-align: center;
-}
-
-.videoPlaceholderIcon {
-  font-size: 4.5rem;
-  color: #4bcf9e;
-  opacity: 0.5;
-}
-
-.videoPlaceholderContent span {
-  font-size: 1rem;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.videoPlaceholderContent .placeholderSubtext {
-  font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.2);
-}
-
-.videoModalInfo h3 {
-  margin-bottom: 6px;
-  font-size: 1.15rem;
-  font-weight: 700;
-}
-
-.videoModalInfo p {
-  font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.5);
+.videoPlaceholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 /* ============================================================
    18. RESPONSIVE BREAKPOINTS
    ============================================================ */
 
-/* Tablet & Medium Screens */
 @media (max-width: 1024px) {
   .heroSection {
     flex-direction: column;
@@ -2234,9 +2214,7 @@
   }
 }
 
-/* Mobile Landscape & Small Tablets */
 @media (max-width: 768px) {
-  /* Navigation */
   .stickyNav {
     height: auto;
     padding: 14px 16px;
@@ -2264,7 +2242,6 @@
     font-size: 0.75rem;
   }
 
-  /* Hero */
   .heroTitle {
     font-size: 2.4rem;
   }
@@ -2277,7 +2254,6 @@
     font-size: 1.8rem;
   }
 
-  /* Sections */
   .sectionTitle {
     font-size: 2rem;
   }
@@ -2303,19 +2279,19 @@
   .finalCTASection {
     padding: 60px 16px 40px;
   }
-
+.featuresSection{
+  padding: 0px;
+}
   .sectionContainer {
-    padding: 0 16px;
+    padding: 0 10px;
   }
 
-  /* Architecture */
   .architectureLayer {
     flex-direction: column;
     gap: 14px;
     padding: 24px;
   }
 
-  /* Comparison */
   .comparisonRow {
     grid-template-columns: 1fr;
     gap: 6px;
@@ -2326,7 +2302,6 @@
     font-weight: 600;
   }
 
-  /* Growth Path */
   .growthPathSteps {
     flex-direction: column;
     align-items: stretch;
@@ -2338,7 +2313,6 @@
     transform: rotate(90deg);
   }
 
-  /* CTA */
   .ctaCard {
     padding: 36px 24px;
   }
@@ -2353,7 +2327,6 @@
     gap: 10px;
   }
 
-  /* Metrics */
   .timeSavingsMetrics {
     grid-template-columns: 1fr 1fr;
   }
@@ -2362,29 +2335,26 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  /* Modal */
-  .videoModal {
+  .videoModalOverlay {
     padding: 16px;
   }
 
-  .videoModalContent {
+  .videoModal {
     border-radius: 16px;
   }
 
-  /* Features */
   .featuresGrid {
     gap: 14px;
   }
 
   .featureHeader {
-    padding: 18px 20px;
+    padding: 18px;
   }
 
   .featureContent {
     padding: 0 20px 20px;
   }
 
-  /* Screenshots */
   .featureScreenshot {
     aspect-ratio: 16/11;
   }
@@ -2411,7 +2381,6 @@
     width: 20px;
   }
 
-  /* View Tabs */
   .viewTabs {
     max-width: 100%;
     gap: 8px;
@@ -2425,14 +2394,23 @@
     gap: 6px;
   }
 
-  .viewTabIcon {
-    font-size: 0.95rem;
+  .featurePagination {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .paginationButton {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .paginationInfo {
+    font-size: 12px;
   }
 }
 
-/* Mobile Portrait */
 @media (max-width: 480px) {
-  /* Navigation */
   .heroSection {
     padding: 100px 16px 60px;
   }
@@ -2455,7 +2433,6 @@
     width: 100%;
   }
 
-  /* Grids - Single Column */
   .problemGrid,
   .solutionGrid,
   .workflowsGrid,
@@ -2469,13 +2446,11 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  /* Metrics */
   .timeSavingsMetrics,
   .caseStudyMetrics {
     grid-template-columns: 1fr;
   }
 
-  /* CTA Buttons */
   .ctaPrimaryBtn,
   .ctaSecondaryBtn {
     justify-content: center;
@@ -2486,13 +2461,11 @@
     padding: 28px 16px;
   }
 
-  /* Growth Path */
   .growthStep {
     min-width: unset;
     padding: 14px 18px;
   }
 
-  /* Features */
   .featureScreenshot {
     aspect-ratio: 16/12;
   }
@@ -2519,50 +2492,22 @@
     width: 16px;
   }
 
-  /* Feature Pagination */
   .featurePagination {
-    gap: 8px;
-    margin-top: 16px;
+    gap: 6px;
+    margin-top: 14px;
   }
 
   .paginationButton {
-    min-width: 82px;
-    height: 36px;
-    padding: 0 12px;
+    width: 28px;
+    height: 28px;
     font-size: 12px;
   }
 
   .paginationInfo {
-    min-width: 52px;
-    height: 32px;
     font-size: 11px;
+    min-width: 40px;
   }
 
-  /* Screenshots */
-  .featureScreenshot {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .featureScreenshotImage {
-    aspect-ratio: 16/12;
-    border-radius: 8px;
-  }
-
-  .featureScreenshot:has(.featureScreenshotImage:only-child) {
-    grid-template-columns: 1fr;
-  }
-
-  .featureScreenshot:has(.featureScreenshotImage:only-child)
-    .featureScreenshotImage {
-    aspect-ratio: 16/9;
-  }
-
-  .featureScreenshot:has(.featureScreenshotImage:nth-child(3)) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* View Tabs */
   .viewTabs {
     flex-direction: row;
     gap: 6px;
@@ -2575,25 +2520,4 @@
     gap: 4px;
     border-radius: 8px;
   }
-
-  .viewTabIcon {
-    font-size: 0.85rem;
-  }
-}
-
-/* ============================================================
-   UTILITY & ANIMATION
-   ============================================================ */
-
-.featuresSection > .sectionContainer > .featuresGrid,
-.featuresSection > .sectionContainer > .cardFeaturesGrid {
-  animation: fadeInUp 0.4s ease;
-}
-
-.featureListPlaceholder {
-  visibility: hidden;
-  height: 0;
-  padding: 0;
-  margin: 0;
-  border-bottom: none;
 }
