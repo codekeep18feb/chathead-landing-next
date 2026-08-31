@@ -7,7 +7,6 @@ import {
   FaRocket,
   FaShieldAlt,
   FaPlug,
-  FaBrain,
   FaNetworkWired,
   FaPaintBrush,
   FaLock,
@@ -16,359 +15,26 @@ import {
   FaCheckCircle,
   FaPlayCircle,
   FaCog,
-  FaProjectDiagram,
   FaWaveSquare,
-  FaChevronDown,
-  FaChevronUp,
   FaComments,
 } from "react-icons/fa";
 
-/* ============================================================
-   PAGINATION SETTINGS
-   ============================================================ */
+// Import the separate Key Features component
+import KeyFeaturesSection from "./KeyFeaturesSection";
 
-const ITEMS_PER_PAGE = 5;
-const IMAGES_PER_PAGE = 2;
-
-/* ============================================================
-   PAGINATED FEATURE LIST
-   ============================================================ */
-
-const PaginatedFeatureList = ({
-  featureId,
-  items,
-  benefit,
-  featurePages,
-  setFeaturePages,
-}) => {
-  const currentPage = featurePages[featureId] || 0;
-
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-
-  const startIndex = currentPage * ITEMS_PER_PAGE;
-
-  const visibleItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-  const handlePageChange = (direction) => {
-    setFeaturePages((prev) => {
-      const current = prev[featureId] || 0;
-
-      let nextPage = current;
-
-      if (direction === "next") {
-        nextPage = Math.min(current + 1, totalPages - 1);
-      }
-
-      if (direction === "back") {
-        nextPage = Math.max(current - 1, 0);
-      }
-
-      return {
-        ...prev,
-        [featureId]: nextPage,
-      };
-    });
-  };
-
-  return (
-    <>
-      {/* ========================================================
-          FEATURE LIST
-          ======================================================== */}
-
-      <ul className={styles.featureList}>
-        {visibleItems.map((item, index) => (
-          <li key={`${featureId}-${startIndex + index}`}>{item}</li>
-        ))}
-
-        {/* Keep list height fixed */}
-        {visibleItems.length < ITEMS_PER_PAGE &&
-          Array.from({
-            length: ITEMS_PER_PAGE - visibleItems.length,
-          }).map((_, index) => (
-            <li
-              key={`placeholder-${featureId}-${index}`}
-              className={styles.featureListPlaceholder}
-              aria-hidden="true"
-            >
-              &nbsp;
-            </li>
-          ))}
-      </ul>
-
-      {/* ========================================================
-          BENEFIT
-          ======================================================== */}
-
-      <div className={styles.featureBenefit}>
-        <span>✅ Benefit: {benefit}</span>
-      </div>
-
-      {/* ========================================================
-          TEXT PAGINATION
-          ======================================================== */}
-
-      {items.length > ITEMS_PER_PAGE && (
-        <div className={styles.featurePagination}>
-          <button
-            type="button"
-            className={styles.paginationButton}
-            onClick={() => handlePageChange("back")}
-            disabled={currentPage === 0}
-            aria-label="Previous feature items"
-          >
-            ←
-          </button>
-
-          <span className={styles.paginationInfo}>
-            {currentPage + 1} / {totalPages}
-          </span>
-
-          <button
-            type="button"
-            className={styles.paginationButton}
-            onClick={() => handlePageChange("next")}
-            disabled={currentPage === totalPages - 1}
-            aria-label="Next feature items"
-          >
-            →
-          </button>
-        </div>
-      )}
-    </>
-  );
-};
-
-/* ============================================================
-   PAGINATED FEATURE SCREENSHOT - AUTO SLIDING CAROUSEL
-   ============================================================ */
-
-const FeatureScreenshot = ({
-  featureId,
-  images = [],
-  title,
-  videoId,
-  imagePages,
-  setImagePages,
-  openVideoModal,
-}) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const autoPlayRef = useRef(null);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  const totalImages = images.length;
-
-  // Auto-play functionality
-  useEffect(() => {
-    if (totalImages > 1 && isAutoPlaying) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) =>
-          prevIndex === totalImages - 1 ? 0 : prevIndex + 1,
-        );
-      }, 4000); // Slide every 4 seconds
-    }
-
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
-    };
-  }, [totalImages, isAutoPlaying]);
-
-  // Pause auto-play on hover
-  const handleMouseEnter = () => {
-    setIsAutoPlaying(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsAutoPlaying(true);
-  };
-
-  // Navigation functions
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === totalImages - 1 ? 0 : prevIndex + 1,
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? totalImages - 1 : prevIndex - 1,
-    );
-  };
-
-  // Touch swipe support
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e) => {
-    touchEndX.current = e.changedTouches[0].clientX;
-    handleSwipe();
-  };
-
-  const handleSwipe = () => {
-    const swipeThreshold = 50;
-    const diff = touchStartX.current - touchEndX.current;
-
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
-    }
-  };
-
-  return (
-    <div className={styles.featureVisual}>
-      {/* ========================================================
-          SCREENSHOTS - AUTO SLIDING CAROUSEL
-          ======================================================== */}
-
-      <div
-        className={styles.featureScreenshot}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        {images.length > 0 ? (
-          <>
-            <div
-              className={styles.featureScreenshotWrapper}
-              style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
-                transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-              }}
-            >
-              {images.map((image, index) => (
-                <div
-                  key={`${featureId}-slide-${index}`}
-                  className={styles.featureScreenshotSlide}
-                >
-                  <img
-                    src={image}
-                    alt={`${title} screenshot ${index + 1}`}
-                    className={styles.featureScreenshotImage}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Navigation Buttons - Only show if more than 1 image */}
-            {images.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  className={`${styles.carouselNavButton} ${styles.carouselNavButtonPrev}`}
-                  onClick={prevSlide}
-                  aria-label="Previous screenshot"
-                >
-                  ❮
-                </button>
-
-                <button
-                  type="button"
-                  className={`${styles.carouselNavButton} ${styles.carouselNavButtonNext}`}
-                  onClick={nextSlide}
-                  aria-label="Next screenshot"
-                >
-                  ❯
-                </button>
-
-                {/* Indicators */}
-                <div className={styles.carouselIndicators}>
-                  {images.map((_, index) => (
-                    <button
-                      key={`${featureId}-dot-${index}`}
-                      type="button"
-                      className={`${styles.carouselDot} ${
-                        index === currentIndex ? styles.carouselDotActive : ""
-                      }`}
-                      onClick={() => goToSlide(index)}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </>
-        ) : (
-          <div className={styles.screenshotPlaceholder}>
-            <span className={styles.placeholderIcon}>📋</span>
-            <span>{title}</span>
-            <span className={styles.placeholderSubtext}>
-              Placeholder: Screenshot / Demo here
-            </span>
-          </div>
-        )}
-      </div>
-
-      {/* ========================================================
-          WATCH DEMO
-          ======================================================== */}
-
-      {videoId && (
-        <button
-          type="button"
-          className={styles.watchDemoBtn}
-          onClick={() => openVideoModal(videoId)}
-        >
-          <FaPlayCircle /> Watch Demo
-        </button>
-      )}
-    </div>
-  );
-};
 /* ============================================================
    ADMIN FEATURES
    ============================================================ */
 
 const AdminFeatures = () => {
   const [activeSection, setActiveSection] = useState("hero");
-
   const [isVisible, setIsVisible] = useState({});
-
-  const [expandedFeature, setExpandedFeature] = useState(null);
-
   const [videoModalOpen, setVideoModalOpen] = useState(false);
-
   const [activeVideo, setActiveVideo] = useState(null);
-
-  /*
-   * TEXT PAGINATION
-   *
-   * Example:
-   *
-   * {
-   *   "gen-forms": 0,
-   *   "api-chaining": 1
-   * }
-   */
   const [featurePages, setFeaturePages] = useState({});
-
-  /*
-   * IMAGE PAGINATION
-   *
-   * Example:
-   *
-   * {
-   *   "gen-forms": 1,
-   *   "api-chaining": 0
-   * }
-   */
   const [imagePages, setImagePages] = useState({});
 
   const sectionRefs = useRef({});
-
   const observerRef = useRef(null);
 
   /* ============================================================
@@ -404,14 +70,6 @@ const AdminFeatures = () => {
       }
     };
   }, []);
-
-  /* ============================================================
-     FEATURE TOGGLE
-     ============================================================ */
-
-  const toggleFeature = (id) => {
-    setExpandedFeature((prev) => (prev === id ? null : id));
-  };
 
   /* ============================================================
      VIDEO MODAL
@@ -528,666 +186,142 @@ const AdminFeatures = () => {
   return (
     <div className={styles.pageWrapper}>
       {/* ============================================================
-          KEY FEATURES SECTION
+          STICKY NAVIGATION
+          ============================================================ */}
+
+      <nav className={styles.stickyNav}>
+        <div className={styles.navContainer}>
+          <div className={styles.navLogo}>
+            <span className={styles.logoIcon}>🧠</span>
+            <span className={styles.logoText}>Sageion</span>
+          </div>
+
+          <div className={styles.navLinks}>
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`${styles.navLink} ${
+                  activeSection === section.id ? styles.navLinkActive : ""
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveSection(section.id);
+                  document.getElementById(section.id)?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
+                {section.label}
+              </a>
+            ))}
+          </div>
+
+          <button className={styles.navCta}>Get Started</button>
+        </div>
+      </nav>
+
+      {/* ============================================================
+          HERO SECTION
           ============================================================ */}
 
       <section
-        id="key-features"
-        className={styles.featuresSection}
+        id="hero"
+        className={styles.heroSection}
         ref={(el) => {
-          sectionRefs.current["key-features"] = el;
+          sectionRefs.current["hero"] = el;
         }}
       >
+        <div className={styles.heroBackground}>
+          <div className={styles.heroOrb1} />
+          <div className={styles.heroOrb2} />
+          <div className={styles.heroOrb3} />
+          <div className={styles.heroGrid} />
+        </div>
+
         <div className={styles.sectionContainer}>
-          {/* ========================================================
-              SECTION HEADER
-              ======================================================== */}
+          <div className={styles.heroContent}>
+            <div className={styles.heroBadge}>
+              <span className={styles.pulseDot} />
+              <span>🚀 Now available in public beta</span>
+            </div>
 
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>⚡ Key Features</span>
+            <h1 className={styles.heroTitle}>
+              Build AI Agents{" "}
+              <span className={styles.heroHighlight}>Without Code</span>
+            </h1>
 
-            <h2 className={styles.sectionTitle}>
-              Everything You Need{" "}
-              <span className={styles.gradientText}>to Succeed</span>
-            </h2>
-
-            <p className={styles.sectionSubtitle}>
-              Comprehensive features that make Sageion the most complete
-              platform for business automation.
+            <p className={styles.heroSubtitle}>
+              <strong>Sageion</strong> is the only platform that lets you build
+              complex AI agents and workflows using your existing APIs — without
+              writing a single line of code.
             </p>
+
+            <div className={styles.heroStats}>
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNumber}>90%</span>
+                <span className={styles.heroStatLabel}>Faster deployment</span>
+              </div>
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNumber}>0</span>
+                <span className={styles.heroStatLabel}>Code required</span>
+              </div>
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNumber}>5K+</span>
+                <span className={styles.heroStatLabel}>Teams trust us</span>
+              </div>
+            </div>
+
+            <div className={styles.heroButtons}>
+              <button className={styles.heroPrimaryBtn}>
+                Start Free Trial <span className={styles.btnArrow}>→</span>
+              </button>
+              <button
+                className={styles.heroSecondaryBtn}
+                onClick={() => openVideoModal("rag-demo")}
+              >
+                <span className={styles.btnPlay}>▶</span> Watch Demo
+              </button>
+            </div>
+
+            <div className={styles.heroTrust}>
+              <span>🔒 No credit card required</span>
+              <span>⚡ 3-minute setup</span>
+              <span>🌟 Free forever tier</span>
+            </div>
           </div>
 
-          {/* ========================================================
-              FEATURES GRID
-              ======================================================== */}
-
-          <div className={styles.featuresGrid}>
-            {/* ======================================================
-                FEATURE 1
-                GENERATIVE AI FORMS
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "gen-forms" ? styles.featureExpanded : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("gen-forms")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#4BCF9E20",
-                    color: "#4BCF9E",
-                  }}
-                >
-                  <FaBrain />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>Generative AI Forms</h3>
-
-                  <p>
-                    Intelligent forms that pre-fill what users already told you
-                  </p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "gen-forms" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
+          <div className={styles.heroVisual}>
+            <div className={styles.heroVisualPlaceholder}>
+              <div className={styles.visualPlaceholderContent}>
+                <span className={styles.placeholderIcon}>🤖</span>
+                <span className={styles.placeholderText}>
+                  Sageion Platform Demo
+                </span>
+                <span className={styles.placeholderSubtext}>
+                  Interactive AI agent builder
+                </span>
+                <span className={styles.placeholderDimensions}>
+                  16:9 • Click to play
+                </span>
               </div>
-
-              {expandedFeature === "gen-forms" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>How It Works</h4>
-
-                    <PaginatedFeatureList
-                      featureId="gen-forms"
-                      items={[
-                        'User sends: "Book a room for 2 guests on Dec 25"',
-                        "AI detects BOOKING intent",
-                        `Extracts: { guests: 2, check_in: "2025-12-25" }`,
-                        "Generates form with pre-filled values",
-                        "User only adds missing info (guest_name, payment)",
-                        "Complete data → Trigger API → Get results",
-                      ]}
-                      benefit="70% faster form completion"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="gen-forms"
-                    images={[
-                      "/AdminImg/Generative-AI-Forms/bookingForm.png",
-                      "/AdminImg/Generative-AI-Forms/afterBookingMsg.png",
-                      "/AdminImg/Generative-AI-Forms/genAiForm.png",
-                      "/AdminImg/Generative-AI-Forms/afterbooking.png",
-                    ]}
-                    title="Form Generation Demo"
-                    videoId="form-generation"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* ======================================================
-                FEATURE 2
-                API CHAINING
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "api-chaining" ? styles.featureExpanded : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("api-chaining")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#667EEA20",
-                    color: "#667EEA",
-                  }}
-                >
-                  <FaProjectDiagram />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>Visual API Chaining</h3>
-
-                  <p>
-                    Complex workflows built without writing a single line of
-                    code
-                  </p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "api-chaining" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
-              </div>
-
-              {expandedFeature === "api-chaining" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Chain Everything</h4>
-
-                    <PaginatedFeatureList
-                      featureId="api-chaining"
-                      items={[
-                        "Conditional logic: If/Else/Else If",
-                        "Multiple API calls in sequence",
-                        "Error handling and retry logic",
-                        "Data transformation between steps",
-                        "Parallel execution support",
-                      ]}
-                      benefit="Replace 1000+ lines of code"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="api-chaining"
-                    images={[
-                      "/AdminImg/Visual-API-Chaining/beforeChain.png",
-                      "/AdminImg/Visual-API-Chaining/chains.png",
-                      "/AdminImg/Visual-API-Chaining/afterChain.png",
-                    ]}
-                    title="API Chaining Workflow"
-                    videoId="api-chaining"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* ======================================================
-                FEATURE 3
-                RAG ENGINE
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "rag" ? styles.featureExpanded : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("rag")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#F59E0B20",
-                    color: "#F59E0B",
-                  }}
-                >
-                  <FaRobot />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>Built-in RAG Engine</h3>
-
-                  <p>Context-aware AI without paying per-query to OpenAI</p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "rag" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
-              </div>
-
-              {expandedFeature === "rag" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>RAG Capabilities</h4>
-
-                    <PaginatedFeatureList
-                      featureId="rag"
-                      items={[
-                        "Ingest websites, PDFs, documents",
-                        "Semantic search across your knowledge base",
-                        "Context-aware responses",
-                        "No token costs — fixed pricing",
-                        "Perfect session memory",
-                      ]}
-                      benefit="Unlimited queries, fixed cost"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="rag"
-                    images={[
-                      "/AdminImg/Built-in-RAG-Engine/rag-1.png",
-                      "/AdminImg/Built-in-RAG-Engine/rag-2.png",
-                      "/AdminImg/Built-in-RAG-Engine/rag-3.png",
-                    ]}
-                    title="RAG Engine Demo"
-                    videoId="rag-demo"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* ======================================================
-                FEATURE 4
-                TRUE ASYNC WEBHOOKS
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "async-webhooks"
-                  ? styles.featureExpanded
-                  : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("async-webhooks")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#EC489A20",
-                    color: "#EC489A",
-                  }}
-                >
-                  <FaWaveSquare />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>True Async Webhooks</h3>
-
-                  <p>No 30-second timeout — wait as long as needed</p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "async-webhooks" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
-              </div>
-
-              {expandedFeature === "async-webhooks" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Process Anything</h4>
-
-                    <PaginatedFeatureList
-                      featureId="async-webhooks"
-                      items={[
-                        "No hard timeout (30s, 60s, etc.)",
-                        "WebSocket callback for results",
-                        "Dynamic UI updates on completion",
-                        "Process can take seconds, minutes, hours, or days",
-                        "Automatic retry and error handling",
-                      ]}
-                      benefit="Handle any process, no matter how long"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="async-webhooks"
-                    images={[
-                      "/AdminImg/True-Async-Webhooks/withoutWebhook.png",
-                      "/AdminImg/True-Async-Webhooks/withWebhook.png",
-                      // "/AdminImg/True-Async-Webhooks/webhook-3.png",
-                    ]}
-                    title="Async Webhook Flow"
-                    videoId="webhook-async"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* ======================================================
-                FEATURE 5
-                DYNAMIC SCREEN GENERATION
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "screen-gen" ? styles.featureExpanded : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("screen-gen")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#8B5CF620",
-                    color: "#8B5CF6",
-                  }}
-                >
-                  <FaPaintBrush />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>Dynamic Screen Generation</h3>
-
-                  <p>Multiple screens from a single API response</p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "screen-gen" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
-              </div>
-
-              {expandedFeature === "screen-gen" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Screen Capabilities</h4>
-
-                    <PaginatedFeatureList
-                      featureId="screen-gen"
-                      items={[
-                        "Template-based rendering (Nunjucks)",
-                        "Style transformations (bold, highlight, buttons)",
-                        "Structural transformations (tables, cards, lists)",
-                        "Media transformations (images, PDFs)",
-                        "Multiple screens from array data",
-                      ]}
-                      benefit="No hardcoded UI — adapts to your data"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="screen-gen"
-                    images={[
-                      "/AdminImg/Dynamic-Screen-Generation/editer.png",
-                      "/AdminImg/Dynamic-Screen-Generation/response.png",
-                      "/AdminImg/Dynamic-Screen-Generation/preview.png",
-                    ]}
-                    title="Dynamic Screen Demo"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* ======================================================
-                FEATURE 6
-                LIVE CHAT + MULTI ADMIN
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "live-chat" ? styles.featureExpanded : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("live-chat")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#0EA5E920",
-                    color: "#0EA5E9",
-                  }}
-                >
-                  <FaComments />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>Live Chat + Multi-Admin</h3>
-
-                  <p>Real-time agent collaboration with RBAC</p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "live-chat" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
-              </div>
-
-              {expandedFeature === "live-chat" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Chat Capabilities</h4>
-
-                    <PaginatedFeatureList
-                      featureId="live-chat"
-                      items={[
-                        "Multi-admin support with role-based access",
-                        "Unified inbox across all websites",
-                        "Smart agent routing and handover",
-                        "Real-time typing indicators",
-                        "File sharing and rich media",
-                      ]}
-                      benefit="Enterprise-grade customer support"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="live-chat"
-                    images={[
-                      "/AdminImg/Live-Chat-Multi-Admin/liveuser1.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/liveuser2.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/liveuser3.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/beforeEnableMuliAdmin.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/afterEnableMuliAdmin.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/muliAdminChat1.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/muliAdminChat2.png",
-                      "/AdminImg/Live-Chat-Multi-Admin/inviteSupport.png",
-                    ]}
-                    title="Live Chat Interface"
-                    videoId="live-chat"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* ======================================================
-                FEATURE 7
-                ADMIN PANEL
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "admin-panel" ? styles.featureExpanded : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("admin-panel")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#F9731620",
-                    color: "#F97316",
-                  }}
-                >
-                  <FaCog />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>Comprehensive Admin Panel</h3>
-
-                  <p>Complete control without touching code</p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "admin-panel" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
-              </div>
-
-              {expandedFeature === "admin-panel" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Admin Capabilities</h4>
-
-                    <PaginatedFeatureList
-                      featureId="admin-panel"
-                      items={[
-                        "Visual workflow builder",
-                        "Intent configuration",
-                        "API integration setup",
-                        "UI customization",
-                        "Analytics and monitoring",
-                      ]}
-                      benefit="Business users take control"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="admin-panel"
-                    images={[
-                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf1.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf2.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf3.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/IntentConf4.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/apiConf1.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/apiConf2.png",
-                      "/AdminImg/Comprehensive-Admin-Panel/apiConf3.png",
-                    ]}
-                    title="Admin Panel Interface"
-                    videoId="admin-panel"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* ======================================================
-                FEATURE 8
-                SECURITY
-                ====================================================== */}
-
-            <div
-              className={`${styles.featureCard} ${
-                expandedFeature === "security" ? styles.featureExpanded : ""
-              }`}
-            >
-              <div
-                className={styles.featureHeader}
-                onClick={() => toggleFeature("security")}
-              >
-                <div
-                  className={styles.featureIcon}
-                  style={{
-                    background: "#10B98120",
-                    color: "#10B981",
-                  }}
-                >
-                  <FaLock />
-                </div>
-
-                <div className={styles.featureTitle}>
-                  <h3>Enterprise-Grade Security</h3>
-
-                  <p>No XSS attacks, no stored scripts, complete safety</p>
-                </div>
-
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "security" ? (
-                    <FaChevronUp />
-                  ) : (
-                    <FaChevronDown />
-                  )}
-                </div>
-              </div>
-
-              {expandedFeature === "security" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Security Features</h4>
-
-                    <PaginatedFeatureList
-                      featureId="security"
-                      items={[
-                        "No HTML/JS stored in database",
-                        "Template + transformations applied client-side",
-                        "Primary + Secondary authentication",
-                        "Role-Based Access Control (RBAC)",
-                        "Secure API key management",
-                      ]}
-                      benefit="Safe, secure, compliant"
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
-
-                  <FeatureScreenshot
-                    featureId="security"
-                    images={[
-                      "/AdminImg/Enterprise-Grade-Security/security-1.png",
-                      "/AdminImg/Enterprise-Grade-Security/security-2.png",
-                      "/AdminImg/Enterprise-Grade-Security/security-3.png",
-                    ]}
-                    title="Security Architecture"
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
-                </div>
-              )}
             </div>
           </div>
         </div>
       </section>
+
+      {/* ============================================================
+          KEY FEATURES SECTION - SEPARATE COMPONENT
+          ============================================================ */}
+
+      <KeyFeaturesSection
+        featurePages={featurePages}
+        setFeaturePages={setFeaturePages}
+        imagePages={imagePages}
+        setImagePages={setImagePages}
+        openVideoModal={openVideoModal}
+        sectionRefs={sectionRefs}
+      />
 
       {/* ============================================================
           VIDEO MODAL
@@ -1225,8 +359,9 @@ const AdminFeatures = () => {
       )}
 
       {/* ============================================================
-      PROBLEM SECTION
-      ============================================================ */}
+          PROBLEM SECTION
+          ============================================================ */}
+
       <section
         id="problem"
         className={styles.problemSection}
@@ -1333,8 +468,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      SOLUTION SECTION
-      ============================================================ */}
+          SOLUTION SECTION
+          ============================================================ */}
+
       <section
         id="solution"
         className={styles.solutionSection}
@@ -1492,8 +628,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      TIME SAVINGS SECTION
-      ============================================================ */}
+          TIME SAVINGS SECTION
+          ============================================================ */}
+
       <section
         id="time-savings"
         className={styles.timeSavingsSection}
@@ -1601,8 +738,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      ARCHITECTURE SECTION
-      ============================================================ */}
+          ARCHITECTURE SECTION
+          ============================================================ */}
+
       <section
         id="architecture"
         className={styles.architectureSection}
@@ -1772,8 +910,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      WORKFLOWS SECTION
-      ============================================================ */}
+          WORKFLOWS SECTION
+          ============================================================ */}
+
       <section
         id="workflows"
         className={styles.workflowsSection}
@@ -1861,8 +1000,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      INTEGRATIONS SECTION
-      ============================================================ */}
+          INTEGRATIONS SECTION
+          ============================================================ */}
+
       <section
         id="integrations"
         className={styles.integrationsSection}
@@ -1926,8 +1066,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      SECURITY SECTION
-      ============================================================ */}
+          SECURITY SECTION
+          ============================================================ */}
+
       <section
         id="security"
         className={styles.securitySection}
@@ -1992,8 +1133,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      SCALABILITY SECTION
-      ============================================================ */}
+          SCALABILITY SECTION
+          ============================================================ */}
+
       <section
         id="scalability"
         className={styles.scalabilitySection}
@@ -2087,8 +1229,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      COMPARISON SECTION
-      ============================================================ */}
+          COMPARISON SECTION
+          ============================================================ */}
+
       <section
         id="comparison"
         className={styles.comparisonSection}
@@ -2171,8 +1314,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      TESTIMONIALS SECTION
-      ============================================================ */}
+          TESTIMONIALS SECTION
+          ============================================================ */}
+
       <section
         id="testimonials"
         className={styles.testimonialsSection}
@@ -2240,8 +1384,9 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-      FINAL CTA SECTION
-      ============================================================ */}
+          FINAL CTA SECTION
+          ============================================================ */}
+
       <section className={styles.finalCTASection}>
         <div className={styles.sectionContainer}>
           <div className={styles.ctaCard}>
@@ -2273,44 +1418,6 @@ const AdminFeatures = () => {
           </div>
         </div>
       </section>
-
-      {/* Video Modal */}
-      {videoModalOpen && (
-        <div className={styles.videoModal} onClick={closeVideoModal}>
-          <div
-            className={styles.videoModalContent}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className={styles.videoModalClose}
-              onClick={closeVideoModal}
-            >
-              ✕
-            </button>
-            <div className={styles.videoModalBody}>
-              <div className={styles.videoPlaceholder}>
-                <div className={styles.videoPlaceholderContent}>
-                  <FaPlayCircle className={styles.videoPlaceholderIcon} />
-                  <span>Video Placeholder: {activeVideo}</span>
-                  <span className={styles.placeholderSubtext}>
-                    Replace with actual video embed
-                  </span>
-                </div>
-              </div>
-              <div className={styles.videoModalInfo}>
-                <h3>
-                  {activeVideo ? videos[activeVideo]?.title : "Demo Video"}
-                </h3>
-                <p>
-                  {activeVideo
-                    ? videos[activeVideo]?.description
-                    : "Video description"}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
