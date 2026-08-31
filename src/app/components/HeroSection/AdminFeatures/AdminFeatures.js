@@ -21,6 +21,7 @@ import {
 
 // Import the separate Key Features component
 import KeyFeaturesSection from "./KeyFeaturesSection";
+import KeyFeaturesCardview from "./KeyFeaturesCardview";
 
 /* ============================================================
    ADMIN FEATURES
@@ -33,6 +34,7 @@ const AdminFeatures = () => {
   const [activeVideo, setActiveVideo] = useState(null);
   const [featurePages, setFeaturePages] = useState({});
   const [imagePages, setImagePages] = useState({});
+  const [viewMode, setViewMode] = useState('accordion'); 
 
   const sectionRefs = useRef({});
   const observerRef = useRef(null);
@@ -311,18 +313,66 @@ const AdminFeatures = () => {
       </section>
 
       {/* ============================================================
-          KEY FEATURES SECTION - SEPARATE COMPONENT
-          ============================================================ */}
+    KEY FEATURES SECTION - SEPARATE COMPONENT
+    ============================================================ */}
 
-      <KeyFeaturesSection
-        featurePages={featurePages}
-        setFeaturePages={setFeaturePages}
-        imagePages={imagePages}
-        setImagePages={setImagePages}
-        openVideoModal={openVideoModal}
-        sectionRefs={sectionRefs}
-      />
+      <section
+        id="key-features"
+        className={styles.featuresSection}
+        ref={(el) => (sectionRefs.current["key-features"] = el)}
+      >
+        <div className={styles.sectionContainer}>
+          {/* Section Header */}
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionBadge}>⚡ Key Features</span>
+            <h2 className={styles.sectionTitle}>
+              Everything You Need{" "}
+              <span className={styles.gradientText}>to Succeed</span>
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Comprehensive features that make Sageion the most complete
+              platform for business automation.
+            </p>
 
+            {/* View Tabs */}
+            <div className={styles.viewTabs}>
+              <button
+                className={`${styles.viewTab} ${viewMode === "accordion" ? styles.viewTabActive : ""}`}
+                onClick={() => setViewMode("accordion")}
+              >
+                <span className={styles.viewTabIcon}>📋</span>
+                Accordion View
+              </button>
+              <button
+                className={`${styles.viewTab} ${viewMode === "card" ? styles.viewTabActive : ""}`}
+                onClick={() => setViewMode("card")}
+              >
+                <span className={styles.viewTabIcon}>🃏</span>
+                Card View
+              </button>
+            </div>
+          </div>
+
+          {/* Key Features Component */}
+          {viewMode === "accordion" ? (
+            <KeyFeaturesSection
+              featurePages={featurePages}
+              setFeaturePages={setFeaturePages}
+              imagePages={imagePages}
+              setImagePages={setImagePages}
+              openVideoModal={openVideoModal}
+            />
+          ) : (
+            <KeyFeaturesCardview
+              featurePages={featurePages}
+              setFeaturePages={setFeaturePages}
+              imagePages={imagePages}
+              setImagePages={setImagePages}
+              openVideoModal={openVideoModal}
+            />
+          )}
+        </div>
+      </section>
       {/* ============================================================
           VIDEO MODAL
           ============================================================ */}

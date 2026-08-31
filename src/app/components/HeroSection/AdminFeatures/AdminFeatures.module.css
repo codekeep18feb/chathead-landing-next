@@ -728,7 +728,6 @@
    ============================================================ */
 
 .featuresSection {
-  padding: 100px 24px;
   position: relative;
 }
 
@@ -870,7 +869,6 @@
   gap: 14px;
 }
 
-
 .featureScreenshot {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -899,7 +897,8 @@
   grid-template-columns: 1fr;
 }
 
-.featureScreenshot:has(.featureScreenshotImage:only-child) .featureScreenshotImage {
+.featureScreenshot:has(.featureScreenshotImage:only-child)
+  .featureScreenshotImage {
   aspect-ratio: 16/9;
 }
 
@@ -2391,8 +2390,6 @@
   }
 }
 
-
-
 /* ============================================================
    RESPONSIVE - SCREENSHOTS
    ============================================================ */
@@ -2408,7 +2405,8 @@
     border-radius: 10px;
   }
 
-  .featureScreenshot:has(.featureScreenshotImage:only-child) .featureScreenshotImage {
+  .featureScreenshot:has(.featureScreenshotImage:only-child)
+    .featureScreenshotImage {
     aspect-ratio: 16/10;
   }
 }
@@ -2424,7 +2422,8 @@
     border-radius: 8px;
   }
 
-  .featureScreenshot:has(.featureScreenshotImage:only-child) .featureScreenshotImage {
+  .featureScreenshot:has(.featureScreenshotImage:only-child)
+    .featureScreenshotImage {
     aspect-ratio: 16/9;
   }
 
@@ -2665,4 +2664,120 @@
   }
 }
 
+/* ============================================================
+   VIEW TABS
+   ============================================================ */
 
+.viewTabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.viewTab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  flex: 1;
+  justify-content: center;
+}
+
+.viewTab:hover {
+  color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.viewTabActive {
+  color: #1a1a2e;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.viewTabActive:hover {
+  background: #ffffff;
+  color: #1a1a2e;
+}
+
+.viewTabIcon {
+  font-size: 1.1rem;
+}
+
+/* ============================================================
+   RESPONSIVE - VIEW TABS
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .viewTabs {
+    max-width: 100%;
+    padding: 4px;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .viewTab {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .viewTabIcon {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .viewTabs {
+    flex-direction: row;
+    padding: 4px;
+    gap: 6px;
+  }
+
+  .viewTab {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    gap: 4px;
+    border-radius: 8px;
+  }
+
+  .viewTabIcon {
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================================
+   SMOOTH TRANSITION FOR FEATURE COMPONENTS
+   ============================================================ */
+
+.featuresSection > .sectionContainer > .featuresGrid,
+.featuresSection > .sectionContainer > .cardFeaturesGrid {
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

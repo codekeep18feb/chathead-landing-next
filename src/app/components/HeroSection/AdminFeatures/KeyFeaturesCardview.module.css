@@ -1,0 +1,393 @@
+/* ============================================================
+   CARD FEATURES GRID - ALTERNATING LAYOUT (FIXED)
+   ============================================================ */
+
+.cardFeaturesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cardFeatureItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  padding: 32px 36px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  align-items: stretch;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.cardFeatureItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+  border-color: rgba(75, 207, 158, 0.15);
+}
+
+/* EVEN CARDS: Text Left, Image Right (Default) */
+.cardFeatureEven {
+  /* Default: text in column 1, image in column 2 */
+}
+
+.cardFeatureEven .cardFeatureText {
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+
+.cardFeatureEven .cardFeatureVisual {
+  grid-column: 2 / 3;
+  grid-row: 1;
+}
+
+/* ODD CARDS: Text Right, Image Left */
+.cardFeatureOdd .cardFeatureText {
+  grid-column: 2 / 3;
+  grid-row: 1;
+}
+
+.cardFeatureOdd .cardFeatureVisual {
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+
+/* Left Side - Text Content */
+.cardFeatureText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardFeatureHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cardFeatureIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.cardFeatureTitle {
+  flex: 1;
+  padding-top: 4px;
+}
+
+.cardFeatureTitle h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #1a1a2e;
+}
+
+.cardFeatureTitle p {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.cardFeatureBody {
+  flex: 1;
+}
+
+.cardFeatureBody h4 {
+  font-size: 0.85rem;
+  color: #4bcf9e;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.cardFeatureBody .featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+}
+
+.cardFeatureBody .featureList li {
+  padding: 8px 0;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardFeatureBody .featureList li::before {
+  content: "▸";
+  color: #4bcf9e;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.cardFeatureBody .featureList li:last-child {
+  border-bottom: none;
+}
+
+.cardFeatureBody .featureBenefit {
+  padding: 12px 18px;
+  background: rgba(75, 207, 158, 0.08);
+  border-radius: 10px;
+  border-left: 4px solid #4bcf9e;
+  margin-top: 8px;
+}
+
+.cardFeatureBody .featureBenefit span {
+  color: #4bcf9e;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Right Side - Images */
+.cardFeatureVisual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.cardFeatureVisual .featureScreenshot {
+  aspect-ratio: 16/10;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.cardFeatureVisual .watchDemoBtn {
+  align-self: flex-start;
+  margin-top: 14px;
+}
+
+/* ============================================================
+   ALTERNATING BORDER ACCENTS
+   ============================================================ */
+
+.cardFeatureEven {
+  border-left: 3px solid transparent;
+}
+
+.cardFeatureEven:hover {
+  border-left-color: #4bcf9e;
+}
+
+.cardFeatureOdd {
+  border-right: 3px solid transparent;
+}
+
+.cardFeatureOdd:hover {
+  border-right-color: #4bcf9e;
+}
+
+/* ============================================================
+   ALTERNATING BACKGROUNDS
+   ============================================================ */
+
+.cardFeatureEven {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.cardFeatureOdd {
+  background: rgba(75, 207, 158, 0.03);
+}
+
+/* ============================================================
+   RESPONSIVE - CARD FEATURES
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .cardFeatureItem {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 28px 24px;
+  }
+
+  /* Reset alternating layout on tablet */
+  .cardFeatureEven .cardFeatureText,
+  .cardFeatureOdd .cardFeatureText {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .cardFeatureEven .cardFeatureVisual,
+  .cardFeatureOdd .cardFeatureVisual {
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  .cardFeatureEven,
+  .cardFeatureOdd {
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+  }
+
+  .cardFeatureEven:hover,
+  .cardFeatureOdd:hover {
+    border-left-color: #4bcf9e;
+    border-right-color: #4bcf9e;
+  }
+
+  .cardFeatureVisual {
+    min-height: 200px;
+  }
+
+  .cardFeatureVisual .featureScreenshot {
+    aspect-ratio: 16/9;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardFeatureItem {
+    padding: 20px 18px;
+    gap: 20px;
+    border-radius: 18px;
+  }
+
+  .cardFeatureHeader {
+    gap: 12px;
+  }
+
+  .cardFeatureIcon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+  }
+
+  .cardFeatureTitle h3 {
+    font-size: 1.05rem;
+  }
+
+  .cardFeatureTitle p {
+    font-size: 0.8rem;
+  }
+
+  .cardFeatureBody .featureList li {
+    font-size: 0.85rem;
+    padding: 6px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardFeaturesGrid {
+    gap: 20px;
+  }
+
+  .cardFeatureItem {
+    padding: 16px 14px;
+    gap: 16px;
+    border-radius: 14px;
+  }
+
+  /* Mobile: Image on top, text below for all cards */
+  .cardFeatureEven .cardFeatureText,
+  .cardFeatureOdd .cardFeatureText {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .cardFeatureEven .cardFeatureVisual,
+  .cardFeatureOdd .cardFeatureVisual {
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  .cardFeatureHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cardFeatureTitle {
+    text-align: center;
+  }
+
+  .cardFeatureVisual .featureScreenshot {
+    aspect-ratio: 16/11;
+  }
+
+  .cardFeatureBody .featureList li {
+    font-size: 0.8rem;
+    padding: 5px 0;
+  }
+
+  .cardFeatureBody .featureBenefit {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .cardFeatureBody .featureBenefit span {
+    font-size: 0.8rem;
+  }
+
+  .cardFeatureEven,
+  .cardFeatureOdd {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* ============================================================
+   PAGINATION INSIDE CARD FEATURES
+   ============================================================ */
+
+.cardFeatureBody .featurePagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.cardFeatureBody .paginationButton {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a2e;
+}
+
+.cardFeatureBody .paginationButton:hover:not(:disabled) {
+  background: #4bcf9e;
+  color: white;
+}
+
+.cardFeatureBody .paginationButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cardFeatureBody .paginationInfo {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* Placeholder items for consistent height */
+.cardFeatureBody .featureListPlaceholder {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border-bottom: none;
+}

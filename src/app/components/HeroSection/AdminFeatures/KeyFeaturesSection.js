@@ -37,24 +37,6 @@ const KeyFeaturesSection = ({
     <section id="key-features" className={styles.featuresSection}>
       <div className={styles.sectionContainer}>
         {/* ========================================================
-            SECTION HEADER
-            ======================================================== */}
-
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionBadge}>⚡ Key Features</span>
-
-          <h2 className={styles.sectionTitle}>
-            Everything You Need{" "}
-            <span className={styles.gradientText}>to Succeed</span>
-          </h2>
-
-          <p className={styles.sectionSubtitle}>
-            Comprehensive features that make Sageion the most complete
-            platform for business automation.
-          </p>
-        </div>
-
-        {/* ========================================================
             FEATURES GRID
             ======================================================== */}
 
