@@ -34,7 +34,7 @@ const AdminFeatures = () => {
   const [activeVideo, setActiveVideo] = useState(null);
   const [featurePages, setFeaturePages] = useState({});
   const [imagePages, setImagePages] = useState({});
-  const [viewMode, setViewMode] = useState('accordion'); 
+  const [viewMode, setViewMode] = useState("accordion");
 
   const sectionRefs = useRef({});
   const observerRef = useRef(null);
@@ -340,14 +340,12 @@ const AdminFeatures = () => {
                 className={`${styles.viewTab} ${viewMode === "accordion" ? styles.viewTabActive : ""}`}
                 onClick={() => setViewMode("accordion")}
               >
-                <span className={styles.viewTabIcon}>📋</span>
                 Accordion View
               </button>
               <button
                 className={`${styles.viewTab} ${viewMode === "card" ? styles.viewTabActive : ""}`}
                 onClick={() => setViewMode("card")}
               >
-                <span className={styles.viewTabIcon}>🃏</span>
                 Card View
               </button>
             </div>

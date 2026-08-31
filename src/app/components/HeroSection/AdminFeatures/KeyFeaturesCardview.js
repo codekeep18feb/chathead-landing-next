@@ -12,6 +12,8 @@ import {
   FaCog,
   FaLock,
   FaPlayCircle,
+  FaArrowRight,
+  FaStar,
 } from "react-icons/fa";
 
 // Import the sub-components
@@ -34,6 +36,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#4BCF9E20",
       title: "Generative AI Forms",
       subtitle: "Intelligent forms that pre-fill what users already told you",
+      description:
+        "Transform user conversations into structured data with AI-powered form generation.",
       items: [
         'User sends: "Book a room for 2 guests on Dec 25"',
         "AI detects BOOKING intent",
@@ -51,6 +55,7 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "form-generation",
       title: "Form Generation Demo",
+      tags: ["AI", "Automation", "Forms"],
     },
     {
       id: "api-chaining",
@@ -59,6 +64,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#667EEA20",
       title: "Visual API Chaining",
       subtitle: "Complex workflows built without writing a single line of code",
+      description:
+        "Connect multiple APIs with conditional logic and error handling in a visual interface.",
       items: [
         "Conditional logic: If/Else/Else If",
         "Multiple API calls in sequence",
@@ -74,6 +81,7 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "api-chaining",
       title: "API Chaining Workflow",
+      tags: ["Integration", "Workflow", "No-Code"],
     },
     {
       id: "rag",
@@ -82,6 +90,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#F59E0B20",
       title: "Built-in RAG Engine",
       subtitle: "Context-aware AI without paying per-query to OpenAI",
+      description:
+        "Ingest your knowledge base and get intelligent responses without token costs.",
       items: [
         "Ingest websites, PDFs, documents",
         "Semantic search across your knowledge base",
@@ -97,6 +107,7 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "rag-demo",
       title: "RAG Engine Demo",
+      tags: ["AI", "Knowledge Base", "Cost-Effective"],
     },
     {
       id: "async-webhooks",
@@ -105,6 +116,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#EC489A20",
       title: "True Async Webhooks",
       subtitle: "No 30-second timeout — wait as long as needed",
+      description:
+        "Handle long-running processes with WebSocket callbacks and real-time updates.",
       items: [
         "No hard timeout (30s, 60s, etc.)",
         "WebSocket callback for results",
@@ -119,6 +132,7 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "webhook-async",
       title: "Async Webhook Flow",
+      tags: ["Real-Time", "Scalable", "Reliable"],
     },
     {
       id: "screen-gen",
@@ -127,6 +141,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#8B5CF620",
       title: "Dynamic Screen Generation",
       subtitle: "Multiple screens from a single API response",
+      description:
+        "Create dynamic UIs with template-based rendering and transformations.",
       items: [
         "Template-based rendering (Nunjucks)",
         "Style transformations (bold, highlight, buttons)",
@@ -142,6 +158,7 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "",
       title: "Dynamic Screen Demo",
+      tags: ["UI/UX", "Dynamic", "Flexible"],
     },
     {
       id: "live-chat",
@@ -150,6 +167,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#0EA5E920",
       title: "Live Chat + Multi-Admin",
       subtitle: "Real-time agent collaboration with RBAC",
+      description:
+        "Enterprise-grade chat with role-based access and smart agent routing.",
       items: [
         "Multi-admin support with role-based access",
         "Unified inbox across all websites",
@@ -170,6 +189,7 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "live-chat",
       title: "Live Chat Interface",
+      tags: ["Chat", "Support", "Real-Time"],
     },
     {
       id: "admin-panel",
@@ -178,6 +198,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#F9731620",
       title: "Comprehensive Admin Panel",
       subtitle: "Complete control without touching code",
+      description:
+        "Manage everything from workflows to analytics in one powerful dashboard.",
       items: [
         "Visual workflow builder",
         "Intent configuration",
@@ -197,6 +219,7 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "admin-panel",
       title: "Admin Panel Interface",
+      tags: ["Management", "Analytics", "Control"],
     },
     {
       id: "security",
@@ -205,6 +228,8 @@ const KeyFeaturesCardview = ({
       iconBg: "#10B98120",
       title: "Enterprise-Grade Security",
       subtitle: "No XSS attacks, no stored scripts, complete safety",
+      description:
+        "Built-in security measures to protect your data and users from threats.",
       items: [
         "No HTML/JS stored in database",
         "Template + transformations applied client-side",
@@ -220,75 +245,97 @@ const KeyFeaturesCardview = ({
       ],
       videoId: "",
       title: "Security Architecture",
+      tags: ["Security", "Compliance", "RBAC"],
     },
   ];
 
   return (
-    <section id="key-features" className={styles.featuresSection}>
-      <div className={styles.sectionContainer}>
-        {/* FEATURES CARD GRID */}
-        <div className={styles.cardFeaturesGrid}>
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            // Even index (0, 2, 4, 6) = text left, image right
-            // Odd index (1, 3, 5, 7) = text right, image left
-            const isEven = index % 2 === 0;
-            
-            return (
-              <div 
-                key={feature.id} 
-                className={`${styles.cardFeatureItem} ${
-                  isEven ? styles.cardFeatureEven : styles.cardFeatureOdd
-                }`}
-              >
-                {/* Text Content */}
-                <div className={styles.cardFeatureText}>
-                  <div className={styles.cardFeatureHeader}>
-                    <div
-                      className={styles.cardFeatureIcon}
-                      style={{
-                        background: feature.iconBg,
-                        color: feature.iconColor,
-                      }}
-                    >
-                      <Icon />
-                    </div>
-                    <div className={styles.cardFeatureTitle}>
-                      <h3>{feature.title}</h3>
-                      <p>{feature.subtitle}</p>
-                    </div>
-                  </div>
+    <div className={styles.cardFeaturesGrid}>
+      {features.map((feature, index) => {
+        const Icon = feature.icon;
+        const isEven = index % 2 === 0;
 
-                  <div className={styles.cardFeatureBody}>
-                    <h4>How It Works</h4>
-                    <PaginatedFeatureList
-                      featureId={feature.id}
-                      items={feature.items}
-                      benefit={feature.benefit}
-                      featurePages={featurePages}
-                      setFeaturePages={setFeaturePages}
-                    />
-                  </div>
+        return (
+          <div
+            key={feature.id}
+            className={`${styles.cardFeatureItem} ${
+              isEven ? styles.cardFeatureEven : styles.cardFeatureOdd
+            }`}
+          >
+            {/* Card Number Badge */}
+            <div className={styles.cardNumberBadge}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </div>
+
+            {/* Text Content */}
+            <div className={styles.cardFeatureText}>
+              <div className={styles.cardFeatureHeader}>
+                <div
+                  className={styles.cardFeatureIcon}
+                  style={{
+                    background: feature.iconBg,
+                    color: feature.iconColor,
+                  }}
+                >
+                  <Icon />
                 </div>
-
-                {/* Images */}
-                <div className={styles.cardFeatureVisual}>
-                  <FeatureScreenshot
-                    featureId={feature.id}
-                    images={feature.images}
-                    title={feature.title}
-                    videoId={feature.videoId}
-                    imagePages={imagePages}
-                    setImagePages={setImagePages}
-                    openVideoModal={openVideoModal}
-                  />
+                <div className={styles.cardFeatureTitle}>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.subtitle}</p>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+
+              <div className={styles.cardFeatureDescription}>
+                <p>{feature.description}</p>
+              </div>
+
+              <div className={styles.cardFeatureBody}>
+                <h4>
+                  {/* <FaStar className={styles.sectionIcon} /> */}
+                  How It Works
+                </h4>
+                <PaginatedFeatureList
+                  featureId={feature.id}
+                  items={feature.items}
+                  benefit={feature.benefit}
+                  featurePages={featurePages}
+                  setFeaturePages={setFeaturePages}
+                />
+              </div>
+
+              {/* Tags */}
+              {feature.tags && (
+                <div className={styles.cardFeatureTags}>
+                  {feature.tags.map((tag, idx) => (
+                    <span key={idx} className={styles.featureTag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Images */}
+            <div className={styles.cardFeatureVisual}>
+              <div className={styles.visualWrapper}>
+                <FeatureScreenshot
+                  featureId={feature.id}
+                  images={feature.images}
+                  title={feature.title}
+                  videoId={feature.videoId}
+                  imagePages={imagePages}
+                  setImagePages={setImagePages}
+                  openVideoModal={openVideoModal}
+                />
+
+                {/* Gradient Overlay */}
+                <div className={styles.visualOverlay} />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 
