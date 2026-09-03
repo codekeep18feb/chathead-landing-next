@@ -155,24 +155,30 @@
   border-color: #ff6b6b;
   color: #ff6b6b;
 }
-
+.bannerActions {
+  display: inline-flex;
+  gap: 20px;
+}
 /* Learn More Button */
 .learnMoreBtn {
   background: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid #333;
   padding: clamp(10px, 1.2vw, 12px) clamp(24px, 2.5vw, 32px);
   font-size: clamp(0.8rem, 1.2vw, 1rem);
   font-weight: 600;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  background: white;
+  color: #333;
+}
+.tryMe {
+  background: var(--secondaryy-color);
+  color: white;
 }
 
 .learnMoreBtn:hover {
-  background: white;
-  color: #333;
   transform: translateY(-2px);
 }
 
@@ -344,35 +350,35 @@
     width: 95%;
     max-width: 300px;
   }
-  
+
   .solve-section {
     min-height: 75vh;
     min-height: 75dvh;
     height: 75vh;
     height: 75dvh;
   }
-  
+
   .video-container {
     min-height: 75vh;
     min-height: 75dvh;
     height: 75vh;
     height: 75dvh;
   }
-  
+
   .hero-video {
     height: 75vh;
     height: 75dvh;
     object-fit: cover;
     object-position: center 30%;
   }
-  
+
   .hero_content {
     height: 50%;
     top: 50%;
     padding: 0px;
     bottom: 0px;
   }
-  
+
   .overlay {
     background: linear-gradient(
       135deg,
@@ -381,7 +387,7 @@
       rgba(38, 38, 38, 0.833) 100%
     );
   }
-  
+
   .title {
     font-size: clamp(2rem, 6vw, 2.8rem); /* Increased from 1.2rem */
     font-weight: 800;
@@ -414,7 +420,7 @@
     width: 98%;
     max-width: 260px;
   }
-  
+
   .solve-section,
   .video-container {
     min-height: 70vh;
@@ -422,27 +428,27 @@
     height: 70vh;
     height: 70dvh;
   }
-  
+
   .hero-video {
     height: 70vh;
     height: 70dvh;
   }
-  
+
   .hero_content {
     height: 45%;
     top: 46%;
   }
-  
+
   .title {
     font-size: clamp(1.8rem, 5vw, 2.2rem); /* Increased from 1rem */
     margin-bottom: 0.5rem;
   }
-  
+
   .subtitle {
     font-size: clamp(0.85rem, 2vw, 0.95rem); /* Increased from 0.6rem */
     margin-bottom: 0.75rem;
   }
-  
+
   .learnMoreBtn {
     padding: 4px 12px;
     font-size: 0.65rem;
@@ -458,14 +464,14 @@
     min-height: 100dvh;
     height: auto;
   }
-  
+
   .hero-video {
     height: 100vh;
     height: 100dvh;
     object-fit: cover;
     object-position: center;
   }
-  
+
   .chatPart {
     bottom: 0.5rem;
     width: 85%;
@@ -545,7 +551,7 @@
   .video-container {
     min-height: -webkit-fill-available;
   }
-  
+
   .hero-video {
     height: -webkit-fill-available;
   }

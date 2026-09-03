@@ -1,0 +1,380 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(6px);
+
+  animation: overlayShow 0.2s ease;
+}
+
+/* =========================
+   Modal
+========================= */
+
+.modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+
+  padding: 40px;
+
+  background: var(--cards-bg);
+
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+
+  box-shadow: var(--shadow-strong);
+
+  overflow-y: auto;
+
+  animation: modalShow 0.25s ease;
+}
+
+/* =========================
+   Close Button
+========================= */
+
+.closeButton {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+
+  background: var(--light-secondary-color);
+  color: var(--heading-color);
+
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: var(--subbtn_hover_effect);
+  color: var(--primary-color);
+
+  border-color: var(--secondaryy-color);
+
+  transform: rotate(90deg);
+}
+
+/* =========================
+   Heading
+========================= */
+
+.heading {
+  margin: 0;
+  padding-right: 45px;
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  color: var(--heading-color);
+}
+
+.subheading {
+  margin: 12px 0 30px;
+
+  max-width: 500px;
+
+  font-size: 16px;
+  line-height: 1.6;
+
+  color: var(--light-text-color);
+}
+
+/* =========================
+   Dropdown
+========================= */
+
+.dropdownWrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.dropdownWrapper label {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--text-color);
+}
+
+.dropdown {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 15px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  outline: none;
+
+  background: var(--bg-light);
+  color: var(--heading-color);
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.dropdown:hover {
+  border-color: var(--secondaryy-color);
+}
+
+.dropdown:focus {
+  border-color: var(--primary-color);
+
+  box-shadow: var(--shadow-glow-primary);
+}
+
+/* Disabled options */
+
+.dropdown option:disabled {
+  color: var(--light-text-color);
+}
+
+/* =========================
+   Dynamic Content
+========================= */
+
+.content {
+  margin-top: 25px;
+  padding: 22px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+
+  background: var(--light-secondary-color);
+
+  box-shadow: var(--shadow-soft);
+
+  animation: contentShow 0.25s ease;
+}
+
+.content h3 {
+  margin: 0 0 18px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: var(--primary-color);
+}
+
+/* =========================
+   Link List
+========================= */
+
+.content ul {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.content li {
+  margin: 0;
+}
+
+.content li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+
+  background: var(--cards-bg);
+  color: var(--text-color);
+
+  font-size: 15px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  box-shadow: var(--shadow-soft);
+
+  transition: all 0.2s ease;
+}
+
+.content li a::after {
+  content: "→";
+
+  color: var(--primary-color);
+
+  font-size: 18px;
+
+  transition: transform 0.2s ease;
+}
+
+.content li a:hover {
+  border-color: var(--primary-color);
+
+  background: var(--primary-color);
+  color: var(--white-text-color);
+
+  box-shadow: var(--shadow-medium);
+
+  transform: translateX(3px);
+}
+
+.content li a:hover::after {
+  color: var(--white-text-color);
+
+  transform: translateX(4px);
+}
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalShow {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Scrollbar
+========================= */
+
+.modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: var(--bg-light);
+  border-radius: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: var(--secondaryy-color);
+  border-radius: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+  .modalOverlay {
+    padding: 15px;
+  }
+
+  .modal {
+    max-height: 90vh;
+
+    padding: 30px 20px;
+
+    border-radius: 16px;
+  }
+
+  .closeButton {
+    top: 12px;
+    right: 12px;
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 22px;
+  }
+
+  .heading {
+    padding-right: 35px;
+
+    font-size: 25px;
+  }
+
+  .subheading {
+    margin-bottom: 24px;
+
+    font-size: 14px;
+  }
+
+  .dropdown {
+    height: 46px;
+
+    font-size: 14px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .content h3 {
+    font-size: 18px;
+  }
+
+  .content li a {
+    padding: 12px 14px;
+
+    font-size: 14px;
+  }
+}
