@@ -55,7 +55,7 @@ const HeroSection = () => {
         <ChatComponent />
       </div>
 
-      {isTryMeOpen && <TryMeModal onClose={() => setIsTryMeOpen(false)} />}
+       {isTryMeOpen && <TryMeModal onClose={() => setIsTryMeOpen(false)} />}
     </section>
   );
 };
