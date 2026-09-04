@@ -136,7 +136,7 @@ export default function ProblemsSolved() {
         </div>
       </div>
 
-      <HowItWorksPage/>
+      {/* <HowItWorksPage/> */}
     </section>
   );
 }

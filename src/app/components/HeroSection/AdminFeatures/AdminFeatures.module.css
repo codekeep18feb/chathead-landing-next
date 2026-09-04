@@ -1,32 +1,29 @@
-/* ============================================================
-   PAGE WRAPPER & BASE
-   ============================================================ */
-
 .pageWrapper {
   position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: #f5f7fa;
   color: #1a1a2e;
-  overflow-x: hidden;
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   scroll-behavior: smooth;
 }
 
 /* ============================================================
-   STICKY NAVIGATION
+   2. NAVIGATION
    ============================================================ */
 
 .stickyNav {
   position: sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 24px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 0 24px;
-  height: 72px;
-  display: flex;
-  align-items: center;
   transition: box-shadow 0.3s ease;
 }
 
@@ -35,12 +32,12 @@
 }
 
 .navContainer {
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .navLogo {
@@ -56,7 +53,7 @@
 }
 
 .logoText {
-  background: linear-gradient(135deg, #4BCF9E, #667EEA);
+  background: linear-gradient(135deg, #4bcf9e, #667eea);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -64,21 +61,21 @@
 
 .navLinks {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 8px;
   justify-content: center;
 }
 
 .navLink {
   padding: 8px 16px;
-  border-radius: 50px;
   font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  white-space: nowrap;
   font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
 }
 
 .navLink:hover {
@@ -88,21 +85,21 @@
 }
 
 .navLinkActive {
-  color: #4BCF9E;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.12);
 }
 
 .navCta {
   padding: 10px 24px;
-  background: linear-gradient(135deg, #4BCF9E, #2d9c73);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #4bcf9e, #2d9c73);
   border: none;
   border-radius: 50px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  white-space: nowrap;
 }
 
 .navCta:hover {
@@ -111,7 +108,7 @@
 }
 
 /* ============================================================
-   SECTION CONTAINER
+   3. SECTION CONTAINERS & HEADERS
    ============================================================ */
 
 .sectionContainer {
@@ -120,60 +117,56 @@
   padding: 0 24px;
 }
 
-/* ============================================================
-   SECTION HEADER
-   ============================================================ */
-
 .sectionHeader {
-  text-align: center;
   max-width: 720px;
   margin: 0 auto 56px;
+  text-align: center;
 }
 
 .sectionBadge {
   display: inline-block;
   padding: 8px 20px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4bcf9e;
+  letter-spacing: 0.5px;
   background: rgba(75, 207, 158, 0.12);
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
-  font-size: 0.8rem;
-  color: #4BCF9E;
-  margin-bottom: 20px;
-  letter-spacing: 0.5px;
-  font-weight: 600;
 }
 
 .sectionTitle {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  line-height: 1.2;
   margin-bottom: 18px;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .gradientText {
-  background: linear-gradient(135deg, #4BCF9E, #667EEA);
+  background: linear-gradient(135deg, #4bcf9e, #667eea);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .sectionSubtitle {
-  font-size: 1.15rem;
-  color: rgba(0, 0, 0, 0.6);
-  line-height: 1.7;
   max-width: 600px;
   margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /* ============================================================
-   HERO SECTION
+   4. HERO SECTION
    ============================================================ */
 
 .heroSection {
   position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: center;
+  min-height: 100vh;
   padding: 100px 24px 80px;
   overflow: hidden;
 }
@@ -181,8 +174,8 @@
 .heroBackground {
   position: absolute;
   inset: 0;
-  pointer-events: none;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .heroOrb1 {
@@ -191,7 +184,11 @@
   right: -10%;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(75, 207, 158, 0.15), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(75, 207, 158, 0.15),
+    transparent 70%
+  );
   border-radius: 50%;
   animation: floatOrb 25s ease-in-out infinite;
 }
@@ -202,7 +199,11 @@
   left: -10%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.12), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.12),
+    transparent 70%
+  );
   border-radius: 50%;
   animation: floatOrb 30s ease-in-out infinite reverse;
 }
@@ -211,11 +212,15 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 900px;
   height: 900px;
-  background: radial-gradient(circle, rgba(75, 207, 158, 0.04), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(75, 207, 158, 0.04),
+    transparent 70%
+  );
   border-radius: 50%;
+  transform: translate(-50%, -50%);
   animation: pulseOrb 20s ease-in-out infinite;
 }
 
@@ -228,20 +233,32 @@
 }
 
 @keyframes floatOrb {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.08); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
 }
 
 @keyframes pulseOrb {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.8;
+  }
 }
 
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 680px;
   flex: 1;
+  max-width: 680px;
 }
 
 .heroBadge {
@@ -249,46 +266,53 @@
   align-items: center;
   gap: 12px;
   padding: 10px 22px;
+  margin-bottom: 28px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.1);
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
-  font-size: 0.85rem;
-  color: #4BCF9E;
-  margin-bottom: 28px;
-  font-weight: 500;
 }
 
 .pulseDot {
   width: 8px;
   height: 8px;
+  background: #4bcf9e;
   border-radius: 50%;
-  background: #4BCF9E;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.7); }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.7);
+    opacity: 0.3;
+  }
 }
 
 .heroTitle {
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 1.05;
   margin-bottom: 24px;
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 800;
+  line-height: 1.05;
 }
 
 .heroHighlight {
-  color: #4BCF9E;
   display: block;
+  color: #4bcf9e;
 }
 
 .heroSubtitle {
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.7);
-  line-height: 1.7;
   max-width: 580px;
   margin-bottom: 36px;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .heroSubtitle strong {
@@ -297,9 +321,9 @@
 
 .heroStats {
   display: flex;
+  flex-wrap: wrap;
   gap: 48px;
   margin-bottom: 40px;
-  flex-wrap: wrap;
 }
 
 .heroStat {
@@ -310,35 +334,35 @@
 .heroStatNumber {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #4BCF9E;
+  color: #4bcf9e;
 }
 
 .heroStatLabel {
+  margin-top: 2px;
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.5);
-  margin-top: 2px;
 }
 
 .heroButtons {
   display: flex;
-  gap: 18px;
   flex-wrap: wrap;
+  gap: 18px;
   margin-bottom: 32px;
 }
 
 .heroPrimaryBtn {
-  padding: 16px 40px;
-  background: linear-gradient(135deg, #4BCF9E, #2d9c73);
-  border: none;
-  border-radius: 50px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 16px 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4bcf9e, #2d9c73);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .heroPrimaryBtn:hover {
@@ -355,18 +379,18 @@
 }
 
 .heroSecondaryBtn {
-  padding: 16px 40px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 50px;
-  color: #1a1a2e;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 16px 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .heroSecondaryBtn:hover {
@@ -381,41 +405,39 @@
 
 .heroTrust {
   display: flex;
-  gap: 28px;
   flex-wrap: wrap;
+  gap: 28px;
 }
 
 .heroTrust span {
-  color: rgba(0, 0, 0, 0.4);
   font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.4);
 }
 
-/* Hero Visual - Placeholder */
-
 .heroVisual {
+  position: relative;
+  z-index: 2;
   flex: 1;
   max-width: 600px;
   margin-left: 48px;
-  position: relative;
-  z-index: 2;
 }
 
 .heroVisualPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  padding: 48px;
   aspect-ratio: 16/9;
   background: rgba(0, 0, 0, 0.03);
   border: 2px dashed rgba(0, 0, 0, 0.1);
   border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 48px;
   transition: all 0.3s ease;
 }
 
 .heroVisualPlaceholder:hover {
-  border-color: rgba(75, 207, 158, 0.3);
   background: rgba(75, 207, 158, 0.03);
+  border-color: rgba(75, 207, 158, 0.3);
   transform: scale(1.01);
 }
 
@@ -433,8 +455,8 @@
 
 .visualPlaceholderContent .placeholderText {
   font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.6);
   font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .visualPlaceholderContent .placeholderSubtext {
@@ -444,20 +466,20 @@
 
 .placeholderDimensions {
   padding: 6px 14px;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
+  font-family: monospace;
   font-size: 0.7rem;
   color: rgba(0, 0, 0, 0.3);
-  font-family: monospace;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
 }
 
 /* ============================================================
-   PROBLEM SECTION
+   5. PROBLEM SECTION
    ============================================================ */
 
 .problemSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
 }
 
 .problemGrid {
@@ -467,51 +489,51 @@
 }
 
 .problemCard {
+  padding: 32px 28px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 32px 28px;
   transition: all 0.3s ease;
 }
 
 .problemCard:hover {
-  transform: translateY(-6px);
   background: rgba(0, 0, 0, 0.04);
   border-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
 .problemIcon {
-  font-size: 2.2rem;
   margin-bottom: 14px;
+  font-size: 2.2rem;
 }
 
 .problemCard h3 {
-  font-size: 1.1rem;
   margin-bottom: 10px;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
 .problemCard p {
-  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 14px;
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 14px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .problemStatNegative {
-  color: #EF4444;
   font-size: 0.85rem;
   font-weight: 600;
+  color: #ef4444;
 }
 
 /* ============================================================
-   SOLUTION SECTION
+   6. SOLUTION SECTION
    ============================================================ */
 
 .solutionSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
   background: rgba(75, 207, 158, 0.02);
 }
 
@@ -523,88 +545,86 @@
 }
 
 .solutionCard {
+  padding: 32px 28px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 32px 28px;
   transition: all 0.3s ease;
 }
 
 .solutionCard:hover {
-  transform: translateY(-6px);
   background: rgba(0, 0, 0, 0.04);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
 .solutionIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  width: 56px;
+  height: 56px;
   margin-bottom: 16px;
+  font-size: 1.6rem;
+  border-radius: 14px;
 }
 
 .solutionCard h3 {
-  font-size: 1.15rem;
   margin-bottom: 10px;
+  font-size: 1.15rem;
   font-weight: 700;
 }
 
 .solutionCard p {
-  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 16px;
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 16px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .solutionProof {
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 12px;
 }
 
 .proofBadge {
   padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50px;
-  font-size: 0.75rem;
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 500;
 }
 
 .proofMetric {
   padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.1);
   border-radius: 50px;
-  font-size: 0.75rem;
-  color: #4BCF9E;
-  font-weight: 600;
 }
-
-/* Video Proof Section */
 
 .videoProofSection {
   margin-top: 24px;
 }
 
 .videoProofHeader {
-  text-align: center;
   margin-bottom: 36px;
+  text-align: center;
 }
 
 .videoProofBadge {
   display: inline-block;
   padding: 6px 16px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ef4444;
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: 50px;
-  font-size: 0.8rem;
-  color: #EF4444;
-  margin-bottom: 12px;
-  font-weight: 600;
 }
 
 .videoProofHeader h3 {
@@ -619,49 +639,49 @@
 }
 
 .videoProofCard {
-  cursor: pointer;
-  border-radius: 16px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .videoProofCard:hover {
-  transform: translateY(-6px);
   border-color: rgba(75, 207, 158, 0.3);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
 .videoThumbnail {
   position: relative;
+  overflow: hidden;
   aspect-ratio: 16/9;
   background: rgba(0, 0, 0, 0.03);
-  overflow: hidden;
 }
 
 .videoThumbnailPlaceholder {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: rgba(0, 0, 0, 0.03);
+  width: 100%;
+  height: 100%;
   color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .videoPlayIcon {
   font-size: 3rem;
-  color: #4BCF9E;
+  color: #4bcf9e;
   opacity: 0.6;
   transition: all 0.3s ease;
 }
 
 .videoProofCard:hover .videoPlayIcon {
-  opacity: 1;
   transform: scale(1.05);
+  opacity: 1;
 }
 
 .videoDuration {
@@ -669,11 +689,11 @@
   bottom: 12px;
   right: 12px;
   padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
   background: rgba(0, 0, 0, 0.75);
   border-radius: 6px;
-  font-size: 0.75rem;
-  color: #fff;
-  font-weight: 500;
 }
 
 .videoProofInfo {
@@ -681,22 +701,21 @@
 }
 
 .videoProofInfo h4 {
-  font-size: 1rem;
   margin-bottom: 6px;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .videoProofInfo p {
-  color: rgba(0, 0, 0, 0.5);
   font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================================
-   FEATURES SECTION
+   7. KEY FEATURES SECTION
    ============================================================ */
 
 .featuresSection {
-  padding: 100px 24px;
   position: relative;
 }
 
@@ -707,10 +726,10 @@
 }
 
 .featureCard {
+  overflow: hidden;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 20px;
-  overflow: hidden;
+  border-radius: 10px;
   transition: all 0.3s ease;
 }
 
@@ -728,7 +747,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  padding: 22px 28px;
+  padding: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -738,14 +757,14 @@
 }
 
 .featureIcon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
   flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  font-size: 1.3rem;
+  border-radius: 12px;
 }
 
 .featureTitle {
@@ -753,22 +772,22 @@
 }
 
 .featureTitle h3 {
-  font-size: 1.05rem;
   margin-bottom: 4px;
+  font-size: 1.05rem;
   font-weight: 700;
 }
 
 .featureTitle p {
-  color: rgba(0, 0, 0, 0.4);
   font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .featureToggle {
-  color: rgba(0, 0, 0, 0.3);
-  font-size: 1rem;
-  transition: all 0.3s ease;
   padding: 8px;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .featureToggle:hover {
@@ -776,36 +795,42 @@
 }
 
 .featureContent {
-  padding: 0 28px 28px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 36px;
+  padding: 0 28px 28px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   animation: fadeInUp 0.4s ease;
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .featureDescription h4 {
+  margin: 14px 0;
   font-size: 1rem;
-  margin: 14px 0px;
-  color: #4BCF9E;
   font-weight: 700;
+  color: #4bcf9e;
 }
 
 .featureDescription ul {
-  list-style: none;
   padding: 0;
   margin: 0 0 18px;
+  list-style: none;
 }
 
 .featureDescription ul li {
   padding: 8px 0;
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
@@ -816,14 +841,14 @@
 .featureBenefit {
   padding: 12px 18px;
   background: rgba(75, 207, 158, 0.08);
+  border-left: 4px solid #4bcf9e;
   border-radius: 10px;
-  border-left: 4px solid #4BCF9E;
 }
 
 .featureBenefit span {
-  color: #4BCF9E;
   font-size: 0.9rem;
   font-weight: 500;
+  color: #4bcf9e;
 }
 
 .featureVisual {
@@ -832,28 +857,150 @@
   gap: 14px;
 }
 
+/* ============================================================
+   FEATURE SCREENSHOT - Image Container
+   ============================================================ */
+
 .featureScreenshot {
-  flex: 1;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+  height: 100%;
+}
+
+.featureScreenshotWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.featureScreenshotSlide {
+  display: flex;
+  flex: 0 0 100%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 4px;
+}
+
+.featureScreenshotImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+
+.featureScreenshotImage:hover {
+  border-color: rgba(75, 207, 158, 0.2);
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================================
+   CAROUSEL NAVIGATION BUTTONS
+   ============================================================ */
+
+.carouselNavButton {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.featureScreenshot:hover .carouselNavButton {
+  opacity: 1;
+}
+
+.carouselNavButton:hover {
+  background: rgba(75, 207, 158, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carouselNavButtonPrev {
+  left: 8px;
+}
+
+.carouselNavButtonNext {
+  right: 8px;
+}
+
+/* ============================================================
+   CAROUSEL INDICATORS - OUTSIDE THE IMAGE
+   ============================================================ */
+
+.carouselIndicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 4px;
+}
+
+.carouselDot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carouselDot:hover {
+  background: rgba(75, 207, 158, 0.5);
+  transform: scale(1.1);
+}
+
+.carouselDotActive {
+  width: 28px;
+  background: #4bcf9e;
+  border-radius: 6px;
+}
+
+.carouselDotActive:hover {
+  background: #4bcf9e;
+  transform: scale(1);
 }
 
 .screenshotPlaceholder {
-  width: 100%;
-  aspect-ratio: 16/10;
-  background: rgba(0, 0, 0, 0.02);
-  border: 2px dashed rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  width: 100%;
+  min-height: 200px;
   padding: 24px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 2px dashed rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
   transition: all 0.3s ease;
 }
 
 .screenshotPlaceholder:hover {
-  border-color: rgba(0, 0, 0, 0.15);
   background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .screenshotPlaceholder .placeholderIcon {
@@ -861,8 +1008,8 @@
 }
 
 .screenshotPlaceholder span {
-  color: rgba(0, 0, 0, 0.4);
   font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .screenshotPlaceholder .placeholderSubtext {
@@ -874,30 +1021,129 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  align-self: flex-start;
   padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.1);
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 10px;
-  color: #4BCF9E;
-  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  align-self: flex-start;
-  font-weight: 600;
 }
 
 .watchDemoBtn:hover {
   background: rgba(75, 207, 158, 0.2);
   transform: translateY(-2px);
 }
+.viewTabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  max-width: 380px;
+  margin: 28px auto 0;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+}
+
+.viewTab {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+  background: transparent;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewTab:hover {
+  color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.viewTabActive {
+  color: #4bcf9e;
+  background: rgba(75, 207, 158, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.viewTabActive:hover {
+  color: #3aad83;
+  background: rgba(76, 209, 160, 0.271);
+}
+
+.featurePagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 42px;
+  margin-top: 18px;
+  padding: 4px 0;
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  background: #f0f4f8;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paginationButton:hover {
+  color: white;
+  background: #4bcf9e;
+}
+
+.paginationButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+  transform: none;
+}
+
+.paginationButton:disabled:hover {
+  color: #374151;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.paginationInfo {
+  font-size: 14px;
+  font-weight: 500;
+  color: #5a5a7a;
+}
+
+.featureListPlaceholder {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border-bottom: none;
+}
 
 /* ============================================================
-   TIME SAVINGS SECTION
+   8. TIME SAVINGS SECTION
    ============================================================ */
 
 .timeSavingsSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
   background: rgba(75, 207, 158, 0.02);
 }
 
@@ -909,31 +1155,31 @@
 }
 
 .timeMetric {
+  padding: 32px 28px;
+  text-align: center;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 32px 28px;
-  text-align: center;
   transition: all 0.3s ease;
 }
 
 .timeMetric:hover {
-  transform: translateY(-6px);
   border-color: rgba(75, 207, 158, 0.2);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
 .timeMetricValue {
   font-size: 3rem;
   font-weight: 700;
-  color: #4BCF9E;
   line-height: 1.2;
+  color: #4bcf9e;
 }
 
 .timeMetricLabel {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 0.95rem;
   margin: 10px 0 14px;
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .timeMetricCompare {
@@ -945,22 +1191,20 @@
 }
 
 .oldValue {
-  color: #EF4444;
+  color: #ef4444;
   text-decoration: line-through;
 }
 
 .newValue {
-  color: #4BCF9E;
   font-weight: 700;
+  color: #4bcf9e;
 }
 
-/* Case Study */
-
 .caseStudySection {
+  overflow: hidden;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  overflow: hidden;
   transition: all 0.3s ease;
 }
 
@@ -977,12 +1221,12 @@
 .caseStudyBadge {
   display: inline-block;
   padding: 6px 14px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.1);
   border-radius: 50px;
-  font-size: 0.75rem;
-  color: #4BCF9E;
-  margin-bottom: 10px;
-  font-weight: 600;
 }
 
 .caseStudyHeader h3 {
@@ -1006,50 +1250,50 @@
 }
 
 .caseMetricNumber {
+  display: block;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #4BCF9E;
-  display: block;
+  color: #4bcf9e;
 }
 
 .caseMetricLabel {
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 0.8rem;
   margin-top: 4px;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .caseStudyResult {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
   padding: 16px 20px;
   background: rgba(75, 207, 158, 0.05);
-  border-radius: 12px;
   border: 1px solid rgba(75, 207, 158, 0.1);
-  flex-wrap: wrap;
+  border-radius: 12px;
 }
 
 .resultBadge {
   padding: 6px 16px;
-  background: #4BCF9E;
-  border-radius: 50px;
   font-size: 0.75rem;
-  color: #fff;
   font-weight: 700;
+  color: #fff;
+  background: #4bcf9e;
+  border-radius: 50px;
 }
 
 .caseStudyResult span:last-child {
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* ============================================================
-   ARCHITECTURE SECTION
+   9. ARCHITECTURE SECTION
    ============================================================ */
 
 .architectureSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
 }
 
 .architectureLayers {
@@ -1062,31 +1306,31 @@
 .architectureLayer {
   display: flex;
   gap: 28px;
+  padding: 32px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 32px;
   transition: all 0.3s ease;
 }
 
 .architectureLayer:hover {
   border-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
 }
 
 .layerNumber {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(75, 207, 158, 0.15);
-  color: #4BCF9E;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  width: 44px;
+  height: 44px;
   font-size: 1.2rem;
-  flex-shrink: 0;
+  font-weight: 700;
+  color: #4bcf9e;
+  background: rgba(75, 207, 158, 0.15);
+  border-radius: 50%;
 }
 
 .layerContent {
@@ -1101,14 +1345,14 @@
 }
 
 .layerIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
   font-size: 1.1rem;
-  flex-shrink: 0;
+  border-radius: 10px;
 }
 
 .layerHeader h3 {
@@ -1117,54 +1361,54 @@
 }
 
 .layerContent > p {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 0.95rem;
   margin-bottom: 16px;
+  font-size: 0.95rem;
   line-height: 1.6;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .layerDetails {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 18px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6px 24px;
+  padding: 0;
+  margin: 0 0 18px;
+  list-style: none;
 }
 
 .layerDetails li {
-  padding: 6px 0;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 0.85rem;
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .layerDetails li svg {
-  color: #4BCF9E;
-  font-size: 0.75rem;
   flex-shrink: 0;
+  font-size: 0.75rem;
+  color: #4bcf9e;
 }
 
 .layerScreenshotPlaceholder {
-  width: 100%;
-  padding: 24px;
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px dashed rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 24px;
   font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px dashed rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
   transition: all 0.3s ease;
 }
 
 .layerScreenshotPlaceholder:hover {
-  border-color: rgba(0, 0, 0, 0.12);
   background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 .layerScreenshotPlaceholder .placeholderSubtext {
@@ -1172,27 +1416,25 @@
   color: rgba(0, 0, 0, 0.15);
 }
 
-/* Architecture Diagram */
-
 .architectureDiagram {
   margin-top: 24px;
 }
 
 .diagramPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   aspect-ratio: 16/7;
   background: rgba(0, 0, 0, 0.02);
   border: 2px dashed rgba(0, 0, 0, 0.08);
   border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: all 0.3s ease;
 }
 
 .diagramPlaceholder:hover {
-  border-color: rgba(0, 0, 0, 0.15);
   background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .diagramContent {
@@ -1207,8 +1449,8 @@
 }
 
 .diagramContent span {
-  color: rgba(0, 0, 0, 0.4);
   font-size: 1rem;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .diagramContent .placeholderSubtext {
@@ -1217,12 +1459,12 @@
 }
 
 /* ============================================================
-   WORKFLOWS SECTION
+   10. WORKFLOWS SECTION
    ============================================================ */
 
 .workflowsSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
   background: rgba(75, 207, 158, 0.02);
 }
 
@@ -1233,62 +1475,62 @@
 }
 
 .workflowCard {
+  padding: 28px 24px;
+  text-align: center;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 28px 24px;
-  text-align: center;
   transition: all 0.3s ease;
 }
 
 .workflowCard:hover {
-  transform: translateY(-6px);
   background: rgba(0, 0, 0, 0.04);
   border-color: rgba(75, 207, 158, 0.2);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
 .workflowIcon {
-  font-size: 2.8rem;
   margin-bottom: 14px;
+  font-size: 2.8rem;
 }
 
 .workflowCard h3 {
-  font-size: 1.05rem;
   margin-bottom: 8px;
+  font-size: 1.05rem;
   font-weight: 700;
 }
 
 .workflowCard p {
-  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 14px;
   font-size: 0.85rem;
   line-height: 1.5;
-  margin-bottom: 14px;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .workflowTags {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 8px;
   justify-content: center;
 }
 
 .workflowTags span {
   padding: 4px 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50px;
-  font-size: 0.7rem;
-  color: rgba(0, 0, 0, 0.4);
-  font-weight: 500;
 }
 
 /* ============================================================
-   INTEGRATIONS SECTION
+   11. INTEGRATIONS SECTION
    ============================================================ */
 
 .integrationsSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
 }
 
 .integrationGrid {
@@ -1299,58 +1541,58 @@
 }
 
 .integrationCard {
+  padding: 24px 20px;
+  text-align: center;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
-  padding: 24px 20px;
-  text-align: center;
   transition: all 0.3s ease;
 }
 
 .integrationCard:hover {
-  transform: translateY(-4px);
   border-color: rgba(75, 207, 158, 0.2);
+  transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 .integrationIcon {
-  font-size: 2.2rem;
   margin-bottom: 10px;
+  font-size: 2.2rem;
 }
 
 .integrationCard h3 {
-  font-size: 1rem;
   margin-bottom: 6px;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .integrationCard p {
-  color: rgba(0, 0, 0, 0.4);
   font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .integrationCTA {
-  text-align: center;
   padding: 28px;
+  text-align: center;
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
 }
 
 .integrationCTA p {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 1rem;
   margin-bottom: 14px;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .integrationCTABtn {
   padding: 12px 32px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.1);
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
-  color: #4BCF9E;
-  font-weight: 600;
-  font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -1361,12 +1603,12 @@
 }
 
 /* ============================================================
-   SECURITY SECTION
+   12. SECURITY SECTION
    ============================================================ */
 
 .securitySection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
   background: rgba(75, 207, 158, 0.02);
 }
 
@@ -1377,59 +1619,59 @@
 }
 
 .securityCard {
+  padding: 32px 28px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 32px 28px;
   transition: all 0.3s ease;
 }
 
 .securityCard:hover {
-  transform: translateY(-6px);
   border-color: rgba(75, 207, 158, 0.2);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
 .securityIcon {
-  font-size: 2.8rem;
   margin-bottom: 14px;
+  font-size: 2.8rem;
 }
 
 .securityCard h3 {
-  font-size: 1.1rem;
   margin-bottom: 10px;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
 .securityCard p {
-  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 16px;
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 16px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .securityTags {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .securityTags span {
   padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50px;
-  font-size: 0.75rem;
-  color: rgba(0, 0, 0, 0.4);
-  font-weight: 500;
 }
 
 /* ============================================================
-   SCALABILITY SECTION
+   13. SCALABILITY SECTION
    ============================================================ */
 
 .scalabilitySection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
 }
 
 .scalabilityGrid {
@@ -1440,59 +1682,57 @@
 }
 
 .scalabilityCard {
+  padding: 32px 28px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 32px 28px;
   transition: all 0.3s ease;
 }
 
 .scalabilityCard:hover {
-  transform: translateY(-6px);
   border-color: rgba(75, 207, 158, 0.2);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
 .scalabilityIcon {
-  font-size: 2.8rem;
   margin-bottom: 14px;
+  font-size: 2.8rem;
 }
 
 .scalabilityCard h3 {
-  font-size: 1.1rem;
   margin-bottom: 10px;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
 .scalabilityCard p {
-  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 16px;
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 16px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .scalabilityMetrics {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .scalabilityMetrics span {
   padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50px;
-  font-size: 0.75rem;
-  color: rgba(0, 0, 0, 0.4);
-  font-weight: 500;
 }
 
-/* Growth Path */
-
 .growthPathSection {
+  padding: 36px 32px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 36px 32px;
   transition: all 0.3s ease;
 }
 
@@ -1501,29 +1741,29 @@
 }
 
 .growthPathSection h3 {
-  text-align: center;
-  font-size: 1.25rem;
   margin-bottom: 28px;
+  font-size: 1.25rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .growthPathSteps {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 24px;
 }
 
 .growthStep {
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 190px;
   padding: 18px 24px;
   background: rgba(0, 0, 0, 0.03);
-  border-radius: 14px;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  min-width: 190px;
+  border-radius: 14px;
   transition: all 0.3s ease;
 }
 
@@ -1533,17 +1773,17 @@
 }
 
 .stepNumber {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(75, 207, 158, 0.2);
-  color: #4BCF9E;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  width: 36px;
+  height: 36px;
   font-size: 0.95rem;
-  flex-shrink: 0;
+  font-weight: 700;
+  color: #4bcf9e;
+  background: rgba(75, 207, 158, 0.2);
+  border-radius: 50%;
 }
 
 .stepContent {
@@ -1557,44 +1797,40 @@
 }
 
 .stepContent span {
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 0.75rem;
   margin-top: 2px;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .growthArrow {
-  color: rgba(0, 0, 0, 0.15);
   font-size: 1.6rem;
+  color: rgba(0, 0, 0, 0.15);
 }
 
 /* ============================================================
-   COMPARISON SECTION
+   14. COMPARISON SECTION
    ============================================================ */
 
 .comparisonSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
   background: rgba(75, 207, 158, 0.02);
 }
 
 .comparisonTable {
+  overflow: hidden;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  overflow: hidden;
 }
 
 .comparisonRow {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 16px 24px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   font-size: 0.9rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   transition: all 0.2s ease;
-}
-
-.comparisonRow:hover:not(:first-child) {
-  background: rgba(0, 0, 0, 0.02);
 }
 
 .comparisonRow:last-child {
@@ -1602,33 +1838,37 @@
 }
 
 .comparisonRow:first-child {
-  background: rgba(0, 0, 0, 0.03);
-  font-weight: 700;
   padding: 18px 24px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.comparisonRow:hover:not(:first-child) {
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .comparisonRow span:first-child {
-  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .negative {
-  color: #EF4444;
   font-weight: 500;
+  color: #ef4444;
 }
 
 .positive {
-  color: #4BCF9E;
   font-weight: 600;
+  color: #4bcf9e;
 }
 
 /* ============================================================
-   TESTIMONIALS SECTION
+   15. TESTIMONIALS SECTION
    ============================================================ */
 
 .testimonialsSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 24px;
 }
 
 .testimonialsGrid {
@@ -1638,32 +1878,32 @@
 }
 
 .testimonialCard {
+  padding: 32px 28px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  padding: 32px 28px;
   transition: all 0.3s ease;
 }
 
 .testimonialCard:hover {
-  transform: translateY(-6px);
   border-color: rgba(75, 207, 158, 0.2);
+  transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 }
 
 .testimonialRating {
-  color: #F59E0B;
-  font-size: 1rem;
   margin-bottom: 14px;
+  font-size: 1rem;
   letter-spacing: 2px;
+  color: #f59e0b;
 }
 
 .testimonialText {
+  margin-bottom: 18px;
   font-size: 1rem;
+  font-style: italic;
   line-height: 1.7;
   color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 18px;
-  font-style: italic;
 }
 
 .testimonialAuthor {
@@ -1673,17 +1913,17 @@
 }
 
 .testimonialAvatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #4BCF9E, #667EEA);
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+  width: 44px;
+  height: 44px;
   font-size: 0.9rem;
+  font-weight: 600;
   color: #fff;
-  flex-shrink: 0;
+  background: linear-gradient(135deg, #4bcf9e, #667eea);
+  border-radius: 50%;
 }
 
 .testimonialName {
@@ -1697,24 +1937,24 @@
 }
 
 /* ============================================================
-   FINAL CTA SECTION
+   16. FINAL CTA SECTION
    ============================================================ */
 
 .finalCTASection {
-  padding: 100px 24px 80px;
   position: relative;
+  padding: 100px 24px 80px;
 }
 
 .ctaCard {
+  position: relative;
   max-width: 820px;
   margin: 0 auto;
   padding: 56px 48px;
+  overflow: hidden;
+  text-align: center;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 28px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
   transition: all 0.3s ease;
 }
 
@@ -1723,11 +1963,15 @@
 }
 
 .ctaCard::before {
-  content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(75, 207, 158, 0.05), transparent 70%);
   pointer-events: none;
+  content: "";
+  background: radial-gradient(
+    ellipse at center,
+    rgba(75, 207, 158, 0.05),
+    transparent 70%
+  );
 }
 
 .ctaContent {
@@ -1738,51 +1982,51 @@
 .ctaBadge {
   display: inline-block;
   padding: 8px 20px;
+  margin-bottom: 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4bcf9e;
   background: rgba(75, 207, 158, 0.1);
   border: 1px solid rgba(75, 207, 158, 0.2);
   border-radius: 50px;
-  font-size: 0.8rem;
-  color: #4BCF9E;
-  margin-bottom: 18px;
-  font-weight: 600;
 }
 
 .ctaTitle {
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
-  line-height: 1.15;
   margin-bottom: 18px;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
   font-weight: 800;
+  line-height: 1.15;
 }
 
 .ctaSubtitle {
-  font-size: 1.1rem;
-  color: rgba(0, 0, 0, 0.6);
-  line-height: 1.7;
   max-width: 580px;
   margin: 0 auto 32px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .ctaButtons {
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
   justify-content: center;
-  flex-wrap: wrap;
   margin-bottom: 28px;
 }
 
 .ctaPrimaryBtn {
-  padding: 18px 44px;
-  background: linear-gradient(135deg, #4BCF9E, #2d9c73);
-  border: none;
-  border-radius: 50px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.05rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 18px 44px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4bcf9e, #2d9c73);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .ctaPrimaryBtn:hover {
@@ -1800,12 +2044,12 @@
 
 .ctaSecondaryBtn {
   padding: 18px 44px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a1a2e;
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 50px;
-  color: #1a1a2e;
-  font-weight: 600;
-  font-size: 1.05rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -1818,46 +2062,50 @@
 
 .ctaTrust {
   display: flex;
+  flex-wrap: wrap;
   gap: 28px;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .ctaTrust span {
-  color: rgba(0, 0, 0, 0.35);
   font-size: 0.85rem;
   font-weight: 500;
+  color: rgba(0, 0, 0, 0.35);
 }
 
 /* ============================================================
-   VIDEO MODAL
+   17. VIDEO MODAL
    ============================================================ */
 
-.videoModal {
+.videoModalOverlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
   animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.videoModalContent {
-  max-width: 840px;
+.videoModal {
+  position: relative;
   width: 100%;
+  max-width: 840px;
+  overflow: hidden;
   background: #ffffff;
   border-radius: 24px;
-  overflow: hidden;
-  position: relative;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
 }
 
@@ -1865,19 +2113,19 @@
   position: absolute;
   top: 18px;
   right: 22px;
-  background: rgba(0, 0, 0, 0.1);
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  color: #1a1a2e;
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
+  color: #1a1a2e;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .videoModalClose:hover {
@@ -1885,66 +2133,49 @@
   transform: rotate(90deg);
 }
 
-.videoModalBody {
+.videoModalContent {
   padding: 24px;
 }
 
-.videoPlaceholder {
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.videoPlaceholderContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  text-align: center;
-}
-
-.videoPlaceholderIcon {
-  font-size: 4.5rem;
-  color: #4BCF9E;
-  opacity: 0.5;
-}
-
-.videoPlaceholderContent span {
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 1rem;
-}
-
-.videoPlaceholderContent .placeholderSubtext {
-  font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.2);
-}
-
-.videoModalInfo h3 {
-  font-size: 1.15rem;
+.videoModalContent h3 {
   margin-bottom: 6px;
+  font-size: 1.15rem;
   font-weight: 700;
 }
 
-.videoModalInfo p {
-  color: rgba(0, 0, 0, 0.5);
+.videoModalContent p {
+  margin-bottom: 18px;
   font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.videoPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+}
+
+.videoPlaceholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 /* ============================================================
-   RESPONSIVE
+   18. RESPONSIVE BREAKPOINTS
    ============================================================ */
 
 @media (max-width: 1024px) {
   .heroSection {
     flex-direction: column;
-    text-align: center;
     padding: 120px 24px 80px;
+    text-align: center;
   }
 
   .heroContent {
@@ -1997,18 +2228,18 @@
   .navLinks {
     order: 3;
     width: 100%;
-    justify-content: center;
     gap: 6px;
+    justify-content: center;
   }
 
   .navLink {
-    font-size: 0.7rem;
     padding: 6px 12px;
+    font-size: 0.7rem;
   }
 
   .navCta {
-    font-size: 0.75rem;
     padding: 8px 16px;
+    font-size: 0.75rem;
   }
 
   .heroTitle {
@@ -2029,6 +2260,30 @@
 
   .sectionHeader {
     margin-bottom: 40px;
+  }
+
+  .problemSection,
+  .solutionSection,
+  .featuresSection,
+  .timeSavingsSection,
+  .architectureSection,
+  .workflowsSection,
+  .integrationsSection,
+  .securitySection,
+  .scalabilitySection,
+  .comparisonSection,
+  .testimonialsSection {
+    padding: 60px 16px;
+  }
+
+  .finalCTASection {
+    padding: 60px 16px 40px;
+  }
+.featuresSection{
+  padding: 0px;
+}
+  .sectionContainer {
+    padding: 0 10px;
   }
 
   .architectureLayer {
@@ -2053,9 +2308,9 @@
   }
 
   .growthArrow {
-    transform: rotate(90deg);
-    text-align: center;
     padding: 4px 0;
+    text-align: center;
+    transform: rotate(90deg);
   }
 
   .ctaCard {
@@ -2080,8 +2335,12 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .videoModal {
+  .videoModalOverlay {
     padding: 16px;
+  }
+
+  .videoModal {
+    border-radius: 16px;
   }
 
   .featuresGrid {
@@ -2089,25 +2348,71 @@
   }
 
   .featureHeader {
-    padding: 18px 20px;
+    padding: 18px;
   }
 
   .featureContent {
     padding: 0 20px 20px;
   }
 
-  .videoModalContent {
-    border-radius: 16px;
+  .featureScreenshot {
+    aspect-ratio: 16/11;
+  }
+
+  .carouselNavButton {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .carouselIndicators {
+    bottom: 8px;
+    gap: 6px;
+    padding: 4px 10px;
+  }
+
+  .carouselDot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carouselDotActive {
+    width: 20px;
+  }
+
+  .viewTabs {
+    max-width: 100%;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 4px;
+  }
+
+  .viewTab {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .featurePagination {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .paginationButton {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .paginationInfo {
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
-  .timeSavingsMetrics {
-    grid-template-columns: 1fr;
-  }
-
-  .caseStudyMetrics {
-    grid-template-columns: 1fr;
+  .heroSection {
+    padding: 100px 16px 60px;
   }
 
   .heroStats {
@@ -2124,25 +2429,16 @@
 
   .heroPrimaryBtn,
   .heroSecondaryBtn {
-    width: 100%;
     justify-content: center;
-  }
-
-  .ctaPrimaryBtn,
-  .ctaSecondaryBtn {
     width: 100%;
-    justify-content: center;
   }
 
-  .problemGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .solutionGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .workflowsGrid {
+  .problemGrid,
+  .solutionGrid,
+  .workflowsGrid,
+  .securityGrid,
+  .scalabilityGrid,
+  .testimonialsGrid {
     grid-template-columns: 1fr;
   }
 
@@ -2150,42 +2446,15 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .securityGrid {
+  .timeSavingsMetrics,
+  .caseStudyMetrics {
     grid-template-columns: 1fr;
   }
 
-  .scalabilityGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .testimonialsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .heroSection {
-    padding: 100px 16px 60px;
-  }
-
-  .problemSection,
-  .solutionSection,
-  .featuresSection,
-  .timeSavingsSection,
-  .architectureSection,
-  .workflowsSection,
-  .integrationsSection,
-  .securitySection,
-  .scalabilitySection,
-  .comparisonSection,
-  .testimonialsSection {
-    padding: 60px 16px;
-  }
-
-  .finalCTASection {
-    padding: 60px 16px 40px;
-  }
-
-  .sectionContainer {
-    padding: 0 16px;
+  .ctaPrimaryBtn,
+  .ctaSecondaryBtn {
+    justify-content: center;
+    width: 100%;
   }
 
   .ctaCard {
@@ -2195,5 +2464,60 @@
   .growthStep {
     min-width: unset;
     padding: 14px 18px;
+  }
+
+  .featureScreenshot {
+    aspect-ratio: 16/12;
+  }
+
+  .carouselNavButton {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+    opacity: 0.6;
+  }
+
+  .carouselIndicators {
+    bottom: 6px;
+    gap: 5px;
+    padding: 4px 8px;
+  }
+
+  .carouselDot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .carouselDotActive {
+    width: 16px;
+  }
+
+  .featurePagination {
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .paginationButton {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .paginationInfo {
+    font-size: 11px;
+    min-width: 40px;
+  }
+
+  .viewTabs {
+    flex-direction: row;
+    gap: 6px;
+    padding: 4px;
+  }
+
+  .viewTab {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    gap: 4px;
+    border-radius: 8px;
   }
 }
