@@ -40,6 +40,24 @@ const AdminFeatures = () => {
   const observerRef = useRef(null);
 
   /* ============================================================
+     VIEW MODE PERSISTENCE - First time shows Card View
+     ============================================================ */
+
+  useEffect(() => {
+    const visitCount = localStorage.getItem("sageionVisitCount");
+    const count = visitCount ? parseInt(visitCount, 10) : 0;
+
+    if (count < 2) {
+      setViewMode("card");
+    } else {
+      setViewMode("accordion");
+    }
+
+    // Increment visit count
+    localStorage.setItem("sageionVisitCount", (count + 1).toString());
+  }, []);
+
+  /* ============================================================
      INTERSECTION OBSERVER
      ============================================================ */
 
