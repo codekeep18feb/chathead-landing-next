@@ -41,17 +41,13 @@ const HeroSectionPage = () => {
         {/* <HowToGetStartedPage /> */}
         {/* <OverviewIntro /> */}
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
       {/* <PlatformFeaturesTimeline /> */}
       {/* <ProblemsSolved /> */}
-      <HowDiffrentMagicChat />
-      <TargetAudiencePage />
+      {/* <HowDiffrentMagicChat /> */}
+      {/* <TargetAudiencePage /> */}
       {/* <HowItWorksPage /> */}
       {/* <ExpectedResultsPage /> */}
-      <PricingPlansPage />
+      {/* <PricingPlansPage /> */}
       {/* <RoadmapNextPage /> */}
       {/* <WhyChooseNowPage /> */}
       {/* <EngagementSectionPage /> */}

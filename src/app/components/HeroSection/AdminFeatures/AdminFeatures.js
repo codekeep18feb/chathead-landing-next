@@ -22,6 +22,9 @@ import {
 // Import the separate Key Features component
 import KeyFeaturesSection from "./KeyFeaturesSection";
 import KeyFeaturesCardview from "./KeyFeaturesCardview";
+import HowDiffrentMagicChat from "../HowDiffrentMagicChat";
+import TargetAudiencePage from "../TargetAudiencePage";
+import PricingPlansPage from "../PricingPlansPage";
 
 /* ============================================================
    ADMIN FEATURES
@@ -423,6 +426,10 @@ const AdminFeatures = () => {
           </div>
         </div>
       )}
+
+      <HowDiffrentMagicChat />
+      <TargetAudiencePage />
+      <PricingPlansPage />
 
       {/* ============================================================
           PROBLEM SECTION

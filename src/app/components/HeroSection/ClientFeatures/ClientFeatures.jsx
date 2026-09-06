@@ -1114,7 +1114,7 @@ const ClientFeatures = () => {
         {/* ============================================================
             COMPETITIVE EDGE BANNER
         ============================================================ */}
-        <div className={styles.edgeBanner}>
+        {/* <div className={styles.edgeBanner}>
           <div className={styles.edgeContent}>
             <span className={styles.edgeIcon}>🏆</span>
             <div>
@@ -1131,7 +1131,7 @@ const ClientFeatures = () => {
               <span>vs Drift</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* ============================================================
             CTA SECTION
