@@ -44,6 +44,27 @@
   opacity: 0;
 }
 
+/* ============================================================
+   NO IMAGES - FULL WIDTH LAYOUT
+   ============================================================ */
+
+.cardFeatureItem.noImages {
+  grid-template-columns: 1fr; /* Full width when no images */
+}
+
+.cardFeatureItem.noImages .cardFeatureText {
+  grid-column: 1 / -1; /* Span full width */
+  padding: 40px 44px; /* Full padding on both sides */
+}
+
+.cardFeatureItem.noImages .cardFeatureVisual {
+  display: none; /* Hide the visual container entirely */
+}
+
+/* ============================================================
+   CARD BACKGROUND EFFECTS
+   ============================================================ */
+
 .cardFeatureItem::before {
   content: "";
   position: absolute;
@@ -98,8 +119,8 @@
 
 .cardNumberBadge {
   position: absolute;
-  top: -12px;
-  right: -12px;
+  top: -7px;
+  right: -7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,6 +176,7 @@
   padding: 40px 44px;
   padding-right: 12px;
   min-width: 0;
+  background: #e7e7e75e;
 }
 
 .cardFeatureOdd .cardFeatureText {
@@ -263,17 +285,6 @@
   color: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
-
-/* .cardFeatureBody .featureList li::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  color: #4bcf9e;
-  font-weight: 700;
-  font-size: 0.8rem;
-  flex-shrink: 0;
-} */
 
 .cardFeatureBody .featureList li:last-child {
   border-bottom: none;
@@ -546,6 +557,12 @@
     padding-left: 0;
   }
 
+  /* No images on tablet */
+  .cardFeatureItem.noImages .cardFeatureText {
+    grid-column: 1 / 2;
+    padding: 0;
+  }
+
   .cardFeatureVisual {
     width: 100%;
     height: auto;
@@ -584,7 +601,6 @@
   .cardFeatureEven:hover,
   .cardFeatureOdd:hover {
     border-left-color: #4bcf9e;
-    /* border-right-color: #4bcf9e; */
   }
 
   .cardNumberBadge {
@@ -594,7 +610,7 @@
     height: 38px;
     font-size: 0.75rem;
   }
-  .cardFeatureText{
+  .cardFeatureText {
     padding: 0px;
   }
 }
@@ -621,6 +637,12 @@
     padding: 24px 20px;
     gap: 24px;
     border-radius: 20px;
+  }
+
+  /* No images on mobile */
+  .cardFeatureItem.noImages .cardFeatureText {
+    grid-column: 1 / 2;
+    padding: 0;
   }
 
   .cardFeatureHeader {
@@ -724,6 +746,12 @@
   .cardFeatureOdd .cardFeatureVisual {
     grid-column: 1 / 2;
     grid-row: 1;
+  }
+
+  /* No images on small mobile */
+  .cardFeatureItem.noImages .cardFeatureText {
+    grid-column: 1 / 2;
+    padding: 0;
   }
 
   .cardFeatureHeader {

@@ -54,7 +54,7 @@ const KeyFeaturesCardview = ({
         "/AdminImg/Generative-AI-Forms/afterbooking.png",
       ],
       videoId: "form-generation",
-      title: "Form Generation Demo",
+      // title: "Generative AI Forms",
       tags: ["AI", "Automation", "Forms"],
     },
     {
@@ -80,7 +80,7 @@ const KeyFeaturesCardview = ({
         "/AdminImg/Visual-API-Chaining/afterChain.png",
       ],
       videoId: "api-chaining",
-      title: "API Chaining Workflow",
+      // title: "Visual API Chaining",
       tags: ["Integration", "Workflow", "No-Code"],
     },
     {
@@ -106,7 +106,7 @@ const KeyFeaturesCardview = ({
         "/AdminImg/Built-in-RAG-Engine/rag-3.png",
       ],
       videoId: "rag-demo",
-      title: "RAG Engine Demo",
+      // title: "Built-in RAG Engine",
       tags: ["AI", "Knowledge Base", "Cost-Effective"],
     },
     {
@@ -131,7 +131,6 @@ const KeyFeaturesCardview = ({
         "/AdminImg/True-Async-Webhooks/withWebhook.png",
       ],
       videoId: "webhook-async",
-      title: "Async Webhook Flow",
       tags: ["Real-Time", "Scalable", "Reliable"],
     },
     {
@@ -157,7 +156,7 @@ const KeyFeaturesCardview = ({
         "/AdminImg/Dynamic-Screen-Generation/preview.png",
       ],
       videoId: "",
-      title: "Dynamic Screen Demo",
+      // title: "Dynamic Screen Demo",
       tags: ["UI/UX", "Dynamic", "Flexible"],
     },
     {
@@ -188,7 +187,7 @@ const KeyFeaturesCardview = ({
         "/AdminImg/Live-Chat-Multi-Admin/inviteSupport.png",
       ],
       videoId: "live-chat",
-      title: "Live Chat Interface",
+      // title: "Live Chat Interface",
       tags: ["Chat", "Support", "Real-Time"],
     },
     {
@@ -218,7 +217,7 @@ const KeyFeaturesCardview = ({
         "/AdminImg/Comprehensive-Admin-Panel/apiConf3.png",
       ],
       videoId: "admin-panel",
-      title: "Admin Panel Interface",
+      // title: "Admin Panel Interface",
       tags: ["Management", "Analytics", "Control"],
     },
     {
@@ -244,8 +243,9 @@ const KeyFeaturesCardview = ({
         "/AdminImg/Enterprise-Grade-Security/security-3.png",
       ],
       videoId: "",
-      title: "Security Architecture",
+      // title: "Security Architecture",
       tags: ["Security", "Compliance", "RBAC"],
+      showImages: false,
     },
   ];
 
@@ -260,7 +260,7 @@ const KeyFeaturesCardview = ({
             key={feature.id}
             className={`${styles.cardFeatureItem} ${
               isEven ? styles.cardFeatureEven : styles.cardFeatureOdd
-            }`}
+            } ${feature.showImages === false ? styles.noImages : ""}`}
           >
             {/* Card Number Badge */}
             <div className={styles.cardNumberBadge}>
@@ -316,22 +316,24 @@ const KeyFeaturesCardview = ({
             </div>
 
             {/* Images */}
-            <div className={styles.cardFeatureVisual}>
-              <div className={styles.visualWrapper}>
-                <FeatureScreenshot
-                  featureId={feature.id}
-                  images={feature.images}
-                  title={feature.title}
-                  videoId={feature.videoId}
-                  imagePages={imagePages}
-                  setImagePages={setImagePages}
-                  openVideoModal={openVideoModal}
-                />
+            {feature.showImages !== false && (
+              <div className={styles.cardFeatureVisual}>
+                <div className={styles.visualWrapper}>
+                  <FeatureScreenshot
+                    featureId={feature.id}
+                    images={feature.images}
+                    title={feature.title}
+                    videoId={feature.videoId}
+                    imagePages={imagePages}
+                    setImagePages={setImagePages}
+                    openVideoModal={openVideoModal}
+                  />
 
-                {/* Gradient Overlay */}
-                <div className={styles.visualOverlay} />
+                  {/* Gradient Overlay */}
+                  <div className={styles.visualOverlay} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         );
       })}
