@@ -702,7 +702,8 @@ const payload = {
     },
 
     // ============================================================
-    // PLATFORM TAB - FULLY ENHANCED WITH ALL tag_type OPTIONS
+    // PLATFORM TAB - FOCUSED ON GLOBAL LEVEL SETTINGS
+    // Based on the sidebar structure from the screenshot
     // ============================================================
     {
       tag_type: "div",
@@ -716,13 +717,10 @@ const payload = {
           tag_type: "p",
           text: "The Sageion Admin Platform provides comprehensive tools for managing your chat applications, users, and system settings. Below is an overview of the key sections available in the Admin UI.",
         },
-        {
-          tag_type: "img",
-          src: "/Asset/platform_overview.png",
-          alt: "Sageion Platform Overview Dashboard",
-        },
 
-        // ----- Global Level Settings -----
+        // ============================================================
+        // GLOBAL LEVEL SETTINGS - Main Section
+        // ============================================================
         {
           tag_type: "h3",
           text: "Global Level Settings",
@@ -744,7 +742,9 @@ const payload = {
           ],
         },
 
-        // ----- Global Tenant Settings -----
+        // ============================================================
+        // 1. GLOBAL TENANT SETTINGS
+        // ============================================================
         {
           tag_type: "h4",
           text: "Global Tenant Settings",
@@ -755,7 +755,7 @@ const payload = {
           text: "The Global Tenant Settings page allows administrators to configure tenant-wide features that affect all applications under the tenant.",
         },
 
-        // Use tabs for leaf-level settings
+        // Use tabs for the two main settings
         {
           tag_type: "tabs",
           items: [
@@ -764,7 +764,7 @@ const payload = {
               content: [
                 {
                   tag_type: "p",
-                  text: "Enables email notifications at various useful events across all applications.",
+                  text: "Enables email notifications at various useful events across all applications. This toggle controls whether email alerts are sent for key system events.",
                 },
                 {
                   tag_type: "h5",
@@ -831,7 +831,7 @@ const payload = {
                       text: "Invite Support User feature becomes available",
                     },
                     {
-                      text: "Share Developer integration steps",
+                      text: "Share Integration Steps feature becomes available",
                     },
                     {
                       text: "Granular permission assignment for team members",
@@ -857,7 +857,7 @@ const payload = {
                           text: "Log you out automatically — you'll need to log in again",
                         },
                         {
-                          text: "Enable the 'Invite Support User' and 'Share Developer' features",
+                          text: "Enable the 'Invite Support User' and 'Share Integration Steps' features",
                         },
                       ],
                     },
@@ -878,7 +878,9 @@ const payload = {
           ],
         },
 
-        // ----- Invite Support User -----
+        // ============================================================
+        // 2. INVITE SUPPORT USER
+        // ============================================================
         {
           tag_type: "h4",
           text: "Invite Support User",
@@ -889,12 +891,18 @@ const payload = {
           text: "Invite team members as support users with granular permission controls. This feature allows you to add users with specific roles and permissions to manage your applications.",
         },
         {
-          tag_type: "img",
-          src: "/Asset/invite_support_user.png",
-          alt: "Invite Support User Interface",
+          tag_type: "callout",
+          type: "info",
+          title: "📌 Multi-Admin Required",
+          children: [
+            {
+              tag_type: "p",
+              text: "The Invite Support User feature requires Multi-Admin to be enabled in Global Tenant Settings first. This ensures proper permission hierarchy and security.",
+            },
+          ],
         },
 
-        // Use tabs for roles and permissions
+        // Use tabs for the different aspects
         {
           tag_type: "tabs",
           items: [
@@ -1019,11 +1027,6 @@ const payload = {
                           tag_type: "p",
                           text: "Switch to 'Invite User' mode if not already selected.",
                         },
-                        {
-                          tag_type: "code_with_copy",
-                          code: `// Mode selection\nMode: [Invite User] [Manage Permissions]`,
-                          language: "text",
-                        },
                       ],
                     },
                     {
@@ -1032,11 +1035,6 @@ const payload = {
                         {
                           tag_type: "p",
                           text: "Enter the user's email address and optional full name.",
-                        },
-                        {
-                          tag_type: "code_with_copy",
-                          code: `Email: john.doe@company.com\nName: John Doe (Optional)`,
-                          language: "text",
                         },
                       ],
                     },
@@ -1062,17 +1060,6 @@ const payload = {
                 },
                 {
                   tag_type: "callout",
-                  type: "info",
-                  title: "📌 Multi-Admin Required",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "The Invite Support User feature requires Multi-Admin to be enabled in Global Tenant Settings first. This ensures proper permission hierarchy and security.",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "callout",
                   type: "success",
                   title: "✅ Invitation Flow",
                   children: [
@@ -1087,7 +1074,9 @@ const payload = {
           ],
         },
 
-        // ----- Whitelabel Domains -----
+        // ============================================================
+        // 3. WHITELABEL DOMAINS
+        // ============================================================
         {
           tag_type: "h4",
           text: "Whitelabel Domains",
@@ -1114,11 +1103,6 @@ const payload = {
               text: "DNS configuration guidance",
             },
           ],
-        },
-        {
-          tag_type: "img",
-          src: "/Asset/whitelabel_domains.png",
-          alt: "Whitelabel Domains Configuration",
         },
         {
           tag_type: "callout",
@@ -1148,253 +1132,29 @@ const payload = {
             },
           ],
         },
-
-        // ----- App-Specific Settings -----
         {
-          tag_type: "h3",
-          text: "App-Specific Configuration",
-          selector_uid: "v2_app_settings",
-        },
-        {
-          tag_type: "p",
-          text: "Each application within your tenant has its own configuration sections. Access these by selecting the application from the sidebar.",
-        },
-
-        // Use tabs for app settings with consistent structure
-        {
-          tag_type: "tabs",
-          items: [
+          tag_type: "callout",
+          type: "success",
+          title: "✅ Setup Complete",
+          children: [
             {
-              label: "General Settings",
-              content: [
-                {
-                  tag_type: "h5",
-                  text: "⚙️ App Configuration",
-                },
-                {
-                  tag_type: "p",
-                  text: "App-level configurations including version management, environment settings, and application metadata.",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "App name and description",
-                    },
-                    {
-                      text: "Version and environment settings",
-                    },
-                    {
-                      text: "Default language and timezone",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "callout",
-                  type: "info",
-                  title: "App Settings Location",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "These settings are available under 'General Settings' in the app's sidebar navigation.",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              label: "AI Chat",
-              content: [
-                {
-                  tag_type: "h5",
-                  text: "🤖 AI Agent Configuration",
-                },
-                {
-                  tag_type: "p",
-                  text: "Configure AI agent behavior, response styles, and conversation flows. Manage training data and model parameters.",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "AI model selection and configuration",
-                    },
-                    {
-                      text: "Response style and tone settings",
-                    },
-                    {
-                      text: "Training data management",
-                    },
-                    {
-                      text: "Conversation flow builder",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "callout",
-                  type: "warning",
-                  title: "Training Data Quality",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Training data quality directly impacts AI response accuracy. Ensure your training data is clean and representative of your use case.",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "mesgTip",
-                  title: "💡 Pro Tip",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Use the conversation flow builder to create interactive experiences. Test different flows to find what works best for your users.",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              label: "LeadGen & FAQ",
-              content: [
-                {
-                  tag_type: "h5",
-                  text: "📋 Lead Management & FAQ",
-                },
-                {
-                  tag_type: "p",
-                  text: "Manage lead generation forms, FAQ content, and automated response workflows. Configure how leads are captured and routed.",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "FAQ content management",
-                    },
-                    {
-                      text: "Lead capture forms",
-                    },
-                    {
-                      text: "Automated response workflows",
-                    },
-                    {
-                      text: "Lead routing and notification settings",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "callout",
-                  type: "success",
-                  title: "Lead Capture Best Practices",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Keep lead capture forms short and focused on essential information to maximize conversion rates.",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              label: "Theme Settings",
-              content: [
-                {
-                  tag_type: "h5",
-                  text: "🎨 Brand Customization",
-                },
-                {
-                  tag_type: "p",
-                  text: "Customize appearance, branding colors, and UI components. Match the chat interface to your brand identity.",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "Color scheme and brand colors",
-                    },
-                    {
-                      text: "Font and typography settings",
-                    },
-                    {
-                      text: "Button and component styles",
-                    },
-                    {
-                      text: "Chat widget positioning",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "callout",
-                  type: "info",
-                  title: "Brand Consistency",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Use your brand colors and fonts to create a seamless experience between your application and the Sageion chat interface.",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "img",
-                  src: "/Asset/theme_settings.png",
-                  alt: "Theme Settings Configuration",
-                },
-              ],
-            },
-            {
-              label: "Credentials",
-              content: [
-                {
-                  tag_type: "h5",
-                  text: "🔑 API Credentials",
-                },
-                {
-                  tag_type: "p",
-                  text: "View and manage API credentials for your applications. Generate new API keys and monitor usage.",
-                },
-                {
-                  tag_type: "table",
-                  headers: ["Credential Type", "Description", "Usage"],
-                  rows: [
-                    ["API Key", "Base64 encoded key", "Client-side authentication"],
-                    ["Rest API Key", "Server-side key", "Backend operations"],
-                    ["Webhook Secret", "Secure token", "Webhook verification"],
-                  ],
-                },
-                {
-                  tag_type: "callout",
-                  type: "danger",
-                  title: "⚠️ Security Critical",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Keep your API credentials secure. Never expose them in client-side code or public repositories. Use environment variables for sensitive keys.",
-                    },
-                  ],
-                },
-                {
-                  tag_type: "mesgTip",
-                  title: "💡 Best Practice",
-                  children: [
-                    {
-                      tag_type: "p",
-                      text: "Rotate your API keys regularly and use different keys for development, staging, and production environments.",
-                    },
-                  ],
-                },
-              ],
+              tag_type: "p",
+              text: "Once configured, your chat interface will be served from your custom domain, providing a seamless brand experience for your users.",
             },
           ],
         },
 
-        // ----- Platform Summary with breadcrumbs and accordion -----
+        // ============================================================
+        // PLATFORM SUMMARY
+        // ============================================================
         {
           tag_type: "h3",
-          text: "Platform Navigation",
-          selector_uid: "v2_platform_navigation",
+          text: "Platform Navigation Summary",
+          selector_uid: "v2_platform_summary",
         },
         {
           tag_type: "p",
-          text: "The Sageion Platform is organized to help you quickly find and manage your settings:",
+          text: "The Global Level Settings section contains three main configuration areas:",
         },
 
         // Use accordion for quick navigation guide
@@ -1406,19 +1166,13 @@ const payload = {
               tag_type: "ul",
               items: [
                 {
-                  text: "Global Level Settings → System-wide configurations",
+                  text: "Global Tenant Settings → Configure email notifications and Multi-Admin",
                 },
                 {
-                  text: "Global Tenant Settings → Tenant-specific features",
+                  text: "Invite Support User → Add team members with specific roles",
                 },
                 {
-                  text: "Invite Support User → Team management",
-                },
-                {
-                  text: "Whitelabel Domains → Brand customization",
-                },
-                {
-                  text: "App-Specific Settings → Application configurations",
+                  text: "Whitelabel Domains → Set up custom domains for branding",
                 },
               ],
             },

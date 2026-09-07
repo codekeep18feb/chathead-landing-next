@@ -133,15 +133,6 @@ export default function Sidebar({ selectedFilter }) {
                       type: "internal",
                       selector_uid: "v2_global_level_settings"
                     }
-                  },
-                  {
-                    tag_type: "li",
-                    text: "App-Specific Configuration",
-                    link_configuration: {
-                      show: true,
-                      type: "internal",
-                      selector_uid: "v2_app_settings"
-                    }
                   }
                 ],
                 link_configuration: {
