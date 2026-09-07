@@ -195,6 +195,27 @@ export default function Sidebar({ selectedFilter }) {
                       type: "internal",
                       selector_uid: "v2_ai_chat"
                     }
+                  },
+                  // ====== SIBLING 5: All Chat ======
+                  {
+                    tag_type: "li",
+                    text: "All Chat",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "All Chat Features",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_all_chat_features"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_all_chat"
+                    }
                   }
                 ],
                 link_configuration: {
