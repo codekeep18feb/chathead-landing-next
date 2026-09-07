@@ -31,10 +31,7 @@ const FilterComp = ({ setSelectedFilter, initialVersionType }) => {
 
   const filterOptions = {
     version_types: [
-      { key: "V1", label: "Instant Auth + Chat" },
       { key: "V2", label: "BYO Auth Chat" },
-      { key: "V3", label: "CMS-Ready Chat" },
-      { key: "V4", label: "No Auth Only Chat" },
     ],
   };
 
