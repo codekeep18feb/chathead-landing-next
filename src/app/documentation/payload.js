@@ -702,7 +702,7 @@ const payload = {
     },
 
     // ============================================================
-    // PLATFORM TAB - NEW SECTION WITH TABS AT LEAF LEVEL
+    // PLATFORM TAB - FULLY ENHANCED WITH ALL tag_type OPTIONS
     // ============================================================
     {
       tag_type: "div",
@@ -716,6 +716,11 @@ const payload = {
           tag_type: "p",
           text: "The Sageion Admin Platform provides comprehensive tools for managing your chat applications, users, and system settings. Below is an overview of the key sections available in the Admin UI.",
         },
+        {
+          tag_type: "img",
+          src: "/Asset/platform_overview.png",
+          alt: "Sageion Platform Overview Dashboard",
+        },
 
         // ----- Global Level Settings -----
         {
@@ -725,10 +730,21 @@ const payload = {
         },
         {
           tag_type: "p",
-          text: "These settings apply across all applications within your tenant, providing centralized control over system-wide configurations. Only users with ADMIN or MANAGER role have access to these settings.",
+          text: "These settings apply across all applications within your tenant, providing centralized control over system-wide configurations.",
+        },
+        {
+          tag_type: "callout",
+          type: "warning",
+          title: "🔐 Admin Access Required",
+          children: [
+            {
+              tag_type: "p",
+              text: "Only users with ADMIN or MANAGER role have access to these settings. If you don't see these options, contact your system administrator.",
+            },
+          ],
         },
 
-        // ----- Global Tenant Settings (with Tabs) -----
+        // ----- Global Tenant Settings -----
         {
           tag_type: "h4",
           text: "Global Tenant Settings",
@@ -739,7 +755,7 @@ const payload = {
           text: "The Global Tenant Settings page allows administrators to configure tenant-wide features that affect all applications under the tenant.",
         },
 
-        // Use tabs for the leaf-level settings
+        // Use tabs for leaf-level settings
         {
           tag_type: "tabs",
           items: [
@@ -748,24 +764,26 @@ const payload = {
               content: [
                 {
                   tag_type: "p",
-                  text: "Enables email notifications at various useful events across all applications. This toggle controls whether email alerts are sent for key system events.",
+                  text: "Enables email notifications at various useful events across all applications.",
                 },
                 {
                   tag_type: "h5",
-                  text: "Notification Triggers",
+                  text: "📧 Available Notification Triggers",
                 },
                 {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "FIRST MSG ON ANY APP - Triggers when the first message arrives on any app since admin went offline",
-                    },
-                    {
-                      text: "FIRST MSG ON EVERY APP - Triggers when the first message arrives on every app since admin went offline",
-                    },
-                    {
-                      text: "📌 (Available only on ADVANCE plan)",
-                    },
+                  tag_type: "table",
+                  headers: ["Trigger", "Description", "Availability"],
+                  rows: [
+                    [
+                      "FIRST MSG ON ANY APP",
+                      "Triggers when the first message arrives on any app since admin went offline",
+                      "All Plans",
+                    ],
+                    [
+                      "FIRST MSG ON EVERY APP",
+                      "Triggers when the first message arrives on every app since admin went offline",
+                      "📌 ADVANCE Plan Only",
+                    ],
                   ],
                 },
                 {
@@ -776,6 +794,17 @@ const payload = {
                     {
                       tag_type: "p",
                       text: "Email notifications can be customized per event type. Configure which events trigger emails and the recipient list in the settings panel.",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "warning",
+                  title: "Plan Restriction",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: '"FIRST MSG ON EVERY APP" is only available on the ADVANCE plan. Upgrade your plan to access this feature.',
                     },
                   ],
                 },
@@ -790,7 +819,7 @@ const payload = {
                 },
                 {
                   tag_type: "h5",
-                  text: "What Multi-Admin Enables",
+                  text: "✅ What Multi-Admin Enables",
                 },
                 {
                   tag_type: "ul",
@@ -811,15 +840,15 @@ const payload = {
                 },
                 {
                   tag_type: "callout",
-                  type: "warning",
-                  title: "⚠️ Permanent Action - Cannot Be Undone",
+                  type: "danger",
+                  title: "🚫 Permanent Action - Cannot Be Undone",
                   children: [
                     {
                       tag_type: "p",
                       text: "Once enabled, Multi Admin cannot be disabled. This is a permanent system change that will:",
                     },
                     {
-                      tag_type: "ul",
+                      tag_type: "ol",
                       items: [
                         {
                           text: "Notify all active clients to sync the new settings",
@@ -834,12 +863,22 @@ const payload = {
                     },
                   ],
                 },
+                {
+                  tag_type: "mesgTip",
+                  title: "💡 Pro Tip",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Before enabling Multi-Admin, ensure you have all necessary team members identified and their roles defined. This will streamline the permission assignment process.",
+                    },
+                  ],
+                },
               ],
             },
           ],
         },
 
-        // ----- Invite Support User (with Tabs) -----
+        // ----- Invite Support User -----
         {
           tag_type: "h4",
           text: "Invite Support User",
@@ -848,6 +887,11 @@ const payload = {
         {
           tag_type: "p",
           text: "Invite team members as support users with granular permission controls. This feature allows you to add users with specific roles and permissions to manage your applications.",
+        },
+        {
+          tag_type: "img",
+          src: "/Asset/invite_support_user.png",
+          alt: "Invite Support User Interface",
         },
 
         // Use tabs for roles and permissions
@@ -859,20 +903,27 @@ const payload = {
               content: [
                 {
                   tag_type: "h5",
-                  text: "User Roles",
+                  text: "👤 User Roles",
                 },
                 {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "MANAGER - Full access to manage applications, settings, and users",
-                    },
-                    {
-                      text: "DEVELOPER - Access to API configuration, workflows, and technical settings",
-                    },
-                    {
-                      text: "CUSTOMER_CARE_EXECUTIVE - Access to All Chats and user management",
-                    },
+                  tag_type: "table",
+                  headers: ["Role", "Access Level", "Primary Responsibilities"],
+                  rows: [
+                    [
+                      "MANAGER",
+                      "Full Access",
+                      "Manage applications, settings, and users",
+                    ],
+                    [
+                      "DEVELOPER",
+                      "Technical Access",
+                      "API configuration, workflows, and technical settings",
+                    ],
+                    [
+                      "CUSTOMER_CARE_EXECUTIVE",
+                      "Limited Access",
+                      "All Chats and user management",
+                    ],
                   ],
                 },
                 {
@@ -886,6 +937,16 @@ const payload = {
                     },
                   ],
                 },
+                {
+                  tag_type: "mesgTip",
+                  title: "💡 Best Practice",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Assign the minimum required roles to each user to maintain security best practices.",
+                    },
+                  ],
+                },
               ],
             },
             {
@@ -893,25 +954,20 @@ const payload = {
               content: [
                 {
                   tag_type: "h5",
-                  text: "App-Specific Permissions",
+                  text: "🔑 App-Specific Permissions",
                 },
                 {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "read - View application data and settings",
-                    },
-                    {
-                      text: "delete - Remove applications and resources",
-                    },
-                    {
-                      text: "manage - Full administrative control over applications",
-                    },
+                  tag_type: "table",
+                  headers: ["Permission", "Description", "Use Case"],
+                  rows: [
+                    ["read", "View application data and settings", "Read-only access"],
+                    ["delete", "Remove applications and resources", "Cleanup and maintenance"],
+                    ["manage", "Full administrative control", "Complete app management"],
                   ],
                 },
                 {
                   tag_type: "h5",
-                  text: "Create Permissions",
+                  text: "✨ Create Permissions",
                 },
                 {
                   tag_type: "ul",
@@ -941,29 +997,66 @@ const payload = {
               label: "How to Invite",
               content: [
                 {
-                  tag_type: "p",
-                  text: "To invite a support user:",
+                  tag_type: "h5",
+                  text: "📋 Step-by-Step Process",
                 },
                 {
-                  tag_type: "ol",
+                  tag_type: "steps",
                   items: [
                     {
-                      text: "Navigate to 'Invite Support User' from the sidebar",
+                      title: "Navigate to Invite Support User",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Access this page from the sidebar under 'Global Level Settings'.",
+                        },
+                      ],
                     },
                     {
-                      text: "Switch to 'Invite User' mode if not already selected",
+                      title: "Select Mode",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Switch to 'Invite User' mode if not already selected.",
+                        },
+                        {
+                          tag_type: "code_with_copy",
+                          code: `// Mode selection\nMode: [Invite User] [Manage Permissions]`,
+                          language: "text",
+                        },
+                      ],
                     },
                     {
-                      text: "Enter the user's email address and optional full name",
+                      title: "Enter User Details",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Enter the user's email address and optional full name.",
+                        },
+                        {
+                          tag_type: "code_with_copy",
+                          code: `Email: john.doe@company.com\nName: John Doe (Optional)`,
+                          language: "text",
+                        },
+                      ],
                     },
                     {
-                      text: "Select the roles to assign",
+                      title: "Assign Roles & Permissions",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Select the roles to assign and configure app-specific permissions.",
+                        },
+                      ],
                     },
                     {
-                      text: "Configure app-specific permissions",
-                    },
-                    {
-                      text: "Click 'Send Invite' to send the invitation",
+                      title: "Send Invite",
+                      content: [
+                        {
+                          tag_type: "p",
+                          text: "Click 'Send Invite' to send the invitation. The user will receive an email with access instructions.",
+                        },
+                      ],
                     },
                   ],
                 },
@@ -975,6 +1068,17 @@ const payload = {
                     {
                       tag_type: "p",
                       text: "The Invite Support User feature requires Multi-Admin to be enabled in Global Tenant Settings first. This ensures proper permission hierarchy and security.",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "success",
+                  title: "✅ Invitation Flow",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "The invited user will receive an email with a link to accept the invitation. Once accepted, they can access the system with the assigned permissions.",
                     },
                   ],
                 },
@@ -994,6 +1098,10 @@ const payload = {
           text: "Configure custom domains for your applications to maintain brand consistency. This allows you to serve the Sageion chat interface from your own domain.",
         },
         {
+          tag_type: "h5",
+          text: "Available Features",
+        },
+        {
           tag_type: "ul",
           items: [
             {
@@ -1007,8 +1115,41 @@ const payload = {
             },
           ],
         },
+        {
+          tag_type: "img",
+          src: "/Asset/whitelabel_domains.png",
+          alt: "Whitelabel Domains Configuration",
+        },
+        {
+          tag_type: "callout",
+          type: "info",
+          title: "DNS Configuration Guide",
+          children: [
+            {
+              tag_type: "p",
+              text: "To set up a custom domain:",
+            },
+            {
+              tag_type: "ol",
+              items: [
+                {
+                  text: "Add your domain in the Whitelabel Domains section",
+                },
+                {
+                  text: "Configure DNS records as instructed",
+                },
+                {
+                  text: "Wait for DNS propagation (24-48 hours)",
+                },
+                {
+                  text: "Verify the domain and enable SSL",
+                },
+              ],
+            },
+          ],
+        },
 
-        // ----- App-Specific Settings (with Tabs) -----
+        // ----- App-Specific Settings -----
         {
           tag_type: "h3",
           text: "App-Specific Configuration",
@@ -1019,13 +1160,17 @@ const payload = {
           text: "Each application within your tenant has its own configuration sections. Access these by selecting the application from the sidebar.",
         },
 
-        // Use tabs for app settings
+        // Use tabs for app settings with consistent structure
         {
           tag_type: "tabs",
           items: [
             {
               label: "General Settings",
               content: [
+                {
+                  tag_type: "h5",
+                  text: "⚙️ App Configuration",
+                },
                 {
                   tag_type: "p",
                   text: "App-level configurations including version management, environment settings, and application metadata.",
@@ -1061,6 +1206,10 @@ const payload = {
               label: "AI Chat",
               content: [
                 {
+                  tag_type: "h5",
+                  text: "🤖 AI Agent Configuration",
+                },
+                {
                   tag_type: "p",
                   text: "Configure AI agent behavior, response styles, and conversation flows. Manage training data and model parameters.",
                 },
@@ -1084,11 +1233,21 @@ const payload = {
                 {
                   tag_type: "callout",
                   type: "warning",
-                  title: "Training Data",
+                  title: "Training Data Quality",
                   children: [
                     {
                       tag_type: "p",
                       text: "Training data quality directly impacts AI response accuracy. Ensure your training data is clean and representative of your use case.",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "mesgTip",
+                  title: "💡 Pro Tip",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Use the conversation flow builder to create interactive experiences. Test different flows to find what works best for your users.",
                     },
                   ],
                 },
@@ -1097,6 +1256,10 @@ const payload = {
             {
               label: "LeadGen & FAQ",
               content: [
+                {
+                  tag_type: "h5",
+                  text: "📋 Lead Management & FAQ",
+                },
                 {
                   tag_type: "p",
                   text: "Manage lead generation forms, FAQ content, and automated response workflows. Configure how leads are captured and routed.",
@@ -1118,11 +1281,26 @@ const payload = {
                     },
                   ],
                 },
+                {
+                  tag_type: "callout",
+                  type: "success",
+                  title: "Lead Capture Best Practices",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Keep lead capture forms short and focused on essential information to maximize conversion rates.",
+                    },
+                  ],
+                },
               ],
             },
             {
               label: "Theme Settings",
               content: [
+                {
+                  tag_type: "h5",
+                  text: "🎨 Brand Customization",
+                },
                 {
                   tag_type: "p",
                   text: "Customize appearance, branding colors, and UI components. Match the chat interface to your brand identity.",
@@ -1155,37 +1333,51 @@ const payload = {
                     },
                   ],
                 },
+                {
+                  tag_type: "img",
+                  src: "/Asset/theme_settings.png",
+                  alt: "Theme Settings Configuration",
+                },
               ],
             },
             {
               label: "Credentials",
               content: [
                 {
+                  tag_type: "h5",
+                  text: "🔑 API Credentials",
+                },
+                {
                   tag_type: "p",
                   text: "View and manage API credentials for your applications. Generate new API keys and monitor usage.",
                 },
                 {
-                  tag_type: "ul",
-                  items: [
-                    {
-                      text: "API key generation and management",
-                    },
-                    {
-                      text: "Usage monitoring and analytics",
-                    },
-                    {
-                      text: "Key rotation and security settings",
-                    },
+                  tag_type: "table",
+                  headers: ["Credential Type", "Description", "Usage"],
+                  rows: [
+                    ["API Key", "Base64 encoded key", "Client-side authentication"],
+                    ["Rest API Key", "Server-side key", "Backend operations"],
+                    ["Webhook Secret", "Secure token", "Webhook verification"],
                   ],
                 },
                 {
                   tag_type: "callout",
-                  type: "warning",
-                  title: "Security Note",
+                  type: "danger",
+                  title: "⚠️ Security Critical",
                   children: [
                     {
                       tag_type: "p",
-                      text: "Keep your API credentials secure. Never expose them in client-side code or public repositories.",
+                      text: "Keep your API credentials secure. Never expose them in client-side code or public repositories. Use environment variables for sensitive keys.",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "mesgTip",
+                  title: "💡 Best Practice",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Rotate your API keys regularly and use different keys for development, staging, and production environments.",
                     },
                   ],
                 },
@@ -1194,7 +1386,46 @@ const payload = {
           ],
         },
 
-        // ----- Summary -----
+        // ----- Platform Summary with breadcrumbs and accordion -----
+        {
+          tag_type: "h3",
+          text: "Platform Navigation",
+          selector_uid: "v2_platform_navigation",
+        },
+        {
+          tag_type: "p",
+          text: "The Sageion Platform is organized to help you quickly find and manage your settings:",
+        },
+
+        // Use accordion for quick navigation guide
+        {
+          tag_type: "accordion",
+          title: "📖 Quick Navigation Guide",
+          children: [
+            {
+              tag_type: "ul",
+              items: [
+                {
+                  text: "Global Level Settings → System-wide configurations",
+                },
+                {
+                  text: "Global Tenant Settings → Tenant-specific features",
+                },
+                {
+                  text: "Invite Support User → Team management",
+                },
+                {
+                  text: "Whitelabel Domains → Brand customization",
+                },
+                {
+                  text: "App-Specific Settings → Application configurations",
+                },
+              ],
+            },
+          ],
+        },
+
+        // Final Summary Callout
         {
           tag_type: "callout",
           type: "success",
@@ -1202,8 +1433,23 @@ const payload = {
           children: [
             {
               tag_type: "p",
-              text: "The Sageion Platform provides a comprehensive set of tools to manage your chat applications, users, and system settings. For detailed configuration instructions, refer to the specific sections in this documentation.",
+              text: "The Sageion Platform provides a comprehensive set of tools to manage your chat applications, users, and system settings.",
             },
+            {
+              tag_type: "p",
+              text: "For detailed configuration instructions, refer to the specific sections in this documentation or contact our support team for assistance.",
+            },
+          ],
+        },
+
+        // Breadcrumbs showing platform hierarchy
+        {
+          tag_type: "breadcrumbs",
+          items: [
+            { label: "Home", href: "/" },
+            { label: "Documentation", href: "/documentation" },
+            { label: "V2 BYO Auth Chat", href: "/documentation/V2" },
+            { label: "Platform" },
           ],
         },
       ],
