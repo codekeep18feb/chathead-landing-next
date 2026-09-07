@@ -1,5 +1,6 @@
 import { globalLevelSettings } from './globalLevelSettings.js';
 import { faqChatLeadGeneration } from './faqChatLeadGeneration.js';
+import { liveAgent } from './liveAgent.js';
 
 export const platform = [
   {
@@ -16,6 +17,7 @@ export const platform = [
       },
       ...globalLevelSettings,
       ...faqChatLeadGeneration,
+      ...liveAgent,
     ],
   },
 ];

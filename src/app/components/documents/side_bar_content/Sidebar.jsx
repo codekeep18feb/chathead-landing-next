@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentRenderer from '@/app/components/documents/side_bar_content/rendering_tools';
+import ContentRenderer from './rendering_tools';
 
 export default function Sidebar({ selectedFilter }) {
   const versionType = selectedFilter?.version_type;
@@ -152,6 +152,27 @@ export default function Sidebar({ selectedFilter }) {
                       show: true,
                       type: "internal",
                       selector_uid: "v2_faq_chat_lead_gen"
+                    }
+                  },
+                  // ====== SIBLING 3: Live Agent ======
+                  {
+                    tag_type: "li",
+                    text: "Live Agent",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "Live Agent Features",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_live_agent_features"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_live_agent"
                     }
                   }
                 ],
