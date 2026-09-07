@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
-import YouTubeEmbed from "../components/YouTubeVideo";
+import YouTubeEmbed from "../../YouTubeVideo";
 import { FaLink } from "react-icons/fa6";
 
 const CondRadioRender = ({ r_options }) => {

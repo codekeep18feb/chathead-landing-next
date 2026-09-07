@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentRenderer from '@/app/testing_documents/rendering_tools';
+import ContentRenderer from '@/app/components/documents/side_bar_content/rendering_tools';
 
 export default function Sidebar({ selectedFilter }) {
   const versionType = selectedFilter?.version_type;

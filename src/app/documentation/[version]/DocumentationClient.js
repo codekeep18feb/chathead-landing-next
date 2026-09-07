@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import TopFilterComp from "../../components/documents/TopFilterComp";
-import ContentRenderer from "@/app/testing_documents/rendering_tools";
+import ContentRenderer from "@/app/components/documents/side_bar_content/rendering_tools";
 import payload, { versionSlugMap } from "../payload/index.js";  // ✅ Updated import
 import Sidebar from "../../components/documents/side_bar_content/Sidebar";
 import styles from "../docPageSty.module.css";
