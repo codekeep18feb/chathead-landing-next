@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import TopFilterComp from "../../components/documents/TopFilterComp";
 import ContentRenderer from "@/app/testing_documents/rendering_tools";
-import payload, { versionSlugMap } from "../payload";
+import payload, { versionSlugMap } from "../payload/index.js";  // ✅ Updated import
 import Sidebar from "../../components/documents/side_bar_content/Sidebar";
 import styles from "../docPageSty.module.css";
 
@@ -11,7 +11,7 @@ export default function DocumentationClient({ version }) {
   const mappedVersion =
     Object.keys(versionSlugMap).find(
       (key) => versionSlugMap[key] === version
-    ) || "V1";
+    ) || "V2";
 
   const [selectedVersionType, setSelectedVersionType] = useState(mappedVersion);
   const [selectedFilter, setSelectedFilter] = useState({
@@ -61,9 +61,7 @@ export default function DocumentationClient({ version }) {
   const content = payload[selectedVersionType];
 
   return (
-    <div
-      className={styles["documentation-page"]}
-    >
+    <div className={styles["documentation-page"]}>
       <div className={styles.doc_core_wrapper}>
         {!isMobile && (
           <div className={styles.doc_sidebar}>
@@ -80,18 +78,14 @@ export default function DocumentationClient({ version }) {
 
         <div className={styles.rightWrap}>
           <div className={styles["main-content"]}>
-             <TopFilterComp
+            <TopFilterComp
               initialVersionType={selectedVersionType}
               setSelectedFilter={({ version_type }) =>
                 handleSelectVersionType(version_type)
               }
             />
             {isMobile && (
-              <div
-                className={
-                  styles.mobileSidebarWrapper
-                }
-              >
+              <div className={styles.mobileSidebarWrapper}>
                 <Sidebar
                   isMobile={isMobile}
                   selectedKey={selectedKey}
@@ -104,7 +98,6 @@ export default function DocumentationClient({ version }) {
               </div>
             )}
 
-            {/* Main content */}
             {content ? (
               <>
                 <div className={styles["content-area"]}>
@@ -126,7 +119,7 @@ export default function DocumentationClient({ version }) {
               </>
             ) : (
               <div className={styles.noFilterMessage}>
-                Kinldy select the right filters for you from top.
+                Kindly select the right filters for you from top.
               </div>
             )}
           </div>

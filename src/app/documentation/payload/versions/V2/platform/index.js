@@ -1,4 +1,5 @@
 import { globalLevelSettings } from './globalLevelSettings.js';
+import { faqChatLeadGeneration } from './faqChatLeadGeneration.js';
 
 export const platform = [
   {
@@ -14,6 +15,7 @@ export const platform = [
         text: "The Sageion Admin Platform provides comprehensive tools for managing your chat applications, users, and system settings. Below is an overview of the key sections available in the Admin UI.",
       },
       ...globalLevelSettings,
+      ...faqChatLeadGeneration,
     ],
   },
 ];

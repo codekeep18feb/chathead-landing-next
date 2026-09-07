@@ -1,5 +1,3 @@
-// /src/app/components/documents/side_bar_content/Sidebar.jsx
-
 import React from 'react';
 import ContentRenderer from '@/app/testing_documents/rendering_tools';
 
@@ -96,6 +94,7 @@ export default function Sidebar({ selectedFilter }) {
                 tag_type: "li",
                 text: "Platform",
                 sub_items: [
+                  // ====== SIBLING 1: Global Level Settings ======
                   {
                     tag_type: "li",
                     text: "Global Level Settings",
@@ -132,6 +131,27 @@ export default function Sidebar({ selectedFilter }) {
                       show: true,
                       type: "internal",
                       selector_uid: "v2_global_level_settings"
+                    }
+                  },
+                  // ====== SIBLING 2: FAQ Chat & Lead Generation ======
+                  {
+                    tag_type: "li",
+                    text: "FAQ Chat & Lead Generation",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "LeadGen & FAQ",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_leadgen_faq"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_faq_chat_lead_gen"
                     }
                   }
                 ],
