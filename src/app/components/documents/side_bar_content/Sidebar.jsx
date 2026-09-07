@@ -174,6 +174,27 @@ export default function Sidebar({ selectedFilter }) {
                       type: "internal",
                       selector_uid: "v2_live_agent"
                     }
+                  },
+                  // ====== SIBLING 4: AI Chat ======
+                  {
+                    tag_type: "li",
+                    text: "AI Chat",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "AI Chat Features",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_ai_chat_features"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_ai_chat"
+                    }
                   }
                 ],
                 link_configuration: {
