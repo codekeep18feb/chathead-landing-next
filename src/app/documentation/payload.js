@@ -1,759 +1,33 @@
 // Example payload with additional tags and Lorem Ipsum content
 export const versionSlugMap = {
-  V1: "instant-auth",
   V2: "byo",
-  V3: "cms-chat",
-  V4: "no-auth",
 };
 
 const payload = {
-  V1: [
-    {
-      tag_type: "h2",
-      text: "[V1] Instant Auth + Chat",
-    },
-    {
-      tag_type: "p",
-      text: "Perfect for MVPs or new apps without built-in authentication, this version provides lightweight Sageion auth to onboard users instantly and enable chat with minimal setup. As your product evolves, you can seamlessly migrate to any external authentication system and upgrade to a more advanced Sageion version without losing existing users or chat history.",
-    },
-    {
-      tag_type: "div",
-      children: [
-        {
-          tag_type: "h2",
-          text: "Prerequisites",
-          selector_uid: "v1_prerequisites",
-        },
-        {
-          tag_type: "p",
-          text: "To add chat to your application, follow these steps:",
-        },
-        {
-          tag_type: "ol",
-          items: [
-            {
-              text: "Sign up or log in to your Sageion account.",
-              link_parts: [
-                {
-                  text: "Sign up or log in",
-                  link: "https://www.google.com/",
-                },
-              ],
-            },
-            {
-              tag_type: "li",
-              text: "Create a new app and be sure to select Version `Instant Auth + Chat` (V1) during setup",
-            },
-            {
-              tag_type: "li",
-              text: "Navigate to your created app's detail page and locate the credentials.",
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      tag_type: "callout",
-      type: "info",
-      title: "Starter Code",
-      children: [
-        {
-          tag_type: "p",
-          text: "Clone the starter repo to use it on.",
-        }, {
-          tag_type: "h4",
-          text: "git clone -b starter https://github.com/sageion-core/example__v1.git",
-        },
-
-        {
-          tag_type: "a",
-          href: "https://github.com/sageion-core/example__v1/tree/starter",
-          text: "Starter Code",
-        },
-      ],
-    },
-
-    {
-      tag_type: "div",
-      children: [
-        {
-          tag_type: "h2",
-          text: "Project Setup",
-          selector_uid: "v1_client_integration",
-        },
-        {
-          tag_type: "p",
-          text: "To integrate chat into your application, follow these steps:",
-        },
-        {
-          tag_type: "div",
-          className: "custom-ordered-list",
-          children: [
-            {
-              tag_type: "div",
-              className: "custom-list-item",
-              children: [
-                {
-                  tag_type: "div",
-                  className: "list-item-header",
-                  text: "1. Load Required Scripts",
-                },
-                {
-                  tag_type: "div",
-                  className: "sub-items-container",
-                  children: [
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "p",
-                          text: "Locate your main entry file (typically index.html) and insert this code snippet into the <head> section. Place it before other dependencies for optimal loading.",
-                        },
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: '<script src="https://sageion-core.github.io/prod-ssc-client-cdns/bundle.js"></script>',
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            }
-
-            ,
-
-            {
-              tag_type: "h3",
-              text: "2. Authentication UI Placment",
-            },
-
-            {
-              tag_type: "p",
-              text: "Since you are opting for the Auth Service, you have two options for Authentication UI placement. You can choose based on your convenience.",
-            },
-
-            {
-              tag_type: "tabs",
-              items: [
-                {
-                  label: "Full Header Mode",
-                  content: [
-                    {
-                      tag_type: "h3",
-                      text: "Complete Authentication Header Solution",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "When you set Third parameter (header_req) to true. Sageion will automatically add a fully functional header to your application that includes:",
-                    },
-                    {
-                      tag_type: "ul",
-                      items: [
-                        { text: "User authentication controls (login/logout)" },
-                        { text: "User profile management" },
-                        { text: "Notification indicators" },
-                        { text: "Branding area" },
-                        { text: "Responsive navigation menu" },
-                      ],
-                    },
-                    {
-                      tag_type: "callout",
-                      type: "info",
-                      title: "Best For",
-                      children: [
-                        {
-                          tag_type: "p",
-                          text: "Applications without an existing header or those looking for a complete out-of-the-box authentication solution.",
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "img",
-                      src: "/Asset/magicChatImg/full_header_mode.png",
-                      alt: "Sageion Full Header Implementation",
-                    },
-
-
-                  ],
-                },
-                {
-                  label: "Header-Less Mode",
-                  content: [
-                    {
-                      tag_type: "h3",
-                      text: "Custom Authentication Placement",
-                    },
-                    {
-                      tag_type: "p",
-                      text: "Set Third parameter (header_req) to false if you already have a header or want to place authentication components in specific locations..",
-                    },
-                    {
-                      tag_type: "img",
-                      src: "/Asset/magicChatImg/header_less_mode.png",
-                      alt: "Custom Authentication Placement",
-                    },
-                    {
-                      tag_type: "steps",
-                      items: [
-                        {
-                          title: "Step 1: Place Authentication Components",
-                          content: [
-                            {
-                              tag_type: "p",
-                              text: "Add this container where you want authentication controls to appear:",
-                            },
-                            {
-                              tag_type: "code_with_copy",
-                              code: `<div id="tezkit-auth-area" ></div>`,
-                            },
-                          ],
-                        },
-                        {
-                          title: "Step 2: Initialize Sageion",
-                          content: [
-                            {
-                              tag_type: "code_with_copy",
-                              code: `await window.magicchat_io.setUp(
-          "<Your App Name>", 
-          "<Your Api Key>", 
-          false, // DISABLE MAGICCHAT HEADER
-        );`,
-                              language: "javascript",
-                            },
-                          ],
-                        },
-
-                        {
-                          title: "Step 3: Customize Styling (Optional)",
-                          content: [
-                            {
-                              tag_type: "p",
-                              text: "Add CSS to match your existing design:",
-                            },
-                            {
-                              tag_type: "code_with_copy",
-                              code: `#tezkit-auth-area {
-  display: inline-flex;
-  gap: 10px; /* space between buttons */
-  align-items: center;
-}
-
-#tezkit-auth-area button {
-  background-color:orange;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-#tezkit-auth-area button:hover {
-  background-color: #4338ca;
-  transform: translateY(-1px);
-}
-
-#tezkit-auth-area button:active {
-  transform: translateY(1px);
-  background-color: #3730a3;
-}`,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-
-                    {
-                      tag_type: "callout",
-                      type: "warning",
-                      title: "Important Implementation Notes",
-                      children: [
-                        {
-                          tag_type: "ul",
-                          items: [
-                            {
-                              text: "Place the container in your header or wherever authentication should appear",
-                            },
-                            {
-                              text: "Multiple containers are supported for complex layouts",
-                            },
-                            {
-                              text: "Components automatically adapt to authentication state",
-                            },
-                            {
-                              text: "Elements will render as:",
-                              sub_items: [
-                                { text: "Login/Signup buttons when logged out" },
-                                // { text: "User avatar + dropdown when logged in" },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "callout",
-                      type: "info",
-                      title: "Available Authentication Components to be styled",
-                      children: [
-                        {
-                          tag_type: "table",
-                          headers: ["Component", "Selector", "Description"],
-                          rows: [
-                            [
-                              "Login Button",
-                              ".tezkit-login-btn",
-                              "Triggers login flow",
-                            ],
-                            [
-                              "Signup Button",
-                              ".tezkit-signup-btn",
-                              "Triggers registration flow",
-                            ],
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            }
-
-            ,
-
-
-          ],
-        },
-
-        {
-          tag_type: "div",
-          className: "custom-list-item",
-          children: [
-            {
-              tag_type: "h3",
-              className: "list-item-header",
-              text: "3. Decide the placement of the Sageion chat box in your app.",
-            },
-
-          ],
-        },
-        {
-          tag_type: "tabs",
-          items: [
-            {
-              label: "Centralized Implementation:",
-              content: [
-                {
-                  tag_type: "h4",
-                  text: "Centralized Implementation: ",
-                },
-                {
-                  tag_type: "p",
-                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
-                },
-
-
-                {
-                  tag_type: "p",
-
-                  text: "This ensures the chatbox renders consistently across all routes ",
-                },
-                {
-                  text: "and avoids code duplication across screens.",
-
-                  tag_type: "p",
-
-
-                },
-
-                {
-                  tag_type: "h4",
-                  text: "Final Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
-                },
-
-
-
-                {
-                  tag_type: "div",
-                  className: "sub-items-container",
-                  children: [
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h4",
-                          text: "Step 1 + Step 2 – Show the chatbox on all pages under a specific root route.",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
-                        },
-                        {
-                          tag_type: "code_with_copy",
-                          code: `
-<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    // Step 1: Initial setup
-    await window.magicchat_io.setUp(
-      "<MAGICCHAT_APP_NAME>",
-      "<MAGICCHAT_API_KEY>", 
-      false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
-    );
-    
-    // Step 2: Initialize chat
-    await window.magicchat_io.initialize({"app_version":"V1"});
-  });
-</script>`,
-                          language: "javascript",
-                        },
-                        {
-                          tag_type: "callout",
-                          type: "info",
-                          title: "Parameter Details",
-                          children: [
-                            {
-                              tag_type: "table",
-                              headers: ["Parameter", "Type", "Description"],
-                              rows: [
-                                [
-                                  "app_name",
-                                  "string",
-                                  "Unique application identifier",
-                                ],
-                                ["api_key", "string", "Base64 encoded API key"],
-                                [
-                                  "header_req",
-                                  "boolean",
-                                  "Display header with user controls",
-                                ],
-                              ],
-                            },
-                            {
-                              tag_type: "callout",
-                              type: "warning",
-                              title: "Critical Requirement",
-                              children: [
-                                {
-                                  tag_type: "p",
-                                  text: "The setUp function must execute before initialize in all cases.",
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-
-                  ],
-                },
-                {
-                  tag_type: "h4",
-                  text: "Example Implementation",
-                  selector_uid: "v1_code_example",
-                },
-                {
-                  tag_type: "p",
-                  text: "View complete implementation examples in our GitHub repository:",
-                },
-                {
-                  tag_type: "a",
-                  href: "https://github.com/sageion-core/example__v1",
-                  text: "View Implementation Example",
-                },
-              ],
-            },
-            {
-              label: "Route-Specific Implementation",
-              content: [
-                {
-                  tag_type: "h4",
-                  text: "Route-Specific Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "To limit chat functionality to specific routes:",
-                },
-                {
-                  tag_type: "ul",
-                  items: [
-                    {
-
-                      text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
-                    },
-                    {
-
-                      text: "Use the initialize method on specific route components",
-                    },
-                    {
-
-                      text: "Provides more control over chat visibility"
-                    },
-                  ]
-                }
-                ,
-
-                {
-                  tag_type: "h4",
-                  text: "Final Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
-                },
-
-
-                {
-                  tag_type: "div",
-                  className: "sub-items-container",
-                  children: [
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h4",
-                          text: "Step 1 – Setup on Initial Landing Pages",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
-                        },
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: `
-<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    await window.magicchat_io.setUp(
-      "<MAGICCHAT_APP_NAME>", 
-      "<MAGICCHAT_API_KEY>", 
-      true, // for 'Full Header Mode' pass true(true by default)
-    );
-  });
-</script>`,
-                        },
-                        {
-                          tag_type: "callout",
-                          type: "info",
-                          title: "Parameter Details",
-                          children: [
-                            {
-                              tag_type: "table",
-                              headers: ["Parameter", "Type", "Description"],
-                              rows: [
-                                [
-                                  "app_name",
-                                  "string",
-                                  "Unique application identifier",
-                                ],
-                                ["api_key", "string", "Base64 encoded API key"],
-                                [
-                                  "header_req",
-                                  "boolean",
-                                  "Display header with user controls",
-                                ],
-                              ],
-                            },
-                            {
-                              tag_type: "callout",
-                              type: "warning",
-                              title: "Critical Requirement",
-                              children: [
-                                {
-                                  tag_type: "p",
-                                  text: "The setUp function must execute before initialize in all cases.",
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h4",
-                          text: "Step 2 – Initialize Chat on Target Pages",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "Execute the initialize function on any page where the chat interface should appear (e.g., in the bottom-right corner).",
-                        },
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: `
-<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    await window.magicchat_io.initialize({"app_version":"V1"});
-  });
-</script>`,
-                        },
-                        {
-                          tag_type: "callout",
-                          type: "info",
-                          title: "Parameter Details",
-                          children: [
-                            {
-                              tag_type: "table",
-                              headers: ["Parameter", "Type", "Description"],
-                              rows: [
-                                [
-                                  "app_version",
-                                  "string",
-                                  "Sageion application version",
-                                ],
-                              ],
-                            },
-                            {
-                              tag_type: "mesgTip",
-                              title: "Version Validation",
-                              children: [
-                                {
-                                  tag_type: "p",
-                                  text: "Verify the correct app_version is specified.",
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-
-                //                 {
-                //                   tag_type: "h3",
-                //                   text: "Running `setUp` at initial load.",
-                //                 },
-                //                 {
-                //                   tag_type: "code_with_copy",
-                //                   code: `
-                // <script>
-                //   document.addEventListener("DOMContentLoaded", async function () {
-                //     // Step 1: Initial setup
-                //     await window.magicchat_io.setUp(
-                //       "<MAGICCHAT_APP_NAME>",
-                //       "<MAGICCHAT_API_KEY>", 
-                //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
-                //     );
-                //   });
-                // </script>`,
-                //                   language: "javascript",
-                //                 },
-
-
-                //                 {
-                //                   tag_type: "h3",
-                //                   text: "Running `initialize` at the screen we would like to see chat box to appear.",
-                //                 },
-
-                //                 {
-                //                   tag_type: "code_with_copy",
-                //                   code: `
-                // <script>
-                //   document.addEventListener("DOMContentLoaded", async function () {
-                //     // Step 2: Initialize chat
-                //     await window.magicchat_io.initialize({"app_version":"V1"});
-                //   });
-                // </script>`,
-                //                   language: "javascript",
-                //                 },
-                {
-                  tag_type: "h4",
-                  text: "Example Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "View complete implementation examples in our GitHub repository:",
-                },
-                {
-                  tag_type: "a",
-                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
-                  text: "View Implementation Example",
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          tag_type: "p",
-          text: "Successfully onboarded users will appear in the Sageion Admin Panel with their associated applications.",
-        },
-        {
-          tag_type: "steps",
-          items: [
-            {
-              title: "Admin Panel - Onboarded Users",
-              content: [
-                {
-                  tag_type: "img",
-                  src: "/Asset/onboarded_user.png",
-                  alt: "Sageion Admin Panel showing onboarded users",
-                },
-              ],
-            },
-            {
-              title: "Admin Panel - No Users",
-              content: [
-                {
-                  tag_type: "p",
-                  text: "Applications without onboarded users will display an empty state:",
-                },
-                {
-                  tag_type: "img",
-                  src: "/Asset/no_users_admin.png",
-                  alt: "Sageion Admin Panel showing no onboarded users",
-                },
-              ],
-            },
-          ],
-        },
-
-        // {
-        //   tag_type: "video",
-        //   src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-        //   desc: "Headful Mode Implementation Demo",
-        // },
-      ],
-    },
-  ],
-
   V2: [
+    // ============================================================
+    // HEADER SECTION
+    // ============================================================
     {
       tag_type: "h2",
-      text: `[V2] BYO (Bring Your Own) Auth  +  Chat`,
+      text: `[V2] BYO (Bring Your Own) Auth + Chat`,
     },
     {
       tag_type: "p",
       text: `Designed for products with their own backend and authentication, this version gives you full control over user onboarding, syncing, and logout while seamlessly integrating powerful Sageion capabilities.`,
     },
 
-    //prerequisite?
+    // ============================================================
+    // PREREQUISITE SECTION
+    // ============================================================
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Prerequisite", selector_uid: "v2_prerequisites", },
-
+        {
+          tag_type: "h2",
+          text: "Prerequisite",
+          selector_uid: "v2_prerequisites",
+        },
         {
           tag_type: "ol",
           items: [
@@ -766,26 +40,30 @@ const payload = {
                 },
               ],
             },
-
             {
               tag_type: "li",
               text: "Create a New App and be sure to select Version V2 during setup.",
             },
-
             {
               tag_type: "li",
-              text: "Navigate to the App Details page and note your: , App Name, API Key, Tenant ID",
+              text: "Navigate to the App Details page and note your: App Name, API Key, Tenant ID",
             },
           ],
         },
       ],
     },
 
+    // ============================================================
+    // PROJECT SETUP - CLIENT SIDE INTEGRATION
+    // ============================================================
     {
       tag_type: "div",
       children: [
-        { tag_type: "h2", text: "Project setup", selector_uid: "v2_client_integration", },
-
+        {
+          tag_type: "h2",
+          text: "Project setup",
+          selector_uid: "v2_client_integration",
+        },
         {
           tag_type: "h4",
           text: "Client Side Integration",
@@ -794,7 +72,6 @@ const payload = {
           tag_type: "p",
           text: "To integrate it into your app, Do the following.",
         },
-
         {
           tag_type: "div",
           className: "custom-ordered-list",
@@ -844,15 +121,8 @@ const payload = {
                 },
               ],
             },
-
           ],
         },
-
-
-
-
-
-
         {
           tag_type: "div",
           className: "custom-list-item",
@@ -862,7 +132,6 @@ const payload = {
               className: "list-item-header",
               text: "2. Decide the placement of the Sageion chat box in your app.",
             },
-
           ],
         },
         {
@@ -877,23 +146,12 @@ const payload = {
                 },
                 {
                   tag_type: "p",
-                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
-                },
-
-
-                {
-                  tag_type: "p",
-
-                  text: "This ensures the chatbox renders consistently across all routes ",
+                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location.",
                 },
                 {
-                  text: "and avoids code duplication across screens.",
-
                   tag_type: "p",
-
-
+                  text: "This ensures the chatbox renders consistently across all routes and avoids code duplication across screens.",
                 },
-
                 {
                   tag_type: "h4",
                   text: "Final Implementation",
@@ -902,9 +160,6 @@ const payload = {
                   tag_type: "p",
                   text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
                 },
-
-
-
                 {
                   tag_type: "div",
                   className: "sub-items-container",
@@ -957,7 +212,6 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-
                               ],
                             },
                             {
@@ -975,7 +229,6 @@ const payload = {
                         },
                       ],
                     },
-
                   ],
                 },
                 {
@@ -1009,21 +262,16 @@ const payload = {
                   tag_type: "ul",
                   items: [
                     {
-
                       text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
                     },
                     {
-
                       text: "Use the initialize method on specific route components",
                     },
                     {
-
-                      text: "Provides more control over chat visibility"
+                      text: "Provides more control over chat visibility",
                     },
-                  ]
-                }
-                ,
-
+                  ],
+                },
                 {
                   tag_type: "h4",
                   text: "Final Implementation",
@@ -1032,8 +280,6 @@ const payload = {
                   tag_type: "p",
                   text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
                 },
-
-
                 {
                   tag_type: "div",
                   className: "sub-items-container",
@@ -1081,7 +327,6 @@ const payload = {
                                   "Unique application identifier",
                                 ],
                                 ["api_key", "string", "Base64 encoded API key"],
-
                               ],
                             },
                             {
@@ -1159,44 +404,6 @@ const payload = {
                     },
                   ],
                 },
-
-                //                 {
-                //                   tag_type: "h3",
-                //                   text: "Running `setUp` at initial load.",
-                //                 },
-                //                 {
-                //                   tag_type: "code_with_copy",
-                //                   code: `
-                // <script>
-                //   document.addEventListener("DOMContentLoaded", async function () {
-                //     // Step 1: Initial setup
-                //     await window.magicchat_io.setUp(
-                //       "<MAGICCHAT_APP_NAME>",
-                //       "<MAGICCHAT_API_KEY>", 
-                //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
-                //     );
-                //   });
-                // </script>`,
-                //                   language: "javascript",
-                //                 },
-
-
-                //                 {
-                //                   tag_type: "h3",
-                //                   text: "Running `initialize` at the screen we would like to see chat box to appear.",
-                //                 },
-
-                //                 {
-                //                   tag_type: "code_with_copy",
-                //                   code: `
-                // <script>
-                //   document.addEventListener("DOMContentLoaded", async function () {
-                //     // Step 2: Initialize chat
-                //     await window.magicchat_io.initialize({"app_version":"V1"});
-                //   });
-                // </script>`,
-                //                   language: "javascript",
-                //                 },
                 {
                   tag_type: "h4",
                   text: "Example Implementation",
@@ -1214,14 +421,13 @@ const payload = {
             },
           ],
         },
-
-
-
+        // ============================================================
+        // BACKEND INTEGRATION
+        // ============================================================
         {
           tag_type: "h1",
-          text: "Connecting Sageion to Your Product’s Authentication",
+          text: "Connecting Sageion to Your Product's Authentication",
         },
-        //Backend side integration
         {
           tag_type: "h2",
           text: "Backend Integration",
@@ -1426,7 +632,6 @@ const payload = {
             },
           ],
         },
-
         {
           tag_type: "h3",
           text: "Logout Cleanup",
@@ -1483,11 +688,9 @@ const payload = {
                 {
                   text: "Trigger onboarding immediately after user registration",
                 },
-
                 {
                   text: "For bulk onboarding of existing users, contact our support team for batch processing options",
                 },
-
                 {
                   text: "Don't miss to logout to perform cleanup whenever user is logging out of your platform.",
                 },
@@ -1495,663 +698,517 @@ const payload = {
             },
           ],
         },
-        // {
-        //   tag_type: "video",
-        //   src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-        //   desc: "Demo for V2",
-        // },
-      ],
-    },
-  ],
-  V3: [
-    {
-      tag_type: "h2",
-      text: `[V3] CMS-Ready Chat (Wordpress)`,
-    },
-    {
-      tag_type: "p",
-      text: `Built specifically for WordPress, this version leverages native WP authentication—making it ideal for products that already use WordPress or plugin-based login systems and want to seamlessly integrate powerful, full-featured chat without reinventing their user management flow.`,
-    },
-
-    //prerequisite?
-    {
-      tag_type: "div",
-      children: [
-        { tag_type: "h2", text: "Prerequisite", selector_uid: "v3_prerequisites", },
-
-        {
-          tag_type: "p",
-          text: "To integrate Chat into your app, do the following:",
-        },
-        {
-          tag_type: "ol",
-          items: [
-            {
-              text: "Signup/Login to your account at Sageion.",
-              link_parts: [
-                {
-                  text: "Signup/Login",
-                  link: "https://www.google.com/",
-                },
-              ],
-            },
-
-            {
-              tag_type: "li",
-              text: "Create an app as per your use case. (Be Sure to choose the right version V3)",
-            },
-
-            {
-              tag_type: "li",
-              text: "Go To created app's  detail page and locate the credentials.",
-            },
-          ],
-        },
       ],
     },
 
+    // ============================================================
+    // PLATFORM TAB - NEW SECTION WITH TABS AT LEAF LEVEL
+    // ============================================================
     {
       tag_type: "div",
       children: [
         {
           tag_type: "h2",
-          text: "Project Setup",
-          selector_uid: "v3_client_integration",
-        },
-        {
-          tag_type: "h3",
-          text: "Client Side Integration",
-        },
-        {
-          tag_type: "callout",
-          type: "success",
-          title: "Plugin Installation",
-          children: [
-            {
-              tag_type: "div",
-              // className: styles["download-container"],
-              children: [
-                {
-                  tag_type: "div",
-                  // className: styles["download-header"],
-                  children: [
-                    {
-                      tag_type: "h4",
-                      text: "Sageion WordPress Plugin",
-                    },
-                    {
-                      tag_type: "a",
-                      href: "/addChatPlugin_prod.zip",
-                      // className: styles["download-button"],
-                      text: "Download Plugin",
-                      download: true,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          tag_type: "steps",
-          items: [
-            {
-              title: "Add Sageion Credentials",
-              content: [
-                {
-                  tag_type: "p",
-                  text: "After installing the plugin, navigate to Sageion settings in your WordPress admin panel and enter your credentials:",
-                },
-                {
-                  tag_type: "img",
-                  src: "/Asset/add_credentials_wp.png",
-                  alt: "Sageion credentials configuration in WordPress",
-                },
-              ],
-            },
-            {
-              title: "Verify Integration",
-              content: [
-                {
-                  tag_type: "p",
-                  text: "Confirm the chat utility appears correctly on your site:",
-                },
-                {
-                  tag_type: "img",
-                  src: "/Asset/fashoni_chat_opener_visible.png",
-                  alt: "Sageion opener visible on website",
-                },
-              ],
-            },
-          ],
-        }
-      ],
-    },
-  ],
-  V4: [
-    {
-      tag_type: "h2",
-      text: `[V4] No Auth  but  Chat`,
-    },
-    {
-      tag_type: "p",
-      text: `Perfect for demos, landing pages, early MVPs, and static sites where users can be created instantly and chat works out-of-the-box — and as your product grows with real authentication, user identity, roles, permissions, moderation, billing, and real customers, you can seamlessly switch and migrate to the full backend-powered version.`,
-    },
-
-    //prerequisite?
-    {
-      tag_type: "div",
-      children: [
-        { tag_type: "h2", text: "Prerequisite", selector_uid: "v4_prerequisites", },
-
-        {
-          tag_type: "ol",
-          items: [
-            {
-              text: "Signup/Login to your account at Sageion.",
-              link_parts: [
-                {
-                  text: "Signup/Login",
-                  link: "https://www.google.com/",
-                },
-              ],
-            },
-
-            {
-              tag_type: "li",
-              text: "Create a New App and be sure to select Version V4 during setup.",
-            },
-
-            {
-              tag_type: "li",
-              text: "Navigate to the App Details page and note your: , App Name, API Key, Tenant ID",
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      tag_type: "div",
-      children: [
-        { tag_type: "h2", text: "Project setup", selector_uid: "v4_client_integration", },
-
-        {
-          tag_type: "h4",
-          text: "Client Side Integration",
+          text: "Platform",
+          selector_uid: "v2_platform_overview",
         },
         {
           tag_type: "p",
-          text: "To integrate it into your app, Do the following.",
+          text: "The Sageion Admin Platform provides comprehensive tools for managing your chat applications, users, and system settings. Below is an overview of the key sections available in the Admin UI.",
         },
 
+        // ----- Global Level Settings -----
         {
-          tag_type: "div",
-          className: "custom-ordered-list",
-          children: [
-            {
-              tag_type: "div",
-              className: "custom-list-item",
-              children: [
-                {
-                  tag_type: "div",
-                  className: "list-item-header",
-                  text: "1. Load The Scripts",
-                },
-                {
-                  tag_type: "div",
-                  className: "sub-items-container",
-                  children: [
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "p",
-                          text: "Locate the main entry file, typically index.html, and insert the following code snippet into the <head> section of the HTML document.",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "It should ideally be placed head of the root file.",
-                        },
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: '<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>',
-                        },
-                      ],
-                    },
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: '<script src="https://sageion-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-
-
-          ],
+          tag_type: "h3",
+          text: "Global Level Settings",
+          selector_uid: "v2_global_level_settings",
         },
-
-
-
         {
-          tag_type: "div",
-          className: "custom-list-item",
-          children: [
-            {
-              tag_type: "h3",
-              className: "list-item-header",
-              text: "2. Decide the placement of the Sageion chat box in your app.",
-            },
-
-          ],
+          tag_type: "p",
+          text: "These settings apply across all applications within your tenant, providing centralized control over system-wide configurations. Only users with ADMIN or MANAGER role have access to these settings.",
         },
 
+        // ----- Global Tenant Settings (with Tabs) -----
+        {
+          tag_type: "h4",
+          text: "Global Tenant Settings",
+          selector_uid: "v2_global_tenant_settings",
+        },
+        {
+          tag_type: "p",
+          text: "The Global Tenant Settings page allows administrators to configure tenant-wide features that affect all applications under the tenant.",
+        },
 
-
+        // Use tabs for the leaf-level settings
         {
           tag_type: "tabs",
           items: [
             {
-              label: "Centralized Implementation:",
+              label: "Advanced Email Notifications",
               content: [
                 {
-                  tag_type: "h4",
-                  text: "Centralized Implementation: ",
-                },
-                {
                   tag_type: "p",
-                  text: "For applications with a common root layout (e.g., main index.js or layout component that renders on every route), combine both setUp and initialize logic in a single location. ",
-                },
-
-
-                {
-                  tag_type: "p",
-
-                  text: "This ensures the chatbox renders consistently across all routes ",
+                  text: "Enables email notifications at various useful events across all applications. This toggle controls whether email alerts are sent for key system events.",
                 },
                 {
-                  text: "and avoids code duplication across screens.",
-
-                  tag_type: "p",
-
-
-                },
-
-                {
-                  tag_type: "h4",
-                  text: "Final Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "For single-route applications where the chat interface should appear universally, use this centralized approach:",
-                },
-
-
-
-                {
-                  tag_type: "div",
-                  className: "sub-items-container",
-                  children: [
-                    {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h4",
-                          text: "Step 1 + Step 2 – Show the chatbox on all pages under a specific root route.",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
-                        },
-                        {
-                          tag_type: "code_with_copy",
-                          code: `
-<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    // Step 1: Initial setup
-    await window.magicchat_io.setUp(
-      "<MAGICCHAT_APP_NAME>",
-      "<MAGICCHAT_API_KEY>", 
-    );
-    
-    // Step 2: Initialize chat
-    await window.magicchat_io.initialize({"app_version":"V4"});
-  });
-</script>`,
-                          language: "javascript",
-                        },
-                        {
-                          tag_type: "callout",
-                          type: "info",
-                          title: "Parameter Details",
-                          children: [
-                            {
-                              tag_type: "table",
-                              headers: ["Parameter", "Type", "Description"],
-                              rows: [
-                                [
-                                  "app_name",
-                                  "string",
-                                  "Unique application identifier",
-                                ],
-                                ["api_key", "string", "Base64 encoded API key"],
-
-                              ],
-                            },
-                            {
-                              tag_type: "callout",
-                              type: "warning",
-                              title: "Critical Requirement",
-                              children: [
-                                {
-                                  tag_type: "p",
-                                  text: "The setUp function must execute before initialize in all cases.",
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-
-                  ],
-                },
-                {
-                  tag_type: "h4",
-                  text: "Example Implementation",
-                  selector_uid: "v4_code_example",
-                },
-                {
-                  tag_type: "p",
-                  text: "View complete implementation examples in our GitHub repository:",
-                },
-                {
-                  tag_type: "a",
-                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
-                  text: "View Implementation Example",
-                },
-              ],
-            },
-            {
-              label: "Route-Specific Implementation",
-              content: [
-                {
-                  tag_type: "h4",
-                  text: "Route-Specific Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "To limit chat functionality to specific routes:",
+                  tag_type: "h5",
+                  text: "Notification Triggers",
                 },
                 {
                   tag_type: "ul",
                   items: [
                     {
-
-                      text: "Run the `setUp` function on initial screen load and run the `initialize` only on screens where chat is needed",
+                      text: "FIRST MSG ON ANY APP - Triggers when the first message arrives on any app since admin went offline",
                     },
                     {
-
-                      text: "Use the initialize method on specific route components",
+                      text: "FIRST MSG ON EVERY APP - Triggers when the first message arrives on every app since admin went offline",
                     },
                     {
-
-                      text: "Provides more control over chat visibility"
+                      text: "📌 (Available only on ADVANCE plan)",
                     },
-                  ]
-                }
-                ,
-
-                {
-                  tag_type: "h4",
-                  text: "Final Implementation",
+                  ],
                 },
                 {
-                  tag_type: "p",
-                  text: "For multi-route applications where the chat interface should appear selectively, use this route-specific approach:",
-                },
-
-
-                {
-                  tag_type: "div",
-                  className: "sub-items-container",
+                  tag_type: "callout",
+                  type: "info",
+                  title: "Configuration Options",
                   children: [
                     {
-                      tag_type: "div",
-                      children: [
-                        {
-                          tag_type: "h4",
-                          text: "Step 1 – Setup on Initial Landing Pages",
-                        },
-                        {
-                          tag_type: "p",
-                          text: "Run the setUp function at your application's entry point (usually the landing page or root URL) to ensure it loads immediately when the application starts.",
-                        },
-                        {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: `
-<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    // Step 1: Initial setup
-    await window.magicchat_io.setUp(
-      "<MAGICCHAT_APP_NAME>",
-      "<MAGICCHAT_API_KEY>", 
-    );
-  });
-</script>`,
-                        },
-                        {
-                          tag_type: "callout",
-                          type: "info",
-                          title: "Parameter Details",
-                          children: [
-                            {
-                              tag_type: "table",
-                              headers: ["Parameter", "Type", "Description"],
-                              rows: [
-                                [
-                                  "app_name",
-                                  "string",
-                                  "Unique application identifier",
-                                ],
-                                ["api_key", "string", "Base64 encoded API key"],
-                                [
-                                  "header_req",
-                                  "boolean",
-                                  "Display header with user controls",
-                                ],
-                              ],
-                            },
-                            {
-                              tag_type: "callout",
-                              type: "warning",
-                              title: "Critical Requirement",
-                              children: [
-                                {
-                                  tag_type: "p",
-                                  text: "The setUp function must execute before initialize in all cases.",
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
+                      tag_type: "p",
+                      text: "Email notifications can be customized per event type. Configure which events trigger emails and the recipient list in the settings panel.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Multi Admin",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "Enables multi-administrator support for your tenant. This allows multiple users to have ADMIN-level access to the system.",
+                },
+                {
+                  tag_type: "h5",
+                  text: "What Multi-Admin Enables",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "Multiple administrators can manage the tenant",
                     },
                     {
-                      tag_type: "div",
-                      children: [
+                      text: "Invite Support User feature becomes available",
+                    },
+                    {
+                      text: "Share Developer integration steps",
+                    },
+                    {
+                      text: "Granular permission assignment for team members",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "warning",
+                  title: "⚠️ Permanent Action - Cannot Be Undone",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Once enabled, Multi Admin cannot be disabled. This is a permanent system change that will:",
+                    },
+                    {
+                      tag_type: "ul",
+                      items: [
                         {
-                          tag_type: "h4",
-                          text: "Step 2 – Initialize Chat on Target Pages",
+                          text: "Notify all active clients to sync the new settings",
                         },
                         {
-                          tag_type: "p",
-                          text: "Execute the initialize function on any page where the chat interface should appear (e.g., in the bottom-right corner).",
+                          text: "Log you out automatically — you'll need to log in again",
                         },
                         {
-                          tag_type: "code",
-                          show_copy: true,
-                          text: `
-<script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    // Step 2: Initialize chat
-    await window.magicchat_io.initialize({"app_version":"V4"});
-  });
-</script>`,
-                        },
-                        {
-                          tag_type: "callout",
-                          type: "info",
-                          title: "Parameter Details",
-                          children: [
-                            {
-                              tag_type: "table",
-                              headers: ["Parameter", "Type", "Description"],
-                              rows: [
-                                [
-                                  "app_version",
-                                  "string",
-                                  "Sageion application version",
-                                ],
-                              ],
-                            },
-                            {
-                              tag_type: "mesgTip",
-                              title: "Version Validation",
-                              children: [
-                                {
-                                  tag_type: "p",
-                                  text: "Verify the correct app_version is specified.",
-                                },
-                              ],
-                            },
-                          ],
+                          text: "Enable the 'Invite Support User' and 'Share Developer' features",
                         },
                       ],
                     },
                   ],
                 },
-
-                //                 {
-                //                   tag_type: "h3",
-                //                   text: "Running `setUp` at initial load.",
-                //                 },
-                //                 {
-                //                   tag_type: "code_with_copy",
-                //                   code: `
-                // <script>
-                //   document.addEventListener("DOMContentLoaded", async function () {
-                //     // Step 1: Initial setup
-                //     await window.magicchat_io.setUp(
-                //       "<MAGICCHAT_APP_NAME>",
-                //       "<MAGICCHAT_API_KEY>", 
-                //       false // Flip it to switch between 'Full Header Mode' and 'Header-Less Mode'.
-                //     );
-                //   });
-                // </script>`,
-                //                   language: "javascript",
-                //                 },
-
-
-                //                 {
-                //                   tag_type: "h3",
-                //                   text: "Running `initialize` at the screen we would like to see chat box to appear.",
-                //                 },
-
-                //                 {
-                //                   tag_type: "code_with_copy",
-                //                   code: `
-                // <script>
-                //   document.addEventListener("DOMContentLoaded", async function () {
-                //     // Step 2: Initialize chat
-                //     await window.magicchat_io.initialize({"app_version":"V1"});
-                //   });
-                // </script>`,
-                //                   language: "javascript",
-                //                 },
-                {
-                  tag_type: "h4",
-                  text: "Example Implementation",
-                },
-                {
-                  tag_type: "p",
-                  text: "View complete implementation examples in our GitHub repository:",
-                },
-                {
-                  tag_type: "a",
-                  href: "https://github.com/sageion-core/example__v1/blob/b166e027ad4e841f2698e4817324fef1c7e8d347/index.html#L33",
-                  text: "View Implementation Example",
-                },
               ],
             },
           ],
         },
 
+        // ----- Invite Support User (with Tabs) -----
+        {
+          tag_type: "h4",
+          text: "Invite Support User",
+          selector_uid: "v2_invite_support",
+        },
         {
           tag_type: "p",
-          text: "Successfully onboarded users will appear in the Sageion Admin Panel with their associated applications.",
+          text: "Invite team members as support users with granular permission controls. This feature allows you to add users with specific roles and permissions to manage your applications.",
         },
+
+        // Use tabs for roles and permissions
         {
-          tag_type: "steps",
+          tag_type: "tabs",
           items: [
             {
-              title: "Admin Panel - Onboarded Users",
+              label: "Available Roles",
               content: [
                 {
-                  tag_type: "img",
-                  src: "/Asset/onboarded_user.png",
-                  alt: "Sageion Admin Panel showing onboarded users",
+                  tag_type: "h5",
+                  text: "User Roles",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "MANAGER - Full access to manage applications, settings, and users",
+                    },
+                    {
+                      text: "DEVELOPER - Access to API configuration, workflows, and technical settings",
+                    },
+                    {
+                      text: "CUSTOMER_CARE_EXECUTIVE - Access to All Chats and user management",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "Role Assignment",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Users can be assigned multiple roles. The combination of roles determines the user's overall permissions.",
+                    },
+                  ],
                 },
               ],
             },
             {
-              title: "Admin Panel - No Users",
+              label: "Permission Types",
+              content: [
+                {
+                  tag_type: "h5",
+                  text: "App-Specific Permissions",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "read - View application data and settings",
+                    },
+                    {
+                      text: "delete - Remove applications and resources",
+                    },
+                    {
+                      text: "manage - Full administrative control over applications",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "h5",
+                  text: "Create Permissions",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "create_apps - Allows creating new applications",
+                    },
+                    {
+                      text: "create_users - Allows creating new users (automatically includes write permission)",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "Permission Levels",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Permissions can be assigned at the app level or globally. App-specific permissions override global permissions when both are configured.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "How to Invite",
               content: [
                 {
                   tag_type: "p",
-                  text: "Applications without onboarded users will display an empty state:",
+                  text: "To invite a support user:",
                 },
                 {
-                  tag_type: "img",
-                  src: "/Asset/no_users_admin.png",
-                  alt: "Sageion Admin Panel showing no onboarded users",
+                  tag_type: "ol",
+                  items: [
+                    {
+                      text: "Navigate to 'Invite Support User' from the sidebar",
+                    },
+                    {
+                      text: "Switch to 'Invite User' mode if not already selected",
+                    },
+                    {
+                      text: "Enter the user's email address and optional full name",
+                    },
+                    {
+                      text: "Select the roles to assign",
+                    },
+                    {
+                      text: "Configure app-specific permissions",
+                    },
+                    {
+                      text: "Click 'Send Invite' to send the invitation",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "📌 Multi-Admin Required",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "The Invite Support User feature requires Multi-Admin to be enabled in Global Tenant Settings first. This ensures proper permission hierarchy and security.",
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
 
-        // {
-        //   tag_type: "callout",
-        //   type: "info",
-        //   title: "User persists only till session",
-        //   children: [
-        //     {
-        //       tag_type: "ul",
-        //       items: [
-        //         {
-        //           text: "Means if browser is closed and reopen it will be considered as new user.",
-        //         },
-        //       ],
-        //     },
-        //   ],
-        // },
-        // {
-        //   tag_type: "video",
-        //   src: "https://www.youtube.com/watch?v=MKatoeFYeb8",
-        //   desc: "Demo for V2",
-        // },
+        // ----- Whitelabel Domains -----
+        {
+          tag_type: "h4",
+          text: "Whitelabel Domains",
+          selector_uid: "v2_whitelabel_domains",
+        },
+        {
+          tag_type: "p",
+          text: "Configure custom domains for your applications to maintain brand consistency. This allows you to serve the Sageion chat interface from your own domain.",
+        },
+        {
+          tag_type: "ul",
+          items: [
+            {
+              text: "Add custom domain names for your applications",
+            },
+            {
+              text: "SSL certificate management",
+            },
+            {
+              text: "DNS configuration guidance",
+            },
+          ],
+        },
+
+        // ----- App-Specific Settings (with Tabs) -----
+        {
+          tag_type: "h3",
+          text: "App-Specific Configuration",
+          selector_uid: "v2_app_settings",
+        },
+        {
+          tag_type: "p",
+          text: "Each application within your tenant has its own configuration sections. Access these by selecting the application from the sidebar.",
+        },
+
+        // Use tabs for app settings
+        {
+          tag_type: "tabs",
+          items: [
+            {
+              label: "General Settings",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "App-level configurations including version management, environment settings, and application metadata.",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "App name and description",
+                    },
+                    {
+                      text: "Version and environment settings",
+                    },
+                    {
+                      text: "Default language and timezone",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "App Settings Location",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "These settings are available under 'General Settings' in the app's sidebar navigation.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "AI Chat",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "Configure AI agent behavior, response styles, and conversation flows. Manage training data and model parameters.",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "AI model selection and configuration",
+                    },
+                    {
+                      text: "Response style and tone settings",
+                    },
+                    {
+                      text: "Training data management",
+                    },
+                    {
+                      text: "Conversation flow builder",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "warning",
+                  title: "Training Data",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Training data quality directly impacts AI response accuracy. Ensure your training data is clean and representative of your use case.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "LeadGen & FAQ",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "Manage lead generation forms, FAQ content, and automated response workflows. Configure how leads are captured and routed.",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "FAQ content management",
+                    },
+                    {
+                      text: "Lead capture forms",
+                    },
+                    {
+                      text: "Automated response workflows",
+                    },
+                    {
+                      text: "Lead routing and notification settings",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Theme Settings",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "Customize appearance, branding colors, and UI components. Match the chat interface to your brand identity.",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "Color scheme and brand colors",
+                    },
+                    {
+                      text: "Font and typography settings",
+                    },
+                    {
+                      text: "Button and component styles",
+                    },
+                    {
+                      text: "Chat widget positioning",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "info",
+                  title: "Brand Consistency",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Use your brand colors and fonts to create a seamless experience between your application and the Sageion chat interface.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Credentials",
+              content: [
+                {
+                  tag_type: "p",
+                  text: "View and manage API credentials for your applications. Generate new API keys and monitor usage.",
+                },
+                {
+                  tag_type: "ul",
+                  items: [
+                    {
+                      text: "API key generation and management",
+                    },
+                    {
+                      text: "Usage monitoring and analytics",
+                    },
+                    {
+                      text: "Key rotation and security settings",
+                    },
+                  ],
+                },
+                {
+                  tag_type: "callout",
+                  type: "warning",
+                  title: "Security Note",
+                  children: [
+                    {
+                      tag_type: "p",
+                      text: "Keep your API credentials secure. Never expose them in client-side code or public repositories.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
+        // ----- Summary -----
+        {
+          tag_type: "callout",
+          type: "success",
+          title: "✅ Platform Overview Complete",
+          children: [
+            {
+              tag_type: "p",
+              text: "The Sageion Platform provides a comprehensive set of tools to manage your chat applications, users, and system settings. For detailed configuration instructions, refer to the specific sections in this documentation.",
+            },
+          ],
+        },
       ],
     },
   ],
 };
+
 export default payload;

@@ -6,7 +6,6 @@ import "./test.css";
 import styles from "./docPageSty.module.css";
 import { useSearchParams } from "next/navigation";
 import payload from "./payload";
-import YouTubeEmbed from "../components/YouTubeVideo";
 
 import TopFilterComp from "../components/documents/TopFilterComp";
 import Sidebar from "../components/documents/side_bar_content/Sidebar";

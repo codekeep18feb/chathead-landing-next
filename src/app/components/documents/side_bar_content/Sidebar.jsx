@@ -1,95 +1,173 @@
+// /src/app/components/documents/side_bar_content/Sidebar.jsx
+
 import React from 'react';
 import ContentRenderer from '@/app/testing_documents/rendering_tools';
 
 export default function Sidebar({ selectedFilter }) {
-  console.log("Here is the glimpse of selectedFilter?", selectedFilter);
-
-  const appType = selectedFilter?.app_type;
   const versionType = selectedFilter?.version_type;
 
-  console.log("appType:", appType);
-  console.log("versionType:", versionType);
-
-  // === Define content versions ===
-
   const ContentByVersion = {
-    
     V2: [
+      // ====== INTEGRATION TAB ======
       {
-        tag_type: "ol",
-        items: [
+        tag_type: "div",
+        className: "sidebar-section",
+        children: [
           {
-            tag_type: "li",
+            tag_type: "h3",
             text: "Integration",
-            sub_items: [
+            className: "sidebar-section-title"
+          },
+          {
+            tag_type: "ol",
+            items: [
               {
                 tag_type: "li",
-                text: "Prerequisite",
+                text: "Integration",
+                sub_items: [
+                  {
+                    tag_type: "li",
+                    text: "Prerequisite",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_prerequisites"
+                    }
+                  },
+                  {
+                    tag_type: "li",
+                    text: "Client Integration",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_client_integration"
+                    }
+                  },
+                  {
+                    tag_type: "li",
+                    text: "Code Example",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_code_example"
+                    }
+                  },
+                  {
+                    tag_type: "li",
+                    text: "Backend Integration",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_backend_integration"
+                    }
+                  }
+                ],
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  selector_uid: "v2_prerequisites" ,
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
+                  targetSelector: ".content-inner-heading"
                 }
-              },
-              {
-                tag_type: "li",
-                text: "Client Integration",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v2_client_integration" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Code Example",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v2_code_example" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Backend Integration",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                   selector_uid: "v2_backend_integration"  ,
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(6)"
-                }
-              },
-              
+              }
             ],
-            link_configuration: {
-              show: true,
-              type: "internal",
-              targetSelector: ".content-inner-heading"
+            property: {
+              collapse: {
+                collapsable: true,
+                fc_non_collapsable: true
+              }
             }
           }
-        ],
-        property: {
-          collapse: {
-            collapsable: true,
-            fc_non_collapsable: true,
+        ]
+      },
+      
+      // ====== PLATFORM TAB ======
+      {
+        tag_type: "div",
+        className: "sidebar-section",
+        children: [
+          {
+            tag_type: "h3",
+            text: "Platform",
+            className: "sidebar-section-title"
+          },
+          {
+            tag_type: "ol",
+            items: [
+              {
+                tag_type: "li",
+                text: "Platform",
+                sub_items: [
+                  {
+                    tag_type: "li",
+                    text: "Global Level Settings",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "Global Tenant Settings",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_global_tenant_settings"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Invite Support User",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_invite_support"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Whitelabel Domains",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_whitelabel_domains"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_global_level_settings"
+                    }
+                  },
+                  {
+                    tag_type: "li",
+                    text: "App-Specific Configuration",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_app_settings"
+                    }
+                  }
+                ],
+                link_configuration: {
+                  show: true,
+                  type: "internal",
+                  selector_uid: "v2_platform_overview"
+                }
+              }
+            ],
+            property: {
+              collapse: {
+                collapsable: true,
+                fc_non_collapsable: true
+              }
+            }
           }
-        }
+        ]
       }
     ]
   };
 
- 
-
-  console.log("sdfsdfsdfversionType",versionType)
-
   return (
     <div>
-      {(versionType) ? (
+      {versionType && ContentByVersion[versionType] ? (
         <ContentRenderer
-          key={`${versionType}`} // Force re-render on change
+          key={`${versionType}`}
           content={ContentByVersion[versionType]}
         />
       ) : (
