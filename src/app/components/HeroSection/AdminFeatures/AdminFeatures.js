@@ -22,6 +22,9 @@ import {
 // Import the separate Key Features component
 import KeyFeaturesSection from "./KeyFeaturesSection";
 import KeyFeaturesCardview from "./KeyFeaturesCardview";
+import HowDiffrentMagicChat from "../HowDiffrentMagicChat";
+import TargetAudiencePage from "../TargetAudiencePage";
+import PricingPlansPage from "../PricingPlansPage";
 
 /* ============================================================
    ADMIN FEATURES
@@ -38,6 +41,24 @@ const AdminFeatures = () => {
 
   const sectionRefs = useRef({});
   const observerRef = useRef(null);
+
+  /* ============================================================
+     VIEW MODE PERSISTENCE - First time shows Card View
+     ============================================================ */
+
+  useEffect(() => {
+    const visitCount = localStorage.getItem("sageionVisitCount");
+    const count = visitCount ? parseInt(visitCount, 10) : 0;
+
+    if (count < 2) {
+      setViewMode("card");
+    } else {
+      setViewMode("accordion");
+    }
+
+    // Increment visit count
+    localStorage.setItem("sageionVisitCount", (count + 1).toString());
+  }, []);
 
   /* ============================================================
      INTERSECTION OBSERVER
@@ -405,6 +426,10 @@ const AdminFeatures = () => {
           </div>
         </div>
       )}
+
+      <HowDiffrentMagicChat />
+      <TargetAudiencePage />
+      <PricingPlansPage />
 
       {/* ============================================================
           PROBLEM SECTION

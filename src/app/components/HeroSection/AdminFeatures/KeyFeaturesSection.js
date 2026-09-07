@@ -648,7 +648,7 @@ const KeyFeaturesSection = ({
                   />
                 </div>
 
-                <FeatureScreenshot
+                {/* <FeatureScreenshot
                   featureId="security"
                   images={[
                     "/AdminImg/Enterprise-Grade-Security/security-1.png",
@@ -659,7 +659,7 @@ const KeyFeaturesSection = ({
                   imagePages={imagePages}
                   setImagePages={setImagePages}
                   openVideoModal={openVideoModal}
-                />
+                /> */}
               </div>
             )}
           </div>
