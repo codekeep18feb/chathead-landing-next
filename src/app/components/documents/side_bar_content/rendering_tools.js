@@ -562,9 +562,10 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         <div
           style={{
             display: expanded ? "block" : "none",
-            marginTop: "5px",
-            marginLeft: "10px",
+            margin: "5px",
+            // marginLeft: "10px",
           }}
+          className={styles.liSubItems}
         >
           {/* FIX: Wrap sub_items in proper list container */}
           {item.sub_items[0]?.tag_type === "li" ? (
@@ -875,7 +876,7 @@ const ContentRenderer = ({ content }) => {
                 )}
 
                 {item.sub_items && (
-                  <div style={{ marginLeft: "20px" }}>
+                  <div className={styles.li_subLi}>
                     {/* FIX: Wrap sub_items in proper list container */}
                     {item.sub_items[0]?.tag_type === "li" ? (
                       <ul className={styles["content-list"]}>
