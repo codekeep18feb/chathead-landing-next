@@ -616,6 +616,7 @@ const ContentRenderer = ({ content }) => {
   // Helper function for link rendering in li elements
 
   console.log("contenterewr", content);
+
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;
     const config = item.link_configuration;
@@ -871,21 +872,39 @@ const ContentRenderer = ({ content }) => {
             );
 
           case "li":
+            const [isExpanded, setIsExpanded] = useState(false);
+            const hasSubItems = item.sub_items && item.sub_items.length > 0;
+
             return (
               <li key={index} className={styles["content-list-item"]}>
                 <div className={styles.sidebarLi}>
                   {item.text && <span>{item.text}</span>}
+
+                  {hasSubItems && (
+                    <span
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className={`${styles["expand-icon"]} ${
+                        isExpanded ? styles["expanded"] : styles["collapsed"]
+                      }`}
+                      style={{fontSize:"12px"}}
+                    >
+                      ▶
+                    </span>
+                  )}
                   {item.link_configuration && renderLink(item)}
                 </div>
+
                 {item.code && (
                   <pre className="script_code">
                     <code>{item.code}</code>
                   </pre>
                 )}
 
-                {item.sub_items && (
-                  <div className={styles.li_subLi}>
-                    {/* FIX: Wrap sub_items in proper list container */}
+                {hasSubItems && (
+                  <div
+                    className={styles.li_subLi}
+                    style={{ display: isExpanded ? "block" : "none" }}
+                  >
                     {item.sub_items[0]?.tag_type === "li" ? (
                       <ul className={styles["content-list"]}>
                         <ContentRenderer content={item.sub_items} />
@@ -897,7 +916,6 @@ const ContentRenderer = ({ content }) => {
                 )}
               </li>
             );
-
           // case "div":
           //   return (
           //     <div key={index} className={styles["content-div"]}>

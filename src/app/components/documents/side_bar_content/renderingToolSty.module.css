@@ -521,10 +521,9 @@
 .li_subLi .sidebarLi .content-link {
   color: #333;
   border-color: #333;
-   width: 28px ;
+  width: 28px;
   height: 28px;
 }
-
 
 .accordionHeader {
   width: 100%;
@@ -536,10 +535,9 @@
   border-radius: 6px;
   background: #eee;
 }
-.accordion{
+.accordion {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 6px;
-
 }
 .accordion-content ul {
   padding: 10px;
@@ -551,3 +549,32 @@
   font-size: 16px;
 }
 
+/* Add these styles to your renderingToolSty.module.css */
+
+.expand-icon {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  margin-left: auto;
+  padding: 10px 5px;
+  user-select: none; 
+}
+.expand-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.expand-icon.collapsed {
+  transform: rotate(0deg);
+}
+
+/* Optional: Add hover effect */
+.expand-icon:hover {
+  color: #333;
+}
+
+/* Optional: Add some spacing for the li items with sub-items */
+.content-list-item {
+  margin-bottom: 8px;
+}
