@@ -134,7 +134,7 @@ export default function Sidebar({ selectedFilter }) {
                     link_configuration: {
                       show: true,
                       type: "internal",
-                      selector_uid: "v2_global_level_settings"
+                      selector_uid: "v2_global_level_settings",
                     }
                   },
                   // ====== SIBLING 2: FAQ Chat & Lead Generation ======

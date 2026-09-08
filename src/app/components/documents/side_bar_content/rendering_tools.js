@@ -442,7 +442,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
   const handleScroll = (selector) => {
     // const element = document.querySelector(selector);
+    console.log("Looking for element with selector:", selector);
     const element = document.getElementById(selector);
+     console.log("Found element:", element)
     if (element) {
       element.scrollIntoView({
         behavior: "smooth",
@@ -515,7 +517,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         </span>
       )}
 
-      <div onClick={handleClick}>
+      <div>
         {typeof item === "string" ? (
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
@@ -542,6 +544,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
                     fontSize: "12px",
                     color: "#666",
                     marginLeft: "auto",
+                    padding: "10px",
+                    paddingRight:"5px"
                   }}
                 >
                   ▶

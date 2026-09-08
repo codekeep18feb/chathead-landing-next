@@ -748,7 +748,7 @@ const payload = {
         {
           tag_type: "h4",
           text: "Global Tenant Settings",
-          selector_uid: "v2_global_tenant_settings",
+          selector_uid: "v2_global_tenant_settings" ,
         },
         {
           tag_type: "p",
