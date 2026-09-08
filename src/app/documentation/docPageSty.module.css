@@ -184,3 +184,8 @@
     width: 100%;
   }
 }
+.content-area h3 {
+  padding-left: 0px;
+  font-size: 18px;
+  padding-top: 0px;
+}

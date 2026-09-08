@@ -575,7 +575,7 @@ export const aiChat = [
     title: "📖 Quick Navigation Guide",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
             text: "Enable AI Agent → Turn on/off AI chat features",

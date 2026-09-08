@@ -3,7 +3,7 @@ export const prerequisites = [
     tag_type: "div",
     children: [
       {
-        tag_type: "h2",
+        tag_type: "h3",
         text: "Prerequisite",
         selector_uid: "v2_prerequisites",
       },

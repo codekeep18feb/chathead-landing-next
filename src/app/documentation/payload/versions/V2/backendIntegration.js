@@ -1,6 +1,6 @@
 export const backendIntegration = [
   {
-    tag_type: "h1",
+    tag_type: "h2",
     text: "Connecting Sageion to Your Product's Authentication",
   },
   {

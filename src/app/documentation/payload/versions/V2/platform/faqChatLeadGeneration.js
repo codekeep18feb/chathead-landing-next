@@ -210,7 +210,7 @@ export const faqChatLeadGeneration = [
     title: "📖 Quick Navigation Guide",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
             text: "FAQ Tree Builder → Build and organize Q&A content",

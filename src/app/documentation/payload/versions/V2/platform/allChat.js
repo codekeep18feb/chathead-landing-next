@@ -595,7 +595,7 @@ export const allChat = [
     title: "📖 Quick Navigation Guide",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
             text: "Chat Interface → Understand the layout and navigation",

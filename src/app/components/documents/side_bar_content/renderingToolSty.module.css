@@ -539,10 +539,10 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 6px;
 }
-.accordion-content ul {
+.accordion-content ol {
   padding: 10px;
 }
-.accordion-content ul li {
+.accordion-content ol li {
   padding: 5px;
 }
 .content-list li span {

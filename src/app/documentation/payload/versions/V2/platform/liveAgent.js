@@ -401,7 +401,7 @@ export const liveAgent = [
     title: "📖 Quick Navigation Guide",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
             text: "Site Users & Limits → Monitor user capacity and top-up",
