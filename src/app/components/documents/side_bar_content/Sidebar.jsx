@@ -1,253 +1,295 @@
 import React from 'react';
-import ContentRenderer from '@/app/testing_documents/rendering_tools';
+import ContentRenderer from './rendering_tools';
 
 export default function Sidebar({ selectedFilter }) {
-  console.log("Here is the glimpse of selectedFilter?", selectedFilter);
-
-  const appType = selectedFilter?.app_type;
   const versionType = selectedFilter?.version_type;
 
-  console.log("appType:", appType);
-  console.log("versionType:", versionType);
-
-  // === Define content versions ===
-
   const ContentByVersion = {
-    V1: [
-      { 
-        tag_type: "ol",
-        items: [
-          {
-            tag_type: "li",
-            text: "Integration",
-            sub_items: [
-              {
-                tag_type: "li",
-                text: "Prerequisite",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v1_prerequisites" ,
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div:nth-child(1) > h2"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Client Integration",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v1_client_integration", 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Code Example",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v1_code_example" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div.renderingToolSty_callout__7ZUMr.renderingToolSty_callout-info__gccVq > div:nth-child(2) > div > button"
-                }
-              },
-             
-              
-            ],
-            link_configuration: {
-              show: true,
-              type: "internal",
-              targetSelector: ".content-inner-heading"
-            }
-          }
-        ],
-        property: {
-          collapse: {
-            collapsable: true,
-            fc_non_collapsable: true,
-          }
-        }
-      }
-    ],
     V2: [
+      // ====== INTEGRATION TAB ======
       {
-        tag_type: "ol",
-        items: [
+        tag_type: "div",
+        className: "sidebar-section",
+        children: [
           {
-            tag_type: "li",
+            tag_type: "h3",
             text: "Integration",
-            sub_items: [
+            className: "sidebar-section-title"
+          },
+          {
+            tag_type: "ol",
+            items: [
               {
                 tag_type: "li",
-                text: "Prerequisite",
+                text: "Integration",
+                selector_uid: "v2_prerequisites",
+                sub_items: [
+                  {
+                    tag_type: "li",
+                    text: "Prerequisite",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_prerequisites"
+                    }
+                  },
+                  {
+                    tag_type: "li",
+                    text: "Client Integration",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_client_integration"
+                    }
+                  },
+                  {
+                    tag_type: "li",
+                    text: "Code Example",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_code_example"
+                    }
+                  },
+                  {
+                    tag_type: "li",
+                    text: "Backend Integration",
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_backend_integration"
+                    }
+                  }
+                ],
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  selector_uid: "v2_prerequisites" ,
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
+                  targetSelector: ".content-inner-heading",
+                  selector_uid: "v2_prerequisites"
                 }
-              },
-              {
-                tag_type: "li",
-                text: "Client Integration",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v2_client_integration" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Code Example",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v2_code_example" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Backend Integration",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                   selector_uid: "v2_backend_integration"  ,
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(6)"
-                }
-              },
-              
+              }
             ],
-            link_configuration: {
-              show: true,
-              type: "internal",
-              targetSelector: ".content-inner-heading"
+            property: {
+              collapse: {
+                collapsable: true,
+                fc_non_collapsable: true
+              }
             }
           }
-        ],
-        property: {
-          collapse: {
-            collapsable: true,
-            fc_non_collapsable: true,
-          }
-        }
-      }
-    ],
-    V3: [
+        ]
+      },
+      
+      // ====== PLATFORM TAB ======
       {
-        tag_type: "ol",
-        items: [
+        tag_type: "div",
+        className: "sidebar-section",
+        children: [
           {
-            tag_type: "li",
-            text: "Integration",
-            sub_items: [
+            tag_type: "h3",
+            text: "Platform",
+            className: "sidebar-section-title"
+          },
+          {
+            tag_type: "ol",
+            items: [
               {
                 tag_type: "li",
-                text: "Prerequisite",
+                text: "Platform",
+                selector_uid: "v2_whitelabel_domains",
+                sub_items: [
+                  // ====== SIBLING 1: Global Level Settings ======
+                  {
+                    tag_type: "li",
+                    text: "Global Level Settings",
+                    selector_uid: "v2_global_level_settings",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "Global Tenant Settings",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_global_tenant_settings"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Invite Support User",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_invite_support"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Whitelabel Domains",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_whitelabel_domains"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_global_level_settings",
+                    }
+                  },
+                  // ====== SIBLING 2: FAQ Chat & Lead Generation ======
+                  {
+                    tag_type: "li",
+                    text: "FAQ Chat & Lead Generation",
+                    selector_uid: "v2_faq_chat_lead_gen", 
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "LeadGen & FAQ",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_leadgen_faq"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_faq_chat_lead_gen"
+                    }
+                  },
+                  // ====== SIBLING 3: Live Agent ======
+                  {
+                    tag_type: "li",
+                    text: "Live Agent",
+                    selector_uid: "v2_live_agent",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "Live Agent Features",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_live_agent_features"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_live_agent"
+                    }
+                  },
+                  // ====== SIBLING 4: AI Chat ======
+                  {
+                    tag_type: "li",
+                    text: "AI Chat",
+                    selector_uid: "v2_ai_chat",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "AI Chat Features",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_ai_chat_features"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_ai_chat"
+                    }
+                  },
+                  // ====== SIBLING 5: All Chat ======
+                  {
+                    tag_type: "li",
+                    text: "All Chat",
+                    selector_uid: "v2_all_chat",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "All Chat Features",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_all_chat_features"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_all_chat"
+                    }
+                  },
+                  // ====== SIBLING 6: Integrations & APIs & Workflows ======
+                  {
+                    tag_type: "li",
+                    text: "Integrations & APIs & Workflows",
+                    selector_uid: "v2_integrations_apis_workflows",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "API Config",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_api_config"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "ChainApis",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_chain_apis"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Response Settings",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_response_settings"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_integrations_apis_workflows"
+                    }
+                  }
+                ],
                 link_configuration: {
                   show: true,
                   type: "internal",
-                   selector_uid: "v3_prerequisites", 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
+                  selector_uid: "v2_platform_overview"
                 }
-              },
-              {
-                tag_type: "li",
-                text: "Client Integration",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v3_client_integration", 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2"
-                }
-              },
-              
-             
-              
+              }
             ],
-            link_configuration: {
-              show: true,
-              type: "internal",
-              targetSelector: ".content-inner-heading"
+            property: {
+              collapse: {
+                collapsable: true,
+                fc_non_collapsable: true
+              }
             }
           }
-        ],
-        property: {
-          collapse: {
-            collapsable: true,
-            fc_non_collapsable: true,
-          }
-        }
-      }
-    ],
-    V4: [
-      {
-        tag_type: "ol",
-        items: [
-          {
-            tag_type: "li",
-            text: "Integration",
-            sub_items: [
-              {
-                tag_type: "li",
-                text: "Prerequisite",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v4_prerequisites" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(3) > div > h2"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Client Integration",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v4_client_integration" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > h2:nth-child(1)"
-                }
-              },
-              {
-                tag_type: "li",
-                text: "Code Example",
-                link_configuration: {
-                  show: true,
-                  type: "internal",
-                  selector_uid: "v4_code_example" 
-                  // targetSelector: "body > div > div > div.docPageSty_rightWrap__YUmnZ > div > div.docPageSty_content-area__heU1U > div > div:nth-child(4) > div > div:nth-child(5) > div:nth-child(2) > div > button"
-                }
-              },
-              
-              
-            ],
-            link_configuration: {
-              show: true,
-              type: "internal",
-              targetSelector: ".content-inner-heading"
-            }
-          }
-        ],
-        property: {
-          collapse: {
-            collapsable: true,
-            fc_non_collapsable: true,
-          }
-        }
+        ]
       }
     ]
   };
 
- 
-
-  console.log("sdfsdfsdfversionType",versionType)
-
   return (
     <div>
-      {(versionType) ? (
+      {versionType && ContentByVersion[versionType] ? (
         <ContentRenderer
-          key={`${versionType}`} // Force re-render on change
+          key={`${versionType}`}
           content={ContentByVersion[versionType]}
         />
       ) : (

@@ -295,7 +295,7 @@ const LiveChatFeatures = () => {
               <li>🛡️ Advanced RBAC</li>
               <li>🏢 Multiple brand support</li>
               <li>📊 Switch between personal/all history</li>
-              <li>🔐 Session management</li>
+              // <li>🔐 Session management</li>
               <li>🎯 Intelligent join chat routing</li>
             </ul>
             <div className={styles.winnerBadge}>🏆 Clear Winner</div>
@@ -339,7 +339,7 @@ const LiveChatFeatures = () => {
               <li>🛡️ Advanced RBAC</li>
               <li>🏢 Multiple brand support</li>
               <li>📊 Switch between personal/all history</li>
-              <li>🔐 Session management</li>
+              {/* <li>🔐 Session management</li> */}
               <li>🎯 Intelligent join chat routing</li>
             </ul>
             <div className={styles.winnerBadge}>🏆 Clear Winner</div>

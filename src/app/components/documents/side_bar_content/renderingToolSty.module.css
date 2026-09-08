@@ -51,6 +51,7 @@
 .tab-buttons {
   display: flex;
   border-bottom: 1px solid #ddd;
+  overflow-x: auto;
 }
 
 .tab-content {
@@ -89,9 +90,8 @@
   margin-bottom: 5px;
   font-weight: 500;
   letter-spacing: 0.5px;
-  line-height: 28px;
-  font-size: 16px;
-
+  line-height: 20px;
+  font-size: 14px;
 }
 .content-list.ordered {
   counter-reset: list-counter;
@@ -180,12 +180,11 @@
   font-weight: 600;
   color: var(--text-color);
   /* margin-bottom: 10px; */
-  
 }
 
 .content-paragraph {
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
   /* padding: 16px 0px; */
   letter-spacing: 0.2px;
   line-height: 26px;
@@ -194,10 +193,11 @@
 }
 .second_subheading {
   padding-top: 20px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-color);
-  line-height: 30px;
+  line-height: 20px;
+  padding-left: 10px;
 }
 .content-link {
   color: var(--white-text-color);
@@ -317,6 +317,9 @@
   background-color: #d1e7fc;
   border-color: #4d90fe;
 }
+.callout-info li {
+  background: transparent;
+}
 .callout-header {
   display: flex;
   align-items: center;
@@ -358,8 +361,6 @@
   align-items: baseline;
   gap: 10px;
 }
-
-
 
 .docTable {
   width: 100%;
@@ -418,7 +419,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px;
+  padding: 8px;
   border-radius: 5px;
   color: var(--white-text-color);
   justify-content: space-between;
@@ -431,14 +432,14 @@
 
 @media (min-width: 426px) and (max-width: 668px) {
   .docTable {
-    width: 100%; 
+    width: 100%;
     font-size: 0.85rem;
     box-shadow: none;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow-x: auto;
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
   }
 
   .docTableHeadCell,
@@ -459,7 +460,7 @@
     padding: 10px;
     border-left: 2px solid;
   }
-  .callout-info{
+  .callout-info {
     background-color: #d1e7fc;
     border-color: #4d90fe;
   }
@@ -498,9 +499,82 @@
     padding: 10px;
     border-left: 2px solid;
   }
-  .callout-info{
+  .callout-info {
     background-color: #d1e7fc;
     border-color: #4d90fe;
   }
+}
+.liSubItems ul div {
+  margin-bottom: 5px;
+}
 
+.li_subLi ul li .sidebarLi {
+  background-color: lightgray;
+  margin: 0px 5px;
+  color: #333;
+}
+
+.li_subLi ul li .sidebarLi:hover {
+  background-color: rgb(179, 179, 179);
+}
+
+.li_subLi .sidebarLi .content-link {
+  color: #333;
+  border-color: #333;
+  width: 28px;
+  height: 28px;
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #eee;
+}
+.accordion {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 6px;
+}
+.accordion-content ol {
+  padding: 10px;
+}
+.accordion-content ol li {
+  padding: 5px;
+}
+.content-list li span {
+  font-size: 16px;
+}
+
+/* Add these styles to your renderingToolSty.module.css */
+
+.expand-icon {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  margin-left: auto;
+  padding: 10px 5px;
+  user-select: none; 
+}
+.expand-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.expand-icon.collapsed {
+  transform: rotate(0deg);
+}
+
+/* Optional: Add hover effect */
+.expand-icon:hover {
+  color: #333;
+}
+
+/* Optional: Add some spacing for the li items with sub-items */
+.content-list-item {
+  margin-bottom: 8px;
 }

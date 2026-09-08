@@ -6,7 +6,7 @@ import { IoFilter } from "react-icons/io5";
 
 const FilterComp = ({ setSelectedFilter, initialVersionType }) => {
   const [selectedAppType, setSelectedAppType] = useState(null);
-  const [selectedVersionType, setSelectedVersionType] = useState(initialVersionType || "V1"); // default
+  const [selectedVersionType, setSelectedVersionType] = useState(initialVersionType || "V2"); // default
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
 
@@ -31,10 +31,7 @@ const FilterComp = ({ setSelectedFilter, initialVersionType }) => {
 
   const filterOptions = {
     version_types: [
-      { key: "V1", label: "Instant Auth + Chat" },
       { key: "V2", label: "BYO Auth Chat" },
-      { key: "V3", label: "CMS-Ready Chat" },
-      { key: "V4", label: "No Auth Only Chat" },
     ],
   };
 

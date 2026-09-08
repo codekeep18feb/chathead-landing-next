@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
-import YouTubeEmbed from "../components/YouTubeVideo";
+import YouTubeEmbed from "../../YouTubeVideo";
 import { FaLink } from "react-icons/fa6";
 
 const CondRadioRender = ({ r_options }) => {
@@ -26,7 +26,7 @@ const CondRadioRender = ({ r_options }) => {
   };
 
   const selectedDescription = r_options.find(
-    (option) => option.text === selectedOption
+    (option) => option.text === selectedOption,
   )?.description;
 
   return (
@@ -121,7 +121,7 @@ const renderTextWithElements = (text, linkParts) => {
           rel="noopener noreferrer"
         >
           {part.text}
-        </a>
+        </a>,
       );
       lastIndex = startIndex + part.text.length;
     }
@@ -145,7 +145,7 @@ const Callout = ({ type = "info", title, children }) => {
   return (
     <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
       <div className={styles["callout-header"]}>
-        <span className={styles["callout-icon"]}>{icons[type]}</span>
+        {/* <span className={styles["callout-icon"]}>{icons[type]}</span> */}
         {title && <h4 className={styles["callout-title"]}>{title}</h4>}
       </div>
       <div className={styles["callout-content"]}>{children}</div>
@@ -337,15 +337,15 @@ const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="accordion">
+    <div className={styles.accordion}>
       <button
-        className={`accordion-header ${isOpen ? "open" : ""}`}
+        className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {title}
         <span className="accordion-icon">{isOpen ? "▼" : "▶"}</span>
       </button>
-      {isOpen && <div className="accordion-content">{children}</div>}
+      {isOpen && <div className={styles["accordion-content"]}>{children}</div>}
     </div>
   );
 };
@@ -438,16 +438,28 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
   const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
 
+  const shouldShowDownIcon = hasSubItems && depth === 0;
+
   const handleScroll = (selector) => {
-    const element = document.querySelector(selector);
+    // const element = document.querySelector(selector);
+    console.log("Looking for element with selector:", selector);
+    const element = document.getElementById(selector);
+    console.log("Found element:", element);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      console.warn(`Element with ID "${selector}" not found`);
     }
   };
 
   const handleClick = (e) => {
     e.stopPropagation();
-    if (isCollapsible) setExpanded(!expanded);
+    if (isCollapsible || shouldShowDownIcon) {
+      setExpanded(!expanded);
+    }
   };
 
   const renderLink = () => {
@@ -484,7 +496,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   return (
     <li
       style={{
-        cursor: isCollapsible ? "pointer" : "default",
+        cursor: isCollapsible || shouldShowDownIcon ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "none",
         position: "relative",
         // paddingLeft: isCollapsible ? "20px" : "0px",
@@ -505,7 +517,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         </span>
       )}
 
-      <div onClick={handleClick}>
+      <div>
         {typeof item === "string" ? (
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
@@ -517,10 +529,28 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
                 gap: "20px",
                 // marginRight: "10px",
                 flex: "1",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                // paddingLeft: shouldShowDownIcon ? "20px" : "0",
               }}
             >
               {item.text && <span>{item.text}</span>}
+              {(isCollapsible || shouldShowDownIcon) && (
+                <span
+                  onClick={handleClick}
+                  style={{
+                    transform: expanded ? "rotate(90deg)" : "none",
+                    transition: "transform 0.2s",
+                    cursor: "pointer",
+                    fontSize: "12px",
+                    color: "#666",
+                    marginLeft: "auto",
+                    padding: "10px",
+                    paddingRight: "5px",
+                  }}
+                >
+                  ▶
+                </span>
+              )}
               {renderLink()}
             </div>
             {item.code && (
@@ -536,9 +566,10 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         <div
           style={{
             display: expanded ? "block" : "none",
-            marginTop: "5px",
-            marginLeft: "10px",
+            margin: "5px",
+            // marginLeft: "10px",
           }}
+          className={styles.liSubItems}
         >
           {/* FIX: Wrap sub_items in proper list container */}
           {item.sub_items[0]?.tag_type === "li" ? (
@@ -585,6 +616,7 @@ const ContentRenderer = ({ content }) => {
   // Helper function for link rendering in li elements
 
   console.log("contenterewr", content);
+
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;
     const config = item.link_configuration;
@@ -675,9 +707,11 @@ const ContentRenderer = ({ content }) => {
 
           case "h4":
             return (
-              <h2  key={index}
+              <h2
+                key={index}
                 className={styles["content-inner-heading"]}
-                id={item.selector_uid}>
+                id={item.selector_uid}
+              >
                 {item.text}
               </h2>
             );
@@ -754,24 +788,31 @@ const ContentRenderer = ({ content }) => {
 
           case "h3":
             return (
-              <h3 key={index} className={styles.second_subheading}>
+              <h3
+                key={index}
+                className={styles.second_subheading}
+                id={item.selector_uid}
+              >
                 {item.text}
               </h3>
             );
 
           case "a":
             return (
-             <button className={styles["view-full-implementation"]} key={index}>
-               <a
+              <button
+                className={styles["view-full-implementation"]}
                 key={index}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles["content-link"]}
               >
-                {item.text}
-              </a>
-             </button>
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles["content-link"]}
+                >
+                  {item.text}
+                </a>
+              </button>
             );
 
           case "ul":
@@ -831,21 +872,39 @@ const ContentRenderer = ({ content }) => {
             );
 
           case "li":
+            const [isExpanded, setIsExpanded] = useState(false);
+            const hasSubItems = item.sub_items && item.sub_items.length > 0;
+
             return (
               <li key={index} className={styles["content-list-item"]}>
                 <div className={styles.sidebarLi}>
                   {item.text && <span>{item.text}</span>}
+
+                  {hasSubItems && (
+                    <span
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className={`${styles["expand-icon"]} ${
+                        isExpanded ? styles["expanded"] : styles["collapsed"]
+                      }`}
+                      style={{fontSize:"12px"}}
+                    >
+                      ▶
+                    </span>
+                  )}
                   {item.link_configuration && renderLink(item)}
                 </div>
+
                 {item.code && (
                   <pre className="script_code">
                     <code>{item.code}</code>
                   </pre>
                 )}
 
-                {item.sub_items && (
-                  <div style={{ marginLeft: "20px" }}>
-                    {/* FIX: Wrap sub_items in proper list container */}
+                {hasSubItems && (
+                  <div
+                    className={styles.li_subLi}
+                    style={{ display: isExpanded ? "block" : "none" }}
+                  >
                     {item.sub_items[0]?.tag_type === "li" ? (
                       <ul className={styles["content-list"]}>
                         <ContentRenderer content={item.sub_items} />
@@ -857,7 +916,6 @@ const ContentRenderer = ({ content }) => {
                 )}
               </li>
             );
-
           // case "div":
           //   return (
           //     <div key={index} className={styles["content-div"]}>

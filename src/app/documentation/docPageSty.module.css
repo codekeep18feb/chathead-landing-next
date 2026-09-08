@@ -20,7 +20,7 @@
 .doc_sidebar {
   width: 20%;
   background: var(--light-primary-color);
-  padding: 12px;
+  /* padding: 12px; */
   position: relative;
 
 }
@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   transition: background-color 0.2s ease;
   width: 100%;
 }
@@ -65,7 +65,7 @@
   background-color:transparent;
   overflow-y: auto; 
   flex: 1;
-  max-height: 100vh;
+  max-height: 140vh;
   scrollbar-width: none;
   -ms-overflow-style: none; 
 }
@@ -183,4 +183,9 @@
     padding: 20px 10px;
     width: 100%;
   }
+}
+.content-area h3 {
+  padding-left: 0px;
+  font-size: 18px;
+  padding-top: 0px;
 }
