@@ -3,6 +3,7 @@ import { faqChatLeadGeneration } from './faqChatLeadGeneration.js';
 import { liveAgent } from './liveAgent.js';
 import { aiChat } from './aiChat.js';
 import { allChat } from './allChat.js';
+import { integrationsApisWorkflows } from './integrationsApisWorkflows.js';
 
 export const platform = [
   {
@@ -22,6 +23,7 @@ export const platform = [
       ...liveAgent,
       ...aiChat,
       ...allChat,
+      ...integrationsApisWorkflows,
     ],
   },
 ];

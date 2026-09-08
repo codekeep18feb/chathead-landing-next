@@ -224,6 +224,46 @@ export default function Sidebar({ selectedFilter }) {
                       type: "internal",
                       selector_uid: "v2_all_chat"
                     }
+                  },
+                  // ====== SIBLING 6: Integrations & APIs & Workflows ======
+                  {
+                    tag_type: "li",
+                    text: "Integrations & APIs & Workflows",
+                    selector_uid: "v2_integrations_apis_workflows",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "API Config",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_api_config"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "ChainApis",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_chain_apis"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Response Settings",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_response_settings"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_integrations_apis_workflows"
+                    }
                   }
                 ],
                 link_configuration: {
