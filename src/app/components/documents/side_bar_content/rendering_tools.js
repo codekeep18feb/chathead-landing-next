@@ -438,6 +438,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
   const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
 
+  const shouldShowDownIcon = hasSubItems && depth === 0;
+
   const handleScroll = (selector) => {
     // const element = document.querySelector(selector);
     const element = document.getElementById(selector);
@@ -453,7 +455,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    if (isCollapsible) setExpanded(!expanded);
+    if (isCollapsible || shouldShowDownIcon) {
+      setExpanded(!expanded);
+    }
   };
 
   const renderLink = () => {
@@ -490,13 +494,13 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   return (
     <li
       style={{
-        cursor: isCollapsible ? "pointer" : "default",
+        cursor: isCollapsible || shouldShowDownIcon ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "none",
         position: "relative",
         // paddingLeft: isCollapsible ? "20px" : "0px",
       }}
     >
-      {isCollapsible && (
+      {(isCollapsible) && (
         <span
           onClick={handleClick}
           style={{
@@ -524,9 +528,25 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
                 // marginRight: "10px",
                 flex: "1",
                 justifyContent: "space-between",
+                // paddingLeft: shouldShowDownIcon ? "20px" : "0",
               }}
             >
               {item.text && <span>{item.text}</span>}
+              {(isCollapsible || shouldShowDownIcon) && (
+                <span
+                  onClick={handleClick}
+                  style={{
+                    transform: expanded ? "rotate(90deg)" : "none",
+                    transition: "transform 0.2s",
+                    cursor: "pointer",
+                    fontSize: "12px",
+                    color: "#666",
+                    marginLeft: "auto",
+                  }}
+                >
+                  ▶
+                </span>
+              )}
               {renderLink()}
             </div>
             {item.code && (
