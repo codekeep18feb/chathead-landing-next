@@ -22,6 +22,7 @@ export default function Sidebar({ selectedFilter }) {
               {
                 tag_type: "li",
                 text: "Integration",
+                selector_uid: "v2_prerequisites",
                 sub_items: [
                   {
                     tag_type: "li",
@@ -63,7 +64,8 @@ export default function Sidebar({ selectedFilter }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: ".content-inner-heading"
+                  targetSelector: ".content-inner-heading",
+                  selector_uid: "v2_prerequisites"
                 }
               }
             ],
@@ -93,11 +95,13 @@ export default function Sidebar({ selectedFilter }) {
               {
                 tag_type: "li",
                 text: "Platform",
+                selector_uid: "v2_whitelabel_domains",
                 sub_items: [
                   // ====== SIBLING 1: Global Level Settings ======
                   {
                     tag_type: "li",
                     text: "Global Level Settings",
+                    selector_uid: "v2_global_level_settings",
                     sub_items: [
                       {
                         tag_type: "li",
@@ -137,6 +141,7 @@ export default function Sidebar({ selectedFilter }) {
                   {
                     tag_type: "li",
                     text: "FAQ Chat & Lead Generation",
+                    selector_uid: "v2_faq_chat_lead_gen", 
                     sub_items: [
                       {
                         tag_type: "li",
@@ -158,6 +163,7 @@ export default function Sidebar({ selectedFilter }) {
                   {
                     tag_type: "li",
                     text: "Live Agent",
+                    selector_uid: "v2_live_agent",
                     sub_items: [
                       {
                         tag_type: "li",
@@ -179,6 +185,7 @@ export default function Sidebar({ selectedFilter }) {
                   {
                     tag_type: "li",
                     text: "AI Chat",
+                    selector_uid: "v2_ai_chat",
                     sub_items: [
                       {
                         tag_type: "li",
@@ -200,6 +207,7 @@ export default function Sidebar({ selectedFilter }) {
                   {
                     tag_type: "li",
                     text: "All Chat",
+                    selector_uid: "v2_all_chat",
                     sub_items: [
                       {
                         tag_type: "li",

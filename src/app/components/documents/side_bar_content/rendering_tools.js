@@ -26,7 +26,7 @@ const CondRadioRender = ({ r_options }) => {
   };
 
   const selectedDescription = r_options.find(
-    (option) => option.text === selectedOption
+    (option) => option.text === selectedOption,
   )?.description;
 
   return (
@@ -121,7 +121,7 @@ const renderTextWithElements = (text, linkParts) => {
           rel="noopener noreferrer"
         >
           {part.text}
-        </a>
+        </a>,
       );
       lastIndex = startIndex + part.text.length;
     }
@@ -439,9 +439,15 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
 
   const handleScroll = (selector) => {
-    const element = document.querySelector(selector);
+    // const element = document.querySelector(selector);
+    const element = document.getElementById(selector);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      console.warn(`Element with ID "${selector}" not found`);
     }
   };
 
@@ -517,7 +523,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
                 gap: "20px",
                 // marginRight: "10px",
                 flex: "1",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
               }}
             >
               {item.text && <span>{item.text}</span>}
@@ -675,9 +681,11 @@ const ContentRenderer = ({ content }) => {
 
           case "h4":
             return (
-              <h2  key={index}
+              <h2
+                key={index}
                 className={styles["content-inner-heading"]}
-                id={item.selector_uid}>
+                id={item.selector_uid}
+              >
                 {item.text}
               </h2>
             );
@@ -761,17 +769,20 @@ const ContentRenderer = ({ content }) => {
 
           case "a":
             return (
-             <button className={styles["view-full-implementation"]} key={index}>
-               <a
+              <button
+                className={styles["view-full-implementation"]}
                 key={index}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles["content-link"]}
               >
-                {item.text}
-              </a>
-             </button>
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles["content-link"]}
+                >
+                  {item.text}
+                </a>
+              </button>
             );
 
           case "ul":
