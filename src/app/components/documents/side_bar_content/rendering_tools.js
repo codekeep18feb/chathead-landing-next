@@ -444,7 +444,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     // const element = document.querySelector(selector);
     console.log("Looking for element with selector:", selector);
     const element = document.getElementById(selector);
-     console.log("Found element:", element)
+    console.log("Found element:", element);
     if (element) {
       element.scrollIntoView({
         behavior: "smooth",
@@ -545,7 +545,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
                     color: "#666",
                     marginLeft: "auto",
                     padding: "10px",
-                    paddingRight:"5px"
+                    paddingRight: "5px",
                   }}
                 >
                   ▶
@@ -787,7 +787,11 @@ const ContentRenderer = ({ content }) => {
 
           case "h3":
             return (
-              <h3 key={index} className={styles.second_subheading}>
+              <h3
+                key={index}
+                className={styles.second_subheading}
+                id={item.selector_uid}
+              >
                 {item.text}
               </h3>
             );
