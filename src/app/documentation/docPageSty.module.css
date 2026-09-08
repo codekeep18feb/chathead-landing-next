@@ -65,7 +65,7 @@
   background-color:transparent;
   overflow-y: auto; 
   flex: 1;
-  max-height: 100vh;
+  max-height: 140vh;
   scrollbar-width: none;
   -ms-overflow-style: none; 
 }

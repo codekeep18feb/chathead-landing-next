@@ -145,7 +145,7 @@ const Callout = ({ type = "info", title, children }) => {
   return (
     <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
       <div className={styles["callout-header"]}>
-        <span className={styles["callout-icon"]}>{icons[type]}</span>
+        {/* <span className={styles["callout-icon"]}>{icons[type]}</span> */}
         {title && <h4 className={styles["callout-title"]}>{title}</h4>}
       </div>
       <div className={styles["callout-content"]}>{children}</div>
@@ -337,15 +337,15 @@ const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="accordion">
+    <div className={styles.accordion}>
       <button
-        className={`accordion-header ${isOpen ? "open" : ""}`}
+        className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {title}
         <span className="accordion-icon">{isOpen ? "▼" : "▶"}</span>
       </button>
-      {isOpen && <div className="accordion-content">{children}</div>}
+      {isOpen && <div className={styles["accordion-content"]}>{children}</div>}
     </div>
   );
 };
@@ -500,7 +500,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         // paddingLeft: isCollapsible ? "20px" : "0px",
       }}
     >
-      {(isCollapsible) && (
+      {isCollapsible && (
         <span
           onClick={handleClick}
           style={{

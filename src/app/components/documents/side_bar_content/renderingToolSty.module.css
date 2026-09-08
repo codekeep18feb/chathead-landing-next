@@ -51,6 +51,7 @@
 .tab-buttons {
   display: flex;
   border-bottom: 1px solid #ddd;
+  overflow-x: auto;
 }
 
 .tab-content {
@@ -183,7 +184,7 @@
 
 .content-paragraph {
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
   /* padding: 16px 0px; */
   letter-spacing: 0.2px;
   line-height: 26px;
@@ -315,6 +316,9 @@
 .callout-info {
   background-color: #d1e7fc;
   border-color: #4d90fe;
+}
+.callout-info li {
+  background: transparent;
 }
 .callout-header {
   display: flex;
@@ -517,8 +521,32 @@
 .li_subLi .sidebarLi .content-link {
   color: #333;
   border-color: #333;
-   width: 20px ;
-  height: 20px;
+   width: 28px ;
+  height: 28px;
 }
 
 
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #eee;
+}
+.accordion{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 6px;
+
+}
+.accordion-content ul {
+  padding: 10px;
+}
+.accordion-content ul li {
+  padding: 5px;
+}
+.content-list li span {
+  font-size: 16px;
+}
