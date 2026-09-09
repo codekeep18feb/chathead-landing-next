@@ -8,7 +8,6 @@ function Pricing() {
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [growthMessageLimit, setGrowthMessageLimit] = useState(10000);
   const [scaleMessageLimit, setScaleMessageLimit] = useState(20000);
-  const [showIndianPromo, setShowIndianPromo] = useState(true);
   const comparisonRef = useRef(null);
   const [hoveredPlan, setHoveredPlan] = useState(null);
 
@@ -22,7 +21,7 @@ function Pricing() {
   const calculateGrowthPrice = (basePrice, messages) => {
     const baseMessages = 10000;
     if (messages <= baseMessages) return basePrice;
-    const increment = 300;
+    const increment = 4;
     const extraMessages = messages - baseMessages;
     return basePrice + Math.ceil(extraMessages / 1000) * increment;
   };
@@ -30,7 +29,7 @@ function Pricing() {
   const calculateScalePrice = (basePrice, messages) => {
     const baseMessages = 20000;
     if (messages <= baseMessages) return basePrice;
-    const increment = 250;
+    const increment = 3;
     const extraMessages = messages - baseMessages;
     return basePrice + Math.ceil(extraMessages / 1000) * increment;
   };
@@ -38,29 +37,29 @@ function Pricing() {
   const pricingData = {
     monthly: {
       launch: { regular: 0, promo: 0 },
-      starter: { regular: 5999, promo: 4199 },
+      starter: { regular: 79, promo: 55 },
       growth: {
         regular: {
-          basePrice: 14999,
-          getPrice: (messages) => calculateGrowthPrice(14999, messages),
-          getDisplay: (messages) => `₹${calculateGrowthPrice(14999, messages).toLocaleString('en-IN')}/month`
+          basePrice: 199,
+          getPrice: (messages) => calculateGrowthPrice(199, messages),
+          getDisplay: (messages) => `$${calculateGrowthPrice(199, messages).toFixed(0)}/month`
         },
         promo: {
-          basePrice: 10499,
-          getPrice: (messages) => calculateGrowthPrice(10499, messages),
-          getDisplay: (messages) => `₹${calculateGrowthPrice(10499, messages).toLocaleString('en-IN')}/month`
+          basePrice: 139,
+          getPrice: (messages) => calculateGrowthPrice(139, messages),
+          getDisplay: (messages) => `$${calculateGrowthPrice(139, messages).toFixed(0)}/month`
         }
       },
       scale: {
         regular: {
-          basePrice: 39999,
-          getPrice: (messages) => calculateScalePrice(39999, messages),
-          getDisplay: (messages) => `₹${calculateScalePrice(39999, messages).toLocaleString('en-IN')}/month`
+          basePrice: 499,
+          getPrice: (messages) => calculateScalePrice(499, messages),
+          getDisplay: (messages) => `$${calculateScalePrice(499, messages).toFixed(0)}/month`
         },
         promo: {
-          basePrice: 27999,
-          getPrice: (messages) => calculateScalePrice(27999, messages),
-          getDisplay: (messages) => `₹${calculateScalePrice(27999, messages).toLocaleString('en-IN')}/month`
+          basePrice: 349,
+          getPrice: (messages) => calculateScalePrice(349, messages),
+          getDisplay: (messages) => `$${calculateScalePrice(349, messages).toFixed(0)}/month`
         }
       },
       enterprise: {
@@ -70,29 +69,29 @@ function Pricing() {
     },
     yearly: {
       launch: { regular: 0, promo: 0 },
-      starter: { regular: 57590, promo: 40313 },
+      starter: { regular: 790, promo: 550 },
       growth: {
         regular: {
-          basePrice: 143990,
-          getPrice: (messages) => calculateGrowthPrice(143990, messages),
-          getDisplay: (messages) => `₹${calculateGrowthPrice(143990, messages).toLocaleString('en-IN')}/year`
+          basePrice: 1990,
+          getPrice: (messages) => calculateGrowthPrice(1990, messages),
+          getDisplay: (messages) => `$${calculateGrowthPrice(1990, messages).toFixed(0)}/year`
         },
         promo: {
-          basePrice: 100793,
-          getPrice: (messages) => calculateGrowthPrice(100793, messages),
-          getDisplay: (messages) => `₹${calculateGrowthPrice(100793, messages).toLocaleString('en-IN')}/year`
+          basePrice: 1390,
+          getPrice: (messages) => calculateGrowthPrice(1390, messages),
+          getDisplay: (messages) => `$${calculateGrowthPrice(1390, messages).toFixed(0)}/year`
         }
       },
       scale: {
         regular: {
-          basePrice: 383990,
-          getPrice: (messages) => calculateScalePrice(383990, messages),
-          getDisplay: (messages) => `₹${calculateScalePrice(383990, messages).toLocaleString('en-IN')}/year`
+          basePrice: 4990,
+          getPrice: (messages) => calculateScalePrice(4990, messages),
+          getDisplay: (messages) => `$${calculateScalePrice(4990, messages).toFixed(0)}/year`
         },
         promo: {
-          basePrice: 268793,
-          getPrice: (messages) => calculateScalePrice(268793, messages),
-          getDisplay: (messages) => `₹${calculateScalePrice(268793, messages).toLocaleString('en-IN')}/year`
+          basePrice: 3490,
+          getPrice: (messages) => calculateScalePrice(3490, messages),
+          getDisplay: (messages) => `$${calculateScalePrice(3490, messages).toFixed(0)}/year`
         }
       },
       enterprise: {
@@ -104,26 +103,17 @@ function Pricing() {
 
   const getPriceDisplay = (plan) => {
     if (plan.isFree) return "Free forever";
-    if (plan.isEnterprise) return showIndianPromo ? pricingData[billingCycle].enterprise.promo : pricingData[billingCycle].enterprise.regular;
+    if (plan.isEnterprise) return pricingData[billingCycle].enterprise.regular;
 
     const priceData = pricingData[billingCycle][plan.planCode.toLowerCase()];
 
     if (plan.hasMessageSlider) {
       const messages = plan.isScalePlan ? scaleMessageLimit : growthMessageLimit;
-      const displayPrice = showIndianPromo ? priceData.promo.getDisplay(messages) : priceData.regular.getDisplay(messages);
+      const displayPrice = priceData.regular.getDisplay(messages);
       return displayPrice;
     } else {
-      const displayPrice = showIndianPromo ? `₹${priceData.promo.toLocaleString('en-IN')}/${billingCycle === 'monthly' ? 'month' : 'year'}`
-        : `₹${priceData.regular.toLocaleString('en-IN')}/${billingCycle === 'monthly' ? 'month' : 'year'}`;
-      return displayPrice;
+      return `$${priceData.regular.toLocaleString()}/${billingCycle === 'monthly' ? 'month' : 'year'}`;
     }
-  };
-
-  const getPriceValue = (plan) => {
-    if (plan.isFree) return 0;
-    if (plan.isEnterprise) return null;
-    const priceData = pricingData[billingCycle][plan.planCode.toLowerCase()];
-    return showIndianPromo ? priceData.promo : priceData.regular;
   };
 
   const formatMessageLimit = (limit) => {
@@ -144,7 +134,6 @@ function Pricing() {
     return ((value - min) / (max - min)) * 100;
   };
 
-  // Clean plan data with only what we need to display
   const displayPlans = [
     {
       key: "launch",
@@ -177,10 +166,10 @@ function Pricing() {
       bgColor: "#fffbeb",
       popular: false,
       free: false,
-      price: "₹5,999",
+      price: "$79",
       cta: "Choose Starter",
-      description: "Complete communication suite for growing businesses.",
-      badge: showIndianPromo ? "30% OFF" : "Best Value",
+      description: "Complete platform for growing businesses.",
+      badge: "Best Value",
       keyFeatures: [
         "1,000 Active Users",
         "10 Intents/Skills",
@@ -200,9 +189,9 @@ function Pricing() {
       bgColor: "#eef2ff",
       popular: true,
       free: false,
-      price: "₹14,999",
+      price: "$199",
       cta: "Choose Growth",
-      description: "For growing SaaS & SMBs with serious engagement needs.",
+      description: "For SaaS & SMBs with serious engagement needs.",
       badge: "Most Popular",
       keyFeatures: [
         "5,000 Active Users",
@@ -223,9 +212,9 @@ function Pricing() {
       bgColor: "#ecfdf5",
       popular: false,
       free: false,
-      price: "₹39,999",
+      price: "$499",
       cta: "Get Quote",
-      description: "High-volume enterprise solution for established companies.",
+      description: "High-volume solution for established companies.",
       badge: null,
       keyFeatures: [
         "25,000 Active Users",
@@ -268,33 +257,25 @@ function Pricing() {
       {/* ===== HEADER ===== */}
       <div className={styles.headerSection}>
         <div className={styles.headerContent}>
-          <h1>Pricing That <span>Grows With You</span></h1>
-          <p>Start free, scale as you grow. Complete platform: AI + Live Chat + Lead Capture + BYO Auth.</p>
+          <h1>The AI Agent <span>Platform</span></h1>
+          <p>Build any operation — support, sales, automation. API-first, infinitely customizable.</p>
         </div>
 
         {/* Value Props */}
         <div className={styles.valueProps}>
           <div className={styles.valueProp}>
-            <span className={styles.valueIcon}>🔐</span>
-            <span>You own your user authentication</span>
+            <span className={styles.valueIcon}>🔌</span>
+            <span>API-first. Connect anything.</span>
           </div>
           <div className={styles.valueProp}>
             <span className={styles.valueIcon}>⚡</span>
             <span>No LLM token costs</span>
           </div>
           <div className={styles.valueProp}>
-            <span className={styles.valueIcon}>🏆</span>
-            <span>60%+ savings vs piecemeal</span>
+            <span className={styles.valueIcon}>🌍</span>
+            <span>Global edge. Low latency.</span>
           </div>
         </div>
-
-        {/* Promo Banner */}
-        {showIndianPromo && (
-          <div className={styles.promoBanner}>
-            <span>🇮🇳</span>
-            <span><strong>Indian Startups:</strong> 30% off your first year</span>
-          </div>
-        )}
       </div>
 
       {/* ===== BILLING TOGGLE ===== */}
@@ -309,13 +290,13 @@ function Pricing() {
           className={`${styles.toggleBtn} ${billingCycle === "yearly" ? styles.activeToggle : ""}`}
           onClick={() => setBillingCycle("yearly")}
         >
-          Yearly <span className={styles.saveBadge}>Save 44%</span>
+          Yearly <span className={styles.saveBadge}>Save 30%</span>
         </button>
       </div>
 
       {/* ===== PRICING CARDS ===== */}
       <div className={styles.pricingCards}>
-        {displayPlans.map((plan, index) => {
+        {displayPlans.map((plan) => {
           const isGrowth = plan.key === "growth";
           const isEnterprise = plan.key === "enterprise";
           const isHovered = hoveredPlan === plan.key;
@@ -330,14 +311,12 @@ function Pricing() {
               onMouseEnter={() => setHoveredPlan(plan.key)}
               onMouseLeave={() => setHoveredPlan(null)}
             >
-              {/* Badge */}
               {plan.badge && (
                 <div className={styles.cardBadge} style={{ background: plan.color }}>
                   {plan.badge}
                 </div>
               )}
 
-              {/* Card Header */}
               <div className={styles.cardHeader}>
                 <div className={styles.planIcon}>{plan.icon}</div>
                 <h3 className={styles.planName}>{plan.type}</h3>
@@ -356,7 +335,6 @@ function Pricing() {
                 <p className={styles.planDescription}>{plan.description}</p>
               </div>
 
-              {/* Key Features */}
               <ul className={styles.keyFeatures}>
                 {plan.keyFeatures.map((feature, idx) => (
                   <li key={idx}>
@@ -366,7 +344,6 @@ function Pricing() {
                 ))}
               </ul>
 
-              {/* CTA Button */}
               <button
                 className={`${styles.ctaButton} ${isGrowth ? styles.primaryCta : ""}`}
                 style={{
@@ -374,18 +351,13 @@ function Pricing() {
                   color: isGrowth || isEnterprise ? "white" : "#1f2937",
                 }}
                 onClick={() => {
-                  if (isEnterprise || isScale) {
-                    window.location.href = "https://admin.sageion.com/pricing";
-                  } else {
-                    window.location.href = "https://admin.sageion.com/pricing";
-                  }
+                  window.location.href = "https://admin.sageion.com/pricing";
                 }}
               >
                 {plan.cta}
               </button>
 
-              {/* Extra Info for Growth/Scale */}
-              {plan.key === "growth" && (
+              {/* {plan.key === "growth" && (
                 <div className={styles.sliderSection}>
                   <div className={styles.sliderLabel}>
                     <span>AI Messages</span>
@@ -429,7 +401,7 @@ function Pricing() {
                     }}
                   />
                 </div>
-              )}
+              )} */}
             </div>
           );
         })}
