@@ -224,9 +224,8 @@ const AdminFeatures = () => {
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className={`${styles.navLink} ${
-                  activeSection === section.id ? styles.navLinkActive : ""
-                }`}
+                className={`${styles.navLink} ${activeSection === section.id ? styles.navLinkActive : ""
+                  }`}
                 onClick={(e) => {
                   e.preventDefault();
                   setActiveSection(section.id);
@@ -1441,7 +1440,7 @@ const AdminFeatures = () => {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialRating}>★★★★★</div>
               <p className={styles.testimonialText}>
-                "We built 15 complex workflows in 3 weeks with just 1 person.
+                "We built 15 complex workflows in 1 week with just 1 person.
                 Sageion saved us months of development."
               </p>
               <div className={styles.testimonialAuthor}>

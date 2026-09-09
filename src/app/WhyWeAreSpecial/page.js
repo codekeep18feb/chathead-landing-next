@@ -236,15 +236,15 @@ const WhyWeAreSpecial = () => {
             <span className={styles.pulseDot}></span>
             <span>🚀 The Future of Business Automation</span>
           </div>
-          
+
           <h1 className={styles.heroTitle}>
             AI That Actually
             <span className={styles.heroHighlight}> Does The Work</span>
           </h1>
-          
+
           <p className={styles.heroSubtitle}>
-            Not just chatbots. A complete business operations platform that 
-            automates end-to-end workflows through your existing APIs — 
+            Not just chatbots. A complete business operations platform that
+            automates end-to-end workflows through your existing APIs —
             <strong> without changing your systems</strong>.
           </p>
 
@@ -513,7 +513,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "gen-forms" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "gen-forms" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -530,7 +530,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: 70% faster form completion</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -561,7 +561,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "api-chaining" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "api-chaining" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -577,7 +577,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: Replace 1000+ lines of code</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -608,7 +608,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "rag" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "rag" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -624,7 +624,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: Unlimited queries, fixed cost</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -655,7 +655,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "async-webhooks" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "async-webhooks" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -671,7 +671,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: Handle any process, no matter how long</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -702,7 +702,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "screen-gen" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "screen-gen" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -718,7 +718,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: No hardcoded UI — adapts to your data</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -746,7 +746,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "live-chat" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "live-chat" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -762,7 +762,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: Enterprise-grade customer support</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -793,7 +793,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "admin-panel" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "admin-panel" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -809,7 +809,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: Business users take control</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -840,7 +840,7 @@ const WhyWeAreSpecial = () => {
                   {expandedFeature === "security" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
-              
+
               {expandedFeature === "security" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
@@ -856,7 +856,7 @@ const WhyWeAreSpecial = () => {
                       <span>✅ Benefit: Safe, secure, compliant</span>
                     </div>
                   </div>
-                  
+
                   <div className={styles.featureVisual}>
                     <div className={styles.featureScreenshot}>
                       <div className={styles.screenshotPlaceholder}>
@@ -1474,7 +1474,7 @@ const WhyWeAreSpecial = () => {
             <div className={styles.testimonialCard}>
               <div className={styles.testimonialRating}>★★★★★</div>
               <p className={styles.testimonialText}>
-                "We built 15 complex workflows in 3 weeks with just 1 person. Sageion saved us months of development."
+                "We built 15 complex workflows in 1 week with just 1 person. Sageion saved us months of development."
               </p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.testimonialAvatar}>JP</div>

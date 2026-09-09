@@ -28,18 +28,65 @@ const HeroSection = () => {
 
         <div className={styles.hero_content}>
           <div className={styles.container}>
+            {/* ===== NEW HEADLINE ===== */}
             <h1 className={styles.title}>
-              One AI platform. Every
-              <span className={styles.highlight}>Conversation.</span>
+              The Operating System for
+              <br />
+              <span className={styles.highlight}>AI Agents.</span>
             </h1>
 
+            {/* ===== NEW SUBTITLE ===== */}
             <p className={styles.subtitle}>
-              No-code chatbot platform for Lead Gen, AI answers & Live Agent
-              Chat — "All in one".
+              Connect your backend systems. Build any agent. Deploy anywhere.
+              <br />
+              <span style={{ fontSize: "0.9em", opacity: 0.8 }}>
+                API-first architecture. No code required. No vendor lock-in.
+              </span>
             </p>
 
+            {/* ===== NEW TAGLINE ===== */}
+            <p className={styles.tagline}>
+              <span className={styles.taglineHighlight}>Your systems.</span>{" "}
+              Your AI. <span className={styles.taglineHighlight}>Your Rules.</span>
+              <br />
+              <span style={{ fontSize: "0.8em", opacity: 0.7 }}>
+                Give Your Backend A Superpower.
+              </span>
+            </p>
+
+            {/* ===== VALUE PROPS ===== */}
+            <div className={styles.valueProps}>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>⚡</span> Deploy in hours, not months
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>🔐</span> You own your users & auth
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>💰</span> No LLM token costs
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>🔗</span> API-first architecture
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>🎨</span> No-code visual designer
+              </span>
+            </div>
+
+            {/* ===== BUTTONS ===== */}
             <div className={styles.bannerActions}>
-              <button className={styles.learnMoreBtn}>Schedule Demo →</button>
+              <button
+                className={`${styles.learnMoreBtn} ${styles.primaryButton}`}
+                onClick={() => (window.location.href = "/pricing")}
+              >
+                Get Started →
+              </button>
+              <button
+                className={`${styles.learnMoreBtn} ${styles.secondaryButton}`}
+                onClick={() => (window.location.href = "/contact")}
+              >
+                Schedule Demo →
+              </button>
               <button
                 className={`${styles.learnMoreBtn} ${styles.tryMe}`}
                 onClick={() => setIsTryMeOpen(true)}
@@ -55,7 +102,7 @@ const HeroSection = () => {
         <ChatComponent />
       </div>
 
-       {isTryMeOpen && <TryMeModal onClose={() => setIsTryMeOpen(false)} />}
+      {isTryMeOpen && <TryMeModal onClose={() => setIsTryMeOpen(false)} />}
     </section>
   );
 };
