@@ -4,42 +4,62 @@ import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import Modal from "./Modal";
 
 const featureDescriptions = {
+  // ===== CORE FEATURES =====
   "Monthly Active Users": "Total unique users who interact with your chat and authentication services per month.",
   "Agents": "Number of AI chatbot agents you can create and train with custom knowledge.",
   "Unlimited Websites": "Use Sageion on unlimited websites with a single plan.",
   "Multi-Admin": "Number of admin and support users included in the plan.",
   "Auth Layer Websites": "Number of websites where you can use Sageion's built-in authentication system.",
+  
+  // ===== AI CHAT FEATURES =====
   "AI Messages / month": "Monthly limit for AI chatbot interactions (no LLM token costs).",
   "Knowledge Base per Agent": "Maximum amount of training data per AI agent.",
+  "AI Bot Type": "Level of AI sophistication available for your chatbots.",
+  "Multi-language Support": "AI support for multiple languages.",
+  "Intents/Skills": "Number of conversational skills or intents your AI agent can recognize and handle.",
+  
+  // ===== WORKFLOWS & INTEGRATIONS =====
+  "API Configurations": "Number of API endpoints you can configure for your chatbot to call.",
+  "Chains (Workflows)": "Number of multi-step API workflows you can create.",
+  "Custom Workflows": "Build automated workflows and business rules.",
+  "Webhook Support": "Receive real-time notifications for chat events.",
+  "API Access": "Programmatic access to Sageion features for custom integrations.",
+  "Custom Integrations": "Integration support for CRM, helpdesk, and other business tools.",
+  
+  // ===== VISUAL DESIGNER =====
+  "Screens": "Response display options - Single screen or Multiple screens for list data.",
+  "Case 3 Support (Nested Arrays)": "Support for complex data structures with nested arrays. Each nested item gets its own screen.",
+  "Visual Designer": "No-code visual interface for designing AI responses.",
+  
+  // ===== LIVE CHAT FEATURES =====
   "Live Chat": "Two-way live chat between visitors and your support team.",
   "File Upload Size": "Maximum file size users can upload in live chat conversations.",
   "Data Retention": "Duration chat history is stored before deletion.",
-  "AI Bot": "AI assistant that answers questions, detects user intent, and routes chats to live agents when needed.",
-  "Basic AI Bot": "Simple AI with intent detection and basic responses.",
-  "Enhanced AI Bot": "AI with smart replies and improved contextual understanding.",
-  "Advanced AI": "Custom-trained AI with fine-tuning and multi-language support.",
-  "Enterprise-grade AI": "Multi-model AI routing with advanced configuration options.",
+  
+  // ===== LEAD GENERATION =====
   "Lead Capture Forms": "Capture leads via forms, FAQ flows, and conversational interfaces.",
   "Advanced Lead Capture": "Forms with analytics, conditional logic, and custom fields.",
   "Customizable Q&A Trees": "Create branching conversation paths for lead qualification.",
   "Auto Email to Leads": "Automatically sends follow-up emails to captured leads.",
+  "Advanced Analytics": "Detailed reports and insights on chat performance and lead conversion.",
+  
+  // ===== EMAIL & NOTIFICATIONS =====
   "Email Notifications": "Alerts for new messages and support requests.",
   "Custom Email Templates": "Create branded email templates for notifications.",
+  
+  // ===== BRANDING & CUSTOMIZATION =====
   "Remove Branding": "Option to remove 'Powered by Sageion' from your chat interface.",
-  "Priority Support": "Get faster help from our support team.",
-  "Advanced Analytics": "Detailed reports and insights on chat performance and lead conversion.",
-  "API Access": "Programmatic access to Sageion features for custom integrations.",
-  "Webhook Support": "Receive real-time notifications for chat events.",
-  "Custom Workflows": "Build automated workflows and business rules.",
-  "Multi-language Support": "AI support for multiple languages.",
-  "Security & Compliance": "GDPR-ready security features and data protection.",
-  "SLA": "Service Level Agreement for uptime and reliability.",
-  "Dedicated Account Manager": "Single point of contact for support and strategy.",
-  "Phone Support": "Direct phone access to support team.",
   "Custom Domains": "Use your own domain for chat services (e.g., chat.yourcompany.com).",
   "White-label SDK": "Embed fully branded chat into mobile apps and websites.",
-  "Custom Integrations": "Integration support for CRM, helpdesk, and other business tools.",
+  
+  // ===== SUPPORT & SLAs =====
+  "Priority Support": "Get faster help from our support team.",
+  "Dedicated Account Manager": "Single point of contact for support and strategy.",
+  "Phone Support": "Direct phone access to support team.",
   "24/7 Priority Support": "Round-the-clock premium support availability.",
+  "SLA": "Service Level Agreement for uptime and reliability.",
+  
+  // ===== ENTERPRISE FEATURES =====
   "Custom API Rate Limits": "Tailored API rate limits for your needs.",
   "Multi-region Hosting": "Data hosting across multiple geographic regions.",
   "Custom AI Training": "Train AI models specifically for your use case.",
@@ -74,6 +94,7 @@ const groupedFeatures = {
       values: ["1", "3", "10", "25", "Unlimited"]
     },
   ],
+  
   "AI Chat Features": [
     {
       label: "AI Messages / month",
@@ -88,10 +109,57 @@ const groupedFeatures = {
       values: ["Basic AI Bot", "Enhanced AI Bot", "Advanced AI", "Enterprise-grade AI", "Custom AI"]
     },
     {
+      label: "Intents/Skills",
+      values: ["3", "10", "30", "100", "Unlimited"]
+    },
+    {
       label: "Multi-language Support",
       values: [false, false, true, true, true]
     },
   ],
+  
+  "Workflows & Integrations": [
+    {
+      label: "API Configurations",
+      values: ["1", "5", "20", "50", "Unlimited"]
+    },
+    {
+      label: "Chains (Workflows)",
+      values: ["0", "3", "15", "40", "Unlimited"]
+    },
+    {
+      label: "Custom Workflows",
+      values: [false, false, true, true, true]
+    },
+    {
+      label: "Webhook Support",
+      values: [false, false, true, true, true]
+    },
+    {
+      label: "API Access",
+      values: [false, false, true, true, true]
+    },
+    {
+      label: "Custom Integrations",
+      values: [false, false, false, true, true]
+    },
+  ],
+  
+  "Visual Designer": [
+    {
+      label: "Screens",
+      values: ["Single only", "Single + Multiple", "Single + Multiple", "Single + Multiple", "Single + Multiple"]
+    },
+    {
+      label: "Case 3 Support (Nested Arrays)",
+      values: ["❌ Not available", "✅ Limited (10 items)", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
+    },
+    {
+      label: "Visual Designer",
+      values: ["Basic", "Full", "Full + Advanced", "Full + Advanced", "Full + Enterprise"]
+    },
+  ],
+  
   "Live Chat Features": [
     {
       label: "Live Chat",
@@ -106,6 +174,7 @@ const groupedFeatures = {
       values: ["15 days", "180 days", "2 years", "5 years", "Custom"]
     },
   ],
+  
   "Lead Generation": [
     {
       label: "Lead Capture Forms",
@@ -128,6 +197,7 @@ const groupedFeatures = {
       values: [false, false, true, true, true]
     },
   ],
+  
   "Email & Notifications": [
     {
       label: "Email Notifications",
@@ -138,24 +208,7 @@ const groupedFeatures = {
       values: [false, true, true, true, true]
     },
   ],
-  "Integrations & API": [
-    {
-      label: "API Access",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Webhook Support",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Custom Workflows",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Custom Integrations",
-      values: [false, false, false, true, true]
-    },
-  ],
+  
   "Branding & Customization": [
     {
       label: "Remove Branding",
@@ -170,6 +223,7 @@ const groupedFeatures = {
       values: [false, false, false, true, true]
     },
   ],
+  
   "Support & SLAs": [
     {
       label: "Priority Support",
@@ -192,6 +246,7 @@ const groupedFeatures = {
       values: [false, false, false, "99.9% uptime", "Custom"]
     },
   ],
+  
   "Enterprise Features": [
     {
       label: "Custom API Rate Limits",
@@ -251,6 +306,8 @@ const ComparisonTable = () => {
   const renderFeatureValue = (value) => {
     if (value === true) return <span className={styles.true}>✔</span>;
     if (value === false) return <span className={styles.false}>✘</span>;
+    if (typeof value === "string" && value.includes("❌")) return <span className={styles.notAvailable}>{value}</span>;
+    if (typeof value === "string" && value.includes("✅")) return <span className={styles.available}>{value}</span>;
     return value;
   };
 
@@ -325,6 +382,48 @@ const ComparisonTable = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Quick Summary Section */}
+      <div className={styles.quickSummary}>
+        <h3>📊 Quick Plan Summary</h3>
+        <div className={styles.summaryGrid}>
+          <div className={styles.summaryCard}>
+            <span className={styles.summaryIcon}>🚀</span>
+            <h4>Launch</h4>
+            <p>Free forever • Perfect for testing & MVPs</p>
+            <ul>
+              <li>3 Intents/Skills</li>
+              <li>Single Screen only</li>
+              <li>1 API Config</li>
+              <li>100 AI Messages/mo</li>
+            </ul>
+          </div>
+          <div className={`${styles.summaryCard} ${styles.popularCard}`}>
+            <span className={styles.summaryIcon}>🌱</span>
+            <h4>Growth <span className={styles.popularTag}>Most Popular</span></h4>
+            <p>₹14,999/mo • Best for growing teams</p>
+            <ul>
+              <li>30 Intents/Skills</li>
+              <li>Single + Multiple Screens</li>
+              <li>20 API Configs</li>
+              <li>10,000+ AI Messages/mo</li>
+              <li>✅ Unlimited Case 3</li>
+            </ul>
+          </div>
+          <div className={styles.summaryCard}>
+            <span className={styles.summaryIcon}>⚡</span>
+            <h4>Scale</h4>
+            <p>₹39,999/mo • High-volume enterprise</p>
+            <ul>
+              <li>100 Intents/Skills</li>
+              <li>Single + Multiple Screens</li>
+              <li>50 API Configs</li>
+              <li>20,000+ AI Messages/mo</li>
+              <li>✅ Unlimited Case 3</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       {modalInfo.isOpen && (

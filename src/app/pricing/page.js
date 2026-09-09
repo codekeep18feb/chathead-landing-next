@@ -22,7 +22,7 @@ function Pricing() {
   const calculateGrowthPrice = (basePrice, messages) => {
     const baseMessages = 10000;
     if (messages <= baseMessages) return basePrice;
-    const increment = 300; // ₹300 per 1000 messages
+    const increment = 300;
     const extraMessages = messages - baseMessages;
     return basePrice + Math.ceil(extraMessages / 1000) * increment;
   };
@@ -31,12 +31,12 @@ function Pricing() {
   const calculateScalePrice = (basePrice, messages) => {
     const baseMessages = 20000;
     if (messages <= baseMessages) return basePrice;
-    const increment = 250; // ₹250 per 1000 messages (volume discount)
+    const increment = 250;
     const extraMessages = messages - baseMessages;
     return basePrice + Math.ceil(extraMessages / 1000) * increment;
   };
 
-  // Updated pricing with better positioning
+  // Pricing data with new feature limits
   const pricingData = {
     monthly: {
       launch: { regular: 0, promo: 0 },
@@ -104,6 +104,7 @@ function Pricing() {
     },
   };
 
+  // Updated plans with new features
   const plans = {
     monthly: [
       {
@@ -127,6 +128,19 @@ function Pricing() {
           "Export user data anytime (free)",
           "Basic analytics dashboard",
         ],
+        limits: {
+          intents: 3,
+          apiConfigs: 1,
+          chains: 0,
+          screens: "Single Screen only",
+          case3: "❌ Not available",
+          visualDesigner: "✅ Basic",
+          agents: 1,
+          aiMessages: 100,
+          storage: "5 MB",
+          users: 100,
+          supportUsers: 1,
+        },
         buttonLabel: "Get Started Free",
         cta: "Start Free",
         isFree: true,
@@ -154,6 +168,19 @@ function Pricing() {
           "Priority email support",
           "30-day money-back guarantee",
         ],
+        limits: {
+          intents: 10,
+          apiConfigs: 5,
+          chains: 3,
+          screens: "Single & Multiple Screens",
+          case3: "✅ Limited (up to 10 items)",
+          visualDesigner: "✅ Full",
+          agents: 5,
+          aiMessages: 5000,
+          storage: "100 MB",
+          users: 1000,
+          supportUsers: 5,
+        },
         buttonLabel: "Get 30% Off - Limited Time",
         cta: "Choose Starter",
         showPromoBadge: true,
@@ -182,6 +209,19 @@ function Pricing() {
           "Custom workflows & automations",
           "Multi-language AI support",
         ],
+        limits: {
+          intents: 30,
+          apiConfigs: 20,
+          chains: 15,
+          screens: "Single & Multiple Screens",
+          case3: "✅ Unlimited",
+          visualDesigner: "✅ Full + Advanced",
+          agents: 15,
+          aiMessages: 10000,
+          storage: "500 MB",
+          users: 5000,
+          supportUsers: 10,
+        },
         buttonLabel: "Scale Now",
         cta: "Choose Growth",
         hasMessageSlider: true,
@@ -213,6 +253,19 @@ function Pricing() {
           "Phone & Dedicated Manager Support",
           "Custom integration development support",
         ],
+        limits: {
+          intents: 100,
+          apiConfigs: 50,
+          chains: 40,
+          screens: "Single & Multiple Screens",
+          case3: "✅ Unlimited",
+          visualDesigner: "✅ Full + Advanced",
+          agents: 50,
+          aiMessages: 20000,
+          storage: "2 GB",
+          users: 25000,
+          supportUsers: "Unlimited",
+        },
         buttonLabel: "Contact Sales",
         cta: "Get Quote",
         hasMessageSlider: true,
@@ -246,6 +299,19 @@ function Pricing() {
           "Audit logs & advanced security features",
           "Quarterly business reviews",
         ],
+        limits: {
+          intents: "Unlimited",
+          apiConfigs: "Unlimited",
+          chains: "Unlimited",
+          screens: "Single & Multiple Screens",
+          case3: "✅ Unlimited",
+          visualDesigner: "✅ Full + Enterprise",
+          agents: "Unlimited",
+          aiMessages: "Unlimited",
+          storage: "Custom",
+          users: "Unlimited",
+          supportUsers: "Unlimited",
+        },
         buttonLabel: "Contact Us",
         cta: "Schedule Demo",
         isEnterprise: true,
@@ -273,6 +339,19 @@ function Pricing() {
           "Export user data anytime (free)",
           "Basic analytics dashboard",
         ],
+        limits: {
+          intents: 3,
+          apiConfigs: 1,
+          chains: 0,
+          screens: "Single Screen only",
+          case3: "❌ Not available",
+          visualDesigner: "✅ Basic",
+          agents: 1,
+          aiMessages: 100,
+          storage: "5 MB",
+          users: 100,
+          supportUsers: 1,
+        },
         buttonLabel: "Get Started Free",
         cta: "Start Free",
         isFree: true,
@@ -300,6 +379,19 @@ function Pricing() {
           "Priority email support",
           "30-day money-back guarantee",
         ],
+        limits: {
+          intents: 10,
+          apiConfigs: 5,
+          chains: 3,
+          screens: "Single & Multiple Screens",
+          case3: "✅ Limited (up to 10 items)",
+          visualDesigner: "✅ Full",
+          agents: 5,
+          aiMessages: 5000,
+          storage: "100 MB",
+          users: 1000,
+          supportUsers: 5,
+        },
         buttonLabel: "Save 44% Total",
         cta: "Choose Starter",
         showPromoBadge: true,
@@ -328,6 +420,19 @@ function Pricing() {
           "Custom workflows & automations",
           "Multi-language AI support",
         ],
+        limits: {
+          intents: 30,
+          apiConfigs: 20,
+          chains: 15,
+          screens: "Single & Multiple Screens",
+          case3: "✅ Unlimited",
+          visualDesigner: "✅ Full + Advanced",
+          agents: 15,
+          aiMessages: 10000,
+          storage: "500 MB",
+          users: 5000,
+          supportUsers: 10,
+        },
         buttonLabel: "Scale Now",
         cta: "Choose Growth",
         hasMessageSlider: true,
@@ -359,6 +464,19 @@ function Pricing() {
           "Phone & Dedicated Manager Support",
           "Custom integration development support",
         ],
+        limits: {
+          intents: 100,
+          apiConfigs: 50,
+          chains: 40,
+          screens: "Single & Multiple Screens",
+          case3: "✅ Unlimited",
+          visualDesigner: "✅ Full + Advanced",
+          agents: 50,
+          aiMessages: 20000,
+          storage: "2 GB",
+          users: 25000,
+          supportUsers: "Unlimited",
+        },
         buttonLabel: "Contact Sales",
         cta: "Get Quote",
         hasMessageSlider: true,
@@ -392,11 +510,70 @@ function Pricing() {
           "Audit logs & advanced security features",
           "Quarterly business reviews",
         ],
+        limits: {
+          intents: "Unlimited",
+          apiConfigs: "Unlimited",
+          chains: "Unlimited",
+          screens: "Single & Multiple Screens",
+          case3: "✅ Unlimited",
+          visualDesigner: "✅ Full + Enterprise",
+          agents: "Unlimited",
+          aiMessages: "Unlimited",
+          storage: "Custom",
+          users: "Unlimited",
+          supportUsers: "Unlimited",
+        },
         buttonLabel: "Contact Us",
         cta: "Schedule Demo",
         isEnterprise: true,
       },
     ],
+  };
+
+  // New feature comparison table data for the quick view
+  const featureComparison = {
+    "AI Intents/Skills": {
+      Launch: "3",
+      Starter: "10",
+      Growth: "30",
+      Scale: "100",
+      Enterprise: "Unlimited"
+    },
+    "API Configurations": {
+      Launch: "1",
+      Starter: "5",
+      Growth: "20",
+      Scale: "50",
+      Enterprise: "Unlimited"
+    },
+    "Chains (Workflows)": {
+      Launch: "0",
+      Starter: "3",
+      Growth: "15",
+      Scale: "40",
+      Enterprise: "Unlimited"
+    },
+    "Screens": {
+      Launch: "Single only",
+      Starter: "Single + Multiple",
+      Growth: "Single + Multiple",
+      Scale: "Single + Multiple",
+      Enterprise: "Single + Multiple"
+    },
+    "Case 3 (Nested Arrays)": {
+      Launch: "❌",
+      Starter: "✅ Limited (10 items)",
+      Growth: "✅ Unlimited",
+      Scale: "✅ Unlimited",
+      Enterprise: "✅ Unlimited"
+    },
+    "Visual Designer": {
+      Launch: "Basic",
+      Starter: "Full",
+      Growth: "Full + Advanced",
+      Scale: "Full + Advanced",
+      Enterprise: "Full + Enterprise"
+    },
   };
 
   const handleGrowthMessageLimitChange = (event) => {
@@ -543,6 +720,34 @@ function Pricing() {
               </div>
 
               <p className={styles.planSubheading}>{plan.subheading}</p>
+
+              {/* Feature Limit Summary - NEW */}
+              <div className={styles.planLimits}>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>🎯 Intents/Skills</span>
+                  <span className={styles.limitValue}>{plan.limits.intents}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>🔗 API Configs</span>
+                  <span className={styles.limitValue}>{plan.limits.apiConfigs}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>⛓️ Chains</span>
+                  <span className={styles.limitValue}>{plan.limits.chains}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>📱 Screens</span>
+                  <span className={styles.limitValue}>{plan.limits.screens}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>📊 Case 3 (Nested Arrays)</span>
+                  <span className={styles.limitValue}>{plan.limits.case3}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>🎨 Visual Designer</span>
+                  <span className={styles.limitValue}>{plan.limits.visualDesigner}</span>
+                </div>
+              </div>
 
               {plan.hasMessageSlider ? (
                 <div className={styles.messageLimitSection}>
