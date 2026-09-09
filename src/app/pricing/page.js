@@ -18,7 +18,6 @@ function Pricing() {
     });
   };
 
-  // Calculate price based on AI message limit for Growth plan
   const calculateGrowthPrice = (basePrice, messages) => {
     const baseMessages = 10000;
     if (messages <= baseMessages) return basePrice;
@@ -27,7 +26,6 @@ function Pricing() {
     return basePrice + Math.ceil(extraMessages / 1000) * increment;
   };
 
-  // Calculate price based on AI message limit for Scale plan
   const calculateScalePrice = (basePrice, messages) => {
     const baseMessages = 20000;
     if (messages <= baseMessages) return basePrice;
@@ -36,7 +34,6 @@ function Pricing() {
     return basePrice + Math.ceil(extraMessages / 1000) * increment;
   };
 
-  // Pricing data with new feature limits
   const pricingData = {
     monthly: {
       launch: { regular: 0, promo: 0 },
@@ -104,7 +101,6 @@ function Pricing() {
     },
   };
 
-  // Updated plans with new features - Free plan now has a taste of everything
   const plans = {
     monthly: [
       {
@@ -113,11 +109,11 @@ function Pricing() {
         description: "Perfect for testing, MVPs & early-stage projects.",
         subheading: "Try all features with reasonable limits",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (1 website included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Lead capture with Q&A forms",
           "Up to 1 agent",
           "Unlimited Websites",
-          "100 Monthly Active Users (Live Chat & Auth combined)",
+          "100 Monthly Active Users",
           "100 AI Messages / month",
           "1 Admin + 1 Support User",
           "Knowledge Base: 5 MB per agent",
@@ -132,10 +128,13 @@ function Pricing() {
           intents: 3,
           apiConfigs: 1,
           chains: 1,
+          leadGenWorkflows: 1,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ 5 items max",
           complexMultiple: "✅ 3 items max",
           visualDesigner: "✅ Basic",
+          leadForms: 3,
+          leadStorage: 100,
           agents: 1,
           aiMessages: 100,
           storage: "5 MB",
@@ -152,11 +151,11 @@ function Pricing() {
         description: "Complete customer communication suite for growing businesses.",
         subheading: "Best Value - 4-in-1 Platform",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (3 websites included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Launch, plus:",
           "Enhanced AI Bot with smart replies",
           "Advanced lead capture forms with analytics",
-          "1,000 Monthly Active Users (Live Chat & Auth combined)",
+          "1,000 Monthly Active Users",
           "5,000 AI Messages / month",
           "Up to 5 agents",
           "Knowledge Base: 100 MB per agent",
@@ -173,10 +172,13 @@ function Pricing() {
           intents: 10,
           apiConfigs: 5,
           chains: 3,
+          leadGenWorkflows: 3,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ 25 items max",
           complexMultiple: "✅ 10 items max",
           visualDesigner: "✅ Full",
+          leadForms: 10,
+          leadStorage: 1000,
           agents: 5,
           aiMessages: 5000,
           storage: "100 MB",
@@ -193,11 +195,11 @@ function Pricing() {
         description: "For growing SaaS & SMBs with serious customer engagement needs.",
         subheading: "Most Popular - Best Value",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (10 websites included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Starter, plus:",
           "Advanced AI with custom training & fine-tuning",
           "Customizable Q&A trees + auto-email leads",
-          "5,000 Monthly Active Users (Live Chat & Auth combined)",
+          "5,000 Monthly Active Users",
           `${growthMessageLimit.toLocaleString('en-IN')} AI Messages / month`,
           "Up to 15 agents",
           "Knowledge Base: 500 MB per agent",
@@ -209,16 +211,18 @@ function Pricing() {
           "No Sageion branding",
           "Full API Access with webhooks",
           "Custom workflows & automations",
-          "Multi-language AI support",
         ],
         limits: {
           intents: 30,
           apiConfigs: 20,
           chains: 15,
+          leadGenWorkflows: 10,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ Unlimited",
           complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
+          leadForms: 25,
+          leadStorage: 10000,
           agents: 15,
           aiMessages: 10000,
           storage: "500 MB",
@@ -241,11 +245,11 @@ function Pricing() {
         description: "For established companies, agencies, & high-traffic platforms.",
         subheading: "High-Volume Enterprise Solution",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (25 websites included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Growth, plus:",
           "Enterprise-grade AI with multi-model routing",
           "Custom workflows & automations with visual builder",
-          "25,000 Monthly Active Users (Live Chat & Auth combined)",
+          "25,000 Monthly Active Users",
           `${scaleMessageLimit.toLocaleString('en-IN')} AI Messages / month`,
           "Up to 50 agents",
           "Knowledge Base: 2 GB per agent",
@@ -260,10 +264,13 @@ function Pricing() {
           intents: 100,
           apiConfigs: 50,
           chains: 40,
+          leadGenWorkflows: 25,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ Unlimited",
           complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
+          leadForms: 50,
+          leadStorage: 50000,
           agents: 50,
           aiMessages: 20000,
           storage: "2 GB",
@@ -287,7 +294,7 @@ function Pricing() {
         description: "For large enterprises with custom requirements & highest security.",
         subheading: "Fully Customizable Enterprise Solution",
         features: [
-          "✅ Exclusive: Unlimited Auth Layer websites",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Scale, plus:",
           "Unlimited AI Messages & Agents",
           "Custom Knowledge Base Architecture",
@@ -307,10 +314,13 @@ function Pricing() {
           intents: "Unlimited",
           apiConfigs: "Unlimited",
           chains: "Unlimited",
+          leadGenWorkflows: "Unlimited",
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ Unlimited",
           complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Enterprise",
+          leadForms: "Unlimited",
+          leadStorage: "Unlimited",
           agents: "Unlimited",
           aiMessages: "Unlimited",
           storage: "Custom",
@@ -329,11 +339,11 @@ function Pricing() {
         description: "Perfect for testing, MVPs & early-stage projects.",
         subheading: "Try all features with reasonable limits",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (1 website included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Lead capture with Q&A forms",
           "Up to 1 agent",
           "Unlimited Websites",
-          "100 Monthly Active Users (Live Chat & Auth combined)",
+          "100 Monthly Active Users",
           "100 AI Messages / month",
           "1 Admin + 1 Support User",
           "Knowledge Base: 5 MB per agent",
@@ -348,10 +358,13 @@ function Pricing() {
           intents: 3,
           apiConfigs: 1,
           chains: 1,
+          leadGenWorkflows: 1,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ 5 items max",
           complexMultiple: "✅ 3 items max",
           visualDesigner: "✅ Basic",
+          leadForms: 3,
+          leadStorage: 100,
           agents: 1,
           aiMessages: 100,
           storage: "5 MB",
@@ -368,11 +381,11 @@ function Pricing() {
         description: "Complete customer communication suite for growing businesses.",
         subheading: "Best Value - 4-in-1 Platform",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (3 websites included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Launch, plus:",
           "Enhanced AI Bot with smart replies",
           "Advanced lead capture forms with analytics",
-          "1,000 Monthly Active Users (Live Chat & Auth combined)",
+          "1,000 Monthly Active Users",
           "5,000 AI Messages / month",
           "Up to 5 agents",
           "Knowledge Base: 100 MB per agent",
@@ -389,10 +402,13 @@ function Pricing() {
           intents: 10,
           apiConfigs: 5,
           chains: 3,
+          leadGenWorkflows: 3,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ 25 items max",
           complexMultiple: "✅ 10 items max",
           visualDesigner: "✅ Full",
+          leadForms: 10,
+          leadStorage: 1000,
           agents: 5,
           aiMessages: 5000,
           storage: "100 MB",
@@ -409,11 +425,11 @@ function Pricing() {
         description: "For growing SaaS & SMBs with serious customer engagement needs.",
         subheading: "Most Popular - Best Value",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (10 websites included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Starter, plus:",
           "Advanced AI with custom training & fine-tuning",
           "Customizable Q&A trees + auto-email leads",
-          "5,000 Monthly Active Users (Live Chat & Auth combined)",
+          "5,000 Monthly Active Users",
           `${growthMessageLimit.toLocaleString('en-IN')} AI Messages / month`,
           "Up to 15 agents",
           "Knowledge Base: 500 MB per agent",
@@ -425,16 +441,18 @@ function Pricing() {
           "No Sageion branding",
           "Full API Access with webhooks",
           "Custom workflows & automations",
-          "Multi-language AI support",
         ],
         limits: {
           intents: 30,
           apiConfigs: 20,
           chains: 15,
+          leadGenWorkflows: 10,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ Unlimited",
           complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
+          leadForms: 25,
+          leadStorage: 10000,
           agents: 15,
           aiMessages: 10000,
           storage: "500 MB",
@@ -457,11 +475,11 @@ function Pricing() {
         description: "For established companies, agencies, & high-traffic platforms.",
         subheading: "High-Volume Enterprise Solution",
         features: [
-          "✅ Exclusive: Built-in Auth Layer (25 websites included)",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Growth, plus:",
           "Enterprise-grade AI with multi-model routing",
           "Custom workflows & automations with visual builder",
-          "25,000 Monthly Active Users (Live Chat & Auth combined)",
+          "25,000 Monthly Active Users",
           `${scaleMessageLimit.toLocaleString('en-IN')} AI Messages / month`,
           "Up to 50 agents",
           "Knowledge Base: 2 GB per agent",
@@ -476,10 +494,13 @@ function Pricing() {
           intents: 100,
           apiConfigs: 50,
           chains: 40,
+          leadGenWorkflows: 25,
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ Unlimited",
           complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
+          leadForms: 50,
+          leadStorage: 50000,
           agents: 50,
           aiMessages: 20000,
           storage: "2 GB",
@@ -503,7 +524,7 @@ function Pricing() {
         description: "For large enterprises with custom requirements & highest security.",
         subheading: "Fully Customizable Enterprise Solution",
         features: [
-          "✅ Exclusive: Unlimited Auth Layer websites",
+          "✅ Bring Your Own Authentication - You own your user data",
           "Everything in Scale, plus:",
           "Unlimited AI Messages & Agents",
           "Custom Knowledge Base Architecture",
@@ -523,10 +544,13 @@ function Pricing() {
           intents: "Unlimited",
           apiConfigs: "Unlimited",
           chains: "Unlimited",
+          leadGenWorkflows: "Unlimited",
           screens: "Single + Simple Multiple",
           simpleMultiple: "✅ Unlimited",
           complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Enterprise",
+          leadForms: "Unlimited",
+          leadStorage: "Unlimited",
           agents: "Unlimited",
           aiMessages: "Unlimited",
           storage: "Custom",
@@ -554,7 +578,6 @@ function Pricing() {
     return limit.toString();
   };
 
-  // Get price display for a plan
   const getPriceDisplay = (plan) => {
     if (plan.isFree) return "Free forever";
     if (plan.isEnterprise) return showIndianPromo ? pricingData[billingCycle].enterprise.promo : pricingData[billingCycle].enterprise.regular;
@@ -572,7 +595,6 @@ function Pricing() {
     }
   };
 
-  // Get value per user text
   const getValuePerUserText = (plan) => {
     if (plan.planCode === "STARTER") {
       const price = showIndianPromo ? pricingData[billingCycle].starter.promo : pricingData[billingCycle].starter.regular;
@@ -592,7 +614,6 @@ function Pricing() {
     return null;
   };
 
-  // Calculate slider progress for gradient
   const getSliderProgress = (value, min, max) => {
     return ((value - min) / (max - min)) * 100;
   };
@@ -602,7 +623,7 @@ function Pricing() {
       <div className={styles.headingWrapper}>
         <h1>Pricing That Grows With You</h1>
         <p>
-          Start free, scale as you grow. The Complete Customer Platform: AI + Live Chat + Auth Layer + Lead Capture.
+          Start free, scale as you grow. The Complete Customer Platform: AI + Live Chat + Lead Capture.
         </p>
         <div className={styles.curPlan_savCal_warp}>
           <div className={styles.savingsCalculator}>
@@ -613,8 +634,8 @@ function Pricing() {
         </div>
         <div className={styles.valueBanner}>
           <div className={styles.valueItem}>
-            <span className={styles.valueIcon}>🚀</span>
-            <span>Complete Platform: AI + Live Chat + Auth + Leads</span>
+            <span className={styles.valueIcon}>🔐</span>
+            <span>Bring Your Own Auth - You own your users</span>
           </div>
           <div className={styles.valueItem}>
             <span className={styles.valueIcon}>⚡</span>
@@ -685,7 +706,6 @@ function Pricing() {
 
               <p className={styles.planSubheading}>{plan.subheading}</p>
 
-              {/* Feature Limit Summary - NEW */}
               <div className={styles.planLimits}>
                 <div className={styles.limitRow}>
                   <span className={styles.limitLabel}>🎯 Intents/Skills</span>
@@ -696,8 +716,12 @@ function Pricing() {
                   <span className={styles.limitValue}>{plan.limits.apiConfigs}</span>
                 </div>
                 <div className={styles.limitRow}>
-                  <span className={styles.limitLabel}>⛓️ Chains</span>
+                  <span className={styles.limitLabel}>⛓️ API Chains</span>
                   <span className={styles.limitValue}>{plan.limits.chains}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>📊 LeadGen Workflows</span>
+                  <span className={styles.limitValue}>{plan.limits.leadGenWorkflows}</span>
                 </div>
                 <div className={styles.limitRow}>
                   <span className={styles.limitLabel}>📱 Screens</span>
@@ -714,6 +738,14 @@ function Pricing() {
                 <div className={styles.limitRow}>
                   <span className={styles.limitLabel}>🎨 Visual Designer</span>
                   <span className={styles.limitValue}>{plan.limits.visualDesigner}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>📝 Lead Forms</span>
+                  <span className={styles.limitValue}>{plan.limits.leadForms}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>💾 Lead Storage</span>
+                  <span className={styles.limitValue}>{plan.limits.leadStorage.toLocaleString()} leads</span>
                 </div>
               </div>
 

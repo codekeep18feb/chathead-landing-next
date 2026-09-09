@@ -5,55 +5,55 @@ import Modal from "./Modal";
 
 const featureDescriptions = {
   // ===== CORE FEATURES =====
-  "Monthly Active Users": "Total unique users who interact with your chat and authentication services per month.",
+  "Monthly Active Users": "Total unique users who interact with your chat services per month.",
   "Agents": "Number of AI chatbot agents you can create and train with custom knowledge.",
   "Unlimited Websites": "Use Sageion on unlimited websites with a single plan.",
-  "Multi-Admin": "Number of admin and support users included in the plan.",
-  "Auth Layer Websites": "Number of websites where you can use Sageion's built-in authentication system.",
+  "Support Users": "Number of support team members who can access the admin dashboard.",
   
   // ===== AI CHAT FEATURES =====
   "AI Messages / month": "Monthly limit for AI chatbot interactions (no LLM token costs).",
   "Knowledge Base per Agent": "Maximum amount of training data per AI agent.",
   "AI Bot Type": "Level of AI sophistication available for your chatbots.",
-  "Multi-language Support": "AI support for multiple languages.",
   "Intents/Skills": "Number of conversational skills or intents your AI agent can recognize and handle.",
+  "Custom Intent Configuration": "Ability to define custom intents and skills for your AI agent.",
   
-  // ===== WORKFLOWS & INTEGRATIONS =====
+  // ===== API & WORKFLOWS =====
   "API Configurations": "Number of API endpoints you can configure for your chatbot to call.",
-  "Chains (Workflows)": "Number of multi-step API workflows you can create.",
-  "Custom Workflows": "Build automated workflows and business rules.",
-  "Webhook Support": "Receive real-time notifications for chat events.",
-  "API Access": "Programmatic access to Sageion features for custom integrations.",
-  "Custom Integrations": "Integration support for CRM, helpdesk, and other business tools.",
+  "API Chains (Workflows)": "Multi-step API workflows where response from one API determines the next API call.",
+  "LeadGen Workflows": "Specialized workflows for lead qualification and routing.",
   
   // ===== VISUAL DESIGNER =====
-  "Screens": "Response display options for your data.",
-  "Simple Multiple Screens (Case 1)": "Root array data → each item gets its own screen. Perfect for product lists, search results, and simple item collections.",
-  "Complex Multiple Screens (Case 3)": "Nested array data with metadata → each nested item gets its own screen while preserving context. Perfect for detailed records with multiple data layers.",
-  "Visual Designer": "No-code visual interface for designing AI responses.",
+  "Visual Response Designer": "No-code visual interface for designing AI responses.",
+  "Simple Multiple Screens": "Root array data → each item gets its own screen. Perfect for product lists, search results, and simple item collections.",
+  "Complex Multiple Screens": "Nested array data with metadata → each nested item gets its own screen while preserving context.",
+  
+  // ===== LEAD CAPTURE =====
+  "Lead Capture Forms": "Capture leads via forms, FAQ flows, and conversational interfaces.",
+  "Lead Storage Capacity": "Number of leads that can be stored in the system before requiring export or cleanup.",
+  "Advanced Lead Capture": "Forms with analytics, conditional logic, and custom fields.",
+  "Customizable Q&A Trees": "Create branching conversation paths for lead qualification.",
+  "Auto Email to Leads": "Automatically sends follow-up emails to captured leads.",
   
   // ===== LIVE CHAT FEATURES =====
   "Live Chat": "Two-way live chat between visitors and your support team.",
   "File Upload Size": "Maximum file size users can upload in live chat conversations.",
-  "Data Retention": "Duration chat history is stored before deletion.",
+  "Chat History Retention": "Duration chat history is stored before deletion.",
+  "Multi-Region Support": "Support for users across different geographical regions (US, IN).",
   
-  // ===== LEAD GENERATION =====
-  "Lead Capture Forms": "Capture leads via forms, FAQ flows, and conversational interfaces.",
-  "Advanced Lead Capture": "Forms with analytics, conditional logic, and custom fields.",
-  "Customizable Q&A Trees": "Create branching conversation paths for lead qualification.",
-  "Auto Email to Leads": "Automatically sends follow-up emails to captured leads.",
-  "Advanced Analytics": "Detailed reports and insights on chat performance and lead conversion.",
+  // ===== ADMIN & MANAGEMENT =====
+  "All Chats Dashboard": "Centralized view of all conversations across all applications.",
+  "Multi-Admin Support": "Multiple administrators and support users with role-based permissions.",
+  "User Management": "Manage users across all applications with search and filtering.",
   
   // ===== EMAIL & NOTIFICATIONS =====
   "Email Notifications": "Alerts for new messages and support requests.",
   "Custom Email Templates": "Create branded email templates for notifications.",
   
-  // ===== BRANDING & CUSTOMIZATION =====
+  // ===== BRANDING =====
   "Remove Branding": "Option to remove 'Powered by Sageion' from your chat interface.",
   "Custom Domains": "Use your own domain for chat services (e.g., chat.yourcompany.com).",
-  "White-label SDK": "Embed fully branded chat into mobile apps and websites.",
   
-  // ===== SUPPORT & SLAs =====
+  // ===== SUPPORT =====
   "Priority Support": "Get faster help from our support team.",
   "Dedicated Account Manager": "Single point of contact for support and strategy.",
   "Phone Support": "Direct phone access to support team.",
@@ -80,7 +80,7 @@ const groupedFeatures = {
   "Core Features": [
     {
       label: "Monthly Active Users",
-      values: ["100 (Live Chat & Auth)", "1,000 (Live Chat & Auth)", "5,000 (Live Chat & Auth)", "25,000 (Live Chat & Auth)", "Custom"]
+      values: ["100", "1,000", "5,000", "25,000", "Custom"]
     },
     {
       label: "Agents",
@@ -91,8 +91,8 @@ const groupedFeatures = {
       values: [true, true, true, true, true]
     },
     {
-      label: "Auth Layer Websites",
-      values: ["1", "3", "10", "25", "Unlimited"]
+      label: "Support Users",
+      values: ["1", "5", "10", "Unlimited", "Unlimited"]
     },
   ],
   
@@ -114,58 +114,65 @@ const groupedFeatures = {
       values: ["3", "10", "30", "100", "Unlimited"]
     },
     {
-      label: "Multi-language Support",
-      values: [false, false, true, true, true]
+      label: "Custom Intent Configuration",
+      values: ["✅ Basic", "✅ Full", "✅ Full", "✅ Full", "✅ Full + Custom"]
     },
   ],
   
-  "Workflows & Integrations": [
+  "API & Workflows": [
     {
       label: "API Configurations",
       values: ["1", "5", "20", "50", "Unlimited"]
     },
     {
-      label: "Chains (Workflows)",
+      label: "API Chains (Workflows)",
       values: ["1", "3", "15", "40", "Unlimited"]
     },
     {
-      label: "Custom Workflows",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Webhook Support",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "API Access",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Custom Integrations",
-      values: [false, false, false, true, true]
+      label: "LeadGen Workflows",
+      values: ["1", "3", "10", "25", "Unlimited"]
     },
   ],
   
   "Visual Designer": [
     {
-      label: "Screens",
-      values: ["Single + Simple Multiple", "Single + Simple Multiple", "Single + Simple Multiple", "Single + Simple Multiple", "Single + Simple Multiple"]
-    },
-    {
-      label: "Simple Multiple Screens (Case 1)",
-      values: ["✅ 5 items max", "✅ 25 items max", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
-    },
-    {
-      label: "Complex Multiple Screens (Case 3)",
-      values: ["✅ 3 items max", "✅ 10 items max", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
-    },
-    {
-      label: "Visual Designer",
+      label: "Visual Response Designer",
       values: ["✅ Basic", "✅ Full", "✅ Full + Advanced", "✅ Full + Advanced", "✅ Full + Enterprise"]
+    },
+    {
+      label: "Simple Multiple Screens",
+      values: ["✅ 5 items", "✅ 25 items", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
+    },
+    {
+      label: "Complex Multiple Screens",
+      values: ["✅ 3 items", "✅ 10 items", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
     },
   ],
   
-  "Live Chat Features": [
+  "Lead Capture": [
+    {
+      label: "Lead Capture Forms",
+      values: ["✅ 3 forms", "✅ 10 forms", "✅ 25 forms", "✅ 50 forms", "✅ Unlimited"]
+    },
+    {
+      label: "Lead Storage Capacity",
+      values: ["100 leads", "1,000 leads", "10,000 leads", "50,000 leads", "Unlimited"]
+    },
+    {
+      label: "Advanced Lead Capture",
+      values: ["❌", "✅", "✅", "✅", "✅"]
+    },
+    {
+      label: "Customizable Q&A Trees",
+      values: ["❌", "❌", "✅", "✅", "✅"]
+    },
+    {
+      label: "Auto Email to Leads",
+      values: ["❌", "✅", "✅", "✅", "✅"]
+    },
+  ],
+  
+  "Live Chat": [
     {
       label: "Live Chat",
       values: [true, true, true, true, true]
@@ -175,31 +182,27 @@ const groupedFeatures = {
       values: ["25 MB", "100 MB", "250 MB", "500 MB", "Custom"]
     },
     {
-      label: "Data Retention",
+      label: "Chat History Retention",
       values: ["15 days", "180 days", "2 years", "5 years", "Custom"]
+    },
+    {
+      label: "Multi-Region Support",
+      values: [true, true, true, true, true]
     },
   ],
   
-  "Lead Generation": [
+  "Admin & Management": [
     {
-      label: "Lead Capture Forms",
+      label: "All Chats Dashboard",
       values: [true, true, true, true, true]
     },
     {
-      label: "Advanced Lead Capture",
-      values: [false, true, true, true, true]
+      label: "Multi-Admin Support",
+      values: ["❌", "❌", "✅", "✅", "✅"]
     },
     {
-      label: "Customizable Q&A Trees",
-      values: [false, false, true, true, true]
-    },
-    {
-      label: "Auto Email to Leads",
-      values: [false, true, true, true, true]
-    },
-    {
-      label: "Advanced Analytics",
-      values: [false, false, true, true, true]
+      label: "User Management",
+      values: [true, true, true, true, true]
     },
   ],
   
@@ -210,68 +213,64 @@ const groupedFeatures = {
     },
     {
       label: "Custom Email Templates",
-      values: [false, true, true, true, true]
+      values: ["❌", "✅", "✅", "✅", "✅"]
     },
   ],
   
-  "Branding & Customization": [
+  "Branding": [
     {
       label: "Remove Branding",
-      values: [false, true, true, true, true]
+      values: ["❌", "✅", "✅", "✅", "✅"]
     },
     {
       label: "Custom Domains",
-      values: [false, false, false, "2 included", "Unlimited"]
-    },
-    {
-      label: "White-label SDK",
-      values: [false, false, false, true, true]
+      values: ["❌", "❌", "❌", "✅ (2)", "✅ Unlimited"]
     },
   ],
   
-  "Support & SLAs": [
+  "Support": [
     {
       label: "Priority Support",
-      values: [false, true, true, true, true]
+      values: ["❌", "✅", "✅", "✅", "✅"]
     },
     {
       label: "Dedicated Account Manager",
-      values: [false, false, false, true, true]
+      values: ["❌", "❌", "❌", "✅", "✅"]
     },
     {
       label: "Phone Support",
-      values: [false, false, false, true, true]
+      values: ["❌", "❌", "❌", "✅", "✅"]
     },
     {
       label: "24/7 Priority Support",
-      values: [false, false, false, false, true]
+      values: ["❌", "❌", "❌", "❌", "✅"]
     },
     {
       label: "SLA",
-      values: [false, false, false, "99.9% uptime", "Custom"]
+      values: ["❌", "❌", "❌", "✅ (99.9%)", "✅ Custom"]
     },
   ],
   
   "Enterprise Features": [
     {
       label: "Custom API Rate Limits",
-      values: [false, false, false, false, true]
+      values: ["❌", "❌", "❌", "❌", "✅"]
     },
     {
       label: "Multi-region Hosting",
-      values: [false, false, false, false, true]
+      values: ["❌", "❌", "❌", "❌", "✅"]
     },
     {
       label: "Custom AI Training",
-      values: [false, false, false, false, true]
+      values: ["❌", "❌", "❌", "❌", "✅"]
     },
     {
       label: "Audit Logs",
-      values: [false, false, false, false, true]
+      values: ["❌", "❌", "❌", "❌", "✅"]
     },
     {
       label: "Quarterly Business Reviews",
-      values: [false, false, false, false, true]
+      values: ["❌", "❌", "❌", "❌", "✅"]
     },
   ],
 };
@@ -403,7 +402,8 @@ const ComparisonTable = () => {
               <li>100 AI Messages/mo</li>
               <li>✅ Simple Multiple Screens (5 items)</li>
               <li>✅ Complex Multiple Screens (3 items)</li>
-              <li>✅ Basic Visual Designer</li>
+              <li>✅ 3 Lead Capture Forms</li>
+              <li>100 Leads Storage</li>
             </ul>
           </div>
           <div className={`${styles.summaryCard} ${styles.popularCard}`}>
@@ -414,9 +414,10 @@ const ComparisonTable = () => {
               <li>30 Intents/Skills</li>
               <li>20 API Configs + 15 Chains</li>
               <li>10,000+ AI Messages/mo</li>
-              <li>✅ Simple Multiple Screens (Unlimited)</li>
-              <li>✅ Complex Multiple Screens (Unlimited)</li>
-              <li>✅ Full + Advanced Visual Designer</li>
+              <li>✅ Unlimited Screens</li>
+              <li>✅ 25 Lead Capture Forms</li>
+              <li>10,000 Leads Storage</li>
+              <li>✅ Multi-Admin Support</li>
             </ul>
           </div>
           <div className={styles.summaryCard}>
@@ -427,9 +428,10 @@ const ComparisonTable = () => {
               <li>100 Intents/Skills</li>
               <li>50 API Configs + 40 Chains</li>
               <li>20,000+ AI Messages/mo</li>
-              <li>✅ Simple Multiple Screens (Unlimited)</li>
-              <li>✅ Complex Multiple Screens (Unlimited)</li>
-              <li>✅ Full + Advanced Visual Designer</li>
+              <li>✅ Unlimited Screens</li>
+              <li>✅ 50 Lead Capture Forms</li>
+              <li>50,000 Leads Storage</li>
+              <li>✅ Multi-Admin + Dedicated Support</li>
             </ul>
           </div>
         </div>
