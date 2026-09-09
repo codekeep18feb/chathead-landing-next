@@ -13,7 +13,7 @@ export const whitelabelDomains = [
     text: "Available Features",
   },
   {
-    tag_type: "ul",
+    tag_type: "ol",
     items: [
       {
         text: "Add custom domain names for your applications",

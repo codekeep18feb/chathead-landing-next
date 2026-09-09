@@ -57,6 +57,9 @@
 .tab-content {
   padding: 20px;
 }
+.tab-content .content-paragraph {
+  padding-top: 0px;
+}
 .description {
   width: 100%;
 }
@@ -87,10 +90,10 @@
 }
 
 .content-list li {
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   font-weight: 500;
   letter-spacing: 0.5px;
-  line-height: 20px;
+  /* line-height: 20px; */
   font-size: 14px;
 }
 .content-list.ordered {
@@ -171,12 +174,11 @@
   color: var(--dark-color);
   font-size: 20px;
   font-weight: 600;
-  padding-bottom: 15px;
 }
 
 .content-inner-heading {
   margin: 10px 0px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--text-color);
   /* margin-bottom: 10px; */
@@ -187,9 +189,12 @@
   font-size: 16px;
   /* padding: 16px 0px; */
   letter-spacing: 0.2px;
-  line-height: 26px;
+  line-height: 20px;
   color: var(--text-color);
-  padding-bottom: 10px;
+  padding: 10px 0px;
+  font-size: 0.895rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 .second_subheading {
   padding-top: 20px;
@@ -200,15 +205,15 @@
   padding-left: 10px;
 }
 .content-link {
-  color: var(--white-text-color);
+  color: rgb(160, 160, 160);
   text-decoration: none;
   border: none;
   outline: none;
   background: transparent;
-  /* width: 24px;
-  height: 24px; */
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 1px solid var(--white-text-color);
+  border: 1px solid rgb(160, 160, 160);
   cursor: pointer;
   flex-shrink: 0;
   padding: 6px;
@@ -221,15 +226,20 @@
   border: none;
 } */
 .view-full-implementation {
-  margin-top: 15px;
+  margin: 15px 0px;
   outline: none;
   border: none;
   background-color: forestgreen;
-  padding: 18px 20px;
+  padding: 8px 20px;
   border-radius: 6px;
   font-size: 16px;
 }
-
+.view-full-implementation .content-link {
+  width: auto;
+  height: auto;
+  color: var(--white-text-color);
+  border-color: var(--white-text-color);
+}
 .content-link:hover {
   transform: scale(1.1);
 }
@@ -247,9 +257,12 @@
   background: black;
   color: white;
 }
+.callout .content-paragraph {
+  padding: 0px;
+}
 .content-div {
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin: 20px 0px;
   padding: 20px;
   width: 100%;
   height: auto;
@@ -258,7 +271,12 @@
   /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   padding-top: 14px;
+  background: transparent;
 }
+
+/* .content-div .callout {
+  margin-top: 10px;
+} */
 .script_code {
   background: black;
   color: white;
@@ -307,7 +325,7 @@
   color: #666;
 }
 .callout {
-  padding: 16px;
+  padding: 12px;
   margin: 20px 0;
   border-radius: 4px;
   border-left: 4px solid;
@@ -324,7 +342,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-top: 5px;
 }
 .code-with-copy {
@@ -367,25 +385,27 @@
   border-collapse: separate;
   border-spacing: 0;
   margin: 20px 0;
-  font-size: 0.95rem;
+  font-size: 0.855rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   overflow: hidden;
   border: 2px solid #c7ddff;
+  color: var(--text-color);
+  margin-top: 0px;
 }
 
 .docTableHeadCell {
   padding: 12px 16px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-color);
   background-color: #eef1f5;
   border: 1px solid #e0e0e0;
   text-align: left;
 }
 
 .docTableBodyCell {
-  padding: 12px 16px;
+  padding: 10px;
   border: 1px solid #e0e0e0;
   text-align: left;
 }
@@ -415,21 +435,25 @@
   border-bottom-right-radius: 10px;
 }
 .sidebarLi {
-  background-color: #7d92e7;
+  background-color: #e8e8e8;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  padding: 6px 8px;
   border-radius: 5px;
   color: var(--white-text-color);
   justify-content: space-between;
   /* cursor: pointer; */
+  background: transparent;
 }
 .sidebarLi:hover {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: #6b88f8;
+  background-color: #e0e0e0;
 }
-
+.content-list ul li span:first-child {
+  font-size: 0.855rem;
+  color: var(--text-color);
+}
 @media (min-width: 426px) and (max-width: 668px) {
   .docTable {
     width: 100%;
@@ -505,7 +529,7 @@
   }
 }
 .liSubItems ul div {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .li_subLi ul li .sidebarLi {
@@ -546,27 +570,29 @@
   padding: 5px;
 }
 .content-list li span {
-  font-size: 16px;
+  font-size: 0.965rem;
 }
 
 /* Add these styles to your renderingToolSty.module.css */
 
 .expand-icon {
-  display: inline-block;
-  transition: transform 0.2s ease;
-  cursor: pointer;
-  font-size: 12px;
-  color: #666;
+  width: 26px;
+  height: 26px;
   margin-left: auto;
-  padding: 10px 5px;
-  user-select: none; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  flex-shrink: 0;
+  margin-right: 5px;
 }
 .expand-icon.expanded {
-  transform: rotate(90deg);
+  transform: rotate(0deg);
 }
 
 .expand-icon.collapsed {
-  transform: rotate(0deg);
+  transform: rotate(-90deg);
 }
 
 /* Optional: Add hover effect */
@@ -577,4 +603,66 @@
 /* Optional: Add some spacing for the li items with sub-items */
 .content-list-item {
   margin-bottom: 8px;
+}
+.collapseIcon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.collapseIconExpanded {
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.downIcon {
+  width: 26px;
+  height: 26px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  flex-shrink: 0;
+  margin-right: 5px;
+}
+
+.downIcon svg {
+  transition: transform 0.2s ease;
+}
+
+.downIconExpanded svg {
+  transform: rotate(-90deg);
+}
+
+.contentHeaderWrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.content-div .content-list li .contentHeaderWrap span {
+  font-size: 0.895rem;
+  color: var(--text-color);
+}
+
+.pacontentHeaderWraprent > div {
+  margin-right: auto;
+}
+
+.pacontentHeaderWraprent > span {
+  margin-right: 20px;
+}
+
+.pacontentHeaderWraprent > button {
+  margin: 0;
 }

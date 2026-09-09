@@ -22,7 +22,8 @@
   background: var(--light-primary-color);
   /* padding: 12px; */
   position: relative;
-
+  background: white;
+  border-right: 1px solid #cdcdcd;
 }
 .doc_sidebar ol {
   list-style: none !important;
@@ -45,7 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 8px 10px;
   /* border-radius: 6px; */
   transition: background-color 0.2s ease;
   width: 100%;
@@ -54,7 +55,13 @@
   background-color: #b1c0fb;
 }
 
-.doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
+.doc_sidebar
+  > div
+  > div
+  > ol:first-of-type
+  > li:first-of-type
+  > div:first-of-type
+  > div {
   background: var(--primary-color);
   display: flex;
   align-items: center;
@@ -62,12 +69,12 @@
   color: var(--white-text-color);
 }
 .rightWrap {
-  background-color:transparent;
-  overflow-y: auto; 
+  background-color: transparent;
+  overflow-y: auto;
   flex: 1;
   max-height: 140vh;
   scrollbar-width: none;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
 }
 .rightWrap::-webkit-scrollbar {
   display: none;
@@ -104,7 +111,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 75vh; 
+  min-height: 75vh;
   font-size: 1.1rem;
   color: #555;
   text-align: center;
@@ -122,8 +129,8 @@
   flex-wrap: nowrap;
   gap: 10px;
 
-  scrollbar-width: thin;           /* Firefox */
-  scrollbar-color: #888 #e0e0e0; 
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #e0e0e0;
 }
 /* For WebKit browsers like Chrome, Safari */
 .mobileSidebarWrapper::-webkit-scrollbar {
@@ -144,11 +151,10 @@
   gap: 20px;
   background-color: transparent;
   color: var(--text-color);
- 
 }
 .mobileSidebarWrapper div:hover {
- box-shadow: none;
- background-color: transparent;
+  box-shadow: none;
+  background-color: transparent;
 }
 .mobileSidebarWrapper li {
   display: flex;
@@ -159,33 +165,33 @@
   content: none !important;
 }
 
-
-
 @media (min-width: 426px) and (max-width: 1024px) {
-.content-area {
-  width: 100%;
-  /* padding: 0px; */
-  /* border: 2px solid red; */
-}
-.main-content{
-  padding: 20px 10px;
-  width: 100%;
-}
-
+  .content-area {
+    width: 100%;
+    /* padding: 0px; */
+    /* border: 2px solid red; */
+  }
+  .main-content {
+    padding: 20px 10px;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .content-area {
     width: 100%;
-    padding:0px;
+    padding: 0px;
   }
-  .main-content{
+  .main-content {
     padding: 20px 10px;
     width: 100%;
   }
 }
 .content-area h3 {
-  padding-left: 0px;
   font-size: 18px;
-  padding-top: 0px;
+  padding: 10px 0px;
+  padding-bottom: 0px;
+}
+.doc_sidebar > div > div >div:last-child div h3{
+  padding: 2px 10px;
 }

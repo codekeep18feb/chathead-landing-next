@@ -1,0 +1,30 @@
+#v2_client_integration {
+  padding-bottom: 0px;
+    color: var(--text-color);
+}
+
+#v2_backend_integration {
+    margin: 10px 0px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0px;
+}
+#v2_platform_overview {
+    padding-bottom: 0px;
+      color: var(--text-color);
+}
+#v2_invite_support, #v2_whitelabel_domains , #v2_leadgen_faq {
+    margin-bottom: 0px;
+      color: var(--text-color);
+}
+.content-h5 {
+    padding: 15px 0px;
+}
+#v2_live_agent {
+    margin-top: 10px;
+}
+#v2_byo {
+    padding: 0px;
+      color: var(--text-color);
+}

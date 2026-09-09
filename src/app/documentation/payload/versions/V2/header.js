@@ -2,6 +2,7 @@ export const header = [
   {
     tag_type: "h2",
     text: `[V2] BYO (Bring Your Own) Auth + Chat`,
+    selector_uid: "v2_byo"
   },
   {
     tag_type: "p",

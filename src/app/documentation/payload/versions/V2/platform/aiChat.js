@@ -64,7 +64,7 @@ export const aiChat = [
             title: "🤖 What the AI Agent Can Do",
             children: [
               {
-                tag_type: "ul",
+                tag_type: "ol",
                 items: [
                   {
                     text: "Answer customer questions 24/7",
@@ -119,7 +119,7 @@ export const aiChat = [
             ],
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "Each AI response consumes 1 credit",
