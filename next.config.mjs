@@ -1,13 +1,16 @@
+/** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig = {
   output: "export",
-  assetPrefix: "",
-  basePath: "",
-  images: { unoptimized: true },
+  basePath: isProd ? "/chathead-landing-next" : "",
+  assetPrefix: isProd ? "/chathead-landing-next" : "",
+  images: {
+    unoptimized: true,
+  },
+  trailingSlash: true,
   env: {
-    NEXT_PUBLIC_BASE_PATH: "",
-    NEXT_PUBLIC_API_URL: "https://api.example.com", // your actual API if neede
+    NEXT_PUBLIC_BASE_PATH: isProd ? "/chathead-landing-next" : "",
   },
 };
 
