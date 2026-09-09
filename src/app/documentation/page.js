@@ -70,10 +70,10 @@ const Document = () => {
 
         <div className={styles.rightWrap}>
           <div className={styles["main-content"]}>
-            <TopFilterComp setSelectedFilter={setSelectedFilter} />
+            {/* <TopFilterComp setSelectedFilter={setSelectedFilter} /> */}
 
             {isMobile && (
-              <div className={styles.mobileSidebarWrapper}>
+              <div >
                 <Sidebar
                   isMobile={isMobile}
                   selectedKey={selectedKey}
