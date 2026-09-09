@@ -104,14 +104,14 @@ function Pricing() {
     },
   };
 
-  // Updated plans with new features
+  // Updated plans with new features - Free plan now has a taste of everything
   const plans = {
     monthly: [
       {
         type: "Launch 🚀",
         planCode: "LAUNCH",
         description: "Perfect for testing, MVPs & early-stage projects.",
-        subheading: "Best for individuals exploring Sageion",
+        subheading: "Try all features with reasonable limits",
         features: [
           "✅ Exclusive: Built-in Auth Layer (1 website included)",
           "Lead capture with Q&A forms",
@@ -131,9 +131,10 @@ function Pricing() {
         limits: {
           intents: 3,
           apiConfigs: 1,
-          chains: 0,
-          screens: "Single Screen only",
-          case3: "❌ Not available",
+          chains: 1,
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ 5 items max",
+          complexMultiple: "✅ 3 items max",
           visualDesigner: "✅ Basic",
           agents: 1,
           aiMessages: 100,
@@ -172,8 +173,9 @@ function Pricing() {
           intents: 10,
           apiConfigs: 5,
           chains: 3,
-          screens: "Single & Multiple Screens",
-          case3: "✅ Limited (up to 10 items)",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ 25 items max",
+          complexMultiple: "✅ 10 items max",
           visualDesigner: "✅ Full",
           agents: 5,
           aiMessages: 5000,
@@ -213,8 +215,9 @@ function Pricing() {
           intents: 30,
           apiConfigs: 20,
           chains: 15,
-          screens: "Single & Multiple Screens",
-          case3: "✅ Unlimited",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ Unlimited",
+          complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
           agents: 15,
           aiMessages: 10000,
@@ -257,8 +260,9 @@ function Pricing() {
           intents: 100,
           apiConfigs: 50,
           chains: 40,
-          screens: "Single & Multiple Screens",
-          case3: "✅ Unlimited",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ Unlimited",
+          complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
           agents: 50,
           aiMessages: 20000,
@@ -303,8 +307,9 @@ function Pricing() {
           intents: "Unlimited",
           apiConfigs: "Unlimited",
           chains: "Unlimited",
-          screens: "Single & Multiple Screens",
-          case3: "✅ Unlimited",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ Unlimited",
+          complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Enterprise",
           agents: "Unlimited",
           aiMessages: "Unlimited",
@@ -322,7 +327,7 @@ function Pricing() {
         type: "Launch 🚀",
         planCode: "LAUNCH",
         description: "Perfect for testing, MVPs & early-stage projects.",
-        subheading: "Best for individuals exploring Sageion",
+        subheading: "Try all features with reasonable limits",
         features: [
           "✅ Exclusive: Built-in Auth Layer (1 website included)",
           "Lead capture with Q&A forms",
@@ -342,9 +347,10 @@ function Pricing() {
         limits: {
           intents: 3,
           apiConfigs: 1,
-          chains: 0,
-          screens: "Single Screen only",
-          case3: "❌ Not available",
+          chains: 1,
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ 5 items max",
+          complexMultiple: "✅ 3 items max",
           visualDesigner: "✅ Basic",
           agents: 1,
           aiMessages: 100,
@@ -383,8 +389,9 @@ function Pricing() {
           intents: 10,
           apiConfigs: 5,
           chains: 3,
-          screens: "Single & Multiple Screens",
-          case3: "✅ Limited (up to 10 items)",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ 25 items max",
+          complexMultiple: "✅ 10 items max",
           visualDesigner: "✅ Full",
           agents: 5,
           aiMessages: 5000,
@@ -424,8 +431,9 @@ function Pricing() {
           intents: 30,
           apiConfigs: 20,
           chains: 15,
-          screens: "Single & Multiple Screens",
-          case3: "✅ Unlimited",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ Unlimited",
+          complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
           agents: 15,
           aiMessages: 10000,
@@ -468,8 +476,9 @@ function Pricing() {
           intents: 100,
           apiConfigs: 50,
           chains: 40,
-          screens: "Single & Multiple Screens",
-          case3: "✅ Unlimited",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ Unlimited",
+          complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Advanced",
           agents: 50,
           aiMessages: 20000,
@@ -514,8 +523,9 @@ function Pricing() {
           intents: "Unlimited",
           apiConfigs: "Unlimited",
           chains: "Unlimited",
-          screens: "Single & Multiple Screens",
-          case3: "✅ Unlimited",
+          screens: "Single + Simple Multiple",
+          simpleMultiple: "✅ Unlimited",
+          complexMultiple: "✅ Unlimited",
           visualDesigner: "✅ Full + Enterprise",
           agents: "Unlimited",
           aiMessages: "Unlimited",
@@ -528,52 +538,6 @@ function Pricing() {
         isEnterprise: true,
       },
     ],
-  };
-
-  // New feature comparison table data for the quick view
-  const featureComparison = {
-    "AI Intents/Skills": {
-      Launch: "3",
-      Starter: "10",
-      Growth: "30",
-      Scale: "100",
-      Enterprise: "Unlimited"
-    },
-    "API Configurations": {
-      Launch: "1",
-      Starter: "5",
-      Growth: "20",
-      Scale: "50",
-      Enterprise: "Unlimited"
-    },
-    "Chains (Workflows)": {
-      Launch: "0",
-      Starter: "3",
-      Growth: "15",
-      Scale: "40",
-      Enterprise: "Unlimited"
-    },
-    "Screens": {
-      Launch: "Single only",
-      Starter: "Single + Multiple",
-      Growth: "Single + Multiple",
-      Scale: "Single + Multiple",
-      Enterprise: "Single + Multiple"
-    },
-    "Case 3 (Nested Arrays)": {
-      Launch: "❌",
-      Starter: "✅ Limited (10 items)",
-      Growth: "✅ Unlimited",
-      Scale: "✅ Unlimited",
-      Enterprise: "✅ Unlimited"
-    },
-    "Visual Designer": {
-      Launch: "Basic",
-      Starter: "Full",
-      Growth: "Full + Advanced",
-      Scale: "Full + Advanced",
-      Enterprise: "Full + Enterprise"
-    },
   };
 
   const handleGrowthMessageLimitChange = (event) => {
@@ -740,8 +704,12 @@ function Pricing() {
                   <span className={styles.limitValue}>{plan.limits.screens}</span>
                 </div>
                 <div className={styles.limitRow}>
-                  <span className={styles.limitLabel}>📊 Case 3 (Nested Arrays)</span>
-                  <span className={styles.limitValue}>{plan.limits.case3}</span>
+                  <span className={styles.limitLabel}>📊 Simple Multiple Screens</span>
+                  <span className={styles.limitValue}>{plan.limits.simpleMultiple}</span>
+                </div>
+                <div className={styles.limitRow}>
+                  <span className={styles.limitLabel}>📊 Complex Multiple Screens</span>
+                  <span className={styles.limitValue}>{plan.limits.complexMultiple}</span>
                 </div>
                 <div className={styles.limitRow}>
                   <span className={styles.limitLabel}>🎨 Visual Designer</span>

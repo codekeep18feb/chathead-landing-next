@@ -27,8 +27,9 @@ const featureDescriptions = {
   "Custom Integrations": "Integration support for CRM, helpdesk, and other business tools.",
   
   // ===== VISUAL DESIGNER =====
-  "Screens": "Response display options - Single screen or Multiple screens for list data.",
-  "Case 3 Support (Nested Arrays)": "Support for complex data structures with nested arrays. Each nested item gets its own screen.",
+  "Screens": "Response display options for your data.",
+  "Simple Multiple Screens (Case 1)": "Root array data → each item gets its own screen. Perfect for product lists, search results, and simple item collections.",
+  "Complex Multiple Screens (Case 3)": "Nested array data with metadata → each nested item gets its own screen while preserving context. Perfect for detailed records with multiple data layers.",
   "Visual Designer": "No-code visual interface for designing AI responses.",
   
   // ===== LIVE CHAT FEATURES =====
@@ -125,7 +126,7 @@ const groupedFeatures = {
     },
     {
       label: "Chains (Workflows)",
-      values: ["0", "3", "15", "40", "Unlimited"]
+      values: ["1", "3", "15", "40", "Unlimited"]
     },
     {
       label: "Custom Workflows",
@@ -148,15 +149,19 @@ const groupedFeatures = {
   "Visual Designer": [
     {
       label: "Screens",
-      values: ["Single only", "Single + Multiple", "Single + Multiple", "Single + Multiple", "Single + Multiple"]
+      values: ["Single + Simple Multiple", "Single + Simple Multiple", "Single + Simple Multiple", "Single + Simple Multiple", "Single + Simple Multiple"]
     },
     {
-      label: "Case 3 Support (Nested Arrays)",
-      values: ["❌ Not available", "✅ Limited (10 items)", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
+      label: "Simple Multiple Screens (Case 1)",
+      values: ["✅ 5 items max", "✅ 25 items max", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
+    },
+    {
+      label: "Complex Multiple Screens (Case 3)",
+      values: ["✅ 3 items max", "✅ 10 items max", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
     },
     {
       label: "Visual Designer",
-      values: ["Basic", "Full", "Full + Advanced", "Full + Advanced", "Full + Enterprise"]
+      values: ["✅ Basic", "✅ Full", "✅ Full + Advanced", "✅ Full + Advanced", "✅ Full + Enterprise"]
     },
   ],
   
@@ -306,8 +311,8 @@ const ComparisonTable = () => {
   const renderFeatureValue = (value) => {
     if (value === true) return <span className={styles.true}>✔</span>;
     if (value === false) return <span className={styles.false}>✘</span>;
-    if (typeof value === "string" && value.includes("❌")) return <span className={styles.notAvailable}>{value}</span>;
     if (typeof value === "string" && value.includes("✅")) return <span className={styles.available}>{value}</span>;
+    if (typeof value === "string" && value.includes("❌")) return <span className={styles.notAvailable}>{value}</span>;
     return value;
   };
 
@@ -394,9 +399,11 @@ const ComparisonTable = () => {
             <p>Free forever • Perfect for testing & MVPs</p>
             <ul>
               <li>3 Intents/Skills</li>
-              <li>Single Screen only</li>
-              <li>1 API Config</li>
+              <li>1 API Config + 1 Chain</li>
               <li>100 AI Messages/mo</li>
+              <li>✅ Simple Multiple Screens (5 items)</li>
+              <li>✅ Complex Multiple Screens (3 items)</li>
+              <li>✅ Basic Visual Designer</li>
             </ul>
           </div>
           <div className={`${styles.summaryCard} ${styles.popularCard}`}>
@@ -405,10 +412,11 @@ const ComparisonTable = () => {
             <p>₹14,999/mo • Best for growing teams</p>
             <ul>
               <li>30 Intents/Skills</li>
-              <li>Single + Multiple Screens</li>
-              <li>20 API Configs</li>
+              <li>20 API Configs + 15 Chains</li>
               <li>10,000+ AI Messages/mo</li>
-              <li>✅ Unlimited Case 3</li>
+              <li>✅ Simple Multiple Screens (Unlimited)</li>
+              <li>✅ Complex Multiple Screens (Unlimited)</li>
+              <li>✅ Full + Advanced Visual Designer</li>
             </ul>
           </div>
           <div className={styles.summaryCard}>
@@ -417,10 +425,11 @@ const ComparisonTable = () => {
             <p>₹39,999/mo • High-volume enterprise</p>
             <ul>
               <li>100 Intents/Skills</li>
-              <li>Single + Multiple Screens</li>
-              <li>50 API Configs</li>
+              <li>50 API Configs + 40 Chains</li>
               <li>20,000+ AI Messages/mo</li>
-              <li>✅ Unlimited Case 3</li>
+              <li>✅ Simple Multiple Screens (Unlimited)</li>
+              <li>✅ Complex Multiple Screens (Unlimited)</li>
+              <li>✅ Full + Advanced Visual Designer</li>
             </ul>
           </div>
         </div>

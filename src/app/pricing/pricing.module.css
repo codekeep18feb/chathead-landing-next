@@ -1,66 +1,15 @@
-/* New Plan Limits Section */
-.planLimits {
-  background: rgba(77, 107, 223, 0.05);
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin: 12px 0 16px 0;
-  border: 1px solid rgba(77, 107, 223, 0.1);
-}
-
-.limitRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 0;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.limitRow:last-child {
-  border-bottom: none;
-}
-
-.limitLabel {
-  color: #4a5568;
-  font-weight: 500;
-}
-
-.limitValue {
-  color: #1a202c;
-  font-weight: 600;
-  background: white;
-  padding: 0 8px;
-  border-radius: 4px;
-}
-
-.launch .limitValue {
-  color: #718096;
-}
-
-.starter .limitValue {
-  color: #2b6cb0;
-}
-
-.highlight .limitValue {
-  color: #4d6bdf;
-}
-
-.scale .limitValue {
-  color: #059669;
-}
-
-.enterprise .limitValue {
-  color: #7c3aed;
-}
-
-
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
 .pricing3Page {
   padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Current Plan Banner */
+/* ============================================================
+   CURRENT PLAN BANNER
+   ============================================================ */
 .currentPlanBanner {
   background: linear-gradient(135deg, #4d6bdf, #667eea);
   color: white;
@@ -87,7 +36,9 @@
   font-size: 1.2rem;
 }
 
-/* Heading Section */
+/* ============================================================
+   HEADING SECTION
+   ============================================================ */
 .headingWrapper {
   text-align: center;
   margin-bottom: 3rem;
@@ -108,7 +59,32 @@
   line-height: 1.6;
 }
 
-/* Value Proposition Banner */
+/* ============================================================
+   SAVINGS CALCULATOR
+   ============================================================ */
+.curPlan_savCal_warp {
+  display: flex;
+  justify-content: center;
+}
+
+.savingsCalculator {
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  padding: 1rem 2rem;
+  background: #f0f9ff;
+  border-radius: 8px;
+  max-width: 500px;
+}
+
+.savingsCalculator p {
+  margin: 0;
+  color: #0369a1;
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+   VALUE PROPOSITION BANNER
+   ============================================================ */
 .valueBanner {
   display: flex;
   justify-content: center;
@@ -118,6 +94,7 @@
   background: linear-gradient(135deg, #f8fafc, #e2e8f0);
   border-radius: 12px;
   max-width: 800px;
+  flex-wrap: wrap;
 }
 
 .valueItem {
@@ -133,7 +110,9 @@
   font-size: 1.2rem;
 }
 
-/* Tabs Container */
+/* ============================================================
+   TABS CONTAINER
+   ============================================================ */
 .tabsContainer {
   display: flex;
   justify-content: center;
@@ -175,25 +154,9 @@
   font-weight: 600;
 }
 
-/* Savings Calculator */
-.savingsCalculator {
-  text-align: center;
-  margin: 1rem 0 2rem 0;
-  padding: 1rem;
-  background: #f0f9ff;
-  border-radius: 8px;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.savingsCalculator p {
-  margin: 0;
-  color: #0369a1;
-  font-size: 0.95rem;
-}
-
-/* Plans Container */
+/* ============================================================
+   PLANS CONTAINER
+   ============================================================ */
 .plansContainer {
   display: flex;
   justify-content: center;
@@ -234,6 +197,14 @@
   transform: scale(1.02);
 }
 
+.planCard.scale {
+  border-color: #059669;
+}
+
+.planCard.enterprise {
+  border-color: #7c3aed;
+}
+
 .planCard.currentPlan {
   border-color: #8b5cf6;
   background: linear-gradient(135deg, #faf5ff, #f3e8ff);
@@ -255,7 +226,9 @@
   font-weight: 700;
 }
 
-/* Badges */
+/* ============================================================
+   BADGES
+   ============================================================ */
 .popularBadge {
   background: linear-gradient(135deg, #4d6bdf, #667eea);
   color: white;
@@ -283,7 +256,69 @@
   font-weight: 600;
 }
 
-/* Plan Content */
+/* ============================================================
+   PLAN LIMITS SECTION
+   ============================================================ */
+.planLimits {
+  background: rgba(77, 107, 223, 0.05);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 12px 0 16px 0;
+  border: 1px solid rgba(77, 107, 223, 0.1);
+}
+
+.limitRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.limitRow:last-child {
+  border-bottom: none;
+}
+
+.limitLabel {
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.limitValue {
+  color: #1a202c;
+  font-weight: 600;
+  background: white;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Plan-specific limit colors */
+.planCard.launch .limitValue {
+  color: #10b981;
+}
+
+.planCard.starter .limitValue {
+  color: #f59e0b;
+}
+
+.planCard.highlight .limitValue {
+  color: #4d6bdf;
+}
+
+.planCard.scale .limitValue {
+  color: #059669;
+}
+
+.planCard.enterprise .limitValue {
+  color: #7c3aed;
+}
+
+/* ============================================================
+   PLAN CONTENT
+   ============================================================ */
 .planSubheading {
   color: #6b7280;
   font-size: 0.95rem;
@@ -312,12 +347,14 @@
   font-weight: 500;
 }
 
-/* User Limit Section */
-.userLimitSection {
+/* ============================================================
+   MESSAGE LIMIT SECTION
+   ============================================================ */
+.messageLimitSection {
   margin: 1.5rem 0;
 }
 
-.userLimitLabel {
+.messageLimitLabel {
   color: #4b5563;
   font-size: 1rem;
   margin-bottom: 1rem;
@@ -328,7 +365,7 @@
   margin: 1.5rem 0;
 }
 
-.userLimitSlider {
+.messageLimitSlider {
   width: 100%;
   height: 6px;
   border-radius: 3px;
@@ -336,7 +373,7 @@
   -webkit-appearance: none;
 }
 
-.userLimitSlider::-webkit-slider-thumb {
+.messageLimitSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
@@ -347,7 +384,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.userLimitSlider::-moz-range-thumb {
+.messageLimitSlider::-moz-range-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -357,7 +394,9 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Slider Markers */
+/* ============================================================
+   SLIDER MARKERS
+   ============================================================ */
 .sliderMarkers {
   display: flex;
   justify-content: space-between;
@@ -377,7 +416,7 @@
 }
 
 .marker {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #9ca3af;
   cursor: pointer;
   padding: 0.2rem 0.4rem;
@@ -396,7 +435,9 @@
   font-weight: 600;
 }
 
-/* Plan Features */
+/* ============================================================
+   PLAN FEATURES
+   ============================================================ */
 .planFeatures {
   list-style: none;
   padding: 0;
@@ -423,7 +464,9 @@
   margin-top: 0.1rem;
 }
 
-/* Plan Buttons */
+/* ============================================================
+   PLAN BUTTONS
+   ============================================================ */
 .planButton {
   background: linear-gradient(135deg, #4d6bdf, #667eea);
   color: white;
@@ -470,7 +513,9 @@
   box-shadow: none;
 }
 
-/* See All Button */
+/* ============================================================
+   SEE ALL BUTTON
+   ============================================================ */
 .seeAllButtonWrapper {
   text-align: center;
   margin: 4rem 0 2rem 0;
@@ -494,7 +539,9 @@
   box-shadow: 0 8px 25px rgba(77, 107, 223, 0.4);
 }
 
-/* Responsive Design */
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
 @media (max-width: 1024px) {
   .plansContainer {
     gap: 1.5rem;
@@ -545,6 +592,22 @@
   .planCard.highlight {
     transform: none;
   }
+
+  .planLimits {
+    padding: 10px 12px;
+  }
+
+  .limitRow {
+    font-size: 11px;
+  }
+
+  .limitLabel {
+    font-size: 11px;
+  }
+
+  .limitValue {
+    font-size: 11px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -568,5 +631,17 @@
     flex-direction: column;
     gap: 0.5rem;
     text-align: center;
+  }
+
+  .planFeatures li {
+    font-size: 0.85rem;
+  }
+
+  .savingsCalculator {
+    padding: 0.8rem 1rem;
+  }
+
+  .savingsCalculator p {
+    font-size: 0.85rem;
   }
 }
