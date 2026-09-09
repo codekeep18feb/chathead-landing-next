@@ -264,6 +264,91 @@ export default function Sidebar({ selectedFilter }) {
                       type: "internal",
                       selector_uid: "v2_integrations_apis_workflows"
                     }
+                  },
+                  // ====== SIBLING 7: Visual Response Designer ======
+                  {
+                    tag_type: "li",
+                    text: "Visual Response Designer",
+                    selector_uid: "v2_visual_response_designer",
+                    sub_items: [
+                      {
+                        tag_type: "li",
+                        text: "What is the Visual Response Designer?",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_what_is_visual_designer"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Getting Started",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_visual_designer_getting_started"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "The Visual Editor",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_visual_editor"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "The Transformation Wizard",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_transformation_wizard"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Single vs Multiple Screens",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_single_vs_multiple_screens"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Live Preview",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_live_preview"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Saving & Deployment",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_saving_deployment"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "Best Practices",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_visual_designer_best_practices"
+                        }
+                      }
+                    ],
+                    link_configuration: {
+                      show: true,
+                      type: "internal",
+                      selector_uid: "v2_visual_response_designer"
+                    }
                   }
                 ],
                 link_configuration: {

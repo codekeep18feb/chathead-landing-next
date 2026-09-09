@@ -4,6 +4,7 @@ import { liveAgent } from './liveAgent.js';
 import { aiChat } from './aiChat.js';
 import { allChat } from './allChat.js';
 import { integrationsApisWorkflows } from './integrationsApisWorkflows.js';
+import { visualResponseDesigner } from './visualResponseDesigner.js';
 
 export const platform = [
   {
@@ -24,6 +25,7 @@ export const platform = [
       ...aiChat,
       ...allChat,
       ...integrationsApisWorkflows,
+      ...visualResponseDesigner,
     ],
   },
 ];
