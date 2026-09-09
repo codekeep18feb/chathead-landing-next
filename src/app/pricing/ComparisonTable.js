@@ -7,8 +7,12 @@ const featureDescriptions = {
   // ===== CORE FEATURES =====
   "Monthly Active Users": "Total unique users who interact with your chat services per month.",
   "Agents": "Number of AI chatbot agents you can create and train with custom knowledge.",
-  "Unlimited Websites": "Use Sageion on unlimited websites with a single plan.",
-  "Support Users": "Number of support team members who can access the admin dashboard.",
+  "Apps": "Number of separate applications (Sales, Support, Marketing, etc.) you can create and manage under one tenant account. Each app can have its own users, settings, and branding.",
+  "Team Members": "Number of team members (admins + support staff) who can access the admin dashboard.",
+  
+  // ===== AUTHENTICATION & ACCESS CONTROL =====
+  "RBAC (Role-Based Access Control)": "Granular permission control for different teams. Assign roles (Manager, Developer, Customer Care) with specific permissions (read, delete, manage) per app.",
+  "Multi-Admin": "Enable multiple administrators with role-based access control and permission management.",
   
   // ===== AI CHAT FEATURES =====
   "AI Messages / month": "Monthly limit for AI chatbot interactions (no LLM token costs).",
@@ -20,19 +24,20 @@ const featureDescriptions = {
   // ===== API & WORKFLOWS =====
   "API Configurations": "Number of API endpoints you can configure for your chatbot to call.",
   "API Chains (Workflows)": "Multi-step API workflows where response from one API determines the next API call.",
+  "Webhooks": "Receive real-time notifications and trigger actions when specific events occur in your chat or lead capture flows.",
   "LeadGen Workflows": "Specialized workflows for lead qualification and routing.",
   
   // ===== VISUAL DESIGNER =====
   "Visual Response Designer": "No-code visual interface for designing AI responses.",
-  "Simple Multiple Screens": "Root array data → each item gets its own screen. Perfect for product lists, search results, and simple item collections.",
-  "Complex Multiple Screens": "Nested array data with metadata → each nested item gets its own screen while preserving context.",
+  "Screens per API": "Number of response screens you can design per API configuration. Each screen can handle different response status codes (200, 404, 500, etc.).",
   
   // ===== LEAD CAPTURE =====
   "Lead Capture Forms": "Capture leads via forms, FAQ flows, and conversational interfaces.",
-  "Lead Storage Capacity": "Number of leads that can be stored in the system before requiring export or cleanup.",
-  "Advanced Lead Capture": "Forms with analytics, conditional logic, and custom fields.",
-  "Customizable Q&A Trees": "Create branching conversation paths for lead qualification.",
-  "Auto Email to Leads": "Automatically sends follow-up emails to captured leads.",
+  "Lead Storage Capacity": "Number of leads that can be stored in the system.",
+  "Advanced Lead Capture": "Connect lead capture to external services (CRM, Email, Webhook) and route leads to your own systems for processing.",
+  
+  // ===== ANALYTICS =====
+  "Analytics": "Insights and reporting on chat performance, user engagement, lead conversion, and AI response quality.",
   
   // ===== LIVE CHAT FEATURES =====
   "Live Chat": "Two-way live chat between visitors and your support team.",
@@ -42,16 +47,13 @@ const featureDescriptions = {
   
   // ===== ADMIN & MANAGEMENT =====
   "All Chats Dashboard": "Centralized view of all conversations across all applications.",
-  "Multi-Admin Support": "Multiple administrators and support users with role-based permissions.",
   "User Management": "Manage users across all applications with search and filtering.",
   
   // ===== EMAIL & NOTIFICATIONS =====
   "Email Notifications": "Alerts for new messages and support requests.",
-  "Custom Email Templates": "Create branded email templates for notifications.",
   
   // ===== BRANDING =====
   "Remove Branding": "Option to remove 'Powered by Sageion' from your chat interface.",
-  "Custom Domains": "Use your own domain for chat services (e.g., chat.yourcompany.com).",
   
   // ===== SUPPORT =====
   "Priority Support": "Get faster help from our support team.",
@@ -87,12 +89,23 @@ const groupedFeatures = {
       values: ["Up to 1", "Up to 5", "Up to 15", "Up to 50", "Unlimited"]
     },
     {
-      label: "Unlimited Websites",
-      values: [true, true, true, true, true]
+      label: "Apps",
+      values: ["1 app", "3 apps", "10 apps", "25 apps", "Unlimited"]
     },
     {
-      label: "Support Users",
-      values: ["1", "5", "10", "Unlimited", "Unlimited"]
+      label: "Team Members",
+      values: ["1 Admin + 1 Support", "1 Admin + 5 Support", "1 Admin + 10 Support", "1 Admin + Unlimited Support", "Unlimited Admins + Unlimited Support"]
+    },
+  ],
+  
+  "Authentication & Access Control": [
+    {
+      label: "RBAC (Role-Based Access Control)",
+      values: ["✅ Basic", "✅ Full", "✅ Full", "✅ Full", "✅ Full + Custom"]
+    },
+    {
+      label: "Multi-Admin",
+      values: ["✅", "✅", "✅", "✅", "✅"]
     },
   ],
   
@@ -122,15 +135,19 @@ const groupedFeatures = {
   "API & Workflows": [
     {
       label: "API Configurations",
-      values: ["1", "5", "20", "50", "Unlimited"]
+      values: ["2", "5", "20", "50", "Unlimited"]
     },
     {
       label: "API Chains (Workflows)",
-      values: ["1", "3", "15", "40", "Unlimited"]
+      values: ["2", "3", "15", "40", "Unlimited"]
+    },
+    {
+      label: "Webhooks",
+      values: ["1", "3", "10", "25", "Unlimited"]
     },
     {
       label: "LeadGen Workflows",
-      values: ["1", "3", "10", "25", "Unlimited"]
+      values: ["2", "3", "10", "25", "Unlimited"]
     },
   ],
   
@@ -140,12 +157,8 @@ const groupedFeatures = {
       values: ["✅ Basic", "✅ Full", "✅ Full + Advanced", "✅ Full + Advanced", "✅ Full + Enterprise"]
     },
     {
-      label: "Simple Multiple Screens",
-      values: ["✅ 5 items", "✅ 25 items", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
-    },
-    {
-      label: "Complex Multiple Screens",
-      values: ["✅ 3 items", "✅ 10 items", "✅ Unlimited", "✅ Unlimited", "✅ Unlimited"]
+      label: "Screens per API",
+      values: ["4 screens", "10 screens", "40 screens", "100 screens", "Unlimited"]
     },
   ],
   
@@ -159,16 +172,15 @@ const groupedFeatures = {
       values: ["100 leads", "1,000 leads", "10,000 leads", "50,000 leads", "Unlimited"]
     },
     {
-      label: "Advanced Lead Capture",
-      values: ["❌", "✅", "✅", "✅", "✅"]
+      label: "Advanced Lead Capture (External Routing)",
+      values: ["✅", "✅", "✅", "✅", "✅"]
     },
+  ],
+  
+  "Analytics": [
     {
-      label: "Customizable Q&A Trees",
-      values: ["❌", "❌", "✅", "✅", "✅"]
-    },
-    {
-      label: "Auto Email to Leads",
-      values: ["❌", "✅", "✅", "✅", "✅"]
+      label: "Analytics",
+      values: ["Basic", "Pro", "Advanced", "Advanced", "Enterprise"]
     },
   ],
   
@@ -197,10 +209,6 @@ const groupedFeatures = {
       values: [true, true, true, true, true]
     },
     {
-      label: "Multi-Admin Support",
-      values: ["❌", "❌", "✅", "✅", "✅"]
-    },
-    {
       label: "User Management",
       values: [true, true, true, true, true]
     },
@@ -211,20 +219,12 @@ const groupedFeatures = {
       label: "Email Notifications",
       values: [true, true, true, true, true]
     },
-    {
-      label: "Custom Email Templates",
-      values: ["❌", "✅", "✅", "✅", "✅"]
-    },
   ],
   
   "Branding": [
     {
       label: "Remove Branding",
       values: ["❌", "✅", "✅", "✅", "✅"]
-    },
-    {
-      label: "Custom Domains",
-      values: ["❌", "❌", "❌", "✅ (2)", "✅ Unlimited"]
     },
   ],
   
@@ -398,12 +398,15 @@ const ComparisonTable = () => {
             <p>Free forever • Perfect for testing & MVPs</p>
             <ul>
               <li>3 Intents/Skills</li>
-              <li>1 API Config + 1 Chain</li>
+              <li>2 API Configs + 2 Chains</li>
               <li>100 AI Messages/mo</li>
-              <li>✅ Simple Multiple Screens (5 items)</li>
-              <li>✅ Complex Multiple Screens (3 items)</li>
+              <li>✅ Basic Visual Designer</li>
+              <li>✅ Basic RBAC + Multi-Admin</li>
+              <li>✅ Advanced Lead Capture</li>
               <li>✅ 3 Lead Capture Forms</li>
               <li>100 Leads Storage</li>
+              <li>1 Admin + 1 Support</li>
+              <li>1 App</li>
             </ul>
           </div>
           <div className={`${styles.summaryCard} ${styles.popularCard}`}>
@@ -414,10 +417,13 @@ const ComparisonTable = () => {
               <li>30 Intents/Skills</li>
               <li>20 API Configs + 15 Chains</li>
               <li>10,000+ AI Messages/mo</li>
-              <li>✅ Unlimited Screens</li>
+              <li>✅ Full + Advanced Visual Designer</li>
+              <li>✅ Full RBAC + Multi-Admin</li>
+              <li>✅ Advanced Lead Capture</li>
               <li>✅ 25 Lead Capture Forms</li>
               <li>10,000 Leads Storage</li>
-              <li>✅ Multi-Admin Support</li>
+              <li>10 Apps</li>
+              <li>1 Admin + 10 Support</li>
             </ul>
           </div>
           <div className={styles.summaryCard}>
@@ -428,10 +434,13 @@ const ComparisonTable = () => {
               <li>100 Intents/Skills</li>
               <li>50 API Configs + 40 Chains</li>
               <li>20,000+ AI Messages/mo</li>
-              <li>✅ Unlimited Screens</li>
+              <li>✅ Full + Advanced Visual Designer</li>
+              <li>✅ Full RBAC + Multi-Admin</li>
+              <li>✅ Advanced Lead Capture</li>
               <li>✅ 50 Lead Capture Forms</li>
               <li>50,000 Leads Storage</li>
-              <li>✅ Multi-Admin + Dedicated Support</li>
+              <li>25 Apps</li>
+              <li>1 Admin + Unlimited Support</li>
             </ul>
           </div>
         </div>
