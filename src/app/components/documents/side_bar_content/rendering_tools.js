@@ -4,7 +4,9 @@ import React, { useState, useEffect, Suspense } from "react";
 import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../../YouTubeVideo";
-import { FaLink } from "react-icons/fa6";
+import { FaLink } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import "./style_globle.css"
 
 const CondRadioRender = ({ r_options }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
@@ -475,7 +477,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
-          <FaLink size={16} />
+          <FaLink size={38} />
         </button>
       );
     }
@@ -505,15 +507,11 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
       {isCollapsible && (
         <span
           onClick={handleClick}
-          style={{
-            position: "absolute",
-            left: 0,
-            transform: expanded ? "rotate(90deg)" : "none",
-            transition: "transform 0.2s",
-            cursor: "pointer",
-          }}
+          className={`${styles.collapseIcon} ${
+            expanded ? styles.collapseIconExpanded : ""
+          }`}
         >
-          ▶
+          <IoIosArrowDown size={16} />
         </span>
       )}
 
@@ -523,32 +521,21 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         ) : (
           <div>
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-                // marginRight: "10px",
-                flex: "1",
-                justifyContent: "space-between",
-                // paddingLeft: shouldShowDownIcon ? "20px" : "0",
-              }}
+            className={styles.contentHeaderWrap}
             >
-              {item.text && <span>{item.text}</span>}
+              {item.text && (
+                <div>
+                  <span>{item.text}</span>
+                </div>
+              )}
               {(isCollapsible || shouldShowDownIcon) && (
                 <span
                   onClick={handleClick}
-                  style={{
-                    transform: expanded ? "rotate(90deg)" : "none",
-                    transition: "transform 0.2s",
-                    cursor: "pointer",
-                    fontSize: "12px",
-                    color: "#666",
-                    marginLeft: "auto",
-                    padding: "10px",
-                    paddingRight: "5px",
-                  }}
+                  className={`${styles.downIcon} ${
+                    expanded ? styles.downIconExpanded : ""
+                  }`}
                 >
-                  ▶
+                  <IoIosArrowDown size={16} />
                 </span>
               )}
               {renderLink()}
@@ -886,9 +873,9 @@ const ContentRenderer = ({ content }) => {
                       className={`${styles["expand-icon"]} ${
                         isExpanded ? styles["expanded"] : styles["collapsed"]
                       }`}
-                      style={{fontSize:"12px"}}
+                      // style={{ fontSize: "12px" }}
                     >
-                      ▶
+                      <IoIosArrowDown size={16} />
                     </span>
                   )}
                   {item.link_configuration && renderLink(item)}

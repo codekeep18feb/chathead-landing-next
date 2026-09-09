@@ -23,13 +23,13 @@ export const faqChatLeadGeneration = [
     title: "Two Modes",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
-            text: "📚 FAQ/Q&A Tree Mode: Build hierarchical question-answer structures",
+            text: "FAQ/Q&A Tree Mode: Build hierarchical question-answer structures",
           },
           {
-            text: "🎯 Lead Generation Mode: Capture leads at any node in the tree",
+            text: "Lead Generation Mode: Capture leads at any node in the tree",
           },
         ],
       },
@@ -44,7 +44,7 @@ export const faqChatLeadGeneration = [
     text: "The Dynamic Tree Builder allows you to create structured FAQ content:",
   },
   {
-    tag_type: "ul",
+    tag_type: "ol",
     items: [
       {
         text: "Create hierarchical question-answer trees",
@@ -80,7 +80,7 @@ export const faqChatLeadGeneration = [
     text: "Capture and manage leads from your FAQ forms and other sources:",
   },
   {
-    tag_type: "ul",
+    tag_type: "ol",
     items: [
       {
         text: "View all captured leads with timestamps and metadata",
@@ -128,7 +128,7 @@ export const faqChatLeadGeneration = [
     title: "Lead Storage Options",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
             text: "Built-in Storage: Leads stored in Sageion Admin Panel under Lead Generation section",

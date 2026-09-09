@@ -1,8 +1,11 @@
 .content-area {
-  width: 90%;
-  margin-top: 20px;
+  width: 100%;
+  /* margin-top: 20px; */
   padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
+
 .document-container {
   display: flex;
   flex-direction: column;
@@ -11,45 +14,90 @@
   gap: 30px;
   flex: 1;
 }
+
 .doc_core_wrapper {
   display: flex;
   width: 100%;
   height: 100%;
   background-color: transparent;
+  gap: 0;
 }
-.doc_sidebar {
-  width: 20%;
-  background: var(--light-primary-color);
-  /* padding: 12px; */
-  position: relative;
 
+/* ============================================ */
+/* SIDEBAR STYLES - NO DOTS */
+/* ============================================ */
+.doc_sidebar {
+  width: 25%;
+  min-width: 200px;
+  background: var(--light-primary-color);
+  background: white;
+  border-right: 1px solid #cdcdcd;
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+  position: sticky;
+  top: 0;
 }
-.doc_sidebar ol {
+
+/* Remove ALL dots/bullets from sidebar lists */
+.doc_sidebar,
+.doc_sidebar * {
+  list-style: none !important;
+}
+
+.doc_sidebar ol,
+.doc_sidebar ul,
+.doc_sidebar .content-list,
+.doc_sidebar .content-list.ordered {
   list-style: none !important;
   padding-left: 0 !important;
   margin: 0;
   counter-reset: none !important;
 }
 
-.doc_sidebar ol > li {
+.doc_sidebar ol > li,
+.doc_sidebar ul > li,
+.doc_sidebar .content-list li,
+.doc_sidebar .content-list.ordered > li {
   list-style: none !important;
+  list-style-type: none !important;
   counter-increment: none !important;
   position: static !important;
   padding-left: 0 !important;
+  margin: 0 !important;
 }
-.doc_sidebar ol > li::before {
+
+.doc_sidebar ol > li::before,
+.doc_sidebar ul > li::before,
+.doc_sidebar .content-list li::before,
+.doc_sidebar .content-list.ordered > li::before {
   content: none !important;
+  display: none !important;
+  background: none !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
 }
+
+/* Remove markers for all list items */
+.doc_sidebar li::marker,
+.doc_sidebar ol > li::marker,
+.doc_sidebar ul > li::marker {
+  content: "" !important;
+  display: none !important;
+}
+
+/* Sidebar list item styles */
 .doc_sidebar li > div:first-of-type > div {
   background-color: #c4cffb;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  /* border-radius: 6px; */
+  padding: 8px 10px;
   transition: background-color 0.2s ease;
   width: 100%;
+  font-size: 13px;
 }
+
 .doc_sidebar li > div:first-of-type > div:hover {
   background-color: #b1c0fb;
 }
@@ -61,38 +109,71 @@
   justify-content: space-between;
   color: var(--white-text-color);
 }
+
+/* Nested lists in sidebar */
+.doc_sidebar ol ol,
+.doc_sidebar ul ul,
+.doc_sidebar .content-list .content-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.doc_sidebar ol ol > li,
+.doc_sidebar ul ul > li,
+.doc_sidebar .content-list .content-list > li {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.doc_sidebar ol ol > li::before,
+.doc_sidebar ul ul > li::before {
+  content: none !important;
+}
+
+/* ============================================ */
+/* RIGHT WRAP AND MAIN CONTENT */
+/* ============================================ */
 .rightWrap {
-  background-color:transparent;
-  overflow-y: auto; 
+  background-color: transparent;
+  overflow-y: auto;
   flex: 1;
   max-height: 140vh;
   scrollbar-width: none;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
+  width: 75%;
 }
+
 .rightWrap::-webkit-scrollbar {
   display: none;
 }
+
 .main-content {
   max-width: 1080px;
-  padding: 20px;
+  padding: 20px 30px;
+  width: 100%;
+  margin: 0 auto;
 }
+
 .mainHeading {
   margin-bottom: 30px;
 }
+
 .mainHeading h2 {
   font-size: 18px;
   font-weight: 500;
   color: var(--text-color);
-  line-height: 20px;
   line-height: 30px;
   letter-spacing: 0.5px;
 }
+
 .integration_successful {
   padding: 20px;
   background: #5bfb731f;
   margin: 20px;
   border-radius: 8px;
 }
+
 .integration_successful p {
   font-size: 16px;
   font-weight: 600;
@@ -100,34 +181,38 @@
   font-style: italic;
   padding-bottom: 12px;
 }
+
 .noFilterMessage {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 75vh; 
+  min-height: 75vh;
   font-size: 1.1rem;
   color: #555;
   text-align: center;
+  padding: 20px;
 }
 
+/* ============================================ */
+/* MOBILE SIDEBAR WRAPPER - NO DOTS */
+/* ============================================ */
 .mobileSidebarWrapper {
   margin-top: 16px;
   border: 1px solid #ddd;
   padding: 0px 12px;
   background-color: #7d92e7;
   border-bottom: 5px solid #4d70ff;
-
   overflow-x: auto;
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;
-
-  scrollbar-width: thin;           /* Firefox */
-  scrollbar-color: #888 #e0e0e0; 
+  scrollbar-width: thin;
+  scrollbar-color: #888 #e0e0e0;
+  -webkit-overflow-scrolling: touch;
 }
-/* For WebKit browsers like Chrome, Safari */
+
 .mobileSidebarWrapper::-webkit-scrollbar {
-  height: 6px; /* horizontal scrollbar height */
+  height: 6px;
 }
 
 .mobileSidebarWrapper::-webkit-scrollbar-track {
@@ -139,53 +224,613 @@
   background-color: #888;
   border-radius: 4px;
 }
+
+/* Remove dots from mobile sidebar */
+.mobileSidebarWrapper,
+.mobileSidebarWrapper * {
+  list-style: none !important;
+}
+
+.mobileSidebarWrapper ol,
+.mobileSidebarWrapper ul,
+.mobileSidebarWrapper .content-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+.mobileSidebarWrapper li {
+  list-style: none !important;
+  display: flex;
+  background-color: transparent;
+  margin: 0px;
+  white-space: nowrap;
+}
+
+.mobileSidebarWrapper li::before {
+  content: none !important;
+  display: none !important;
+}
+
+.mobileSidebarWrapper ol > li::before {
+  content: none !important;
+}
+
 .mobileSidebarWrapper div {
   display: flex;
   gap: 20px;
   background-color: transparent;
   color: var(--text-color);
- 
 }
+
 .mobileSidebarWrapper div:hover {
- box-shadow: none;
- background-color: transparent;
+  box-shadow: none;
+  background-color: transparent;
 }
+
 .mobileSidebarWrapper li {
   display: flex;
   background-color: transparent;
   margin: 0px;
+  white-space: nowrap;
 }
+
 .mobileSidebarWrapper ol > li::before {
   content: none !important;
 }
 
-
-
-@media (min-width: 426px) and (max-width: 1024px) {
-.content-area {
-  width: 100%;
-  /* padding: 0px; */
-  /* border: 2px solid red; */
-}
-.main-content{
-  padding: 20px 10px;
-  width: 100%;
+.content-area h3 {
+  font-size: 18px;
+  padding: 10px 0px;
+  padding-bottom: 0px;
 }
 
+.doc_sidebar > div > div > div:last-child div h3 {
+  padding: 2px 10px;
 }
 
+/* ============================================ */
+/* RESPONSIVE BREAKPOINTS FOR CONTENT AREA */
+/* ============================================ */
+
+/* Tablets and small laptops (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .content-area {
+    padding: 15px;
+  }
+  
+  .doc_sidebar {
+    width: 30%;
+    min-width: 160px;
+  }
+  
+  .doc_sidebar li > div:first-of-type > div {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+  
+  .rightWrap {
+    width: 70%;
+  }
+  
+  .main-content {
+    padding: 15px 20px;
+    max-width: 100%;
+  }
+}
+/* Mobile phones (up to 425px) */
 @media screen and (max-width: 425px) {
   .content-area {
     width: 100%;
-    padding:0px;
+    padding: 0px;
+    margin-top: 5px;
   }
-  .main-content{
-    padding: 20px 10px;
+  
+  .doc_core_wrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  /* Make sidebar vertical scrollable on mobile */
+  .doc_sidebar {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid #cdcdcd;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    top: 0;
+    padding: 8px 0;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #e0e0e0;
+  }
+  
+  /* Custom scrollbar for vertical sidebar */
+  .doc_sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .doc_sidebar::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  
+  .doc_sidebar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  /* Make sidebar items vertical with full width */
+  .doc_sidebar > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 8px;
     width: 100%;
   }
+  
+  .doc_sidebar > div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+  }
+  
+  .doc_sidebar > div > div > ol {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 !important;
+    width: 100%;
+  }
+  
+  .doc_sidebar > div > div > ol > li {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* MAIN CHANGE: Make sidebarLi horizontally scrollable */
+  .doc_sidebar li > div:first-of-type > div {
+    font-size: 13px;
+    padding: 12px 16px;
+    border-radius: 5px;
+    background-color: #e8edff;
+    width: 100%;
+    min-width: unset;
+    box-sizing: border-box;
+    font-weight: 500;
+    
+    /* Add horizontal scroll */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f0f0f0;
+    
+    /* Ensure content doesn't wrap */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Custom scrollbar for sidebarLi items */
+  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar {
+    height: 3px;
+  }
+  
+  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 2px;
+  }
+  
+  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+  }
+  
+  /* SHOW nested items */
+  .doc_sidebar li > div:first-of-type + div {
+    display: block !important;
+    width: 100%;
+    padding-left: 16px;
+  }
+  
+  /* Style for nested items with horizontal scroll */
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div {
+    background-color: #f0f4ff;
+    font-size: 12px;
+    padding: 8px 16px;
+    margin: 1px 0;
+    
+    /* Add horizontal scroll to nested items too */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Custom scrollbar for nested items */
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar {
+    height: 3px;
+  }
+  
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 2px;
+  }
+  
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+  }
+  
+  /* Deeper nested items */
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type + div {
+    padding-left: 16px;
+  }
+  
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type + div li > div:first-of-type > div {
+    background-color: #f5f8ff;
+    font-size: 11px;
+    padding: 6px 16px;
+    
+    /* Add horizontal scroll to deeper nested items */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Remove any expand/collapse icons */
+  .doc_sidebar .expand-icon,
+  .doc_sidebar .collapseIcon,
+  .doc_sidebar .downIcon {
+    display: none !important;
+  }
+  
+  /* Style for content inside sidebarLi */
+  .doc_sidebar .sidebarLi {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    min-width: max-content;
+  }
+  
+  .doc_sidebar .sidebarLi .content-link {
+    flex-shrink: 0;
+  }
+  
+  /* Style for the active/selected item */
+  .doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
+    background: var(--primary-color);
+    color: var(--white-text-color);
+  }
+  
+  .rightWrap {
+    width: 100%;
+    max-height: none;
+    overflow-y: visible;
+  }
+  
+  .main-content {
+    padding: 10px;
+    max-width: 100%;
+  }
+  
+  .mainHeading {
+    margin-bottom: 15px;
+  }
+  
+  .mainHeading h2 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+  }
+  
+  .integration_successful {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 6px;
+  }
+  
+  .integration_successful p {
+    font-size: 13px;
+    padding-bottom: 8px;
+  }
+  
+  .content-area h3 {
+    font-size: 15px;
+    padding: 8px 0px;
+  }
+  
+  .noFilterMessage {
+    font-size: 0.9rem;
+    min-height: 50vh;
+    padding: 10px;
+  }
+  
+  .mobileSidebarWrapper {
+    padding: 0px 8px;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .mobileSidebarWrapper div {
+    gap: 12px;
+  }
+  
+  .mobileSidebarWrapper li {
+    font-size: 12px;
+  }
 }
-.content-area h3 {
-  padding-left: 0px;
-  font-size: 18px;
-  padding-top: 0px;
+
+/* Tablet view with horizontally scrollable items */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .content-area {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .doc_core_wrapper {
+    flex-direction: column;
+  }
+  
+  .doc_sidebar {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid #cdcdcd;
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    top: 0;
+    padding: 10px 0;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .doc_sidebar > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 0 12px;
+    width: 100%;
+  }
+  
+  .doc_sidebar > div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+  }
+  
+  .doc_sidebar > div > div > ol {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 0 !important;
+    width: 100%;
+  }
+  
+  .doc_sidebar > div > div > ol > li {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Make sidebarLi horizontally scrollable on tablet */
+  .doc_sidebar li > div:first-of-type > div {
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    background-color: #e8edff;
+    width: 100%;
+    min-width: unset;
+    box-sizing: border-box;
+    
+    /* Add horizontal scroll */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar {
+    height: 3px;
+  }
+  
+  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 2px;
+  }
+  
+  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+  }
+  
+  /* SHOW nested items on tablet */
+  .doc_sidebar li > div:first-of-type + div {
+    display: block !important;
+    width: 100%;
+    padding-left: 16px;
+  }
+  
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div {
+    background-color: #f0f4ff;
+    font-size: 12px;
+    padding: 8px 16px;
+    
+    /* Add horizontal scroll to nested items */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar {
+    height: 3px;
+  }
+  
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 2px;
+  }
+  
+  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+  }
+  
+  /* Hide expand/collapse icons */
+  .doc_sidebar .expand-icon,
+  .doc_sidebar .collapseIcon,
+  .doc_sidebar .downIcon {
+    display: none !important;
+  }
+  
+  .doc_sidebar .sidebarLi {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    min-width: max-content;
+  }
+  
+  .doc_sidebar .sidebarLi .content-link {
+    flex-shrink: 0;
+  }
+  
+  .doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
+    background: var(--primary-color);
+    color: var(--white-text-color);
+  }
+  
+  .rightWrap {
+    width: 100%;
+    max-height: none;
+    overflow-y: visible;
+  }
+  
+  .main-content {
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  .mainHeading h2 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .integration_successful {
+    padding: 15px;
+    margin: 15px;
+  }
+  
+  .integration_successful p {
+    font-size: 14px;
+  }
+  
+  .content-area h3 {
+    font-size: 16px;
+  }
+}
+
+/* Very small phones (up to 320px) */
+@media screen and (max-width: 320px) {
+  .main-content {
+    padding: 8px;
+  }
+  
+  .doc_sidebar {
+    max-height: 140px;
+    padding: 6px 0;
+  }
+  
+  .doc_sidebar li > div:first-of-type > div {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  
+  .doc_sidebar > div {
+    gap: 6px;
+    padding: 0 6px;
+  }
+  
+  .doc_sidebar > div > div {
+    gap: 6px;
+  }
+  
+  .doc_sidebar > div > div > ol {
+    gap: 6px;
+  }
+  
+  .mainHeading h2 {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  
+  .content-area h3 {
+    font-size: 14px;
+  }
+  
+  .integration_successful {
+    padding: 8px;
+    margin: 8px;
+  }
+  
+  .integration_successful p {
+    font-size: 12px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .doc_sidebar {
+    display: none;
+  }
+  
+  .rightWrap {
+    width: 100%;
+  }
+  
+  .main-content {
+    max-width: 100%;
+    padding: 20px;
+  }
 }

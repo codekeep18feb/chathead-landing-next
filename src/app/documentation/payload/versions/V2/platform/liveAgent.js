@@ -49,7 +49,7 @@ export const liveAgent = [
             ],
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "Progress bar shows remaining capacity percentage",

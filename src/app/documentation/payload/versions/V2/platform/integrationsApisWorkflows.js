@@ -38,7 +38,7 @@ export const integrationsApisWorkflows = [
             text: "Primary Authentication (Login Server)",
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "Configure the login server that provides access tokens",
@@ -59,7 +59,7 @@ export const integrationsApisWorkflows = [
             text: "Step 1: Send Verification Code (OTP)",
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "Send a one-time password (OTP) to the user's email or phone",
@@ -77,7 +77,7 @@ export const integrationsApisWorkflows = [
             text: "Step 2: Verify Code & Get User ID",
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "Verify the OTP and return the authenticated user_id",
@@ -294,7 +294,7 @@ export const integrationsApisWorkflows = [
             text: "Chain Structure",
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "Root API: The first API call in the chain",
@@ -512,7 +512,7 @@ export const integrationsApisWorkflows = [
             text: "Template Features",
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "View and edit templates for each API config",
@@ -691,7 +691,7 @@ export const integrationsApisWorkflows = [
     title: "📖 Quick Navigation Guide",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
             text: "API Config → Configure API endpoints and authentication",

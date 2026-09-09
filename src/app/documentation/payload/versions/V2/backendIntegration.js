@@ -250,7 +250,7 @@ export const backendIntegration = [
     title: "Implementation Best Practices",
     children: [
       {
-        tag_type: "ul",
+        tag_type: "ol",
         items: [
           {
             text: "Trigger onboarding immediately after user registration",

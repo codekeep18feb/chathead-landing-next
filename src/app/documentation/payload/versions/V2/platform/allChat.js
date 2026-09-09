@@ -55,7 +55,7 @@ export const allChat = [
             ],
           },
           {
-            tag_type: "ul",
+            tag_type: "ol",
             items: [
               {
                 text: "Users are grouped by application for easy navigation",
