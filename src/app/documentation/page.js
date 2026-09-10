@@ -104,6 +104,21 @@ const Document = () => {
               handleKeyClick={handleKeyClick}
               selectedFilter={selectedFilter}
             />
+
+            {!isMobile && (
+              <button
+                className={styles.sidebar_toggle_btn}
+                onClick={toggleSidebar}
+                aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+                title={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+              >
+                {isSidebarOpen ? (
+                  <IoMdArrowRoundBack size={18} />
+                ) : (
+                  <IoMdArrowRoundForward size={18} />
+                )}
+              </button>
+            )}
           </div>
         )}
 
@@ -158,7 +173,9 @@ const Document = () => {
             <button
               className={styles.mobileBurgerBtn}
               onClick={toggleMobileSidebar}
-             aria-label={isMobileSidebarOpen ? "Close sidebar" : "Open sidebar"}
+              aria-label={
+                isMobileSidebarOpen ? "Close sidebar" : "Open sidebar"
+              }
             >
               {isMobileSidebarOpen ? (
                 <FaTimes size={20} />
@@ -169,7 +186,7 @@ const Document = () => {
           )}
 
           {/* ===== DESKTOP COLLAPSE TOGGLE ===== */}
-          {!isMobile && (
+          {/* {!isMobile && (
             <button
               className={styles.sidebar_toggle_btn}
               onClick={toggleSidebar}
@@ -182,7 +199,7 @@ const Document = () => {
                 <IoMdArrowRoundForward size={18} />
               )}
             </button>
-          )}
+          )} */}
 
           <div
             className={`${styles["main-content"]} ${
