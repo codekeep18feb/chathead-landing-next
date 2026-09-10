@@ -1,7 +1,9 @@
+/* ============================================ */
+/* CONTENT AREA */
+/* ============================================ */
 .content-area {
   width: 100%;
-  /* margin-top: 20px; */
-  padding: 20px;
+  /* padding: 20px; */
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -27,15 +29,41 @@
 /* SIDEBAR STYLES - NO DOTS */
 /* ============================================ */
 .doc_sidebar {
-  width: 25%;
+  width: 280px;
   min-width: 200px;
-  background: var(--light-primary-color);
   background: white;
   border-right: 1px solid #cdcdcd;
   overflow-y: auto;
   max-height: calc(100vh - 100px);
   position: sticky;
   top: 0;
+  transition:
+    width 0.3s ease,
+    opacity 0.2s ease,
+    margin 0.3s ease,
+    padding 0.3s ease;
+  overflow-x: hidden;
+}
+
+.sidebar_open {
+  width: 330px;
+  min-width: 200px;
+  opacity: 1;
+}
+
+.sidebar_closed {
+  width: 40px;
+  min-width: 20px;
+  border-right: none;
+  /* border: 2px solid red; */
+  /* opacity: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-right: none; */
+}
+.sidebar_closed ol {
+  opacity: 0;
 }
 
 /* Remove ALL dots/bullets from sidebar lists */
@@ -78,7 +106,6 @@
   height: auto !important;
 }
 
-/* Remove markers for all list items */
 .doc_sidebar li::marker,
 .doc_sidebar ol > li::marker,
 .doc_sidebar ul > li::marker {
@@ -86,7 +113,6 @@
   display: none !important;
 }
 
-/* Sidebar list item styles */
 .doc_sidebar li > div:first-of-type > div {
   background-color: #c4cffb;
   display: flex;
@@ -102,15 +128,22 @@
   background-color: #b1c0fb;
 }
 
-.doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
+.doc_sidebar
+  > div
+  > div
+  > ol:first-of-type
+  > li:first-of-type
+  > div:first-of-type
+  > div {
   background: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: var(--white-text-color);
 }
-
-/* Nested lists in sidebar */
+.doc_sidebar > div {
+  margin-top: 30px;
+}
 .doc_sidebar ol ol,
 .doc_sidebar ul ul,
 .doc_sidebar .content-list .content-list {
@@ -135,6 +168,7 @@
 /* RIGHT WRAP AND MAIN CONTENT */
 /* ============================================ */
 .rightWrap {
+  position: relative;
   background-color: transparent;
   overflow-y: auto;
   flex: 1;
@@ -142,6 +176,12 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   width: 75%;
+  transition: width 0.3s ease;
+}
+
+.rightWrap_full {
+  width: 100% !important;
+  flex: 1 1 100%;
 }
 
 .rightWrap::-webkit-scrollbar {
@@ -153,6 +193,16 @@
   padding: 20px 30px;
   width: 100%;
   margin: 0 auto;
+  transition:
+    max-width 0.3s ease,
+    width 0.3s ease,
+    margin 0.3s ease;
+}
+
+.main-content-full {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
 }
 
 .mainHeading {
@@ -194,7 +244,188 @@
 }
 
 /* ============================================ */
-/* MOBILE SIDEBAR WRAPPER - NO DOTS */
+/* DESKTOP BACK ARROW TOGGLE BUTTON */
+/* ============================================ */
+.sidebar_toggle_btn {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  z-index: 100;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    left 0.3s ease;
+}
+
+.sidebar_toggle_btn:hover {
+  background: #f3f4f6;
+  transform: scale(1.05);
+}
+
+.sidebar_toggle_btn:active {
+  transform: scale(0.95);
+}
+
+/* ============================================ */
+/* MOBILE BURGER BUTTON */
+/* ============================================ */
+.mobileBurgerBtn {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  z-index: 999;
+  width: 35px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: transparent;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); */
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobileBurgerBtn:hover {
+  transform: scale(1.05);
+}
+
+.mobileBurgerBtn:active {
+  transform: scale(0.95);
+}
+
+/* ============================================ */
+/* MOBILE SIDEBAR OVERLAY (BACKDROP) */
+/* ============================================ */
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.mobileOverlayVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ============================================ */
+/* MOBILE SIDEBAR DRAWER */
+/* ============================================ */
+.mobileSidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 85%;
+  max-width: 340px;
+  background: #ffffff;
+  z-index: 999;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.mobileSidebarOpen {
+  transform: translateX(0);
+}
+
+.mobileSidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  background: #f9fafb;
+  flex-shrink: 0;
+}
+
+.mobileSidebarClose {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #374151;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.mobileSidebarClose:hover {
+  background: #e5e7eb;
+}
+
+.mobileSidebarContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 16px 24px 16px;
+}
+
+/* Remove dots in mobile sidebar too */
+.mobileSidebarContent,
+.mobileSidebarContent * {
+  list-style: none !important;
+}
+
+.mobileSidebarContent ol,
+.mobileSidebarContent ul,
+.mobileSidebarContent .content-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0;
+}
+
+.mobileSidebarContent ol > li,
+.mobileSidebarContent ul > li,
+.mobileSidebarContent .content-list li {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+.mobileSidebarContent li::marker {
+  content: "" !important;
+  display: none !important;
+}
+
+.mobileSidebarContent ol > li::before,
+.mobileSidebarContent ul > li::before,
+.mobileSidebarContent .content-list li::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* ============================================ */
+/* MOBILE SIDEBAR WRAPPER (legacy - kept for safety) */
 /* ============================================ */
 .mobileSidebarWrapper {
   margin-top: 16px;
@@ -225,7 +456,6 @@
   border-radius: 4px;
 }
 
-/* Remove dots from mobile sidebar */
 .mobileSidebarWrapper,
 .mobileSidebarWrapper * {
   list-style: none !important;
@@ -268,17 +498,6 @@
   background-color: transparent;
 }
 
-.mobileSidebarWrapper li {
-  display: flex;
-  background-color: transparent;
-  margin: 0px;
-  white-space: nowrap;
-}
-
-.mobileSidebarWrapper ol > li::before {
-  content: none !important;
-}
-
 .content-area h3 {
   font-size: 18px;
   padding: 10px 0px;
@@ -290,547 +509,62 @@
 }
 
 /* ============================================ */
-/* RESPONSIVE BREAKPOINTS FOR CONTENT AREA */
+/* RESPONSIVE - MOBILE */
 /* ============================================ */
-
-/* Tablets and small laptops (769px - 1024px) */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .content-area {
-    padding: 15px;
-  }
-  
-  .doc_sidebar {
-    width: 30%;
-    min-width: 160px;
-  }
-  
-  .doc_sidebar li > div:first-of-type > div {
-    font-size: 12px;
-    padding: 6px 8px;
-  }
-  
-  .rightWrap {
-    width: 70%;
-  }
-  
+@media (max-width: 768px) {
   .main-content {
-    padding: 15px 20px;
+    padding: 70px 16px 20px 16px;
     max-width: 100%;
   }
-}
-/* Mobile phones (up to 425px) */
-@media screen and (max-width: 425px) {
-  .content-area {
+
+  .rightWrap {
     width: 100%;
-    padding: 0px;
-    margin-top: 5px;
+    max-height: none;
   }
-  
+
+  .content-area {
+    padding: 0;
+  }
+
+  .integration_successful {
+    margin: 16px 0;
+    padding: 16px;
+  }
+
+  .integration_successful p {
+    font-size: 14px;
+  }
+
   .doc_core_wrapper {
     flex-direction: column;
-    gap: 0;
   }
-  
-  /* Make sidebar vertical scrollable on mobile */
-  .doc_sidebar {
+  .mobileSidebarContent {
+    margin-top: 30px;
+  }
+  .mobileSidebar {
+    max-width: 400px;
+  }
+  .mobileSidebarContent li > div:first-of-type > div {
+    background-color: #c4cffb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    transition: background-color 0.2s ease;
     width: 100%;
-    min-width: unset;
-    border-right: none;
-    border-bottom: 1px solid #cdcdcd;
-    max-height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-    top: 0;
-    padding: 8px 0;
-    display: block;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #e0e0e0;
-  }
-  
-  /* Custom scrollbar for vertical sidebar */
-  .doc_sidebar::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  .doc_sidebar::-webkit-scrollbar-track {
-    background: #f0f0f0;
-  }
-  
-  .doc_sidebar::-webkit-scrollbar-thumb {
-    background-color: #888;
+    font-size: 13px;
     border-radius: 4px;
   }
-  
-  /* Make sidebar items vertical with full width */
-  .doc_sidebar > div {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 0 8px;
-    width: 100%;
-  }
-  
-  .doc_sidebar > div > div {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    width: 100%;
-  }
-  
-  .doc_sidebar > div > div > ol {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 0 !important;
-    width: 100%;
-  }
-  
-  .doc_sidebar > div > div > ol > li {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
-    width: 100%;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  /* MAIN CHANGE: Make sidebarLi horizontally scrollable */
-  .doc_sidebar li > div:first-of-type > div {
-    font-size: 13px;
-    padding: 12px 16px;
-    border-radius: 5px;
-    background-color: #e8edff;
-    width: 100%;
-    min-width: unset;
-    box-sizing: border-box;
-    font-weight: 500;
-    
-    /* Add horizontal scroll */
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #f0f0f0;
-    
-    /* Ensure content doesn't wrap */
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  /* Custom scrollbar for sidebarLi items */
-  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar {
-    height: 3px;
-  }
-  
-  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 2px;
-  }
-  
-  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 2px;
-  }
-  
-  /* SHOW nested items */
-  .doc_sidebar li > div:first-of-type + div {
-    display: block !important;
-    width: 100%;
-    padding-left: 16px;
-  }
-  
-  /* Style for nested items with horizontal scroll */
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div {
-    background-color: #f0f4ff;
-    font-size: 12px;
-    padding: 8px 16px;
-    margin: 1px 0;
-    
-    /* Add horizontal scroll to nested items too */
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #f0f0f0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  /* Custom scrollbar for nested items */
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar {
-    height: 3px;
-  }
-  
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 2px;
-  }
-  
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 2px;
-  }
-  
-  /* Deeper nested items */
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type + div {
-    padding-left: 16px;
-  }
-  
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type + div li > div:first-of-type > div {
-    background-color: #f5f8ff;
-    font-size: 11px;
-    padding: 6px 16px;
-    
-    /* Add horizontal scroll to deeper nested items */
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #f0f0f0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  /* Remove any expand/collapse icons */
-  .doc_sidebar .expand-icon,
-  .doc_sidebar .collapseIcon,
-  .doc_sidebar .downIcon {
-    display: none !important;
-  }
-  
-  /* Style for content inside sidebarLi */
-  .doc_sidebar .sidebarLi {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
-    min-width: max-content;
-  }
-  
-  .doc_sidebar .sidebarLi .content-link {
-    flex-shrink: 0;
-  }
-  
-  /* Style for the active/selected item */
-  .doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
-    background: var(--primary-color);
-    color: var(--white-text-color);
-  }
-  
-  .rightWrap {
-    width: 100%;
-    max-height: none;
-    overflow-y: visible;
-  }
-  
-  .main-content {
-    padding: 10px;
-    max-width: 100%;
-  }
-  
-  .mainHeading {
-    margin-bottom: 15px;
-  }
-  
-  .mainHeading h2 {
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-  }
-  
-  .integration_successful {
-    padding: 10px;
-    margin: 10px;
-    border-radius: 6px;
-  }
-  
-  .integration_successful p {
-    font-size: 13px;
-    padding-bottom: 8px;
-  }
-  
-  .content-area h3 {
-    font-size: 15px;
-    padding: 8px 0px;
-  }
-  
-  .noFilterMessage {
-    font-size: 0.9rem;
-    min-height: 50vh;
-    padding: 10px;
-  }
-  
-  .mobileSidebarWrapper {
-    padding: 0px 8px;
-    gap: 8px;
-    margin-top: 10px;
-  }
-  
-  .mobileSidebarWrapper div {
-    gap: 12px;
-  }
-  
-  .mobileSidebarWrapper li {
-    font-size: 12px;
-  }
 }
 
-/* Tablet view with horizontally scrollable items */
-@media screen and (min-width: 426px) and (max-width: 768px) {
-  .content-area {
+@media (max-width: 480px) {
+  .mobileSidebar {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    top: 68px;
   }
-  
-  .doc_core_wrapper {
-    flex-direction: column;
-  }
-  
-  .doc_sidebar {
-    width: 100%;
-    min-width: unset;
-    border-right: none;
-    border-bottom: 1px solid #cdcdcd;
-    max-height: 350px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-    top: 0;
-    padding: 10px 0;
-    display: block;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .doc_sidebar > div {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    padding: 0 12px;
-    width: 100%;
-  }
-  
-  .doc_sidebar > div > div {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    width: 100%;
-  }
-  
-  .doc_sidebar > div > div > ol {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    padding: 0 !important;
-    width: 100%;
-  }
-  
-  .doc_sidebar > div > div > ol > li {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  /* Make sidebarLi horizontally scrollable on tablet */
-  .doc_sidebar li > div:first-of-type > div {
-    font-size: 13px;
-    padding: 10px 16px;
-    border-radius: 6px;
-    background-color: #e8edff;
-    width: 100%;
-    min-width: unset;
-    box-sizing: border-box;
-    
-    /* Add horizontal scroll */
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #f0f0f0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar {
-    height: 3px;
-  }
-  
-  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 2px;
-  }
-  
-  .doc_sidebar li > div:first-of-type > div::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 2px;
-  }
-  
-  /* SHOW nested items on tablet */
-  .doc_sidebar li > div:first-of-type + div {
-    display: block !important;
-    width: 100%;
-    padding-left: 16px;
-  }
-  
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div {
-    background-color: #f0f4ff;
-    font-size: 12px;
-    padding: 8px 16px;
-    
-    /* Add horizontal scroll to nested items */
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #f0f0f0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar {
-    height: 3px;
-  }
-  
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 2px;
-  }
-  
-  .doc_sidebar li > div:first-of-type + div li > div:first-of-type > div::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 2px;
-  }
-  
-  /* Hide expand/collapse icons */
-  .doc_sidebar .expand-icon,
-  .doc_sidebar .collapseIcon,
-  .doc_sidebar .downIcon {
-    display: none !important;
-  }
-  
-  .doc_sidebar .sidebarLi {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
-    min-width: max-content;
-  }
-  
-  .doc_sidebar .sidebarLi .content-link {
-    flex-shrink: 0;
-  }
-  
-  .doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
-    background: var(--primary-color);
-    color: var(--white-text-color);
-  }
-  
-  .rightWrap {
-    width: 100%;
-    max-height: none;
-    overflow-y: visible;
-  }
-  
-  .main-content {
-    padding: 15px;
-    max-width: 100%;
-  }
-  
-  .mainHeading h2 {
-    font-size: 16px;
-    line-height: 24px;
-  }
-  
-  .integration_successful {
-    padding: 15px;
-    margin: 15px;
-  }
-  
-  .integration_successful p {
-    font-size: 14px;
-  }
-  
-  .content-area h3 {
-    font-size: 16px;
-  }
-}
+  .mobileSidebarContent > ol > li {
+    padding-left: 0px;
+    font-size: 12.5px;
 
-/* Very small phones (up to 320px) */
-@media screen and (max-width: 320px) {
-  .main-content {
-    padding: 8px;
-  }
-  
-  .doc_sidebar {
-    max-height: 140px;
-    padding: 6px 0;
-  }
-  
-  .doc_sidebar li > div:first-of-type > div {
-    font-size: 10px;
-    padding: 5px 10px;
-  }
-  
-  .doc_sidebar > div {
-    gap: 6px;
-    padding: 0 6px;
-  }
-  
-  .doc_sidebar > div > div {
-    gap: 6px;
-  }
-  
-  .doc_sidebar > div > div > ol {
-    gap: 6px;
-  }
-  
-  .mainHeading h2 {
-    font-size: 13px;
-    line-height: 18px;
-  }
-  
-  .content-area h3 {
-    font-size: 14px;
-  }
-  
-  .integration_successful {
-    padding: 8px;
-    margin: 8px;
-  }
-  
-  .integration_successful p {
-    font-size: 12px;
-  }
-}
-
-/* Print styles */
-@media print {
-  .doc_sidebar {
-    display: none;
-  }
-  
-  .rightWrap {
-    width: 100%;
-  }
-  
-  .main-content {
-    max-width: 100%;
-    padding: 20px;
   }
 }

@@ -1,7 +1,10 @@
-import React from 'react';
-import ContentRenderer from './rendering_tools';
+// /home/codewithreetu/Desktop/workspace/p__workspace/landingSide/chathead-landing-next/src/app/components/documents/side_bar_content/Sidebar.jsx
 
-export default function Sidebar({ selectedFilter }) {
+import React from 'react';
+import ContentRenderer, { SidebarLinkContext } from './rendering_tools';
+import styels from "../../../documentation/docPageSty.module.css"
+
+export default function Sidebar({ selectedFilter, onLinkClick }) {
   const versionType = selectedFilter?.version_type;
 
   const ContentByVersion = {
@@ -13,7 +16,6 @@ export default function Sidebar({ selectedFilter }) {
         children: [
           {
             tag_type: "h3",
-            text: "Integration",
             className: "sidebar-section-title"
           },
           {
@@ -22,6 +24,7 @@ export default function Sidebar({ selectedFilter }) {
               {
                 tag_type: "li",
                 text: "Integration",
+                default_expanded: true,
                 selector_uid: "v2_prerequisites",
                 sub_items: [
                   {
@@ -78,7 +81,7 @@ export default function Sidebar({ selectedFilter }) {
           }
         ]
       },
-      
+
       // ====== PLATFORM TAB ======
       {
         tag_type: "div",
@@ -86,7 +89,6 @@ export default function Sidebar({ selectedFilter }) {
         children: [
           {
             tag_type: "h3",
-            text: "Platform",
             className: "sidebar-section-title"
           },
           {
@@ -95,6 +97,7 @@ export default function Sidebar({ selectedFilter }) {
               {
                 tag_type: "li",
                 text: "Platform",
+                default_expanded: false,
                 selector_uid: "v2_whitelabel_domains",
                 sub_items: [
                   // ====== SIBLING 1: Global Level Settings ======
@@ -141,7 +144,7 @@ export default function Sidebar({ selectedFilter }) {
                   {
                     tag_type: "li",
                     text: "FAQ Chat & Lead Generation",
-                    selector_uid: "v2_faq_chat_lead_gen", 
+                    selector_uid: "v2_faq_chat_lead_gen",
                     sub_items: [
                       {
                         tag_type: "li",
@@ -371,15 +374,17 @@ export default function Sidebar({ selectedFilter }) {
   };
 
   return (
-    <div>
-      {versionType && ContentByVersion[versionType] ? (
-        <ContentRenderer
-          key={`${versionType}`}
-          content={ContentByVersion[versionType]}
-        />
-      ) : (
-        <div>Please select a valid application type and version</div>
-      )}
-    </div>
+    <SidebarLinkContext.Provider value={onLinkClick}>
+      <div className={styels.reetusingh}>
+        {versionType && ContentByVersion[versionType] ? (
+          <ContentRenderer
+            key={`${versionType}`}
+            content={ContentByVersion[versionType]}
+          />
+        ) : (
+          <div>Please select a valid application type and version</div>
+        )}
+      </div>
+    </SidebarLinkContext.Provider>
   );
 }

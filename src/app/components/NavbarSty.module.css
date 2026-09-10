@@ -559,7 +559,7 @@
 /* Below 480px - Small phones */
 @media (max-width: 480px) {
   .navbar {
-    padding: 0.8rem 1rem;
+    padding: 0.6rem;
   }
 
   .logo h2 {

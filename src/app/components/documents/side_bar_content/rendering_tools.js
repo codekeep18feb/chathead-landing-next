@@ -17,7 +17,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import "./style_globle.css";
 
 // ============================================================
-// MARKER HIGHLIGHTING HELPERS  (from main)
+// MARKER HIGHLIGHTING HELPERS
 //
 // Two marker syntaxes, applicable in ANY payload string field:
 //   [[ value ]]        → inline highlight   (amber, .ph)
@@ -75,7 +75,7 @@ const MarkedText = ({ children }) => (
 );
 
 // ============================================================
-// SIDEBAR LINK CONTEXT  (from mobile_doc)
+// SIDEBAR LINK CONTEXT
 // Closes the mobile sidebar when a navigation link is clicked.
 // ============================================================
 export const SidebarLinkContext = createContext(null);
@@ -119,7 +119,7 @@ const supportedTags = [
 // ============================================================
 // renderTextWithElements — used by <p> tag and ListItem text.
 // Plain-string segments pass through applyMarkers; link segments
-// remain React <a> nodes. (main precedence)
+// remain React <a> nodes.
 // ============================================================
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts || linkParts.length === 0) {
