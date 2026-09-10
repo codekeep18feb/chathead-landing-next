@@ -10,12 +10,12 @@ import HeroSectionPage from "./herosection/page";
 
 export default function Home() {
   const handleMagicChatInit = async () => {
-    await window.magicchat_io.setUp(
+    await window.sageion_os.setUp(
       "magiccchat", // app_name
       "TWFnaWNjaGF0IFN1cHBvcnQgVGVlYW1fX1NFUFJBVE9SX19tYWdpY2NjaGF0", // api_key
     );
 
-    await window.magicchat_io.initialize({ app_version: "V4" });
+    await window.sageion_os.initialize({ app_version: "V4" });
   };
 
   return (

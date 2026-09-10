@@ -43,7 +43,7 @@ export const clientIntegration = [
           },
           {
             tag_type: "p",
-            text: "You can inspect the current phase at any time with [[window.magicchat_io.getSetupStatus()]], which returns one of: \"[[idle]]\" | \"[[pending]]\" | \"[[done]]\" | \"[[failed]]\".",
+            text: "You can inspect the current phase at any time with [[window.sageion_os.getSetupStatus()]], which returns one of: \"[[idle]]\" | \"[[pending]]\" | \"[[done]]\" | \"[[failed]]\".",
           },
         ],
       },
@@ -96,7 +96,7 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "Loading the bundle exposes [[window.magicchat_io]]. Every example below uses that global.",
+                            text: "Loading the bundle exposes [[window.sageion_os]]. Every example below uses that global.",
                           },
                         ],
                       },
@@ -168,7 +168,7 @@ export const clientIntegration = [
                         code: `<script>
   (async () => {
     try {
-      [[[await window.magicchat_io.setUp(
+      [[[await window.sageion_os.setUp(
         "your_app_name",                 // app_name
         "YOUR_API_KEY",                  // api_key (base64)
         "US",                            // region: "US" | "IN"
@@ -190,9 +190,9 @@ export const clientIntegration = [
         }
       }
 
-      [[[await window.magicchat_io.initialize(payload);]]]
+      [[[await window.sageion_os.initialize(payload);]]]
 
-      [[[console.log("Sageion ready. Status:", window.magicchat_io.getSetupStatus());]]]
+      [[[console.log("Sageion ready. Status:", window.sageion_os.getSetupStatus());]]]
     } catch (err) {
       // The SDK already rendered an error popup. Log for diagnostics only.
       console.error("[Sageion] bootstrap failed:", err);
@@ -212,7 +212,7 @@ export const clientIntegration = [
                           },
                           {
                             tag_type: "code_with_copy",
-                            code: `[[[await window.magicchat_io.setUp("your_app_name", "YOUR_API_KEY", "US");]]]`,
+                            code: `[[[await window.sageion_os.setUp("your_app_name", "YOUR_API_KEY", "US");]]]`,
                             language: "javascript",
                           },
                         ],
@@ -313,7 +313,7 @@ export const clientIntegration = [
                         tag_type: "code_with_copy",
                         code: `<script>
   window.__sageionSetup = (async function () {
-    [[[await window.magicchat_io.setUp(
+    [[[await window.sageion_os.setUp(
       "your_app_name",
       "YOUR_API_KEY",
       "US",
@@ -349,7 +349,7 @@ export const clientIntegration = [
                         tag_type: "code_with_copy",
                         code: `<script>
   window.__sageionSetup
-    [[[.then(payload => window.magicchat_io.initialize(payload))]]]
+    [[[.then(payload => window.sageion_os.initialize(payload))]]]
     .then(() => console.log("[Sageion] ready"))
     .catch(err => console.error("[Sageion] bootstrap failed:", err));
 </script>`,
@@ -389,7 +389,7 @@ export const clientIntegration = [
                         tag_type: "code_with_copy",
                         code: `<script>
   window.__sageionSetup = (async function () {
-    [[[await window.magicchat_io.setUp(
+    [[[await window.sageion_os.setUp(
       "your_app_name",
       "YOUR_API_KEY",
       "US",
@@ -421,7 +421,7 @@ export const clientIntegration = [
                         tag_type: "code_with_copy",
                         code: `<script>
   window.__sageionSetup
-    [[[.then(payload => window.magicchat_io.initialize(payload))]]]
+    [[[.then(payload => window.sageion_os.initialize(payload))]]]
     .catch(err => console.error("[Sageion] bootstrap failed:", err));
 </script>`,
                         language: "javascript",
@@ -463,7 +463,7 @@ export const clientIntegration = [
   let cancelled = false;
   (async () => {
     try {
-      [[[await window.magicchat_io.setUp(
+      [[[await window.sageion_os.setUp(
         "your_app_name",
         "YOUR_API_KEY",
         "US",
@@ -472,7 +472,7 @@ export const clientIntegration = [
 
       const payload = await resolveUid(); // your own helper
 
-      if (!cancelled) [[[await window.magicchat_io.initialize(payload);]]]
+      if (!cancelled) [[[await window.sageion_os.initialize(payload);]]]
     } catch (err) {
       console.error("[Sageion] bootstrap failed:", err);
     }
@@ -540,14 +540,14 @@ export const clientIntegration = [
         tag_type: "code_with_copy",
         code: `// After a successful login (no page reload):
 async function onLogin(user) {
-  [[[await window.magicchat_io.initialize({ uid: user.id.toString() });]]]
+  [[[await window.sageion_os.initialize({ uid: user.id.toString() });]]]
 }
 
 // On logout:
 function onLogout() {
-  [[[window.magicchat_io.logout();]]]  // clears SDK storage, disconnects sockets, resets state
+  [[[window.sageion_os.logout();]]]  // clears SDK storage, disconnects sockets, resets state
   // To re-open the chat as anonymous immediately:
-  // await window.magicchat_io.initialize();
+  // await window.sageion_os.initialize();
 }`,
         language: "javascript",
       },
@@ -570,7 +570,7 @@ function onLogout() {
           [
             "[[Wrong `api_key` found in credentials]]",
             "[[api_key]] in your config does not match the cached [[auth_key]]",
-            "Correct the key, then click Reset Settings in the error popup (or call [[magicchat_io.logout()]])",
+            "Correct the key, then click Reset Settings in the error popup (or call [[sageion_os.logout()]])",
           ],
           [
             "[[The current domain (X) is not authorized]]",

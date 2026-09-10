@@ -104,9 +104,9 @@ const payload = {
               document.addEventListener("DOMContentLoaded", async function () {
                 const token = localStorage.getItem("tezkit_token");
                 if (token) {
-                  window.magicchat_io.initialize(token);
+                  window.sageion_os.initialize(token);
                 } else {
-                  window.magicchat_io.setUp(
+                  window.sageion_os.setUp(
                     "<Your App Name>", 
                     "<Your Api Key>", 
                     JSON.stringify({
@@ -199,9 +199,9 @@ const payload = {
               document.addEventListener("DOMContentLoaded", async function () {
                 const token = localStorage.getItem("tezkit_token");
                 if (token) {
-                  window.magicchat_io.initialize(token);
+                  window.sageion_os.initialize(token);
                 } else {
-                  window.magicchat_io.setUp(
+                  window.sageion_os.setUp(
                     "<Your App Name>", 
                     "<Your Api Key>", 
                     JSON.stringify({
@@ -371,7 +371,7 @@ const payload = {
                           code: `<script>
   const token = localStorage.getItem('tezkit_token',null);
     if (!token) {
-        window.magicchat_io.setUp(
+        window.sageion_os.setUp(
             (app_name = "v2.1_first_app"),
             (api_key =
             "amV3ZWxlcnlraW5nX19TRVBSQVRPUl9fdjIuMV9maXJzdF9hcHA="),
@@ -389,7 +389,7 @@ const payload = {
                           code: `const token = localStorage.getItem('tezkit_token',null);
   if (token) {
       console.log("arew we seerhewrewr ing")
-      window.magicchat_io.initialize({"uid": <new_user>}); // it should contain atleast \`uid\` key
+      window.sageion_os.initialize({"uid": <new_user>}); // it should contain atleast \`uid\` key
   }
     `,
                         },

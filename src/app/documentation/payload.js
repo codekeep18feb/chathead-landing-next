@@ -183,12 +183,12 @@ const payload = {
     const profileData = await window.profileDataPromise; // Change this line to match how your application retrieves profile data
 
     if (!profileData) {
-      await window.magicchat_io.setUp(
+      await window.sageion_os.setUp(
         "v2_app1",
         "bGVnYWwxMTFfX1NFUFJBVE9SX192Ml9hcHAx"
       );
     } else {
-      await window.magicchat_io.initialize({
+      await window.sageion_os.initialize({
         app_version: "V2",
         uid: profileData.username,
       });
@@ -304,7 +304,7 @@ const payload = {
     const profileData = await window.profileDataPromise; // Change this line to match how your application retrieves profile data
 
     if (!profileData) {
-      await window.magicchat_io.setUp(
+      await window.sageion_os.setUp(
         "v2_app1",
         "bGVnYWwxMTFfX1NFUFJBVE9SX192Ml9hcHAx"
       );
@@ -364,7 +364,7 @@ const payload = {
     const profileData = await window.profileDataPromise; // Change this line to match how your application retrieves profile data
 
     if (profileData) {
-      await window.magicchat_io.initialize({
+      await window.sageion_os.initialize({
         app_version: "V2",
         uid: profileData.username,
       });
@@ -556,7 +556,7 @@ const payload = {
                 },
                 {
                   tag_type: "code_with_copy",
-                  code: `await window.magicchat_io.onboarding(
+                  code: `await window.sageion_os.onboarding(
         { 
           "uid": "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" 
         },
@@ -657,7 +657,7 @@ const payload = {
         },
         {
           tag_type: "code_with_copy",
-          code: `window.magicchat_io.logout?.();`,
+          code: `window.sageion_os.logout?.();`,
           language: "javascript",
         },
         {

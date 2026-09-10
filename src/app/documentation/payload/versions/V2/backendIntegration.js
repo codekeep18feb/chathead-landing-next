@@ -33,7 +33,7 @@ export const backendIntegration = [
                 text: "On the frontend, your app calls [[initialize({ uid })]] with the same [[uid]]. Sageion now knows which of its users this is.",
               },
               {
-                text: "When the user logs out, your app calls [[window.magicchat_io.logout()]] so Sageion clears the session.",
+                text: "When the user logs out, your app calls [[window.sageion_os.logout()]] so Sageion clears the session.",
               },
             ],
           },
@@ -240,7 +240,7 @@ router.post('/register', [...validators], async (req, res) => {
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `[[[await window.magicchat_io.onboarding(
+                        code: `[[[await window.sageion_os.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
 );]]]`,
@@ -416,7 +416,7 @@ async def register(body: RegisterBody):
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `[[[await window.magicchat_io.onboarding(
+                        code: `[[[await window.sageion_os.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
 );]]]`,
@@ -518,7 +518,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `[[[await window.magicchat_io.onboarding(
+                        code: `[[[await window.sageion_os.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
 );]]]`,
@@ -610,7 +610,7 @@ public function register(Request $request)
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `[[[await window.magicchat_io.onboarding(
+                        code: `[[[await window.sageion_os.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
 );]]]`,
@@ -702,7 +702,7 @@ end`,
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `[[[await window.magicchat_io.onboarding(
+                        code: `[[[await window.sageion_os.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
 );]]]`,
@@ -790,7 +790,7 @@ end`,
       {
         tag_type: "code_with_copy",
         code: `// In your client-side logout handler:
-[[[window.magicchat_io.logout?.();]]]
+[[[window.sageion_os.logout?.();]]]
 
 // It:
 //   - clears all tezkit_* keys from localStorage
@@ -1489,7 +1489,7 @@ end]]]`,
                 text: "Use the exact same [[uid]] in onboarding and in [[initialize({ uid })]] — they must match for the chat box to work.",
               },
               {
-                text: "Always call [[window.magicchat_io.logout()]] from your own logout handler, before clearing your own session.",
+                text: "Always call [[window.sageion_os.logout()]] from your own logout handler, before clearing your own session.",
               },
               {
                 text: "Never ship [[SAGEION_CLIENT_SECRET]] or [[SAGEION_REST_API_KEY]] to the frontend. If you use the frontend onboarding method, use a different token scoped to onboarding only.",
