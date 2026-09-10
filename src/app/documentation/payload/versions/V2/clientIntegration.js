@@ -168,12 +168,12 @@ export const clientIntegration = [
                         code: `<script>
   (async () => {
     try {
-      await window.magicchat_io.setUp(
-        "[[your_app_name]]",                 // app_name
-        "[[YOUR_API_KEY]]",                  // api_key (base64)
-        "[[US]]",                            // region: "US" | "IN"
-        "[[sageion-chat-root]]"              // chat_root_id (optional)
-      );
+      [[[await window.magicchat_io.setUp(
+        "your_app_name",                 // app_name
+        "YOUR_API_KEY",                  // api_key (base64)
+        "US",                            // region: "US" | "IN"
+        "sageion-chat-root"              // chat_root_id (optional)
+      );]]]
 
       // Optional: resolve uid from your own auth
       const token = localStorage.getItem("token");
@@ -313,10 +313,10 @@ export const clientIntegration = [
                         code: `<script>
   window.__sageionSetup = (async function () {
     await window.magicchat_io.setUp(
-      "[[your_app_name]]",
-      "[[YOUR_API_KEY]]",
-      "[[US]]",
-      "[[sageion-chat-root]]"
+      "your_app_name",
+      "YOUR_API_KEY",
+      "US",
+      "sageion-chat-root"
     );
 
     // Resolve the initialize() payload based on login state.
@@ -389,10 +389,10 @@ export const clientIntegration = [
                         code: `<script>
   window.__sageionSetup = (async function () {
     await window.magicchat_io.setUp(
-      "[[your_app_name]]",
-      "[[YOUR_API_KEY]]",
-      "[[US]]",
-      "[[sageion-chat-root]]"
+      "your_app_name",
+      "YOUR_API_KEY",
+      "US",
+      "sageion-chat-root"
     );
     const token = localStorage.getItem("token");
     if (!token) return {};
@@ -600,7 +600,7 @@ function onLogout() {
       },
       {
         tag_type: "a",
-        href: "https://github.com/sageion-core/example__v2/blob/402cbcd3d07fc8cca952fdf6ed1c18b5a2a90b1a/templates/base.html#L95",
+        href: "https://github.com/sageion-core/example__v2/blob402cbcd3d07fc8cca952fdf6ed1c18b5a2a90b1a/templates/base.html#L95",
         text: "Two-Block Example (logout cleanup included)",
       },
     ],

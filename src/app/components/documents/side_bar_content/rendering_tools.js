@@ -316,21 +316,48 @@ const Kbd = ({ keys }) => {
 const CodeWithCopy = ({ code, language }) => {
   const [copied, setCopied] = useState(false);
 
-  // Strip the [[...]] markers — this is what gets copied to the clipboard.
-  const plainCode = code.replace(/\[\[(.+?)\]\]/g, "$1");
+  // ---- 1. Plain text for clipboard -------------------------------
+  // Strip BOTH block markers ([[[ ... ]]]) and inline markers ([[ ... ]])
+  // so the copy is always clean code.
+  const stripMarkers = (raw) =>
+    raw
+      .replace(/\[\[\[([\s\S]*?)\]\]\]/g, "$1")
+      .replace(/\[\[(.+?)\]\]/g, "$1");
 
-  // Wrap marked spans in a <span class="ph"> for rendering only.
-  // Escape HTML first so any `<`, `>`, `&` in the code are safe.
+  const plainCode = stripMarkers(code);
+
+  // ---- 2. HTML for rendering --------------------------------------
   const escapeHtml = (s) =>
     s
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
 
-  const highlighted = escapeHtml(code).replace(
-    /\[\[(.+?)\]\]/g,
-    '<span class="ph">$1</span>'
-  );
+  const render = (raw) => {
+    // Step 1: pull out block-marked regions FIRST so the inline pass
+    // doesn't touch their contents.
+    const blocks = [];
+    const withoutBlocks = raw.replace(/\[\[\[([\s\S]*?)\]\]\]/g, (_, inner) => {
+      blocks.push(inner);
+      return `\u0000BLOCK${blocks.length - 1}\u0000`;
+    });
+
+    // Step 2: escape HTML, then apply inline markers.
+    let out = escapeHtml(withoutBlocks).replace(
+      /\[\[(.+?)\]\]/g,
+      '<span class="ph">$1</span>'
+    );
+
+    // Step 3: reinsert block regions, escaped, wrapped in .ph-block.
+    out = out.replace(/\u0000BLOCK(\d+)\u0000/g, (_, idx) => {
+      const inner = escapeHtml(blocks[Number(idx)]);
+      return `<span class="ph-block">${inner}</span>`;
+    });
+
+    return out;
+  };
+
+  const highlighted = render(code);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(plainCode).then(() => {
