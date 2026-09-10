@@ -169,10 +169,10 @@ export const clientIntegration = [
   (async () => {
     try {
       await window.magicchat_io.setUp(
-        "your_app_name",                 // app_name
-        "YOUR_API_KEY",                  // api_key (base64)
-        "US",                            // region: "US" | "IN"
-        "sageion-chat-root"              // chat_root_id (optional)
+        "[[your_app_name]]",                 // app_name
+        "[[YOUR_API_KEY]]",                  // api_key (base64)
+        "[[US]]",                            // region: "US" | "IN"
+        "[[sageion-chat-root]]"              // chat_root_id (optional)
       );
 
       // Optional: resolve uid from your own auth
@@ -211,7 +211,7 @@ export const clientIntegration = [
                           },
                           {
                             tag_type: "code_with_copy",
-                            code: `await window.magicchat_io.setUp("your_app_name", "YOUR_API_KEY", "US");`,
+                            code: `await window.magicchat_io.setUp("[[your_app_name]]", "[[YOUR_API_KEY]]", "[[US]]");`,
                             language: "javascript",
                           },
                         ],
@@ -313,10 +313,10 @@ export const clientIntegration = [
                         code: `<script>
   window.__sageionSetup = (async function () {
     await window.magicchat_io.setUp(
-      "your_app_name",
-      "YOUR_API_KEY",
-      "US",
-      "sageion-chat-root"
+      "[[your_app_name]]",
+      "[[YOUR_API_KEY]]",
+      "[[US]]",
+      "[[sageion-chat-root]]"
     );
 
     // Resolve the initialize() payload based on login state.
@@ -389,10 +389,10 @@ export const clientIntegration = [
                         code: `<script>
   window.__sageionSetup = (async function () {
     await window.magicchat_io.setUp(
-      "your_app_name",
-      "YOUR_API_KEY",
-      "US",
-      "sageion-chat-root"
+      "[[your_app_name]]",
+      "[[YOUR_API_KEY]]",
+      "[[US]]",
+      "[[sageion-chat-root]]"
     );
     const token = localStorage.getItem("token");
     if (!token) return {};
@@ -461,7 +461,7 @@ export const clientIntegration = [
   let cancelled = false;
   (async () => {
     try {
-      await window.magicchat_io.setUp("your_app_name", "YOUR_API_KEY", "US", "sageion-chat-root");
+      await window.magicchat_io.setUp("[[your_app_name]]", "[[YOUR_API_KEY]]", "[[US]]", "[[sageion-chat-root]]");
       const payload = await resolveUid(); // your own helper
       if (!cancelled) await window.magicchat_io.initialize(payload);
     } catch (err) {

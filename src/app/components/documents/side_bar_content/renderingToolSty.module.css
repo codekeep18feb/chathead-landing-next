@@ -321,6 +321,17 @@
   font-weight: 400;
 }
 
+/* Placeholder highlight inside code blocks.
+   The span is injected via dangerouslySetInnerHTML, so it is NOT
+   CSS-module-hashed — we must target it as a global class. */
+.script_code :global(.ph) {
+  background: rgba(255, 200, 100, 0.18);
+  color: #ffd79a;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
 .api-table {
   width: 100%;
   border-collapse: collapse;

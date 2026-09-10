@@ -316,8 +316,24 @@ const Kbd = ({ keys }) => {
 const CodeWithCopy = ({ code, language }) => {
   const [copied, setCopied] = useState(false);
 
+  // Strip the [[...]] markers — this is what gets copied to the clipboard.
+  const plainCode = code.replace(/\[\[(.+?)\]\]/g, "$1");
+
+  // Wrap marked spans in a <span class="ph"> for rendering only.
+  // Escape HTML first so any `<`, `>`, `&` in the code are safe.
+  const escapeHtml = (s) =>
+    s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+  const highlighted = escapeHtml(code).replace(
+    /\[\[(.+?)\]\]/g,
+    '<span class="ph">$1</span>'
+  );
+
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(code).then(() => {
+    navigator.clipboard.writeText(plainCode).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -326,7 +342,7 @@ const CodeWithCopy = ({ code, language }) => {
   return (
     <div className={styles["code-with-copy"]}>
       <pre className={styles.script_code}>
-        <code>{code}</code>
+        <code dangerouslySetInnerHTML={{ __html: highlighted }} />
       </pre>
       <button onClick={copyToClipboard} className={styles["copy-button"]}>
         {copied ? "✓ Copied" : "📋 Copy"}
