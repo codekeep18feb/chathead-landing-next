@@ -1,18 +1,28 @@
+// /home/codewithreetu/Desktop/workspace/p__workspace/landingSide/chathead-landing-next/src/app/components/documents/side_bar_content/rendering_tools.js
+
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, {
+  useState,
+  useEffect,
+  Suspense,
+  createContext,
+  useContext,
+} from "react";
 import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../../YouTubeVideo";
 import { FaLink } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import "./style_globle.css"
+import "./style_globle.css";
+
+// ✅ Context to trigger sidebar close when a navigation link is clicked
+export const SidebarLinkContext = createContext(null);
 
 const CondRadioRender = ({ r_options }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check if the viewport is mobile
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -103,6 +113,7 @@ const supportedTags = [
   "mesgTip",
   "strong",
 ];
+
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts) return text;
 
@@ -147,7 +158,6 @@ const Callout = ({ type = "info", title, children }) => {
   return (
     <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
       <div className={styles["callout-header"]}>
-        {/* <span className={styles["callout-icon"]}>{icons[type]}</span> */}
         {title && <h4 className={styles["callout-title"]}>{title}</h4>}
       </div>
       <div className={styles["callout-content"]}>{children}</div>
@@ -435,7 +445,11 @@ const List = ({
 };
 
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
-  const [expanded, setExpanded] = useState(item.default_expanded !== undefined ? item.default_expanded : depth < 1);
+  const onLinkClick = useContext(SidebarLinkContext);
+
+  const [expanded, setExpanded] = useState(
+    item.default_expanded !== undefined ? item.default_expanded : depth < 1
+  );
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
   const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
@@ -443,7 +457,6 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const shouldShowDownIcon = hasSubItems && depth === 0;
 
   const handleScroll = (selector) => {
-    // const element = document.querySelector(selector);
     console.log("Looking for element with selector:", selector);
     const element = document.getElementById(selector);
     console.log("Found element:", element);
@@ -455,6 +468,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     } else {
       console.warn(`Element with ID "${selector}" not found`);
     }
+    // ✅ Close mobile sidebar after navigation
+    if (onLinkClick) onLinkClick();
   };
 
   const handleClick = (e) => {
@@ -472,12 +487,14 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     if (config.type === "internal") {
       return (
         <button
-          // onClick={() => handleScroll(config.targetSelector)}
-          onClick={() => handleScroll(config.selector_uid)}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleScroll(config.selector_uid);
+          }}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
-          <FaLink size={38} />
+          <FaLink size={16} />
         </button>
       );
     }
@@ -499,9 +516,8 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     <li
       style={{
         cursor: isCollapsible || shouldShowDownIcon ? "pointer" : "default",
-        listStyleType: listType === "ol" ? "none" : "none",
+        listStyleType: "none",
         position: "relative",
-        // paddingLeft: isCollapsible ? "20px" : "0px",
       }}
     >
       {isCollapsible && (
@@ -520,9 +536,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
           <span dangerouslySetInnerHTML={{ __html: item }} />
         ) : (
           <div>
-            <div
-            className={styles.contentHeaderWrap}
-            >
+            <div className={styles.contentHeaderWrap}>
               {item.text && (
                 <div>
                   <span>{item.text}</span>
@@ -554,11 +568,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
           style={{
             display: expanded ? "block" : "none",
             margin: "5px",
-            // marginLeft: "10px",
           }}
           className={styles.liSubItems}
         >
-          {/* FIX: Wrap sub_items in proper list container */}
           {item.sub_items[0]?.tag_type === "li" ? (
             <ul className={styles["content-list"]}>
               <ContentRenderer content={item.sub_items} />
@@ -600,7 +612,7 @@ const APIReferenceTable = ({ properties }) => (
 );
 
 const ContentRenderer = ({ content }) => {
-  // Helper function for link rendering in li elements
+  const onLinkClick = useContext(SidebarLinkContext);
 
   console.log("contenterewr", content);
 
@@ -611,14 +623,16 @@ const ContentRenderer = ({ content }) => {
     if (config.type === "internal") {
       return (
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             try {
-              // const element = document.querySelector(config.targetSelector);
               const element = document.getElementById(config.selector_uid);
               if (element) element.scrollIntoView({ behavior: "smooth" });
             } catch (e) {
               console.error("Scroll error:", e);
             }
+            // ✅ Close mobile sidebar after navigation
+            if (onLinkClick) onLinkClick();
           }}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
@@ -666,13 +680,7 @@ const ContentRenderer = ({ content }) => {
             );
 
           case "h2":
-            // return (
-            //   <h2 key={index} className={styles["content-heading"]}>
-            //     {item.text}
-            //   </h2>
-            // );
             if (item.hasOwnProperty("selector_uid")) {
-              console.log("hwsdfdsfsererew are we??");
               return (
                 <h2
                   key={index}
@@ -683,8 +691,6 @@ const ContentRenderer = ({ content }) => {
                 </h2>
               );
             } else {
-              console.log("areweyouewarhwererew are we??");
-
               return (
                 <h2 key={index} className={styles["content-heading"]}>
                   {item.text}
@@ -858,7 +864,7 @@ const ContentRenderer = ({ content }) => {
               </pre>
             );
 
-          case "li":
+          case "li": {
             const [isExpanded, setIsExpanded] = useState(false);
             const hasSubItems = item.sub_items && item.sub_items.length > 0;
 
@@ -873,7 +879,6 @@ const ContentRenderer = ({ content }) => {
                       className={`${styles["expand-icon"]} ${
                         isExpanded ? styles["expanded"] : styles["collapsed"]
                       }`}
-                      // style={{ fontSize: "12px" }}
                     >
                       <IoIosArrowDown size={16} />
                     </span>
@@ -903,20 +908,7 @@ const ContentRenderer = ({ content }) => {
                 )}
               </li>
             );
-          // case "div":
-          //   return (
-          //     <div key={index} className={styles["content-div"]}>
-          //       {item.children?.map((child, i) => (
-          //         <ContentRenderer key={`${index}-${i}`} content={[child]} />
-          //       ))}
-          //       {item.extra_text && <div>{item.extra_text}</div>}
-          //       {item.code && (
-          //         <pre className={styles.script_code}>
-          //           <code>{item.code}</code>
-          //         </pre>
-          //       )}
-          //     </div>
-          //   );
+          }
 
           case "div":
             return (

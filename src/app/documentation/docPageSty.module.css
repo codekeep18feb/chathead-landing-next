@@ -1,6 +1,8 @@
+/* ============================================ */
+/* CONTENT AREA */
+/* ============================================ */
 .content-area {
   width: 100%;
-  /* margin-top: 20px; */
   padding: 20px;
   max-width: 100%;
   overflow-x: hidden;
@@ -40,7 +42,6 @@
   overflow-x: hidden;
 }
 
-/* ✅ Sidebar open / closed states */
 .sidebar_open {
   width: 330px;
   min-width: 200px;
@@ -97,7 +98,6 @@
   height: auto !important;
 }
 
-/* Remove markers for all list items */
 .doc_sidebar li::marker,
 .doc_sidebar ol > li::marker,
 .doc_sidebar ul > li::marker {
@@ -105,7 +105,6 @@
   display: none !important;
 }
 
-/* Sidebar list item styles */
 .doc_sidebar li > div:first-of-type > div {
   background-color: #c4cffb;
   display: flex;
@@ -135,7 +134,6 @@
   color: var(--white-text-color);
 }
 
-/* Nested lists in sidebar */
 .doc_sidebar ol ol,
 .doc_sidebar ul ul,
 .doc_sidebar .content-list .content-list {
@@ -160,7 +158,7 @@
 /* RIGHT WRAP AND MAIN CONTENT */
 /* ============================================ */
 .rightWrap {
-  position: relative; /* ✅ for absolute toggle button */
+  position: relative;
   background-color: transparent;
   overflow-y: auto;
   flex: 1;
@@ -233,7 +231,7 @@
 }
 
 /* ============================================ */
-/* ✅ BACK ARROW TOGGLE BUTTON */
+/* DESKTOP BACK ARROW TOGGLE BUTTON */
 /* ============================================ */
 .sidebar_toggle_btn {
   position: absolute;
@@ -265,7 +263,150 @@
 }
 
 /* ============================================ */
-/* MOBILE SIDEBAR WRAPPER - NO DOTS */
+/* MOBILE BURGER BUTTON */
+/* ============================================ */
+.mobileBurgerBtn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1001;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mobileBurgerBtn:hover {
+  background: #f3f4f6;
+  transform: scale(1.05);
+}
+
+.mobileBurgerBtn:active {
+  transform: scale(0.95);
+}
+
+/* ============================================ */
+/* MOBILE SIDEBAR OVERLAY (BACKDROP) */
+/* ============================================ */
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobileOverlayVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ============================================ */
+/* MOBILE SIDEBAR DRAWER */
+/* ============================================ */
+.mobileSidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 85%;
+  max-width: 340px;
+  background: #ffffff;
+  z-index: 999;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.mobileSidebarOpen {
+  transform: translateX(0);
+}
+
+.mobileSidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  background: #f9fafb;
+  flex-shrink: 0;
+}
+
+.mobileSidebarClose {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #374151;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.mobileSidebarClose:hover {
+  background: #e5e7eb;
+}
+
+.mobileSidebarContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 16px 24px 16px;
+}
+
+/* Remove dots in mobile sidebar too */
+.mobileSidebarContent,
+.mobileSidebarContent * {
+  list-style: none !important;
+}
+
+.mobileSidebarContent ol,
+.mobileSidebarContent ul,
+.mobileSidebarContent .content-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0;
+}
+
+.mobileSidebarContent ol > li,
+.mobileSidebarContent ul > li,
+.mobileSidebarContent .content-list li {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+.mobileSidebarContent li::marker {
+  content: "" !important;
+  display: none !important;
+}
+
+.mobileSidebarContent ol > li::before,
+.mobileSidebarContent ul > li::before,
+.mobileSidebarContent .content-list li::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* ============================================ */
+/* MOBILE SIDEBAR WRAPPER (legacy - kept for safety) */
 /* ============================================ */
 .mobileSidebarWrapper {
   margin-top: 16px;
@@ -296,7 +437,6 @@
   border-radius: 4px;
 }
 
-/* Remove dots from mobile sidebar */
 .mobileSidebarWrapper,
 .mobileSidebarWrapper * {
   list-style: none !important;
@@ -339,10 +479,6 @@
   background-color: transparent;
 }
 
-.mobileSidebarWrapper ol > li::before {
-  content: none !important;
-}
-
 .content-area h3 {
   font-size: 18px;
   padding: 10px 0px;
@@ -351,4 +487,36 @@
 
 .doc_sidebar > div > div > div:last-child div h3 {
   padding: 2px 10px;
+}
+
+/* ============================================ */
+/* RESPONSIVE - MOBILE */
+/* ============================================ */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 70px 16px 20px 16px;
+    max-width: 100%;
+  }
+
+  .rightWrap {
+    width: 100%;
+    max-height: none;
+  }
+
+  .content-area {
+    padding: 0;
+  }
+
+  .integration_successful {
+    margin: 16px 0;
+    padding: 16px;
+  }
+
+  .integration_successful p {
+    font-size: 14px;
+  }
+
+  .doc_core_wrapper {
+    flex-direction: column;
+  }
 }
