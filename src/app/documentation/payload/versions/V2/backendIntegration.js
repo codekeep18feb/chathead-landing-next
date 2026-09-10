@@ -27,13 +27,13 @@ export const backendIntegration = [
                 text: "A user signs up in your app. Your backend creates the user record and returns its own token.",
               },
               {
-                text: "Your backend calls Sageion's onboarding endpoint with the user's uid and your app_name. This maps the user into Sageion.",
+                text: "Your backend calls Sageion's onboarding endpoint with the user's [[uid]] and your [[app_name]]. This maps the user into Sageion.",
               },
               {
-                text: "On the frontend, your app calls initialize({ uid }) with the same uid. Sageion now knows which of its users this is.",
+                text: "On the frontend, your app calls [[initialize({ uid })]] with the same [[uid]]. Sageion now knows which of its users this is.",
               },
               {
-                text: "When the user logs out, your app calls window.magicchat_io.logout() so Sageion clears the session.",
+                text: "When the user logs out, your app calls [[window.magicchat_io.logout()]] so Sageion clears the session.",
               },
             ],
           },
@@ -44,7 +44,7 @@ export const backendIntegration = [
             children: [
               {
                 tag_type: "p",
-                text: "The uid you pass to onboarding must match the uid you pass to initialize() exactly. Sageion has no other way to know which of your users is which. Use your own users.id, users.uid, or another stable unique key — just be consistent.",
+                text: "The [[uid]] you pass to onboarding must match the [[uid]] you pass to [[initialize()]] exactly. Sageion has no other way to know which of your users is which. Use your own users.id, users.uid, or another stable unique key — just be consistent.",
               },
             ],
           },
@@ -70,7 +70,7 @@ export const backendIntegration = [
       },
       {
         tag_type: "p",
-        text: "Replace {region} with your Sageion region — either us or in. It's the same value you pass as region to setUp() on the frontend.",
+        text: "Replace [[{region}]] with your Sageion region — either [[us]] or [[in]]. It's the same value you pass as [[region]] to [[setUp()]] on the frontend.",
       },
       {
         tag_type: "h4",
@@ -80,8 +80,8 @@ export const backendIntegration = [
         tag_type: "table",
         headers: ["Header", "Value", "Where to get it"],
         rows: [
-          ["X-API-Key", "Your Sageion REST API key", "Sageion Admin Panel → App Details → REST API Key"],
-          ["Content-Type", "application/json", "Always this value"],
+          ["[[X-API-Key]]", "Your Sageion REST API key", "Sageion Admin Panel → App Details → REST API Key"],
+          ["[[Content-Type]]", "[[application/json]]", "Always this value"],
         ],
       },
       {
@@ -92,8 +92,8 @@ export const backendIntegration = [
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["uid", "string", "Yes", "Your platform's unique user identifier, as a string. Must match what you pass to initialize() on the frontend."],
-          ["app_name", "string", "Yes", "Your registered Sageion application name (from App Details)."],
+          ["[[uid]]", "string", "Yes", "Your platform's unique user identifier, as a string. Must match what you pass to [[initialize()]] on the frontend."],
+          ["[[app_name]]", "string", "Yes", "Your registered Sageion application name (from App Details)."],
         ],
       },
       {
@@ -117,7 +117,7 @@ export const backendIntegration = [
       },
       {
         tag_type: "p",
-        text: "A successful onboarding returns HTTP 200 with a small confirmation payload. Once onboarded, the user appears under Users in the Sageion Admin Panel for that app.",
+        text: "A successful onboarding returns HTTP [[200]] with a small confirmation payload. Once onboarded, the user appears under Users in the Sageion Admin Panel for that app.",
       },
       {
         tag_type: "callout",
@@ -126,7 +126,7 @@ export const backendIntegration = [
         children: [
           {
             tag_type: "p",
-            text: "The onboarding response body is not read by Sageion. What matters is the status code: 2xx means the user is onboarded. If the user was already onboarded, your handler should still return 2xx — onboarding is idempotent. On failure, return 4xx or 5xx so your own retry logic can detect it. Because the client SDK treats any 2xx as success, do not return 200 on failure.",
+            text: "The onboarding response body is not read by Sageion. What matters is the status code: [[2xx]] means the user is onboarded. If the user was already onboarded, your handler should still return [[2xx]] — onboarding is idempotent. On failure, return [[4xx]] or [[5xx]] so your own retry logic can detect it. Because the client SDK treats any [[2xx]] as success, do not return [[200]] on failure.",
           },
         ],
       },
@@ -258,10 +258,10 @@ router.post('/register', [...validators], async (req, res) => {
                                 text: "This call must run inside a page where the SDK bundle is already loaded (see Client Side Integration).",
                               },
                               {
-                                text: "If your app has a signup → login redirect, call onboarding on the destination page, right before initialize().",
+                                text: "If your app has a signup → login redirect, call onboarding on the destination page, right before [[initialize()]].",
                               },
                               {
-                                text: "Onboarding is idempotent per uid — calling it twice for the same user is harmless.",
+                                text: "Onboarding is idempotent per [[uid]] — calling it twice for the same user is harmless.",
                               },
                             ],
                           },
@@ -313,7 +313,7 @@ router.post('/register', [...validators], async (req, res) => {
                             content: [
                               {
                                 tag_type: "p",
-                                text: "Enter the uid — it must exactly match the id you use for that user in your own platform.",
+                                text: "Enter the [[uid]] — it must exactly match the id you use for that user in your own platform.",
                               },
                             ],
                           },
@@ -816,7 +816,7 @@ end`,
       // -------- At-a-glance comparison --------
       {
         tag_type: "table",
-        headers: ["", "Synchronous (default)", "Asynchronous (Async Callback enabled)"],
+        headers: ["", "Synchronous (default)", "Asynchronous ([[Async Callback]] enabled)"],
         rows: [
           [
             "When to use",
@@ -826,7 +826,7 @@ end`,
           [
             "How the agent gets the result",
             "Reads it from the HTTP response body.",
-            "Waits for your backend to POST the final result to Sageion's webhook callback URL.",
+            "Waits for your backend to POST the final result to Sageion's [[webhook callback URL]].",
           ],
           [
             "What your handler does",
@@ -836,12 +836,12 @@ end`,
           [
             "What Sageion sends",
             "Nothing extra.",
-            "An x-correlation-id header on the initial request.",
+            "An [[x-correlation-id]] header on the initial request.",
           ],
           [
             "Where the config lives",
             "Nothing to configure — this is the default.",
-            "Enable Async Callback when registering the API in the Sageion Admin Panel.",
+            "Enable [[Async Callback]] when registering the API in the Sageion Admin Panel.",
           ],
         ],
       },
@@ -853,7 +853,7 @@ end`,
         children: [
           {
             tag_type: "p",
-            text: "An endpoint is either synchronous or asynchronous — it does not switch between the two at runtime. The example code below uses an if (correlation_id) branch purely to illustrate both paths on one screen; a real integration picks one and sticks with it. If your API is synchronous, you never read x-correlation-id. If it's asynchronous, Sageion always sends it (because you enabled Async Callback for that API) and your handler always uses it.",
+            text: "An endpoint is either synchronous or asynchronous — it does not switch between the two at runtime. The example code below uses an if ([[correlation_id]]) branch purely to illustrate both paths on one screen; a real integration picks one and sticks with it. If your API is synchronous, you never read [[x-correlation-id]]. If it's asynchronous, Sageion always sends it (because you enabled [[Async Callback]] for that API) and your handler always uses it.",
           },
         ],
       },
@@ -902,12 +902,12 @@ router.post('/bookings', [...validators], async (req, res) => {
       // -------- Path B: asynchronous --------
       {
         tag_type: "h4",
-        text: "Path B — Asynchronous API (Async Callback enabled)",
+        text: "Path B — Asynchronous API ([[Async Callback]] enabled)",
         selector_uid: "v2_backend_async_path",
       },
       {
         tag_type: "p",
-        text: "You register the API in the Sageion Admin Panel with Async Callback enabled. From then on, Sageion attaches an x-correlation-id header to every request to that endpoint and treats your initial response as an acknowledgment, not as the final answer.",
+        text: "You register the API in the Sageion Admin Panel with [[Async Callback]] enabled. From then on, Sageion attaches an [[x-correlation-id]] header to every request to that endpoint and treats your initial response as an acknowledgment, not as the final answer.",
       },
 
       // -------- When to use async --------
@@ -949,11 +949,11 @@ router.post('/bookings', [...validators], async (req, res) => {
         tag_type: "steps",
         items: [
           {
-            title: "Sageion sends the request with x-correlation-id",
+            title: "Sageion sends the request with [[x-correlation-id]]",
             content: [
               {
                 tag_type: "p",
-                text: "Because the API is configured with Async Callback enabled, Sageion attaches an x-correlation-id header to every call. This header is the only thing that distinguishes an async-configured call from a synchronous one.",
+                text: "Because the API is configured with [[Async Callback]] enabled, Sageion attaches an [[x-correlation-id]] header to every call. This header is the only thing that distinguishes an async-configured call from a synchronous one.",
               },
             ],
           },
@@ -962,7 +962,7 @@ router.post('/bookings', [...validators], async (req, res) => {
             content: [
               {
                 tag_type: "p",
-                text: "Read req.headers['x-correlation-id'], start whatever needs to happen (send a payment link, queue a job, notify another service), and respond immediately — usually with HTTP 202 and any interim data the user should see. Do not wait for the async work to complete inside the handler.",
+                text: "Read [[req.headers['x-correlation-id']]], start whatever needs to happen (send a payment link, queue a job, notify another service), and respond immediately — usually with HTTP [[202]] and any interim data the user should see. Do not wait for the async work to complete inside the handler.",
               },
             ],
           },
@@ -971,12 +971,12 @@ router.post('/bookings', [...validators], async (req, res) => {
             content: [
               {
                 tag_type: "p",
-                text: "Once the async operation finishes (payment confirmed, job complete, external system replied), your backend — or the external service's own webhook handler in your code — POSTs a JSON body containing the same correlation_id and the final data to Sageion's webhook callback URL.",
+                text: "Once the async operation finishes (payment confirmed, job complete, external system replied), your backend — or the external service's own webhook handler in your code — POSTs a JSON body containing the same [[correlation_id]] and the final data to Sageion's [[webhook callback URL]].",
               },
             ],
           },
           {
-            title: "Sageion matches the correlation_id and resumes the workflow",
+            title: "Sageion matches the [[correlation_id]] and resumes the workflow",
             content: [
               {
                 tag_type: "p",
@@ -990,13 +990,13 @@ router.post('/bookings', [...validators], async (req, res) => {
       // -------- Header reference --------
       {
         tag_type: "h5",
-        text: "Request header: x-correlation-id",
+        text: "Request header: [[x-correlation-id]]",
       },
       {
         tag_type: "table",
         headers: ["Header", "Type", "Description"],
         rows: [
-          ["x-correlation-id", "string", "Sent by Sageion on every request to an API configured with Async Callback. Your handler reads it and echoes it back in the webhook payload so the callback can be matched to the original request."],
+          ["[[x-correlation-id]]", "string", "Sent by Sageion on every request to an API configured with [[Async Callback]]. Your handler reads it and echoes it back in the webhook payload so the callback can be matched to the original request."],
         ],
       },
 
@@ -1018,8 +1018,8 @@ router.post('/bookings', [...validators], async (req, res) => {
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["correlation_id", "string", "Yes", "The exact x-correlation-id value Sageion sent in the original request. Used to match the callback to the workflow step."],
-          ["data", "object", "Yes", "The final payload the workflow engine should receive as the API response. Any JSON shape is allowed — Sageion passes it through to the next step."],
+          ["[[correlation_id]]", "string", "Yes", "The exact [[x-correlation-id]] value Sageion sent in the original request. Used to match the callback to the workflow step."],
+          ["[[data]]", "object", "Yes", "The final payload the workflow engine should receive as the API response. Any JSON shape is allowed — Sageion passes it through to the next step."],
         ],
       },
       {
@@ -1031,16 +1031,16 @@ router.post('/bookings', [...validators], async (req, res) => {
             tag_type: "ul",
             items: [
               {
-                text: "correlation_id must be the verbatim string from the request header. Do not reformat, prefix, or wrap it.",
+                text: "[[correlation_id]] must be the verbatim string from the request header. Do not reformat, prefix, or wrap it.",
               },
               {
-                text: "data must be a top-level object, not a string. Wrapping the payload in JSON.stringify() before posting will break parsing.",
+                text: "[[data]] must be a top-level object, not a string. Wrapping the payload in [[JSON.stringify()]] before posting will break parsing.",
               },
               {
-                text: "The webhook POST should return 2xx. Sageion retries on non-2xx responses, so return 200 immediately after your handler acknowledges the callback — do not delay on downstream work.",
+                text: "The webhook POST should return [[2xx]]. Sageion retries on non-[[2xx]] responses, so return [[200]] immediately after your handler acknowledges the callback — do not delay on downstream work.",
               },
               {
-                text: "Extra top-level fields beyond correlation_id and data are ignored.",
+                text: "Extra top-level fields beyond [[correlation_id]] and [[data]] are ignored.",
               },
             ],
           },
@@ -1069,7 +1069,7 @@ router.post('/bookings', [...validators], async (req, res) => {
             content: [
               {
                 tag_type: "p",
-                text: "The endpoint does everything up front and returns the confirmed booking. Sageion reads the result from the HTTP response body. No x-correlation-id is present, no webhook is involved.",
+                text: "The endpoint does everything up front and returns the confirmed booking. Sageion reads the result from the HTTP response body. No [[x-correlation-id]] is present, no webhook is involved.",
               },
               {
                 tag_type: "code_with_copy",
@@ -1181,7 +1181,7 @@ router.post('/payments/webhook', async (req, res) => {
       },
       {
         tag_type: "p",
-        text: "The concept is identical across languages: read x-correlation-id, return early, then POST the final result to Sageion's webhook callback when the async work finishes. Below are minimal reference implementations.",
+        text: "The concept is identical across languages: read [[x-correlation-id]], return early, then POST the final result to Sageion's webhook callback when the async work finishes. Below are minimal reference implementations.",
       },
       {
         tag_type: "tabs",
@@ -1422,22 +1422,22 @@ end]]]`,
             tag_type: "ol",
             items: [
               {
-                text: "Enable Async Callback in the Sageion Admin Panel when you register the API. Without this, Sageion sends no x-correlation-id and your handler will not know a webhook is expected.",
+                text: "Enable [[Async Callback]] in the Sageion Admin Panel when you register the API. Without this, Sageion sends no [[x-correlation-id]] and your handler will not know a webhook is expected.",
               },
               {
-                text: "Read x-correlation-id at the very top of the handler, before any branch that could return early.",
+                text: "Read [[x-correlation-id]] at the very top of the handler, before any branch that could return early.",
               },
               {
-                text: "Persist the correlation_id alongside the entity the async work is about (order, booking, job). You will need it in a completely different request later.",
+                text: "Persist the [[correlation_id]] alongside the entity the async work is about (order, booking, job). You will need it in a completely different request later.",
               },
               {
-                text: "Respond to the initial request quickly — 2xx with any interim data. Do not wait for the async work inside the original handler.",
+                text: "Respond to the initial request quickly — [[2xx]] with any interim data. Do not wait for the async work inside the original handler.",
               },
               {
-                text: "When the async work finishes, POST to Sageion's webhook callback with the same correlation_id, verbatim, and a data object containing the final result.",
+                text: "When the async work finishes, POST to Sageion's webhook callback with the same [[correlation_id]], verbatim, and a [[data]] object containing the final result.",
               },
               {
-                text: "Log the correlation_id at every step of your pipeline. It is the only way to correlate Sageion's original request with your eventual callback.",
+                text: "Log the [[correlation_id]] at every step of your pipeline. It is the only way to correlate Sageion's original request with your eventual callback.",
               },
             ],
           },
@@ -1454,17 +1454,17 @@ end]]]`,
       },
       {
         tag_type: "p",
-        text: "Your backend needs these variables. Add them to your server's environment — never expose SAGEION_REST_API_KEY or SAGEION_CLIENT_SECRET to the browser.",
+        text: "Your backend needs these variables. Add them to your server's environment — never expose [[SAGEION_REST_API_KEY]] or [[SAGEION_CLIENT_SECRET]] to the browser.",
       },
       {
         tag_type: "table",
         headers: ["Variable", "Example", "Used for"],
         rows: [
-          ["SAGEION_REGION", "us", "Regional prefix in the onboarding URL and webhook callback URL."],
-          ["SAGEION_APP_NAME", "ai_chatbot_system", "Identifies your Sageion app in onboarding and agent-token requests."],
-          ["SAGEION_REST_API_KEY", "your_rest_api_key", "X-API-Key header for onboarding."],
-          ["SAGEION_CLIENT_SECRET", "your_client_secret", "Verifies client credentials on /client-user-token (only needed if you enable the optional AI agent section below). Never expose to the browser."],
-          ["WEBHOOK_CALLBACK_URL", "https://us.autobot2.tezkit.com/dev/webhook/callback", "Where your backend posts async results for APIs configured with webhook enabled."],
+          ["[[SAGEION_REGION]]", "us", "Regional prefix in the onboarding URL and webhook callback URL."],
+          ["[[SAGEION_APP_NAME]]", "ai_chatbot_system", "Identifies your Sageion app in onboarding and agent-token requests."],
+          ["[[SAGEION_REST_API_KEY]]", "your_rest_api_key", "[[X-API-Key]] header for onboarding."],
+          ["[[SAGEION_CLIENT_SECRET]]", "your_client_secret", "Verifies client credentials on [[/client-user-token]] (only needed if you enable the optional AI agent section below). Never expose to the browser."],
+          ["[[WEBHOOK_CALLBACK_URL]]", "https://us.autobot2.tezkit.com/dev/webhook/callback", "Where your backend posts async results for APIs configured with webhook enabled."],
         ],
       },
 
@@ -1486,13 +1486,13 @@ end]]]`,
                 text: "Treat onboarding failures as non-fatal to signup, but log them and add an alert so you notice missing users.",
               },
               {
-                text: "Use the exact same uid in onboarding and in initialize({ uid }) — they must match for the chat box to work.",
+                text: "Use the exact same [[uid]] in onboarding and in [[initialize({ uid })]] — they must match for the chat box to work.",
               },
               {
-                text: "Always call window.magicchat_io.logout() from your own logout handler, before clearing your own session.",
+                text: "Always call [[window.magicchat_io.logout()]] from your own logout handler, before clearing your own session.",
               },
               {
-                text: "Never ship SAGEION_CLIENT_SECRET or SAGEION_REST_API_KEY to the frontend. If you use the frontend onboarding method, use a different token scoped to onboarding only.",
+                text: "Never ship [[SAGEION_CLIENT_SECRET]] or [[SAGEION_REST_API_KEY]] to the frontend. If you use the frontend onboarding method, use a different token scoped to onboarding only.",
               },
               {
                 text: "For bulk onboarding of existing users, contact Sageion Support before calling the API in a loop.",
@@ -1538,25 +1538,25 @@ end]]]`,
         children: [
           {
             tag_type: "p",
-            text: "For the AI agent to successfully call your /auth/client-user-token, /auth/send-otp, and /auth/verify-otp endpoints, your handlers must return responses in the exact shape documented below. The workflow engine reads specific field names from each response — it does not adapt to renames, extra wrappers, or missing fields.",
+            text: "For the AI agent to successfully call your [[/auth/client-user-token]], [[/auth/send-otp]], and [[/auth/verify-otp]] endpoints, your handlers must return responses in the exact shape documented below. The workflow engine reads specific field names from each response — it does not adapt to renames, extra wrappers, or missing fields.",
           },
           {
             tag_type: "ul",
             items: [
               {
-                text: "Do not wrap responses in { data: { ... } } or { result: { ... } } — return the fields at the top level.",
+                text: "Do not wrap responses in [[{ data: { ... } }]] or [[{ result: { ... } }]] — return the fields at the top level.",
               },
               {
-                text: "Do not rename fields. token must be token, user_id must be user_id, scope must be scope, expires_in must be expires_in.",
+                text: "Do not rename fields. [[token]] must be [[token]], [[user_id]] must be [[user_id]], [[scope]] must be [[scope]], [[expires_in]] must be [[expires_in]].",
               },
               {
-                text: "Do not omit fields. expires_in and scope are read by the client to decide token freshness and permitted actions.",
+                text: "Do not omit fields. [[expires_in]] and [[scope]] are read by the client to decide token freshness and permitted actions.",
               },
               {
                 text: "Extra fields beyond the ones documented are allowed and will be ignored.",
               },
               {
-                text: "Status codes matter: 200 for success, 401 for invalid client credentials, 404 for unknown user. The workflow engine branches on these codes.",
+                text: "Status codes matter: [[200]] for success, [[401]] for invalid client credentials, [[404]] for unknown user. The workflow engine branches on these codes.",
               },
             ],
           },
@@ -1604,7 +1604,7 @@ end]]]`,
       // ============================================================
       {
         tag_type: "h4",
-        text: "1. Agent token endpoint (/auth/client-user-token)",
+        text: "1. Agent token endpoint ([[/auth/client-user-token]])",
         selector_uid: "v2_agent_token_endpoint",
       },
       {
@@ -1620,10 +1620,10 @@ end]]]`,
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["client_id", "string", "Yes", "Your Sageion app_name."],
-          ["client_secret", "string", "Yes", "Your Sageion client secret. Keep this server-side only."],
-          ["user_id", "string", "Yes", "The user's id from your platform. Must be numeric."],
-          ["session_id", "string", "No", "Optional session identifier to correlate token usage."],
+          ["[[client_id]]", "string", "Yes", "Your Sageion [[app_name]]."],
+          ["[[client_secret]]", "string", "Yes", "Your Sageion client secret. Keep this server-side only."],
+          ["[[user_id]]", "string", "Yes", "The user's id from your platform. Must be numeric."],
+          ["[[session_id]]", "string", "No", "Optional session identifier to correlate token usage."],
         ],
       },
       {
@@ -1634,10 +1634,10 @@ end]]]`,
         tag_type: "table",
         headers: ["Field", "Type", "Description"],
         rows: [
-          ["token", "string", "Short-lived JWT the agent uses for subsequent calls."],
-          ["expires_in", "number", "Seconds until expiry — currently 3600."],
-          ["scope", "string[]", "Actions authorized by the token. Currently: booking:read, booking:create, booking:update, booking:cancel."],
-          ["user_id", "string", "Echo of the user_id the token was issued for."],
+          ["[[token]]", "string", "Short-lived JWT the agent uses for subsequent calls."],
+          ["[[expires_in]]", "number", "Seconds until expiry — currently [[3600]]."],
+          ["[[scope]]", "string[]", "Actions authorized by the token. Currently: [[booking:read]], [[booking:create]], [[booking:update]], [[booking:cancel]]."],
+          ["[[user_id]]", "string", "Echo of the [[user_id]] the token was issued for."],
         ],
       },
       {
@@ -1649,15 +1649,15 @@ end]]]`,
             tag_type: "table",
             headers: ["Field", "Type", "Required", "Why it matters"],
             rows: [
-              ["token", "string", "Yes", "The JWT the agent attaches as a Bearer token. Missing or null → the agent cannot make authenticated calls."],
-              ["expires_in", "number", "Yes", "Seconds until expiry. If omitted, the agent cannot tell when to refresh the token."],
-              ["scope", "string[]", "Yes", "The list of actions this token authorizes. The agent checks this list before attempting operations."],
-              ["user_id", "string", "Yes", "Echo of the user_id the token was issued for. The agent uses it to verify the token is bound to the right user."],
+              ["[[token]]", "string", "Yes", "The JWT the agent attaches as a Bearer token. Missing or null → the agent cannot make authenticated calls."],
+              ["[[expires_in]]", "number", "Yes", "Seconds until expiry. If omitted, the agent cannot tell when to refresh the token."],
+              ["[[scope]]", "string[]", "Yes", "The list of actions this token authorizes. The agent checks this list before attempting operations."],
+              ["[[user_id]]", "string", "Yes", "Echo of the [[user_id]] the token was issued for. The agent uses it to verify the token is bound to the right user."],
             ],
           },
           {
             tag_type: "p",
-            text: "Return this object at the top level with HTTP 200. On failure, return HTTP 401 (invalid client credentials) or HTTP 404 (user not found) with a plain JSON body — the agent treats non-2xx responses as refusals, not as retryable errors.",
+            text: "Return this object at the top level with HTTP [[200]]. On failure, return HTTP [[401]] (invalid client credentials) or HTTP [[404]] (user not found) with a plain JSON body — the agent treats non-[[2xx]] responses as refusals, not as retryable errors.",
           },
         ],
       },
@@ -2069,7 +2069,7 @@ end`,
       // ============================================================
       {
         tag_type: "h4",
-        text: "2. OTP endpoints (/auth/send-otp, /auth/verify-otp)",
+        text: "2. OTP endpoints ([[/auth/send-otp]], [[/auth/verify-otp]])",
         selector_uid: "v2_agent_otp",
       },
       {
@@ -2091,13 +2091,13 @@ end`,
       // -------- /send-otp --------
       {
         tag_type: "h5",
-        text: "2a. Send OTP — POST /auth/send-otp",
+        text: "2a. Send OTP — POST [[/auth/send-otp]]",
       },
       {
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["email", "string", "Yes", "Email address the OTP is associated with."],
+          ["[[email]]", "string", "Yes", "Email address the OTP is associated with."],
         ],
       },
       {
@@ -2113,18 +2113,18 @@ end`,
             tag_type: "table",
             headers: ["Field", "Type", "Required", "Why it matters"],
             rows: [
-              ["success", "boolean", "Yes", "The workflow engine checks this to decide whether to proceed to the verification step."],
+              ["[[success]]", "boolean", "Yes", "The workflow engine checks this to decide whether to proceed to the verification step."],
             ],
           },
           {
             tag_type: "p",
-            text: "Return this object at the top level with HTTP 200. If sending fails (bad email, provider outage), return HTTP 400 or 500 — do not return 200 with success: false, because the workflow engine treats 2xx as authoritative.",
+            text: "Return this object at the top level with HTTP [[200]]. If sending fails (bad email, provider outage), return HTTP [[400]] or [[500]] — do not return [[200]] with [[success: false]], because the workflow engine treats [[2xx]] as authoritative.",
           },
         ],
       },
       {
         tag_type: "h5",
-        text: "Reference implementation by language — /send-otp",
+        text: "Reference implementation by language — [[/send-otp]]",
       },
       {
         tag_type: "tabs",
@@ -2304,19 +2304,19 @@ end`,
       // -------- /verify-otp --------
       {
         tag_type: "h5",
-        text: "2b. Verify OTP — POST /auth/verify-otp",
+        text: "2b. Verify OTP — POST [[/auth/verify-otp]]",
       },
       {
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["email", "string", "Yes", "The email the OTP was sent to."],
-          ["otp", "string", "Yes", "The 6-digit code the user entered."],
+          ["[[email]]", "string", "Yes", "The email the OTP was sent to."],
+          ["[[otp]]", "string", "Yes", "The 6-digit code the user entered."],
         ],
       },
       {
         tag_type: "p",
-        text: "On success, returns { success: true, user_id } so the workflow can continue with the verified identity. The OTP record is deleted after verification.",
+        text: "On success, returns [[{ success: true, user_id }]] so the workflow can continue with the verified identity. The OTP record is deleted after verification.",
       },
       {
         tag_type: "callout",
@@ -2327,13 +2327,13 @@ end`,
             tag_type: "table",
             headers: ["Field", "Type", "Required", "Why it matters"],
             rows: [
-              ["success", "boolean", "Yes", "The workflow engine checks this to allow the OTP-gated action to proceed."],
-              ["user_id", "string", "Yes", "The verified user's id. The workflow continues with this identity — omitting it breaks any downstream user-scoped call."],
+              ["[[success]]", "boolean", "Yes", "The workflow engine checks this to allow the OTP-gated action to proceed."],
+              ["[[user_id]]", "string", "Yes", "The verified user's id. The workflow continues with this identity — omitting it breaks any downstream user-scoped call."],
             ],
           },
           {
             tag_type: "p",
-            text: "Return this object at the top level with HTTP 200. On verification failure, return HTTP 400 with a plain JSON body.",
+            text: "Return this object at the top level with HTTP [[200]]. On verification failure, return HTTP [[400]] with a plain JSON body.",
           },
         ],
       },
@@ -2344,13 +2344,13 @@ end`,
         children: [
           {
             tag_type: "p",
-            text: "JSON numbers lose leading zeros and can be represented inconsistently across languages (JavaScript numbers, Go int64, Python int). To keep the identity check reliable, always return user_id as a JSON string — for example \"user_id\": \"12345\" — even if your database column is an integer.",
+            text: "JSON numbers lose leading zeros and can be represented inconsistently across languages (JavaScript numbers, Go int64, Python int). To keep the identity check reliable, always return [[user_id]] as a JSON string — for example \"[[user_id]]\": \"[[12345]]\" — even if your database column is an integer.",
           },
         ],
       },
       {
         tag_type: "h5",
-        text: "Reference implementation by language — /verify-otp",
+        text: "Reference implementation by language — [[/verify-otp]]",
       },
       {
         tag_type: "tabs",
