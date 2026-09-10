@@ -8,6 +8,7 @@ import payload from "./payload/index.js";
 import TopFilterComp from "../components/documents/TopFilterComp";
 import Sidebar from "../components/documents/side_bar_content/Sidebar";
 import ContentRenderer from "../components/documents/side_bar_content/rendering_tools";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
 const Document = () => {
   const [selectedFilter, setSelectedFilter] = useState({
@@ -19,6 +20,7 @@ const Document = () => {
   const [selectedKey, setSelectedKey] = useState(Object.keys(payload)["V2"]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,6 +41,10 @@ const Document = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   const renderContent = () => {
     if (!selectedFilter || !selectedFilter.version_type)
       return <div>Select a key from the left</div>;
@@ -55,7 +61,11 @@ const Document = () => {
     <div className={styles["document-container"]}>
       <div className={styles.doc_core_wrapper}>
         {!isMobile && (
-          <div className={styles.doc_sidebar}>
+          <div
+            className={`${styles.doc_sidebar} ${
+              isSidebarOpen ? styles.sidebar_open : styles.sidebar_closed
+            }`}
+          >
             <Sidebar
               isMobile={isMobile}
               selectedKey={selectedKey}
@@ -68,12 +78,31 @@ const Document = () => {
           </div>
         )}
 
-        <div className={styles.rightWrap}>
-          <div className={styles["main-content"]}>
+        <div
+          className={`${styles.rightWrap} ${
+            !isSidebarOpen ? styles.rightWrap_full : ""
+          }`}
+        >
+          {!isMobile && (
+            <button
+              className={styles.sidebar_toggle_btn}
+              onClick={toggleSidebar}
+              aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+              title={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+            >
+              {isSidebarOpen ? <IoMdArrowRoundBack size={18}/> : <IoMdArrowRoundForward size={18}/>}
+            </button>
+          )}
+
+          <div
+            className={`${styles["main-content"]} ${
+              isSidebarOpen ? "" : styles["main-content-full"]
+            }`}
+          >
             {/* <TopFilterComp setSelectedFilter={setSelectedFilter} /> */}
 
             {isMobile && (
-              <div >
+              <div>
                 <Sidebar
                   isMobile={isMobile}
                   selectedKey={selectedKey}
@@ -98,7 +127,8 @@ const Document = () => {
                     Admin Team, enabling two-way communication.
                   </p>
                   <p>
-                    Please contact our Support Team if you encounter any issues. Thank you!
+                    Please contact our Support Team if you encounter any issues.
+                    Thank you!
                   </p>
                 </div>
               </>

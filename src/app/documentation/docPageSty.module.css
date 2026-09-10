@@ -27,16 +27,34 @@
 /* SIDEBAR STYLES - NO DOTS */
 /* ============================================ */
 .doc_sidebar {
-  width: 25%;
+  width: 280px;
   min-width: 200px;
-  background: var(--light-primary-color);
   background: white;
   border-right: 1px solid #cdcdcd;
   overflow-y: auto;
   max-height: calc(100vh - 100px);
   position: sticky;
   top: 0;
-  border: 2px solid red;
+  transition: width 0.3s ease, opacity 0.2s ease, margin 0.3s ease,
+    padding 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* ✅ Sidebar open / closed states */
+.sidebar_open {
+  width: 330px;
+  min-width: 200px;
+  opacity: 1;
+}
+
+.sidebar_closed {
+  width: 0;
+  min-width: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-right: none;
 }
 
 /* Remove ALL dots/bullets from sidebar lists */
@@ -103,7 +121,13 @@
   background-color: #b1c0fb;
 }
 
-.doc_sidebar > div > div > ol:first-of-type > li:first-of-type > div:first-of-type > div {
+.doc_sidebar
+  > div
+  > div
+  > ol:first-of-type
+  > li:first-of-type
+  > div:first-of-type
+  > div {
   background: var(--primary-color);
   display: flex;
   align-items: center;
@@ -136,6 +160,7 @@
 /* RIGHT WRAP AND MAIN CONTENT */
 /* ============================================ */
 .rightWrap {
+  position: relative; /* ✅ for absolute toggle button */
   background-color: transparent;
   overflow-y: auto;
   flex: 1;
@@ -143,6 +168,12 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   width: 75%;
+  transition: width 0.3s ease;
+}
+
+.rightWrap_full {
+  width: 100% !important;
+  flex: 1 1 100%;
 }
 
 .rightWrap::-webkit-scrollbar {
@@ -154,6 +185,13 @@
   padding: 20px 30px;
   width: 100%;
   margin: 0 auto;
+  transition: max-width 0.3s ease, width 0.3s ease, margin 0.3s ease;
+}
+
+.main-content-full {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
 }
 
 .mainHeading {
@@ -192,6 +230,38 @@
   color: #555;
   text-align: center;
   padding: 20px;
+}
+
+/* ============================================ */
+/* ✅ BACK ARROW TOGGLE BUTTON */
+/* ============================================ */
+.sidebar_toggle_btn {
+  position: absolute;
+  top: 16px;
+  left: 8px;
+  z-index: 100;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s ease, transform 0.2s ease, left 0.3s ease;
+}
+
+.sidebar_toggle_btn:hover {
+  background: #f3f4f6;
+  transform: scale(1.05);
+}
+
+.sidebar_toggle_btn:active {
+  transform: scale(0.95);
 }
 
 /* ============================================ */
@@ -269,13 +339,6 @@
   background-color: transparent;
 }
 
-.mobileSidebarWrapper li {
-  display: flex;
-  background-color: transparent;
-  margin: 0px;
-  white-space: nowrap;
-}
-
 .mobileSidebarWrapper ol > li::before {
   content: none !important;
 }
@@ -289,6 +352,3 @@
 .doc_sidebar > div > div > div:last-child div h3 {
   padding: 2px 10px;
 }
-/* .reetusingh{
-  border: 3px solid green;
-} */
