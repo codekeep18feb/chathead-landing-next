@@ -324,14 +324,17 @@
 /* Placeholder highlight inside code blocks.
    The span is injected via dangerouslySetInnerHTML, so it is NOT
    CSS-module-hashed — we must target it as a global class. */
+   
+/* Block-level highlight for Sageion-owned code regions.
+   Colored text + left accent, no background — preserves indent. */
 .script_code :global(.ph-block) {
-  display: block;
-  background: green;
-  border-left: 3px solid rgba(255, 200, 100, 0.55);
-  padding: 2px 12px;
-  margin: 2px 0 2px -12px;
-  border-radius: 3px;
+  border-left: 3px solid rgba(46, 160, 67, 0.55);
+  padding-left: 8px;
+  margin-left: -8px;
+  color: #7ee787;
+  font-weight: 500;
 }
+
 .api-table {
   width: 100%;
   border-collapse: collapse;
