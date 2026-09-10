@@ -23,6 +23,7 @@ export default function Sidebar({ selectedFilter }) {
               {
                 tag_type: "li",
                 text: "Integration",
+                default_expanded: true,
                 selector_uid: "v2_prerequisites",
                 sub_items: [
                   {
@@ -96,6 +97,7 @@ export default function Sidebar({ selectedFilter }) {
               {
                 tag_type: "li",
                 text: "Platform",
+                default_expanded: false, 
                 selector_uid: "v2_whitelabel_domains",
                 sub_items: [
                   // ====== SIBLING 1: Global Level Settings ======

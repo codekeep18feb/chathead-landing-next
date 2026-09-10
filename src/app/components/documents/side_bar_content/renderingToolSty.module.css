@@ -524,9 +524,9 @@
 .li_subLi .sidebarLi .content-link {
   color: #333;
   border-color: #333;
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
 }
 
 .accordionHeader {
