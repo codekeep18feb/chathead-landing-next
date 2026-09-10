@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./HeroSection.module.css";
 import ChatComponent from "../ChatComponent";
 import TryMeModal from "./TryMeModal";
@@ -7,6 +7,30 @@ import TryMeModal from "./TryMeModal";
 const HeroSection = () => {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isTryMeOpen, setIsTryMeOpen] = useState(false);
+  const [typedText, setTypedText] = useState("");
+
+  const firstText = "Your systems. Your AI. Your Rules.";
+  const secondText = "Give Your Backend A Superpower.";
+
+  useEffect(() => {
+    const fullText = `${firstText}|${secondText}`;
+
+    let index = 0;
+
+    const typingInterval = setInterval(() => {
+      setTypedText(fullText.slice(0, index + 1));
+
+      index++;
+
+      // Restart typing after completing everything
+      if (index >= fullText.length) {
+        index = 0;
+        setTypedText("");
+      }
+    }, 180);
+
+    return () => clearInterval(typingInterval);
+  }, []);
 
   const videos = ["/video/video1.mp4", "/video/video4.mp4"];
 
@@ -36,40 +60,81 @@ const HeroSection = () => {
             </h1>
 
             {/* ===== NEW SUBTITLE ===== */}
-            <p className={styles.subtitle}>
-              Connect your backend systems. Build any agent. Deploy anywhere.
-              <br />
-              <span style={{ fontSize: "0.9em", opacity: 0.8 }}>
-                API-first architecture. No code required. No vendor lock-in.
-              </span>
-            </p>
-
-            {/* ===== NEW TAGLINE ===== */}
             <p className={styles.tagline}>
-              <span className={styles.taglineHighlight}>Your systems.</span>{" "}
-              Your AI. <span className={styles.taglineHighlight}>Your Rules.</span>
-              <br />
-              <span style={{ fontSize: "0.8em", opacity: 0.7 }}>
-                Give Your Backend A Superpower.
-              </span>
+              {(() => {
+                const [first = "", second = ""] = typedText.split("|");
+
+                const systems = "Your systems.";
+                const ai = " Your AI.";
+                const rules = " Your Rules.";
+
+                return (
+                  <>
+                    {/* Your systems. */}
+                    <span className={styles.taglineHighlight}>
+                      {first.slice(0, systems.length)}
+                    </span>
+
+                    {/* Your AI. */}
+                    {first.length > systems.length && (
+                      <span>
+                        {first.slice(
+                          systems.length,
+                          systems.length + ai.length,
+                        )}
+                      </span>
+                    )}
+
+                    {/* Your Rules. */}
+                    {first.length > systems.length + ai.length && (
+                      <span className={styles.taglineHighlight}>
+                        {first.slice(systems.length + ai.length)}
+                      </span>
+                    )}
+
+                    {/* Cursor for first line */}
+                    {!typedText.includes("|") && (
+                      <span className={styles.typingCursor}>|</span>
+                    )}
+
+                    {/* Second line starts after first line finishes */}
+                    {typedText.includes("|") && (
+                      <>
+                        <br />
+
+                        <span className={styles.backendTagline}>{second}</span>
+
+                        {/* Cursor for second line */}
+                        {second.length < secondText.length && (
+                          <span className={styles.typingCursor}>|</span>
+                        )}
+                      </>
+                    )}
+                  </>
+                );
+              })()}
             </p>
 
             {/* ===== VALUE PROPS ===== */}
             <div className={styles.valueProps}>
               <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>⚡</span> Deploy in hours, not months
+                <span className={styles.valueIcon}>⚡</span> Deploy in hours,
+                not months
               </span>
               <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🔐</span> You own your users & auth
+                <span className={styles.valueIcon}>🔐</span> You own your users
+                & auth
               </span>
               <span className={styles.valueProp}>
                 <span className={styles.valueIcon}>💰</span> No LLM token costs
               </span>
               <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🔗</span> API-first architecture
+                <span className={styles.valueIcon}>🔗</span> API-first
+                architecture
               </span>
               <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🎨</span> No-code visual designer
+                <span className={styles.valueIcon}>🎨</span> No-code visual
+                designer
               </span>
             </div>
 

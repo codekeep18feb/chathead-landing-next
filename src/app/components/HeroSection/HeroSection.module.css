@@ -25,52 +25,78 @@
   transform: scaleX(-1);
 }
 
-/* Overlay styles - dark gradient overlay */
+/* ================================================================
+   OVERLAY
+   ================================================================ */
+
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+
   background: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.75) 0%,
     rgba(0, 0, 0, 0.4) 50%,
     rgba(0, 0, 0, 0.75) 100%
   );
+
   z-index: 1;
 }
 
-/* Content styles */
+/* ================================================================
+   CONTENT
+   ================================================================ */
+
 .hero_content {
   position: absolute;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   z-index: 2;
+
   color: white;
+
   padding: 2rem;
+  box-sizing: border-box;
 }
 
 .container {
   max-width: 950px;
   width: 100%;
+
   padding: 0 2rem;
+
   animation: fadeInUp 1s ease-out;
+
   text-align: center;
+
+  box-sizing: border-box;
 }
 
-/* ===== NEW HEADLINE STYLES ===== */
+/* ================================================================
+   TITLE
+   ================================================================ */
+
 .title {
   font-size: 4.2rem;
   font-weight: 800;
+
   margin-bottom: 1rem;
+
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
   animation: slideInLeft 0.8s ease-out;
+
   line-height: 1.15;
 }
 
@@ -80,74 +106,155 @@
 
 .highlight {
   color: var(--secondaryy-color);
+
   position: relative;
+
   display: inline-block;
+
   margin-left: 6px;
 }
 
 .highlight::after {
   content: "";
+
   position: absolute;
+
   bottom: -5px;
   left: 0;
+
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--secondaryy-color), #b6ffc1);
+
+  background: linear-gradient(
+    90deg,
+    var(--secondaryy-color),
+    #b6ffc1
+  );
+
   transform: scaleX(0);
+
   animation: underlineGrow 0.5s ease-out 0.5s forwards;
 }
 
-/* ===== SUBTITLE WITH NEW COPY ===== */
+/* ================================================================
+   SUBTITLE
+   ================================================================ */
+
 .subtitle {
   font-size: clamp(1rem, 1.8vw, 1.4rem);
+
   margin-bottom: 1.5rem;
+
   opacity: 0;
+
   animation: fadeInUp 0.8s ease-out 0.3s forwards;
+
   line-height: 1.7;
+
   color: rgba(255, 255, 255, 0.95);
+
   max-width: 750px;
+
   margin-left: auto;
   margin-right: auto;
+
   padding: 0 1rem;
+
+  box-sizing: border-box;
 }
 
-/* ===== NEW TAGLINE STYLES ===== */
+/* ================================================================
+   TAGLINE / TYPING TEXT
+   ================================================================ */
+
 .tagline {
   font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+
   font-weight: 600;
+
   color: var(--secondaryy-color);
+
   margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.45s forwards;
+
+  /*
+    Important:
+    Do not use opacity: 0 here.
+    React is controlling the typing.
+  */
+  opacity: 1;
+
   letter-spacing: 0.5px;
+
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  line-height: 1.5;
+
+  min-height: 3em;
 }
 
 .taglineHighlight {
   color: white;
 }
 
-/* ===== VALUE PROPS ROW ===== */
+.backendTagline {
+  display: inline;
+
+  font-size: 0.8em;
+
+  opacity: 0.7;
+}
+
+.typingCursor {
+  display: inline-block;
+
+  margin-left: 3px;
+
+  color: var(--secondaryy-color);
+
+  font-weight: 400;
+
+  animation: blinkCursor 0.7s infinite;
+}
+
+/* ================================================================
+   VALUE PROPS
+   ================================================================ */
+
 .valueProps {
   display: flex;
+
   justify-content: center;
+
   gap: 2rem;
+
   flex-wrap: wrap;
+
   margin-bottom: 2rem;
+
   opacity: 0;
+
   animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
 
 .valueProp {
   display: flex;
+
   align-items: center;
+
   gap: 0.5rem;
+
   font-size: clamp(0.75rem, 0.9vw, 0.95rem);
+
   color: rgba(255, 255, 255, 0.9);
+
   background: rgba(255, 255, 255, 0.08);
+
   padding: 0.4rem 1rem;
+
   border-radius: 50px;
+
   backdrop-filter: blur(4px);
+
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -155,100 +262,166 @@
   font-size: 1rem;
 }
 
-/* ===== BUTTON GROUP ===== */
+/* ================================================================
+   BUTTON GROUP
+   ================================================================ */
+
 .buttonGroup {
   display: flex;
+
   gap: 1rem;
+
   justify-content: center;
+
   flex-wrap: wrap;
+
   opacity: 0;
+
   animation: fadeInUp 0.8s ease-out 0.8s forwards;
 }
 
 .primaryButton {
   padding: 14px 36px;
+
   font-size: 1rem;
+
   font-weight: 600;
+
   color: white;
-  background: linear-gradient(135deg, var(--secondaryy-color), #6dd5a0);
+
+  background: linear-gradient(
+    135deg,
+    var(--secondaryy-color),
+    #6dd5a0
+  );
+
   border: none;
+
   border-radius: 50px;
+
   cursor: pointer;
+
   transition: all 0.3s ease;
+
   box-shadow: 0 4px 20px rgba(0, 200, 150, 0.3);
 }
 
 .primaryButton:hover {
   transform: translateY(-2px);
+
   box-shadow: 0 6px 25px rgba(0, 200, 150, 0.4);
-  background: linear-gradient(135deg, #3ddc84, #5dd5a0);
+
+  background: linear-gradient(
+    135deg,
+    #3ddc84,
+    #5dd5a0
+  );
 }
 
 .secondaryButton {
   padding: 14px 36px;
+
   font-size: 1rem;
+
   font-weight: 600;
+
   color: white;
+
   background: transparent;
+
   border: 2px solid rgba(255, 255, 255, 0.6);
+
   border-radius: 50px;
+
   cursor: pointer;
+
   transition: all 0.3s ease;
 }
 
 .secondaryButton:hover {
   background: rgba(255, 255, 255, 0.1);
+
   transform: translateY(-2px);
+
   border-color: var(--secondaryy-color);
+
   color: var(--secondaryy-color);
 }
 
 .bannerActions {
   display: inline-flex;
+
   gap: 20px;
+
   flex-wrap: wrap;
+
   justify-content: center;
 }
 
-/* ===== LEARN MORE BUTTON ===== */
+/* ================================================================
+   LEARN MORE BUTTON
+   ================================================================ */
+
 .learnMoreBtn {
   background: transparent;
+
   border: 2px solid rgba(255, 255, 255, 0.4);
-  padding: clamp(10px, 1.2vw, 14px) clamp(24px, 2.5vw, 38px);
+
+  padding:
+    clamp(10px, 1.2vw, 14px)
+    clamp(24px, 2.5vw, 38px);
+
   font-size: clamp(0.8rem, 1.2vw, 1rem);
+
   font-weight: 600;
+
   border-radius: 50px;
+
   cursor: pointer;
+
   transition: all 0.3s ease;
+
   background: rgba(255, 255, 255, 0.05);
+
   color: white;
+
   backdrop-filter: blur(4px);
 }
 
 .tryMe {
   background: var(--secondaryy-color);
+
   color: white;
+
   border-color: var(--secondaryy-color);
 }
 
 .learnMoreBtn:hover {
   transform: translateY(-2px);
+
   background: rgba(255, 255, 255, 0.15);
 }
 
 .tryMe:hover {
   background: #3ddc84;
+
   border-color: #3ddc84;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
+
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
+
     transform: translateY(0);
   }
 }
@@ -256,10 +429,13 @@
 @keyframes slideInLeft {
   from {
     opacity: 0;
+
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
+
     transform: translateX(0);
   }
 }
@@ -268,42 +444,70 @@
   from {
     transform: scaleX(0);
   }
+
   to {
     transform: scaleX(1);
   }
 }
 
-/* ===== CHAT PART ===== */
+@keyframes blinkCursor {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ================================================================
+   CHAT PART
+   ================================================================ */
+
 .chatPart {
   position: absolute;
+
   top: 0;
   right: 0;
   bottom: 0;
+
   z-index: 5;
+
   display: flex;
+
   align-items: center;
+
   padding: 2rem;
 }
 
 /* ================================================================
-   RESPONSIVE BREAKPOINTS
+   TABLET
+   768px - 1024px
    ================================================================ */
 
-/* Tablet Screens (768px - 1024px) */
 @media (max-width: 1024px) {
   .chatPart {
     position: absolute;
+
     bottom: 2rem;
     top: auto;
+
     right: 50%;
+
     transform: translateX(50%);
+
     width: 90%;
+
     max-width: 400px;
+
     padding: 0;
   }
 
   .hero_content {
     padding: 1.5rem;
+
     padding-bottom: 120px;
   }
 
@@ -317,6 +521,7 @@
 
   .subtitle {
     font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+
     max-width: 90%;
   }
 
@@ -330,58 +535,95 @@
 
   .valueProp {
     font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+
     padding: 0.3rem 0.8rem;
   }
 
   .learnMoreBtn {
     padding: 10px 28px;
+
     font-size: 0.9rem;
   }
 }
 
-/* Mobile Screens (up to 768px) */
+/* ================================================================
+   MOBILE
+   Up to 768px
+   ================================================================ */
+
 @media (max-width: 768px) {
   .solve-section {
     min-height: 100vh;
     min-height: 100dvh;
+
     height: auto;
   }
 
   .video-container {
     min-height: 100vh;
     min-height: 100dvh;
+
     height: auto;
   }
 
   .hero-video {
     height: 100vh;
     height: 100dvh;
+
     object-fit: cover;
+
     object-position: center;
   }
 
   .chatPart {
     position: absolute;
+
     bottom: 1.5rem;
+
     top: auto;
+
     right: 50%;
+
     transform: translateX(50%);
+
     width: 92%;
+
     max-width: 350px;
+
     padding: 0;
   }
 
   .hero_content {
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
     padding: 1rem;
+
     padding-bottom: 120px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
   }
 
   .container {
+    width: 100%;
+
     padding: 0 1rem;
+
+    box-sizing: border-box;
   }
 
   .title {
     font-size: clamp(2.4rem, 5vw, 3.2rem);
+
     margin-bottom: 0.5rem;
   }
 
@@ -391,29 +633,43 @@
 
   .highlight::after {
     height: 2px;
+
     bottom: -3px;
   }
 
   .subtitle {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
+
     margin-bottom: 1rem;
+
     max-width: 100%;
+
     padding: 0 0.5rem;
   }
 
   .tagline {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
+
     margin-bottom: 1rem;
+
+    min-height: 3em;
+
+    line-height: 1.5;
+
+    opacity: 1;
   }
 
   .valueProps {
     gap: 0.6rem;
+
     margin-bottom: 1.5rem;
   }
 
   .valueProp {
     font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+
     padding: 0.2rem 0.7rem;
+
     gap: 0.3rem;
   }
 
@@ -423,8 +679,11 @@
 
   .learnMoreBtn {
     padding: 8px 20px;
+
     font-size: 0.8rem;
+
     margin-top: 10px;
+
     min-width: 140px;
   }
 
@@ -435,21 +694,21 @@
   .primaryButton,
   .secondaryButton {
     padding: 10px 24px;
+
     font-size: 0.9rem;
   }
 }
 
-/* Small Mobile Screens (up to 480px) */
-@media (max-width: 480px) {
-  .chatPart {
-    bottom: 70%;
-    width: 95%;
-    max-width: 300px;
-  }
+/* ================================================================
+   SMALL MOBILE
+   Up to 480px
+   ================================================================ */
 
+@media (max-width: 480px) {
   .solve-section {
     min-height: 75vh;
     min-height: 75dvh;
+
     height: 75vh;
     height: 75dvh;
   }
@@ -457,6 +716,7 @@
   .video-container {
     min-height: 75vh;
     min-height: 75dvh;
+
     height: 75vh;
     height: 75dvh;
   }
@@ -464,15 +724,138 @@
   .hero-video {
     height: 75vh;
     height: 75dvh;
+
     object-fit: cover;
+
     object-position: center 30%;
   }
 
+  .chatPart {
+    position: absolute;
+
+    bottom: 70%;
+
+    width: 95%;
+
+    max-width: 300px;
+  }
+
+  /*
+    Important:
+    Keep hero_content full height.
+    Do NOT use height: 50% or top: 50%.
+  */
+
   .hero_content {
-    height: 50%;
-    top: 50%;
-    padding: 0px;
-    bottom: 0px;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 100%;
+
+    max-width: 100%;
+
+    padding: 0 0.75rem;
+
+    margin: 0;
+
+    box-sizing: border-box;
+  }
+
+  .title {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+
+    font-weight: 800;
+
+    margin-bottom: 0.5rem;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+
+    margin-bottom: 0.75rem;
+
+    padding: 0 0.25rem;
+
+    line-height: 1.5;
+  }
+
+  .tagline {
+    display: block;
+
+    width: 100%;
+
+    visibility: visible;
+
+    opacity: 1;
+
+    font-size: clamp(0.8rem, 3.5vw, 1rem);
+
+    line-height: 1.5;
+
+    margin-bottom: 0.75rem;
+
+    min-height: 3em;
+  }
+
+  .backendTagline {
+    display: inline;
+
+    font-size: 0.8em;
+  }
+
+  .typingCursor {
+    margin-left: 2px;
+  }
+
+  .valueProps {
+    gap: 0.4rem;
+
+    margin-bottom: 1rem;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+  }
+
+  .valueProp {
+    font-size: clamp(0.5rem, 1vw, 0.65rem);
+
+    padding: 0.15rem 0.6rem;
+  }
+
+  .valueIcon {
+    font-size: 0.65rem;
+  }
+
+  .learnMoreBtn {
+    padding: 6px 16px;
+
+    font-size: 0.7rem;
+
+    min-width: 120px;
+
+    margin-top: 5px;
   }
 
   .overlay {
@@ -483,66 +866,19 @@
       rgba(38, 38, 38, 0.833) 100%
     );
   }
-
-  .title {
-    font-size: clamp(2rem, 6vw, 2.8rem);
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    line-height: 1.2;
-  }
-
-  .subtitle {
-    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
-    margin-bottom: 0.75rem;
-    padding: 0 0.25rem;
-  }
-
-  .tagline {
-    font-size: clamp(0.8rem, 2vw, 0.95rem);
-    margin-bottom: 0.75rem;
-  }
-
-  .valueProps {
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .valueProp {
-    font-size: clamp(0.5rem, 1vw, 0.65rem);
-    padding: 0.15rem 0.6rem;
-  }
-
-  .valueIcon {
-    font-size: 0.65rem;
-  }
-
-  .learnMoreBtn {
-    padding: 6px 16px;
-    font-size: 0.7rem;
-    min-width: 120px;
-    margin-top: 5px;
-  }
-
-  .container {
-    padding: 0 0.75rem;
-  }
 }
 
-/* Extra Small Mobile (up to 360px) */
-@media (max-width: 360px) {
-  .chatPart {
-    bottom: 55%;
-    width: 98%;
-    max-width: 260px;
-  }
+/* ================================================================
+   EXTRA SMALL MOBILE
+   Up to 360px
+   ================================================================ */
 
+@media (max-width: 360px) {
   .solve-section,
   .video-container {
     min-height: 70vh;
     min-height: 70dvh;
+
     height: 70vh;
     height: 70dvh;
   }
@@ -550,35 +886,97 @@
   .hero-video {
     height: 70vh;
     height: 70dvh;
+
+    object-fit: cover;
   }
 
-  .hero_content {
+  .chatPart {
+    bottom: 55%;
+
+    width: 98%;
+
+    max-width: 260px;
+  }
+
+  /*
+    Keep content full height here as well.
+    Previously this was:
+    
     height: 45%;
     top: 46%;
+
+    which could push the content/typing text out of view.
+  */
+
+  .hero_content {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 100%;
+
+    padding: 0 0.5rem;
+
+    margin: 0;
   }
 
   .title {
     font-size: clamp(1.6rem, 5vw, 2.2rem);
+
     margin-bottom: 0.3rem;
+
+    line-height: 1.2;
   }
 
   .subtitle {
     font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+
     margin-bottom: 0.5rem;
+
+    line-height: 1.4;
   }
 
   .tagline {
     font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+
     margin-bottom: 0.5rem;
+
+    min-height: 3em;
+
+    line-height: 1.4;
+
+    opacity: 1;
+  }
+
+  .backendTagline {
+    font-size: 0.8em;
   }
 
   .valueProps {
     gap: 0.2rem;
+
     margin-bottom: 0.75rem;
   }
 
   .valueProp {
     font-size: clamp(0.45rem, 0.8vw, 0.55rem);
+
     padding: 0.1rem 0.4rem;
   }
 
@@ -588,66 +986,90 @@
 
   .learnMoreBtn {
     padding: 4px 12px;
+
     font-size: 0.6rem;
+
     min-width: 100px;
   }
 }
 
-/* Landscape Mobile Phones */
+/* ================================================================
+   LANDSCAPE MOBILE
+   ================================================================ */
+
 @media (max-height: 600px) and (orientation: landscape) {
   .solve-section,
   .video-container {
     min-height: 100vh;
     min-height: 100dvh;
+
     height: auto;
   }
 
   .hero-video {
     height: 100vh;
     height: 100dvh;
+
     object-fit: cover;
+
     object-position: center;
   }
 
   .chatPart {
     bottom: 0.5rem;
+
     width: 85%;
+
     max-width: 280px;
   }
 
   .hero_content {
+    padding: 1rem;
+
     padding-bottom: 80px;
+
+    height: 100%;
   }
 
   .title {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
+
     margin-bottom: 0.25rem;
   }
 
   .subtitle {
     font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+
     margin-bottom: 0.5rem;
   }
 
   .tagline {
     font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+
     margin-bottom: 0.5rem;
+
+    min-height: 2.5em;
   }
 
   .valueProps {
     gap: 0.5rem;
+
     margin-bottom: 0.75rem;
   }
 
   .valueProp {
     font-size: clamp(0.55rem, 0.7vw, 0.7rem);
+
     padding: 0.15rem 0.6rem;
   }
 
   .learnMoreBtn {
     padding: 4px 14px;
+
     font-size: 0.6rem;
+
     margin-top: 5px;
+
     min-width: 100px;
   }
 
@@ -656,7 +1078,11 @@
   }
 }
 
-/* Large Screens (1440px and above) */
+/* ================================================================
+   LARGE SCREENS
+   1440px+
+   ================================================================ */
+
 @media (min-width: 1440px) {
   .container {
     max-width: 1100px;
@@ -668,6 +1094,7 @@
 
   .subtitle {
     font-size: clamp(1.2rem, 2vw, 1.6rem);
+
     max-width: 800px;
   }
 
@@ -680,7 +1107,10 @@
   }
 }
 
-/* 4K Screens */
+/* ================================================================
+   4K SCREENS
+   ================================================================ */
+
 @media (min-width: 2560px) {
   .container {
     max-width: 1400px;
@@ -692,6 +1122,7 @@
 
   .subtitle {
     font-size: clamp(1.5rem, 2vw, 2rem);
+
     max-width: 1000px;
   }
 
@@ -701,11 +1132,15 @@
 
   .learnMoreBtn {
     padding: 16px 48px;
+
     font-size: 1.4rem;
   }
 }
 
-/* Fix for Safari on iOS */
+/* ================================================================
+   SAFARI / iOS
+   ================================================================ */
+
 @supports (-webkit-touch-callout: none) {
   .solve-section,
   .video-container {
