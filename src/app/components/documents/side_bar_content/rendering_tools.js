@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, {
+  useState,
+  useEffect,
+  Suspense,
+  createContext,
+  useContext,
+} from "react";
 import styles from "./renderingToolSty.module.css";
 import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../../YouTubeVideo";
@@ -67,6 +73,12 @@ const MarkedText = ({ children }) => (
 );
 
 // ============================================================
+// SIDEBAR LINK CONTEXT (from parallel dev — closes mobile sidebar
+// when a nav link is clicked)
+// ============================================================
+export const SidebarLinkContext = createContext(null);
+
+// ============================================================
 // SUPPORTED TAGS
 // ============================================================
 const supportedTags = [
@@ -103,9 +115,9 @@ const supportedTags = [
 ];
 
 // ============================================================
-// renderTextWithElements — used by <p> tag.
-// Plain-string segments now pass through applyMarkers; link
-// segments remain React <a> nodes.
+// renderTextWithElements — used by <p> tag and by ListItem text.
+// Plain-string segments pass through applyMarkers; link segments
+// remain React <a> nodes.
 // ============================================================
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts || linkParts.length === 0) {
@@ -582,7 +594,11 @@ const List = ({
 // LIST ITEM
 // ============================================================
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
-  const [expanded, setExpanded] = useState(depth < 1);
+  const onLinkClick = useContext(SidebarLinkContext);
+
+  const [expanded, setExpanded] = useState(
+    item.default_expanded !== undefined ? item.default_expanded : depth < 1
+  );
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
   const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
@@ -590,12 +606,19 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const shouldShowDownIcon = hasSubItems && depth === 0;
 
   const handleScroll = (selector) => {
+    console.log("Looking for element with selector:", selector);
     const element = document.getElementById(selector);
+    console.log("Found element:", element);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     } else {
       console.warn(`Element with ID "${selector}" not found`);
     }
+    // ✅ Close mobile sidebar after navigation
+    if (onLinkClick) onLinkClick();
   };
 
   const handleClick = (e) => {
@@ -613,11 +636,14 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     if (config.type === "internal") {
       return (
         <button
-          onClick={() => handleScroll(config.selector_uid)}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleScroll(config.selector_uid);
+          }}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
         >
-          <FaLink size={38} />
+          <FaLink size={16} />
         </button>
       );
     }
@@ -639,7 +665,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     <li
       style={{
         cursor: isCollapsible || shouldShowDownIcon ? "pointer" : "default",
-        listStyleType: listType === "ol" ? "none" : "none",
+        listStyleType: "none",
         position: "relative",
       }}
     >
@@ -662,7 +688,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
             <div className={styles.contentHeaderWrap}>
               {item.text && (
                 <div>
-                  <MarkedText>{item.text}</MarkedText>
+                  <span>
+                    {renderTextWithElements(item.text, item.link_parts)}
+                  </span>
                 </div>
               )}
               {(isCollapsible || shouldShowDownIcon) && (
@@ -749,6 +777,10 @@ const APIReferenceTable = ({ properties }) => (
 // CONTENT RENDERER
 // ============================================================
 const ContentRenderer = ({ content }) => {
+  const onLinkClick = useContext(SidebarLinkContext);
+
+  console.log("contenterewr", content);
+
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;
     const config = item.link_configuration;
@@ -756,13 +788,16 @@ const ContentRenderer = ({ content }) => {
     if (config.type === "internal") {
       return (
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             try {
               const element = document.getElementById(config.selector_uid);
               if (element) element.scrollIntoView({ behavior: "smooth" });
             } catch (e) {
               console.error("Scroll error:", e);
             }
+            // ✅ Close mobile sidebar after navigation
+            if (onLinkClick) onLinkClick();
           }}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
