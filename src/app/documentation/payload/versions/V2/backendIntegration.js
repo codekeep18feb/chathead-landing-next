@@ -2,12 +2,9 @@ export const backendIntegration = [
   {
     tag_type: "div",
     children: [
-      // ============================================================
-      // TOP-LEVEL TITLE
-      // ============================================================
       {
         tag_type: "h2",
-        text: "Backend Integration",
+        text: "Connecting Sageion to Your Product's Authentication",
         selector_uid: "v2_backend_integration",
       },
       {
@@ -55,7 +52,87 @@ export const backendIntegration = [
       },
 
       // ============================================================
-      // WHERE ONBOARDING GOES IN YOUR BACKEND
+      // ONBOARDING API REFERENCE
+      // ============================================================
+      {
+        tag_type: "h3",
+        text: "Onboarding API",
+        selector_uid: "v2_backend_onboarding_api",
+      },
+      {
+        tag_type: "p",
+        text: "The onboarding endpoint registers a user with Sageion so they can appear in the Admin Panel and use the chat box.",
+      },
+      {
+        tag_type: "code_with_copy",
+        code: "POST https://{region}.userauth2.tezkit.com/dev/onboarding",
+        language: "http",
+      },
+      {
+        tag_type: "p",
+        text: "Replace {region} with your Sageion region — either us or in. It's the same value you pass as region to setUp() on the frontend.",
+      },
+      {
+        tag_type: "h4",
+        text: "Headers",
+      },
+      {
+        tag_type: "table",
+        headers: ["Header", "Value", "Where to get it"],
+        rows: [
+          ["X-API-Key", "Your Sageion REST API key", "Sageion Admin Panel → App Details → REST API Key"],
+          ["Content-Type", "application/json", "Always this value"],
+        ],
+      },
+      {
+        tag_type: "h4",
+        text: "Body",
+      },
+      {
+        tag_type: "table",
+        headers: ["Field", "Type", "Required", "Description"],
+        rows: [
+          ["uid", "string", "Yes", "Your platform's unique user identifier, as a string. Must match what you pass to initialize() on the frontend."],
+          ["app_name", "string", "Yes", "Your registered Sageion application name (from App Details)."],
+        ],
+      },
+      {
+        tag_type: "h4",
+        text: "Example request",
+      },
+      {
+        tag_type: "code_with_copy",
+        code: `curl --location 'https://us.userauth2.tezkit.com/dev/onboarding' \\
+  --header 'X-API-Key: YOUR_REST_API_KEY' \\
+  --header 'Content-Type: application/json' \\
+  --data '{
+    "uid": "12345",
+    "app_name": "your_application_name"
+  }'`,
+        language: "bash",
+      },
+      {
+        tag_type: "h4",
+        text: "Response",
+      },
+      {
+        tag_type: "p",
+        text: "A successful onboarding returns HTTP 200 with a small confirmation payload. Once onboarded, the user appears under Users in the Sageion Admin Panel for that app.",
+      },
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "Response contract — status codes only",
+        children: [
+          {
+            tag_type: "p",
+            text: "The onboarding response body is not read by Sageion. What matters is the status code: 2xx means the user is onboarded. If the user was already onboarded, your handler should still return 2xx — onboarding is idempotent. On failure, return 4xx or 5xx so your own retry logic can detect it. Because the client SDK treats any 2xx as success, do not return 200 on failure.",
+          },
+        ],
+      },
+
+      // ============================================================
+      // FRAMEWORK-FIRST TABS
       // ============================================================
       {
         tag_type: "h3",
@@ -64,11 +141,39 @@ export const backendIntegration = [
       },
       {
         tag_type: "p",
-        text: "Onboarding must be called exactly once per user, ideally the moment your own signup succeeds. The pattern below shows a typical Express signup handler — Sageion's onboarding call is a fire-and-forget step after your user row is created.",
+        text: "Onboarding must be called exactly once per user, ideally the moment your own signup succeeds. Pick your backend language below, then choose the onboarding method that matches your workflow.",
       },
+
       {
-        tag_type: "code_with_copy",
-        code: `// routes/auth.js — your signup handler
+        tag_type: "tabs",
+        items: [
+          // ==================== NODE.JS ====================
+          {
+            label: "Node.js",
+            content: [
+              {
+                tag_type: "p",
+                text: "Express + axios. This is the reference implementation used by Sageion's own sample app.",
+              },
+              {
+                tag_type: "tabs",
+                items: [
+                  {
+                    label: "Backend (Recommended)",
+                    content: [
+                      {
+                        tag_type: "h4",
+                        text: "Backend onboarding (Node.js)",
+                      },
+                      {
+                        tag_type: "p",
+                        text: "Call onboarding inside your /register handler, right after your own user row is created. It's fire-and-forget: your signup succeeds even if onboarding fails.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `// routes/auth.js
+const axios = require('axios');
+
 router.post('/register', [...validators], async (req, res) => {
   const { email, password, full_name } = req.body;
 
@@ -107,176 +212,132 @@ router.post('/register', [...validators], async (req, res) => {
   const token = generateToken(user.id, user.email, user.role);
   res.status(201).json({ token, user });
 });`,
-        language: "javascript",
-      },
-
-      // ============================================================
-      // ONBOARDING API REFERENCE
-      // ============================================================
-      {
-        tag_type: "h3",
-        text: "Onboarding API",
-        selector_uid: "v2_backend_onboarding_api",
-      },
-      {
-        tag_type: "p",
-        text: "The onboarding endpoint registers a user with Sageion so they can appear in the Admin Panel and use the chat box.",
-      },
-      {
-        tag_type: "code_with_copy",
-        code: "POST https://{region}.userauth2.tezkit.com/dev/onboarding",
-        language: "http",
-      },
-      {
-        tag_type: "p",
-        text: "Replace {region} with your Sageion region — either us or in. It's the same value you pass as region to setUp() on the frontend.",
-      },
-
-      {
-        tag_type: "h4",
-        text: "Headers",
-      },
-      {
-        tag_type: "table",
-        headers: ["Header", "Value", "Where to get it"],
-        rows: [
-          ["X-API-Key", "Your Sageion REST API key", "Sageion Admin Panel → App Details → REST API Key"],
-          ["Content-Type", "application/json", "Always this value"],
-        ],
-      },
-
-      {
-        tag_type: "h4",
-        text: "Body",
-      },
-      {
-        tag_type: "table",
-        headers: ["Field", "Type", "Required", "Description"],
-        rows: [
-          ["uid", "string", "Yes", "Your platform's unique user identifier, as a string. Must match what you pass to initialize() on the frontend."],
-          ["app_name", "string", "Yes", "Your registered Sageion application name (from App Details)."],
-        ],
-      },
-
-      {
-        tag_type: "h4",
-        text: "Example request",
-      },
-      {
-        tag_type: "code_with_copy",
-        code: `curl --location 'https://us.userauth2.tezkit.com/dev/onboarding' \\
-  --header 'X-API-Key: YOUR_REST_API_KEY' \\
-  --header 'Content-Type: application/json' \\
-  --data '{
-    "uid": "12345",
-    "app_name": "your_application_name"
-  }'`,
-        language: "bash",
-      },
-
-      {
-        tag_type: "h4",
-        text: "Response",
-      },
-      {
-        tag_type: "p",
-        text: "A successful onboarding returns HTTP 200 with a small confirmation payload. Once onboarded, the user appears under Users in the Sageion Admin Panel for that app.",
-      },
-
-      // ============================================================
-      // ONBOARDING METHODS
-      // ============================================================
-      {
-        tag_type: "h3",
-        text: "Three ways to onboard users",
-        selector_uid: "v2_backend_onboarding_methods",
-      },
-      {
-        tag_type: "p",
-        text: "Pick the option that matches your workflow. Most teams use the Backend option because it pairs naturally with their existing signup flow.",
-      },
-
-      {
-        tag_type: "tabs",
-        items: [
-          // ============ BACKEND ============
-          {
-            label: "Backend (Recommended)",
-            content: [
-              {
-                tag_type: "h4",
-                text: "Backend onboarding",
-              },
-              {
-                tag_type: "p",
-                text: "Your server calls the onboarding endpoint right after your own user creation succeeds. This is the pattern shown in the Where to call onboarding section above — refer back there for the full Express example.",
-              },
-              {
-                tag_type: "callout",
-                type: "success",
-                title: "Why we recommend this",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "API key never leaves your server",
+                        language: "javascript",
                       },
                       {
-                        tag_type: "li",
-                        text: "Onboarding happens atomically with signup — a user can never exist in your DB without also existing in Sageion",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "Failures can be retried server-side without exposing anything to the browser",
+                        tag_type: "callout",
+                        type: "warning",
+                        title: "Onboarding failure is silent by design",
+                        children: [
+                          {
+                            tag_type: "p",
+                            text: "If the onboarding call fails, registration still succeeds. Your user exists in your DB but not in Sageion — the chat box won't work for them until they're onboarded. Add an alert or a background retry so you notice.",
+                          },
+                        ],
                       },
                     ],
                   },
-                ],
-              },
-            ],
-          },
-
-          // ============ FRONTEND ============
-          {
-            label: "Frontend",
-            content: [
-              {
-                tag_type: "h4",
-                text: "Frontend onboarding",
-              },
-              {
-                tag_type: "p",
-                text: "If you cannot onboard from your backend (for example, in a static-only deployment), the SDK exposes an onboarding method you can call from the browser immediately after your own signup succeeds.",
-              },
-              {
-                tag_type: "code_with_copy",
-                code: `await window.magicchat_io.onboarding(
+                  {
+                    label: "Frontend",
+                    content: [
+                      {
+                        tag_type: "h4",
+                        text: "Frontend onboarding",
+                      },
+                      {
+                        tag_type: "p",
+                        text: "If you cannot onboard from your backend (for example, in a static-only deployment), the SDK exposes an onboarding method you can call from the browser immediately after your own signup succeeds.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `await window.magicchat_io.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
 );`,
-                language: "javascript",
-              },
-              {
-                tag_type: "callout",
-                type: "warning",
-                title: "Tradeoffs",
-                children: [
+                        language: "javascript",
+                      },
+                      {
+                        tag_type: "callout",
+                        type: "warning",
+                        title: "Tradeoffs",
+                        children: [
+                          {
+                            tag_type: "ul",
+                            items: [
+                              {
+                                text: "This call must run inside a page where the SDK bundle is already loaded (see Client Side Integration).",
+                              },
+                              {
+                                text: "If your app has a signup → login redirect, call onboarding on the destination page, right before initialize().",
+                              },
+                              {
+                                text: "Onboarding is idempotent per uid — calling it twice for the same user is harmless.",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
                   {
-                    tag_type: "ul",
-                    items: [
+                    label: "Admin Panel",
+                    content: [
                       {
-                        tag_type: "li",
-                        text: "This call must run inside a page where the SDK bundle is already loaded (see Client Side Integration).",
+                        tag_type: "h4",
+                        text: "Manual onboarding via Admin Panel",
                       },
                       {
-                        tag_type: "li",
-                        text: "If your app has a signup → login redirect, call onboarding on the destination page, right before initialize().",
+                        tag_type: "p",
+                        text: "Onboarding one user at a time from the Sageion Admin Panel is useful in two scenarios: quick testing during development, and migrating users that already existed in your app before Sageion was integrated.",
                       },
                       {
-                        tag_type: "li",
-                        text: "Onboarding is idempotent per uid — calling it twice for the same user is harmless.",
+                        tag_type: "callout",
+                        type: "info",
+                        title: "Best for legacy users",
+                        children: [
+                          {
+                            tag_type: "p",
+                            text: "If your app already has an active user base, you don't need to backfill all of them at once. Onboard users on demand as they log in for the first time after your integration ships. Add a small check in your login handler: if the user hasn't been onboarded yet, call the onboarding API then — the Admin Panel is only needed for users you want to seed manually.",
+                          },
+                        ],
+                      },
+                      {
+                        tag_type: "img",
+                        src: "/Asset/onboarding_via_admin.png",
+                        alt: "Sageion Admin Panel user onboarding interface",
+                      },
+                      {
+                        tag_type: "steps",
+                        items: [
+                          {
+                            title: "Open the Users section",
+                            content: [
+                              {
+                                tag_type: "p",
+                                text: "In the Sageion Admin Panel, navigate to your application and open Users.",
+                              },
+                            ],
+                          },
+                          {
+                            title: "Select 'Add User'",
+                            content: [
+                              {
+                                tag_type: "p",
+                                text: "Enter the uid — it must exactly match the id you use for that user in your own platform.",
+                              },
+                            ],
+                          },
+                          {
+                            title: "Save",
+                            content: [
+                              {
+                                tag_type: "p",
+                                text: "The user now appears in the onboarded list and can use the chat box on your site.",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        tag_type: "callout",
+                        type: "info",
+                        title: "Bulk onboarding",
+                        children: [
+                          {
+                            tag_type: "p",
+                            text: "For large migrations (hundreds or thousands of existing users), contact Sageion Support for a batch import option instead of calling the API one user at a time.",
+                          },
+                        ],
                       },
                     ],
                   },
@@ -285,63 +346,378 @@ router.post('/register', [...validators], async (req, res) => {
             ],
           },
 
-          // ============ ADMIN PANEL ============
+          // ==================== PYTHON ====================
           {
-            label: "Admin Panel",
+            label: "Python",
             content: [
               {
-                tag_type: "h4",
-                text: "Manual onboarding via Admin Panel",
-              },
-              {
                 tag_type: "p",
-                text: "For testing, migrations, or small user counts, you can onboard users one at a time from the Sageion Admin Panel.",
+                text: "FastAPI + httpx. Same flow as Node.js — call onboarding after your own user record is committed.",
               },
               {
-                tag_type: "img",
-                src: "/Asset/onboarding_via_admin.png",
-                alt: "Sageion Admin Panel user onboarding interface",
-              },
-              {
-                tag_type: "steps",
+                tag_type: "tabs",
                 items: [
                   {
-                    title: "Open the Users section",
+                    label: "Backend (Recommended)",
                     content: [
                       {
-                        tag_type: "p",
-                        text: "In the Sageion Admin Panel, navigate to your application and open Users.",
+                        tag_type: "h4",
+                        text: "Backend onboarding (Python)",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `import os
+import httpx
+from fastapi import APIRouter, HTTPException
+
+router = APIRouter()
+
+SAGEION_REGION = os.environ["SAGEION_REGION"]        # "us" or "in"
+SAGEION_APP_NAME = os.environ["SAGEION_APP_NAME"]
+SAGEION_REST_API_KEY = os.environ["SAGEION_REST_API_KEY"]
+
+
+async def onboard_user(user_id: int) -> None:
+    """Fire-and-forget onboarding. Never raises — logs and returns."""
+    url = f"https://{SAGEION_REGION}.userauth2.tezkit.com/dev/onboarding"
+    payload = {"uid": str(user_id), "app_name": SAGEION_APP_NAME}
+    headers = {
+        "X-API-Key": SAGEION_REST_API_KEY,
+        "Content-Type": "application/json",
+    }
+    try:
+        async with httpx.AsyncClient(timeout=5.0) as client:
+            await client.post(url, json=payload, headers=headers)
+    except Exception as exc:
+        print(f"Sageion onboarding error for user {user_id}: {exc}")
+
+
+@router.post("/register")
+async def register(body: RegisterBody):
+    # 1. Create the user in your own DB
+    user = await create_user(body)          # your own function
+
+    # 2. Onboard the user into Sageion (fire-and-forget)
+    await onboard_user(user.id)
+
+    # 3. Return your own token — Sageion does not issue auth tokens
+    token = generate_token(user.id, user.email, user.role)
+    return {"token": token, "user": user}`,
+                        language: "python",
                       },
                     ],
                   },
                   {
-                    title: "Select 'Add User'",
+                    label: "Frontend",
                     content: [
                       {
                         tag_type: "p",
-                        text: "Fill in the uid (must match your platform's user id) and any optional fields.",
+                        text: "Framework-agnostic — the SDK call is the same regardless of your backend language.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `await window.magicchat_io.onboarding(
+  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
+  { app_name: "your_application_name" }
+);`,
+                        language: "javascript",
                       },
                     ],
                   },
                   {
-                    title: "Save",
+                    label: "Admin Panel",
                     content: [
                       {
                         tag_type: "p",
-                        text: "The user now appears in the onboarded list and can use the chat box on your site.",
+                        text: "See the Node.js → Admin Panel tab for the full manual-onboarding walkthrough. It's identical regardless of your backend language.",
                       },
                     ],
                   },
                 ],
               },
+            ],
+          },
+
+          // ==================== GO ====================
+          {
+            label: "Go",
+            content: [
               {
-                tag_type: "callout",
-                type: "info",
-                title: "Bulk onboarding",
-                children: [
+                tag_type: "p",
+                text: "net/http + encoding/json. Same flow as Node.js — call onboarding after your own user record is committed.",
+              },
+              {
+                tag_type: "tabs",
+                items: [
                   {
-                    tag_type: "p",
-                    text: "For large migrations (hundreds or thousands of existing users), contact Sageion Support for a batch import option instead of calling the API one user at a time.",
+                    label: "Backend (Recommended)",
+                    content: [
+                      {
+                        tag_type: "h4",
+                        text: "Backend onboarding (Go)",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `package auth
+
+import (
+    "bytes"
+    "context"
+    "encoding/json"
+    "fmt"
+    "net/http"
+    "os"
+    "time"
+)
+
+func onboardUser(ctx context.Context, userID int64) {
+    url := fmt.Sprintf(
+        "https://%s.userauth2.tezkit.com/dev/onboarding",
+        os.Getenv("SAGEION_REGION"),
+    )
+    body, _ := json.Marshal(map[string]string{
+        "uid":      fmt.Sprintf("%d", userID),
+        "app_name": os.Getenv("SAGEION_APP_NAME"),
+    })
+
+    req, _ := http.NewRequestWithContext(ctx, "POST", url, bytes.NewReader(body))
+    req.Header.Set("X-API-Key", os.Getenv("SAGEION_REST_API_KEY"))
+    req.Header.Set("Content-Type", "application/json")
+
+    client := &http.Client{Timeout: 5 * time.Second}
+    resp, err := client.Do(req)
+    if err != nil {
+        // Fire-and-forget: log and return. Registration still succeeds.
+        fmt.Printf("Sageion onboarding error for user %d: %v\\n", userID, err)
+        return
+    }
+    defer resp.Body.Close()
+}
+
+func RegisterHandler(w http.ResponseWriter, r *http.Request) {
+    // 1. Create the user in your own DB
+    user := createUser(r)          // your own function
+
+    // 2. Onboard the user into Sageion (fire-and-forget)
+    onboardUser(r.Context(), user.ID)
+
+    // 3. Return your own token — Sageion does not issue auth tokens
+    token := generateToken(user.ID, user.Email, user.Role)
+    json.NewEncoder(w).Encode(map[string]any{"token": token, "user": user})
+}`,
+                        language: "go",
+                      },
+                    ],
+                  },
+                  {
+                    label: "Frontend",
+                    content: [
+                      {
+                        tag_type: "p",
+                        text: "Framework-agnostic — the SDK call is the same regardless of your backend language.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `await window.magicchat_io.onboarding(
+  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
+  { app_name: "your_application_name" }
+);`,
+                        language: "javascript",
+                      },
+                    ],
+                  },
+                  {
+                    label: "Admin Panel",
+                    content: [
+                      {
+                        tag_type: "p",
+                        text: "See the Node.js → Admin Panel tab for the full manual-onboarding walkthrough.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+
+          // ==================== PHP ====================
+          {
+            label: "PHP",
+            content: [
+              {
+                tag_type: "p",
+                text: "Laravel + Guzzle. Same flow as Node.js — call onboarding after your own user record is committed.",
+              },
+              {
+                tag_type: "tabs",
+                items: [
+                  {
+                    label: "Backend (Recommended)",
+                    content: [
+                      {
+                        tag_type: "h4",
+                        text: "Backend onboarding (PHP)",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `<?php
+// app/Http/Controllers/AuthController.php
+
+use Illuminate\\Http\\Request;
+use Illuminate\\Support\\Facades\\Http;
+
+public function register(Request $request)
+{
+    // 1. Create the user in your own DB
+    $user = User::create([
+        'email'     => $request->email,
+        'password'  => Hash::make($request->password),
+        'full_name' => $request->full_name,
+    ]);
+
+    // 2. Onboard the user into Sageion (fire-and-forget)
+    try {
+        $url = sprintf(
+            'https://%s.userauth2.tezkit.com/dev/onboarding',
+            env('SAGEION_REGION')
+        );
+        Http::withHeaders([
+            'X-API-Key'    => env('SAGEION_REST_API_KEY'),
+            'Content-Type' => 'application/json',
+        ])->timeout(5)->post($url, [
+            'uid'      => (string) $user->id,
+            'app_name' => env('SAGEION_APP_NAME'),
+        ]);
+    } catch (\\Throwable $e) {
+        // Do NOT fail registration — the user can still log in.
+        \\Log::error('Sageion onboarding error: ' . $e->getMessage());
+    }
+
+    // 3. Return your own token — Sageion does not issue auth tokens
+    $token = $user->createToken('auth')->plainTextToken;
+    return response()->json(['token' => $token, 'user' => $user], 201);
+}`,
+                        language: "php",
+                      },
+                    ],
+                  },
+                  {
+                    label: "Frontend",
+                    content: [
+                      {
+                        tag_type: "p",
+                        text: "Framework-agnostic — the SDK call is the same regardless of your backend language.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `await window.magicchat_io.onboarding(
+  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
+  { app_name: "your_application_name" }
+);`,
+                        language: "javascript",
+                      },
+                    ],
+                  },
+                  {
+                    label: "Admin Panel",
+                    content: [
+                      {
+                        tag_type: "p",
+                        text: "See the Node.js → Admin Panel tab for the full manual-onboarding walkthrough.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+
+          // ==================== RUBY ====================
+          {
+            label: "Ruby",
+            content: [
+              {
+                tag_type: "p",
+                text: "Rails + Faraday (or Net::HTTP). Same flow as Node.js — call onboarding after your own user record is committed.",
+              },
+              {
+                tag_type: "tabs",
+                items: [
+                  {
+                    label: "Backend (Recommended)",
+                    content: [
+                      {
+                        tag_type: "h4",
+                        text: "Backend onboarding (Ruby)",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `# app/controllers/auth_controller.rb
+require 'faraday'
+require 'json'
+
+class AuthController < ApplicationController
+  def register
+    # 1. Create the user in your own DB
+    user = User.create!(
+      email:     params[:email],
+      password:  params[:password],
+      full_name: params[:full_name]
+    )
+
+    # 2. Onboard the user into Sageion (fire-and-forget)
+    begin
+      url = "https://#{ENV['SAGEION_REGION']}.userauth2.tezkit.com/dev/onboarding"
+      conn = Faraday.new(url: url) do |f|
+        f.options.timeout = 5
+      end
+      conn.post do |req|
+        req.headers['X-API-Key']      = ENV['SAGEION_REST_API_KEY']
+        req.headers['Content-Type']   = 'application/json'
+        req.body = {
+          uid:      user.id.to_s,
+          app_name: ENV['SAGEION_APP_NAME']
+        }.to_json
+      end
+    rescue => e
+      # Do NOT fail registration — the user can still log in.
+      Rails.logger.error("Sageion onboarding error: #{e.message}")
+    end
+
+    # 3. Return your own token — Sageion does not issue auth tokens
+    token = generate_token(user)
+    render json: { token: token, user: user }, status: :created
+  end
+end`,
+                        language: "ruby",
+                      },
+                    ],
+                  },
+                  {
+                    label: "Frontend",
+                    content: [
+                      {
+                        tag_type: "p",
+                        text: "Framework-agnostic — the SDK call is the same regardless of your backend language.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `await window.magicchat_io.onboarding(
+  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
+  { app_name: "your_application_name" }
+);`,
+                        language: "javascript",
+                      },
+                    ],
+                  },
+                  {
+                    label: "Admin Panel",
+                    content: [
+                      {
+                        tag_type: "p",
+                        text: "See the Node.js → Admin Panel tab for the full manual-onboarding walkthrough.",
+                      },
+                    ],
                   },
                 ],
               },
@@ -441,19 +817,19 @@ window.magicchat_io.logout?.();
         headers: ["Variable", "Example", "Used for"],
         rows: [
           ["SAGEION_REGION", "us", "Regional prefix in the onboarding URL."],
-          ["SAGEION_APP_NAME", "ai_chatbot_system", "Identifies your Sageion app in onboarding requests."],
+          ["SAGEION_APP_NAME", "ai_chatbot_system", "Identifies your Sageion app in onboarding and agent-token requests."],
           ["SAGEION_REST_API_KEY", "your_rest_api_key", "X-API-Key header for onboarding."],
-          ["SAGEION_CLIENT_SECRET", "your_client_secret", "Only needed if you later use the AI agent binding flow (see below). Never expose to the browser."],
+          ["SAGEION_CLIENT_SECRET", "your_client_secret", "Verifies client credentials on /client-user-token (only needed if you enable the optional AI agent section below). Never expose to the browser."],
         ],
       },
 
       // ============================================================
-      // IMPLEMENTATION CHECKLIST (REQUIRED FLOW ONLY)
+      // BEST PRACTICES
       // ============================================================
       {
         tag_type: "callout",
         type: "success",
-        title: "✅ Implementation checklist",
+        title: "✅ Base integration checklist",
         children: [
           {
             tag_type: "ol",
@@ -471,90 +847,124 @@ window.magicchat_io.logout?.();
                 text: "Always call window.magicchat_io.logout() from your own logout handler, before clearing your own session.",
               },
               {
-                text: "Never ship SAGEION_REST_API_KEY or SAGEION_CLIENT_SECRET to the frontend.",
+                text: "Never ship SAGEION_CLIENT_SECRET or SAGEION_REST_API_KEY to the frontend. If you use the frontend onboarding method, use a different token scoped to onboarding only.",
               },
               {
                 text: "For bulk onboarding of existing users, contact Sageion Support before calling the API in a loop.",
               },
             ],
           },
+          {
+            tag_type: "p",
+            text: "Once all six items above are done, your Sageion integration is complete. The next section is optional and can be added at any time.",
+          },
         ],
       },
 
       // ============================================================
+      // OPTIONAL: AI AGENT → YOUR BACKEND
       // ============================================================
-      // OPTIONAL — AI AGENT BINDING (separate concern, same page for now)
-      // ============================================================
-      // ============================================================
+      {
+        tag_type: "h3",
+        text: "AI Agent → Your Backend (Optional)",
+        selector_uid: "v2_agent_integration",
+      },
 
       {
         tag_type: "callout",
         type: "info",
-        title: "🟦 Optional module — AI Agent Binding",
+        title: "📌 Optional — add this whenever you need it",
         children: [
           {
             tag_type: "p",
-            text: "Everything below this point is optional. The initial integration only requires onboarding + logout. Add this module later, when your AI agent needs to act on behalf of a signed-in user.",
+            text: "You do not need this section to get Sageion's chat box running. Your users can chat with the AI agent without it. Set it up only when you want the AI agent to access protected endpoints on your own backend — for example, to fetch or modify a specific user's bookings on their behalf.",
+          },
+          {
+            tag_type: "p",
+            text: "You can do this during your initial integration from day one, or add it later when the need arises — nothing on this page conflicts with anything above.",
           },
         ],
       },
 
       {
-        tag_type: "h2",
-        text: "Binding the AI agent to a user (Optional)",
-        selector_uid: "v2_backend_ai_agent_binding",
-      },
-      {
-        tag_type: "p",
-        text: "When your AI agent (or any server-side client) needs to act on behalf of a specific user — for example, to fetch that user's bookings, create a new one, or cancel an existing one — your backend exchanges client credentials for a short-lived, scoped user token.",
-      },
-      {
         tag_type: "callout",
-        type: "info",
-        title: "When you need this",
+        type: "danger",
+        title: "⚠️ Response format is a contract — match it exactly",
         children: [
+          {
+            tag_type: "p",
+            text: "For the AI agent to successfully call your /auth/client-user-token, /auth/send-otp, and /auth/verify-otp endpoints, your handlers must return responses in the exact shape documented below. The workflow engine reads specific field names from each response — it does not adapt to renames, extra wrappers, or missing fields.",
+          },
           {
             tag_type: "ul",
             items: [
               {
-                tag_type: "li",
-                text: "Your AI workflows call your own backend APIs on behalf of a logged-in user",
+                text: "Do not wrap responses in { data: { ... } } or { result: { ... } } — return the fields at the top level.",
               },
               {
-                tag_type: "li",
-                text: "You want fine-grained scopes for what the agent can do (read, create, update, cancel)",
+                text: "Do not rename fields. token must be token, user_id must be user_id, scope must be scope, expires_in must be expires_in.",
               },
               {
-                tag_type: "li",
-                text: "You want short-lived tokens (1 hour) for agent actions instead of long-lived user sessions",
+                text: "Do not omit fields. expires_in and scope are read by the client to decide token freshness and permitted actions.",
               },
               {
-                tag_type: "li",
-                text: "You want to trace agent-originated actions back to a specific user session",
+                text: "Extra fields beyond the ones documented are allowed and will be ignored.",
+              },
+              {
+                text: "Status codes matter: 200 for success, 401 for invalid client credentials, 404 for unknown user. The workflow engine branches on these codes.",
               },
             ],
           },
         ],
       },
+
+      {
+        tag_type: "h4",
+        text: "What problem does this solve?",
+        selector_uid: "v2_agent_integration_why",
+      },
+      {
+        tag_type: "p",
+        text: "By default, the AI agent talks to your backend as a generic client. If your backend exposes user-scoped endpoints (like GET /bookings/me), the agent has no way to prove who it's acting for — so it can't reach those endpoints.",
+      },
+      {
+        tag_type: "p",
+        text: "This integration closes that gap. Your backend exchanges its client credentials for a short-lived, scoped token tied to a specific user. The agent then calls your authenticated endpoints as that user.",
+      },
+
       {
         tag_type: "callout",
-        type: "warning",
-        title: "This is not your primary auth",
+        type: "info",
+        title: "🧩 When you need this",
         children: [
           {
-            tag_type: "p",
-            text: "This is a secondary, server-to-server flow. Your users still log in with your own auth. The client-user-token endpoint exists only to let the AI agent make user-scoped calls after login.",
+            tag_type: "ul",
+            items: [
+              {
+                text: "Your AI workflows call your own backend APIs on behalf of a logged-in user",
+              },
+              {
+                text: "You want fine-grained scopes (read, create, update, cancel) rather than blanket access",
+              },
+              {
+                text: "You want short-lived tokens (1 hour) rather than long-lived user sessions",
+              },
+            ],
           },
         ],
       },
 
       // ============================================================
-      // CLIENT-USER-TOKEN ENDPOINT
+      // 1. AGENT TOKEN ENDPOINT
       // ============================================================
       {
-        tag_type: "h3",
-        text: "Client-user-token endpoint",
-        selector_uid: "v2_backend_client_user_token",
+        tag_type: "h4",
+        text: "1. Agent token endpoint (/auth/client-user-token)",
+        selector_uid: "v2_agent_token_endpoint",
+      },
+      {
+        tag_type: "p",
+        text: "Your backend exposes this endpoint. It accepts the client credentials plus a user id, verifies both, and returns a short-lived JWT the agent can use.",
       },
       {
         tag_type: "code_with_copy",
@@ -562,22 +972,18 @@ window.magicchat_io.logout?.();
         language: "http",
       },
       {
-        tag_type: "h4",
-        text: "Request body",
-      },
-      {
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["client_id", "string", "Yes", "Your Sageion app_name (from App Details)."],
+          ["client_id", "string", "Yes", "Your Sageion app_name."],
           ["client_secret", "string", "Yes", "Your Sageion client secret. Keep this server-side only."],
-          ["user_id", "string", "Yes", "The user's id from your platform. Must be a numeric string."],
+          ["user_id", "string", "Yes", "The user's id from your platform. Must be numeric."],
           ["session_id", "string", "No", "Optional session identifier to correlate token usage."],
         ],
       },
       {
-        tag_type: "h4",
-        text: "Response",
+        tag_type: "p",
+        text: "Response:",
       },
       {
         tag_type: "table",
@@ -585,13 +991,93 @@ window.magicchat_io.logout?.();
         rows: [
           ["token", "string", "Short-lived JWT the agent uses for subsequent calls."],
           ["expires_in", "number", "Seconds until expiry — currently 3600."],
-          ["scope", "string[]", "List of actions the token authorizes. Currently: booking:read, booking:create, booking:update, booking:cancel."],
+          ["scope", "string[]", "Actions authorized by the token. Currently: booking:read, booking:create, booking:update, booking:cancel."],
           ["user_id", "string", "Echo of the user_id the token was issued for."],
         ],
       },
       {
-        tag_type: "code_with_copy",
-        code: `const axios = require('axios');
+        tag_type: "callout",
+        type: "warning",
+        title: "Response contract — required fields",
+        children: [
+          {
+            tag_type: "table",
+            headers: ["Field", "Type", "Required", "Why it matters"],
+            rows: [
+              ["token", "string", "Yes", "The JWT the agent attaches as a Bearer token. Missing or null → the agent cannot make authenticated calls."],
+              ["expires_in", "number", "Yes", "Seconds until expiry. If omitted, the agent cannot tell when to refresh the token."],
+              ["scope", "string[]", "Yes", "The list of actions this token authorizes. The agent checks this list before attempting operations."],
+              ["user_id", "string", "Yes", "Echo of the user_id the token was issued for. The agent uses it to verify the token is bound to the right user."],
+            ],
+          },
+          {
+            tag_type: "p",
+            text: "Return this object at the top level with HTTP 200. On failure, return HTTP 401 (invalid client credentials) or HTTP 404 (user not found) with a plain JSON body — the agent treats non-2xx responses as refusals, not as retryable errors.",
+          },
+        ],
+      },
+
+      {
+        tag_type: "h5",
+        text: "Reference implementation by language",
+      },
+      {
+        tag_type: "tabs",
+        items: [
+          {
+            label: "Node.js",
+            content: [
+              {
+                tag_type: "h4",
+                text: "Backend handler — Node.js",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `// routes/auth.js
+
+const SAGEION_APP_NAME = process.env.SAGEION_APP_NAME;
+const SAGEION_CLIENT_SECRET = process.env.SAGEION_CLIENT_SECRET;
+
+router.post('/client-user-token', [
+  body('client_id').notEmpty(),
+  body('client_secret').notEmpty(),
+  body('user_id').notEmpty().isInt(),
+  body('session_id').optional().isString(),
+], async (req, res) => {
+  const { client_id, client_secret, user_id, session_id } = req.body;
+
+  // 1. Verify client credentials
+  if (client_id !== SAGEION_APP_NAME || client_secret !== SAGEION_CLIENT_SECRET) {
+    return res.status(401).json({ error: 'Invalid client credentials' });
+  }
+
+  // 2. Verify the user exists
+  const check = await pool.query('SELECT id FROM users WHERE id = $1', [user_id]);
+  if (check.rows.length === 0) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  // 3. Issue a scoped, short-lived token
+  const scopes = [
+    'booking:read', 'booking:create', 'booking:update', 'booking:cancel',
+  ];
+  const token = generateToken(user_id, 'client@system', 'client', {
+    scope: scopes,
+    client_id,
+    session_id,
+  });
+
+  res.json({ token, expires_in: 3600, scope: scopes, user_id });
+});`,
+                language: "javascript",
+              },
+              {
+                tag_type: "h5",
+                text: "Calling it from your agent workflow (Node.js)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `const axios = require('axios');
 
 async function getAgentToken(userId) {
   const { data } = await axios.post(
@@ -604,20 +1090,346 @@ async function getAgentToken(userId) {
   );
   return data.token; // use as Bearer token for agent-initiated calls
 }`,
-        language: "javascript",
+                language: "javascript",
+              },
+            ],
+          },
+          {
+            label: "Python",
+            content: [
+              {
+                tag_type: "h4",
+                text: "Backend handler — Python (FastAPI)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `import os
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+
+router = APIRouter()
+
+SAGEION_APP_NAME = os.environ["SAGEION_APP_NAME"]
+SAGEION_CLIENT_SECRET = os.environ["SAGEION_CLIENT_SECRET"]
+
+
+class ClientUserTokenBody(BaseModel):
+    client_id: str
+    client_secret: str
+    user_id: int
+    session_id: str | None = None
+
+
+@router.post("/client-user-token")
+async def client_user_token(body: ClientUserTokenBody):
+    # 1. Verify client credentials
+    if body.client_id != SAGEION_APP_NAME or body.client_secret != SAGEION_CLIENT_SECRET:
+        raise HTTPException(status_code=401, detail="Invalid client credentials")
+
+    # 2. Verify the user exists
+    user = await fetch_user(body.user_id)   # your own DB helper
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # 3. Issue a scoped, short-lived token
+    scopes = ["booking:read", "booking:create", "booking:update", "booking:cancel"]
+    token = issue_agent_token(             # your own token issuer
+        user_id=body.user_id,
+        scopes=scopes,
+        client_id=body.client_id,
+        session_id=body.session_id,
+    )
+    return {
+        "token": token,
+        "expires_in": 3600,
+        "scope": scopes,
+        "user_id": str(body.user_id),
+    }`,
+                language: "python",
+              },
+              {
+                tag_type: "h5",
+                text: "Calling it from your agent workflow (Python)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `import os
+import httpx
+
+async def get_agent_token(user_id: int) -> str:
+    async with httpx.AsyncClient(timeout=5.0) as client:
+        r = await client.post(
+            f"{os.environ['API_BASE_URL']}/auth/client-user-token",
+            json={
+                "client_id": os.environ["SAGEION_APP_NAME"],
+                "client_secret": os.environ["SAGEION_CLIENT_SECRET"],
+                "user_id": str(user_id),
+            },
+        )
+        r.raise_for_status()
+        return r.json()["token"]`,
+                language: "python",
+              },
+            ],
+          },
+          {
+            label: "Go",
+            content: [
+              {
+                tag_type: "h4",
+                text: "Backend handler — Go",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `package auth
+
+import (
+    "encoding/json"
+    "net/http"
+    "os"
+    "strconv"
+)
+
+type clientUserTokenBody struct {
+    ClientID     string \`json:"client_id"\`
+    ClientSecret string \`json:"client_secret"\`
+    UserID       string \`json:"user_id"\`
+    SessionID    string \`json:"session_id,omitempty"\`
+}
+
+func ClientUserTokenHandler(w http.ResponseWriter, r *http.Request) {
+    var body clientUserTokenBody
+    if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+        http.Error(w, "bad request", http.StatusBadRequest)
+        return
+    }
+
+    // 1. Verify client credentials
+    if body.ClientID != os.Getenv("SAGEION_APP_NAME") ||
+        body.ClientSecret != os.Getenv("SAGEION_CLIENT_SECRET") {
+        http.Error(w, "invalid client credentials", http.StatusUnauthorized)
+        return
+    }
+
+    // 2. Verify the user exists
+    uid, err := strconv.ParseInt(body.UserID, 10, 64)
+    if err != nil {
+        http.Error(w, "user_id must be numeric", http.StatusBadRequest)
+        return
+    }
+    if !userExists(uid) {                // your own DB helper
+        http.Error(w, "user not found", http.StatusNotFound)
+        return
+    }
+
+    // 3. Issue a scoped, short-lived token
+    scopes := []string{"booking:read", "booking:create", "booking:update", "booking:cancel"}
+    token := issueAgentToken(uid, scopes, body.ClientID, body.SessionID)
+
+    json.NewEncoder(w).Encode(map[string]any{
+        "token":      token,
+        "expires_in": 3600,
+        "scope":      scopes,
+        "user_id":    body.UserID,
+    })
+}`,
+                language: "go",
+              },
+              {
+                tag_type: "h5",
+                text: "Calling it from your agent workflow (Go)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `package agent
+
+import (
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "net/http"
+    "os"
+    "time"
+)
+
+func GetAgentToken(userID int64) (string, error) {
+    payload, _ := json.Marshal(map[string]string{
+        "client_id":     os.Getenv("SAGEION_APP_NAME"),
+        "client_secret": os.Getenv("SAGEION_CLIENT_SECRET"),
+        "user_id":       fmt.Sprintf("%d", userID),
+    })
+    req, _ := http.NewRequest("POST",
+        os.Getenv("API_BASE_URL")+"/auth/client-user-token",
+        bytes.NewReader(payload))
+    req.Header.Set("Content-Type", "application/json")
+
+    client := &http.Client{Timeout: 5 * time.Second}
+    resp, err := client.Do(req)
+    if err != nil { return "", err }
+    defer resp.Body.Close()
+
+    var out struct{ Token string \`json:"token"\` }
+    if err := json.NewDecoder(resp.Body).Decode(&out); err != nil { return "", err }
+    return out.Token, nil
+}`,
+                language: "go",
+              },
+            ],
+          },
+          {
+            label: "PHP",
+            content: [
+              {
+                tag_type: "h4",
+                text: "Backend handler — PHP (Laravel)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `<?php
+// routes/api.php
+use Illuminate\\Http\\Request;
+use Illuminate\\Support\\Facades\\Route;
+
+Route::post('/client-user-token', function (Request $request) {
+    // 1. Verify client credentials
+    if ($request->client_id !== env('SAGEION_APP_NAME') ||
+        $request->client_secret !== env('SAGEION_CLIENT_SECRET')) {
+        return response()->json(['error' => 'Invalid client credentials'], 401);
+    }
+
+    // 2. Verify the user exists
+    $user = \\App\\Models\\User::find($request->user_id);
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    // 3. Issue a scoped, short-lived token
+    $scopes = ['booking:read', 'booking:create', 'booking:update', 'booking:cancel'];
+    $token = issue_agent_token(
+        userId: (int) $user->id,
+        scopes: $scopes,
+        clientId: $request->client_id,
+        sessionId: $request->session_id,
+    );
+
+    return response()->json([
+        'token'      => $token,
+        'expires_in' => 3600,
+        'scope'      => $scopes,
+        'user_id'    => (string) $user->id,
+    ]);
+});`,
+                language: "php",
+              },
+              {
+                tag_type: "h5",
+                text: "Calling it from your agent workflow (PHP)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `<?php
+use Illuminate\\Support\\Facades\\Http;
+
+function get_agent_token(int $userId): string {
+    $response = Http::timeout(5)->post(
+        env('API_BASE_URL') . '/auth/client-user-token',
+        [
+            'client_id'     => env('SAGEION_APP_NAME'),
+            'client_secret' => env('SAGEION_CLIENT_SECRET'),
+            'user_id'       => (string) $userId,
+        ]
+    );
+    return $response->json('token');
+}`,
+                language: "php",
+              },
+            ],
+          },
+          {
+            label: "Ruby",
+            content: [
+              {
+                tag_type: "h4",
+                text: "Backend handler — Ruby (Rails)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `# config/routes.rb
+post '/auth/client-user-token', to: 'auth#client_user_token'
+
+# app/controllers/auth_controller.rb
+class AuthController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  def client_user_token
+    # 1. Verify client credentials
+    unless params[:client_id] == ENV['SAGEION_APP_NAME'] &&
+           params[:client_secret] == ENV['SAGEION_CLIENT_SECRET']
+      return render json: { error: 'Invalid client credentials' }, status: :unauthorized
+    end
+
+    # 2. Verify the user exists
+    user = User.find_by(id: params[:user_id])
+    return render json: { error: 'User not found' }, status: :not_found unless user
+
+    # 3. Issue a scoped, short-lived token
+    scopes = %w[booking:read booking:create booking:update booking:cancel]
+    token = issue_agent_token(
+      user_id:    user.id,
+      scopes:     scopes,
+      client_id:  params[:client_id],
+      session_id: params[:session_id]
+    )
+
+    render json: {
+      token:      token,
+      expires_in: 3600,
+      scope:      scopes,
+      user_id:    user.id.to_s
+    }
+  end
+end`,
+                language: "ruby",
+              },
+              {
+                tag_type: "h5",
+                text: "Calling it from your agent workflow (Ruby)",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `require 'faraday'
+require 'json'
+
+def get_agent_token(user_id)
+  conn = Faraday.new(url: ENV['API_BASE_URL'])
+  response = conn.post('/auth/client-user-token') do |req|
+    req.headers['Content-Type'] = 'application/json'
+    req.body = {
+      client_id:     ENV['SAGEION_APP_NAME'],
+      client_secret: ENV['SAGEION_CLIENT_SECRET'],
+      user_id:       user_id.to_s
+    }.to_json
+  end
+  JSON.parse(response.body)['token']
+end`,
+                language: "ruby",
+              },
+            ],
+          },
+        ],
       },
 
       // ============================================================
-      // OTP / SECONDARY AUTH
+      // 2. OTP ENDPOINTS
       // ============================================================
       {
-        tag_type: "h3",
-        text: "OTP (secondary authentication)",
-        selector_uid: "v2_backend_otp",
+        tag_type: "h4",
+        text: "2. OTP endpoints (/auth/send-otp, /auth/verify-otp)",
+        selector_uid: "v2_agent_otp",
       },
       {
         tag_type: "p",
-        text: "Sageion's workflow builder supports an OTP step, useful when an action needs a second factor of confirmation — for example, cancelling a booking over chat. Two endpoints back this flow.",
+        text: "Two endpoints back an OTP flow, useful when an action triggered from chat needs a second factor of confirmation — for example, cancelling a booking.",
       },
       {
         tag_type: "callout",
@@ -626,40 +1438,228 @@ async function getAgentToken(userId) {
         children: [
           {
             tag_type: "p",
-            text: "These OTP endpoints are for verifying one-off actions. They are separate from your main login flow and do not issue a session token.",
+            text: "These endpoints verify one-off actions. They are separate from your main login flow and do not issue a session token.",
           },
         ],
       },
 
+      // -------- /send-otp --------
       {
-        tag_type: "h4",
-        text: "1. Send OTP",
-      },
-      {
-        tag_type: "code_with_copy",
-        code: "POST /auth/send-otp",
-        language: "http",
+        tag_type: "h5",
+        text: "2a. Send OTP — POST /auth/send-otp",
       },
       {
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["email", "string", "Yes", "Email address the OTP will be associated with."],
+          ["email", "string", "Yes", "Email address the OTP is associated with."],
         ],
       },
       {
         tag_type: "p",
-        text: "Generates a 6-digit OTP, stores it against the email, and expires it after 5 minutes. The current reference implementation logs the OTP — plug in your own email provider to deliver it.",
+        text: "Generates a 6-digit OTP, stores it against the email, and expires it after 5 minutes. The reference implementation logs the OTP — plug in your own email provider for delivery.",
+      },
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "Response contract — required fields",
+        children: [
+          {
+            tag_type: "table",
+            headers: ["Field", "Type", "Required", "Why it matters"],
+            rows: [
+              ["success", "boolean", "Yes", "The workflow engine checks this to decide whether to proceed to the verification step."],
+            ],
+          },
+          {
+            tag_type: "p",
+            text: "Return this object at the top level with HTTP 200. If sending fails (bad email, provider outage), return HTTP 400 or 500 — do not return 200 with success: false, because the workflow engine treats 2xx as authoritative.",
+          },
+        ],
+      },
+      {
+        tag_type: "h5",
+        text: "Reference implementation by language — /send-otp",
+      },
+      {
+        tag_type: "tabs",
+        items: [
+          {
+            label: "Node.js",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `// routes/auth.js — send OTP
+router.post('/send-otp', [
+  body('email').isEmail().normalizeEmail(),
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+  const { email } = req.body;
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 min
+
+  try {
+    await pool.query(
+      \`INSERT INTO otps (email, otp, expires_at) VALUES ($1, $2, $3)
+       ON CONFLICT (email) DO UPDATE SET otp = $2, expires_at = $3\`,
+      [email, otp, expiresAt]
+    );
+    // TODO: send via your email provider
+    console.log(\`[OTP] Sent OTP \${otp} to \${email}\`);
+    res.json({ success: true, message: 'OTP sent' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});`,
+                language: "javascript",
+              },
+            ],
+          },
+          {
+            label: "Python",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `import random
+from datetime import datetime, timedelta
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel, EmailStr
+
+router = APIRouter()
+
+
+class SendOtpBody(BaseModel):
+    email: EmailStr
+
+
+@router.post("/send-otp")
+async def send_otp(body: SendOtpBody):
+    otp = f"{random.randint(100000, 999999)}"
+    expires_at = datetime.utcnow() + timedelta(minutes=5)
+
+    await upsert_otp(body.email, otp, expires_at)   # your own DB helper
+
+    # TODO: send via your email provider
+    print(f"[OTP] Sent OTP {otp} to {body.email}")
+    return {"success": True, "message": "OTP sent"}`,
+                language: "python",
+              },
+            ],
+          },
+          {
+            label: "Go",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `package auth
+
+import (
+    "encoding/json"
+    "fmt"
+    "math/rand"
+    "net/http"
+    "time"
+)
+
+type sendOtpBody struct {
+    Email string \`json:"email"\`
+}
+
+func SendOtpHandler(w http.ResponseWriter, r *http.Request) {
+    var body sendOtpBody
+    if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+        http.Error(w, "bad request", http.StatusBadRequest)
+        return
+    }
+
+    otp := fmt.Sprintf("%06d", rand.Intn(900000)+100000)
+    expiresAt := time.Now().Add(5 * time.Minute)
+
+    if err := upsertOTP(body.Email, otp, expiresAt); err != nil {   // your own DB helper
+        http.Error(w, "server error", http.StatusInternalServerError)
+        return
+    }
+
+    // TODO: send via your email provider
+    fmt.Printf("[OTP] Sent OTP %s to %s\\n", otp, body.Email)
+
+    json.NewEncoder(w).Encode(map[string]any{
+        "success": true,
+        "message": "OTP sent",
+    })
+}`,
+                language: "go",
+              },
+            ],
+          },
+          {
+            label: "PHP",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `<?php
+// routes/api.php
+use Illuminate\\Http\\Request;
+use Illuminate\\Support\\Facades\\DB;
+use Illuminate\\Support\\Facades\\Route;
+
+Route::post('/send-otp', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $otp = str_pad((string) random_int(100000, 999999), 6, '0', STR_PAD_LEFT);
+    $expiresAt = now()->addMinutes(5);
+
+    DB::table('otps')->updateOrInsert(
+        ['email' => $request->email],
+        ['otp' => $otp, 'expires_at' => $expiresAt]
+    );
+
+    // TODO: send via your email provider
+    \\Log::info("[OTP] Sent OTP {$otp} to {$request->email}");
+
+    return response()->json(['success' => true, 'message' => 'OTP sent']);
+});`,
+                language: "php",
+              },
+            ],
+          },
+          {
+            label: "Ruby",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `# config/routes.rb
+post '/auth/send-otp', to: 'auth#send_otp'
+
+# app/controllers/auth_controller.rb
+def send_otp
+  email = params[:email]
+
+  otp = format('%06d', rand(100000..999999))
+  expires_at = Time.now + 5 * 60
+
+  Otp.upsert({ email: email, otp: otp, expires_at: expires_at },
+             unique_by: :email)
+
+  # TODO: send via your email provider
+  Rails.logger.info("[OTP] Sent OTP #{otp} to #{email}")
+
+  render json: { success: true, message: 'OTP sent' }
+end`,
+                language: "ruby",
+              },
+            ],
+          },
+        ],
       },
 
+      // -------- /verify-otp --------
       {
-        tag_type: "h4",
-        text: "2. Verify OTP",
-      },
-      {
-        tag_type: "code_with_copy",
-        code: "POST /auth/verify-otp",
-        language: "http",
+        tag_type: "h5",
+        text: "2b. Verify OTP — POST /auth/verify-otp",
       },
       {
         tag_type: "table",
@@ -673,34 +1673,295 @@ async function getAgentToken(userId) {
         tag_type: "p",
         text: "On success, returns { success: true, user_id } so the workflow can continue with the verified identity. The OTP record is deleted after verification.",
       },
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "Response contract — required fields",
+        children: [
+          {
+            tag_type: "table",
+            headers: ["Field", "Type", "Required", "Why it matters"],
+            rows: [
+              ["success", "boolean", "Yes", "The workflow engine checks this to allow the OTP-gated action to proceed."],
+              ["user_id", "string", "Yes", "The verified user's id. The workflow continues with this identity — omitting it breaks any downstream user-scoped call."],
+            ],
+          },
+          {
+            tag_type: "p",
+            text: "Return this object at the top level with HTTP 200. On verification failure, return HTTP 400 with a plain JSON body.",
+          },
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "user_id must be a string",
+        children: [
+          {
+            tag_type: "p",
+            text: "JSON numbers lose leading zeros and can be represented inconsistently across languages (JavaScript numbers, Go int64, Python int). To keep the identity check reliable, always return user_id as a JSON string — for example \"user_id\": \"12345\" — even if your database column is an integer.",
+          },
+        ],
+      },
+      {
+        tag_type: "h5",
+        text: "Reference implementation by language — /verify-otp",
+      },
+      {
+        tag_type: "tabs",
+        items: [
+          {
+            label: "Node.js",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `// routes/auth.js — verify OTP
+router.post('/verify-otp', [
+  body('email').isEmail().normalizeEmail(),
+  body('otp').isLength({ min: 6, max: 6 }).matches(/^\\d+$/),
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-      // ============================================================
-      // OPTIONAL FLOW CHECKLIST
-      // ============================================================
+  const { email, otp } = req.body;
+  try {
+    const result = await pool.query(
+      'SELECT otp, expires_at FROM otps WHERE email = $1',
+      [email]
+    );
+    if (result.rows.length === 0) {
+      return res.status(400).json({ error: 'No OTP request found' });
+    }
+    const record = result.rows[0];
+    if (record.otp !== otp) {
+      return res.status(400).json({ error: 'Invalid OTP' });
+    }
+    if (new Date() > new Date(record.expires_at)) {
+      return res.status(400).json({ error: 'OTP expired' });
+    }
+
+    const userResult = await pool.query(
+      'SELECT id FROM users WHERE email = $1', [email]
+    );
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const userId = userResult.rows[0].id;
+
+    await pool.query('DELETE FROM otps WHERE email = $1', [email]);
+
+    res.json({
+      success: true,
+      message: 'OTP verified successfully',
+      user_id: userId.toString(),
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});`,
+                language: "javascript",
+              },
+            ],
+          },
+          {
+            label: "Python",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `from datetime import datetime
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel, EmailStr
+
+router = APIRouter()
+
+
+class VerifyOtpBody(BaseModel):
+    email: EmailStr
+    otp: str
+
+
+@router.post("/verify-otp")
+async def verify_otp(body: VerifyOtpBody):
+    if not body.otp.isdigit() or len(body.otp) != 6:
+        raise HTTPException(status_code=400, detail="Invalid OTP format")
+
+    record = await fetch_otp(body.email)   # your own DB helper
+    if record is None:
+        raise HTTPException(status_code=400, detail="No OTP request found")
+    if record["otp"] != body.otp:
+        raise HTTPException(status_code=400, detail="Invalid OTP")
+    if datetime.utcnow() > record["expires_at"]:
+        raise HTTPException(status_code=400, detail="OTP expired")
+
+    user = await fetch_user_by_email(body.email)
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    await delete_otp(body.email)
+
+    return {
+        "success": True,
+        "message": "OTP verified successfully",
+        "user_id": str(user["id"]),
+    }`,
+                language: "python",
+              },
+            ],
+          },
+          {
+            label: "Go",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `package auth
+
+import (
+    "encoding/json"
+    "net/http"
+    "strconv"
+    "time"
+)
+
+type verifyOtpBody struct {
+    Email string \`json:"email"\`
+    Otp   string \`json:"otp"\`
+}
+
+func VerifyOtpHandler(w http.ResponseWriter, r *http.Request) {
+    var body verifyOtpBody
+    if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+        http.Error(w, "bad request", http.StatusBadRequest)
+        return
+    }
+    if len(body.Otp) != 6 {
+        http.Error(w, "invalid OTP format", http.StatusBadRequest)
+        return
+    }
+
+    rec, err := fetchOTP(body.Email)   // your own DB helper
+    if err != nil || rec == nil {
+        http.Error(w, "no OTP request found", http.StatusBadRequest)
+        return
+    }
+    if rec.Otp != body.Otp {
+        http.Error(w, "invalid OTP", http.StatusBadRequest)
+        return
+    }
+    if time.Now().After(rec.ExpiresAt) {
+        http.Error(w, "OTP expired", http.StatusBadRequest)
+        return
+    }
+
+    user, err := fetchUserByEmail(body.Email)
+    if err != nil || user == nil {
+        http.Error(w, "user not found", http.StatusNotFound)
+        return
+    }
+
+    _ = deleteOTP(body.Email)
+
+    json.NewEncoder(w).Encode(map[string]any{
+        "success": true,
+        "message": "OTP verified successfully",
+        "user_id": strconv.FormatInt(user.ID, 10),
+    })
+}`,
+                language: "go",
+              },
+            ],
+          },
+          {
+            label: "PHP",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `<?php
+// routes/api.php
+use Illuminate\\Http\\Request;
+use Illuminate\\Support\\Facades\\DB;
+use Illuminate\\Support\\Facades\\Route;
+
+Route::post('/verify-otp', function (Request $request) {
+    $request->validate([
+        'email' => 'required|email',
+        'otp'   => 'required|digits:6',
+    ]);
+
+    $record = DB::table('otps')->where('email', $request->email)->first();
+    if (!$record) {
+        return response()->json(['error' => 'No OTP request found'], 400);
+    }
+    if ($record->otp !== $request->otp) {
+        return response()->json(['error' => 'Invalid OTP'], 400);
+    }
+    if (now()->greaterThan($record->expires_at)) {
+        return response()->json(['error' => 'OTP expired'], 400);
+    }
+
+    $user = \\App\\Models\\User::where('email', $request->email)->first();
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    DB::table('otps')->where('email', $request->email)->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'OTP verified successfully',
+        'user_id' => (string) $user->id,
+    ]);
+});`,
+                language: "php",
+              },
+            ],
+          },
+          {
+            label: "Ruby",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `# config/routes.rb
+post '/auth/verify-otp', to: 'auth#verify_otp'
+
+# app/controllers/auth_controller.rb
+def verify_otp
+  email = params[:email]
+  otp   = params[:otp]
+
+  return render json: { error: 'Invalid OTP format' }, status: :bad_request unless otp&.match?(/^\\d{6}$/)
+
+  record = Otp.find_by(email: email)
+  return render json: { error: 'No OTP request found' }, status: :bad_request unless record
+  return render json: { error: 'Invalid OTP' }, status: :bad_request unless record.otp == otp
+  return render json: { error: 'OTP expired' }, status: :bad_request if Time.now > record.expires_at
+
+  user = User.find_by(email: email)
+  return render json: { error: 'User not found' }, status: :not_found unless user
+
+  record.destroy
+
+  render json: {
+    success: true,
+    message: 'OTP verified successfully',
+    user_id: user.id.to_s
+  }
+end`,
+                language: "ruby",
+              },
+            ],
+          },
+        ],
+      },
+
       {
         tag_type: "callout",
         type: "success",
-        title: "✅ AI Agent Binding checklist",
+        title: "✅ You're done with the base integration",
         children: [
           {
-            tag_type: "ol",
-            items: [
-              {
-                text: "Store SAGEION_CLIENT_SECRET in your server environment only — never in the browser.",
-              },
-              {
-                text: "Only fetch client-user-token after the user has authenticated with your own auth — the endpoint does not validate your session.",
-              },
-              {
-                text: "Cache the agent token per user for up to expires_in seconds to avoid minting a new one for every agent action.",
-              },
-              {
-                text: "Treat OTP endpoints as a second factor for specific actions, not as your login flow.",
-              },
-              {
-                text: "Log the session_id when you use it, so agent actions can be traced back to the originating chat session.",
-              },
-            ],
+            tag_type: "p",
+            text: "Everything above the \"AI Agent → Your Backend\" section is what you need to get Sageion working. Everything from that section onward is additive — nothing there is required for the chat box to work.",
           },
         ],
       },
