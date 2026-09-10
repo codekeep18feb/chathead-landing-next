@@ -190,8 +190,9 @@ export const clientIntegration = [
         }
       }
 
-      await window.magicchat_io.initialize(payload);
-      console.log("Sageion ready. Status:", window.magicchat_io.getSetupStatus());
+      [[[await window.magicchat_io.initialize(payload);]]]
+
+      [[[console.log("Sageion ready. Status:", window.magicchat_io.getSetupStatus());]]]
     } catch (err) {
       // The SDK already rendered an error popup. Log for diagnostics only.
       console.error("[Sageion] bootstrap failed:", err);
@@ -348,7 +349,7 @@ export const clientIntegration = [
                         tag_type: "code_with_copy",
                         code: `<script>
   window.__sageionSetup
-    .then(payload => window.magicchat_io.initialize(payload))
+    [[[.then(payload => window.magicchat_io.initialize(payload))]]]
     .then(() => console.log("[Sageion] ready"))
     .catch(err => console.error("[Sageion] bootstrap failed:", err));
 </script>`,
@@ -420,7 +421,7 @@ export const clientIntegration = [
                         tag_type: "code_with_copy",
                         code: `<script>
   window.__sageionSetup
-    .then(payload => window.magicchat_io.initialize(payload))
+    [[[.then(payload => window.magicchat_io.initialize(payload))]]]
     .catch(err => console.error("[Sageion] bootstrap failed:", err));
 </script>`,
                         language: "javascript",
@@ -462,9 +463,16 @@ export const clientIntegration = [
   let cancelled = false;
   (async () => {
     try {
-      await window.magicchat_io.setUp("[[your_app_name]]", "[[YOUR_API_KEY]]", "[[US]]", "[[sageion-chat-root]]");
+      [[[await window.magicchat_io.setUp(
+        "your_app_name",
+        "YOUR_API_KEY",
+        "US",
+        "sageion-chat-root"
+      );]]]
+
       const payload = await resolveUid(); // your own helper
-      if (!cancelled) await window.magicchat_io.initialize(payload);
+
+      if (!cancelled) [[[await window.magicchat_io.initialize(payload);]]]
     } catch (err) {
       console.error("[Sageion] bootstrap failed:", err);
     }
@@ -532,12 +540,12 @@ export const clientIntegration = [
         tag_type: "code_with_copy",
         code: `// After a successful login (no page reload):
 async function onLogin(user) {
-  await window.magicchat_io.initialize({ uid: user.id.toString() });
+  [[[await window.magicchat_io.initialize({ uid: user.id.toString() });]]]
 }
 
 // On logout:
 function onLogout() {
-  window.magicchat_io.logout();  // clears SDK storage, disconnects sockets, resets state
+  [[[window.magicchat_io.logout();]]]  // clears SDK storage, disconnects sockets, resets state
   // To re-open the chat as anonymous immediately:
   // await window.magicchat_io.initialize();
 }`,
