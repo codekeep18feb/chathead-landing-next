@@ -115,17 +115,21 @@ const supportedTags = [
 ];
 
 const renderTextWithElements = (text, linkParts) => {
-  if (!linkParts) return text;
+  if (!text || !linkParts?.length) {
+    return text;
+  }
 
   const parts = [];
   let lastIndex = 0;
 
   linkParts.forEach((part, index) => {
     const startIndex = text.indexOf(part.text, lastIndex);
+
     if (startIndex > -1) {
       if (startIndex > lastIndex) {
         parts.push(text.substring(lastIndex, startIndex));
       }
+
       parts.push(
         <a
           key={`link-${index}`}
@@ -134,8 +138,9 @@ const renderTextWithElements = (text, linkParts) => {
           rel="noopener noreferrer"
         >
           {part.text}
-        </a>,
+        </a>
       );
+
       lastIndex = startIndex + part.text.length;
     }
   });
@@ -448,7 +453,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const onLinkClick = useContext(SidebarLinkContext);
 
   const [expanded, setExpanded] = useState(
-    item.default_expanded !== undefined ? item.default_expanded : depth < 1
+    item.default_expanded !== undefined ? item.default_expanded : depth < 1,
   );
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
@@ -539,7 +544,10 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
             <div className={styles.contentHeaderWrap}>
               {item.text && (
                 <div>
-                  <span>{item.text}</span>
+                  {/* <span>{item.text}</span> */}
+                  <span>
+      {renderTextWithElements(item.text, item.link_parts)}
+    </span>
                 </div>
               )}
               {(isCollapsible || shouldShowDownIcon) && (
@@ -872,8 +880,7 @@ const ContentRenderer = ({ content }) => {
               <li key={index} className={styles["content-list-item"]}>
                 <div className={styles.sidebarLi}>
                   {item.text && <span>{item.text}</span>}
-
-                  {hasSubItems && (
+                   {hasSubItems && (
                     <span
                       onClick={() => setIsExpanded(!isExpanded)}
                       className={`${styles["expand-icon"]} ${

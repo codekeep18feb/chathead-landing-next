@@ -62,8 +62,9 @@
 
 .tab-buttons .tab-button {
   flex: 1;
-  min-width: 100px;
-  white-space: nowrap;
+  min-width: 160px;
+  white-space: normal;
+  line-height: 1.4;
 }
 
 .tab-content {
@@ -717,6 +718,15 @@
   top: 0;
   color: var(--dark-color);
   font-weight: normal;
+}
+.sidebarLi a {
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sidebarLi a:hover {
+  color: #1d4ed8;
 }
 
 /* ============================================ */
