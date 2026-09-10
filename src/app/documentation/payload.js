@@ -113,7 +113,7 @@ const payload = {
                         {
                           tag_type: "code",
                           show_copy: true,
-                          text: '<script src="https://sageion-core.github.io/prod-ssc-client-cdns/bundle.js">\n</script>',
+                          text: '<script src="https://magicchat-core.github.io/dev-ssc-client-cdns/bundle.js">\n</script>',
                         },
                       ],
                     },
@@ -707,7 +707,7 @@ const payload = {
     // ============================================================
     {
       tag_type: "div",
-      className:"abc",
+      className: "abc",
       children: [
         {
           tag_type: "h2",
@@ -749,7 +749,7 @@ const payload = {
         {
           tag_type: "h4",
           text: "Global Tenant Settings",
-          selector_uid: "v2_global_tenant_settings" ,
+          selector_uid: "v2_global_tenant_settings",
         },
         {
           tag_type: "p",
