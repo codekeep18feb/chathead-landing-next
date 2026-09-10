@@ -801,6 +801,650 @@ window.magicchat_io.logout?.();
       },
 
       // ============================================================
+      // ASYNC APIs: X-CORRELATION-ID + WEBHOOK
+      // ============================================================
+      {
+        tag_type: "h3",
+        text: "APIs the AI agent can call — sync vs. async",
+        selector_uid: "v2_backend_async_correlation",
+      },
+      {
+        tag_type: "p",
+        text: "Every API you register with Sageion falls into one of two categories, depending on how quickly it can produce its final result. Pick the one that matches the nature of the endpoint — most APIs are synchronous, and you only reach for async when the final result genuinely cannot be produced within the request lifecycle.",
+      },
+
+      // -------- At-a-glance comparison --------
+      {
+        tag_type: "table",
+        headers: ["", "Synchronous (default)", "Asynchronous (Async Callback enabled)"],
+        rows: [
+          [
+            "When to use",
+            "The endpoint can compute and return the final result within a few seconds of the request.",
+            "The endpoint cannot produce the final result immediately — it depends on a payment gateway, an approval, a background job, or an external event.",
+          ],
+          [
+            "How the agent gets the result",
+            "Reads it from the HTTP response body.",
+            "Waits for your backend to POST the final result to Sageion's webhook callback URL.",
+          ],
+          [
+            "What your handler does",
+            "Does the work, returns the final result.",
+            "Acknowledges the request, kicks off the work, returns early — then POSTs the final result via webhook when it's ready.",
+          ],
+          [
+            "What Sageion sends",
+            "Nothing extra.",
+            "An x-correlation-id header on the initial request.",
+          ],
+          [
+            "Where the config lives",
+            "Nothing to configure — this is the default.",
+            "Enable Async Callback when registering the API in the Sageion Admin Panel.",
+          ],
+        ],
+      },
+
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "One endpoint, one nature",
+        children: [
+          {
+            tag_type: "p",
+            text: "An endpoint is either synchronous or asynchronous — it does not switch between the two at runtime. The example code below uses an if (correlation_id) branch purely to illustrate both paths on one screen; a real integration picks one and sticks with it. If your API is synchronous, you never read x-correlation-id. If it's asynchronous, Sageion always sends it (because you enabled Async Callback for that API) and your handler always uses it.",
+          },
+        ],
+      },
+
+      // -------- Path A: synchronous --------
+      {
+        tag_type: "h4",
+        text: "Path A — Synchronous API",
+        selector_uid: "v2_backend_sync_path",
+      },
+      {
+        tag_type: "p",
+        text: "You write your handler exactly as you would for any normal API. Sageion calls your endpoint, waits for the response, and uses the body as the final result. No special headers to read, no webhook to post — nothing.",
+      },
+      {
+        tag_type: "code_with_copy",
+        code: `// Example: a bookings endpoint that confirms the reservation inline.
+// This is what a synchronous API looks like — no correlation_id, no webhook.
+
+router.post('/bookings', [...validators], async (req, res) => {
+  const { room_id, check_in, check_out } = req.body;
+  const user_id = req.user.userId;
+
+  // Do the work and return the final result. That's it.
+  const booking = await createBooking(user_id, room_id, check_in, check_out);
+  res.status(201).json({
+    success: true,
+    booking_id: booking.id,
+    status: booking.status,
+  });
+});`,
+        language: "javascript",
+      },
+      {
+        tag_type: "callout",
+        type: "success",
+        title: "You're done",
+        children: [
+          {
+            tag_type: "p",
+            text: "If your API is synchronous, that's all you need to know. Everything that follows in this section is for the async case only.",
+          },
+        ],
+      },
+
+      // -------- Path B: asynchronous --------
+      {
+        tag_type: "h4",
+        text: "Path B — Asynchronous API (Async Callback enabled)",
+        selector_uid: "v2_backend_async_path",
+      },
+      {
+        tag_type: "p",
+        text: "You register the API in the Sageion Admin Panel with Async Callback enabled. From then on, Sageion attaches an x-correlation-id header to every request to that endpoint and treats your initial response as an acknowledgment, not as the final answer.",
+      },
+
+      // -------- When to use async --------
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "🔄 When async is the right choice",
+        children: [
+          {
+            tag_type: "ul",
+            items: [
+              {
+                text: "The action depends on a payment gateway — the user pays, then the gateway confirms minutes later.",
+              },
+              {
+                text: "The action depends on a human approval that happens out-of-band (a manager clicks approve).",
+              },
+              {
+                text: "The action kicks off a multi-step workflow in your own system whose completion is signalled by a separate event.",
+              },
+              {
+                text: "The action needs to send the user an email or SMS and wait for a response before it can produce a final result.",
+              },
+            ],
+          },
+          {
+            tag_type: "p",
+            text: "If none of these apply — if your backend can compute the final result by the time the request handler returns — use the synchronous path instead. Async adds complexity, and there's no reason to reach for it prematurely.",
+          },
+        ],
+      },
+
+      // -------- The flow --------
+      {
+        tag_type: "h5",
+        text: "How the async flow works",
+      },
+      {
+        tag_type: "steps",
+        items: [
+          {
+            title: "Sageion sends the request with x-correlation-id",
+            content: [
+              {
+                tag_type: "p",
+                text: "Because the API is configured with Async Callback enabled, Sageion attaches an x-correlation-id header to every call. This header is the only thing that distinguishes an async-configured call from a synchronous one.",
+              },
+            ],
+          },
+          {
+            title: "Your handler acknowledges the request and kicks off the work",
+            content: [
+              {
+                tag_type: "p",
+                text: "Read req.headers['x-correlation-id'], start whatever needs to happen (send a payment link, queue a job, notify another service), and respond immediately — usually with HTTP 202 and any interim data the user should see. Do not wait for the async work to complete inside the handler.",
+              },
+            ],
+          },
+          {
+            title: "Later — when the work completes — your backend POSTs to Sageion's webhook",
+            content: [
+              {
+                tag_type: "p",
+                text: "Once the async operation finishes (payment confirmed, job complete, external system replied), your backend — or the external service's own webhook handler in your code — POSTs a JSON body containing the same correlation_id and the final data to Sageion's webhook callback URL.",
+              },
+            ],
+          },
+          {
+            title: "Sageion matches the correlation_id and resumes the workflow",
+            content: [
+              {
+                tag_type: "p",
+                text: "The workflow engine pairs the callback with the original request, resumes execution, and passes the data you sent into the next step.",
+              },
+            ],
+          },
+        ],
+      },
+
+      // -------- Header reference --------
+      {
+        tag_type: "h5",
+        text: "Request header: x-correlation-id",
+      },
+      {
+        tag_type: "table",
+        headers: ["Header", "Type", "Description"],
+        rows: [
+          ["x-correlation-id", "string", "Sent by Sageion on every request to an API configured with Async Callback. Your handler reads it and echoes it back in the webhook payload so the callback can be matched to the original request."],
+        ],
+      },
+
+      // -------- Webhook contract --------
+      {
+        tag_type: "h5",
+        text: "Webhook callback contract",
+      },
+      {
+        tag_type: "code_with_copy",
+        code: "POST https://{region}.autobot2.tezkit.com/dev/webhook/callback",
+        language: "http",
+      },
+      {
+        tag_type: "p",
+        text: "This is Sageion's webhook receiver. Your backend posts here when the async operation completes. The URL and environment suffix vary by region — use the one configured in your Admin Panel's webhook settings.",
+      },
+      {
+        tag_type: "table",
+        headers: ["Field", "Type", "Required", "Description"],
+        rows: [
+          ["correlation_id", "string", "Yes", "The exact x-correlation-id value Sageion sent in the original request. Used to match the callback to the workflow step."],
+          ["data", "object", "Yes", "The final payload the workflow engine should receive as the API response. Any JSON shape is allowed — Sageion passes it through to the next step."],
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "Response format is a contract — match it exactly",
+        children: [
+          {
+            tag_type: "ul",
+            items: [
+              {
+                text: "correlation_id must be the verbatim string from the request header. Do not reformat, prefix, or wrap it.",
+              },
+              {
+                text: "data must be a top-level object, not a string. Wrapping the payload in JSON.stringify() before posting will break parsing.",
+              },
+              {
+                text: "The webhook POST should return 2xx. Sageion retries on non-2xx responses, so return 200 immediately after your handler acknowledges the callback — do not delay on downstream work.",
+              },
+              {
+                text: "Extra top-level fields beyond correlation_id and data are ignored.",
+              },
+            ],
+          },
+        ],
+      },
+
+      // -------- Worked example: booking --------
+      {
+        tag_type: "h5",
+        text: "Worked example — a booking that waits on payment",
+      },
+      {
+        tag_type: "p",
+        text: "Consider a hotel booking API. When the user asks to book a room, the API does not confirm the booking immediately — instead, it emails a payment link. The booking only becomes confirmed once the payment gateway reports success, which happens minutes later. This is the textbook case for async: the final result genuinely cannot be produced within the request lifecycle.",
+      },
+      {
+        tag_type: "p",
+        text: "Below are the same booking endpoint written both ways, so you can see exactly where the async pattern diverges. The synchronous version confirms the booking inline and returns. The async version acknowledges the request, sends the payment link, and produces the final result later via the payment provider's webhook handler.",
+      },
+
+      {
+        tag_type: "tabs",
+        items: [
+          {
+            label: "Synchronous version",
+            content: [
+              {
+                tag_type: "p",
+                text: "The endpoint does everything up front and returns the confirmed booking. Sageion reads the result from the HTTP response body. No x-correlation-id is present, no webhook is involved.",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `// routes/bookings.js — SYNC booking (confirms immediately)
+router.post('/', [...validators], async (req, res) => {
+  const { room_id, check_in, check_out } = req.body;
+  const user_id = req.user.userId;
+
+  // Do all the work now and return the final result.
+  const booking = await createBooking(user_id, room_id, check_in, check_out);
+
+  res.status(201).json({
+    success: true,
+    booking_id: booking.id,
+    status: 'confirmed',
+  });
+});`,
+                language: "javascript",
+              },
+            ],
+          },
+          {
+            label: "Asynchronous version",
+            content: [
+              {
+                tag_type: "p",
+                text: "The endpoint creates a pending booking, sends the user a payment link, and returns immediately. The final confirmation comes later — driven by the payment gateway's webhook hitting a separate handler in your backend, which then POSTs to Sageion's webhook callback.",
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `// routes/bookings.js — ASYNC booking (waits on payment)
+const axios = require('axios');
+
+router.post('/', [...validators], async (req, res) => {
+  const correlation_id = req.headers['x-correlation-id']; // always present (Async Callback is on)
+  const { room_id, check_in, check_out } = req.body;
+  const user_id = req.user.userId;
+
+  // 1. Create the booking in a pending state.
+  const booking = await createPendingBooking(user_id, room_id, check_in, check_out);
+
+  // 2. Send the user a payment link.
+  const paymentLink = await createPaymentLink(booking.id, booking.total_price);
+
+  // 3. Remember the correlation_id so the payment webhook can use it later.
+  //    (store it against the booking in your DB)
+  await attachCorrelationId(booking.id, correlation_id);
+
+  // 4. Acknowledge the request and return immediately.
+  res.status(202).json({
+    success: true,
+    booking_id: booking.id,
+    status: 'pending_payment',
+    payment_link: paymentLink,
+  });
+});
+
+
+// A SEPARATE handler — the payment gateway calls this when payment succeeds.
+// It looks up the original correlation_id, then posts the final result to Sageion.
+router.post('/payments/webhook', async (req, res) => {
+  const { booking_id, status } = req.body; // shape depends on your payment provider
+
+  if (status !== 'success') {
+    return res.json({ ok: true }); // acknowledge and move on
+  }
+
+  const booking = await confirmBooking(booking_id); // update your DB
+  const correlation_id = await getCorrelationIdForBooking(booking_id);
+
+  if (correlation_id) {
+    await axios.post(
+      \`https://\${process.env.SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback\`,
+      {
+        correlation_id: correlation_id,
+        data: {
+          success: true,
+          booking_id: booking.id,
+          status: 'confirmed',
+        },
+      }
+    );
+  }
+
+  res.json({ ok: true });
+});`,
+                language: "javascript",
+              },
+              {
+                tag_type: "callout",
+                type: "info",
+                title: "Where the webhook call lives",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "Notice the Sageion webhook callback is posted from the payment provider's webhook handler — not from the original POST /bookings handler. That's the whole point of the async pattern: the request Sageion initiated finishes fast, and the final result arrives through a different code path entirely.",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+
+      // -------- Language tabs: async handler shapes --------
+      {
+        tag_type: "h5",
+        text: "Async handler — reference implementations",
+      },
+      {
+        tag_type: "p",
+        text: "The concept is identical across languages: read x-correlation-id, return early, then POST the final result to Sageion's webhook callback when the async work finishes. Below are minimal reference implementations.",
+      },
+      {
+        tag_type: "tabs",
+        items: [
+          {
+            label: "Node.js",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `// routes/orders.js — async order submission
+const axios = require('axios');
+
+router.post('/orders', async (req, res) => {
+  const correlation_id = req.headers['x-correlation-id'];
+
+  // Kick off the long-running work (queue a job, call an external system).
+  const order = await createPendingOrder(req.body);
+  await attachCorrelationId(order.id, correlation_id);
+
+  // Return early.
+  res.status(202).json({ success: true, order_id: order.id, status: 'processing' });
+
+  // ... elsewhere, when the work finishes:
+  // await axios.post(
+  //   \`https://\${process.env.SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback\`,
+  //   {
+  //     correlation_id,
+  //     data: { success: true, order_id: order.id, status: 'completed' },
+  //   }
+  // );
+});`,
+                language: "javascript",
+              },
+            ],
+          },
+          {
+            label: "Python",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `import os
+import httpx
+from fastapi import APIRouter, Request, Response
+
+router = APIRouter()
+
+SAGEION_REGION = os.environ["SAGEION_REGION"]
+
+
+@router.post("/orders")
+async def create_order(request: Request):
+    correlation_id = request.headers.get("x-correlation-id")
+
+    body = await request.json()
+    order = await create_pending_order(body)     # your own function
+    await attach_correlation_id(order.id, correlation_id)
+
+    # Return early — do not wait for the async work to finish.
+    return Response(
+        content=f'{{"success":true,"order_id":"{order.id}","status":"processing"}}',
+        status_code=202,
+        media_type="application/json",
+    )
+
+
+async def deliver_webhook(correlation_id: str, order_id: int):
+    """Call this from wherever the async work completes."""
+    url = f"https://{SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback"
+    async with httpx.AsyncClient(timeout=5.0) as client:
+        await client.post(url, json={
+            "correlation_id": correlation_id,
+            "data": {
+                "success": True,
+                "order_id": order_id,
+                "status": "completed",
+            },
+        })`,
+                language: "python",
+              },
+            ],
+          },
+          {
+            label: "Go",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `package orders
+
+import (
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "net/http"
+    "os"
+    "time"
+)
+
+func CreateOrderHandler(w http.ResponseWriter, r *http.Request) {
+    correlationID := r.Header.Get("x-correlation-id")
+
+    order := createPendingOrder(r)                 // your own function
+    attachCorrelationID(order.ID, correlationID)   // your own function
+
+    // Return early.
+    w.WriteHeader(http.StatusAccepted)
+    json.NewEncoder(w).Encode(map[string]any{
+        "success":  true,
+        "order_id": order.ID,
+        "status":   "processing",
+    })
+}
+
+// Call this from wherever the async work completes.
+func DeliverWebhook(correlationID string, orderID int64) error {
+    url := fmt.Sprintf(
+        "https://%s.autobot2.tezkit.com/dev/webhook/callback",
+        os.Getenv("SAGEION_REGION"),
+    )
+    payload, _ := json.Marshal(map[string]any{
+        "correlation_id": correlationID,
+        "data": map[string]any{
+            "success":  true,
+            "order_id": orderID,
+            "status":   "completed",
+        },
+    })
+    req, _ := http.NewRequest("POST", url, bytes.NewReader(payload))
+    req.Header.Set("Content-Type", "application/json")
+
+    client := &http.Client{Timeout: 5 * time.Second}
+    resp, err := client.Do(req)
+    if err != nil { return err }
+    defer resp.Body.Close()
+    return nil
+}`,
+                language: "go",
+              },
+            ],
+          },
+          {
+            label: "PHP",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `<?php
+// routes/api.php
+use Illuminate\\Http\\Request;
+use Illuminate\\Support\\Facades\\Http;
+use Illuminate\\Support\\Facades\\Route;
+
+Route::post('/orders', function (Request $request) {
+    $correlationId = $request->header('x-correlation-id');
+
+    $order = create_pending_order($request->all());   // your own function
+    attach_correlation_id($order->id, $correlationId);
+
+    // Return early.
+    return response()->json([
+        'success'  => true,
+        'order_id' => $order->id,
+        'status'   => 'processing',
+    ], 202);
+});
+
+// Call this from wherever the async work completes.
+function deliver_webhook(string $correlationId, int $orderId): void {
+    Http::timeout(5)->post(
+        sprintf('https://%s.autobot2.tezkit.com/dev/webhook/callback',
+                env('SAGEION_REGION')),
+        [
+            'correlation_id' => $correlationId,
+            'data' => [
+                'success'  => true,
+                'order_id' => $orderId,
+                'status'   => 'completed',
+            ],
+        ]
+    );
+}`,
+                language: "php",
+              },
+            ],
+          },
+          {
+            label: "Ruby",
+            content: [
+              {
+                tag_type: "code_with_copy",
+                code: `# config/routes.rb
+post '/orders', to: 'orders#create'
+
+# app/controllers/orders_controller.rb
+class OrdersController < ApplicationController
+  def create
+    correlation_id = request.headers['x-correlation-id']
+
+    order = create_pending_order(params)          # your own method
+    attach_correlation_id(order.id, correlation_id)
+
+    # Return early.
+    render json: {
+      success:  true,
+      order_id: order.id,
+      status:   'processing'
+    }, status: :accepted
+  end
+end
+
+# Call this from wherever the async work completes.
+def deliver_webhook(correlation_id, order_id)
+  conn = Faraday.new(url: "https://#{ENV['SAGEION_REGION']}.autobot2.tezkit.com")
+  conn.post('/dev/webhook/callback') do |req|
+    req.headers['Content-Type'] = 'application/json'
+    req.body = {
+      correlation_id: correlation_id,
+      data: {
+        success:  true,
+        order_id: order_id,
+        status:   'completed'
+      }
+    }.to_json
+  end
+end`,
+                language: "ruby",
+              },
+            ],
+          },
+        ],
+      },
+
+      // -------- Checklist --------
+      {
+        tag_type: "callout",
+        type: "success",
+        title: "✅ Checklist for async APIs",
+        children: [
+          {
+            tag_type: "ol",
+            items: [
+              {
+                text: "Enable Async Callback in the Sageion Admin Panel when you register the API. Without this, Sageion sends no x-correlation-id and your handler will not know a webhook is expected.",
+              },
+              {
+                text: "Read x-correlation-id at the very top of the handler, before any branch that could return early.",
+              },
+              {
+                text: "Persist the correlation_id alongside the entity the async work is about (order, booking, job). You will need it in a completely different request later.",
+              },
+              {
+                text: "Respond to the initial request quickly — 2xx with any interim data. Do not wait for the async work inside the original handler.",
+              },
+              {
+                text: "When the async work finishes, POST to Sageion's webhook callback with the same correlation_id, verbatim, and a data object containing the final result.",
+              },
+              {
+                text: "Log the correlation_id at every step of your pipeline. It is the only way to correlate Sageion's original request with your eventual callback.",
+              },
+            ],
+          },
+        ],
+      },
+
+      // ============================================================
       // ENVIRONMENT VARIABLES
       // ============================================================
       {
@@ -816,10 +1460,11 @@ window.magicchat_io.logout?.();
         tag_type: "table",
         headers: ["Variable", "Example", "Used for"],
         rows: [
-          ["SAGEION_REGION", "us", "Regional prefix in the onboarding URL."],
+          ["SAGEION_REGION", "us", "Regional prefix in the onboarding URL and webhook callback URL."],
           ["SAGEION_APP_NAME", "ai_chatbot_system", "Identifies your Sageion app in onboarding and agent-token requests."],
           ["SAGEION_REST_API_KEY", "your_rest_api_key", "X-API-Key header for onboarding."],
           ["SAGEION_CLIENT_SECRET", "your_client_secret", "Verifies client credentials on /client-user-token (only needed if you enable the optional AI agent section below). Never expose to the browser."],
+          ["WEBHOOK_CALLBACK_URL", "https://us.autobot2.tezkit.com/dev/webhook/callback", "Where your backend posts async results for APIs configured with webhook enabled."],
         ],
       },
 
@@ -862,11 +1507,11 @@ window.magicchat_io.logout?.();
       },
 
       // ============================================================
-      // OPTIONAL: AI AGENT → YOUR BACKEND
+      // OPTIONAL: BINDING THE AI AGENT TO A USER
       // ============================================================
       {
         tag_type: "h3",
-        text: "AI Agent → Your Backend (Optional)",
+        text: "Binding the AI agent to a user for authenticated API access (Optional)",
         selector_uid: "v2_agent_integration",
       },
 
@@ -1961,7 +2606,7 @@ end`,
         children: [
           {
             tag_type: "p",
-            text: "Everything above the \"AI Agent → Your Backend\" section is what you need to get Sageion working. Everything from that section onward is additive — nothing there is required for the chat box to work.",
+            text: "Everything above the \"Binding the AI agent to a user\" section is what you need to get Sageion working. Everything from that section onward is additive — nothing there is required for the chat box to work.",
           },
         ],
       },
