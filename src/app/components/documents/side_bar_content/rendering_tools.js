@@ -1,3 +1,5 @@
+// /home/codewithreetu/Desktop/workspace/p__workspace/landingSide/chathead-landing-next/src/app/components/documents/side_bar_content/rendering_tools.js
+
 "use client";
 
 import React, {
@@ -15,7 +17,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import "./style_globle.css";
 
 // ============================================================
-// MARKER HIGHLIGHTING HELPERS
+// MARKER HIGHLIGHTING HELPERS  (from main)
 //
 // Two marker syntaxes, applicable in ANY payload string field:
 //   [[ value ]]        → inline highlight   (amber, .ph)
@@ -73,8 +75,8 @@ const MarkedText = ({ children }) => (
 );
 
 // ============================================================
-// SIDEBAR LINK CONTEXT (from parallel dev — closes mobile sidebar
-// when a nav link is clicked)
+// SIDEBAR LINK CONTEXT  (from mobile_doc)
+// Closes the mobile sidebar when a navigation link is clicked.
 // ============================================================
 export const SidebarLinkContext = createContext(null);
 
@@ -115,9 +117,9 @@ const supportedTags = [
 ];
 
 // ============================================================
-// renderTextWithElements — used by <p> tag and by ListItem text.
+// renderTextWithElements — used by <p> tag and ListItem text.
 // Plain-string segments pass through applyMarkers; link segments
-// remain React <a> nodes.
+// remain React <a> nodes. (main precedence)
 // ============================================================
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts || linkParts.length === 0) {
@@ -451,7 +453,7 @@ const Kbd = ({ keys }) => {
 };
 
 // ============================================================
-// CODE WITH COPY
+// CODE WITH COPY  (marker-aware)
 // ============================================================
 const CodeWithCopy = ({ code, language }) => {
   const [copied, setCopied] = useState(false);
@@ -595,6 +597,9 @@ const List = ({
 
 // ============================================================
 // LIST ITEM
+// Uses:
+//   • mobile_doc:  SidebarLinkContext + default_expanded
+//   • main:        renderTextWithElements + applyMarkers
 // ============================================================
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const onLinkClick = useContext(SidebarLinkContext);
@@ -778,6 +783,9 @@ const APIReferenceTable = ({ properties }) => (
 
 // ============================================================
 // CONTENT RENDERER
+// Uses:
+//   • mobile_doc:  SidebarLinkContext + stopPropagation on internal links
+//   • main:        MarkedText + applyMarkers everywhere
 // ============================================================
 const ContentRenderer = ({ content }) => {
   const onLinkClick = useContext(SidebarLinkContext);
