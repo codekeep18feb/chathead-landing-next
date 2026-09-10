@@ -818,6 +818,9 @@
   .tab-content {
     padding: 14px;
   }
+  .tabs-container{
+    margin-bottom: 0px;
+  }
 
   /* ---- Steps ---- */
   .steps {
@@ -839,6 +842,10 @@
   /* ---- Lists ---- */
   .content-list {
     padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10px;
   }
 
   .content-list li {
@@ -847,9 +854,9 @@
   }
 
   .content-list.ordered > li {
-    padding-left: 34px;
+    padding-left: 40px;
     font-size: 15px;
-    margin: 8px 0;
+    margin: 0px 0;
   }
 
   .content-list.ordered > li::before {
@@ -1074,7 +1081,7 @@
   }
 
   .content-list.ordered > li {
-    padding-left: 30px;
+    padding-left: 0px;
     font-size: 14px;
   }
 
