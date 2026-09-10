@@ -212,7 +212,7 @@ export const clientIntegration = [
                           },
                           {
                             tag_type: "code_with_copy",
-                            code: `await window.magicchat_io.setUp("[[your_app_name]]", "[[YOUR_API_KEY]]", "[[US]]");`,
+                            code: `[[[await window.magicchat_io.setUp("your_app_name", "YOUR_API_KEY", "US");]]]`,
                             language: "javascript",
                           },
                         ],

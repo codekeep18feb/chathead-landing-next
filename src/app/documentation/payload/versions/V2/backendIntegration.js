@@ -186,7 +186,7 @@ router.post('/register', [...validators], async (req, res) => {
   const user = result.rows[0];
 
   // 2. Onboard the user into Sageion (fire-and-forget)
-  try {
+  [[[try {
     const onboardingUrl = \`https://\${process.env.SAGEION_REGION}.userauth2.tezkit.com/dev/onboarding\`;
     await axios.post(
       onboardingUrl,
@@ -206,7 +206,7 @@ router.post('/register', [...validators], async (req, res) => {
     // Do NOT fail registration — the user can still log in and use your app.
     // The chat box just won't work for this user until they're onboarded.
     console.error('Sageion onboarding error:', onboardErr.message);
-  }
+  }]]]
 
   // 3. Return your own token — Sageion does not issue auth tokens
   const token = generateToken(user.id, user.email, user.role);
@@ -240,10 +240,10 @@ router.post('/register', [...validators], async (req, res) => {
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `await window.magicchat_io.onboarding(
+                        code: `[[[await window.magicchat_io.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
-);`,
+);]]]`,
                         language: "javascript",
                       },
                       {
@@ -377,7 +377,7 @@ SAGEION_APP_NAME = os.environ["SAGEION_APP_NAME"]
 SAGEION_REST_API_KEY = os.environ["SAGEION_REST_API_KEY"]
 
 
-async def onboard_user(user_id: int) -> None:
+[[[async def onboard_user(user_id: int) -> None:
     """Fire-and-forget onboarding. Never raises — logs and returns."""
     url = f"https://{SAGEION_REGION}.userauth2.tezkit.com/dev/onboarding"
     payload = {"uid": str(user_id), "app_name": SAGEION_APP_NAME}
@@ -389,7 +389,7 @@ async def onboard_user(user_id: int) -> None:
         async with httpx.AsyncClient(timeout=5.0) as client:
             await client.post(url, json=payload, headers=headers)
     except Exception as exc:
-        print(f"Sageion onboarding error for user {user_id}: {exc}")
+        print(f"Sageion onboarding error for user {user_id}: {exc}")]]]
 
 
 @router.post("/register")
@@ -398,7 +398,7 @@ async def register(body: RegisterBody):
     user = await create_user(body)          # your own function
 
     # 2. Onboard the user into Sageion (fire-and-forget)
-    await onboard_user(user.id)
+    [[[await onboard_user(user.id)]]]
 
     # 3. Return your own token — Sageion does not issue auth tokens
     token = generate_token(user.id, user.email, user.role)
@@ -416,10 +416,10 @@ async def register(body: RegisterBody):
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `await window.magicchat_io.onboarding(
+                        code: `[[[await window.magicchat_io.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
-);`,
+);]]]`,
                         language: "javascript",
                       },
                     ],
@@ -470,7 +470,7 @@ import (
     "time"
 )
 
-func onboardUser(ctx context.Context, userID int64) {
+[[[func onboardUser(ctx context.Context, userID int64) {
     url := fmt.Sprintf(
         "https://%s.userauth2.tezkit.com/dev/onboarding",
         os.Getenv("SAGEION_REGION"),
@@ -492,14 +492,14 @@ func onboardUser(ctx context.Context, userID int64) {
         return
     }
     defer resp.Body.Close()
-}
+}]]]
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
     // 1. Create the user in your own DB
     user := createUser(r)          // your own function
 
     // 2. Onboard the user into Sageion (fire-and-forget)
-    onboardUser(r.Context(), user.ID)
+    [[[onboardUser(r.Context(), user.ID)]]]
 
     // 3. Return your own token — Sageion does not issue auth tokens
     token := generateToken(user.ID, user.Email, user.Role)
@@ -518,10 +518,10 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `await window.magicchat_io.onboarding(
+                        code: `[[[await window.magicchat_io.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
-);`,
+);]]]`,
                         language: "javascript",
                       },
                     ],
@@ -576,7 +576,7 @@ public function register(Request $request)
     ]);
 
     // 2. Onboard the user into Sageion (fire-and-forget)
-    try {
+    [[[try {
         $url = sprintf(
             'https://%s.userauth2.tezkit.com/dev/onboarding',
             env('SAGEION_REGION')
@@ -591,7 +591,7 @@ public function register(Request $request)
     } catch (\\Throwable $e) {
         // Do NOT fail registration — the user can still log in.
         \\Log::error('Sageion onboarding error: ' . $e->getMessage());
-    }
+    }]]]
 
     // 3. Return your own token — Sageion does not issue auth tokens
     $token = $user->createToken('auth')->plainTextToken;
@@ -610,10 +610,10 @@ public function register(Request $request)
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `await window.magicchat_io.onboarding(
+                        code: `[[[await window.magicchat_io.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
-);`,
+);]]]`,
                         language: "javascript",
                       },
                     ],
@@ -666,7 +666,7 @@ class AuthController < ApplicationController
     )
 
     # 2. Onboard the user into Sageion (fire-and-forget)
-    begin
+    [[[begin
       url = "https://#{ENV['SAGEION_REGION']}.userauth2.tezkit.com/dev/onboarding"
       conn = Faraday.new(url: url) do |f|
         f.options.timeout = 5
@@ -682,7 +682,7 @@ class AuthController < ApplicationController
     rescue => e
       # Do NOT fail registration — the user can still log in.
       Rails.logger.error("Sageion onboarding error: #{e.message}")
-    end
+    end]]]
 
     # 3. Return your own token — Sageion does not issue auth tokens
     token = generate_token(user)
@@ -702,10 +702,10 @@ end`,
                       },
                       {
                         tag_type: "code_with_copy",
-                        code: `await window.magicchat_io.onboarding(
+                        code: `[[[await window.magicchat_io.onboarding(
   { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
   { app_name: "your_application_name" }
-);`,
+);]]]`,
                         language: "javascript",
                       },
                     ],
@@ -790,7 +790,7 @@ end`,
       {
         tag_type: "code_with_copy",
         code: `// In your client-side logout handler:
-window.magicchat_io.logout?.();
+[[[window.magicchat_io.logout?.();]]]
 
 // It:
 //   - clears all tezkit_* keys from localStorage
@@ -1104,7 +1104,7 @@ router.post('/', [...validators], async (req, res) => {
 const axios = require('axios');
 
 router.post('/', [...validators], async (req, res) => {
-  const correlation_id = req.headers['x-correlation-id']; // always present (Async Callback is on)
+  [[[const correlation_id = req.headers['x-correlation-id']; // always present (Async Callback is on)]]]
   const { room_id, check_in, check_out } = req.body;
   const user_id = req.user.userId;
 
@@ -1116,15 +1116,15 @@ router.post('/', [...validators], async (req, res) => {
 
   // 3. Remember the correlation_id so the payment webhook can use it later.
   //    (store it against the booking in your DB)
-  await attachCorrelationId(booking.id, correlation_id);
+  [[[await attachCorrelationId(booking.id, correlation_id);]]]
 
   // 4. Acknowledge the request and return immediately.
-  res.status(202).json({
+  [[[res.status(202).json({
     success: true,
     booking_id: booking.id,
     status: 'pending_payment',
     payment_link: paymentLink,
-  });
+  });]]]
 });
 
 
@@ -1138,10 +1138,10 @@ router.post('/payments/webhook', async (req, res) => {
   }
 
   const booking = await confirmBooking(booking_id); // update your DB
-  const correlation_id = await getCorrelationIdForBooking(booking_id);
+  [[[const correlation_id = await getCorrelationIdForBooking(booking_id);]]]
 
   if (correlation_id) {
-    await axios.post(
+    [[[await axios.post(
       \`https://\${process.env.SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback\`,
       {
         correlation_id: correlation_id,
@@ -1151,7 +1151,7 @@ router.post('/payments/webhook', async (req, res) => {
           status: 'confirmed',
         },
       }
-    );
+    );]]]
   }
 
   res.json({ ok: true });
@@ -1195,23 +1195,23 @@ router.post('/payments/webhook', async (req, res) => {
 const axios = require('axios');
 
 router.post('/orders', async (req, res) => {
-  const correlation_id = req.headers['x-correlation-id'];
+  [[[const correlation_id = req.headers['x-correlation-id'];]]]
 
   // Kick off the long-running work (queue a job, call an external system).
   const order = await createPendingOrder(req.body);
-  await attachCorrelationId(order.id, correlation_id);
+  [[[await attachCorrelationId(order.id, correlation_id);]]]
 
   // Return early.
-  res.status(202).json({ success: true, order_id: order.id, status: 'processing' });
+  [[[res.status(202).json({ success: true, order_id: order.id, status: 'processing' });]]]
 
   // ... elsewhere, when the work finishes:
-  // await axios.post(
+  // [[[await axios.post(
   //   \`https://\${process.env.SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback\`,
   //   {
   //     correlation_id,
   //     data: { success: true, order_id: order.id, status: 'completed' },
   //   }
-  // );
+  // );]]]
 });`,
                 language: "javascript",
               },
@@ -1233,21 +1233,21 @@ SAGEION_REGION = os.environ["SAGEION_REGION"]
 
 @router.post("/orders")
 async def create_order(request: Request):
-    correlation_id = request.headers.get("x-correlation-id")
+    [[[correlation_id = request.headers.get("x-correlation-id")]]]
 
     body = await request.json()
     order = await create_pending_order(body)     # your own function
-    await attach_correlation_id(order.id, correlation_id)
+    [[[await attach_correlation_id(order.id, correlation_id)]]]
 
     # Return early — do not wait for the async work to finish.
-    return Response(
+    [[[return Response(
         content=f'{{"success":true,"order_id":"{order.id}","status":"processing"}}',
         status_code=202,
         media_type="application/json",
-    )
+    )]]]
 
 
-async def deliver_webhook(correlation_id: str, order_id: int):
+[[[async def deliver_webhook(correlation_id: str, order_id: int):
     """Call this from wherever the async work completes."""
     url = f"https://{SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback"
     async with httpx.AsyncClient(timeout=5.0) as client:
@@ -1258,7 +1258,7 @@ async def deliver_webhook(correlation_id: str, order_id: int):
                 "order_id": order_id,
                 "status": "completed",
             },
-        })`,
+        })]]]`,
                 language: "python",
               },
             ],
@@ -1280,21 +1280,21 @@ import (
 )
 
 func CreateOrderHandler(w http.ResponseWriter, r *http.Request) {
-    correlationID := r.Header.Get("x-correlation-id")
+    [[[correlationID := r.Header.Get("x-correlation-id")]]]
 
     order := createPendingOrder(r)                 // your own function
-    attachCorrelationID(order.ID, correlationID)   // your own function
+    [[[attachCorrelationID(order.ID, correlationID)]]]   // your own function
 
     // Return early.
-    w.WriteHeader(http.StatusAccepted)
+    [[[w.WriteHeader(http.StatusAccepted)
     json.NewEncoder(w).Encode(map[string]any{
         "success":  true,
         "order_id": order.ID,
         "status":   "processing",
-    })
+    })]]]
 }
 
-// Call this from wherever the async work completes.
+[[[// Call this from wherever the async work completes.
 func DeliverWebhook(correlationID string, orderID int64) error {
     url := fmt.Sprintf(
         "https://%s.autobot2.tezkit.com/dev/webhook/callback",
@@ -1316,7 +1316,7 @@ func DeliverWebhook(correlationID string, orderID int64) error {
     if err != nil { return err }
     defer resp.Body.Close()
     return nil
-}`,
+}]]]`,
                 language: "go",
               },
             ],
@@ -1333,20 +1333,20 @@ use Illuminate\\Support\\Facades\\Http;
 use Illuminate\\Support\\Facades\\Route;
 
 Route::post('/orders', function (Request $request) {
-    $correlationId = $request->header('x-correlation-id');
+    [[[$correlationId = $request->header('x-correlation-id');]]]
 
     $order = create_pending_order($request->all());   // your own function
-    attach_correlation_id($order->id, $correlationId);
+    [[[attach_correlation_id($order->id, $correlationId);]]]
 
     // Return early.
-    return response()->json([
+    [[[return response()->json([
         'success'  => true,
         'order_id' => $order->id,
         'status'   => 'processing',
-    ], 202);
+    ], 202);]]]
 });
 
-// Call this from wherever the async work completes.
+[[[// Call this from wherever the async work completes.
 function deliver_webhook(string $correlationId, int $orderId): void {
     Http::timeout(5)->post(
         sprintf('https://%s.autobot2.tezkit.com/dev/webhook/callback',
@@ -1360,7 +1360,7 @@ function deliver_webhook(string $correlationId, int $orderId): void {
             ],
         ]
     );
-}`,
+}]]]`,
                 language: "php",
               },
             ],
@@ -1376,21 +1376,21 @@ post '/orders', to: 'orders#create'
 # app/controllers/orders_controller.rb
 class OrdersController < ApplicationController
   def create
-    correlation_id = request.headers['x-correlation-id']
+    [[[correlation_id = request.headers['x-correlation-id']]]]
 
     order = create_pending_order(params)          # your own method
-    attach_correlation_id(order.id, correlation_id)
+    [[[attach_correlation_id(order.id, correlation_id)]]]
 
     # Return early.
-    render json: {
+    [[[render json: {
       success:  true,
       order_id: order.id,
       status:   'processing'
-    }, status: :accepted
+    }, status: :accepted]]]
   end
 end
 
-# Call this from wherever the async work completes.
+[[[# Call this from wherever the async work completes.
 def deliver_webhook(correlation_id, order_id)
   conn = Faraday.new(url: "https://#{ENV['SAGEION_REGION']}.autobot2.tezkit.com")
   conn.post('/dev/webhook/callback') do |req|
@@ -1404,7 +1404,7 @@ def deliver_webhook(correlation_id, order_id)
       }
     }.to_json
   end
-end`,
+end]]]`,
                 language: "ruby",
               },
             ],
