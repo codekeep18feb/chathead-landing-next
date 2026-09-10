@@ -60,6 +60,15 @@ const HeroSection = () => {
             </h1>
 
             {/* ===== NEW SUBTITLE ===== */}
+
+            <p className={styles.subtitle}>
+              Connect your backend systems. Build any agent. Deploy anywhere.
+              <br />
+              <span style={{ fontSize: "0.9em", opacity: 0.8 }}>
+                API-first architecture. No code required. No vendor lock-in.
+              </span>
+            </p>
+
             <p className={styles.tagline}>
               {(() => {
                 const [first = "", second = ""] = typedText.split("|");
@@ -115,29 +124,6 @@ const HeroSection = () => {
               })()}
             </p>
 
-            {/* ===== VALUE PROPS ===== */}
-            <div className={styles.valueProps}>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>⚡</span> Deploy in hours,
-                not months
-              </span>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🔐</span> You own your users
-                & auth
-              </span>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>💰</span> No LLM token costs
-              </span>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🔗</span> API-first
-                architecture
-              </span>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🎨</span> No-code visual
-                designer
-              </span>
-            </div>
-
             {/* ===== BUTTONS ===== */}
             <div className={styles.bannerActions}>
               <button
@@ -158,6 +144,31 @@ const HeroSection = () => {
               >
                 Try Me →
               </button>
+            </div>
+          </div>
+
+          {/* ===== VALUE PROPS ===== */}
+          <div className={styles.valueProps}>
+            <div className={styles.valuePropsTrack}>
+            <span className={styles.valueProp}>
+              <span className={styles.valueIcon}>⚡</span> Deploy in hours, not
+              months
+            </span>
+            <span className={styles.valueProp}>
+              <span className={styles.valueIcon}>🔐</span> You own your users &
+              auth
+            </span>
+            <span className={styles.valueProp}>
+              <span className={styles.valueIcon}>💰</span> No LLM token costs
+            </span>
+            <span className={styles.valueProp}>
+              <span className={styles.valueIcon}>🔗</span> API-first
+              architecture
+            </span>
+            <span className={styles.valueProp}>
+              <span className={styles.valueIcon}>🎨</span> No-code visual
+              designer
+            </span>
             </div>
           </div>
         </div>
