@@ -36,6 +36,7 @@
   max-height: calc(100vh - 100px);
   position: sticky;
   top: 0;
+  border: 2px solid red;
 }
 
 /* Remove ALL dots/bullets from sidebar lists */
@@ -288,3 +289,6 @@
 .doc_sidebar > div > div > div:last-child div h3 {
   padding: 2px 10px;
 }
+/* .reetusingh{
+  border: 3px solid green;
+} */

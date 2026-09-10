@@ -1,5 +1,6 @@
 import React from 'react';
 import ContentRenderer from './rendering_tools';
+import styels from "../../../documentation/docPageSty.module.css"
 
 export default function Sidebar({ selectedFilter }) {
   const versionType = selectedFilter?.version_type;
@@ -13,7 +14,7 @@ export default function Sidebar({ selectedFilter }) {
         children: [
           {
             tag_type: "h3",
-            text: "Integration",
+            // text: "Integration",
             className: "sidebar-section-title"
           },
           {
@@ -86,7 +87,7 @@ export default function Sidebar({ selectedFilter }) {
         children: [
           {
             tag_type: "h3",
-            text: "Platform",
+            // text: "Platform",
             className: "sidebar-section-title"
           },
           {
@@ -371,7 +372,7 @@ export default function Sidebar({ selectedFilter }) {
   };
 
   return (
-    <div>
+    <div className={styels.reetusingh}>
       {versionType && ContentByVersion[versionType] ? (
         <ContentRenderer
           key={`${versionType}`}
