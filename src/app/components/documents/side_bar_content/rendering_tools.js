@@ -16,71 +16,73 @@ import { FaLink } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import "./style_globle.css";
 
-// ✅ Context to trigger sidebar close when a navigation link is clicked
-export const SidebarLinkContext = createContext(null);
+// ============================================================
+// MARKER HIGHLIGHTING HELPERS
+//
+// Two marker syntaxes, applicable in ANY payload string field:
+//   [[ value ]]        → inline highlight   (amber, .ph)
+//   [[[ region ]]]     → block highlight    (green border, .ph-block)
+//
+// Order matters: escape HTML FIRST, then inject spans. This way any
+// `<`, `>`, `&` in the source text cannot break the HTML output, and
+// the injected spans are not double-escaped.
+// ============================================================
 
-const CondRadioRender = ({ r_options }) => {
-  const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
-  const [isMobile, setIsMobile] = useState(false);
+const escapeHtml = (s) =>
+  String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const handleOptionChange = (optionText) => {
-    setSelectedOption(optionText);
-  };
-
-  const selectedDescription = r_options.find(
-    (option) => option.text === selectedOption,
-  )?.description;
-
-  return (
-    <div className={styles.setup}>
-      {isMobile ? (
-        <div className={styles.dropdown}>
-          <select
-            value={selectedOption || ""}
-            onChange={(e) => handleOptionChange(e.target.value)}
-            className={styles["dropdown-select"]}
-          >
-            {r_options.map((option, index) => (
-              <option key={index} value={option.text}>
-                {option.text}
-              </option>
-            ))}
-          </select>
-        </div>
-      ) : (
-        <div className={styles.tabs}>
-          {r_options.map((option, index) => (
-            <button
-              key={index}
-              className={`${styles["tab-button"]} ${
-                selectedOption === option.text ? styles["active"] : ""
-              }`}
-              onClick={() => handleOptionChange(option.text)}
-            >
-              {option.text}
-            </button>
-          ))}
-        </div>
-      )}
-
-      <div className={styles.description}>
-        <ContentRenderer content={selectedDescription} />
-      </div>
-    </div>
-  );
+export const stripMarkers = (raw) => {
+  if (raw == null) return "";
+  return String(raw)
+    .replace(/\[\[\[([\s\S]*?)\]\]\]/g, "$1")
+    .replace(/\[\[(.+?)\]\]/g, "$1");
 };
 
-// Updated supported tags
+export const applyMarkers = (raw) => {
+  if (raw == null) return "";
+
+  // 1. Extract block regions first so the inline pass doesn't touch them.
+  const blocks = [];
+  const withoutBlocks = String(raw).replace(
+    /\[\[\[([\s\S]*?)\]\]\]/g,
+    (_, inner) => {
+      blocks.push(inner);
+      return `\u0000BLOCK${blocks.length - 1}\u0000`;
+    }
+  );
+
+  // 2. Escape, then apply inline markers.
+  let out = escapeHtml(withoutBlocks).replace(
+    /\[\[(.+?)\]\]/g,
+    '<span class="ph">$1</span>'
+  );
+
+  // 3. Reinsert block regions, escaped, wrapped in .ph-block.
+  out = out.replace(/\u0000BLOCK(\d+)\u0000/g, (_, idx) => {
+    const inner = escapeHtml(blocks[Number(idx)]);
+    return `<span class="ph-block">${inner}</span>`;
+  });
+
+  return out;
+};
+
+// Simple wrapper — use it anywhere you'd previously render {item.text}.
+const MarkedText = ({ children }) => (
+  <span dangerouslySetInnerHTML={{ __html: applyMarkers(children) }} />
+);
+
+// ============================================================
+// SIDEBAR LINK CONTEXT
+// Closes the mobile sidebar when a navigation link is clicked.
+// ============================================================
+export const SidebarLinkContext = createContext(null);
+
+// ============================================================
+// SUPPORTED TAGS
+// ============================================================
 const supportedTags = [
   "h1",
   "h2",
@@ -114,9 +116,14 @@ const supportedTags = [
   "strong",
 ];
 
+// ============================================================
+// renderTextWithElements — used by <p> tag and ListItem text.
+// Plain-string segments pass through applyMarkers; link segments
+// remain React <a> nodes.
+// ============================================================
 const renderTextWithElements = (text, linkParts) => {
-  if (!text || !linkParts?.length) {
-    return text;
+  if (!linkParts || linkParts.length === 0) {
+    return <span dangerouslySetInnerHTML={{ __html: applyMarkers(text) }} />;
   }
 
   const parts = [];
@@ -127,7 +134,14 @@ const renderTextWithElements = (text, linkParts) => {
 
     if (startIndex > -1) {
       if (startIndex > lastIndex) {
-        parts.push(text.substring(lastIndex, startIndex));
+        parts.push(
+          <span
+            key={`txt-${index}`}
+            dangerouslySetInnerHTML={{
+              __html: applyMarkers(text.substring(lastIndex, startIndex)),
+            }}
+          />
+        );
       }
 
       parts.push(
@@ -146,12 +160,85 @@ const renderTextWithElements = (text, linkParts) => {
   });
 
   if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
+    parts.push(
+      <span
+        key="txt-tail"
+        dangerouslySetInnerHTML={{
+          __html: applyMarkers(text.substring(lastIndex)),
+        }}
+      />
+    );
   }
 
   return parts;
 };
 
+// ============================================================
+// FEATURE-OPTION RADIO / DROPDOWN
+// ============================================================
+const CondRadioRender = ({ r_options }) => {
+  const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleOptionChange = (optionText) => {
+    setSelectedOption(optionText);
+  };
+
+  const selectedDescription = r_options.find(
+    (option) => option.text === selectedOption
+  )?.description;
+
+  return (
+    <div className={styles.setup}>
+      {isMobile ? (
+        <div className={styles.dropdown}>
+          <select
+            value={selectedOption || ""}
+            onChange={(e) => handleOptionChange(e.target.value)}
+            className={styles["dropdown-select"]}
+          >
+            {r_options.map((option, index) => (
+              <option key={index} value={option.text}>
+                {option.text}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        <div className={styles.tabs}>
+          {r_options.map((option, index) => (
+            <button
+              key={index}
+              className={`${styles["tab-button"]} ${
+                selectedOption === option.text ? styles["active"] : ""
+              }`}
+              onClick={() => handleOptionChange(option.text)}
+            >
+              <MarkedText>{option.text}</MarkedText>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className={styles.description}>
+        <ContentRenderer content={selectedDescription} />
+      </div>
+    </div>
+  );
+};
+
+// ============================================================
+// CALLOUT
+// ============================================================
 const Callout = ({ type = "info", title, children }) => {
   const icons = {
     info: "ℹ️",
@@ -163,25 +250,39 @@ const Callout = ({ type = "info", title, children }) => {
   return (
     <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
       <div className={styles["callout-header"]}>
-        {title && <h4 className={styles["callout-title"]}>{title}</h4>}
+        {title && (
+          <h4 className={styles["callout-title"]}>
+            <MarkedText>{title}</MarkedText>
+          </h4>
+        )}
       </div>
       <div className={styles["callout-content"]}>{children}</div>
     </div>
   );
 };
 
+// ============================================================
+// MESSAGE TIP
+// ============================================================
 const MessageTip = ({ title, children }) => {
   return (
     <div className={styles.messageTipWrap}>
       <div className={styles.leftBorder}></div>
       <div className={styles["mesg-title"]}>
-        {title && <strong>{title}</strong>}
+        {title && (
+          <strong>
+            <MarkedText>{title}</MarkedText>
+          </strong>
+        )}
         <div className={styles["mesg-content"]}>{children}</div>
       </div>
     </div>
   );
 };
 
+// ============================================================
+// STEPS
+// ============================================================
 const Steps = ({ items }) => {
   return (
     <div className={styles.steps}>
@@ -190,7 +291,9 @@ const Steps = ({ items }) => {
           <div className={styles["step-number"]}>{index + 1}</div>
           <div className={styles["step-content"]}>
             {step.title && (
-              <h4 className={styles["step-title"]}>{step.title}</h4>
+              <h4 className={styles["step-title"]}>
+                <MarkedText>{step.title}</MarkedText>
+              </h4>
             )}
             <div className={styles["step-description"]}>
               <ContentRenderer content={step.content} />
@@ -202,6 +305,9 @@ const Steps = ({ items }) => {
   );
 };
 
+// ============================================================
+// TABS
+// ============================================================
 const Tabs = ({ items }) => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -216,7 +322,7 @@ const Tabs = ({ items }) => {
             }`}
             onClick={() => setActiveTab(index)}
           >
-            {tab.label}
+            <MarkedText>{tab.label}</MarkedText>
           </button>
         ))}
       </div>
@@ -227,6 +333,9 @@ const Tabs = ({ items }) => {
   );
 };
 
+// ============================================================
+// TOOLTIP
+// ============================================================
 const Tooltip = ({ content, children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -246,6 +355,9 @@ const Tooltip = ({ content, children }) => {
   );
 };
 
+// ============================================================
+// SIDE NAV
+// ============================================================
 const SideNav = ({ items }) => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -267,6 +379,9 @@ const SideNav = ({ items }) => {
   );
 };
 
+// ============================================================
+// SEARCH
+// ============================================================
 const DocSearch = () => {
   const [query, setQuery] = useState("");
 
@@ -283,6 +398,9 @@ const DocSearch = () => {
   );
 };
 
+// ============================================================
+// MERMAID DIAGRAM
+// ============================================================
 const MermaidDiagram = ({ code }) => {
   useEffect(() => {
     window.mermaid?.initialize({ startOnLoad: true });
@@ -292,6 +410,9 @@ const MermaidDiagram = ({ code }) => {
   return <div className="mermaid">{code}</div>;
 };
 
+// ============================================================
+// PAGINATION
+// ============================================================
 const Pagination = ({ currentPage, totalPages }) => {
   const [page, setPage] = useState(currentPage);
 
@@ -315,6 +436,9 @@ const Pagination = ({ currentPage, totalPages }) => {
   );
 };
 
+// ============================================================
+// KBD
+// ============================================================
 const Kbd = ({ keys }) => {
   return (
     <span className="kbd-container">
@@ -328,11 +452,17 @@ const Kbd = ({ keys }) => {
   );
 };
 
+// ============================================================
+// CODE WITH COPY  (marker-aware)
+// ============================================================
 const CodeWithCopy = ({ code, language }) => {
   const [copied, setCopied] = useState(false);
 
+  const plainCode = stripMarkers(code);
+  const highlighted = applyMarkers(code);
+
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(code).then(() => {
+    navigator.clipboard.writeText(plainCode).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -341,7 +471,7 @@ const CodeWithCopy = ({ code, language }) => {
   return (
     <div className={styles["code-with-copy"]}>
       <pre className={styles.script_code}>
-        <code>{code}</code>
+        <code dangerouslySetInnerHTML={{ __html: highlighted }} />
       </pre>
       <button onClick={copyToClipboard} className={styles["copy-button"]}>
         {copied ? "✓ Copied" : "📋 Copy"}
@@ -350,6 +480,9 @@ const CodeWithCopy = ({ code, language }) => {
   );
 };
 
+// ============================================================
+// ACCORDION
+// ============================================================
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -359,7 +492,7 @@ const Accordion = ({ title, children }) => {
         className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {title}
+        <MarkedText>{title}</MarkedText>
         <span className="accordion-icon">{isOpen ? "▼" : "▶"}</span>
       </button>
       {isOpen && <div className={styles["accordion-content"]}>{children}</div>}
@@ -367,6 +500,9 @@ const Accordion = ({ title, children }) => {
   );
 };
 
+// ============================================================
+// TABLE
+// ============================================================
 const Table = ({ headers, rows }) => {
   return (
     <table className={styles.docTable}>
@@ -374,7 +510,7 @@ const Table = ({ headers, rows }) => {
         <tr className={styles.docTableHeadRow}>
           {headers.map((header, index) => (
             <th key={index} className={styles.docTableHeadCell}>
-              {header}
+              <MarkedText>{header}</MarkedText>
             </th>
           ))}
         </tr>
@@ -384,7 +520,7 @@ const Table = ({ headers, rows }) => {
           <tr key={rowIndex} className={styles.docTableBodyRow}>
             {row.map((cell, cellIndex) => (
               <td key={cellIndex} className={styles.docTableBodyCell}>
-                {cell}
+                <MarkedText>{cell}</MarkedText>
               </td>
             ))}
           </tr>
@@ -394,6 +530,9 @@ const Table = ({ headers, rows }) => {
   );
 };
 
+// ============================================================
+// BREADCRUMBS
+// ============================================================
 const Breadcrumbs = ({ items }) => {
   return (
     <nav className="breadcrumbs">
@@ -401,9 +540,13 @@ const Breadcrumbs = ({ items }) => {
         {items.map((item, index) => (
           <li key={index}>
             {item.href ? (
-              <a href={item.href}>{item.label}</a>
+              <a href={item.href}>
+                <MarkedText>{item.label}</MarkedText>
+              </a>
             ) : (
-              <span>{item.label}</span>
+              <span>
+                <MarkedText>{item.label}</MarkedText>
+              </span>
             )}
             {index < items.length - 1 && <span className="separator">/</span>}
           </li>
@@ -413,6 +556,9 @@ const Breadcrumbs = ({ items }) => {
   );
 };
 
+// ============================================================
+// LIST
+// ============================================================
 const List = ({
   items,
   listType,
@@ -449,11 +595,17 @@ const List = ({
   );
 };
 
+// ============================================================
+// LIST ITEM
+// Uses:
+//   • mobile_doc:  SidebarLinkContext + default_expanded
+//   • main:        renderTextWithElements + applyMarkers
+// ============================================================
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const onLinkClick = useContext(SidebarLinkContext);
 
   const [expanded, setExpanded] = useState(
-    item.default_expanded !== undefined ? item.default_expanded : depth < 1,
+    item.default_expanded !== undefined ? item.default_expanded : depth < 1
   );
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
@@ -538,16 +690,15 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
       <div>
         {typeof item === "string" ? (
-          <span dangerouslySetInnerHTML={{ __html: item }} />
+          <span dangerouslySetInnerHTML={{ __html: applyMarkers(item) }} />
         ) : (
           <div>
             <div className={styles.contentHeaderWrap}>
               {item.text && (
                 <div>
-                  {/* <span>{item.text}</span> */}
                   <span>
-      {renderTextWithElements(item.text, item.link_parts)}
-    </span>
+                    {renderTextWithElements(item.text, item.link_parts)}
+                  </span>
                 </div>
               )}
               {(isCollapsible || shouldShowDownIcon) && (
@@ -592,6 +743,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   );
 };
 
+// ============================================================
+// API REFERENCE TABLE
+// ============================================================
 const APIReferenceTable = ({ properties }) => (
   <table className="api-table">
     <thead>
@@ -606,19 +760,33 @@ const APIReferenceTable = ({ properties }) => (
       {properties.map((prop) => (
         <tr key={prop.name}>
           <td>
-            <code>{prop.name}</code>
+            <code>
+              <MarkedText>{prop.name}</MarkedText>
+            </code>
           </td>
           <td>
-            <em>{prop.type}</em>
+            <em>
+              <MarkedText>{prop.type}</MarkedText>
+            </em>
           </td>
-          <td>{prop.default || "-"}</td>
-          <td>{prop.description}</td>
+          <td>
+            <MarkedText>{prop.default || "-"}</MarkedText>
+          </td>
+          <td>
+            <MarkedText>{prop.description}</MarkedText>
+          </td>
         </tr>
       ))}
     </tbody>
   </table>
 );
 
+// ============================================================
+// CONTENT RENDERER
+// Uses:
+//   • mobile_doc:  SidebarLinkContext + stopPropagation on internal links
+//   • main:        MarkedText + applyMarkers everywhere
+// ============================================================
 const ContentRenderer = ({ content }) => {
   const onLinkClick = useContext(SidebarLinkContext);
 
@@ -695,13 +863,13 @@ const ContentRenderer = ({ content }) => {
                   className={styles["content-heading"]}
                   id={item.selector_uid}
                 >
-                  {item.text}
+                  <MarkedText>{item.text}</MarkedText>
                 </h2>
               );
             } else {
               return (
                 <h2 key={index} className={styles["content-heading"]}>
-                  {item.text}
+                  <MarkedText>{item.text}</MarkedText>
                 </h2>
               );
             }
@@ -713,7 +881,7 @@ const ContentRenderer = ({ content }) => {
                 className={styles["content-inner-heading"]}
                 id={item.selector_uid}
               >
-                {item.text}
+                <MarkedText>{item.text}</MarkedText>
               </h2>
             );
 
@@ -740,12 +908,14 @@ const ContentRenderer = ({ content }) => {
                 <ContentRenderer content={item.children} />
               </Callout>
             );
+
           case "mesgTip":
             return (
               <MessageTip key={index} title={item.title}>
                 <ContentRenderer content={item.children} />
               </MessageTip>
             );
+
           case "steps":
             return <Steps key={index} items={item.items} />;
 
@@ -772,7 +942,7 @@ const ContentRenderer = ({ content }) => {
             return <Kbd key={index} keys={item.keys} />;
 
           case "text":
-            return <span key={index}>{item.text}</span>;
+            return <MarkedText key={index}>{item.text}</MarkedText>;
 
           case "p":
             return (
@@ -794,7 +964,7 @@ const ContentRenderer = ({ content }) => {
                 className={styles.second_subheading}
                 id={item.selector_uid}
               >
-                {item.text}
+                <MarkedText>{item.text}</MarkedText>
               </h3>
             );
 
@@ -831,7 +1001,7 @@ const ContentRenderer = ({ content }) => {
           case "blockquote":
             return (
               <blockquote key={index} className="content-blockquote">
-                {item.text}
+                <MarkedText>{item.text}</MarkedText>
               </blockquote>
             );
 
@@ -879,8 +1049,9 @@ const ContentRenderer = ({ content }) => {
             return (
               <li key={index} className={styles["content-list-item"]}>
                 <div className={styles.sidebarLi}>
-                  {item.text && <span>{item.text}</span>}
-                   {hasSubItems && (
+                  {item.text && <MarkedText>{item.text}</MarkedText>}
+
+                  {hasSubItems && (
                     <span
                       onClick={() => setIsExpanded(!isExpanded)}
                       className={`${styles["expand-icon"]} ${
@@ -923,11 +1094,15 @@ const ContentRenderer = ({ content }) => {
                 key={index}
                 className={item.className || styles["content-div"]}
               >
-                {item.text && <span>{item.text}</span>}
+                {item.text && <MarkedText>{item.text}</MarkedText>}
 
                 {item.children && <ContentRenderer content={item.children} />}
 
-                {item.extra_text && <div>{item.extra_text}</div>}
+                {item.extra_text && (
+                  <div>
+                    <MarkedText>{item.extra_text}</MarkedText>
+                  </div>
+                )}
 
                 {item.code && (
                   <pre className={styles.script_code}>
@@ -942,7 +1117,7 @@ const ContentRenderer = ({ content }) => {
               <Tag
                 key={index}
                 className={`content-${item.tag_type}`}
-                dangerouslySetInnerHTML={{ __html: item.text }}
+                dangerouslySetInnerHTML={{ __html: applyMarkers(item.text) }}
               />
             );
         }
