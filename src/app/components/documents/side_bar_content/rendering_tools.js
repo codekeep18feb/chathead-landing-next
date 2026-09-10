@@ -6,71 +6,69 @@ import { useSearchParams } from "next/navigation";
 import YouTubeEmbed from "../../YouTubeVideo";
 import { FaLink } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import "./style_globle.css"
+import "./style_globle.css";
 
-const CondRadioRender = ({ r_options }) => {
-  const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
-  const [isMobile, setIsMobile] = useState(false);
+// ============================================================
+// MARKER HIGHLIGHTING HELPERS
+//
+// Two marker syntaxes, applicable in ANY payload string field:
+//   [[ value ]]        → inline highlight   (amber, .ph)
+//   [[[ region ]]]     → block highlight    (green border, .ph-block)
+//
+// Order matters: escape HTML FIRST, then inject spans. This way any
+// `<`, `>`, `&` in the source text cannot break the HTML output, and
+// the injected spans are not double-escaped.
+// ============================================================
 
-  // Check if the viewport is mobile
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+const escapeHtml = (s) =>
+  String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const handleOptionChange = (optionText) => {
-    setSelectedOption(optionText);
-  };
-
-  const selectedDescription = r_options.find(
-    (option) => option.text === selectedOption,
-  )?.description;
-
-  return (
-    <div className={styles.setup}>
-      {isMobile ? (
-        <div className={styles.dropdown}>
-          <select
-            value={selectedOption || ""}
-            onChange={(e) => handleOptionChange(e.target.value)}
-            className={styles["dropdown-select"]}
-          >
-            {r_options.map((option, index) => (
-              <option key={index} value={option.text}>
-                {option.text}
-              </option>
-            ))}
-          </select>
-        </div>
-      ) : (
-        <div className={styles.tabs}>
-          {r_options.map((option, index) => (
-            <button
-              key={index}
-              className={`${styles["tab-button"]} ${
-                selectedOption === option.text ? styles["active"] : ""
-              }`}
-              onClick={() => handleOptionChange(option.text)}
-            >
-              {option.text}
-            </button>
-          ))}
-        </div>
-      )}
-
-      <div className={styles.description}>
-        <ContentRenderer content={selectedDescription} />
-      </div>
-    </div>
-  );
+export const stripMarkers = (raw) => {
+  if (raw == null) return "";
+  return String(raw)
+    .replace(/\[\[\[([\s\S]*?)\]\]\]/g, "$1")
+    .replace(/\[\[(.+?)\]\]/g, "$1");
 };
 
-// Updated supported tags
+export const applyMarkers = (raw) => {
+  if (raw == null) return "";
+
+  // 1. Extract block regions first so the inline pass doesn't touch them.
+  const blocks = [];
+  const withoutBlocks = String(raw).replace(
+    /\[\[\[([\s\S]*?)\]\]\]/g,
+    (_, inner) => {
+      blocks.push(inner);
+      return `\u0000BLOCK${blocks.length - 1}\u0000`;
+    }
+  );
+
+  // 2. Escape, then apply inline markers.
+  let out = escapeHtml(withoutBlocks).replace(
+    /\[\[(.+?)\]\]/g,
+    '<span class="ph">$1</span>'
+  );
+
+  // 3. Reinsert block regions, escaped, wrapped in .ph-block.
+  out = out.replace(/\u0000BLOCK(\d+)\u0000/g, (_, idx) => {
+    const inner = escapeHtml(blocks[Number(idx)]);
+    return `<span class="ph-block">${inner}</span>`;
+  });
+
+  return out;
+};
+
+// Simple wrapper — use it anywhere you'd previously render {item.text}.
+const MarkedText = ({ children }) => (
+  <span dangerouslySetInnerHTML={{ __html: applyMarkers(children) }} />
+);
+
+// ============================================================
+// SUPPORTED TAGS
+// ============================================================
 const supportedTags = [
   "h1",
   "h2",
@@ -103,8 +101,16 @@ const supportedTags = [
   "mesgTip",
   "strong",
 ];
+
+// ============================================================
+// renderTextWithElements — used by <p> tag.
+// Plain-string segments now pass through applyMarkers; link
+// segments remain React <a> nodes.
+// ============================================================
 const renderTextWithElements = (text, linkParts) => {
-  if (!linkParts) return text;
+  if (!linkParts || linkParts.length === 0) {
+    return <span dangerouslySetInnerHTML={{ __html: applyMarkers(text) }} />;
+  }
 
   const parts = [];
   let lastIndex = 0;
@@ -113,7 +119,14 @@ const renderTextWithElements = (text, linkParts) => {
     const startIndex = text.indexOf(part.text, lastIndex);
     if (startIndex > -1) {
       if (startIndex > lastIndex) {
-        parts.push(text.substring(lastIndex, startIndex));
+        parts.push(
+          <span
+            key={`txt-${index}`}
+            dangerouslySetInnerHTML={{
+              __html: applyMarkers(text.substring(lastIndex, startIndex)),
+            }}
+          />
+        );
       }
       parts.push(
         <a
@@ -123,19 +136,92 @@ const renderTextWithElements = (text, linkParts) => {
           rel="noopener noreferrer"
         >
           {part.text}
-        </a>,
+        </a>
       );
       lastIndex = startIndex + part.text.length;
     }
   });
 
   if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
+    parts.push(
+      <span
+        key="txt-tail"
+        dangerouslySetInnerHTML={{
+          __html: applyMarkers(text.substring(lastIndex)),
+        }}
+      />
+    );
   }
 
   return parts;
 };
 
+// ============================================================
+// FEATURE-OPTION RADIO / DROPDOWN
+// ============================================================
+const CondRadioRender = ({ r_options }) => {
+  const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleOptionChange = (optionText) => {
+    setSelectedOption(optionText);
+  };
+
+  const selectedDescription = r_options.find(
+    (option) => option.text === selectedOption
+  )?.description;
+
+  return (
+    <div className={styles.setup}>
+      {isMobile ? (
+        <div className={styles.dropdown}>
+          <select
+            value={selectedOption || ""}
+            onChange={(e) => handleOptionChange(e.target.value)}
+            className={styles["dropdown-select"]}
+          >
+            {r_options.map((option, index) => (
+              <option key={index} value={option.text}>
+                {option.text}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        <div className={styles.tabs}>
+          {r_options.map((option, index) => (
+            <button
+              key={index}
+              className={`${styles["tab-button"]} ${
+                selectedOption === option.text ? styles["active"] : ""
+              }`}
+              onClick={() => handleOptionChange(option.text)}
+            >
+              <MarkedText>{option.text}</MarkedText>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className={styles.description}>
+        <ContentRenderer content={selectedDescription} />
+      </div>
+    </div>
+  );
+};
+
+// ============================================================
+// CALLOUT
+// ============================================================
 const Callout = ({ type = "info", title, children }) => {
   const icons = {
     info: "ℹ️",
@@ -147,26 +233,39 @@ const Callout = ({ type = "info", title, children }) => {
   return (
     <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
       <div className={styles["callout-header"]}>
-        {/* <span className={styles["callout-icon"]}>{icons[type]}</span> */}
-        {title && <h4 className={styles["callout-title"]}>{title}</h4>}
+        {title && (
+          <h4 className={styles["callout-title"]}>
+            <MarkedText>{title}</MarkedText>
+          </h4>
+        )}
       </div>
       <div className={styles["callout-content"]}>{children}</div>
     </div>
   );
 };
 
+// ============================================================
+// MESSAGE TIP
+// ============================================================
 const MessageTip = ({ title, children }) => {
   return (
     <div className={styles.messageTipWrap}>
       <div className={styles.leftBorder}></div>
       <div className={styles["mesg-title"]}>
-        {title && <strong>{title}</strong>}
+        {title && (
+          <strong>
+            <MarkedText>{title}</MarkedText>
+          </strong>
+        )}
         <div className={styles["mesg-content"]}>{children}</div>
       </div>
     </div>
   );
 };
 
+// ============================================================
+// STEPS
+// ============================================================
 const Steps = ({ items }) => {
   return (
     <div className={styles.steps}>
@@ -175,7 +274,9 @@ const Steps = ({ items }) => {
           <div className={styles["step-number"]}>{index + 1}</div>
           <div className={styles["step-content"]}>
             {step.title && (
-              <h4 className={styles["step-title"]}>{step.title}</h4>
+              <h4 className={styles["step-title"]}>
+                <MarkedText>{step.title}</MarkedText>
+              </h4>
             )}
             <div className={styles["step-description"]}>
               <ContentRenderer content={step.content} />
@@ -187,6 +288,9 @@ const Steps = ({ items }) => {
   );
 };
 
+// ============================================================
+// TABS
+// ============================================================
 const Tabs = ({ items }) => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -201,7 +305,7 @@ const Tabs = ({ items }) => {
             }`}
             onClick={() => setActiveTab(index)}
           >
-            {tab.label}
+            <MarkedText>{tab.label}</MarkedText>
           </button>
         ))}
       </div>
@@ -212,6 +316,9 @@ const Tabs = ({ items }) => {
   );
 };
 
+// ============================================================
+// TOOLTIP
+// ============================================================
 const Tooltip = ({ content, children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -231,6 +338,9 @@ const Tooltip = ({ content, children }) => {
   );
 };
 
+// ============================================================
+// SIDE NAV
+// ============================================================
 const SideNav = ({ items }) => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -252,6 +362,9 @@ const SideNav = ({ items }) => {
   );
 };
 
+// ============================================================
+// SEARCH
+// ============================================================
 const DocSearch = () => {
   const [query, setQuery] = useState("");
 
@@ -268,6 +381,9 @@ const DocSearch = () => {
   );
 };
 
+// ============================================================
+// MERMAID DIAGRAM
+// ============================================================
 const MermaidDiagram = ({ code }) => {
   useEffect(() => {
     window.mermaid?.initialize({ startOnLoad: true });
@@ -277,6 +393,9 @@ const MermaidDiagram = ({ code }) => {
   return <div className="mermaid">{code}</div>;
 };
 
+// ============================================================
+// PAGINATION
+// ============================================================
 const Pagination = ({ currentPage, totalPages }) => {
   const [page, setPage] = useState(currentPage);
 
@@ -300,6 +419,9 @@ const Pagination = ({ currentPage, totalPages }) => {
   );
 };
 
+// ============================================================
+// KBD
+// ============================================================
 const Kbd = ({ keys }) => {
   return (
     <span className="kbd-container">
@@ -313,51 +435,14 @@ const Kbd = ({ keys }) => {
   );
 };
 
+// ============================================================
+// CODE WITH COPY
+// ============================================================
 const CodeWithCopy = ({ code, language }) => {
   const [copied, setCopied] = useState(false);
 
-  // ---- 1. Plain text for clipboard -------------------------------
-  // Strip BOTH block markers ([[[ ... ]]]) and inline markers ([[ ... ]])
-  // so the copy is always clean code.
-  const stripMarkers = (raw) =>
-    raw
-      .replace(/\[\[\[([\s\S]*?)\]\]\]/g, "$1")
-      .replace(/\[\[(.+?)\]\]/g, "$1");
-
   const plainCode = stripMarkers(code);
-
-  // ---- 2. HTML for rendering --------------------------------------
-  const escapeHtml = (s) =>
-    s
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-
-  const render = (raw) => {
-    // Step 1: pull out block-marked regions FIRST so the inline pass
-    // doesn't touch their contents.
-    const blocks = [];
-    const withoutBlocks = raw.replace(/\[\[\[([\s\S]*?)\]\]\]/g, (_, inner) => {
-      blocks.push(inner);
-      return `\u0000BLOCK${blocks.length - 1}\u0000`;
-    });
-
-    // Step 2: escape HTML, then apply inline markers.
-    let out = escapeHtml(withoutBlocks).replace(
-      /\[\[(.+?)\]\]/g,
-      '<span class="ph">$1</span>'
-    );
-
-    // Step 3: reinsert block regions, escaped, wrapped in .ph-block.
-    out = out.replace(/\u0000BLOCK(\d+)\u0000/g, (_, idx) => {
-      const inner = escapeHtml(blocks[Number(idx)]);
-      return `<span class="ph-block">${inner}</span>`;
-    });
-
-    return out;
-  };
-
-  const highlighted = render(code);
+  const highlighted = applyMarkers(code);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(plainCode).then(() => {
@@ -378,6 +463,9 @@ const CodeWithCopy = ({ code, language }) => {
   );
 };
 
+// ============================================================
+// ACCORDION
+// ============================================================
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -387,7 +475,7 @@ const Accordion = ({ title, children }) => {
         className={`${styles.accordionHeader} ${isOpen ? styles.open : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {title}
+        <MarkedText>{title}</MarkedText>
         <span className="accordion-icon">{isOpen ? "▼" : "▶"}</span>
       </button>
       {isOpen && <div className={styles["accordion-content"]}>{children}</div>}
@@ -395,6 +483,9 @@ const Accordion = ({ title, children }) => {
   );
 };
 
+// ============================================================
+// TABLE
+// ============================================================
 const Table = ({ headers, rows }) => {
   return (
     <table className={styles.docTable}>
@@ -402,7 +493,7 @@ const Table = ({ headers, rows }) => {
         <tr className={styles.docTableHeadRow}>
           {headers.map((header, index) => (
             <th key={index} className={styles.docTableHeadCell}>
-              {header}
+              <MarkedText>{header}</MarkedText>
             </th>
           ))}
         </tr>
@@ -412,7 +503,7 @@ const Table = ({ headers, rows }) => {
           <tr key={rowIndex} className={styles.docTableBodyRow}>
             {row.map((cell, cellIndex) => (
               <td key={cellIndex} className={styles.docTableBodyCell}>
-                {cell}
+                <MarkedText>{cell}</MarkedText>
               </td>
             ))}
           </tr>
@@ -422,6 +513,9 @@ const Table = ({ headers, rows }) => {
   );
 };
 
+// ============================================================
+// BREADCRUMBS
+// ============================================================
 const Breadcrumbs = ({ items }) => {
   return (
     <nav className="breadcrumbs">
@@ -429,9 +523,13 @@ const Breadcrumbs = ({ items }) => {
         {items.map((item, index) => (
           <li key={index}>
             {item.href ? (
-              <a href={item.href}>{item.label}</a>
+              <a href={item.href}>
+                <MarkedText>{item.label}</MarkedText>
+              </a>
             ) : (
-              <span>{item.label}</span>
+              <span>
+                <MarkedText>{item.label}</MarkedText>
+              </span>
             )}
             {index < items.length - 1 && <span className="separator">/</span>}
           </li>
@@ -441,6 +539,9 @@ const Breadcrumbs = ({ items }) => {
   );
 };
 
+// ============================================================
+// LIST
+// ============================================================
 const List = ({
   items,
   listType,
@@ -477,6 +578,9 @@ const List = ({
   );
 };
 
+// ============================================================
+// LIST ITEM
+// ============================================================
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const [expanded, setExpanded] = useState(depth < 1);
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
@@ -486,15 +590,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const shouldShowDownIcon = hasSubItems && depth === 0;
 
   const handleScroll = (selector) => {
-    // const element = document.querySelector(selector);
-    console.log("Looking for element with selector:", selector);
     const element = document.getElementById(selector);
-    console.log("Found element:", element);
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
       console.warn(`Element with ID "${selector}" not found`);
     }
@@ -515,7 +613,6 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     if (config.type === "internal") {
       return (
         <button
-          // onClick={() => handleScroll(config.targetSelector)}
           onClick={() => handleScroll(config.selector_uid)}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
@@ -544,7 +641,6 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
         cursor: isCollapsible || shouldShowDownIcon ? "pointer" : "default",
         listStyleType: listType === "ol" ? "none" : "none",
         position: "relative",
-        // paddingLeft: isCollapsible ? "20px" : "0px",
       }}
     >
       {isCollapsible && (
@@ -560,15 +656,13 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
       <div>
         {typeof item === "string" ? (
-          <span dangerouslySetInnerHTML={{ __html: item }} />
+          <span dangerouslySetInnerHTML={{ __html: applyMarkers(item) }} />
         ) : (
           <div>
-            <div
-            className={styles.contentHeaderWrap}
-            >
+            <div className={styles.contentHeaderWrap}>
               {item.text && (
                 <div>
-                  <span>{item.text}</span>
+                  <MarkedText>{item.text}</MarkedText>
                 </div>
               )}
               {(isCollapsible || shouldShowDownIcon) && (
@@ -597,11 +691,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
           style={{
             display: expanded ? "block" : "none",
             margin: "5px",
-            // marginLeft: "10px",
           }}
           className={styles.liSubItems}
         >
-          {/* FIX: Wrap sub_items in proper list container */}
           {item.sub_items[0]?.tag_type === "li" ? (
             <ul className={styles["content-list"]}>
               <ContentRenderer content={item.sub_items} />
@@ -615,6 +707,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   );
 };
 
+// ============================================================
+// API REFERENCE TABLE
+// ============================================================
 const APIReferenceTable = ({ properties }) => (
   <table className="api-table">
     <thead>
@@ -629,24 +724,31 @@ const APIReferenceTable = ({ properties }) => (
       {properties.map((prop) => (
         <tr key={prop.name}>
           <td>
-            <code>{prop.name}</code>
+            <code>
+              <MarkedText>{prop.name}</MarkedText>
+            </code>
           </td>
           <td>
-            <em>{prop.type}</em>
+            <em>
+              <MarkedText>{prop.type}</MarkedText>
+            </em>
           </td>
-          <td>{prop.default || "-"}</td>
-          <td>{prop.description}</td>
+          <td>
+            <MarkedText>{prop.default || "-"}</MarkedText>
+          </td>
+          <td>
+            <MarkedText>{prop.description}</MarkedText>
+          </td>
         </tr>
       ))}
     </tbody>
   </table>
 );
 
+// ============================================================
+// CONTENT RENDERER
+// ============================================================
 const ContentRenderer = ({ content }) => {
-  // Helper function for link rendering in li elements
-
-  console.log("contenterewr", content);
-
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;
     const config = item.link_configuration;
@@ -656,7 +758,6 @@ const ContentRenderer = ({ content }) => {
         <button
           onClick={() => {
             try {
-              // const element = document.querySelector(config.targetSelector);
               const element = document.getElementById(config.selector_uid);
               if (element) element.scrollIntoView({ behavior: "smooth" });
             } catch (e) {
@@ -709,28 +810,20 @@ const ContentRenderer = ({ content }) => {
             );
 
           case "h2":
-            // return (
-            //   <h2 key={index} className={styles["content-heading"]}>
-            //     {item.text}
-            //   </h2>
-            // );
             if (item.hasOwnProperty("selector_uid")) {
-              console.log("hwsdfdsfsererew are we??");
               return (
                 <h2
                   key={index}
                   className={styles["content-heading"]}
                   id={item.selector_uid}
                 >
-                  {item.text}
+                  <MarkedText>{item.text}</MarkedText>
                 </h2>
               );
             } else {
-              console.log("areweyouewarhwererew are we??");
-
               return (
                 <h2 key={index} className={styles["content-heading"]}>
-                  {item.text}
+                  <MarkedText>{item.text}</MarkedText>
                 </h2>
               );
             }
@@ -742,7 +835,7 @@ const ContentRenderer = ({ content }) => {
                 className={styles["content-inner-heading"]}
                 id={item.selector_uid}
               >
-                {item.text}
+                <MarkedText>{item.text}</MarkedText>
               </h2>
             );
 
@@ -769,12 +862,14 @@ const ContentRenderer = ({ content }) => {
                 <ContentRenderer content={item.children} />
               </Callout>
             );
+
           case "mesgTip":
             return (
               <MessageTip key={index} title={item.title}>
                 <ContentRenderer content={item.children} />
               </MessageTip>
             );
+
           case "steps":
             return <Steps key={index} items={item.items} />;
 
@@ -801,7 +896,7 @@ const ContentRenderer = ({ content }) => {
             return <Kbd key={index} keys={item.keys} />;
 
           case "text":
-            return <span key={index}>{item.text}</span>;
+            return <MarkedText key={index}>{item.text}</MarkedText>;
 
           case "p":
             return (
@@ -823,7 +918,7 @@ const ContentRenderer = ({ content }) => {
                 className={styles.second_subheading}
                 id={item.selector_uid}
               >
-                {item.text}
+                <MarkedText>{item.text}</MarkedText>
               </h3>
             );
 
@@ -860,7 +955,7 @@ const ContentRenderer = ({ content }) => {
           case "blockquote":
             return (
               <blockquote key={index} className="content-blockquote">
-                {item.text}
+                <MarkedText>{item.text}</MarkedText>
               </blockquote>
             );
 
@@ -901,14 +996,14 @@ const ContentRenderer = ({ content }) => {
               </pre>
             );
 
-          case "li":
+          case "li": {
             const [isExpanded, setIsExpanded] = useState(false);
             const hasSubItems = item.sub_items && item.sub_items.length > 0;
 
             return (
               <li key={index} className={styles["content-list-item"]}>
                 <div className={styles.sidebarLi}>
-                  {item.text && <span>{item.text}</span>}
+                  {item.text && <MarkedText>{item.text}</MarkedText>}
 
                   {hasSubItems && (
                     <span
@@ -916,7 +1011,6 @@ const ContentRenderer = ({ content }) => {
                       className={`${styles["expand-icon"]} ${
                         isExpanded ? styles["expanded"] : styles["collapsed"]
                       }`}
-                      // style={{ fontSize: "12px" }}
                     >
                       <IoIosArrowDown size={16} />
                     </span>
@@ -946,20 +1040,7 @@ const ContentRenderer = ({ content }) => {
                 )}
               </li>
             );
-          // case "div":
-          //   return (
-          //     <div key={index} className={styles["content-div"]}>
-          //       {item.children?.map((child, i) => (
-          //         <ContentRenderer key={`${index}-${i}`} content={[child]} />
-          //       ))}
-          //       {item.extra_text && <div>{item.extra_text}</div>}
-          //       {item.code && (
-          //         <pre className={styles.script_code}>
-          //           <code>{item.code}</code>
-          //         </pre>
-          //       )}
-          //     </div>
-          //   );
+          }
 
           case "div":
             return (
@@ -967,11 +1048,15 @@ const ContentRenderer = ({ content }) => {
                 key={index}
                 className={item.className || styles["content-div"]}
               >
-                {item.text && <span>{item.text}</span>}
+                {item.text && <MarkedText>{item.text}</MarkedText>}
 
                 {item.children && <ContentRenderer content={item.children} />}
 
-                {item.extra_text && <div>{item.extra_text}</div>}
+                {item.extra_text && (
+                  <div>
+                    <MarkedText>{item.extra_text}</MarkedText>
+                  </div>
+                )}
 
                 {item.code && (
                   <pre className={styles.script_code}>
@@ -986,7 +1071,7 @@ const ContentRenderer = ({ content }) => {
               <Tag
                 key={index}
                 className={`content-${item.tag_type}`}
-                dangerouslySetInnerHTML={{ __html: item.text }}
+                dangerouslySetInnerHTML={{ __html: applyMarkers(item.text) }}
               />
             );
         }

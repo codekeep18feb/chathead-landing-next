@@ -13,7 +13,7 @@ export const clientIntegration = [
       },
       {
         tag_type: "p",
-        text: "Sageion boots in two ordered phases: setUp() prepares configuration and storage, and initialize() authenticates the user and mounts the chat UI. Pick your framework below, then pick the integration style that matches your app's structure.",
+        text: "Sageion boots in two ordered phases: [[setUp()]] prepares configuration and storage, and [[initialize()]] authenticates the user and mounts the chat UI. Pick your framework below, then pick the integration style that matches your app's structure.",
       },
 
       // ============================================================
@@ -28,13 +28,13 @@ export const clientIntegration = [
             tag_type: "ol",
             items: [
               {
-                text: "setUp() must resolve before initialize() is called. initialize() reads the setup_done flag written by setUp() and refuses to run without it.",
+                text: "[[setUp()]] must resolve before [[initialize()]] is called. [[initialize()]] reads the [[setup_done]] flag written by [[setUp()]] and refuses to run without it.",
               },
               {
-                text: "Both functions throw a SageionSetupError on failure. Each also renders an error popup with a Reset Settings button.",
+                text: "Both functions throw a [[SageionSetupError]] on failure. Each also renders an error popup with a Reset Settings button.",
               },
               {
-                text: "Never place setUp() and initialize() in two independent DOMContentLoaded listeners. DOM listeners do not chain await — initialize() will fire while setUp() is still in flight, and the SDK will reject it with \"initialize ran before setUp could finish.\"",
+                text: "Never place [[setUp()]] and [[initialize()]] in two independent DOMContentLoaded listeners. DOM listeners do not chain await — [[initialize()]] will fire while [[setUp()]] is still in flight, and the SDK will reject it with \"[[initialize ran before setUp could finish.]]\"",
               },
               {
                 text: "To split them across scripts, bridge them with a shared promise (see the Two-Block tab).",
@@ -43,7 +43,7 @@ export const clientIntegration = [
           },
           {
             tag_type: "p",
-            text: "You can inspect the current phase at any time with window.magicchat_io.getSetupStatus(), which returns one of: \"idle\" | \"pending\" | \"done\" | \"failed\".",
+            text: "You can inspect the current phase at any time with [[window.magicchat_io.getSetupStatus()]], which returns one of: \"[[idle]]\" | \"[[pending]]\" | \"[[done]]\" | \"[[failed]]\".",
           },
         ],
       },
@@ -96,7 +96,7 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "Loading the bundle exposes window.magicchat_io. Every example below uses that global.",
+                            text: "Loading the bundle exposes [[window.magicchat_io]]. Every example below uses that global.",
                           },
                         ],
                       },
@@ -208,7 +208,7 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "Only the first three arguments are required. chat_root_id has a sensible default — most apps can simply write:",
+                            text: "Only the first three arguments are required. [[chat_root_id]] has a sensible default — most apps can simply write:",
                           },
                           {
                             tag_type: "code_with_copy",
@@ -224,23 +224,23 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "Two separate document.addEventListener(\"DOMContentLoaded\", …) blocks do not chain their awaits. initialize() will run before setUp() resolves and the SDK will reject it. If you need two blocks, use the Two-Block tab.",
+                            text: "Two separate document.addEventListener(\"DOMContentLoaded\", …) blocks do not chain their awaits. [[initialize()]] will run before [[setUp()]] resolves and the SDK will reject it. If you need two blocks, use the Two-Block tab.",
                           },
                         ],
                       },
                       {
                         tag_type: "callout",
                         type: "info",
-                        title: "Parameter Details — setUp()",
+                        title: "Parameter Details — [[setUp()]]",
                         children: [
                           {
                             tag_type: "table",
                             headers: ["Parameter", "Type", "Required", "Description"],
                             rows: [
-                              ["app_name", "string", "Yes", "Unique application identifier."],
-                              ["api_key", "string", "Yes", "Base64-encoded API key from App Details."],
-                              ["region", "string", "Yes", "\"US\" or \"IN\" — used as the config lookup prefix."],
-                              ["chat_root_id", "string", "No", "Optional DOM element id to mount the chat into. Falls back to document.body."],
+                              ["[[app_name]]", "string", "Yes", "Unique application identifier."],
+                              ["[[api_key]]", "string", "Yes", "Base64-encoded API key from App Details."],
+                              ["[[region]]", "string", "Yes", "\"US\" or \"IN\" — used as the config lookup prefix."],
+                              ["[[chat_root_id]]", "string", "No", "Optional DOM element id to mount the chat into. Falls back to document.body."],
                             ],
                           },
                         ],
@@ -248,13 +248,13 @@ export const clientIntegration = [
                       {
                         tag_type: "callout",
                         type: "info",
-                        title: "Parameter Details — initialize()",
+                        title: "Parameter Details — [[initialize()]]",
                         children: [
                           {
                             tag_type: "table",
                             headers: ["Field", "Type", "Description"],
                             rows: [
-                              ["payload.uid", "string", "Required when dont_show_chat_box_at_logout is enabled for your app."],
+                              ["[[payload.uid]]", "string", "Required when [[dont_show_chat_box_at_logout]] is enabled for your app."],
                             ],
                           },
                         ],
@@ -266,15 +266,15 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "Earlier versions of the SDK accepted extra arguments (header_req, version). Both have been removed. If you were passing them, drop them and keep only the arguments shown above.",
+                            text: "Earlier versions of the SDK accepted extra arguments ([[header_req]], [[version]]). Both have been removed. If you were passing them, drop them and keep only the arguments shown above.",
                           },
                           {
                             tag_type: "table",
                             headers: ["Old call", "New call"],
                             rows: [
-                              ["setUp(name, key, region, false, \"chat-root\")", "setUp(name, key, region, \"chat-root\")"],
-                              ["setUp(name, key, region, false)", "setUp(name, key, region)"],
-                              ["setUp(name, key, region)", "setUp(name, key, region) (unchanged)"],
+                              ["[[setUp(name, key, region, false, \"chat-root\")]]", "[[setUp(name, key, region, \"chat-root\")]]"],
+                              ["[[setUp(name, key, region, false)]]", "[[setUp(name, key, region)]]"],
+                              ["[[setUp(name, key, region)]]", "[[setUp(name, key, region)]] (unchanged)"],
                             ],
                           },
                         ],
@@ -292,7 +292,7 @@ export const clientIntegration = [
                       },
                       {
                         tag_type: "p",
-                        text: "Use this when setUp() and initialize() must live in different files, script tags, or templates — for example, a shared layout that loads setUp() and a page-specific template that loads initialize().",
+                        text: "Use this when [[setUp()]] and [[initialize()]] must live in different files, script tags, or templates — for example, a shared layout that loads [[setUp()]] and a page-specific template that loads [[initialize()]].",
                       },
                       {
                         tag_type: "callout",
@@ -301,13 +301,13 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "Do not put the two calls into two independent DOMContentLoaded listeners. Publish the result of setUp() on a shared promise and chain initialize() off that promise in the second block.",
+                            text: "Do not put the two calls into two independent DOMContentLoaded listeners. Publish the result of [[setUp()]] on a shared promise and chain [[initialize()]] off that promise in the second block.",
                           },
                         ],
                       },
                       {
                         tag_type: "h5",
-                        text: "Script A — setUp() only",
+                        text: "Script A — [[setUp()]] only",
                       },
                       {
                         tag_type: "code_with_copy",
@@ -343,7 +343,7 @@ export const clientIntegration = [
                       },
                       {
                         tag_type: "h5",
-                        text: "Script B — initialize() chained off Script A",
+                        text: "Script B — [[initialize()]] chained off Script A",
                       },
                       {
                         tag_type: "code_with_copy",
@@ -362,7 +362,7 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "Script B's .then only fires after Script A's setUp() resolves. If setUp() throws, .catch fires and initialize() is never called. The user sees exactly one error popup (rendered by setUp).",
+                            text: "Script B's .then only fires after Script A's [[setUp()]] resolves. If [[setUp()]] throws, .catch fires and [[initialize()]] is never called. The user sees exactly one error popup (rendered by [[setUp()]]).",
                           },
                         ],
                       },
@@ -379,11 +379,11 @@ export const clientIntegration = [
                       },
                       {
                         tag_type: "p",
-                        text: "Use this when the chat box should only appear on certain pages. Run setUp() once from your root layout, and call initialize() only on routes where the chat is needed.",
+                        text: "Use this when the chat box should only appear on certain pages. Run [[setUp()]] once from your root layout, and call [[initialize()]] only on routes where the chat is needed.",
                       },
                       {
                         tag_type: "h5",
-                        text: "Root layout — setUp() runs once, on every page",
+                        text: "Root layout — [[setUp()]] runs once, on every page",
                       },
                       {
                         tag_type: "code_with_copy",
@@ -415,7 +415,7 @@ export const clientIntegration = [
                       },
                       {
                         tag_type: "h5",
-                        text: "Target route — initialize() runs only where chat is wanted",
+                        text: "Target route — [[initialize()]] runs only where chat is wanted",
                       },
                       {
                         tag_type: "code_with_copy",
@@ -429,11 +429,11 @@ export const clientIntegration = [
                       {
                         tag_type: "callout",
                         type: "info",
-                        title: "Alternative: exclude_paths",
+                        title: "Alternative: [[exclude_paths]]",
                         children: [
                           {
                             tag_type: "p",
-                            text: "If you'd rather run initialize() everywhere and hide the chat on some pages, add the paths to exclude_paths in your Sageion app settings. The SDK checks this list inside initialize() and skips mounting on excluded routes.",
+                            text: "If you'd rather run [[initialize()]] everywhere and hide the chat on some pages, add the paths to [[exclude_paths]] in your Sageion app settings. The SDK checks this list inside [[initialize()]] and skips mounting on excluded routes.",
                           },
                         ],
                       },
@@ -534,7 +534,7 @@ export const clientIntegration = [
       },
       {
         tag_type: "p",
-        text: "setUp() runs once per page load. It does not re-run when the user logs in or out in place. To reflect auth changes without a page reload, call initialize() again with the new uid, or call logout().",
+        text: "[[setUp()]] runs once per page load. It does not re-run when the user logs in or out in place. To reflect auth changes without a page reload, call [[initialize()]] again with the new uid, or call [[logout()]].",
       },
       {
         tag_type: "code_with_copy",
@@ -561,31 +561,31 @@ function onLogout() {
       },
       {
         tag_type: "p",
-        text: "Both setUp() and initialize() throw a SageionSetupError on failure. The four most common messages are:",
+        text: "Both [[setUp()]] and [[initialize()]] throw a [[SageionSetupError]] on failure. The four most common messages are:",
       },
       {
         tag_type: "table",
         headers: ["Error", "Cause", "Fix"],
         rows: [
           [
-            "Wrong `api_key` found in credentials",
-            "api_key in your config does not match the cached auth_key",
-            "Correct the key, then click Reset Settings in the error popup (or call magicchat_io.logout())",
+            "[[Wrong `api_key` found in credentials]]",
+            "[[api_key]] in your config does not match the cached [[auth_key]]",
+            "Correct the key, then click Reset Settings in the error popup (or call [[magicchat_io.logout()]])",
           ],
           [
-            "The current domain (X) is not authorized",
-            "Your hostname is not in the app's whitelabel_domains",
+            "[[The current domain (X) is not authorized]]",
+            "Your hostname is not in the app's [[whitelabel_domains]]",
             "Ask your Sageion admin to add the domain",
           ],
           [
-            "initialize ran before setUp could finish",
-            "initialize() was called before setUp() resolved — usually from two independent DOMContentLoaded listeners",
+            "[[initialize ran before setUp could finish]]",
+            "[[initialize()]] was called before [[setUp()]] resolved — usually from two independent DOMContentLoaded listeners",
             "Use Single-Block or Two-Block from the tabs above",
           ],
           [
-            "initialize skipped: setUp failed earlier",
-            "setUp() failed and you still called initialize()",
-            "Fix the underlying setUp failure. The original error popup is still on screen.",
+            "[[initialize skipped: setUp failed earlier]]",
+            "[[setUp()]] failed and you still called [[initialize()]]",
+            "Fix the underlying [[setUp()]] failure. The original error popup is still on screen.",
           ],
         ],
       },

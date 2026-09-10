@@ -1,3 +1,4 @@
+/* style_globle.css */
 #v2_client_integration {
   padding-bottom: 0px;
   color: var(--text-color);
@@ -32,3 +33,21 @@
 }
 
 
+/* Inline marker:  [[ ... ]]  */
+.ph {
+  background: rgba(255, 200, 100, 0.22);
+  color: #b45309;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+/* Block marker:  [[[ ... ]]]  */
+.ph-block {
+  display: inline;
+  border-left: 3px solid rgba(46, 160, 67, 0.55);
+  padding-left: 8px;
+  margin-left: -8px;
+  color: #166534;
+  font-weight: 500;
+}

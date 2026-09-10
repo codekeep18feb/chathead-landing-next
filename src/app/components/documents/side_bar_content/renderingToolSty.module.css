@@ -321,14 +321,32 @@
   font-weight: 400;
 }
 
+/* ============================================================
+   MARKER HIGHLIGHTS
+   Two themes, two marker types.
+
+   Body / light theme  →  dark amber + dark green text
+   Code block / dark   →  light amber + light green text
+
+   The .script_code selectors are more specific, so they win
+   automatically inside <pre class="script_code"> without
+   needing !important.
+   ============================================================ */
+
+/* -- Body / light theme (default) ----------------------------- */
 
 
-/* Placeholder highlight inside code blocks.
-   The span is injected via dangerouslySetInnerHTML, so it is NOT
-   CSS-module-hashed — we must target it as a global class. */
-   
-/* Block-level highlight for Sageion-owned code regions.
-   Colored text + left accent, no background — preserves indent. */
+
+/* -- Code blocks / dark theme (override) ---------------------- */
+
+.script_code :global(.ph) {
+  background: rgba(255, 200, 100, 0.18);
+  color: #ffd79a;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
 .script_code :global(.ph-block) {
   border-left: 3px solid rgba(46, 160, 67, 0.55);
   padding-left: 8px;
@@ -336,6 +354,7 @@
   color: #7ee787;
   font-weight: 500;
 }
+
 
 .api-table {
   width: 100%;
