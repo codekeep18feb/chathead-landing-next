@@ -285,7 +285,7 @@
   position: absolute;
   top: 8px;
   left: 10px;
-  z-index: 1001;
+  z-index: 999;
   width: 35px;
   height: 36px;
   border-radius: 8px;
@@ -560,5 +560,11 @@
 @media (max-width: 480px) {
   .mobileSidebar {
     width: 100%;
+    top: 68px;
+  }
+  .mobileSidebarContent > ol > li {
+    padding-left: 0px;
+    font-size: 12.5px;
+    border: 2px solid red;
   }
 }

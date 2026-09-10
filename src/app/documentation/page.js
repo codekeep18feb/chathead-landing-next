@@ -137,7 +137,7 @@ const Document = () => {
                 isMobileSidebarOpen ? styles.mobileSidebarOpen : ""
               }`}
             >
-              <div className={styles.mobileSidebarHeader}>
+              {/* <div className={styles.mobileSidebarHeader}>
                 <span>Documentation</span>
                 <button
                   className={styles.mobileSidebarClose}
@@ -146,7 +146,7 @@ const Document = () => {
                 >
                   <FaTimes size={20} />
                 </button>
-              </div>
+              </div> */}
               <div className={styles.mobileSidebarContent}>
                 <Sidebar
                   isMobile={isMobile}
