@@ -129,6 +129,7 @@ const renderTextWithElements = (text, linkParts) => {
 
   linkParts.forEach((part, index) => {
     const startIndex = text.indexOf(part.text, lastIndex);
+
     if (startIndex > -1) {
       if (startIndex > lastIndex) {
         parts.push(
@@ -140,6 +141,7 @@ const renderTextWithElements = (text, linkParts) => {
           />
         );
       }
+
       parts.push(
         <a
           key={`link-${index}`}
@@ -150,6 +152,7 @@ const renderTextWithElements = (text, linkParts) => {
           {part.text}
         </a>
       );
+
       lastIndex = startIndex + part.text.length;
     }
   });
