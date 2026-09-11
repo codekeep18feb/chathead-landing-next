@@ -1,17 +1,17 @@
-const isProd = process.env.NODE_ENV === "production";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
   output: "export",
-  basePath: "", // Empty for root domain
-  assetPrefix: "", // Empty for root domain
-  images: { 
-    unoptimized: true 
+  basePath: "",
+  assetPrefix: "",
+  images: {
+    unoptimized: true,
   },
   trailingSlash: true,
-  env: {
-    NEXT_PUBLIC_BASE_PATH: "",
-    NEXT_PUBLIC_API_URL: "https://api.example.com",
-  },
+  outputFileTracingRoot: __dirname,
 };
 
 export default nextConfig;
