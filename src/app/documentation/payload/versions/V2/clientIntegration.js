@@ -71,19 +71,8 @@ export const clientIntegration = [
                   {
                     tag_type: "div",
                     children: [
-                      {
-                        tag_type: "p",
-                        text: "Locate the main entry file (typically index.html) and insert the following scripts. Socket.IO must load before the Sageion bundle.",
-                      },
-                      {
-                        tag_type: "code_with_copy",
-                        code: `<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>\n<script src="/node_modules/chathead-consumer-client/dist/bundle.js"></script>`,
-                        language: "html",
-                      },
-                      {
-                        tag_type: "p",
-                        text: "Or, if you prefer the CDN build:",
-                      },
+                    
+                      
                       {
                         tag_type: "code_with_copy",
                         code: `<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>\n<script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>`,
