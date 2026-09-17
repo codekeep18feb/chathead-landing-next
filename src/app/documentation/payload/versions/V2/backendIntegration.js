@@ -65,7 +65,7 @@ export const backendIntegration = [
       },
       {
         tag_type: "code_with_copy",
-        code: "POST https://{region}.userauth2.tezkit.com/dev/onboarding",
+        code: "POST https://{region}.userauth2.sageion.com/prod/onboarding",
         language: "http",
       },
       {
@@ -102,7 +102,7 @@ export const backendIntegration = [
       },
       {
         tag_type: "code_with_copy",
-        code: `curl --location 'https://us.userauth2.tezkit.com/dev/onboarding' \\
+        code: `curl --location 'https://us.userauth2.sageion.com/prod/onboarding' \\
   --header 'X-API-Key: YOUR_REST_API_KEY' \\
   --header 'Content-Type: application/json' \\
   --data '{
@@ -187,7 +187,7 @@ router.post('/register', [...validators], async (req, res) => {
 
   // 2. Onboard the user into Sageion (fire-and-forget)
   [[[try {
-    const onboardingUrl = \`https://\${process.env.SAGEION_REGION}.userauth2.tezkit.com/dev/onboarding\`;
+    const onboardingUrl = \`https://\${process.env.SAGEION_REGION}.userauth2.sageion.com/prod/onboarding\`;
     await axios.post(
       onboardingUrl,
       {
@@ -379,7 +379,7 @@ SAGEION_REST_API_KEY = os.environ["SAGEION_REST_API_KEY"]
 
 [[[async def onboard_user(user_id: int) -> None:
     """Fire-and-forget onboarding. Never raises — logs and returns."""
-    url = f"https://{SAGEION_REGION}.userauth2.tezkit.com/dev/onboarding"
+    url = f"https://{SAGEION_REGION}.userauth2.sageion.com/prod/onboarding"
     payload = {"uid": str(user_id), "app_name": SAGEION_APP_NAME}
     headers = {
         "X-API-Key": SAGEION_REST_API_KEY,
@@ -472,7 +472,7 @@ import (
 
 [[[func onboardUser(ctx context.Context, userID int64) {
     url := fmt.Sprintf(
-        "https://%s.userauth2.tezkit.com/dev/onboarding",
+        "https://%s.userauth2.sageion.com/prod/onboarding",
         os.Getenv("SAGEION_REGION"),
     )
     body, _ := json.Marshal(map[string]string{
@@ -578,7 +578,7 @@ public function register(Request $request)
     // 2. Onboard the user into Sageion (fire-and-forget)
     [[[try {
         $url = sprintf(
-            'https://%s.userauth2.tezkit.com/dev/onboarding',
+            'https://%s.userauth2.sageion.com/prod/onboarding',
             env('SAGEION_REGION')
         );
         Http::withHeaders([
@@ -667,7 +667,7 @@ class AuthController < ApplicationController
 
     # 2. Onboard the user into Sageion (fire-and-forget)
     [[[begin
-      url = "https://#{ENV['SAGEION_REGION']}.userauth2.tezkit.com/dev/onboarding"
+      url = "https://#{ENV['SAGEION_REGION']}.userauth2.sageion.com/prod/onboarding"
       conn = Faraday.new(url: url) do |f|
         f.options.timeout = 5
       end
@@ -1007,7 +1007,7 @@ router.post('/bookings', [...validators], async (req, res) => {
       },
       {
         tag_type: "code_with_copy",
-        code: "POST https://{region}.autobot2.tezkit.com/dev/webhook/callback",
+        code: "POST https://{region}.autobot2.sageion.com/prod/webhook/callback",
         language: "http",
       },
       {
@@ -1142,7 +1142,7 @@ router.post('/payments/webhook', async (req, res) => {
 
   if (correlation_id) {
     [[[await axios.post(
-      \`https://\${process.env.SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback\`,
+      \`https://\${process.env.SAGEION_REGION}.autobot2.sageion.com/prod/webhook/callback\`,
       {
         correlation_id: correlation_id,
         data: {
@@ -1206,7 +1206,7 @@ router.post('/orders', async (req, res) => {
 
   // ... elsewhere, when the work finishes:
   // [[[await axios.post(
-  //   \`https://\${process.env.SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback\`,
+  //   \`https://\${process.env.SAGEION_REGION}.autobot2.sageion.com/prod/webhook/callback\`,
   //   {
   //     correlation_id,
   //     data: { success: true, order_id: order.id, status: 'completed' },
@@ -1249,7 +1249,7 @@ async def create_order(request: Request):
 
 [[[async def deliver_webhook(correlation_id: str, order_id: int):
     """Call this from wherever the async work completes."""
-    url = f"https://{SAGEION_REGION}.autobot2.tezkit.com/dev/webhook/callback"
+    url = f"https://{SAGEION_REGION}.autobot2.sageion.com/prod/webhook/callback"
     async with httpx.AsyncClient(timeout=5.0) as client:
         await client.post(url, json={
             "correlation_id": correlation_id,
@@ -1297,7 +1297,7 @@ func CreateOrderHandler(w http.ResponseWriter, r *http.Request) {
 [[[// Call this from wherever the async work completes.
 func DeliverWebhook(correlationID string, orderID int64) error {
     url := fmt.Sprintf(
-        "https://%s.autobot2.tezkit.com/dev/webhook/callback",
+        "https://%s.autobot2.sageion.com/prod/webhook/callback",
         os.Getenv("SAGEION_REGION"),
     )
     payload, _ := json.Marshal(map[string]any{
@@ -1349,7 +1349,7 @@ Route::post('/orders', function (Request $request) {
 [[[// Call this from wherever the async work completes.
 function deliver_webhook(string $correlationId, int $orderId): void {
     Http::timeout(5)->post(
-        sprintf('https://%s.autobot2.tezkit.com/dev/webhook/callback',
+        sprintf('https://%s.autobot2.sageion.com/prod/webhook/callback',
                 env('SAGEION_REGION')),
         [
             'correlation_id' => $correlationId,
@@ -1464,7 +1464,7 @@ end]]]`,
           ["[[SAGEION_APP_NAME]]", "ai_chatbot_system", "Identifies your Sageion app in onboarding and agent-token requests."],
           ["[[SAGEION_REST_API_KEY]]", "your_rest_api_key", "[[X-API-Key]] header for onboarding."],
           ["[[SAGEION_CLIENT_SECRET]]", "your_client_secret", "Verifies client credentials on [[/client-user-token]] (only needed if you enable the optional AI agent section below). Never expose to the browser."],
-          ["[[WEBHOOK_CALLBACK_URL]]", "https://us.autobot2.tezkit.com/dev/webhook/callback", "Where your backend posts async results for APIs configured with webhook enabled."],
+          ["[[WEBHOOK_CALLBACK_URL]]", "https://us.autobot2.sageion.com/prod/webhook/callback", "Where your backend posts async results for APIs configured with webhook enabled."],
         ],
       },
 

@@ -109,7 +109,7 @@ export const clientIntegration = [
                       {
                         tag_type: "code_with_copy",
                         code: `<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-<script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>`,
+<script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>`,
                         language: "html",
                       },
                       {
