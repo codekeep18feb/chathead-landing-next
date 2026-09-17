@@ -19,7 +19,22 @@ export const prerequisites = [
           },
           {
             tag_type: "li",
+            text: "Enable at least one of the three AI bots — [[FAQ/QNA Tree]], [[AI Chat]], or [[Live Agent]]. An app cannot be created without one.",
+          },
+          {
+            tag_type: "li",
             text: "Open the App Details page and note your: App Name, API Key, and Region (US or IN).",
+          },
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "You can change these later",
+        children: [
+          {
+            tag_type: "p",
+            text: "Bots, settings, and theme are all editable from the App Details page after creation. Pick whatever makes sense to start with.",
           },
         ],
       },
