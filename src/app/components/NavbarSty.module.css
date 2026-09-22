@@ -53,10 +53,10 @@
 .logo h2 {
   font-size: 24px;
   font-weight: 700;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); */
+  /* background-clip: text; */
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
   letter-spacing: -0.5px;
 }
 
@@ -129,7 +129,7 @@
   flex-direction: column;
   width: 100%;
   margin-top: 20px;
-  gap: 12px; 
+  gap: 12px;
 }
 
 .mobile-auth-buttons a {
@@ -139,11 +139,11 @@
 
 .mobile-auth-buttons .login,
 .mobile-auth-buttons .signup {
-    width: 100%;
+  width: 100%;
   text-align: center;
   padding: 12px 24px;
   display: block; /* Ensure buttons are visible */
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 .login,
@@ -191,7 +191,7 @@
 
 /* Burger Icon */
 .burger-icon {
-  display: none !important;;
+  display: none !important;
   font-size: 24px;
   cursor: pointer;
   color: #1a1a2e;
@@ -391,7 +391,13 @@
   background: rgba(102, 126, 234, 0.05);
   border-radius: 8px;
 }
+.sageText {
+  color: #ff9a00;
+}
 
+.ionText {
+  color: #41ab5d;
+}
 /* ========== RESPONSIVE STYLES ========== */
 
 /* Below 1280px - Large screens */
@@ -427,7 +433,7 @@
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     gap: 0;
-     /* width: 320px; */
+    /* width: 320px; */
   }
 
   .nav-links.active {
@@ -514,7 +520,7 @@
   .nav_overlay {
     top: 0;
   }
-   .mobile-auth-buttons {
+  .mobile-auth-buttons {
     display: flex;
     margin-top: 30px;
     padding-top: 20px;
@@ -583,7 +589,7 @@
   .mobileDropdownContent {
     padding: 10px 12px;
   }
-   .mobile-auth-buttons {
+  .mobile-auth-buttons {
     padding-left: 12px;
     padding-right: 12px;
     gap: 10px;

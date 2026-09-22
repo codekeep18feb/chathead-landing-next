@@ -25,7 +25,7 @@ export default function Sidebar({ selectedFilter, onLinkClick }) {
                 tag_type: "li",
                 text: "Integration",
                 default_expanded: true,
-                selector_uid: "v2_prerequisites",
+                // selector_uid: "v2_prerequisites",
                 sub_items: [
                   {
                     tag_type: "li",
@@ -67,7 +67,7 @@ export default function Sidebar({ selectedFilter, onLinkClick }) {
                 link_configuration: {
                   show: true,
                   type: "internal",
-                  targetSelector: ".content-inner-heading",
+                  targetSelector: "content-inner-heading",
                   selector_uid: "v2_prerequisites"
                 }
               }
@@ -98,7 +98,7 @@ export default function Sidebar({ selectedFilter, onLinkClick }) {
                 tag_type: "li",
                 text: "Platform",
                 default_expanded: false,
-                selector_uid: "v2_whitelabel_domains",
+                // selector_uid: "v2_whitelabel_domains",
                 sub_items: [
                   // ====== SIBLING 1: Global Level Settings ======
                   {
