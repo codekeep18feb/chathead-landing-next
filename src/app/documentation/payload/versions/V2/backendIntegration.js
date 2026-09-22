@@ -1454,7 +1454,7 @@ end]]]`,
       },
       {
         tag_type: "p",
-        text: "Your backend needs these variables. Add them to your server's environment — never expose [[SAGEION_REST_API_KEY]] or [[SAGEION_CLIENT_SECRET]] to the browser.",
+        text: "Your backend needs these variables. Add them to your server's environment — never expose [[SAGEION_REST_API_KEY]], [[SAGEION_CLIENT_SECRET]], or [[SAGEION_PUBLIC_KEY_PEM]] to the browser.",
       },
       {
         tag_type: "table",
@@ -1464,7 +1464,38 @@ end]]]`,
           ["[[SAGEION_APP_NAME]]", "ai_chatbot_system", "Identifies your Sageion app in onboarding and agent-token requests."],
           ["[[SAGEION_REST_API_KEY]]", "your_rest_api_key", "[[X-API-Key]] header for onboarding."],
           ["[[SAGEION_CLIENT_SECRET]]", "your_client_secret", "Verifies client credentials on [[/client-user-token]] (only needed if you enable the optional AI agent section below). Never expose to the browser."],
+          ["[[SAGEION_PUBLIC_KEY_PATH]]", "/etc/sageion/sageion-public.pem", "Path to the PEM file containing the public key from the Token Encryption Key section. Used to encrypt tokens returned from [[/client-user-token]]. Recommended over the inline PEM for production."],
+          ["[[SAGEION_PUBLIC_KEY_PEM]]", "-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...", "Inline PEM alternative to [[SAGEION_PUBLIC_KEY_PATH]]. Useful in environments where mounting a file is inconvenient (single-file deploys, some serverless runtimes). When both are set, the path takes precedence."],
           ["[[WEBHOOK_CALLBACK_URL]]", "https://us.autobot2.sageion.com/prod/webhook/callback", "Where your backend posts async results for APIs configured with webhook enabled."],
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "⚠️ The encryption key is required for /client-user-token",
+        children: [
+          {
+            tag_type: "p",
+            text: "If your backend exposes [[/client-user-token]] (the optional AI agent section), it must encrypt the token it returns using the public key from Token Encryption Key. Set either [[SAGEION_PUBLIC_KEY_PATH]] or [[SAGEION_PUBLIC_KEY_PEM]] — the server should refuse to start without one of them so you find out at deploy time instead of at runtime.",
+          },
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "💡 Which one should I use?",
+        children: [
+          {
+            tag_type: "ul",
+            items: [
+              {
+                text: "[[SAGEION_PUBLIC_KEY_PATH]] — Recommended for production. Put the PEM in a file, point the variable at it, and mount the file into your container or server. Keeps the key out of environment listings and logs.",
+              },
+              {
+                text: "[[SAGEION_PUBLIC_KEY_PEM]] — Fallback for environments where file mounts aren't practical. Note that inline PEMs in environment variables sometimes get line-ending mangled — replace literal newlines with the two-character sequence [[\\n]] and let your code translate them back.",
+              },
+            ],
+          },
         ],
       },
 
@@ -1492,7 +1523,7 @@ end]]]`,
                 text: "Always call [[window.sageion_os.logout()]] from your own logout handler, before clearing your own session.",
               },
               {
-                text: "Never ship [[SAGEION_CLIENT_SECRET]] or [[SAGEION_REST_API_KEY]] to the frontend. If you use the frontend onboarding method, use a different token scoped to onboarding only.",
+                text: "Never ship [[SAGEION_CLIENT_SECRET]], [[SAGEION_REST_API_KEY]], or [[SAGEION_PUBLIC_KEY_PEM]] to the frontend. If you use the frontend onboarding method, use a different token scoped to onboarding only.",
               },
               {
                 text: "For bulk onboarding of existing users, contact Sageion Support before calling the API in a loop.",
@@ -1643,13 +1674,28 @@ end]]]`,
       {
         tag_type: "callout",
         type: "warning",
+        title: "⚠️ The token field must be encrypted",
+        children: [
+          {
+            tag_type: "p",
+            text: "The [[token]] value you return must not be a plaintext JWT. Sageion rejects plaintext JWTs — the workflow engine will treat the response as a failure. The token must be hybrid-encrypted with the public key shown under Token Encryption Key and returned as a single string with the format: base64(rsa_wrapped_key).base64(nonce).base64(ciphertext||tag).",
+          },
+          {
+            tag_type: "p",
+            text: "The reference implementations below show the full encryption routine. Note that the login server must refuse to start without the encryption key configured — a missing or invalid key should fail at deploy time, not at the first request.",
+          },
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "warning",
         title: "Response contract — required fields",
         children: [
           {
             tag_type: "table",
             headers: ["Field", "Type", "Required", "Why it matters"],
             rows: [
-              ["[[token]]", "string", "Yes", "The JWT the agent attaches as a Bearer token. Missing or null → the agent cannot make authenticated calls."],
+              ["[[token]]", "string", "Yes", "The encrypted JWT the agent attaches as a Bearer token. Missing or null → the agent cannot make authenticated calls."],
               ["[[expires_in]]", "number", "Yes", "Seconds until expiry. If omitted, the agent cannot tell when to refresh the token."],
               ["[[scope]]", "string[]", "Yes", "The list of actions this token authorizes. The agent checks this list before attempting operations."],
               ["[[user_id]]", "string", "Yes", "Echo of the [[user_id]] the token was issued for. The agent uses it to verify the token is bound to the right user."],
@@ -1706,13 +1752,16 @@ router.post('/client-user-token', [
   const scopes = [
     'booking:read', 'booking:create', 'booking:update', 'booking:cancel',
   ];
-  const token = generateToken(user_id, 'client@system', 'client', {
+  const plaintextToken = generateToken(user_id, 'client@system', 'client', {
     scope: scopes,
     client_id,
     session_id,
   });
 
-  res.json({ token, expires_in: 3600, scope: scopes, user_id });
+  // 4. Encrypt before returning — Sageion rejects plaintext JWTs.
+  const encryptedToken = encryptToken(plaintextToken);
+
+  res.json({ token: encryptedToken, expires_in: 3600, scope: scopes, user_id });
 });`,
                 language: "javascript",
               },
@@ -1778,14 +1827,18 @@ async def client_user_token(body: ClientUserTokenBody):
 
     # 3. Issue a scoped, short-lived token
     scopes = ["booking:read", "booking:create", "booking:update", "booking:cancel"]
-    token = issue_agent_token(             # your own token issuer
+    plaintext_token = issue_agent_token(   # your own token issuer
         user_id=body.user_id,
         scopes=scopes,
         client_id=body.client_id,
         session_id=body.session_id,
     )
+
+    # 4. Encrypt before returning — Sageion rejects plaintext JWTs.
+    encrypted_token = encrypt_token(plaintext_token)
+
     return {
-        "token": token,
+        "token": encrypted_token,
         "expires_in": 3600,
         "scope": scopes,
         "user_id": str(body.user_id),
@@ -1869,10 +1922,17 @@ func ClientUserTokenHandler(w http.ResponseWriter, r *http.Request) {
 
     // 3. Issue a scoped, short-lived token
     scopes := []string{"booking:read", "booking:create", "booking:update", "booking:cancel"}
-    token := issueAgentToken(uid, scopes, body.ClientID, body.SessionID)
+    plaintextToken := issueAgentToken(uid, scopes, body.ClientID, body.SessionID)
+
+    // 4. Encrypt before returning — Sageion rejects plaintext JWTs.
+    encryptedToken, err := encryptToken(plaintextToken)
+    if err != nil {
+        http.Error(w, "encryption failed", http.StatusInternalServerError)
+        return
+    }
 
     json.NewEncoder(w).Encode(map[string]any{
-        "token":      token,
+        "token":      encryptedToken,
         "expires_in": 3600,
         "scope":      scopes,
         "user_id":    body.UserID,
@@ -1950,15 +2010,18 @@ Route::post('/client-user-token', function (Request $request) {
 
     // 3. Issue a scoped, short-lived token
     $scopes = ['booking:read', 'booking:create', 'booking:update', 'booking:cancel'];
-    $token = issue_agent_token(
+    $plaintextToken = issue_agent_token(
         userId: (int) $user->id,
         scopes: $scopes,
         clientId: $request->client_id,
         sessionId: $request->session_id,
     );
 
+    // 4. Encrypt before returning — Sageion rejects plaintext JWTs.
+    $encryptedToken = encrypt_token($plaintextToken);
+
     return response()->json([
-        'token'      => $token,
+        'token'      => $encryptedToken,
         'expires_in' => 3600,
         'scope'      => $scopes,
         'user_id'    => (string) $user->id,
@@ -2019,15 +2082,18 @@ class AuthController < ApplicationController
 
     # 3. Issue a scoped, short-lived token
     scopes = %w[booking:read booking:create booking:update booking:cancel]
-    token = issue_agent_token(
+    plaintext_token = issue_agent_token(
       user_id:    user.id,
       scopes:     scopes,
       client_id:  params[:client_id],
       session_id: params[:session_id]
     )
 
+    # 4. Encrypt before returning — Sageion rejects plaintext JWTs.
+    encrypted_token = encrypt_token(plaintext_token)
+
     render json: {
-      token:      token,
+      token:      encrypted_token,
       expires_in: 3600,
       scope:      scopes,
       user_id:    user.id.to_s
