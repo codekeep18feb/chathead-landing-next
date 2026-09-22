@@ -236,11 +236,20 @@ export default function Sidebar({ selectedFilter, onLinkClick }) {
                     sub_items: [
                       {
                         tag_type: "li",
-                        text: "API Config",
+                        text: "Authentication Configure",
                         link_configuration: {
                           show: true,
                           type: "internal",
-                          selector_uid: "v2_api_config"
+                          selector_uid: "v2_authentication_configure"
+                        }
+                      },
+                      {
+                        tag_type: "li",
+                        text: "API Configurations",
+                        link_configuration: {
+                          show: true,
+                          type: "internal",
+                          selector_uid: "v2_api_configurations"
                         }
                       },
                       {
