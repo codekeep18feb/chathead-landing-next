@@ -228,10 +228,10 @@ export default function Sidebar({ selectedFilter, onLinkClick }) {
                       selector_uid: "v2_all_chat"
                     }
                   },
-                  // ====== SIBLING 6: Integrations & APIs & Workflows ======
+                  // ====== SIBLING 6: Integrations & APIs ======
                   {
                     tag_type: "li",
-                    text: "Integrations & APIs & Workflows",
+                    text: "Integrations & APIs",
                     selector_uid: "v2_integrations_apis_workflows",
                     sub_items: [
                       {
