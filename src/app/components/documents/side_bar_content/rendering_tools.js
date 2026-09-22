@@ -615,6 +615,7 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
   const handleScroll = (selector) => {
     console.log("Looking for element with selector:", selector);
+    console.log("inner config items")
     const element = document.getElementById(selector);
     console.log("Found element:", element);
     if (element) {
@@ -640,6 +641,9 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
     if (!item.link_configuration?.show) return null;
 
     const config = item.link_configuration;
+
+    console.log("config outerItems",config);
+    
 
     if (config.type === "internal") {
       return (

@@ -10,6 +10,7 @@ import Resources from "./Resources";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import styles from "./NavbarSty.module.css";
+import SageionLogo from "../../../SageionLogo";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -168,9 +169,6 @@ const Navbar = () => {
     router.push("/pricing");
   };
 
-
-  
-
   const handleWhyWeAreSpecial = (e) => {
     if (menuOpen) {
       setMenuOpen(false);
@@ -183,7 +181,6 @@ const Navbar = () => {
     }
     router.push("/WhyWeAreSpecial");
   };
-
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -212,7 +209,10 @@ const Navbar = () => {
         <div className={styles.logoImg}>
           <img src={`${basePath}/logo/sageion-logo.svg`} alt="Sageion" />
         </div>
-        <h2>Sageion</h2>
+         <h2>
+            <span className={styles.sageText}>Sage</span>
+            <span className={styles.ionText}>ion</span>
+          </h2>
       </div>
 
       {/* Burger Icon - Visible below 990px */}
