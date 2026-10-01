@@ -1,12 +1,12 @@
 export const integrationsApisWorkflows = [
   {
     tag_type: "h3",
-    text: "Integrations & APIs",
+    text: "Agent & Servers",
     selector_uid: "v2_integrations_apis_workflows",
   },
   {
     tag_type: "p",
-    text: "The Integrations & APIs section provides comprehensive tools for configuring API connections, building multi-step workflows, and managing response templates for your chatbot applications.",
+    text: "The Agent & Servers section provides comprehensive tools for configuring API connections, building multi-step workflows, and managing response templates for your chatbot applications.",
   },
 
   // ============================================================
@@ -1199,11 +1199,11 @@ export const integrationsApisWorkflows = [
   {
     tag_type: "callout",
     type: "success",
-    title: "✅ Integrations & APIs Overview Complete",
+    title: "✅ Agent & Servers Overview Complete",
     children: [
       {
         tag_type: "p",
-        text: "The Integrations & APIs section provides a complete toolkit for connecting your chatbot to backend services, building complex workflows, and managing user-facing responses.",
+        text: "The Agent & Servers section provides a complete toolkit for connecting your chatbot to backend services, building complex workflows, and managing user-facing responses.",
       },
       {
         tag_type: "p",
