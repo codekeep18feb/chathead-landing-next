@@ -764,41 +764,6 @@ end`,
         ],
       },
 
-      // ============================================================
-      // LOGOUT CLEANUP
-      // ============================================================
-      {
-        tag_type: "h3",
-        text: "Logout cleanup",
-        selector_uid: "v2_backend_logout",
-      },
-      {
-        tag_type: "p",
-        text: "Because authentication is handled by your own product, you must tell Sageion when a user logs out. Otherwise the chat session persists and the chat box may remain visible after logout.",
-      },
-      {
-        tag_type: "callout",
-        type: "warning",
-        title: "Always call logout on the client",
-        children: [
-          {
-            tag_type: "p",
-            text: "This is a frontend-only call. Sageion does not expose a server-side logout endpoint — the SDK clears its own storage and disconnects its sockets when you invoke it.",
-          },
-        ],
-      },
-      {
-        tag_type: "code_with_copy",
-        code: `// In your client-side logout handler:
-[[[window.sageion_os.logout?.();]]]
-
-// It:
-//   - clears all tezkit_* keys from localStorage
-//   - disconnects the active socket and AI socket
-//   - resets setupStatus back to "idle"
-// After logout, call initialize() again to re-open the chat as anonymous.`,
-        language: "javascript",
-      },
 
       // ============================================================
       // ASYNC APIs: X-CORRELATION-ID + WEBHOOK

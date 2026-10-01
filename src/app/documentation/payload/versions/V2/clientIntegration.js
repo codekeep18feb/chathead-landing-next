@@ -12,17 +12,152 @@ export const clientIntegration = [
         tag_type: "h4",
         text: "Client Side Integration",
       },
+
+      // ============================================================
+      // THE PUBLIC API
+      // ============================================================
       {
         tag_type: "p",
-        text: "Sageion loads in two ordered phases. [[setUp()]] prepares configuration and storage — it runs [[once per page load]]. [[initialize()]] mounts the chat UI and reflects the current user — it runs whenever the auth state changes.",
+        text: "Sageion exposes two methods on [[window.sageion_os]]: [[setUp()]] and [[initialize()]]. Everything else — sockets, DOM, auth lifecycle, teardown — is handled internally. This page documents the two methods and how to call them correctly.",
       },
       {
-        tag_type: "p",
-        text: "One call handles every auth transition. Pass [[{ uid }]] when a user is logged in. Pass [[{}]] when they are anonymous or have logged out. The SDK figures out the rest — no separate logout call, no page reload, no re-invocation of [[setUp()]].",
+        tag_type: "callout",
+        type: "info",
+        title: "The API in one sentence",
+        children: [
+          {
+            tag_type: "p",
+            text: "Call [[setUp()]] once per page load. Call [[initialize({ uid })]] whenever the current user changes — logged in, logged out, or switched. That's the entire contract.",
+          },
+        ],
       },
 
       // ============================================================
-      // LIFECYCLE
+      // METHOD 1 — setUp()
+      // ============================================================
+      {
+        tag_type: "h4",
+        text: "setUp()",
+      },
+      {
+        tag_type: "p",
+        text: "[[setUp()]] is configuration. It loads app data from the server, verifies your API key, and prepares the SDK. It runs once per page load.",
+      },
+      {
+        tag_type: "code_with_copy",
+        code: `await window.sageion_os.setUp(
+  "your_app_id",     // the app_id shown in your Sageion dashboard
+  "YOUR_API_KEY",    // the auth_key shown in your Sageion dashboard
+  "US",              // region: "US" or "IN"
+  "sageion-chat-root" // optional: id of a DOM element to mount into
+);`,
+        language: "javascript",
+      },
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "Call setUp() exactly once per page load",
+        children: [
+          {
+            tag_type: "ul",
+            items: [
+              {
+                tag_type: "li",
+                text: "It is not a per-route or per-navigation call. Client-side route changes do not need it to re-run.",
+              },
+              {
+                tag_type: "li",
+                text: "After login or logout, do NOT call [[setUp()]] again. Use [[initialize()]] instead.",
+              },
+              {
+                tag_type: "li",
+                text: "The only case where [[setUp()]] runs again is a full browser reload.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "success",
+        title: "First three arguments are the common case",
+        children: [
+          {
+            tag_type: "p",
+            text: "The fourth argument ([[chat_root_id]]) is optional. When omitted, the widget floats in the bottom-right corner of the page. When provided, it mounts inside the element with that id.",
+          },
+        ],
+      },
+
+      // ============================================================
+      // METHOD 2 — initialize()
+      // ============================================================
+      {
+        tag_type: "h4",
+        text: "initialize()",
+      },
+      {
+        tag_type: "p",
+        text: "[[initialize()]] tells the SDK who the current user is, and the SDK reflects that in the widget. It handles every auth transition — login, logout, and user-switch — without a page reload. Calling it with the same payload twice is a safe no-op.",
+      },
+      {
+        tag_type: "code_with_copy",
+        code: `// User is logged in
+await window.sageion_os.initialize({ uid: "42" });
+
+// User is anonymous, or just logged out
+await window.sageion_os.initialize({});`,
+        language: "javascript",
+      },
+      {
+        tag_type: "callout",
+        type: "success",
+        title: "One method handles every auth transition",
+        children: [
+          {
+            tag_type: "table",
+            headers: ["Current state", "Call", "What happens"],
+            rows: [
+              ["Anonymous visitor", "initialize({ uid: \"Alice's id\" })", "Chat opens as Alice."],
+              ["Logged in as Alice", "initialize({})", "Alice is logged out; chat stays mounted as anonymous."],
+              ["Logged in as Alice", "initialize({ uid: \"Alice's id\" })", "Safe no-op — nothing changes."],
+              ["Logged in as Alice", "initialize({ uid: \"Bob's id\" })", "Chat switches to Bob."],
+              ["Anonymous visitor", "initialize({})", "Safe no-op."],
+            ],
+          },
+          {
+            tag_type: "p",
+            text: "There is no separate logout method. To log a user out, call [[initialize({})]]. The SDK handles the transition.",
+          },
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "Call initialize() only when the user actually changes",
+        children: [
+          {
+            tag_type: "ul",
+            items: [
+              {
+                tag_type: "li",
+                text: "Don't call it speculatively — for example with [[{}]] \"to start\" and then with [[{ uid }]] a moment later. That produces an unnecessary anonymous→authenticated transition on every page load.",
+              },
+              {
+                tag_type: "li",
+                text: "Wait until your auth layer has finished resolving before calling. If your auth state has a [[loading]] flag, gate on [[loading === false]].",
+              },
+              {
+                tag_type: "li",
+                text: "If two different effects in your app both call [[initialize()]], they will race with different payloads. Consolidate into a single effect.",
+              },
+            ],
+          },
+        ],
+      },
+
+      // ============================================================
+      // LIFECYCLE — ordered, short
       // ============================================================
       {
         tag_type: "callout",
@@ -34,46 +169,20 @@ export const clientIntegration = [
             items: [
               {
                 tag_type: "li",
-                text: "Load the Socket.IO and Sageion bundle [[<script>]] tags once, in your app's HTML shell.",
+                text: "Load the Socket.IO and Sageion bundle [[<script>]] tags once, in your app's HTML shell. Order matters: Socket.IO first, Sageion bundle second.",
               },
               {
                 tag_type: "li",
-                text: "Call [[setUp()]] once — after the scripts load, before anything else.",
+                text: "Call [[setUp()]] once — after the scripts load, before anything else. Await it.",
               },
               {
                 tag_type: "li",
-                text: "Call [[initialize({ uid })]] when a user is logged in, or [[initialize({})]] when they are anonymous.",
+                text: "Call [[initialize({ uid })]] for a logged-in user, or [[initialize({})]] for anonymous. Do this once your auth layer has settled.",
               },
               {
                 tag_type: "li",
-                text: "When the user logs in or out, call [[initialize()]] again with the new state. The SDK handles the transition.",
+                text: "When the user logs in, logs out, or switches, call [[initialize()]] again with the new payload. No page reload, no second [[setUp()]].",
               },
-            ],
-          },
-        ],
-      },
-
-      // ============================================================
-      // AUTH STATE CONTRACT
-      // ============================================================
-      {
-        tag_type: "callout",
-        type: "success",
-        title: "🔄 One method handles every auth transition",
-        children: [
-          {
-            tag_type: "p",
-            text: "You only need one method to reflect auth changes: [[initialize()]]. The SDK handles every transition — login, logout, user-switch — without reloading the page.",
-          },
-          {
-            tag_type: "table",
-            headers: ["Current state", "Call", "What happens"],
-            rows: [
-              ["Anonymous visitor", "[[initialize({ uid: \"Alice's id\" })]]", "Chat opens as Alice."],
-              ["Logged in as Alice", "[[initialize({})]]", "Alice is logged out; chat stays open as anonymous."],
-              ["Logged in as Alice", "[[initialize({ uid: \"Alice's id\" })]]", "Safe no-op — nothing changes."],
-              ["Logged in as Alice", "[[initialize({ uid: \"Bob's id\" })]]", "Chat switches to Bob."],
-              ["Anonymous visitor", "[[initialize({})]]", "Safe no-op."],
             ],
           },
         ],
@@ -115,11 +224,11 @@ export const clientIntegration = [
                       {
                         tag_type: "callout",
                         type: "info",
-                        title: "SDK global",
+                        title: "The SDK is a global, not an npm package",
                         children: [
                           {
                             tag_type: "p",
-                            text: "Loading the bundle exposes [[window.sageion_os]]. Every example below uses that global. No npm install is required.",
+                            text: "Loading the bundle exposes [[window.sageion_os]]. Every example below uses that global. There is no [[npm install]], no import statement, and no build-time integration.",
                           },
                         ],
                       },
@@ -130,7 +239,7 @@ export const clientIntegration = [
                         children: [
                           {
                             tag_type: "p",
-                            text: "By default, the chat bubble floats in the bottom-right corner of the page. If you want it anchored inside a specific container, add an empty element to your markup and pass its id as [[chat_root_id]] to [[setUp()]]:",
+                            text: "By default, the chat bubble floats in the bottom-right corner of the page. To anchor it inside a specific container, add an empty element to your markup and pass its id as the fourth argument to [[setUp()]]:",
                           },
                           {
                             tag_type: "code_with_copy",
@@ -201,7 +310,7 @@ export const clientIntegration = [
   (async () => {
     try {
       [[[await window.sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -228,22 +337,6 @@ export const clientIntegration = [
   })();
 </script>`,
                         language: "javascript",
-                      },
-                      {
-                        tag_type: "callout",
-                        type: "success",
-                        title: "Minimal form",
-                        children: [
-                          {
-                            tag_type: "p",
-                            text: "Only the first three arguments are required. Most apps simply write:",
-                          },
-                          {
-                            tag_type: "code_with_copy",
-                            code: `[[[await window.sageion_os.setUp("your_app_name", "YOUR_API_KEY", "US");]]]`,
-                            language: "javascript",
-                          },
-                        ],
                       },
                     ],
                   },
@@ -278,7 +371,7 @@ export const clientIntegration = [
                         code: `<script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -335,7 +428,7 @@ export const clientIntegration = [
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -364,25 +457,6 @@ export const clientIntegration = [
     .catch(err => console.error("[Sageion] bootstrap failed:", err));
 </script>`,
                         language: "javascript",
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "If the bundle script has not finished loading, [[window.sageion_os]] will be undefined. Place your code after the bundle script tag, or wrap it in a check.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "In a single-page app with a client-side router, remember that [[setUp()]] only runs once per page load — not on client-side route changes.",
                       },
                     ],
                   },
@@ -429,7 +503,7 @@ function App() {
     (async () => {
       try {
         [[[await window.sageion_os.setUp(
-          "your_app_name",
+          "your_app_id",
           "YOUR_API_KEY",
           "US"
         );]]]
@@ -478,18 +552,23 @@ import { useEffect } from "react";
 import { useAuth } from "./context/AuthContext";
 
 function useSageionUserSync() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const booted = useRef(false);
 
   useEffect(() => {
+    if (loading) return;                        // wait until auth settles
     if (!booted.current) { booted.current = true; return; }
 
     window.sageion_os
       .initialize(user ? { uid: String(user.id) } : {})
       .catch(err => console.error("[Sageion] sync failed:", err));
-  }, [user]);
+  }, [user, loading]);
 }`,
                             language: "javascript",
+                          },
+                          {
+                            tag_type: "p",
+                            text: "The [[loading]] gate is important: without it, the effect can fire with [[user: null]] while your auth provider is still resolving, producing an unnecessary anonymous→authenticated transition on every page load.",
                           },
                         ],
                       },
@@ -524,7 +603,7 @@ export default function RootLayout({ children }) {
 
     window.__sageionSetup = (async function () {
       [[[await window.sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -615,29 +694,6 @@ export default function SupportRoute() {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "React StrictMode double-invokes effects in dev. The [[ran.current]] guard prevents double setup. In production this never happens.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "If you use React Router and have multiple layouts, only include the bootstrap in the layout that wraps all routes.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "Do not import the bundle as an npm package — the global [[window.sageion_os]] is what every example uses.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -718,7 +774,7 @@ export default function SageionBootstrap() {
     (async () => {
       try {
         [[[await window.sageion_os.setUp(
-          "your_app_name",
+          "your_app_id",
           "YOUR_API_KEY",
           "US"
         );]]]
@@ -773,7 +829,7 @@ export default function RootSetup() {
 
     window.__sageionSetup = (async function () {
       [[[await window.sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -860,29 +916,6 @@ export default function SupportPage() {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "The bootstrap component must be a client component ([[\"use client\"]] at the top). Server components have no [[useEffect]] and no [[window]].",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "Use [[strategy=\"beforeInteractive\"]] on the [[<Script>]] tags so Socket.IO is guaranteed to load before the Sageion bundle.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "If your layout has a fixed footer, add bottom padding to avoid overlap with the chat bubble — or pass a specific [[chat_root_id]].",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -913,7 +946,7 @@ import { onMounted } from "vue";
 onMounted(async () => {
   try {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -960,6 +993,7 @@ const auth = useAuthStore();
 watch(
   () => auth.user,
   (user) => {
+    if (auth.loading) return;
     window.sageion_os
       .initialize(user ? { uid: String(user.id) } : {})
       .catch(err => console.error("[Sageion] sync failed:", err));
@@ -987,7 +1021,7 @@ import { onMounted } from "vue";
 onMounted(() => {
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -1047,25 +1081,6 @@ onMounted(() => {
 });
 </script>`,
                         language: "javascript",
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "If you use Pinia or Vuex for auth state, watch the store's user getter and call [[initialize()]] from that watcher.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "Vue's [[onMounted]] runs after the component mounts, which is after the HTML shell has loaded — the SDK global is guaranteed to be present.",
                       },
                     ],
                   },
@@ -1131,7 +1146,7 @@ export default defineNuxtPlugin(() => {
   (async () => {
     try {
       [[[await window.sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -1185,7 +1200,7 @@ export default defineNuxtPlugin(() => {
 export default defineNuxtPlugin(() => {
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -1245,25 +1260,6 @@ onMounted(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Always use the [[.client]] plugin suffix. Server-side plugins run in Node, where [[window]] does not exist.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "If you use Nuxt's [[useState]] for auth, watch it in a client plugin and call [[initialize()]] when it changes.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -1298,7 +1294,7 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     try {
       [[[await (window as any).sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -1367,7 +1363,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     (window as any).__sageionSetup = (async function () {
       [[[await (window as any).sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -1440,25 +1436,6 @@ export class SupportComponent implements OnInit {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Angular's strict TypeScript will complain about [[window.sageion_os]]. Cast to [[any]] or declare the global.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "If your app has a route guard that redirects on auth change, make sure [[initialize()]] runs after the guard resolves — otherwise the widget may initialize before your app knows who the user is.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -1515,7 +1492,7 @@ export class SupportComponent implements OnInit {
   onMount(async () => {
     try {
       [[[await window.sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -1563,7 +1540,7 @@ export class SupportComponent implements OnInit {
   onMount(() => {
     window.__sageionSetup = (async function () {
       [[[await window.sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -1630,25 +1607,6 @@ export class SupportComponent implements OnInit {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "In SvelteKit, use [[onMount]] rather than top-level script code — top-level code also runs during SSR, where [[window]] does not exist.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "For plain Svelte (not SvelteKit), put the scripts in [[index.html]] and run the bootstrap in the root [[App.svelte]]'s [[onMount]].",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -1693,7 +1651,7 @@ export default function App() {
     (async () => {
       try {
         [[[await window.sageion_os.setUp(
-          "your_app_name",
+          "your_app_id",
           "YOUR_API_KEY",
           "US"
         );]]]
@@ -1770,25 +1728,6 @@ export default function App() {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Scripts must go inside [[<body>]] before [[<Scripts />]] so they load in the right order after hydration.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "Remix hydration is asynchronous. Ensure [[window.sageion_os]] exists before calling [[setUp()]] — guard with a check if needed.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -1831,7 +1770,7 @@ export default function App() {
       (async () => {
         try {
           [[[await window.sageion_os.setUp(
-            "your_app_name",
+            "your_app_id",
             "YOUR_API_KEY",
             "US"
           );]]]
@@ -1876,7 +1815,7 @@ export default function App() {
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -1934,25 +1873,6 @@ export default function App() {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Plain [[<script>]] tags in Astro run on the client. That is what we want here.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "If you use Astro islands for other interactive parts of the page, they will not interfere with Sageion — the SDK manages its own DOM subtree.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -1996,7 +1916,7 @@ export default component$(() => {
 
     try {
       [[[await (window as any).sageion_os.setUp(
-        "your_app_name",
+        "your_app_id",
         "YOUR_API_KEY",
         "US"
       );]]]
@@ -2079,21 +1999,6 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Qwik's default is to avoid JavaScript until absolutely necessary. [[useVisibleTask$]] is the escape hatch that tells Qwik \"run this on the client when the component is visible\".",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -2137,7 +2042,7 @@ export default component$(() => {
     (async () => {
       try {
         [[[await window.sageion_os.setUp(
-          "your_app_name",
+          "your_app_id",
           "YOUR_API_KEY",
           "US"
         );]]]
@@ -2184,7 +2089,7 @@ export default component$(() => {
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -2254,25 +2159,6 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "If you serve static files via Django's staticfiles app, the Sageion scripts are still loaded from the CDN — no [[{% static %}]] tag needed.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "Place the Sageion [[<script>]] tags at the end of [[<body>]] so they never block first paint.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -2316,7 +2202,7 @@ export default component$(() => {
       (async () => {
         try {
           [[[await window.sageion_os.setUp(
-            "your_app_name",
+            "your_app_id",
             "YOUR_API_KEY",
             "US"
           );]]]
@@ -2363,7 +2249,7 @@ export default component$(() => {
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -2425,25 +2311,6 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "With Turbo Drive enabled, page navigations do not trigger a full reload. [[setUp()]] runs once, on the initial load, and [[initialize()]] does not re-run on Turbo navigations — the widget persists, which is usually what you want.",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "If you want the widget to only appear on some pages after a Turbo navigation, add those paths to [[exclude_paths]] in your Sageion app settings.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -2484,7 +2351,7 @@ export default component$(() => {
       (async () => {
         try {
           [[[await window.sageion_os.setUp(
-            "your_app_name",
+            "your_app_id",
             "YOUR_API_KEY",
             "US"
           );]]]
@@ -2531,7 +2398,7 @@ export default component$(() => {
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -2601,21 +2468,6 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "If you compile assets with Vite or Mix, the Sageion bundle is still loaded from the CDN — do not add it to your asset pipeline.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -2656,7 +2508,7 @@ export default component$(() => {
       (async () => {
         try {
           [[[await window.sageion_os.setUp(
-            "your_app_name",
+            "your_app_id",
             "YOUR_API_KEY",
             "US"
           );]]]
@@ -2703,7 +2555,7 @@ export default component$(() => {
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -2769,21 +2621,6 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "If you use FastAPI's [[Jinja2Templates]], make sure to enable async rendering — the Sageion script tag is synchronous and loads independently.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -2824,7 +2661,7 @@ export default component$(() => {
     (async () => {
       try {
         [[[await window.sageion_os.setUp(
-          "your_app_name",
+          "your_app_id",
           "YOUR_API_KEY",
           "US"
         );]]]
@@ -2869,7 +2706,7 @@ export default component$(() => {
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -2927,21 +2764,6 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Pug and Handlebars use the same pattern with their own template syntax. The JavaScript is byte-identical.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -2989,7 +2811,7 @@ export default component$(() => {
     (async () => {
       try {
         [[[await window.sageion_os.setUp(
-          "your_app_name",
+          "your_app_id",
           "YOUR_API_KEY",
           "US"
         );]]]
@@ -3049,21 +2871,6 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Thymeleaf escapes HTML by default. Use [[th:inline=\"javascript\"]] if you need to inject server-side values into the bootstrap script.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
 
@@ -3104,7 +2911,7 @@ export default component$(() => {
     (async () => {
       try {
         [[[await window.sageion_os.setUp(
-          "your_app_name",
+          "your_app_id",
           "YOUR_API_KEY",
           "US"
         );]]]
@@ -3151,7 +2958,7 @@ export default component$(() => {
 <script>
   window.__sageionSetup = (async function () {
     [[[await window.sageion_os.setUp(
-      "your_app_name",
+      "your_app_id",
       "YOUR_API_KEY",
       "US"
     );]]]
@@ -3213,81 +3020,9 @@ export default component$(() => {
                   },
                 ],
               },
-              {
-                tag_type: "accordion",
-                title: "Gotchas",
-                children: [
-                  {
-                    tag_type: "ul",
-                    items: [
-                      {
-                        tag_type: "li",
-                        text: "Razor's [[@]] symbol is the escape character for C# code. If your bootstrap script contains an [[@]], escape it as [[@@]].",
-                      },
-                      {
-                        tag_type: "li",
-                        text: "Sections defined with [[@section]] are only rendered if the layout has a matching [[@await RenderSectionAsync]] call.",
-                      },
-                    ],
-                  },
-                ],
-              },
             ],
           },
         ],
-      },
-
-      // ============================================================
-      // LOGIN / LOGOUT AT RUNTIME
-      // ============================================================
-      {
-        tag_type: "h4",
-        text: "Handling login & logout at runtime",
-        selector_uid: "v2_login_logout_runtime",
-      },
-      {
-        tag_type: "p",
-        text: "[[setUp()]] runs once per page load. It does not re-run when the user logs in or out. To reflect auth changes without a full page reload, call [[initialize()]] again — the SDK handles every transition internally.",
-      },
-      {
-        tag_type: "callout",
-        type: "success",
-        title: "✅ One method handles every auth transition",
-        children: [
-          {
-            tag_type: "p",
-            text: "You only need one method. Pass [[{ uid }]] for a logged-in user, or [[{}]] for anonymous.",
-          },
-          {
-            tag_type: "code_with_copy",
-            code: `// After a successful login:
-async function onLogin(user) {
-  await window.sageion_os.initialize({ uid: user.id.toString() });
-}
-
-// After logout:
-async function onLogout() {
-  await window.sageion_os.initialize({});
-  // Widget stays mounted, now anonymous. No page reload.
-}`,
-            language: "javascript",
-          },
-        ],
-      },
-      {
-        tag_type: "callout",
-        type: "info",
-        title: "When does [[setUp()]] run again?",
-        children: [
-          {
-            tag_type: "p",
-            text: "Only on a full browser reload of a page where [[setUp()]] is loaded — the first visit to the app, a hard refresh, or any navigation that triggers a full page reload. Client-side route changes that do not reload the document do not re-run [[setUp()]].",
-          },
-        ],
-      },
-      {
-        tag_type: "p",
-        text: "If your framework has reactive auth (React state, Vue watchers, Svelte stores, etc.), put [[initialize()]] in a single effect that watches the current user. That one effect is your entire SDK integration for auth.",
       },
 
       // ============================================================
@@ -3343,15 +3078,15 @@ async function onLogout() {
       },
       {
         tag_type: "p",
-        text: "If something looks wrong, first open your browser console — every step of the SDK logs a message you can follow. These are the most frequent issues users hit during integration:",
+        text: "If something looks wrong, first open your browser console — the SDK logs a step-by-step trace you can follow. These are the most frequent issues users hit during integration:",
       },
       {
         tag_type: "table",
         headers: ["What you see", "Likely cause", "Fix"],
         rows: [
           [
-            "An error popup appears immediately when the page loads, mentioning [[api_key]] or [[app_name]].",
-            "The [[api_key]] or [[app_name]] you passed to [[setUp()]] does not match this app.",
+            "An error popup appears immediately when the page loads, mentioning [[api_key]] or [[app_id]].",
+            "The [[api_key]] or [[app_id]] you passed to [[setUp()]] does not match this app.",
             "Double-check both values against your app's settings, then click Reset Settings in the popup and reload.",
           ],
           [
@@ -3383,6 +3118,16 @@ async function onLogout() {
             "After login or logout, the whole page reloads.",
             "You are using a framework-native redirect instead of calling [[initialize()]].",
             "Replace the redirect with an [[initialize()]] call. The SDK handles the transition without a reload.",
+          ],
+          [
+            "The widget briefly shows the anonymous view, then flickers to the authenticated view on page load.",
+            "[[initialize()]] was called twice — once with [[{}]] before auth resolved, once with [[{ uid }]] after.",
+            "Gate [[initialize()]] on your auth layer's [[loading === false]] state. Only call it once the current user is known.",
+          ],
+          [
+            "The console shows [[[initialize] a _doInitialize is already in flight — queuing]] repeatedly.",
+            "Two or more effects or scripts are calling [[initialize()]] with different payloads.",
+            "Consolidate into a single effect that watches the current user. The SDK handles the race, but the correct fix is not to create it.",
           ],
         ],
       },
