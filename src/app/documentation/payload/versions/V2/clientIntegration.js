@@ -31,6 +31,70 @@ export const clientIntegration = [
           },
         ],
       },
+      {
+        tag_type: "callout",
+        type: "success",
+        title: "The four rules of a correct integration",
+        children: [
+          {
+            tag_type: "ol",
+            items: [
+              {
+                tag_type: "li",
+                text: "[[setUp()]] runs once, awaited, before any [[initialize()]].",
+              },
+              {
+                tag_type: "li",
+                text: "[[initialize()]] is called from exactly one place in your app.",
+              },
+              {
+                tag_type: "li",
+                text: "[[initialize()]] is gated on your auth state having settled — not on the user being non-null.",
+              },
+              {
+                tag_type: "li",
+                text: "[[initialize()]] receives the current user, once per change.",
+              },
+            ],
+          },
+          {
+            tag_type: "p",
+            text: "Follow these four rules and Sageion handles every transition — login, logout, user-switch, token refresh — without a page reload. The SDK is idempotent: calling [[initialize()]] twice with the same payload is a safe no-op, so you never need to add re-render guards.",
+          },
+        ],
+      },
+
+      // ============================================================
+      // LIFECYCLE AT A GLANCE
+      // ============================================================
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "Lifecycle at a glance",
+        children: [
+          {
+            tag_type: "ol",
+            items: [
+              {
+                tag_type: "li",
+                text: "Load the Socket.IO and Sageion bundle [[<script>]] tags once, in your app's HTML shell. Order matters: Socket.IO first, Sageion bundle second.",
+              },
+              {
+                tag_type: "li",
+                text: "Call [[setUp()]] once — after the scripts load, before anything else. Await it.",
+              },
+              {
+                tag_type: "li",
+                text: "Call [[initialize({ uid })]] for a logged-in user, or [[initialize({})]] for anonymous. Do this once your auth layer has settled.",
+              },
+              {
+                tag_type: "li",
+                text: "When the user logs in, logs out, or switches, call [[initialize()]] again with the new payload. No page reload, no second [[setUp()]].",
+              },
+            ],
+          },
+        ],
+      },
 
       // ============================================================
       // METHOD 1 — setUp()
@@ -46,10 +110,10 @@ export const clientIntegration = [
       {
         tag_type: "code_with_copy",
         code: `await window.sageion_os.setUp(
-  "your_app_id",     // the app_id shown in your Sageion dashboard
-  "YOUR_API_KEY",    // the auth_key shown in your Sageion dashboard
-  "US",              // region: "US" or "IN"
-  "sageion-chat-root" // optional: id of a DOM element to mount into
+  "your_app_id",       // the app_id shown in your Sageion dashboard
+  "YOUR_API_KEY",      // the auth_key shown in your Sageion dashboard
+  "US",                // region: "US" or "IN"
+  "sageion-chat-root"  // optional: id of a DOM element to mount into
 );`,
         language: "javascript",
       },
@@ -80,11 +144,22 @@ export const clientIntegration = [
       {
         tag_type: "callout",
         type: "success",
-        title: "First three arguments are the common case",
+        title: "The fourth argument is optional",
         children: [
           {
             tag_type: "p",
-            text: "The fourth argument ([[chat_root_id]]) is optional. When omitted, the widget floats in the bottom-right corner of the page. When provided, it mounts inside the element with that id.",
+            text: "When [[chat_root_id]] is omitted, the widget floats in the bottom-right corner of the page. When provided, it mounts inside the element with that id.",
+          },
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "If your app is still in draft mode",
+        children: [
+          {
+            tag_type: "p",
+            text: "If the app has not been published yet in your Sageion dashboard, [[setUp()]] completes without error but deliberately does not mount the widget. Any subsequent [[initialize()]] call becomes a no-op. This is intentional — a half-configured app should not ship a half-working widget. Publish the app from the dashboard, then reload.",
           },
         ],
       },
@@ -98,7 +173,7 @@ export const clientIntegration = [
       },
       {
         tag_type: "p",
-        text: "[[initialize()]] tells the SDK who the current user is, and the SDK reflects that in the widget. It handles every auth transition — login, logout, and user-switch — without a page reload. Calling it with the same payload twice is a safe no-op.",
+        text: "[[initialize()]] tells the SDK who the current user is, and the SDK reflects that in the widget. It handles every auth transition — login, logout, and user-switch — without a page reload. Calling it with the same payload twice is a safe no-op, so it does not matter how often your framework re-runs the effect that calls it.",
       },
       {
         tag_type: "code_with_copy",
@@ -127,14 +202,18 @@ await window.sageion_os.initialize({});`,
           },
           {
             tag_type: "p",
-            text: "There is no separate logout method. To log a user out, call [[initialize({})]]. The SDK handles the transition.",
+            text: "There is no separate logout call. To log a user out, call [[initialize({})]]. The SDK handles the transition.",
+          },
+          {
+            tag_type: "p",
+            text: "You do not need to skip [[initialize()]] when no one is logged in. Calling it with [[{}]] is correct and safe — the widget stays mounted in anonymous mode.",
           },
         ],
       },
       {
         tag_type: "callout",
         type: "warning",
-        title: "Call initialize() only when the user actually changes",
+        title: "Call initialize() from exactly one place",
         children: [
           {
             tag_type: "ul",
@@ -149,39 +228,7 @@ await window.sageion_os.initialize({});`,
               },
               {
                 tag_type: "li",
-                text: "If two different effects in your app both call [[initialize()]], they will race with different payloads. Consolidate into a single effect.",
-              },
-            ],
-          },
-        ],
-      },
-
-      // ============================================================
-      // LIFECYCLE — ordered, short
-      // ============================================================
-      {
-        tag_type: "callout",
-        type: "info",
-        title: "Lifecycle at a glance",
-        children: [
-          {
-            tag_type: "ol",
-            items: [
-              {
-                tag_type: "li",
-                text: "Load the Socket.IO and Sageion bundle [[<script>]] tags once, in your app's HTML shell. Order matters: Socket.IO first, Sageion bundle second.",
-              },
-              {
-                tag_type: "li",
-                text: "Call [[setUp()]] once — after the scripts load, before anything else. Await it.",
-              },
-              {
-                tag_type: "li",
-                text: "Call [[initialize({ uid })]] for a logged-in user, or [[initialize({})]] for anonymous. Do this once your auth layer has settled.",
-              },
-              {
-                tag_type: "li",
-                text: "When the user logs in, logs out, or switches, call [[initialize()]] again with the new payload. No page reload, no second [[setUp()]].",
+                text: "If two different effects in your app both call [[initialize()]], they will race with different payloads. Consolidate into a single effect that watches the current user.",
               },
             ],
           },
@@ -275,6 +322,17 @@ await window.sageion_os.initialize({});`,
         tag_type: "p",
         text: "Pick your framework from the tabs below. Inside each you will find three integration styles — choose the one that matches your app's structure. All three are valid; they differ only in how the two calls are split across files.",
       },
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "What changes between frameworks",
+        children: [
+          {
+            tag_type: "p",
+            text: "The four rules are the same everywhere. The only thing that changes between frameworks is how you express \"an effect that watches auth state\" — [[useEffect]] in React, [[watch]] in Vue, [[$:]] in Svelte, and so on.",
+          },
+        ],
+      },
 
       // ============================================================
       // OUTER TABS — Framework
@@ -337,6 +395,28 @@ await window.sageion_os.initialize({});`,
   })();
 </script>`,
                         language: "javascript",
+                      },
+                      {
+                        tag_type: "callout",
+                        type: "success",
+                        title: "Reflecting login & logout at runtime",
+                        children: [
+                          {
+                            tag_type: "p",
+                            text: "The block above bootstraps the SDK once on page load. To handle a user logging in, logging out, or switching accounts without a page reload, call [[initialize()]] again from wherever your app already reacts to auth changes — a click handler, a store subscriber, a router hook. The rule is the same: one call site, gated on auth having settled.",
+                          },
+                          {
+                            tag_type: "code_with_copy",
+                            code: `// wherever your app knows the user changed:
+function onAuthChanged(user, loading) {
+  if (loading) return;                     // wait for auth to settle
+  window.sageion_os
+    .initialize(user ? { uid: String(user.id) } : {})
+    .catch(err => console.error("[Sageion] sync failed:", err));
+}`,
+                            language: "javascript",
+                          },
+                        ],
                       },
                     ],
                   },
@@ -536,39 +616,86 @@ function App() {
 export default App;`,
                         language: "javascript",
                       },
+                    ],
+                  },
+                  {
+                    label: "With runtime auth sync",
+                    content: [
                       {
-                        tag_type: "callout",
-                        type: "success",
-                        title: "Reflecting login & logout at runtime",
-                        children: [
-                          {
-                            tag_type: "p",
-                            text: "Add a second effect that watches your auth state. This is the only SDK code you need for login, logout, and user-switch:",
-                          },
-                          {
-                            tag_type: "code_with_copy",
-                            code: `// Inside App.jsx, using your own auth context
-import { useEffect } from "react";
+                        tag_type: "h4",
+                        text: "With runtime auth sync — React",
+                      },
+                      {
+                        tag_type: "p",
+                        text: "Same bootstrap as Single-Block, plus a second effect that watches your auth state and calls [[initialize()]] whenever the user changes. This is the only SDK code you need for login, logout, and user-switch — no page reload.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `// src/App.jsx
+import { useEffect, useRef } from "react";
 import { useAuth } from "./context/AuthContext";
+
+function App() {
+  const ran = useRef(false);
+
+  // 1. Bootstrap: setUp() once, then initialize() with the current user.
+  useEffect(() => {
+    if (ran.current) return;
+    ran.current = true;
+
+    (async () => {
+      try {
+        await window.sageion_os.setUp(
+          "your_app_id",
+          "YOUR_API_KEY",
+          "US"
+        );
+      } catch (err) {
+        console.error("[Sageion] setUp failed:", err);
+      }
+    })();
+  }, []);
+
+  // 2. Runtime sync: one call site, gated on auth having settled.
+  useSageionUserSync();
+
+  return <YourApp />;
+}
 
 function useSageionUserSync() {
   const { user, loading } = useAuth();
-  const booted = useRef(false);
 
   useEffect(() => {
-    if (loading) return;                        // wait until auth settles
-    if (!booted.current) { booted.current = true; return; }
+    if (loading) return;                       // wait until auth settles
 
     window.sageion_os
       .initialize(user ? { uid: String(user.id) } : {})
       .catch(err => console.error("[Sageion] sync failed:", err));
   }, [user, loading]);
-}`,
-                            language: "javascript",
-                          },
+}
+
+export default App;`,
+                        language: "javascript",
+                      },
+                      {
+                        tag_type: "callout",
+                        type: "info",
+                        title: "Why one effect handles the whole bootstrap",
+                        children: [
                           {
                             tag_type: "p",
-                            text: "The [[loading]] gate is important: without it, the effect can fire with [[user: null]] while your auth provider is still resolving, producing an unnecessary anonymous→authenticated transition on every page load.",
+                            text: "The sync effect fires on the first settled render too, so you don't need to call [[initialize()]] inside the bootstrap effect. One call site — the sync effect — covers both the initial load and every subsequent auth change. That satisfies rule 2.",
+                          },
+                        ],
+                      },
+                      {
+                        tag_type: "callout",
+                        type: "warning",
+                        title: "Why the loading gate, not a user check",
+                        children: [
+                          {
+                            tag_type: "p",
+                            text: "Gate on [[loading === false]], not on [[user !== null]]. Without the gate, the effect fires while [[user]] is still [[null]] during the initial auth check, producing an anonymous→authenticated flicker on every page load.",
                           },
                         ],
                       },
@@ -742,7 +869,7 @@ export default function RootLayout({ children }) {
           strategy="beforeInteractive"
         />
         <Script
-          src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"
+          src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"
           strategy="beforeInteractive"
         />]]]
 
@@ -978,30 +1105,57 @@ onMounted(async () => {
 </template>`,
                         language: "javascript",
                       },
+                    ],
+                  },
+                  {
+                    label: "With runtime auth sync",
+                    content: [
                       {
-                        tag_type: "callout",
-                        type: "success",
-                        title: "Reflecting login & logout at runtime",
-                        children: [
-                          {
-                            tag_type: "code_with_copy",
-                            code: `import { watch } from "vue";
+                        tag_type: "h4",
+                        text: "With runtime auth sync — Vue 3",
+                      },
+                      {
+                        tag_type: "p",
+                        text: "Same bootstrap as Single-Block, plus a [[watch]] on your auth store that calls [[initialize()]] whenever the user changes.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `<!-- src/App.vue -->
+<script setup>
+import { onMounted, watch } from "vue";
 import { useAuthStore } from "./stores/auth";
 
 const auth = useAuthStore();
 
+onMounted(async () => {
+  try {
+    await window.sageion_os.setUp(
+      "your_app_id",
+      "YOUR_API_KEY",
+      "US"
+    );
+  } catch (err) {
+    console.error("[Sageion] setUp failed:", err);
+  }
+});
+
+// One call site, gated on auth having settled.
 watch(
-  () => auth.user,
-  (user) => {
-    if (auth.loading) return;
+  () => [auth.user, auth.loading],
+  ([user, loading]) => {
+    if (loading) return;
+
     window.sageion_os
       .initialize(user ? { uid: String(user.id) } : {})
       .catch(err => console.error("[Sageion] sync failed:", err));
   }
-);`,
-                            language: "javascript",
-                          },
-                        ],
+);
+</script>
+
+<template>
+  <router-view />
+</template>`,
+                        language: "javascript",
                       },
                     ],
                   },
@@ -1126,7 +1280,7 @@ export default defineNuxtConfig({
     head: {
       script: [
         [[[{ src: "https://cdn.socket.io/4.1.2/socket.io.min.js" },
-        { src: "https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js" }]]]
+        { src: "https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js" }]]]
       ]
     }
   }
@@ -1474,7 +1628,7 @@ export class SupportComponent implements OnInit {
     <div style="display: contents">%sveltekit.body%</div>
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
   </body>
 </html>`,
                         language: "html",
@@ -1517,6 +1671,49 @@ export class SupportComponent implements OnInit {
       console.error("[Sageion] bootstrap failed:", err);
     }
   });
+</script>
+
+<slot />`,
+                        language: "javascript",
+                      },
+                    ],
+                  },
+                  {
+                    label: "With runtime auth sync",
+                    content: [
+                      {
+                        tag_type: "h4",
+                        text: "With runtime auth sync — SvelteKit",
+                      },
+                      {
+                        tag_type: "p",
+                        text: "Same bootstrap as Single-Block, plus a reactive statement that calls [[initialize()]] whenever your auth store changes.",
+                      },
+                      {
+                        tag_type: "code_with_copy",
+                        code: `<!-- src/routes/+layout.svelte -->
+<script>
+  import { onMount } from "svelte";
+  import { auth } from "$lib/stores/auth";
+
+  onMount(async () => {
+    try {
+      await window.sageion_os.setUp(
+        "your_app_id",
+        "YOUR_API_KEY",
+        "US"
+      );
+    } catch (err) {
+      console.error("[Sageion] setUp failed:", err);
+    }
+  });
+
+  // One call site, gated on auth having settled.
+  $: if (!$auth.loading) {
+    window.sageion_os
+      .initialize($auth.user ? { uid: String($auth.user.id) } : {})
+      .catch(err => console.error("[Sageion] sync failed:", err));
+  }
 </script>
 
 <slot />`,
@@ -1689,7 +1886,7 @@ export default function App() {
         <ScrollRestoration />
 
         [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-        <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+        <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
         <Scripts />
       </body>
@@ -1764,7 +1961,7 @@ export default function App() {
     <slot />
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -1951,7 +2148,7 @@ export default component$(() => {
         <RouterOutlet />
 
         [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-        <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+        <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
       </body>
     </QwikCityProvider>
   );
@@ -2036,7 +2233,7 @@ export default component$(() => {
   {% block content %}{% endblock %}
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
@@ -2196,7 +2393,7 @@ export default component$(() => {
     <%= yield %>
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -2345,7 +2542,7 @@ export default component$(() => {
     @yield('content')
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -2502,7 +2699,7 @@ export default component$(() => {
     {% block content %}{% endblock %}
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -2655,7 +2852,7 @@ export default component$(() => {
   <%- body %>
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
@@ -2805,7 +3002,7 @@ export default component$(() => {
   <div th:replace="~{fragments :: content}"></div>
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
@@ -2905,7 +3102,7 @@ export default component$(() => {
   @RenderBody()
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/dev-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
@@ -3125,9 +3322,9 @@ export default component$(() => {
             "Gate [[initialize()]] on your auth layer's [[loading === false]] state. Only call it once the current user is known.",
           ],
           [
-            "The console shows [[[initialize] a _doInitialize is already in flight — queuing]] repeatedly.",
-            "Two or more effects or scripts are calling [[initialize()]] with different payloads.",
-            "Consolidate into a single effect that watches the current user. The SDK handles the race, but the correct fix is not to create it.",
+            "[[initialize]] runs with different payloads from two places in your app.",
+            "Two or more effects or scripts are calling [[initialize()]].",
+            "Consolidate into a single effect that watches the current user. Rule 2 of the four rules.",
           ],
         ],
       },

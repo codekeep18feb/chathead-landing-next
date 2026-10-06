@@ -1,3 +1,4 @@
+// backendIntegration.js
 export const backendIntegration = [
   {
     tag_type: "div",
@@ -27,13 +28,13 @@ export const backendIntegration = [
                 text: "A user signs up in your app. Your backend creates the user record and returns its own token.",
               },
               {
-                text: "Your backend calls Sageion's onboarding endpoint with the user's [[uid]] and your [[app_name]]. This maps the user into Sageion.",
+                text: "Your backend calls Sageion's onboarding endpoint with the user's [[uid]] and your [[app_id]]. This maps the user into Sageion.",
               },
               {
                 text: "On the frontend, your app calls [[initialize({ uid })]] with the same [[uid]]. Sageion now knows which of its users this is.",
               },
               {
-                text: "When the user logs out, your app calls [[window.sageion_os.logout()]] so Sageion clears the session.",
+                text: "When the user logs out, your app calls [[initialize({})]] so Sageion clears the session. No page reload needed.",
               },
             ],
           },
@@ -44,7 +45,7 @@ export const backendIntegration = [
             children: [
               {
                 tag_type: "p",
-                text: "The [[uid]] you pass to onboarding must match the [[uid]] you pass to [[initialize()]] exactly. Sageion has no other way to know which of your users is which. Use your own users.id, users.uid, or another stable unique key — just be consistent.",
+                text: "The [[uid]] you pass to onboarding must match the [[uid]] you pass to [[initialize()]] exactly. Sageion has no other way to know which of your users is which. Use your own users.id, users.uid, or another stable unique key — just be consistent, and always send it as a string.",
               },
             ],
           },
@@ -92,8 +93,39 @@ export const backendIntegration = [
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["[[uid]]", "string", "Yes", "Your platform's unique user identifier, as a string. Must match what you pass to [[initialize()]] on the frontend."],
-          ["[[app_name]]", "string", "Yes", "Your registered Sageion application name (from App Details)."],
+          [
+            "[[uid]]",
+            "string",
+            "Yes",
+            "Your platform's unique user identifier, as a string. Must match what you pass to [[initialize()]] on the frontend.",
+          ],
+          [
+            "[[app_id]]",
+            "string",
+            "Yes",
+            "Your Sageion application id, from App Details in the Admin Panel. This is the same value you pass as the first argument to [[setUp()]] on the frontend.",
+          ],
+          [
+            "[[metadata]]",
+            "object",
+            "No",
+            "Optional display information about the user. Currently supported keys are [[full_name]] (string) and [[image]] (string URL). If omitted, the user is onboarded with no display name or avatar.",
+          ],
+        ],
+      },
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "What metadata is for",
+        children: [
+          {
+            tag_type: "p",
+            text: "The [[metadata]] object is what shows up in the Sageion Admin Panel next to the user's [[uid]] — their display name and avatar. It's cosmetic: the chat box works without it, but agents see a more useful user list when it's present.",
+          },
+          {
+            tag_type: "p",
+            text: "Only [[full_name]] and [[image]] are read today. Any other keys you send are stored but currently unused, so don't rely on them yet.",
+          },
         ],
       },
       {
@@ -107,7 +139,11 @@ export const backendIntegration = [
   --header 'Content-Type: application/json' \\
   --data '{
     "uid": "12345",
-    "app_name": "your_application_name"
+    "app_id": "your_application_id",
+    "metadata": {
+      "full_name": "Jane Doe",
+      "image": "https://example.com/avatars/jane.jpg"
+    }
   }'`,
         language: "bash",
       },
@@ -192,7 +228,11 @@ router.post('/register', [...validators], async (req, res) => {
       onboardingUrl,
       {
         uid: user.id.toString(),
-        app_name: process.env.SAGEION_APP_NAME,
+        app_id: process.env.SAGEION_APP_ID,
+        metadata: {
+          full_name: user.full_name,
+          image: "https://img.magnific.com/free-vector/blue-circle-with-white-user_78370-4707.jpg",
+        },
       },
       {
         headers: {
@@ -241,8 +281,14 @@ router.post('/register', [...validators], async (req, res) => {
                       {
                         tag_type: "code_with_copy",
                         code: `[[[await window.sageion_os.onboarding(
-  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
-  { app_name: "your_application_name" }
+  {
+    uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM",
+    metadata: {
+      full_name: "Jane Doe",
+      image: "https://example.com/avatars/jane.jpg"
+    }
+  },
+  { app_id: "your_application_id" }
 );]]]`,
                         language: "javascript",
                       },
@@ -373,14 +419,18 @@ from fastapi import APIRouter, HTTPException
 router = APIRouter()
 
 SAGEION_REGION = os.environ["SAGEION_REGION"]        # "us" or "in"
-SAGEION_APP_NAME = os.environ["SAGEION_APP_NAME"]
+SAGEION_APP_ID = os.environ["SAGEION_APP_ID"]
 SAGEION_REST_API_KEY = os.environ["SAGEION_REST_API_KEY"]
 
 
-[[[async def onboard_user(user_id: int) -> None:
+[[[async def onboard_user(user_id: int, full_name: str, image: str | None = None) -> None:
     """Fire-and-forget onboarding. Never raises — logs and returns."""
     url = f"https://{SAGEION_REGION}.userauth2.sageion.com/prod/onboarding"
-    payload = {"uid": str(user_id), "app_name": SAGEION_APP_NAME}
+    payload = {
+        "uid": str(user_id),
+        "app_id": SAGEION_APP_ID,
+        "metadata": {"full_name": full_name, "image": image or ""},
+    }
     headers = {
         "X-API-Key": SAGEION_REST_API_KEY,
         "Content-Type": "application/json",
@@ -398,7 +448,7 @@ async def register(body: RegisterBody):
     user = await create_user(body)          # your own function
 
     # 2. Onboard the user into Sageion (fire-and-forget)
-    [[[await onboard_user(user.id)]]]
+    [[[await onboard_user(user.id, user.full_name, user.avatar_url)]]]
 
     # 3. Return your own token — Sageion does not issue auth tokens
     token = generate_token(user.id, user.email, user.role)
@@ -417,8 +467,14 @@ async def register(body: RegisterBody):
                       {
                         tag_type: "code_with_copy",
                         code: `[[[await window.sageion_os.onboarding(
-  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
-  { app_name: "your_application_name" }
+  {
+    uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM",
+    metadata: {
+      full_name: "Jane Doe",
+      image: "https://example.com/avatars/jane.jpg"
+    }
+  },
+  { app_id: "your_application_id" }
 );]]]`,
                         language: "javascript",
                       },
@@ -470,14 +526,29 @@ import (
     "time"
 )
 
-[[[func onboardUser(ctx context.Context, userID int64) {
+type onboardMetadata struct {
+    FullName string \`json:"full_name"\`
+    Image    string \`json:"image,omitempty"\`
+}
+
+type onboardBody struct {
+    UID      string          \`json:"uid"\`
+    AppID    string          \`json:"app_id"\`
+    Metadata onboardMetadata \`json:"metadata"\`
+}
+
+[[[func onboardUser(ctx context.Context, userID int64, fullName, image string) {
     url := fmt.Sprintf(
         "https://%s.userauth2.sageion.com/prod/onboarding",
         os.Getenv("SAGEION_REGION"),
     )
-    body, _ := json.Marshal(map[string]string{
-        "uid":      fmt.Sprintf("%d", userID),
-        "app_name": os.Getenv("SAGEION_APP_NAME"),
+    body, _ := json.Marshal(onboardBody{
+        UID:   fmt.Sprintf("%d", userID),
+        AppID: os.Getenv("SAGEION_APP_ID"),
+        Metadata: onboardMetadata{
+            FullName: fullName,
+            Image:    image,
+        },
     })
 
     req, _ := http.NewRequestWithContext(ctx, "POST", url, bytes.NewReader(body))
@@ -499,7 +570,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
     user := createUser(r)          // your own function
 
     // 2. Onboard the user into Sageion (fire-and-forget)
-    [[[onboardUser(r.Context(), user.ID)]]]
+    [[[onboardUser(r.Context(), user.ID, user.FullName, user.AvatarURL)]]]
 
     // 3. Return your own token — Sageion does not issue auth tokens
     token := generateToken(user.ID, user.Email, user.Role)
@@ -519,8 +590,14 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
                       {
                         tag_type: "code_with_copy",
                         code: `[[[await window.sageion_os.onboarding(
-  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
-  { app_name: "your_application_name" }
+  {
+    uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM",
+    metadata: {
+      full_name: "Jane Doe",
+      image: "https://example.com/avatars/jane.jpg"
+    }
+  },
+  { app_id: "your_application_id" }
 );]]]`,
                         language: "javascript",
                       },
@@ -586,7 +663,11 @@ public function register(Request $request)
             'Content-Type' => 'application/json',
         ])->timeout(5)->post($url, [
             'uid'      => (string) $user->id,
-            'app_name' => env('SAGEION_APP_NAME'),
+            'app_id'   => env('SAGEION_APP_ID'),
+            'metadata' => [
+                'full_name' => $user->full_name,
+                'image'     => $user->avatar_url ?? '',
+            ],
         ]);
     } catch (\\Throwable $e) {
         // Do NOT fail registration — the user can still log in.
@@ -611,8 +692,14 @@ public function register(Request $request)
                       {
                         tag_type: "code_with_copy",
                         code: `[[[await window.sageion_os.onboarding(
-  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
-  { app_name: "your_application_name" }
+  {
+    uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM",
+    metadata: {
+      full_name: "Jane Doe",
+      image: "https://example.com/avatars/jane.jpg"
+    }
+  },
+  { app_id: "your_application_id" }
 );]]]`,
                         language: "javascript",
                       },
@@ -660,9 +747,10 @@ class AuthController < ApplicationController
   def register
     # 1. Create the user in your own DB
     user = User.create!(
-      email:     params[:email],
-      password:  params[:password],
-      full_name: params[:full_name]
+      email:      params[:email],
+      password:   params[:password],
+      full_name:  params[:full_name],
+      avatar_url: params[:avatar_url]
     )
 
     # 2. Onboard the user into Sageion (fire-and-forget)
@@ -672,11 +760,15 @@ class AuthController < ApplicationController
         f.options.timeout = 5
       end
       conn.post do |req|
-        req.headers['X-API-Key']      = ENV['SAGEION_REST_API_KEY']
-        req.headers['Content-Type']   = 'application/json'
+        req.headers['X-API-Key']    = ENV['SAGEION_REST_API_KEY']
+        req.headers['Content-Type'] = 'application/json'
         req.body = {
           uid:      user.id.to_s,
-          app_name: ENV['SAGEION_APP_NAME']
+          app_id:   ENV['SAGEION_APP_ID'],
+          metadata: {
+            full_name: user.full_name,
+            image:     user.avatar_url
+          }
         }.to_json
       end
     rescue => e
@@ -703,8 +795,14 @@ end`,
                       {
                         tag_type: "code_with_copy",
                         code: `[[[await window.sageion_os.onboarding(
-  { uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM" },
-  { app_name: "your_application_name" }
+  {
+    uid: "UNIQUE_USER_ID_FROM_YOUR_PLATFORM",
+    metadata: {
+      full_name: "Jane Doe",
+      image: "https://example.com/avatars/jane.jpg"
+    }
+  },
+  { app_id: "your_application_id" }
 );]]]`,
                         language: "javascript",
                       },
@@ -1357,8 +1455,8 @@ end
 
 [[[# Call this from wherever the async work completes.
 def deliver_webhook(correlation_id, order_id)
-  conn = Faraday.new(url: "https://#{ENV['SAGEION_REGION']}.autobot2.tezkit.com")
-  conn.post('/dev/webhook/callback') do |req|
+  conn = Faraday.new(url: "https://#{ENV['SAGEION_REGION']}.autobot2.sageion.com")
+  conn.post('/prod/webhook/callback') do |req|
     req.headers['Content-Type'] = 'application/json'
     req.body = {
       correlation_id: correlation_id,
@@ -1426,7 +1524,7 @@ end]]]`,
         headers: ["Variable", "Example", "Used for"],
         rows: [
           ["[[SAGEION_REGION]]", "us", "Regional prefix in the onboarding URL and webhook callback URL."],
-          ["[[SAGEION_APP_NAME]]", "ai_chatbot_system", "Identifies your Sageion app in onboarding and agent-token requests."],
+          ["[[SAGEION_APP_ID]]", "your_application_id", "Your Sageion app id. Sent as [[app_id]] in onboarding requests."],
           ["[[SAGEION_REST_API_KEY]]", "your_rest_api_key", "[[X-API-Key]] header for onboarding."],
           ["[[SAGEION_CLIENT_SECRET]]", "your_client_secret", "Verifies client credentials on [[/client-user-token]] (only needed if you enable the optional AI agent section below). Never expose to the browser."],
           ["[[SAGEION_PUBLIC_KEY_PATH]]", "/etc/sageion/sageion-public.pem", "Path to the PEM file containing the public key from the Token Encryption Key section. Used to encrypt tokens returned from [[/client-user-token]]. Recommended over the inline PEM for production."],
@@ -1482,10 +1580,10 @@ end]]]`,
                 text: "Treat onboarding failures as non-fatal to signup, but log them and add an alert so you notice missing users.",
               },
               {
-                text: "Use the exact same [[uid]] in onboarding and in [[initialize({ uid })]] — they must match for the chat box to work.",
+                text: "Use the exact same [[uid]] in onboarding and in [[initialize({ uid })]] — they must match for the chat box to work. Always send it as a string.",
               },
               {
-                text: "Always call [[window.sageion_os.logout()]] from your own logout handler, before clearing your own session.",
+                text: "When the user logs out, call [[initialize({})]] from your own logout handler, before clearing your own session.",
               },
               {
                 text: "Never ship [[SAGEION_CLIENT_SECRET]], [[SAGEION_REST_API_KEY]], or [[SAGEION_PUBLIC_KEY_PEM]] to the frontend. If you use the frontend onboarding method, use a different token scoped to onboarding only.",
@@ -1616,7 +1714,7 @@ end]]]`,
         tag_type: "table",
         headers: ["Field", "Type", "Required", "Description"],
         rows: [
-          ["[[client_id]]", "string", "Yes", "Your Sageion [[app_name]]."],
+          ["[[client_id]]", "string", "Yes", "Your Sageion [[app_id]]."],
           ["[[client_secret]]", "string", "Yes", "Your Sageion client secret. Keep this server-side only."],
           ["[[user_id]]", "string", "Yes", "The user's id from your platform. Must be numeric."],
           ["[[session_id]]", "string", "No", "Optional session identifier to correlate token usage."],
@@ -1691,7 +1789,7 @@ end]]]`,
                 tag_type: "code_with_copy",
                 code: `// routes/auth.js
 
-const SAGEION_APP_NAME = process.env.SAGEION_APP_NAME;
+const SAGEION_APP_ID = process.env.SAGEION_APP_ID;
 const SAGEION_CLIENT_SECRET = process.env.SAGEION_CLIENT_SECRET;
 
 router.post('/client-user-token', [
@@ -1703,7 +1801,7 @@ router.post('/client-user-token', [
   const { client_id, client_secret, user_id, session_id } = req.body;
 
   // 1. Verify client credentials
-  if (client_id !== SAGEION_APP_NAME || client_secret !== SAGEION_CLIENT_SECRET) {
+  if (client_id !== SAGEION_APP_ID || client_secret !== SAGEION_CLIENT_SECRET) {
     return res.status(401).json({ error: 'Invalid client credentials' });
   }
 
@@ -1742,7 +1840,7 @@ async function getAgentToken(userId) {
   const { data } = await axios.post(
     \`\${process.env.API_BASE_URL}/auth/client-user-token\`,
     {
-      client_id: process.env.SAGEION_APP_NAME,
+      client_id: process.env.SAGEION_APP_ID,
       client_secret: process.env.SAGEION_CLIENT_SECRET,
       user_id: String(userId),
     }
@@ -1768,7 +1866,7 @@ from pydantic import BaseModel
 
 router = APIRouter()
 
-SAGEION_APP_NAME = os.environ["SAGEION_APP_NAME"]
+SAGEION_APP_ID = os.environ["SAGEION_APP_ID"]
 SAGEION_CLIENT_SECRET = os.environ["SAGEION_CLIENT_SECRET"]
 
 
@@ -1782,7 +1880,7 @@ class ClientUserTokenBody(BaseModel):
 @router.post("/client-user-token")
 async def client_user_token(body: ClientUserTokenBody):
     # 1. Verify client credentials
-    if body.client_id != SAGEION_APP_NAME or body.client_secret != SAGEION_CLIENT_SECRET:
+    if body.client_id != SAGEION_APP_ID or body.client_secret != SAGEION_CLIENT_SECRET:
         raise HTTPException(status_code=401, detail="Invalid client credentials")
 
     # 2. Verify the user exists
@@ -1824,7 +1922,7 @@ async def get_agent_token(user_id: int) -> str:
         r = await client.post(
             f"{os.environ['API_BASE_URL']}/auth/client-user-token",
             json={
-                "client_id": os.environ["SAGEION_APP_NAME"],
+                "client_id": os.environ["SAGEION_APP_ID"],
                 "client_secret": os.environ["SAGEION_CLIENT_SECRET"],
                 "user_id": str(user_id),
             },
@@ -1868,7 +1966,7 @@ func ClientUserTokenHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     // 1. Verify client credentials
-    if body.ClientID != os.Getenv("SAGEION_APP_NAME") ||
+    if body.ClientID != os.Getenv("SAGEION_APP_ID") ||
         body.ClientSecret != os.Getenv("SAGEION_CLIENT_SECRET") {
         http.Error(w, "invalid client credentials", http.StatusUnauthorized)
         return
@@ -1924,7 +2022,7 @@ import (
 
 func GetAgentToken(userID int64) (string, error) {
     payload, _ := json.Marshal(map[string]string{
-        "client_id":     os.Getenv("SAGEION_APP_NAME"),
+        "client_id":     os.Getenv("SAGEION_APP_ID"),
         "client_secret": os.Getenv("SAGEION_CLIENT_SECRET"),
         "user_id":       fmt.Sprintf("%d", userID),
     })
@@ -1962,7 +2060,7 @@ use Illuminate\\Support\\Facades\\Route;
 
 Route::post('/client-user-token', function (Request $request) {
     // 1. Verify client credentials
-    if ($request->client_id !== env('SAGEION_APP_NAME') ||
+    if ($request->client_id !== env('SAGEION_APP_ID') ||
         $request->client_secret !== env('SAGEION_CLIENT_SECRET')) {
         return response()->json(['error' => 'Invalid client credentials'], 401);
     }
@@ -2007,7 +2105,7 @@ function get_agent_token(int $userId): string {
     $response = Http::timeout(5)->post(
         env('API_BASE_URL') . '/auth/client-user-token',
         [
-            'client_id'     => env('SAGEION_APP_NAME'),
+            'client_id'     => env('SAGEION_APP_ID'),
             'client_secret' => env('SAGEION_CLIENT_SECRET'),
             'user_id'       => (string) $userId,
         ]
@@ -2036,7 +2134,7 @@ class AuthController < ApplicationController
 
   def client_user_token
     # 1. Verify client credentials
-    unless params[:client_id] == ENV['SAGEION_APP_NAME'] &&
+    unless params[:client_id] == ENV['SAGEION_APP_ID'] &&
            params[:client_secret] == ENV['SAGEION_CLIENT_SECRET']
       return render json: { error: 'Invalid client credentials' }, status: :unauthorized
     end
@@ -2081,7 +2179,7 @@ def get_agent_token(user_id)
   response = conn.post('/auth/client-user-token') do |req|
     req.headers['Content-Type'] = 'application/json'
     req.body = {
-      client_id:     ENV['SAGEION_APP_NAME'],
+      client_id:     ENV['SAGEION_APP_ID'],
       client_secret: ENV['SAGEION_CLIENT_SECRET'],
       user_id:       user_id.to_s
     }.to_json
