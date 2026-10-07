@@ -551,6 +551,17 @@ export const integrationsApisWorkflows = [
             ],
           },
           {
+            tag_type: "callout",
+            type: "info",
+            title: "ℹ️ GET requests have no payload",
+            children: [
+              {
+                tag_type: "p",
+                text: "If your method is GET, the Payload Template is ignored. Leave it as {} and provide all inputs via the URL path or query parameters.",
+              },
+            ],
+          },
+          {
             tag_type: "h5",
             text: "🔄 cURL Import",
           },
@@ -760,159 +771,159 @@ export const integrationsApisWorkflows = [
   },
   {
     tag_type: "p",
-    text: "ChainApis enables you to create multi-step API workflows where the response from one API determines the next API to call. This is useful for complex business logic that requires multiple steps.",
+    text: "A Chain links several of your APIs into one branching workflow. Each API's response status decides which API runs next. Use Chains when a single skill needs more than one call to complete — for example, check availability, then book, then confirm.",
   },
 
   {
     tag_type: "tabs",
     items: [
       {
-        label: "🔗 What is a Chain?",
+        label: "🔗 Building a Chain",
         content: [
           {
-            tag_type: "p",
-            text: "A Chain is a sequence of API calls where each step can branch based on the response status of the previous step.",
-          },
-          {
             tag_type: "h5",
-            text: "Chain Structure",
-          },
-          {
-            tag_type: "ol",
-            items: [
-              {
-                text: "Root API: The first API call in the chain",
-              },
-              {
-                text: "Branches: Follow-up APIs triggered by specific response statuses",
-              },
-              {
-                text: "Each branch can have its own field mappings",
-              },
-              {
-                text: "Chains can be enabled/disabled",
-              },
-            ],
-          },
-          {
-            tag_type: "code_with_copy",
-            code: "Root API: /api/check_availability (Status: 200)\n  → Branch (Success): /api/book_room\n  → Branch (404): /api/notify_unavailable",
-            language: "text",
-          },
-          {
-            tag_type: "callout",
-            type: "info",
-            title: "💡 When to Use Chains",
-            children: [
-              {
-                tag_type: "p",
-                text: "Use Chains when you need to handle complex, multi-step workflows. For example: Check Availability → (Success) Book Room → (Failure) Suggest Alternatives.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: "📋 Chain Configuration",
-        content: [
-          {
-            tag_type: "p",
-            text: "Configure chains by defining the root API and branches for different response statuses.",
-          },
-          {
-            tag_type: "h5",
-            text: "Configuration Steps",
-          },
-          {
-            tag_type: "ol",
-            items: [
-              {
-                text: "Name your chain (e.g., 'Booking Flow')",
-              },
-              {
-                text: "Select the Root API",
-              },
-              {
-                text: "Add branches for each response status you want to handle",
-              },
-              {
-                text: "Select follow-up APIs for each branch",
-              },
-              {
-                text: "Map fields from the root response to the branch API",
-              },
-            ],
-          },
-          {
-            tag_type: "h5",
-            text: "Branch Status Codes",
+            text: "The three parts of a chain",
           },
           {
             tag_type: "ul",
             items: [
               {
-                text: "200, 201: Success branches",
+                text: "Root API — the first call. It receives the visitor's input directly and its response decides what happens next.",
               },
               {
-                text: "400, 404, 422: Error branches",
+                text: "Branches — one per response status you want to handle. Each branch names the follow-up API to call when that status comes back.",
               },
               {
-                text: "500, 503: Server error branches",
+                text: "Mappings — for each branch, which fields from the previous response feed into the follow-up API's URL, query string, or payload.",
+              },
+            ],
+          },
+          {
+            tag_type: "h5",
+            text: "Adding branches",
+          },
+          {
+            tag_type: "p",
+            text: "Every API declares which statuses it returns in its own API Configuration. When you pick an API for a node, the editor automatically seeds one branch slot for each of those statuses. You just wire the ones you care about. You can't add a status the API doesn't already declare — if a status is missing, update the API Configuration first.",
+          },
+          {
+            tag_type: "callout",
+            type: "info",
+            title: "💡 Statuses come from the API",
+            children: [
+              {
+                tag_type: "p",
+                text: "A branch exists because your API can return that status. Adding an unconfigured status here would be a guess. Update the API Configuration to declare a new status, then come back — the branch slot will appear automatically.",
+              },
+            ],
+          },
+          {
+            tag_type: "h5",
+            text: "How a chain runs",
+          },
+          {
+            tag_type: "ol",
+            items: [
+              {
+                text: "The root API is called with the visitor's input.",
+              },
+              {
+                text: "Its response status picks the matching branch.",
+              },
+              {
+                text: "That branch's API is called, using the mappings you configured.",
+              },
+              {
+                text: "The process repeats down the tree until a node has no branch for the status it returned.",
               },
             ],
           },
           {
             tag_type: "callout",
             type: "warning",
-            title: "⚠️ Branch Requirements",
+            title: "⚠️ A chain stops the moment a status has no branch",
             children: [
               {
                 tag_type: "p",
-                text: "Each branch must have a valid API configuration. The root API must have sample responses configured to define available branches.",
+                text: "If an API returns 200 but you only wired a 202 branch, the chain stops there. Design branches for every status your API can meaningfully return, or accept the default fallback.",
               },
             ],
           },
         ],
       },
       {
-        label: "🎨 Canvas View",
+        label: "⏳ Pausing for Async Steps",
         content: [
           {
             tag_type: "p",
-            text: "The Canvas View provides a visual representation of your chains, making it easy to understand and modify the workflow.",
+            text: "Any API in a chain can be marked as an Async Callback. When the chain reaches it, the chatbot pauses and waits for your backend to call back with the result. The chain then resumes from that exact point.",
           },
           {
             tag_type: "h5",
-            text: "Canvas Features",
+            text: "Two ways to pause",
+          },
+          {
+            tag_type: "table",
+            headers: ["Mode", "Who calls the API", "Use when"],
+            rows: [
+              ["Webhook", "Sageion calls your API, which then calls back later", "Your API is async but Sageion can still reach it"],
+              ["Manual", "Your own frontend or backend calls the API", "Your system owns the step entirely — e.g. a payment page"],
+            ],
+          },
+          {
+            tag_type: "h5",
+            text: "How the callback works",
+          },
+          {
+            tag_type: "p",
+            text: "Sageion gives your API a correlation ID when it calls it. When your step finishes — whether you called the API yourself or Sageion called it — your backend POSTs back to Sageion's callback URL with the same correlation ID and the result:",
+          },
+          {
+            tag_type: "code_with_copy",
+            code: '{\n  "correlation_id": "<the id you received>",\n  "data": {\n    "status_code": 200,\n    "success": true,\n    ...\n  }\n}',
+            language: "json",
           },
           {
             tag_type: "ul",
             items: [
               {
-                text: "Visual node representation of each API step",
+                text: "correlation_id — pass back the exact value you received. This is how Sageion finds the paused chain.",
               },
               {
-                text: "Arrows show the flow between steps",
+                text: "status_code — REQUIRED for Manual steps. This is what Sageion uses to pick the next branch. Without it, the chain cannot route on resume.",
               },
               {
-                text: "Branch indicators show different paths",
-              },
-              {
-                text: "Inline editing of API configurations",
-              },
-              {
-                text: "Status indicators for active/disabled chains",
+                text: "All other fields in data become the response your next API can map from — just as if the paused API had returned them directly.",
               },
             ],
           },
           {
             tag_type: "callout",
-            type: "info",
-            title: "🎯 Quick Overview",
+            type: "warning",
+            title: "⚠️ Manual steps MUST send status_code",
             children: [
               {
                 tag_type: "p",
-                text: "The Canvas View gives you a bird's-eye view of your workflow. Use it to understand complex chains quickly and identify missing branches.",
+                text: "For a Manual step, Sageion has no other way to know which branch to take. If status_code is missing, the chain will not route correctly. For Webhook steps it is optional — Sageion falls back to the status of the paused call.",
+              },
+            ],
+          },
+          {
+            tag_type: "h5",
+            text: "Timeout",
+          },
+          {
+            tag_type: "p",
+            text: "Each paused step has a timeout (default 10 minutes, configurable per API). If no callback arrives before the timeout, the pending step is discarded and the chain will not resume from it.",
+          },
+          {
+            tag_type: "callout",
+            type: "success",
+            title: "💡 Test non-manual, ship manual",
+            children: [
+              {
+                tag_type: "p",
+                text: "You can build and test your whole chain with every step running from Sageion — no Manual, no Webhook. When you're ready to move a step to your own system, just mark it Manual. The rest of the chain, the mappings, and the response screens stay exactly as they were.",
               },
             ],
           },
@@ -923,42 +934,99 @@ export const integrationsApisWorkflows = [
         content: [
           {
             tag_type: "p",
-            text: "Field mapping connects data from the previous API response to the next API's request parameters.",
+            text: "Mappings decide what each follow-up API receives. A mapping can come from the visitor's original form data, from the previous API's response, or from a value you type in yourself.",
           },
           {
             tag_type: "h5",
-            text: "Mapping Options",
+            text: "Where mappings can point",
           },
           {
             tag_type: "ul",
             items: [
               {
-                text: "Map fields from initial form data",
+                text: "URL path — values that go inside the URL, like /api/rooms/{{ room_id }}.",
               },
               {
-                text: "Map fields from previous API response",
+                text: "Query string — values appended to the URL, like ?page=2.",
               },
               {
-                text: "Use Jinja-style {{ field }} syntax",
-              },
-              {
-                text: "Convert data types (string, number, date, etc.)",
+                text: "Request body — values in the JSON payload sent to POST/PUT APIs.",
               },
             ],
           },
           {
-            tag_type: "code_with_copy",
-            code: '// Example mapping: Room ID from check_availability response\n// maps to booking API as room_id\n{\n  "room_id": "{{ response_data.room_id }}",\n  "guest_name": "{{ guest_name }}"\n}',
-            language: "json",
+            tag_type: "h5",
+            text: "What you can map from",
+          },
+          {
+            tag_type: "table",
+            headers: ["Source", "Example", "Notes"],
+            rows: [
+              ["Previous response", "{{ response_data.booking_id }}", "The most common case. Fields come from the API the chain just called."],
+              ["Visitor's original input", "{{ room_id }}", "Anything the visitor typed into the form that triggered the chain."],
+              ["A fixed value", '{{ "card" }}', "Type the value as text between quotes. Use this for constants the API always expects."],
+            ],
+          },
+          {
+            tag_type: "callout",
+            type: "info",
+            title: "💡 Dotted paths reach into nested objects",
+            children: [
+              {
+                tag_type: "p",
+                text: "If the previous response was { \"booking\": { \"id\": 26 } }, use {{ response_data.booking.id }} to reach the id. The editor's field picker lists all available paths for you.",
+              },
+            ],
+          },
+          {
+            tag_type: "h5",
+            text: "Type conversion",
+          },
+          {
+            tag_type: "p",
+            text: "Each mapping can declare the type the target API expects — String, Number, Integer, Date, and so on. If your previous response returned a number as a string (\"26\") and the next API wants an integer, set the conversion and Sageion handles it.",
+          },
+        ],
+      },
+      {
+        label: "🎨 Canvas View",
+        content: [
+          {
+            tag_type: "p",
+            text: "The Canvas View shows your whole chain as a diagram. Every API is a node, every branch is an arrow, and every exit is a leaf. It's the fastest way to check that every status you care about actually goes somewhere.",
+          },
+          {
+            tag_type: "h5",
+            text: "What you can do on the canvas",
+          },
+          {
+            tag_type: "ul",
+            items: [
+              {
+                text: "See the full tree at a glance, including deep branches",
+              },
+              {
+                text: "Edit any node's API or mappings inline, without leaving the canvas",
+              },
+              {
+                text: "Add or delete sub-branches anywhere in the tree",
+              },
+              {
+                text: "Spot missing branches (a node with a status that has no arrow)",
+              },
+              {
+                text: "Toggle a chain on or off without opening the editor",
+              },
+            ],
           },
           {
             tag_type: "callout",
             type: "success",
-            title: "💡 Pro Tip",
+            title: "💡 Same data, two views",
             children: [
               {
                 tag_type: "p",
-                text: "Use the field mapping editor to see available fields from both the initial form data and the previous API response. This prevents errors from mismatched field names.",
+                text: "The List View and Canvas View are two views of the same chain. Anything you change in one appears in the other. Use whichever suits the task — List for precise edits, Canvas for understanding the overall shape.",
               },
             ],
           },
