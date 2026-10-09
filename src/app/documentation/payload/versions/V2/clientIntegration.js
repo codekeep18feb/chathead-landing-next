@@ -265,7 +265,7 @@ await window.sageion_os.initialize({});`,
                       {
                         tag_type: "code_with_copy",
                         code: `<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-<script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>`,
+<script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>`,
                         language: "html",
                       },
                       {
@@ -869,7 +869,7 @@ export default function RootLayout({ children }) {
           strategy="beforeInteractive"
         />
         <Script
-          src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"
+          src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"
           strategy="beforeInteractive"
         />]]]
 
@@ -1280,7 +1280,7 @@ export default defineNuxtConfig({
     head: {
       script: [
         [[[{ src: "https://cdn.socket.io/4.1.2/socket.io.min.js" },
-        { src: "https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js" }]]]
+        { src: "https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js" }]]]
       ]
     }
   }
@@ -1628,7 +1628,7 @@ export class SupportComponent implements OnInit {
     <div style="display: contents">%sveltekit.body%</div>
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
   </body>
 </html>`,
                         language: "html",
@@ -1886,7 +1886,7 @@ export default function App() {
         <ScrollRestoration />
 
         [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-        <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+        <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
         <Scripts />
       </body>
@@ -1961,7 +1961,7 @@ export default function App() {
     <slot />
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -2148,7 +2148,7 @@ export default component$(() => {
         <RouterOutlet />
 
         [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-        <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+        <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
       </body>
     </QwikCityProvider>
   );
@@ -2233,7 +2233,7 @@ export default component$(() => {
   {% block content %}{% endblock %}
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
@@ -2393,7 +2393,7 @@ export default component$(() => {
     <%= yield %>
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -2542,7 +2542,7 @@ export default component$(() => {
     @yield('content')
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -2699,7 +2699,7 @@ export default component$(() => {
     {% block content %}{% endblock %}
 
     [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+    <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
     <script>
       (async () => {
@@ -2852,7 +2852,7 @@ export default component$(() => {
   <%- body %>
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
@@ -3002,7 +3002,7 @@ export default component$(() => {
   <div th:replace="~{fragments :: content}"></div>
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
@@ -3102,7 +3102,7 @@ export default component$(() => {
   @RenderBody()
 
   [[[<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-  <script src="https://magicchat-core.github.io/prod-sscc-client-cdns/bundle.js"></script>]]]
+  <script src="https://magicchat-core.github.io/prod-ssc-client-cdns/bundle.js"></script>]]]
 
   <script>
     (async () => {
