@@ -1,5 +1,7 @@
 // documentation/payload/versions/V2/platform/index.js
 
+import integrationsApisWorkflows from "./integrationsApisWorkflows";
+
 const platformPayload = [
   // ============================================================
   // INTEGRATION (Prerequisites, Client, Code, Backend)
@@ -291,67 +293,9 @@ const platformPayload = [
   },
 
   // ============================================================
-  // APIS, CHAINS, AUTH, CONNECTIONS
+  // ⭐ APIS & WORKFLOWS (Sourced from integrationsApisWorkflows.js)
   // ============================================================
-  {
-    tag_type: "h2",
-    text: "APIs & Workflows",
-    selector_uid: "v2_integrations_apis_workflows",
-  },
-  {
-    tag_type: "p",
-    text:
-      "The AI Agent is powered by four first-class resource types. Each is " +
-      "scoped to tenant or app, and each is independently metered.",
-  },
-  {
-    tag_type: "h3",
-    text: "API Configs",
-    selector_uid: "v2_api_configurations",
-  },
-  {
-    tag_type: "p",
-    text:
-      "An API Config describes a single HTTP endpoint: URL, method, headers, " +
-      "query params, request payload template, and sample responses for each " +
-      "HTTP status code.",
-  },
-  {
-    tag_type: "h3",
-    text: "API Chains",
-    selector_uid: "v2_chain_apis",
-  },
-  {
-    tag_type: "p",
-    text:
-      "A Chain runs several API configs in sequence, with branching on response " +
-      "status codes. This is how a single agent handles multi-step workflows " +
-      "like \"Check availability → hold table → confirm payment\" without " +
-      "writing a single line of code.",
-  },
-  {
-    tag_type: "h3",
-    text: "Auth Servers",
-    selector_uid: "v2_authentication_configure",
-  },
-  {
-    tag_type: "p",
-    text:
-      "The Auth Server configuration is how the runtime authenticates outgoing " +
-      "API calls. Tokens are encrypted with an RSA keypair whose " +
-      "private half never leaves Sageion.",
-  },
-  {
-    tag_type: "h3",
-    text: "Connections & Actions",
-    selector_uid: "v2_connections_actions",
-  },
-  {
-    tag_type: "p",
-    text:
-      "A Connection is an OAuth grant (Google Sheets, Gmail, Calendar, Slack, etc.). " +
-      "A Connector Action is a reusable operation built on top of a connection.",
-  },
+  ...integrationsApisWorkflows,
 
   // ============================================================
   // VISUAL RESPONSE DESIGNER
