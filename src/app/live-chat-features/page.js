@@ -4,6 +4,7 @@ import styles from "./LiveChatFeatures.module.css";
 import HeroSection from "../components/reuseableComponents/HeroSection";
 import CardsReuse from "../components/reuseableComponents/CardsReuse";
 import ReusableCTASection from "../components/reuseableComponents/ReusableCTASection";
+import FeatureGate from "../_guards/FeatureGate";
 
 const FEATURES = [
   {
@@ -77,10 +78,8 @@ const FEATURES_FOR_CARDS = FEATURES.map((f) => ({
   icon: f.icon,
   title: f.title,
   description: f.description,
-  // Use tag as stat if you want to show it, or create custom stat
   stat: f.tag,
   statLabel: "Feature Tag",
-  // Keep original data for custom rendering if needed
   _original: f,
 }));
 
@@ -129,7 +128,8 @@ const PROBLEM_SOLUTION = [
   },
 ];
 
-const LiveChatFeatures = () => {
+// ─── Inner page body (renders only when the flag is on) ────────────
+const LiveChatFeaturesContent = () => {
   const [activeFeature, setActiveFeature] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -145,7 +145,14 @@ const LiveChatFeatures = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Stats defined at the top level
+  // Stubs — replace with real navigation / modal logic.
+  const handleFreeTrial = () => {
+    // e.g. router.push("/signup") or open a signup modal
+  };
+  const handleLiveDemo = () => {
+    // e.g. open a calendar / demo booking modal
+  };
+
   const stats = [
     { value: 8, suffix: "+", label: "Advanced Features" },
     { value: 3, suffix: "x", label: "Faster Resolution" },
@@ -196,7 +203,6 @@ const LiveChatFeatures = () => {
       </div>
 
       {/* ─── Competitive Advantages ───────────────────────────────────── */}
-
       <div className={styles.advantagesSection}>
         <div className={styles.advantagesHeader}>
           <h2 className={styles.sectionTitle}>
@@ -233,7 +239,9 @@ const LiveChatFeatures = () => {
                 <div
                   className={styles.advantagesTimelineIcon}
                   style={{
-                    background: `${[`#ef4444`, `#3b82f6`, `#10b981`, `#8b5cf6`][idx]}20`,
+                    background: `${
+                      [`#ef4444`, `#3b82f6`, `#10b981`, `#8b5cf6`][idx]
+                    }20`,
                   }}
                 >
                   {adv.icon}
@@ -262,47 +270,6 @@ const LiveChatFeatures = () => {
       </div>
 
       {/* ─── Comparison Table ─────────────────────────────────────────── */}
-      {/* <div className={styles.comparisonSection}>
-        <h2 className={styles.sectionTitle}>
-          Live Chat <span className={styles.highlight}>vs</span> The Rest
-        </h2>
-
-        <div className={styles.comparisonGrid}>
-          <div className={styles.comparisonCard}>
-            <div className={styles.comparisonHeader}>
-              <span className={styles.comparisonIcon}>❌</span>
-              <h3>Basic Chat Providers</h3>
-            </div>
-            <ul className={styles.comparisonList}>
-              <li>📝 Text-only delivery</li>
-              <li>📧 Basic inbox-style messaging</li>
-              <li>👤 Single user mode only</li>
-              <li>🔄 No real-time status</li>
-              <li>🏢 One brand per dashboard</li>
-              <li>📊 Limited history access</li>
-            </ul>
-          </div>
-
-          <div className={`${styles.comparisonCard} ${styles.winnerCard}`}>
-            <div className={styles.comparisonHeader}>
-              <span className={styles.comparisonIcon}>⭐</span>
-              <h3>Our Live Chat Platform</h3>
-            </div>
-            <ul className={styles.comparisonList}>
-              <li>✅ Rich media, reactions, replies</li>
-              <li>⚡ Real-time status & delivery reports</li>
-              <li>👥 Solo/Team toggle</li>
-              <li>🛡️ Advanced RBAC</li>
-              <li>🏢 Multiple brand support</li>
-              <li>📊 Switch between personal/all history</li>
-              // <li>🔐 Session management</li>
-              <li>🎯 Intelligent join chat routing</li>
-            </ul>
-            <div className={styles.winnerBadge}>🏆 Clear Winner</div>
-          </div>
-        </div>
-      </div> */}
-
       <div className={styles.comparisonSection}>
         <h2 className={styles.sectionTitle}>
           Live Chat <span className={styles.highlight}>vs</span> The Rest
@@ -311,7 +278,9 @@ const LiveChatFeatures = () => {
         <div className={styles.comparisonSplitLayout}>
           <div className={styles.comparisonLeft}>
             <div className={styles.comparisonBadge}>❌ Basic</div>
-            <h3 className={styles.comparisonLeftTitle}>Basic Chat Providers</h3>
+            <h3 className={styles.comparisonLeftTitle}>
+              Basic Chat Providers
+            </h3>
             <ul className={styles.comparisonListAlt}>
               <li>📝 Text-only delivery</li>
               <li>📧 Basic inbox-style messaging</li>
@@ -397,6 +366,7 @@ const LiveChatFeatures = () => {
           ))}
         </div>
       </div>
+
       {/* ─── CTA ───────────────────────────────────────────────────────── */}
       <ReusableCTASection
         badgeText="💬 Live Chat"
@@ -410,15 +380,18 @@ const LiveChatFeatures = () => {
           "⚡ Instant Setup",
           "💳 No Credit Card",
         ]}
-        onPrimaryClick={() => {
-          handleFreeTrial();
-        }}
-        onSecondaryClick={() => {
-          handleLiveDemo();
-        }}
+        onPrimaryClick={handleFreeTrial}
+        onSecondaryClick={handleLiveDemo}
       />
     </section>
   );
 };
+
+// ─── Public page: gated by the liveChat feature flag ────────────────
+const LiveChatFeatures = () => (
+  <FeatureGate flag="liveChat" redirectTo="/ai-agent-configuration">
+    <LiveChatFeaturesContent />
+  </FeatureGate>
+);
 
 export default LiveChatFeatures;
