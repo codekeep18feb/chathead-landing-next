@@ -1,4 +1,4 @@
-// /home/codewithreetu/Desktop/workspace/p__workspace/landingSide/chathead-landing-next/src/app/components/documents/side_bar_content/rendering_tools.js
+// src/app/components/documents/side_bar_content/rendering_tools.js
 
 "use client";
 
@@ -18,16 +18,7 @@ import "./style_globle.css";
 
 // ============================================================
 // MARKER HIGHLIGHTING HELPERS
-//
-// Two marker syntaxes, applicable in ANY payload string field:
-//   [[ value ]]        → inline highlight   (amber, .ph)
-//   [[[ region ]]]     → block highlight    (green border, .ph-block)
-//
-// Order matters: escape HTML FIRST, then inject spans. This way any
-// `<`, `>`, `&` in the source text cannot break the HTML output, and
-// the injected spans are not double-escaped.
 // ============================================================
-
 const escapeHtml = (s) =>
   String(s)
     .replace(/&/g, "&amp;")
@@ -44,7 +35,6 @@ export const stripMarkers = (raw) => {
 export const applyMarkers = (raw) => {
   if (raw == null) return "";
 
-  // 1. Extract block regions first so the inline pass doesn't touch them.
   const blocks = [];
   const withoutBlocks = String(raw).replace(
     /\[\[\[([\s\S]*?)\]\]\]/g,
@@ -54,13 +44,11 @@ export const applyMarkers = (raw) => {
     }
   );
 
-  // 2. Escape, then apply inline markers.
   let out = escapeHtml(withoutBlocks).replace(
     /\[\[(.+?)\]\]/g,
     '<span class="ph">$1</span>'
   );
 
-  // 3. Reinsert block regions, escaped, wrapped in .ph-block.
   out = out.replace(/\u0000BLOCK(\d+)\u0000/g, (_, idx) => {
     const inner = escapeHtml(blocks[Number(idx)]);
     return `<span class="ph-block">${inner}</span>`;
@@ -69,58 +57,20 @@ export const applyMarkers = (raw) => {
   return out;
 };
 
-// Simple wrapper — use it anywhere you'd previously render {item.text}.
 const MarkedText = ({ children }) => (
   <span dangerouslySetInnerHTML={{ __html: applyMarkers(children) }} />
 );
 
-// ============================================================
-// SIDEBAR LINK CONTEXT
-// Closes the mobile sidebar when a navigation link is clicked.
-// ============================================================
 export const SidebarLinkContext = createContext(null);
 
-// ============================================================
-// SUPPORTED TAGS
-// ============================================================
 const supportedTags = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "p",
-  "div",
-  "img",
-  "a",
-  "blockquote",
-  "ul",
-  "li",
-  "code",
-  "ol",
-  "table",
-  "accordion",
-  "breadcrumbs",
-  "code_with_copy",
-  "callout",
-  "steps",
-  "tabs",
-  "tooltip",
-  "pagination",
-  "kbd",
-  "text",
-  "side_nav",
-  "search",
-  "mermaid_diagram",
-  "api_table",
-  "mesgTip",
-  "strong",
+  "h1", "h2", "h3", "h4", "p", "div", "img", "a", "blockquote",
+  "ul", "li", "code", "ol", "table", "accordion", "breadcrumbs",
+  "code_with_copy", "callout", "steps", "tabs", "tooltip", "pagination",
+  "kbd", "text", "side_nav", "search", "mermaid_diagram", "api_table",
+  "mesgTip", "strong",
 ];
 
-// ============================================================
-// renderTextWithElements — used by <p> tag and ListItem text.
-// Plain-string segments pass through applyMarkers; link segments
-// remain React <a> nodes.
-// ============================================================
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts || linkParts.length === 0) {
     return <span dangerouslySetInnerHTML={{ __html: applyMarkers(text) }} />;
@@ -237,16 +187,9 @@ const CondRadioRender = ({ r_options }) => {
 };
 
 // ============================================================
-// CALLOUT
+// CALLOUT / MESSAGE TIP / STEPS / TABS / TOOLTIP / SIDE NAV
 // ============================================================
 const Callout = ({ type = "info", title, children }) => {
-  const icons = {
-    info: "ℹ️",
-    warning: "⚠️",
-    danger: "⛔",
-    success: "✅",
-  };
-
   return (
     <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
       <div className={styles["callout-header"]}>
@@ -261,9 +204,6 @@ const Callout = ({ type = "info", title, children }) => {
   );
 };
 
-// ============================================================
-// MESSAGE TIP
-// ============================================================
 const MessageTip = ({ title, children }) => {
   return (
     <div className={styles.messageTipWrap}>
@@ -280,9 +220,6 @@ const MessageTip = ({ title, children }) => {
   );
 };
 
-// ============================================================
-// STEPS
-// ============================================================
 const Steps = ({ items }) => {
   return (
     <div className={styles.steps}>
@@ -305,12 +242,8 @@ const Steps = ({ items }) => {
   );
 };
 
-// ============================================================
-// TABS
-// ============================================================
 const Tabs = ({ items }) => {
   const [activeTab, setActiveTab] = useState(0);
-
   return (
     <div className={styles["tabs-container"]}>
       <div className={styles["tab-buttons"]}>
@@ -333,12 +266,8 @@ const Tabs = ({ items }) => {
   );
 };
 
-// ============================================================
-// TOOLTIP
-// ============================================================
 const Tooltip = ({ content, children }) => {
   const [isVisible, setIsVisible] = useState(false);
-
   return (
     <div
       className="tooltip-wrapper"
@@ -355,12 +284,8 @@ const Tooltip = ({ content, children }) => {
   );
 };
 
-// ============================================================
-// SIDE NAV
-// ============================================================
 const SideNav = ({ items }) => {
   const [isOpen, setIsOpen] = useState(true);
-
   return (
     <div className={`side-nav ${isOpen ? "open" : "collapsed"}`}>
       <button className="nav-toggle" onClick={() => setIsOpen(!isOpen)}>
@@ -379,12 +304,8 @@ const SideNav = ({ items }) => {
   );
 };
 
-// ============================================================
-// SEARCH
-// ============================================================
 const DocSearch = () => {
   const [query, setQuery] = useState("");
-
   return (
     <div className="doc-search">
       <input
@@ -398,29 +319,19 @@ const DocSearch = () => {
   );
 };
 
-// ============================================================
-// MERMAID DIAGRAM
-// ============================================================
 const MermaidDiagram = ({ code }) => {
   useEffect(() => {
     window.mermaid?.initialize({ startOnLoad: true });
     window.mermaid?.init();
   }, [code]);
-
   return <div className="mermaid">{code}</div>;
 };
 
-// ============================================================
-// PAGINATION
-// ============================================================
 const Pagination = ({ currentPage, totalPages }) => {
   const [page, setPage] = useState(currentPage);
-
   const handlePageChange = (newPage) => {
     setPage(newPage);
-    console.log("Page changed to:", newPage);
   };
-
   return (
     <div className="pagination">
       {Array.from({ length: totalPages }, (_, i) => (
@@ -436,9 +347,6 @@ const Pagination = ({ currentPage, totalPages }) => {
   );
 };
 
-// ============================================================
-// KBD
-// ============================================================
 const Kbd = ({ keys }) => {
   return (
     <span className="kbd-container">
@@ -452,12 +360,8 @@ const Kbd = ({ keys }) => {
   );
 };
 
-// ============================================================
-// CODE WITH COPY  (marker-aware)
-// ============================================================
 const CodeWithCopy = ({ code, language }) => {
   const [copied, setCopied] = useState(false);
-
   const plainCode = stripMarkers(code);
   const highlighted = applyMarkers(code);
 
@@ -480,12 +384,8 @@ const CodeWithCopy = ({ code, language }) => {
   );
 };
 
-// ============================================================
-// ACCORDION
-// ============================================================
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className={styles.accordion}>
       <button
@@ -500,9 +400,6 @@ const Accordion = ({ title, children }) => {
   );
 };
 
-// ============================================================
-// TABLE
-// ============================================================
 const Table = ({ headers, rows }) => {
   return (
     <table className={styles.docTable}>
@@ -530,9 +427,6 @@ const Table = ({ headers, rows }) => {
   );
 };
 
-// ============================================================
-// BREADCRUMBS
-// ============================================================
 const Breadcrumbs = ({ items }) => {
   return (
     <nav className="breadcrumbs">
@@ -556,16 +450,7 @@ const Breadcrumbs = ({ items }) => {
   );
 };
 
-// ============================================================
-// LIST
-// ============================================================
-const List = ({
-  items,
-  listType,
-  collapsable,
-  fcNonCollapsable,
-  depth = 0,
-}) => {
+const List = ({ items, listType, collapsable, fcNonCollapsable, depth = 0 }) => {
   return listType === "ol" ? (
     <ol className={`${styles["content-list"]} ${styles.ordered}`}>
       {items.map((item, index) => (
@@ -597,9 +482,6 @@ const List = ({
 
 // ============================================================
 // LIST ITEM
-// Uses:
-//   • mobile_doc:  SidebarLinkContext + default_expanded
-//   • main:        renderTextWithElements + applyMarkers
 // ============================================================
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const onLinkClick = useContext(SidebarLinkContext);
@@ -610,24 +492,18 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
   const isCollapsible = collapsable && hasSubItems && depth >= 1;
   const childCollapsable = depth === 0 ? fcNonCollapsable : collapsable;
-
   const shouldShowDownIcon = hasSubItems && depth === 0;
 
   const handleScroll = (selector) => {
-    console.log("Looking for element with selector:", selector);
+    if (!selector) return;
     const element = document.getElementById(selector);
-    console.log("Found element:", element);
     if (element) {
-      // ⭐ FIX: Use native scrollIntoView and offset for fixed headers
-      const yOffset = -80; // Adjust this if your top nav covers the title
+      const yOffset = -100;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      
+      window.scrollTo({ top: y, behavior: "smooth" });
     } else {
       console.warn(`Element with ID "${selector}" not found`);
     }
-    // ✅ Close mobile sidebar after navigation
     if (onLinkClick) onLinkClick();
   };
 
@@ -640,21 +516,19 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
   const renderLink = () => {
     if (!item.link_configuration?.show) return null;
-
     const config = item.link_configuration;
-
-    console.log("config outerItems",config);
-    
 
     if (config.type === "internal") {
       return (
         <button
           onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
             handleScroll(config.selector_uid);
           }}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
+          type="button"
         >
           <FaLink size={16} />
         </button>
@@ -787,15 +661,59 @@ const APIReferenceTable = ({ properties }) => (
 );
 
 // ============================================================
+// CONTENT LIST ITEM (For standalone `li` inside ContentRenderer)
+// ============================================================
+const ContentListItem = ({ item, index, renderLink }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const hasSubItems = item.sub_items && item.sub_items.length > 0;
+
+  return (
+    <li key={index} className={styles["content-list-item"]}>
+      <div className={styles.sidebarLi}>
+        {item.text && <MarkedText>{item.text}</MarkedText>}
+
+        {hasSubItems && (
+          <span
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`${styles["expand-icon"]} ${
+              isExpanded ? styles["expanded"] : styles["collapsed"]
+            }`}
+          >
+            <IoIosArrowDown size={16} />
+          </span>
+        )}
+        {item.link_configuration && renderLink(item)}
+      </div>
+
+      {item.code && (
+        <pre className="script_code">
+          <code>{item.code}</code>
+        </pre>
+      )}
+
+      {hasSubItems && (
+        <div
+          className={styles.li_subLi}
+          style={{ display: isExpanded ? "block" : "none" }}
+        >
+          {item.sub_items[0]?.tag_type === "li" ? (
+            <ul className={styles["content-list"]}>
+              <ContentRenderer content={item.sub_items} />
+            </ul>
+          ) : (
+            <ContentRenderer content={item.sub_items} />
+          )}
+        </div>
+      )}
+    </li>
+  );
+};
+
+// ============================================================
 // CONTENT RENDERER
-// Uses:
-//   • mobile_doc:  SidebarLinkContext + stopPropagation on internal links
-//   • main:        MarkedText + applyMarkers everywhere
 // ============================================================
 const ContentRenderer = ({ content }) => {
   const onLinkClick = useContext(SidebarLinkContext);
-
-  console.log("contenterewr", content);
 
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;
@@ -805,18 +723,24 @@ const ContentRenderer = ({ content }) => {
       return (
         <button
           onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
-            try {
-              const element = document.getElementById(config.selector_uid);
-              if (element) element.scrollIntoView({ behavior: "smooth" });
-            } catch (e) {
-              console.error("Scroll error:", e);
+            const element = document.getElementById(config.selector_uid);
+            if (element) {
+              const yOffset = -100;
+              const y =
+                element.getBoundingClientRect().top +
+                window.pageYOffset +
+                yOffset;
+              window.scrollTo({ top: y, behavior: "smooth" });
+            } else {
+              console.warn(`Element with ID "${config.selector_uid}" not found`);
             }
-            // ✅ Close mobile sidebar after navigation
             if (onLinkClick) onLinkClick();
           }}
           className={`${styles["content-link"]} ${styles.internal}`}
           title="Scroll to section"
+          type="button"
         >
           <FaLink size={16} />
         </button>
@@ -861,33 +785,40 @@ const ContentRenderer = ({ content }) => {
             );
 
           case "h2":
-            if (item.hasOwnProperty("selector_uid")) {
-              return (
-                <h2
-                  key={index}
-                  className={styles["content-heading"]}
-                  id={item.selector_uid}
-                >
-                  <MarkedText>{item.text}</MarkedText>
-                </h2>
-              );
-            } else {
-              return (
-                <h2 key={index} className={styles["content-heading"]}>
-                  <MarkedText>{item.text}</MarkedText>
-                </h2>
-              );
-            }
+            return item.hasOwnProperty("selector_uid") ? (
+              <h2
+                key={index}
+                className={styles["content-heading"]}
+                id={item.selector_uid}
+              >
+                <MarkedText>{item.text}</MarkedText>
+              </h2>
+            ) : (
+              <h2 key={index} className={styles["content-heading"]}>
+                <MarkedText>{item.text}</MarkedText>
+              </h2>
+            );
+
+          case "h3":
+            return (
+              <h3
+                key={index}
+                className={styles.second_subheading}
+                id={item.selector_uid}
+              >
+                <MarkedText>{item.text}</MarkedText>
+              </h3>
+            );
 
           case "h4":
             return (
-              <h2
+              <h4
                 key={index}
                 className={styles["content-inner-heading"]}
                 id={item.selector_uid}
               >
                 <MarkedText>{item.text}</MarkedText>
-              </h2>
+              </h4>
             );
 
           case "side_nav":
@@ -900,9 +831,7 @@ const ContentRenderer = ({ content }) => {
             return <MermaidDiagram key={index} code={item.code} />;
 
           case "api_table":
-            return (
-              <APIReferenceTable key={index} properties={item.properties} />
-            );
+            return <APIReferenceTable key={index} properties={item.properties} />;
 
           case "feature_options":
             return <CondRadioRender r_options={item.options} key={index} />;
@@ -962,23 +891,9 @@ const ContentRenderer = ({ content }) => {
               </div>
             );
 
-          case "h3":
-            return (
-              <h3
-                key={index}
-                className={styles.second_subheading}
-                id={item.selector_uid}
-              >
-                <MarkedText>{item.text}</MarkedText>
-              </h3>
-            );
-
           case "a":
             return (
-              <button
-                className={styles["view-full-implementation"]}
-                key={index}
-              >
+              <button className={styles["view-full-implementation"]} key={index}>
                 <a
                   key={index}
                   href={item.href}
@@ -1011,9 +926,7 @@ const ContentRenderer = ({ content }) => {
             );
 
           case "table":
-            return (
-              <Table key={index} headers={item.headers} rows={item.rows} />
-            );
+            return <Table key={index} headers={item.headers} rows={item.rows} />;
 
           case "accordion":
             return (
@@ -1047,51 +960,15 @@ const ContentRenderer = ({ content }) => {
               </pre>
             );
 
-          case "li": {
-            const [isExpanded, setIsExpanded] = useState(false);
-            const hasSubItems = item.sub_items && item.sub_items.length > 0;
-
+          case "li":
             return (
-              <li key={index} className={styles["content-list-item"]}>
-                <div className={styles.sidebarLi}>
-                  {item.text && <MarkedText>{item.text}</MarkedText>}
-
-                  {hasSubItems && (
-                    <span
-                      onClick={() => setIsExpanded(!isExpanded)}
-                      className={`${styles["expand-icon"]} ${
-                        isExpanded ? styles["expanded"] : styles["collapsed"]
-                      }`}
-                    >
-                      <IoIosArrowDown size={16} />
-                    </span>
-                  )}
-                  {item.link_configuration && renderLink(item)}
-                </div>
-
-                {item.code && (
-                  <pre className="script_code">
-                    <code>{item.code}</code>
-                  </pre>
-                )}
-
-                {hasSubItems && (
-                  <div
-                    className={styles.li_subLi}
-                    style={{ display: isExpanded ? "block" : "none" }}
-                  >
-                    {item.sub_items[0]?.tag_type === "li" ? (
-                      <ul className={styles["content-list"]}>
-                        <ContentRenderer content={item.sub_items} />
-                      </ul>
-                    ) : (
-                      <ContentRenderer content={item.sub_items} />
-                    )}
-                  </div>
-                )}
-              </li>
+              <ContentListItem
+                key={index}
+                item={item}
+                index={index}
+                renderLink={renderLink}
+              />
             );
-          }
 
           case "div":
             return (

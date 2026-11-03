@@ -1,64 +1,6 @@
 // documentation/payload/versions/V2/platform/integrationsApisWorkflows.js
 
-const integrationsApisWorkflowsPayload = [
-  {
-    tag_type: "h2",
-    text: "APIs, Chains, Auth, and Connections",
-    selector_uid: "v2_integrations_apis_workflows",
-  },
-  {
-    tag_type: "p",
-    text:
-      "The AI Agent is powered by four first-class resource types. Each is " +
-      "scoped to tenant or app, and each is independently metered. This is the " +
-      "layer that makes the platform feel like an operating system rather than " +
-      "a chatbot.",
-  },
-
-  {
-    tag_type: "h3",
-    text: "API Configs",
-    selector_uid: "v2_api_configurations",
-  },
-  {
-    tag_type: "p",
-    text:
-      "An API Config describes a single HTTP endpoint: URL, method, headers, " +
-      "query params, request payload template, and sample responses for each " +
-      "HTTP status code. Once configured, the runtime can call it safely and " +
-      "deterministically.",
-  },
-  {
-    tag_type: "feature_options",
-    options: [
-      {
-        text: "Tenant-scoped",
-        description: [
-          {
-            tag_type: "p",
-            text:
-              "A shared endpoint published by the tenant admin. Not visible to " +
-              "any app until that app attaches it. Used when every restaurant " +
-              "hits the same backend URL with the same auth.",
-          },
-        ],
-      },
-      {
-        text: "App-scoped",
-        description: [
-          {
-            tag_type: "p",
-            text:
-              "An endpoint specific to one app. Automatically visible to that " +
-              "app only. Used when a restaurant has its own URL, its own auth " +
-              "credentials, or a customized backend.",
-          },
-        ],
-      },
-    ],
-  },
-
-  {
+const integrationsApisWorkflowsPayload = [  {
     tag_type: "h3",
     text: "API Chains",
     selector_uid: "v2_chain_apis",
@@ -67,150 +9,122 @@ const integrationsApisWorkflowsPayload = [
     tag_type: "p",
     text:
       "A Chain runs several API configs in sequence, with branching on response " +
-      "status codes. If the first API returns 200, run config B. If it returns " +
-      "409, run config C. This is how a single agent handles multi-step workflows " +
-      "like {{ \"Check availability → hold table → confirm payment\" }} without " +
-      "writing a single line of code.",
-  },
-  {
-    tag_type: "callout",
-    type: "info",
-    title: "Manual nodes",
-    children: [
-      {
-        tag_type: "p",
-        text:
-          "Any step in a chain can be marked Manual. The chain will pause and " +
-          "wait for an external webhook callback before continuing. This is how " +
-          "human-in-the-loop approvals work — a manager clicks Approve in the " +
-          "UI, that hits your webhook, and the chain resumes.",
-      },
-    ],
-  },
-
-  {
-    tag_type: "h3",
-    text: "Auth Servers",
-    selector_uid: "v2_authentication_configure",
+      "status codes. This is how a single agent handles multi-step workflows " +
+      "without writing a single line of code.",
   },
   {
     tag_type: "p",
     text:
-      "The Auth Server configuration is how the runtime authenticates outgoing " +
-      "API calls. Unlike a static API key, Sageion supports a full login-server " +
-      "flow: the tenant defines an endpoint that returns a token, and the runtime " +
-      "uses it for every call. Tokens are encrypted with an RSA keypair whose " +
-      "private half never leaves Sageion.",
+      "Here is a real-world example: a restaurant manager asks the AI Agent to " +
+      "\"Check if we need to order rice and handle the approval.\" The runtime " +
+      "executes a 3-step chain:",
+  },
+  
+  // STEP 1
+  {
+    tag_type: "h4",
+    text: "Step 1: Check Inventory (Parent)",
+    selector_uid: "v2_chain_step1",
+  },
+  {
+    tag_type: "p",
+    text: "The chain hits the inventory endpoint to see if Basmati Rice is low.",
+  },
+  {
+    tag_type: "code_with_copy",
+    language: "bash",
+    code: `curl -s -X GET http://api.yourcrm.com/inventory/rice \\
+  -H "Authorization: Bearer {{ token }}"
+
+# Response (200 OK)
+{
+  "material_id": "rice",
+  "name": "Basmati Rice",
+  "current_qty": 3,
+  "unit": "kg",
+  "low_threshold": 4
+}`,
   },
 
+  // STEP 2
   {
-    tag_type: "table",
-    headers: ["Auth type", "When to use", "Scoping"],
-    rows: [
-      ["Bearer token", "OAuth2 providers, JWT-based APIs", "Tenant or app"],
-      ["API key", "Simple header auth (X-API-Key)", "Tenant or app"],
-      ["Login server", "Custom auth flow with per-user tokens", "Tenant or app"],
-      ["OAuth2 (managed)", "Google, Microsoft, Slack", "Tenant or app"],
-    ],
-  },
-
-  {
-    tag_type: "h3",
-    text: "Connections and Connector Actions",
-    selector_uid: "v2_connections_actions",
+    tag_type: "h4",
+    text: "Step 2: Create Purchase Order (Child)",
+    selector_uid: "v2_chain_step2",
   },
   {
     tag_type: "p",
     text:
-      "A Connection is an OAuth grant (Google Sheets, Gmail, Calendar, Slack, etc.). " +
-      "A Connector Action is a reusable operation built on top of a connection — " +
-      "{{ \"Append row to Sheet\" }}, {{ \"Send Slack message\" }}, {{ \"Create " +
-      "Calendar event\" }}. Both are tenant-scoped resources that apps attach " +
-      "explicitly.",
+      "Because the quantity is low, the chain automatically triggers the next " +
+      "API. Notice how it takes the {{ material_id }} from Step 1 and injects it " +
+      "directly into the payload for Step 2.",
+  },
+  {
+    tag_type: "code_with_copy",
+    language: "bash",
+    code: `curl -s -X POST http://api.yourcrm.com/purchase-orders \\
+  -H "Authorization: Bearer {{ token }}" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "supplier": "FreshMeat", 
+    "material_id": "{{ response_data.material_id }}", 
+    "qty": 5, 
+    "unit": "kg"
+  }'
+
+# Response (201 Created)
+{
+  "po_id": "PO-BDE7BB",
+  "status": "pending_supplier"
+}`,
+  },
+
+  // STEP 3
+  {
+    tag_type: "h4",
+    text: "Step 3: Approve Purchase Order (Grandchild)",
+    selector_uid: "v2_chain_step3",
   },
   {
     tag_type: "p",
     text:
-      "Connector Actions can be attached to chain nodes as parallel actions — they " +
-      "fire in the background when that node's API returns, never blocking the " +
-      "main flow. A single chain node can fire five parallel actions and the " +
-      "agent still returns to the user in under a second.",
+      "For critical actions, the chain can pause for human-in-the-loop approval. " +
+      "Once approved, it takes the {{ po_id }} from Step 2, injects it into the URL, " +
+      "and finalizes the order.",
   },
+  {
+    tag_type: "code_with_copy",
+    language: "bash",
+    code: `curl -s -X PATCH http://api.yourcrm.com/purchase-orders/{{ response_data.po_id }}/approve \\
+  -H "Authorization: Bearer {{ token }}" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "approved": true
+  }'
 
-  {
-    tag_type: "h3",
-    text: "How the four resource types compose",
-    selector_uid: "v2_resource_composition",
-  },
-  {
-    tag_type: "steps",
-    items: [
-      {
-        title: "Auth Server → API Config",
-        content: [
-          {
-            tag_type: "p",
-            text:
-              "Each API Config declares which Auth Server authenticates it. " +
-              "One shared auth server can authenticate fifty API configs without " +
-              "duplicating credentials.",
-          },
-        ],
-      },
-      {
-        title: "API Config → Chain",
-        content: [
-          {
-            tag_type: "p",
-            text:
-              "A chain references API Configs as steps. If an API Config is " +
-              "updated, every chain that references it picks up the change.",
-          },
-        ],
-      },
-      {
-        title: "Chain → Skill",
-        content: [
-          {
-            tag_type: "p",
-            text:
-              "A Skill (AI Agent intent) references either a single API Config " +
-              "or a full Chain. The agent is the user-facing name; the chain is " +
-              "the actual execution.",
-          },
-        ],
-      },
-      {
-        title: "Connection → Connector Action → Chain node",
-        content: [
-          {
-            tag_type: "p",
-            text:
-              "A Connector Action wraps a Connection. The action is attached to " +
-              "a chain node as a parallel trigger. When that node's API returns, " +
-              "the action fires.",
-          },
-        ],
-      },
-    ],
+# Response (200 OK)
+{
+  "success": true,
+  "po_id": "PO-BDE7BB",
+  "status": "approved",
+  "inventory_updated": true
+}`,
   },
 
   {
     tag_type: "callout",
     type: "success",
-    title: "Reuse across 70,000 restaurants",
+    title: "No Code Required",
     children: [
       {
         tag_type: "p",
         text:
-          "Because every layer is a named resource that can be tenant-scoped and " +
-          "attached on demand, a single tenant can serve 70,000 apps without " +
-          "duplicating a single API config. The golden Auth Server and golden " +
-          "chains live once. Each restaurant attaches the ones it needs. " +
-          "Customization is additive, not replacing.",
+          "This entire 3-step workflow — including payload transformation, branch " +
+          "logic, and auth headers — is configured visually in the CanvasView " +
+          "editor. The LLM only detects the initial intent (\"Order rice\"). The " +
+          "runtime handles the rest deterministically.",
       },
     ],
-  },
-];
+  }]
 
 export default integrationsApisWorkflowsPayload;

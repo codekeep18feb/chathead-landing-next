@@ -2,7 +2,53 @@
 
 const platformPayload = [
   // ============================================================
-  // 1. AI AGENT OVERVIEW
+  // INTEGRATION (Prerequisites, Client, Code, Backend)
+  // ============================================================
+  {
+    tag_type: "h2",
+    text: "Prerequisites",
+    selector_uid: "v2_prerequisites",
+  },
+  {
+    tag_type: "p",
+    text: "Before you start, make sure you have your Sageion API key and your app details ready.",
+  },
+  {
+    tag_type: "h2",
+    text: "Client Integration",
+    selector_uid: "v2_client_integration",
+  },
+  {
+    tag_type: "p",
+    text: "Sageion exposes two methods on `window.sageion_os`: `setUp()` and `initialize()`. Everything else — sockets, DOM, auth, lifecycle, teardown — is handled internally.",
+  },
+  {
+    tag_type: "h2",
+    text: "Code Example",
+    selector_uid: "v2_code_example",
+  },
+  {
+    tag_type: "code_with_copy",
+    language: "javascript",
+    code: `await window.sageion_os.setUp(
+  "your_app_id",
+  "YOUR_API_KEY",
+  "US",
+  "sageion-chat-root"
+);`
+  },
+  {
+    tag_type: "h2",
+    text: "Backend Integration",
+    selector_uid: "v2_backend_integration",
+  },
+  {
+    tag_type: "p",
+    text: "Your backend must expose endpoints to authenticate users and return a token.",
+  },
+
+  // ============================================================
+  // PLATFORM (AI Agent)
   // ============================================================
   {
     tag_type: "h2",
@@ -88,7 +134,7 @@ const platformPayload = [
   },
 
   // ============================================================
-  // 2. TENANT VS APP SCOPE
+  // TENANT VS APP SCOPE
   // ============================================================
   {
     tag_type: "h2",
@@ -180,7 +226,7 @@ const platformPayload = [
   },
 
   // ============================================================
-  // 3. MULTI-ADMIN & RBAC
+  // MULTI-ADMIN & RBAC
   // ============================================================
   {
     tag_type: "h2",
@@ -245,7 +291,7 @@ const platformPayload = [
   },
 
   // ============================================================
-  // 4. APIS, CHAINS, AUTH, CONNECTIONS
+  // APIS, CHAINS, AUTH, CONNECTIONS
   // ============================================================
   {
     tag_type: "h2",
@@ -308,7 +354,7 @@ const platformPayload = [
   },
 
   // ============================================================
-  // 5. VISUAL RESPONSE DESIGNER
+  // VISUAL RESPONSE DESIGNER
   // ============================================================
   {
     tag_type: "h2",
@@ -361,7 +407,7 @@ const platformPayload = [
   },
 
   // ============================================================
-  // 6. WHITELABEL & BILLING
+  // WHITELABEL & BILLING
   // ============================================================
   {
     tag_type: "h2",
