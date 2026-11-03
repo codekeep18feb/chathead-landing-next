@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./ClientFeatures.module.css";
+// If you have an icon library, replace the emojis with actual SVG icons (e.g., FaRobot, FaPaintBrush)
 
 const ClientFeatures = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -34,78 +35,78 @@ const ClientFeatures = () => {
     };
   }, [isDemoPlaying, activeFeature, activeSlide]);
 
-  // Feature data structure - Enterprise Edition
+  // Feature data structure - AI Agent Edition
   const features = [
     {
-      id: "live-chat",
-      icon: "💬",
-      title: "Enterprise Live Chat",
-      subtitle: "Real-Time Communication with Enterprise-Grade Reliability",
-      description: "Deliver instant, reliable messaging with complete transparency. Every message matters, every interaction counts.",
+      id: "ai-agent",
+      icon: "🤖",
+      title: "Enterprise AI Agent",
+      subtitle: "Automate Complex Business Workflows With Your Existing APIs",
+      description: "Not just a chatbot. A deterministic agent that maps intents to backend APIs, generates custom UX screens, and handles long-running async tasks without hallucinating.",
       slides: [
         {
-          title: "Real-Time Messaging",
-          content: "Instant message delivery with real-time status updates. Users always know the state of their message.",
+          title: "Deterministic API Execution",
+          content: "The AI agent does not generate the final answer using an LLM. It maps the user's intent to your backend API and renders the response as UI.",
           details: [
-            "✓ Instant delivery confirmation with ✓✓ status",
-            "✓ Read receipts with precise timestamps",
-            "✓ Typing indicators for natural conversation flow",
-            "✓ Online/Offline presence indicators",
-            "✓ Message editing and deletion capabilities",
-            "✓ Rich text formatting support"
+            "✓ Single source of truth for all data",
+            "✓ Zero hallucination on prices or orders",
+            "✓ Rich UI components (cards, tables, buttons)",
+            "✓ Dynamic context-aware rendering",
+            "✓ Seamless error handling and retries",
+            "✓ Native connection to your existing APIs"
           ],
           demoSteps: [
-            { label: "Message Sent", status: "✓ Sent", progress: 25 },
-            { label: "Delivered", status: "✓✓ Delivered", progress: 50 },
-            { label: "Read", status: "✓✓ Read", progress: 75 },
-            { label: "Reply Received", status: "✓✓ Replied", progress: 100 }
+            { label: "Intent Detected", status: "🔍 Detected", progress: 25 },
+            { label: "API Called", status: "⚡ Called", progress: 50 },
+            { label: "Data Received", status: "📦 Received", progress: 75 },
+            { label: "UI Rendered", status: "✅ Rendered", progress: 100 }
           ],
-          visual: "delivery-flow"
+          visual: "api-execution"
         },
         {
-          title: "Rich Media Sharing",
-          content: "Share images, documents, PDFs, and more with drag-and-drop simplicity. Preview before sending.",
+          title: "Async Long-Running Tasks",
+          content: "Standard chatbots time out after 30 seconds. Our AI agent supports true async webhooks, allowing it to wait for background jobs, large data aggregations, or payment gateway responses.",
           details: [
-            "✓ Drag & drop file upload with visual feedback",
-            "✓ Image, PDF, document, and video support",
-            "✓ Live preview before sending",
-            "✓ Smart file organization and search",
-            "✓ Shareable file links",
-            "✓ Automatic file compression"
+            "✓ No 30-second timeout restrictions",
+            "✓ Native Webhook support",
+            "✓ Seamless UI state updates upon completion",
+            "✓ Background data aggregation",
+            "✓ Multi-step process handling",
+            "✓ Built for heavy enterprise backend logic"
           ],
           demoSteps: [
-            { label: "File Selected", status: "📎 Selected", progress: 25 },
-            { label: "Uploading", status: "🔄 Uploading", progress: 50 },
-            { label: "Preview Ready", status: "👁️ Preview", progress: 75 },
-            { label: "Shared", status: "✅ Sent", progress: 100 }
+            { label: "Task Initiated", status: "⏳ Initiated", progress: 25 },
+            { label: "Processing (Async)", status: "🔄 Waiting", progress: 50 },
+            { label: "Webhook Received", status: "📩 Received", progress: 75 },
+            { label: "Result Delivered", status: "✅ Delivered", progress: 100 }
           ],
-          visual: "media-flow"
+          visual: "async-task"
         },
         {
-          title: "Interactive Message Actions",
-          content: "Rich message interactions that make conversations more engaging and productive.",
+          title: "Human-in-the-Loop Approvals",
+          content: "For critical actions like refunds or high-value orders, the AI agent can pause the workflow, ping a manager for manual approval, and resume automatically.",
           details: [
-            "✓ Emoji reactions with real-time updates",
-            "✓ Reply threading with context preservation",
-            "✓ Quick response suggestions",
-            "✓ Message pinning and bookmarking",
-            "✓ Message search and filtering",
-            "✓ Conversation history export"
+            "✓ Workflow pauses mid-execution",
+            "✓ Manager receives custom approval screen",
+            "✓ One-click Approve or Reject",
+            "✓ Automatic resumption upon approval",
+            "✓ Perfect for sensitive restaurant operations",
+            "✓ Comprehensive audit trails"
           ],
           demoSteps: [
-            { label: "Message Received", status: "📨 Received", progress: 25 },
-            { label: "Reacted", status: "❤️ Liked", progress: 50 },
-            { label: "Replied", status: "↩️ Replied", progress: 75 },
-            { label: "Thread Complete", status: "✅ Done", progress: 100 }
+            { label: "Action Triggered", status: "🎯 Triggered", progress: 25 },
+            { label: "Paused for Review", status: "⏸️ Paused", progress: 50 },
+            { label: "Manager Approved", status: "✅ Approved", progress: 75 },
+            { label: "Workflow Resumed", status: "🚀 Completed", progress: 100 }
           ],
-          visual: "interaction-flow"
+          visual: "human-in-the-loop"
         }
       ]
     },
     {
       id: "response-screens",
       icon: "📱",
-      title: "Response Screens with Actions",
+      title: "Auto-Generated UX Screens",
       subtitle: "Get Things Done With Clicks, Not Messages",
       description: "Transform complex business processes into intuitive, action-driven screens. Users complete tasks through guided interactions, not endless message loops.",
       slides: [
@@ -232,46 +233,46 @@ const ClientFeatures = () => {
     },
     {
       id: "ai-intelligence",
-      icon: "🤖",
-      title: "GenAI Intelligence Engine",
-      subtitle: "Multi-Source AI That Understands Your Business",
-      description: "An AI that doesn't just answer questions—it understands context, detects intent, and learns from every interaction.",
+      icon: "⚙️",
+      title: "LLM Tolerant Architecture",
+      subtitle: "Zero Token Costs. Zero Hallucinations.",
+      description: "We use LLMs where it's safe (intent matching) and deterministic APIs where it matters (data retrieval). No more paying OpenAI per query.",
       slides: [
         {
-          title: "Multi-Source Knowledge",
-          content: "Answer from multiple data sources simultaneously—PDFs, documents, reinforcement learning, and structured data.",
+          title: "Single Source of Truth",
+          content: "Your database is the only source of truth. The AI maps the query, executes the API, and renders exactly what the backend returns.",
           details: [
-            "✓ PDF & document understanding with RAG",
-            "✓ Reinforcement learning from interactions",
-            "✓ Structured data integration",
-            "✓ Unified intelligence layer",
-            "✓ Real-time knowledge updates",
-            "✓ Source attribution and confidence scores"
+            "✓ Zero LLM token costs for data retrieval",
+            "✓ No hallucinated prices or policies",
+            "✓ Direct API integration",
+            "✓ Real-time data accuracy",
+            "✓ Enterprise-grade reliability",
+            "✓ Source attribution for all data"
           ],
           demoSteps: [
             { label: "Query Received", status: "🔍 Received", progress: 20 },
-            { label: "Sources Queried", status: "📚 Queried", progress: 50 },
-            { label: "Answer Synthesized", status: "🧠 Synthesized", progress: 80 },
+            { label: "API Queried", status: "📚 Queried", progress: 50 },
+            { label: "Data Synthesized", status: "🧠 Synthesized", progress: 80 },
             { label: "Response Delivered", status: "✅ Delivered", progress: 100 }
           ],
           visual: "knowledge-sources"
         },
         {
-          title: "Intelligent FAQ Tree",
-          content: "A beautiful, intuitive navigation tree that guides users to the right answer with interactive forms that capture leads.",
+          title: "Intelligent Routing Engine",
+          content: "The LLM is only used to route the user to the correct API workflow. Once routed, the rest of the chain is deterministic and safe.",
           details: [
-            "✓ Interactive navigation with visual feedback",
-            "✓ Custom form nodes for lead capture",
-            "✓ Lead generation integration",
-            "✓ Breadcrumb navigation with context",
-            "✓ Search within FAQ",
-            "✓ Analytics on FAQ usage"
+            "✓ LLM used only for intent classification",
+            "✓ Complex routing logic supported",
+            "✓ Handles edge cases gracefully",
+            "✓ Fallback to human support",
+            "✓ Analytics on routing accuracy",
+            "✓ Continuous learning from corrections"
           ],
           demoSteps: [
-            { label: "FAQ Loaded", status: "🌳 Loaded", progress: 25 },
-            { label: "Navigation Started", status: "📍 Navigating", progress: 50 },
-            { label: "Answer Found", status: "✅ Found", progress: 75 },
-            { label: "Lead Captured", status: "📝 Captured", progress: 100 }
+            { label: "User Message", status: "💬 Message", progress: 25 },
+            { label: "Intent Classified", status: "🎯 Classified", progress: 50 },
+            { label: "API Route Selected", status: "🛣️ Routed", progress: 75 },
+            { label: "Execution Started", status: "🚀 Started", progress: 100 }
           ],
           visual: "faq-tree"
         },
@@ -321,20 +322,20 @@ const ClientFeatures = () => {
           visual: "auth-flow"
         },
         {
-          title: "Secure Session Management",
+          title: "Multi-Admin RBAC",
           content: "Enterprise-grade encryption and session handling. User data is always protected, always secure.",
           details: [
-            "✓ AES-256 encryption",
-            "✓ Secure session handling",
-            "✓ Automatic session expiry",
+            "✓ Granular roles for Franchise Owners",
+            "✓ Store Manager vs. Staff access levels",
+            "✓ Secure API key management",
             "✓ Comprehensive audit logs",
             "✓ IP and device tracking",
             "✓ Anomaly detection"
           ],
           demoSteps: [
-            { label: "Session Created", status: "🔒 Created", progress: 33 },
-            { label: "Encryption Active", status: "🛡️ Active", progress: 66 },
-            { label: "Session Secure", status: "✅ Secure", progress: 100 }
+            { label: "Role Assigned", status: "🔒 Assigned", progress: 33 },
+            { label: "Permissions Set", status: "🛡️ Set", progress: 66 },
+            { label: "Access Granted", status: "✅ Granted", progress: 100 }
           ],
           visual: "session-security"
         }
@@ -365,13 +366,13 @@ const ClientFeatures = () => {
             HEADER SECTION
         ============================================================ */}
         <div className={styles.header}>
-          <span className={styles.badge}>✨ Enterprise Client Experience</span>
+          <span className={styles.badge}>✨ Enterprise AI Agent Experience</span>
           <h2 className={styles.title}>
-            The <span className={styles.highlight}>Sageion</span> Experience
+            The <span className={styles.highlight}>Sageion</span> Layer
           </h2>
           <p className={styles.subtitle}>
-            Enterprise-grade capabilities delivered with consumer-grade simplicity.
-            Every interaction is designed to delight, every workflow is built to convert.
+            Enterprise-grade AI agents delivered on top of your existing APIs.
+            Zero hallucinations, zero code changes, zero friction.
           </p>
         </div>
 
@@ -501,127 +502,123 @@ const ClientFeatures = () => {
             <div className={styles.featureVisual}>
               <div className={styles.visualCard}>
                 {/* ============================================================
-                    LIVE CHAT - DELIVERY FLOW
+                    AI AGENT - API EXECUTION
                 ============================================================ */}
-                {currentSlide?.visual === "delivery-flow" && (
+                {currentSlide?.visual === "api-execution" && (
                   <div className={styles.previewDelivery}>
                     <div className={styles.deliveryHeader}>
-                      <span>📱 Live Chat</span>
-                      <span className={styles.statusBadge}>🟢 Online</span>
+                      <span>🤖 AI Agent Layer</span>
+                      <span className={styles.statusBadge}>🟢 Live</span>
                     </div>
-                    <div className={styles.deliveryMessages}>
-                      <div className={styles.msgReceived}>
-                        <div className={styles.bubble}>Hey! How can I help you today?</div>
-                        <span className={styles.time}>10:30 AM</span>
-                        <span className={styles.deliveryStatus}>✓✓ Delivered</span>
+                    <div className={styles.deliveryMessages} style={{ padding: '20px' }}>
+                      <div style={{ marginBottom: '15px', fontSize: '13px', color: '#666' }}>
+                        User: "Check the status of my order ORD-12345"
                       </div>
-                      <div className={styles.msgSent}>
-                        <div className={styles.bubble}>I need help with my order #ORD-12345</div>
-                        <span className={styles.time}>10:31 AM</span>
-                        <span className={styles.deliveryStatus}>✓✓ Read</span>
+                      
+                      {/* Agent processing steps */}
+                      <div style={{ background: '#f8fafc', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '15px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#10b981', fontSize: '12px', fontWeight: '600', marginBottom: '8px' }}>
+                          <span>⚡ Tool Call: POS_GetOrderStatus</span>
+                        </div>
+                        <div style={{ fontSize: '11px', color: '#64748b', fontFamily: 'monospace' }}>
+                          {`POST /api/v1/orders/ORD-12345/status`}
+                        </div>
                       </div>
-                      <div className={styles.msgReceived}>
-                        <div className={styles.bubble}>Let me check that for you. One moment...</div>
-                        <span className={styles.time}>10:31 AM</span>
-                        <span className={styles.deliveryStatus}>✓✓ Delivered</span>
+
+                      {/* Deterministic API Response mapped to UI */}
+                      <div style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '16px', background: '#fff' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px', marginBottom: '12px' }}>
+                          <span style={{ fontWeight: '600', fontSize: '14px' }}>Order #ORD-12345</span>
+                          <span style={{ background: '#dcfce7', color: '#166534', padding: '2px 8px', borderRadius: '99px', fontSize: '11px', fontWeight: '600' }}>Out for Delivery</span>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#475569' }}>
+                          <div>Item: Spicy Ramen x 2</div>
+                          <div>Total: $24.50</div>
+                          <div>ETA: 15-20 mins</div>
+                        </div>
+                        <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                          <button style={{ flex: 1, padding: '8px', borderRadius: '6px', background: '#f1f5f9', border: 'none', fontWeight: '600', fontSize: '12px', cursor: 'pointer' }}>Need Help?</button>
+                          <button style={{ flex: 1, padding: '8px', borderRadius: '6px', background: '#3b82f6', color: 'white', border: 'none', fontWeight: '600', fontSize: '12px', cursor: 'pointer' }}>Track Map</button>
+                        </div>
                       </div>
-                      <div className={styles.msgSent}>
-                        <div className={styles.bubble}>Sure, I'll wait</div>
-                        <span className={styles.time}>10:32 AM</span>
-                        <span className={styles.deliveryStatus}>✓✓ Read</span>
-                      </div>
-                      <div className={styles.typingIndicator}>
-                        <span>Agent is typing</span>
-                        <span className={styles.dots}>...</span>
-                      </div>
-                    </div>
-                    <div className={styles.deliveryFooter}>
-                      <span>📎</span>
-                      <span className={styles.inputPlaceholder}>Type a message...</span>
-                      <span className={styles.sendBtn}>➤</span>
-                    </div>
-                    <div className={styles.deliveryStats}>
-                      <span>📊 Response Time: 2.3s</span>
-                      <span>✓✓ Delivery Rate: 100%</span>
                     </div>
                   </div>
                 )}
 
                 {/* ============================================================
-                    LIVE CHAT - MEDIA FLOW
+                    AI AGENT - ASYNC TASK
                 ============================================================ */}
-                {currentSlide?.visual === "media-flow" && (
+                {currentSlide?.visual === "async-task" && (
                   <div className={styles.previewMedia}>
                     <div className={styles.mediaHeader}>
-                      <span>📎 Share Files</span>
-                      <span className={styles.mediaHint}>Drag & drop or click</span>
+                      <span>⏳ Async Job Running</span>
+                      <span className={styles.mediaHint}>No 30s Timeout</span>
                     </div>
-                    <div className={styles.mediaList}>
-                      <div className={styles.mediaItem}>
-                        <span>📄</span>
-                        <span>Annual_Report_2024.pdf</span>
-                        <span className={styles.fileSize}>2.4 MB</span>
-                        <span className={styles.previewBadge}>👁️</span>
+                    <div className={styles.mediaList} style={{ padding: '20px' }}>
+                      
+                      <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '16px', marginBottom: '15px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                          <span style={{ fontWeight: '600', fontSize: '14px' }}>Compiling Franchise Report</span>
+                          <span style={{ fontSize: '12px', color: '#f59e0b', fontWeight: '600' }}>Processing...</span>
+                        </div>
+                        
+                        <div style={{ width: '100%', height: '8px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden', marginBottom: '16px' }}>
+                          <div style={{ width: '60%', height: '100%', background: '#f59e0b', borderRadius: '4px' }}></div>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12px', color: '#64748b' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span>Querying 45 stores...</span>
+                            <span>✅ Done</span>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span>Aggregating sales data...</span>
+                            <span>✅ Done</span>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f59e0b', fontWeight: '600' }}>
+                            <span>Generating Excel file...</span>
+                            <span>🔄 Waiting for Webhook</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className={styles.mediaItem}>
-                        <span>🖼️</span>
-                        <span>product_showcase.png</span>
-                        <span className={styles.fileSize}>1.2 MB</span>
-                        <span className={styles.previewBadge}>👁️</span>
+
+                      <div style={{ textAlign: 'center', fontSize: '11px', color: '#94a3b8' }}>
+                        Agent is paused. UI will update automatically when backend finishes.
                       </div>
-                      <div className={styles.mediaItem}>
-                        <span>📹</span>
-                        <span>tutorial_video.mp4</span>
-                        <span className={styles.fileSize}>8.7 MB</span>
-                        <span className={styles.previewBadge}>👁️</span>
-                      </div>
-                      <div className={styles.mediaDropZone}>
-                        <span>📂 Drop files here</span>
-                        <span className={styles.dropHint}>or click to browse</span>
-                      </div>
-                    </div>
-                    <div className={styles.mediaPreviewContainer}>
-                      <span className={styles.previewLabel}>📄 document.pdf • 2 pages</span>
-                      <span className={styles.previewActions}>Download • Share • Copy</span>
                     </div>
                   </div>
                 )}
 
                 {/* ============================================================
-                    LIVE CHAT - INTERACTION FLOW
+                    AI AGENT - HUMAN-IN-THE-LOOP
                 ============================================================ */}
-                {currentSlide?.visual === "interaction-flow" && (
+                {currentSlide?.visual === "human-in-the-loop" && (
                   <div className={styles.previewInteraction}>
                     <div className={styles.interactionHeader}>
-                      <span>💬 Message Interactions</span>
-                      <span className={styles.interactionBadge}>Rich Actions</span>
+                      <span>⏸️ Workflow Paused</span>
+                      <span className={styles.interactionBadge} style={{ background: '#fef3c7', color: '#92400e' }}>Awaiting Approval</span>
                     </div>
-                    <div className={styles.interactionMessages}>
-                      <div className={styles.msgReceived}>
-                        <div className={styles.bubble}>Here's the tracking information for your order</div>
-                        <div className={styles.reactionBar}>
-                          <button className={styles.reactionBtn}>👍</button>
-                          <button className={styles.reactionBtn}>❤️</button>
-                          <button className={styles.reactionBtn}>😂</button>
-                          <button className={styles.reactionBtn}>😮</button>
-                          <button className={styles.reactionBtn}>👏</button>
+                    <div className={styles.interactionMessages} style={{ padding: '20px' }}>
+                      
+                      <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '12px', padding: '16px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#b45309', fontWeight: '600', marginBottom: '12px', fontSize: '14px' }}>
+                          <span>⚠️ Manual Review Required</span>
                         </div>
-                        <div className={styles.quickReplies}>
-                          <button className={styles.quickReply}>Thank you! ✅</button>
-                          <button className={styles.quickReply}>Need more help</button>
-                          <button className={styles.quickReply}>Track another</button>
+                        <p style={{ fontSize: '13px', color: '#78350f', marginBottom: '16px', lineHeight: '1.5' }}>
+                          The AI agent wants to issue a refund of <strong>$145.00</strong> for Order #ORD-9876. This exceeds the auto-approval limit.
+                        </p>
+                        
+                        <div style={{ background: '#fff', borderRadius: '8px', border: '1px solid #fde68a', padding: '12px', marginBottom: '16px' }}>
+                          <div style={{ fontSize: '12px', color: '#64748b', marginBottom: '4px' }}>Reason: Cold food complaint</div>
+                          <div style={{ fontSize: '12px', color: '#64748b' }}>Requested by: Store Staff (John)</div>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                          <button style={{ flex: 1, padding: '10px', borderRadius: '6px', background: '#ef4444', color: 'white', border: 'none', fontWeight: '600', fontSize: '13px', cursor: 'pointer' }}>Reject</button>
+                          <button style={{ flex: 1, padding: '10px', borderRadius: '6px', background: '#10b981', color: 'white', border: 'none', fontWeight: '600', fontSize: '13px', cursor: 'pointer' }}>Approve Refund</button>
                         </div>
                       </div>
-                      <div className={styles.replyThread}>
-                        <span className={styles.replyThreadLabel}>↩️ Replying to: "Here's the tracking information..."</span>
-                        <div className={styles.replyBubble}>Thanks, I see it now! Can you also help with returns?</div>
-                      </div>
-                      <div className={styles.messageActions}>
-                        <button className={styles.actionBtn}>📌 Pin</button>
-                        <button className={styles.actionBtn}>🔗 Share</button>
-                        <button className={styles.actionBtn}>📋 Copy</button>
-                        <button className={styles.actionBtn}>🗑️ Delete</button>
-                      </div>
+
                     </div>
                   </div>
                 )}
@@ -766,7 +763,7 @@ const ClientFeatures = () => {
                           <span>💡 Tip: Choose an action to get started</span>
                         </div>
                       </div>
-                      <div className={styles.actionHistory}>
+                                            <div className={styles.actionHistory}>
                         <span>📋 Recent Actions:</span>
                         <div className={styles.actionHistoryItem}>✓ Tracked Order #12345</div>
                         <div className={styles.actionHistoryItem}>✓ Uploaded receipt.pdf</div>
@@ -1111,28 +1108,6 @@ const ClientFeatures = () => {
             </div>
           </div>
         </div>
-
-        {/* ============================================================
-            COMPETITIVE EDGE BANNER
-        ============================================================ */}
-        {/* <div className={styles.edgeBanner}>
-          <div className={styles.edgeContent}>
-            <span className={styles.edgeIcon}>🏆</span>
-            <div>
-              <h4>Built Different. Built Better.</h4>
-              <p>
-                While others offer features, Sageion delivers experiences. 
-                Every interaction is designed to delight, every workflow is built to convert.
-              </p>
-            </div>
-            <div className={styles.competitorComparison}>
-              <span>vs Sierra.ai</span>
-              <span>vs Intercom</span>
-              <span>vs Zendesk</span>
-              <span>vs Drift</span>
-            </div>
-          </div>
-        </div> */}
 
         {/* ============================================================
             CTA SECTION

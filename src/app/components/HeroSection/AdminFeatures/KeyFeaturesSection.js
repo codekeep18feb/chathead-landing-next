@@ -200,12 +200,13 @@ const KeyFeaturesSection = ({
             )}
           </div>
 
+            {/* HIDING_TILL_FLAG */}
           {/* ======================================================
               FEATURE 3
               RAG ENGINE
               ====================================================== */}
 
-          <div
+          {/* <div
             className={`${styles.featureCard} ${
               expandedFeature === "rag" ? styles.featureExpanded : ""
             }`}
@@ -274,7 +275,7 @@ const KeyFeaturesSection = ({
                 />
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* ======================================================
               FEATURE 4
@@ -432,8 +433,8 @@ const KeyFeaturesSection = ({
               FEATURE 6
               LIVE CHAT + MULTI ADMIN
               ====================================================== */}
-
-          <div
+          {/* hidding TILL GLOBAL FLAGS ON */}
+          {/* <div
             className={`${styles.featureCard} ${
               expandedFeature === "live-chat" ? styles.featureExpanded : ""
             }`}
@@ -507,7 +508,7 @@ const KeyFeaturesSection = ({
                 />
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* ======================================================
               FEATURE 7

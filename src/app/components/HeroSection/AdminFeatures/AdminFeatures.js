@@ -10,13 +10,9 @@ import {
   FaNetworkWired,
   FaPaintBrush,
   FaLock,
-  FaRobot,
   FaArrowRight,
   FaCheckCircle,
   FaPlayCircle,
-  FaCog,
-  FaWaveSquare,
-  FaComments,
 } from "react-icons/fa";
 
 // Import the separate Key Features component
@@ -113,13 +109,6 @@ const AdminFeatures = () => {
      ============================================================ */
 
   const videos = {
-    "rag-demo": {
-      title: "RAG Engine Demo",
-      description:
-        "See how Sageion's RAG engine retrieves context from your documents",
-      thumbnail: "/videos/rag-demo-thumbnail.jpg",
-    },
-
     "api-chaining": {
       title: "API Chaining Demo",
       description: "Complex API workflows built visually in minutes",
@@ -136,12 +125,6 @@ const AdminFeatures = () => {
       title: "Async Webhook Demo",
       description: "True async support with no 30-second timeout",
       thumbnail: "/videos/webhook-async-thumbnail.jpg",
-    },
-
-    "live-chat": {
-      title: "Live Chat with Multi-Admin Demo",
-      description: "Real-time agent collaboration and routing",
-      thumbnail: "/videos/live-chat-thumbnail.jpg",
     },
 
     "admin-panel": {
@@ -265,32 +248,32 @@ const AdminFeatures = () => {
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
               <span className={styles.pulseDot} />
-              <span>🚀 Now available in public beta</span>
+              <span>🚀 The Enterprise AI Add-on for Restaurant CRMs</span>
             </div>
 
             <h1 className={styles.heroTitle}>
-              Build AI Agents{" "}
-              <span className={styles.heroHighlight}>Without Code</span>
+              Give Your High-Stake Clients an{" "}
+              <span className={styles.heroHighlight}>AI Interface</span>
             </h1>
 
             <p className={styles.heroSubtitle}>
-              <strong>Sageion</strong> is the only platform that lets you build
-              complex AI agents and workflows using your existing APIs — without
-              writing a single line of code.
+              <strong>Sageion</strong> is the white-labeled AI layer for Restaurant OS platforms (Petpooja, Posist, Rista). 
+              Turn your existing backend APIs into intelligent agents for your clients, 
+              featuring auto-generated UI screens and enterprise-grade data safety.
             </p>
 
             <div className={styles.heroStats}>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatNumber}>90%</span>
-                <span className={styles.heroStatLabel}>Faster deployment</span>
-              </div>
               <div className={styles.heroStat}>
                 <span className={styles.heroStatNumber}>0</span>
                 <span className={styles.heroStatLabel}>Code required</span>
               </div>
               <div className={styles.heroStat}>
+                <span className={styles.heroStatNumber}>100%</span>
+                <span className={styles.heroStatLabel}>Data Safety</span>
+              </div>
+              <div className={styles.heroStat}>
                 <span className={styles.heroStatNumber}>5K+</span>
-                <span className={styles.heroStatLabel}>Teams trust us</span>
+                <span className={styles.heroStatLabel}>Enterprise Seats</span>
               </div>
             </div>
 
@@ -300,7 +283,7 @@ const AdminFeatures = () => {
               </button>
               <button
                 className={styles.heroSecondaryBtn}
-                onClick={() => openVideoModal("rag-demo")}
+                onClick={() => openVideoModal("api-chaining")}
               >
                 <span className={styles.btnPlay}>▶</span> Watch Demo
               </button>
@@ -347,7 +330,7 @@ const AdminFeatures = () => {
             <span className={styles.sectionBadge}>⚡ Key Features</span>
             <h2 className={styles.sectionTitle}>
               Everything You Need{" "}
-              <span className={styles.gradientText}>to Succeed</span>
+              <span className={styles.gradientText}>to Scale</span>
             </h2>
             <p className={styles.sectionSubtitle}>
               Comprehensive features that make Sageion the most complete
@@ -443,21 +426,21 @@ const AdminFeatures = () => {
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>😓 The Reality</span>
             <h2 className={styles.sectionTitle}>
-              Why Most AI Projects{" "}
+              Why Most Restaurant AI Projects{" "}
               <span className={styles.gradientText}>Fail</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              We've seen it hundreds of times. Here's what's actually happening.
+              You already have the data. Why is building an AI layer on top of it so hard?
             </p>
           </div>
 
           <div className={styles.problemGrid}>
             <div className={styles.problemCard}>
               <div className={styles.problemIcon}>⏰</div>
-              <h3>6-12 Months to Launch</h3>
+              <h3>Months of Backend Dev</h3>
               <p>
-                Massive teams, endless meetings, constant delays. By the time
-                you launch, your business needs have changed.
+                Building custom integrations, RAG pipelines, and new UIs takes months. 
+                By the time it launches, your clients' menus or workflows have changed.
               </p>
               <div className={styles.problemStat}>
                 <span className={styles.problemStatNegative}>
@@ -468,24 +451,24 @@ const AdminFeatures = () => {
 
             <div className={styles.problemCard}>
               <div className={styles.problemIcon}>👥</div>
-              <h3>8-15 People Required</h3>
+              <h3>Forcing Humans to Chat</h3>
               <p>
-                Developers, data scientists, project managers, QA, DevOps — all
-                needed just to get started.
+                Traditional chatbots force managers to type everything. Restaurant workflows 
+                are complex and require quick selections, not typing.
               </p>
               <div className={styles.problemStat}>
                 <span className={styles.problemStatNegative}>
-                  ❌ Massive team overhead
+                  ❌ High user drop-off
                 </span>
               </div>
             </div>
 
             <div className={styles.problemCard}>
               <div className={styles.problemIcon}>🔧</div>
-              <h3>Major System Changes</h3>
+              <h3>LLM Hallucinations</h3>
               <p>
-                Database access required, ETL pipelines, data duplication,
-                security risks — changing everything.
+                Letting an LLM generate prices or order statuses causes disasters. 
+                You need a single source of truth for business data.
               </p>
               <div className={styles.problemStat}>
                 <span className={styles.problemStatNegative}>
@@ -495,43 +478,15 @@ const AdminFeatures = () => {
             </div>
 
             <div className={styles.problemCard}>
-              <div className={styles.problemIcon}>💸</div>
-              <h3>$100K+ Upfront Cost</h3>
-              <p>
-                Before you see a single result. And that's just for a "simple"
-                chatbot implementation.
-              </p>
-              <div className={styles.problemStat}>
-                <span className={styles.problemStatNegative}>
-                  ❌ Budget killer
-                </span>
-              </div>
-            </div>
-
-            <div className={styles.problemCard}>
               <div className={styles.problemIcon}>🔄</div>
-              <h3>Slow Updates</h3>
+              <h3>30-Second Timeouts</h3>
               <p>
-                Every change requires a new release cycle. Days or weeks to
-                update a simple flow.
+                If an inventory update or report generation takes 2 minutes, standard chatbots just fail. 
+                You need true async support.
               </p>
               <div className={styles.problemStat}>
                 <span className={styles.problemStatNegative}>
-                  ❌ Can't iterate fast
-                </span>
-              </div>
-            </div>
-
-            <div className={styles.problemCard}>
-              <div className={styles.problemIcon}>😩</div>
-              <h3>Flacky, Unreliable Results</h3>
-              <p>
-                After all that effort, the AI still gets it wrong half the time.
-                Users lose trust.
-              </p>
-              <div className={styles.problemStat}>
-                <span className={styles.problemStatNegative}>
-                  ❌ Low user adoption
+                  ❌ Can't handle complex APIs
                 </span>
               </div>
             </div>
@@ -556,8 +511,7 @@ const AdminFeatures = () => {
               <span className={styles.gradientText}>AI Should Work</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              Everything you need. Nothing you don't. One platform, endless
-              possibilities.
+              You keep your backend. We give you the intelligent orchestration layer.
             </p>
           </div>
 
@@ -567,16 +521,16 @@ const AdminFeatures = () => {
                 className={styles.solutionIcon}
                 style={{ background: "#4BCF9E20", color: "#4BCF9E" }}
               >
-                <FaRocket />
+                <FaNetworkWired />
               </div>
-              <h3>1000% Faster Implementation</h3>
+              <h3>API-First AI Agents</h3>
               <p>
-                What others take 6-12 months to build, you can do in 2-4 weeks —
-                with just 1 person who knows your APIs.
+                Connect your existing CRMs. The AI agent maps intents to your backend workflows, 
+                handling auth and data transformation.
               </p>
               <div className={styles.solutionProof}>
                 <span className={styles.proofBadge}>📊 Proven</span>
-                <span className={styles.proofMetric}>90% time reduction</span>
+                <span className={styles.proofMetric}>Zero DB rewrites</span>
               </div>
             </div>
 
@@ -587,14 +541,14 @@ const AdminFeatures = () => {
               >
                 <FaShieldAlt />
               </div>
-              <h3>Zero System Changes</h3>
+              <h3>Auto-UI Generation</h3>
               <p>
-                No database access needed. No ETL pipelines. No data
-                duplication. Just your existing APIs.
+                Don't force users to chat. The AI generates custom UX screens (forms, tables, buttons) 
+                directly from your API responses.
               </p>
               <div className={styles.solutionProof}>
                 <span className={styles.proofBadge}>🔒 Secure</span>
-                <span className={styles.proofMetric}>No DB access</span>
+                <span className={styles.proofMetric}>No hallucinated UI</span>
               </div>
             </div>
 
@@ -605,14 +559,14 @@ const AdminFeatures = () => {
               >
                 <FaPlug />
               </div>
-              <h3>One-Time Integration</h3>
+              <h3>Async & Human-in-the-Loop</h3>
               <p>
-                Add our snippet once. All future changes — UI, flows, logic,
-                rules — happen instantly. Forever.
+                Pause workflows for manual approvals. Handle long-running background tasks 
+                with async webhooks and update the UI instantly.
               </p>
               <div className={styles.solutionProof}>
                 <span className={styles.proofBadge}>⚡ Instant</span>
-                <span className={styles.proofMetric}>No redeploys ever</span>
+                <span className={styles.proofMetric}>No 30s timeouts</span>
               </div>
             </div>
 
@@ -621,16 +575,16 @@ const AdminFeatures = () => {
                 className={styles.solutionIcon}
                 style={{ background: "#EC489A20", color: "#EC489A" }}
               >
-                <FaNetworkWired />
+                <FaLock />
               </div>
-              <h3>Complex API Chaining</h3>
+              <h3>Deterministic Responses</h3>
               <p>
-                Chain multiple APIs together with conditional logic, auth, error
-                handling — all from a visual UI.
+                Tolerate LLM for intent matching, but rely on your APIs for the truth. 
+                Never hallucinate a price or order status again.
               </p>
               <div className={styles.solutionProof}>
                 <span className={styles.proofBadge}>🎯 Powerful</span>
-                <span className={styles.proofMetric}>Visual chaining</span>
+                <span className={styles.proofMetric}>Single source of truth</span>
               </div>
             </div>
           </div>
@@ -641,26 +595,10 @@ const AdminFeatures = () => {
               <span className={styles.videoProofBadge}>
                 🎬 See It In Action
               </span>
-              <h3>Watch Sageion Transform a Business</h3>
+              <h3>Watch Sageion Transform a Restaurant CRM</h3>
             </div>
             <div className={styles.videoProofGrid}>
-              <div
-                className={styles.videoProofCard}
-                onClick={() => openVideoModal("rag-demo")}
-              >
-                <div className={styles.videoThumbnail}>
-                  <div className={styles.videoThumbnailPlaceholder}>
-                    <FaPlayCircle className={styles.videoPlayIcon} />
-                    <span>RAG Engine Demo</span>
-                  </div>
-                  <div className={styles.videoDuration}>2:30</div>
-                </div>
-                <div className={styles.videoProofInfo}>
-                  <h4>RAG Engine in Action</h4>
-                  <p>Context-aware responses from your documents</p>
-                </div>
-              </div>
-
+              
               <div
                 className={styles.videoProofCard}
                 onClick={() => openVideoModal("api-chaining")}
@@ -674,7 +612,24 @@ const AdminFeatures = () => {
                 </div>
                 <div className={styles.videoProofInfo}>
                   <h4>Complex API Chaining</h4>
-                  <p>Build workflows visually in minutes</p>
+                  <p>Build multi-step booking flows visually in minutes</p>
+                </div>
+              </div>
+
+              <div
+                className={styles.videoProofCard}
+                onClick={() => openVideoModal("webhook-async")}
+              >
+                <div className={styles.videoThumbnail}>
+                  <div className={styles.videoThumbnailPlaceholder}>
+                    <FaPlayCircle className={styles.videoPlayIcon} />
+                    <span>Async Webhook Demo</span>
+                  </div>
+                  <div className={styles.videoDuration}>2:45</div>
+                </div>
+                <div className={styles.videoProofInfo}>
+                  <h4>Human-in-the-Loop</h4>
+                  <p>Pause for approvals, wait for webhooks, no timeouts</p>
                 </div>
               </div>
 
@@ -687,11 +642,11 @@ const AdminFeatures = () => {
                     <FaPlayCircle className={styles.videoPlayIcon} />
                     <span>Generative Forms Demo</span>
                   </div>
-                  <div className={styles.videoDuration}>2:45</div>
+                  <div className={styles.videoDuration}>2:30</div>
                 </div>
                 <div className={styles.videoProofInfo}>
-                  <h4>AI-Generated Forms</h4>
-                  <p>Pre-filled, intelligent forms</p>
+                  <h4>Auto-UI Generation</h4>
+                  <p>Pre-filled, intelligent forms from your backend data</p>
                 </div>
               </div>
             </div>
@@ -770,7 +725,7 @@ const AdminFeatures = () => {
               <span className={styles.caseStudyBadge}>
                 📋 Real-World Case Study
               </span>
-              <h3>How a SaaS Company Built 15 Workflows in 3 Weeks</h3>
+              <h3>How a Restaurant OS Built 15 Workflows in 3 Weeks</h3>
             </div>
             <div className={styles.caseStudyContent}>
               <div className={styles.caseStudyMetrics}>
@@ -994,77 +949,77 @@ const AdminFeatures = () => {
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>🔄 Workflows</span>
             <h2 className={styles.sectionTitle}>
-              Build <span className={styles.gradientText}>Anything</span>
+              Built for <span className={styles.gradientText}>Restaurant Operations</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              From simple questions to complex multi-step business processes.
+              From simple queries to complex multi-step franchise management.
             </p>
           </div>
 
           <div className={styles.workflowsGrid}>
             <div className={styles.workflowCard}>
-              <div className={styles.workflowIcon}>📊</div>
-              <h3>Lead Generation</h3>
-              <p>Internal saving lead + External CRM integration</p>
+              <div className={styles.workflowIcon}>🍽️</div>
+              <h3>Table Reservations</h3>
+              <p>Multi-step API chaining checking availability, holding the table, and confirming payment.</p>
               <div className={styles.workflowTags}>
-                <span>Salesforce</span>
-                <span>HubSpot</span>
-                <span>Internal DB</span>
-              </div>
-            </div>
-
-            <div className={styles.workflowCard}>
-              <div className={styles.workflowIcon}>🏨</div>
-              <h3>Booking Management</h3>
-              <p>Complex API chaining for hotel/restaurant bookings</p>
-              <div className={styles.workflowTags}>
-                <span>Payment</span>
-                <span>Availability</span>
+                <span>Availability API</span>
+                <span>Payment API</span>
                 <span>Confirmation</span>
               </div>
             </div>
 
             <div className={styles.workflowCard}>
-              <div className={styles.workflowIcon}>💳</div>
-              <h3>Payment Processing</h3>
-              <p>Async webhook support for payment flows</p>
-              <div className={styles.workflowTags}>
-                <span>Stripe</span>
-                <span>Razorpay</span>
-                <span>Custom</span>
-              </div>
-            </div>
-
-            <div className={styles.workflowCard}>
               <div className={styles.workflowIcon}>📦</div>
-              <h3>Order Fulfillment</h3>
-              <p>Multi-step workflows with external systems</p>
+              <h3>Order Status & Tracking</h3>
+              <p>Users ask "Where is my order?". The AI hits your POS API and generates a custom UI timeline.</p>
               <div className={styles.workflowTags}>
-                <span>Inventory</span>
-                <span>Shipping</span>
-                <span>Tracking</span>
+                <span>POS API</span>
+                <span>Auto-UI</span>
+                <span>Async Check</span>
               </div>
             </div>
 
             <div className={styles.workflowCard}>
-              <div className={styles.workflowIcon}>🏥</div>
-              <h3>Healthcare Scheduling</h3>
-              <p>Protected API integration with compliance</p>
+              <div className={styles.workflowIcon}>💸</div>
+              <h3>Refund Approvals</h3>
+              <p>AI detects a refund intent, extracts the amount, and pauses the workflow for a Manager (Human-in-the-loop) to approve.</p>
               <div className={styles.workflowTags}>
-                <span>HIPAA</span>
-                <span>EHR</span>
-                <span>Booking</span>
+                <span>RBAC</span>
+                <span>Manual Pause</span>
+                <span>Payment API</span>
               </div>
             </div>
 
             <div className={styles.workflowCard}>
-              <div className={styles.workflowIcon}>🏠</div>
-              <h3>Real Estate Search</h3>
-              <p>Dynamic response screens for property listings</p>
+              <div className={styles.workflowIcon}>🏢</div>
+              <h3>Franchise Management</h3>
+              <p>Franchise owners ask for daily sales. The AI agent chains multiple store APIs, aggregates data, and renders a dynamic table.</p>
               <div className={styles.workflowTags}>
-                <span>Search</span>
-                <span>Filters</span>
-                <span>Booking</span>
+                <span>Multi-Tenant</span>
+                <span>Data Aggregation</span>
+                <span>Table Generation</span>
+              </div>
+            </div>
+
+            <div className={styles.workflowCard}>
+              <div className={styles.workflowIcon}>📊</div>
+              <h3>Inventory Updates</h3>
+              <p>Staff can update stock via natural language. The AI maps this to your backend inventory API without needing a new UI.</p>
+              <div className={styles.workflowTags}>
+                <span>Intent Detection</span>
+                <span>Inventory API</span>
+                <span>Custom Forms</span>
+              </div>
+            </div>
+
+            <div className={styles.workflowCard}>
+              <div className={styles.workflowIcon}>👨‍🍳</div>
+              <h3>Staff Scheduling</h3>
+              <p>Managers ask to swap shifts. The AI generates a form with available staff, and upon submission, triggers the HR API.</p>
+              <div className={styles.workflowTags}>
+                <span>HR API</span>
+                <span>Generative Forms</span>
+                <span>Conflict Check</span>
               </div>
             </div>
           </div>
@@ -1092,406 +1047,406 @@ const AdminFeatures = () => {
             </p>
           </div>
 
-          <div className={styles.integrationGrid}>
-            <div className={styles.integrationCard}>
-              <div className={styles.integrationIcon}>🔐</div>
-              <h3>Primary Auth</h3>
-              <p>Bearer Token, API Key, Basic Auth</p>
+                      <div className={styles.integrationGrid}>
+              <div className={styles.integrationCard}>
+                <div className={styles.integrationIcon}>🔐</div>
+                <h3>Primary Auth</h3>
+                <p>Bearer Token, API Key, Basic Auth</p>
+              </div>
+
+              <div className={styles.integrationCard}>
+                <div className={styles.integrationIcon}>🛡️</div>
+                <h3>Secondary Auth</h3>
+                <p>OAuth2, JWT, Custom Headers</p>
+              </div>
+
+              <div className={styles.integrationCard}>
+                <div className={styles.integrationIcon}>🌐</div>
+                <h3>Public APIs</h3>
+                <p>REST, GraphQL, WebSocket</p>
+              </div>
+
+              <div className={styles.integrationCard}>
+                <div className={styles.integrationIcon}>🏢</div>
+                <h3>Protected APIs</h3>
+                <p>Internal systems, enterprise APIs</p>
+              </div>
+
+              <div className={styles.integrationCard}>
+                <div className={styles.integrationIcon}>📨</div>
+                <h3>Webhooks</h3>
+                <p>True async support, no 30s timeout</p>
+              </div>
+
+              <div className={styles.integrationCard}>
+                <div className={styles.integrationIcon}>📁</div>
+                <h3>File Upload</h3>
+                <p>Images, PDFs, documents</p>
+              </div>
             </div>
 
-            <div className={styles.integrationCard}>
-              <div className={styles.integrationIcon}>🛡️</div>
-              <h3>Secondary Auth</h3>
-              <p>OAuth2, JWT, Custom Headers</p>
-            </div>
-
-            <div className={styles.integrationCard}>
-              <div className={styles.integrationIcon}>🌐</div>
-              <h3>Public APIs</h3>
-              <p>REST, GraphQL, WebSocket</p>
-            </div>
-
-            <div className={styles.integrationCard}>
-              <div className={styles.integrationIcon}>🏢</div>
-              <h3>Protected APIs</h3>
-              <p>Internal systems, enterprise APIs</p>
-            </div>
-
-            <div className={styles.integrationCard}>
-              <div className={styles.integrationIcon}>📨</div>
-              <h3>Webhooks</h3>
-              <p>True async support, no 30s timeout</p>
-            </div>
-
-            <div className={styles.integrationCard}>
-              <div className={styles.integrationIcon}>📁</div>
-              <h3>File Upload</h3>
-              <p>Images, PDFs, documents</p>
+            <div className={styles.integrationCTA}>
+              <p>Need to integrate with a specific system?</p>
+              <button className={styles.integrationCTABtn}>Let's Talk →</button>
             </div>
           </div>
+        </section>
 
-          <div className={styles.integrationCTA}>
-            <p>Need to integrate with a specific system?</p>
-            <button className={styles.integrationCTABtn}>Let's Talk →</button>
-          </div>
-        </div>
-      </section>
+        {/* ============================================================
+            SECURITY SECTION
+            ============================================================ */}
 
-      {/* ============================================================
-          SECURITY SECTION
-          ============================================================ */}
-
-      <section
-        id="security"
-        className={styles.securitySection}
-        ref={(el) => (sectionRefs.current.security = el)}
-      >
-        <div className={styles.sectionContainer}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>🔒 Security</span>
-            <h2 className={styles.sectionTitle}>
-              Enterprise-Grade{" "}
-              <span className={styles.gradientText}>Security</span>
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              No XSS attacks. No stored scripts. Complete peace of mind.
-            </p>
-          </div>
-
-          <div className={styles.securityGrid}>
-            <div className={styles.securityCard}>
-              <div className={styles.securityIcon}>🚫</div>
-              <h3>No XSS Attacks</h3>
-              <p>
-                We never store HTML/JS in the database. Templates +
-                transformations are applied client-side as DOM operations.
-              </p>
-              <div className={styles.securityTags}>
-                <span>No innerHTML</span>
-                <span>DOM operations only</span>
-                <span>No stored scripts</span>
-              </div>
-            </div>
-
-            <div className={styles.securityCard}>
-              <div className={styles.securityIcon}>👤</div>
-              <h3>Role-Based Access Control</h3>
-              <p>
-                Granular permissions for every user. Super Admin, Tenant Admin,
-                Support Admin — complete control.
-              </p>
-              <div className={styles.securityTags}>
-                <span>RBAC</span>
-                <span>Audit logs</span>
-                <span>Team workflows</span>
-              </div>
-            </div>
-
-            <div className={styles.securityCard}>
-              <div className={styles.securityIcon}>🔑</div>
-              <h3>Secure API Management</h3>
-              <p>
-                Primary + Secondary authentication. API key rotation. Secure
-                storage.
-              </p>
-              <div className={styles.securityTags}>
-                <span>Bearer Token</span>
-                <span>API Keys</span>
-                <span>OAuth2</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          SCALABILITY SECTION
-          ============================================================ */}
-
-      <section
-        id="scalability"
-        className={styles.scalabilitySection}
-        ref={(el) => (sectionRefs.current.scalability = el)}
-      >
-        <div className={styles.sectionContainer}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>📈 Scalability</span>
-            <h2 className={styles.sectionTitle}>
-              Scale Without <span className={styles.gradientText}>Limits</span>
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              Start free. Grow to millions. No architecture changes required.
-            </p>
-          </div>
-
-          <div className={styles.scalabilityGrid}>
-            <div className={styles.scalabilityCard}>
-              <div className={styles.scalabilityIcon}>🚀</div>
-              <h3>From Startup to Enterprise</h3>
-              <p>
-                Start free with full features. Scale to millions of users
-                without changing your architecture.
-              </p>
-              <div className={styles.scalabilityMetrics}>
-                <span>0 → 1M+ users</span>
-                <span>1 → 1000+ agents</span>
-                <span>Single → Multi-tenant</span>
-              </div>
-            </div>
-
-            <div className={styles.scalabilityCard}>
-              <div className={styles.scalabilityIcon}>💰</div>
-              <h3>No Per-Query AI Costs</h3>
-              <p>
-                Inbuilt RAG engine means you don't pay per query to OpenAI,
-                DeepSeek, or others.
-              </p>
-              <div className={styles.scalabilityMetrics}>
-                <span>Fixed monthly cost</span>
-                <span>Unlimited queries</span>
-                <span>No token surprises</span>
-              </div>
-            </div>
-
-            <div className={styles.scalabilityCard}>
-              <div className={styles.scalabilityIcon}>🏢</div>
-              <h3>Multi-Tenant Ready</h3>
-              <p>
-                Manage multiple clients, brands, or products from a single
-                dashboard. One-click to enable multi-tenant mode.
-              </p>
-              <div className={styles.scalabilityMetrics}>
-                <span>Agency management</span>
-                <span>Product line separation</span>
-                <span>White-label ready</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Growth Path */}
-          <div className={styles.growthPathSection}>
-            <h3>Your Growth Path with Sageion</h3>
-            <div className={styles.growthPathSteps}>
-              <div className={styles.growthStep}>
-                <div className={styles.stepNumber}>1</div>
-                <div className={styles.stepContent}>
-                  <strong>Start Free</strong>
-                  <span>Full features, 2 agents, unlimited websites</span>
-                </div>
-              </div>
-              <div className={styles.growthArrow}>→</div>
-              <div className={styles.growthStep}>
-                <div className={styles.stepNumber}>2</div>
-                <div className={styles.stepContent}>
-                  <strong>Grow Your Team</strong>
-                  <span>Add agents, enable multi-tenant, scale up</span>
-                </div>
-              </div>
-              <div className={styles.growthArrow}>→</div>
-              <div className={styles.growthStep}>
-                <div className={styles.stepNumber}>3</div>
-                <div className={styles.stepContent}>
-                  <strong>Enterprise</strong>
-                  <span>Custom deployments, dedicated support, SLA</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          COMPARISON SECTION
-          ============================================================ */}
-
-      <section
-        id="comparison"
-        className={styles.comparisonSection}
-        ref={(el) => (sectionRefs.current.comparison = el)}
-      >
-        <div className={styles.sectionContainer}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>⚔️ Comparison</span>
-            <h2 className={styles.sectionTitle}>
-              Sageion vs. <span className={styles.gradientText}>The Rest</span>
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              See for yourself why Sageion is the clear choice.
-            </p>
-          </div>
-
-          <div className={styles.comparisonTable}>
-            <div className={styles.comparisonRow}>
-              <div className={styles.comparisonCellHeader}>Aspect</div>
-              <div className={styles.comparisonCellHeader}>Traditional</div>
-              <div className={styles.comparisonCellHeader}>Sageion</div>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Implementation Time</span>
-              <span className={styles.negative}>6-12 months</span>
-              <span className={styles.positive}>2-4 weeks</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Team Required</span>
-              <span className={styles.negative}>8-15 people</span>
-              <span className={styles.positive}>1-2 people</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>System Changes Needed</span>
-              <span className={styles.negative}>Major rewrites</span>
-              <span className={styles.positive}>None</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Update Deployment Time</span>
-              <span className={styles.negative}>Days to weeks</span>
-              <span className={styles.positive}>Instant</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>API Integration Complexity</span>
-              <span className={styles.negative}>Extensive coding</span>
-              <span className={styles.positive}>Visual chaining</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Cost</span>
-              <span className={styles.negative}>$100K+ upfront</span>
-              <span className={styles.positive}>$0 to start</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>AI Query Costs</span>
-              <span className={styles.negative}>Pay per query</span>
-              <span className={styles.positive}>Fixed cost</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Async Webhook Support</span>
-              <span className={styles.negative}>30s timeout</span>
-              <span className={styles.positive}>No timeout</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Dynamic UI Generation</span>
-              <span className={styles.negative}>Hardcoded screens</span>
-              <span className={styles.positive}>Template-based</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Multi-Tenant</span>
-              <span className={styles.negative}>Custom build</span>
-              <span className={styles.positive}>One-click</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Security (No XSS)</span>
-              <span className={styles.negative}>Varies</span>
-              <span className={styles.positive}>Built-in</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          TESTIMONIALS SECTION
-          ============================================================ */}
-
-      <section
-        id="testimonials"
-        className={styles.testimonialsSection}
-        ref={(el) => (sectionRefs.current.testimonials = el)}
-      >
-        <div className={styles.sectionContainer}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>⭐ Testimonials</span>
-            <h2 className={styles.sectionTitle}>
-              Trusted by <span className={styles.gradientText}>5,000+</span>{" "}
-              Teams
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              Real results from real customers.
-            </p>
-          </div>
-
-          <div className={styles.testimonialsGrid}>
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialRating}>★★★★★</div>
-              <p className={styles.testimonialText}>
-                "Cut our response time by 60% and completely eliminated the need
-                for a dedicated support team."
-              </p>
-              <div className={styles.testimonialAuthor}>
-                <div className={styles.testimonialAvatar}>SC</div>
-                <div>
-                  <div className={styles.testimonialName}>Sarah Chen</div>
-                  <div className={styles.testimonialTitle}>CTO, GrowthAI</div>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialRating}>★★★★★</div>
-              <p className={styles.testimonialText}>
-                "Best decision we made this year. Our customers can't tell it's
-                AI, and our team is finally free."
-              </p>
-              <div className={styles.testimonialAuthor}>
-                <div className={styles.testimonialAvatar}>MR</div>
-                <div>
-                  <div className={styles.testimonialName}>Marcus Rodriguez</div>
-                  <div className={styles.testimonialTitle}>Support Lead</div>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.testimonialCard}>
-              <div className={styles.testimonialRating}>★★★★★</div>
-              <p className={styles.testimonialText}>
-                "We built 15 complex workflows in 1 week with just 1 person.
-                Sageion saved us months of development."
-              </p>
-              <div className={styles.testimonialAuthor}>
-                <div className={styles.testimonialAvatar}>JP</div>
-                <div>
-                  <div className={styles.testimonialName}>Jamie Park</div>
-                  <div className={styles.testimonialTitle}>Founder</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          FINAL CTA SECTION
-          ============================================================ */}
-
-      <section className={styles.finalCTASection}>
-        <div className={styles.sectionContainer}>
-          <div className={styles.ctaCard}>
-            <div className={styles.ctaContent}>
-              <span className={styles.ctaBadge}>🚀 Ready to Transform?</span>
-              <h2 className={styles.ctaTitle}>
-                Start Building Your{" "}
-                <span className={styles.gradientText}>Future</span> Today
+        <section
+          id="security"
+          className={styles.securitySection}
+          ref={(el) => (sectionRefs.current.security = el)}
+        >
+          <div className={styles.sectionContainer}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>🔒 Security</span>
+              <h2 className={styles.sectionTitle}>
+                Enterprise-Grade{" "}
+                <span className={styles.gradientText}>Security</span>
               </h2>
-              <p className={styles.ctaSubtitle}>
-                Join 5,000+ teams that have already cut their implementation
-                time by 90%. Get started with our free forever tier.
+              <p className={styles.sectionSubtitle}>
+                No XSS attacks. No stored scripts. Complete peace of mind.
               </p>
-              <div className={styles.ctaButtons}>
-                <button className={styles.ctaPrimaryBtn}>
-                  Start Free Trial <FaArrowRight className={styles.ctaArrow} />
-                </button>
-                <button className={styles.ctaSecondaryBtn}>
-                  Schedule Demo →
-                </button>
+            </div>
+
+            <div className={styles.securityGrid}>
+              <div className={styles.securityCard}>
+                <div className={styles.securityIcon}>🚫</div>
+                <h3>No XSS Attacks</h3>
+                <p>
+                  We never store HTML/JS in the database. Templates +
+                  transformations are applied client-side as DOM operations.
+                </p>
+                <div className={styles.securityTags}>
+                  <span>No innerHTML</span>
+                  <span>DOM operations only</span>
+                  <span>No stored scripts</span>
+                </div>
               </div>
-              <div className={styles.ctaTrust}>
-                <span>🔒 No credit card required</span>
-                <span>⚡ 3-minute setup</span>
-                <span>🌟 Free forever tier</span>
-                <span>🏆 5,000+ teams trust us</span>
+
+              <div className={styles.securityCard}>
+                <div className={styles.securityIcon}>👤</div>
+                <h3>Role-Based Access Control</h3>
+                <p>
+                  Granular permissions for every user. Super Admin, Tenant Admin,
+                  Support Admin — complete control.
+                </p>
+                <div className={styles.securityTags}>
+                  <span>RBAC</span>
+                  <span>Audit logs</span>
+                  <span>Team workflows</span>
+                </div>
+              </div>
+
+              <div className={styles.securityCard}>
+                <div className={styles.securityIcon}>🔑</div>
+                <h3>Secure API Management</h3>
+                <p>
+                  Primary + Secondary authentication. API key rotation. Secure
+                  storage.
+                </p>
+                <div className={styles.securityTags}>
+                  <span>Bearer Token</span>
+                  <span>API Keys</span>
+                  <span>OAuth2</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
-};
+        </section>
 
-export default AdminFeatures;
+        {/* ============================================================
+            SCALABILITY SECTION
+            ============================================================ */}
+
+        <section
+          id="scalability"
+          className={styles.scalabilitySection}
+          ref={(el) => (sectionRefs.current.scalability = el)}
+        >
+          <div className={styles.sectionContainer}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>📈 Scalability</span>
+              <h2 className={styles.sectionTitle}>
+                Scale Without <span className={styles.gradientText}>Limits</span>
+              </h2>
+              <p className={styles.sectionSubtitle}>
+                Start free. Grow to millions. No architecture changes required.
+              </p>
+            </div>
+
+            <div className={styles.scalabilityGrid}>
+              <div className={styles.scalabilityCard}>
+                <div className={styles.scalabilityIcon}>🚀</div>
+                <h3>From Startup to Enterprise</h3>
+                <p>
+                  Start free with full features. Scale to millions of users
+                  without changing your architecture.
+                </p>
+                <div className={styles.scalabilityMetrics}>
+                  <span>0 → 1M+ users</span>
+                  <span>1 → 1000+ agents</span>
+                  <span>Single → Multi-tenant</span>
+                </div>
+              </div>
+
+              <div className={styles.scalabilityCard}>
+                <div className={styles.scalabilityIcon}>💰</div>
+                <h3>No Per-Query AI Costs</h3>
+                <p>
+                  Inbuilt RAG engine means you don't pay per query to OpenAI,
+                  DeepSeek, or others.
+                </p>
+                <div className={styles.scalabilityMetrics}>
+                  <span>Fixed monthly cost</span>
+                  <span>Unlimited queries</span>
+                  <span>No token surprises</span>
+                </div>
+              </div>
+
+              <div className={styles.scalabilityCard}>
+                <div className={styles.scalabilityIcon}>🏢</div>
+                <h3>Multi-Tenant Ready</h3>
+                <p>
+                  Manage multiple clients, brands, or products from a single
+                  dashboard. One-click to enable multi-tenant mode.
+                </p>
+                <div className={styles.scalabilityMetrics}>
+                  <span>Agency management</span>
+                  <span>Product line separation</span>
+                  <span>White-label ready</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Growth Path */}
+            <div className={styles.growthPathSection}>
+              <h3>Your Growth Path with Sageion</h3>
+              <div className={styles.growthPathSteps}>
+                <div className={styles.growthStep}>
+                  <div className={styles.stepNumber}>1</div>
+                  <div className={styles.stepContent}>
+                    <strong>Start Free</strong>
+                    <span>Full features, 2 agents, unlimited websites</span>
+                  </div>
+                </div>
+                <div className={styles.growthArrow}>→</div>
+                <div className={styles.growthStep}>
+                  <div className={styles.stepNumber}>2</div>
+                  <div className={styles.stepContent}>
+                    <strong>Grow Your Team</strong>
+                    <span>Add agents, enable multi-tenant, scale up</span>
+                  </div>
+                </div>
+                <div className={styles.growthArrow}>→</div>
+                <div className={styles.growthStep}>
+                  <div className={styles.stepNumber}>3</div>
+                  <div className={styles.stepContent}>
+                    <strong>Enterprise</strong>
+                    <span>Custom deployments, dedicated support, SLA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            COMPARISON SECTION
+            ============================================================ */}
+
+        <section
+          id="comparison"
+          className={styles.comparisonSection}
+          ref={(el) => (sectionRefs.current.comparison = el)}
+        >
+          <div className={styles.sectionContainer}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>⚔️ Comparison</span>
+              <h2 className={styles.sectionTitle}>
+                Sageion vs. <span className={styles.gradientText}>The Rest</span>
+              </h2>
+              <p className={styles.sectionSubtitle}>
+                See for yourself why Sageion is the clear choice.
+              </p>
+            </div>
+
+            <div className={styles.comparisonTable}>
+              <div className={styles.comparisonRow}>
+                <div className={styles.comparisonCellHeader}>Aspect</div>
+                <div className={styles.comparisonCellHeader}>Traditional</div>
+                <div className={styles.comparisonCellHeader}>Sageion</div>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Implementation Time</span>
+                <span className={styles.negative}>6-12 months</span>
+                <span className={styles.positive}>2-4 weeks</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Team Required</span>
+                <span className={styles.negative}>8-15 people</span>
+                <span className={styles.positive}>1-2 people</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>System Changes Needed</span>
+                <span className={styles.negative}>Major rewrites</span>
+                <span className={styles.positive}>None</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Update Deployment Time</span>
+                <span className={styles.negative}>Days to weeks</span>
+                <span className={styles.positive}>Instant</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>API Integration Complexity</span>
+                <span className={styles.negative}>Extensive coding</span>
+                <span className={styles.positive}>Visual chaining</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Cost</span>
+                <span className={styles.negative}>$100K+ upfront</span>
+                <span className={styles.positive}>$0 to start</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>AI Query Costs</span>
+                <span className={styles.negative}>Pay per query</span>
+                <span className={styles.positive}>Fixed cost</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Async Webhook Support</span>
+                <span className={styles.negative}>30s timeout</span>
+                <span className={styles.positive}>No timeout</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Dynamic UI Generation</span>
+                <span className={styles.negative}>Hardcoded screens</span>
+                <span className={styles.positive}>Template-based</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Multi-Tenant</span>
+                <span className={styles.negative}>Custom build</span>
+                <span className={styles.positive}>One-click</span>
+              </div>
+              <div className={styles.comparisonRow}>
+                <span>Security (No XSS)</span>
+                <span className={styles.negative}>Varies</span>
+                <span className={styles.positive}>Built-in</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            TESTIMONIALS SECTION
+            ============================================================ */}
+
+        <section
+          id="testimonials"
+          className={styles.testimonialsSection}
+          ref={(el) => (sectionRefs.current.testimonials = el)}
+        >
+          <div className={styles.sectionContainer}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>⭐ Testimonials</span>
+              <h2 className={styles.sectionTitle}>
+                Trusted by <span className={styles.gradientText}>5,000+</span>{" "}
+                Teams
+              </h2>
+              <p className={styles.sectionSubtitle}>
+                Real results from real customers.
+              </p>
+            </div>
+
+            <div className={styles.testimonialsGrid}>
+              <div className={styles.testimonialCard}>
+                <div className={styles.testimonialRating}>★★★★★</div>
+                <p className={styles.testimonialText}>
+                  "Cut our response time by 60% and completely eliminated the need
+                  for a dedicated support team."
+                </p>
+                <div className={styles.testimonialAuthor}>
+                  <div className={styles.testimonialAvatar}>SC</div>
+                  <div>
+                    <div className={styles.testimonialName}>Sarah Chen</div>
+                    <div className={styles.testimonialTitle}>CTO, GrowthAI</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.testimonialCard}>
+                <div className={styles.testimonialRating}>★★★★★</div>
+                <p className={styles.testimonialText}>
+                  "Best decision we made this year. Our customers can't tell it's
+                  AI, and our team is finally free."
+                </p>
+                <div className={styles.testimonialAuthor}>
+                  <div className={styles.testimonialAvatar}>MR</div>
+                  <div>
+                    <div className={styles.testimonialName}>Marcus Rodriguez</div>
+                    <div className={styles.testimonialTitle}>Support Lead</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.testimonialCard}>
+                <div className={styles.testimonialRating}>★★★★★</div>
+                <p className={styles.testimonialText}>
+                  "We built 15 complex workflows in 1 week with just 1 person.
+                  Sageion saved us months of development."
+                </p>
+                <div className={styles.testimonialAuthor}>
+                  <div className={styles.testimonialAvatar}>JP</div>
+                  <div>
+                    <div className={styles.testimonialName}>Jamie Park</div>
+                    <div className={styles.testimonialTitle}>Founder</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            FINAL CTA SECTION
+            ============================================================ */}
+
+        <section className={styles.finalCTASection}>
+          <div className={styles.sectionContainer}>
+            <div className={styles.ctaCard}>
+              <div className={styles.ctaContent}>
+                <span className={styles.ctaBadge}>🚀 Ready to Transform?</span>
+                <h2 className={styles.ctaTitle}>
+                  Start Building Your{" "}
+                  <span className={styles.gradientText}>Future</span> Today
+                </h2>
+                <p className={styles.ctaSubtitle}>
+                  Join 5,000+ teams that have already cut their implementation
+                  time by 90%. Get started with our free forever tier.
+                </p>
+                <div className={styles.ctaButtons}>
+                  <button className={styles.ctaPrimaryBtn}>
+                    Start Free Trial <FaArrowRight className={styles.ctaArrow} />
+                  </button>
+                  <button className={styles.ctaSecondaryBtn}>
+                    Schedule Demo →
+                  </button>
+                </div>
+                <div className={styles.ctaTrust}>
+                  <span>🔒 No credit card required</span>
+                  <span>⚡ 3-minute setup</span>
+                  <span>🌟 Free forever tier</span>
+                  <span>🏆 5,000+ teams trust us</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  };
+
+  export default AdminFeatures;
