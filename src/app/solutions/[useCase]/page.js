@@ -1,54 +1,58 @@
+// src/app/solutions/[useCase]/page.js
 import React from "react";
-import Marketplace from "@/app/components/solutions_items/marketplace/page";
-import Matrimony from "@/app/components/solutions_items/matrimony/page";
-import OnDemand from "@/app/components/solutions_items/ondemand/page";
-import OnlineEducation from "@/app/components/solutions_items/onlineEducation/page";
-import HealthcareTelehealth from "@/app/components/solutions_items/healthcare/page";
-import LegalTech from "@/app/components/solutions_items/legalTech/page";
-import RealEstate from "@/app/components/solutions_items/realEstate/page";
-import Travel from "@/app/components/solutions_items/travel/page";
-import GroceryDelivery from "@/app/components/solutions_items/groceryDelivery/page";
-import FinancialServices from "@/app/components/solutions_items/financialServices/page";
-import Ecommerce from "@/app/components/solutions_items/ecommerce/page";
+import { notFound } from "next/navigation";
+import { solutionList } from "../../data/solutionList";
 
-export async function generateStaticParams() {
-  const useCase = [
-    "marketplace",
-    "on-demand-services",
-    "matrimony",
-    "healthcare-and-telehealth",
-    "online-education-and-ed-tech",
-    "e-commerce",
-    "financial-services",
-    "grocery-delivery",
-    "travel",
-    "real-estate",
-    "legal-tech",
-
-  ];
-  return useCase.map((useCase) => ({ useCase }));
+export function generateStaticParams() {
+  const allItems = [...solutionList.useCase, ...solutionList.company_type];
+  return allItems.map((item) => ({
+    useCase: item.slug,
+  }));
 }
 
-export default async function UseCasePage({ params }) {
-  const resolvedParams = await Promise.resolve(params);
-  const { useCase } = resolvedParams;
+export default function SolutionDetailPage({ params }) {
+  const { useCase } = params;
 
-  const featureComponents = {
-    "marketplace": <Marketplace />,
-    "on-demand-services": <OnDemand />,
-    "matrimony": <Matrimony />,
-    "healthcare-and-telehealth": <HealthcareTelehealth />,
-    "online-education-and-ed-tech": <OnlineEducation />,
-    "e-commerce": <Ecommerce />,
-    "financial-services": <FinancialServices />,
-    "grocery-delivery": <GroceryDelivery />,
-    "travel": <Travel />,
-    "real-estate": <RealEstate />,
-    "legal-tech": <LegalTech />,
-  };
+  const allItems = [...solutionList.useCase, ...solutionList.company_type];
+  const pageData = allItems.find((item) => item.slug === useCase);
 
-  const Component = featureComponents[useCase];
-  if (!Component) return <h1>Feature not found</h1>;
+  if (!pageData) {
+    notFound();
+  }
 
-  return Component;
+  return (
+    <div style={{ maxWidth: "800px", margin: "0 auto", padding: "60px 20px" }}>
+      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+        <div style={{ marginBottom: "20px" }}>
+          {pageData.iconType === "svg" ? (
+            <img src={`/${pageData.icon}`} alt={pageData.subHeading} width={64} height={64} />
+          ) : (
+            <span style={{ fontSize: "48px" }}>{pageData.icon}</span>
+          )}
+        </div>
+        <h1 style={{ fontSize: "36px", fontWeight: "700", marginBottom: "16px", color: "#111827" }}>
+          {pageData.subHeading}
+        </h1>
+        <p style={{ fontSize: "18px", color: "#4b5563", lineHeight: "1.6" }}>
+          {pageData.text}
+        </p>
+      </div>
+
+      <div style={{ background: "#f9fafb", padding: "32px", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+        <h2 style={{ fontSize: "24px", fontWeight: "600", marginBottom: "16px", color: "#111827" }}>
+          How it works with Sageion
+        </h2>
+        <p style={{ fontSize: "16px", color: "#4b5563", marginBottom: "20px" }}>
+          This is where you can add deeper detail about how the Sageion runtime
+          specifically solves the {pageData.subHeading} workflow.
+        </p>
+        <ul style={{ listStyleType: "disc", paddingLeft: "24px", color: "#4b5563", lineHeight: "1.8" }}>
+          <li>Deterministic API execution</li>
+          <li>Auto-generated UI screens</li>
+          <li>Async webhooks & human-in-the-loop pauses</li>
+          <li>Zero-data storage by default</li>
+        </ul>
+      </div>
+    </div>
+  );
 }

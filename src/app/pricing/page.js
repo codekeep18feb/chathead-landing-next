@@ -1,279 +1,189 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./pricing.module.css";
 import ComparisonTable from "./ComparisonTable";
 
 function Pricing() {
   const [billingCycle, setBillingCycle] = useState("monthly");
-  const [growthMessageLimit, setGrowthMessageLimit] = useState(10000);
-  const [scaleMessageLimit, setScaleMessageLimit] = useState(20000);
   const comparisonRef = useRef(null);
   const [hoveredPlan, setHoveredPlan] = useState(null);
 
+  // ============================================================
+  // 72-HOUR GRACE PERIOD LOGIC
+  // ============================================================
+  const gracePeriodHours = 72;
+  const [graceTimeLeft, setGraceTimeLeft] = useState(gracePeriodHours * 60 * 60 * 1000);
+  const [isGraceActive, setIsGraceActive] = useState(true);
+
+  useEffect(() => {
+    const mockRegistrationTime = Date.now() - (70 * 60 * 60 * 1000);
+    const graceExpirationTime = mockRegistrationTime + (gracePeriodHours * 60 * 60 * 1000);
+
+    const timer = setInterval(() => {
+      const timeLeft = graceExpirationTime - Date.now();
+      if (timeLeft <= 0) {
+        setIsGraceActive(false);
+        setGraceTimeLeft(0);
+        clearInterval(timer);
+      } else {
+        setGraceTimeLeft(timeLeft);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTimeLeft = (ms) => {
+    if (ms <= 0) return "00:00:00";
+    const hours = Math.floor(ms / (1000 * 60 * 60));
+    const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  };
+
   const scrollToComparison = () => {
-    comparisonRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
-  const calculateGrowthPrice = (basePrice, messages) => {
-    const baseMessages = 10000;
-    if (messages <= baseMessages) return basePrice;
-    const increment = 4;
-    const extraMessages = messages - baseMessages;
-    return basePrice + Math.ceil(extraMessages / 1000) * increment;
-  };
-
-  const calculateScalePrice = (basePrice, messages) => {
-    const baseMessages = 20000;
-    if (messages <= baseMessages) return basePrice;
-    const increment = 3;
-    const extraMessages = messages - baseMessages;
-    return basePrice + Math.ceil(extraMessages / 1000) * increment;
-  };
-
-  const pricingData = {
-    monthly: {
-      launch: { regular: 0, promo: 0 },
-      starter: { regular: 79, promo: 55 },
-      growth: {
-        regular: {
-          basePrice: 199,
-          getPrice: (messages) => calculateGrowthPrice(199, messages),
-          getDisplay: (messages) => `$${calculateGrowthPrice(199, messages).toFixed(0)}/month`
-        },
-        promo: {
-          basePrice: 139,
-          getPrice: (messages) => calculateGrowthPrice(139, messages),
-          getDisplay: (messages) => `$${calculateGrowthPrice(139, messages).toFixed(0)}/month`
-        }
-      },
-      scale: {
-        regular: {
-          basePrice: 499,
-          getPrice: (messages) => calculateScalePrice(499, messages),
-          getDisplay: (messages) => `$${calculateScalePrice(499, messages).toFixed(0)}/month`
-        },
-        promo: {
-          basePrice: 349,
-          getPrice: (messages) => calculateScalePrice(349, messages),
-          getDisplay: (messages) => `$${calculateScalePrice(349, messages).toFixed(0)}/month`
-        }
-      },
-      enterprise: {
-        regular: "Custom Pricing",
-        promo: "Custom Pricing"
-      }
-    },
-    yearly: {
-      launch: { regular: 0, promo: 0 },
-      starter: { regular: 790, promo: 550 },
-      growth: {
-        regular: {
-          basePrice: 1990,
-          getPrice: (messages) => calculateGrowthPrice(1990, messages),
-          getDisplay: (messages) => `$${calculateGrowthPrice(1990, messages).toFixed(0)}/year`
-        },
-        promo: {
-          basePrice: 1390,
-          getPrice: (messages) => calculateGrowthPrice(1390, messages),
-          getDisplay: (messages) => `$${calculateGrowthPrice(1390, messages).toFixed(0)}/year`
-        }
-      },
-      scale: {
-        regular: {
-          basePrice: 4990,
-          getPrice: (messages) => calculateScalePrice(4990, messages),
-          getDisplay: (messages) => `$${calculateScalePrice(4990, messages).toFixed(0)}/year`
-        },
-        promo: {
-          basePrice: 3490,
-          getPrice: (messages) => calculateScalePrice(3490, messages),
-          getDisplay: (messages) => `$${calculateScalePrice(3490, messages).toFixed(0)}/year`
-        }
-      },
-      enterprise: {
-        regular: "Contact Us",
-        promo: "Contact Us"
-      }
-    },
-  };
-
-  const getPriceDisplay = (plan) => {
-    if (plan.isFree) return "Free forever";
-    if (plan.isEnterprise) return pricingData[billingCycle].enterprise.regular;
-
-    const priceData = pricingData[billingCycle][plan.planCode.toLowerCase()];
-
-    if (plan.hasMessageSlider) {
-      const messages = plan.isScalePlan ? scaleMessageLimit : growthMessageLimit;
-      const displayPrice = priceData.regular.getDisplay(messages);
-      return displayPrice;
-    } else {
-      return `$${priceData.regular.toLocaleString()}/${billingCycle === 'monthly' ? 'month' : 'year'}`;
-    }
-  };
-
-  const formatMessageLimit = (limit) => {
-    if (limit >= 1000000) return `${(limit / 1000000).toFixed(1)}M`;
-    if (limit >= 1000) return `${(limit / 1000).toFixed(0)}k`;
-    return limit.toString();
-  };
-
-  const handleGrowthMessageLimitChange = (event) => {
-    setGrowthMessageLimit(Number(event.target.value));
-  };
-
-  const handleScaleMessageLimitChange = (event) => {
-    setScaleMessageLimit(Number(event.target.value));
-  };
-
-  const getSliderProgress = (value, min, max) => {
-    return ((value - min) / (max - min)) * 100;
+    comparisonRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const displayPlans = [
     {
-      key: "launch",
-      type: "Launch",
+      key: "free",
+      type: "Runtime Free",
       icon: "🚀",
       color: "#10b981",
-      bgColor: "#ecfdf5",
       popular: false,
       free: true,
       price: "Free",
-      cta: "Start Free",
-      description: "Perfect for testing, MVPs & early-stage projects.",
-      badge: null,
+      cta: "Start Building",
+      description: "Build one real workflow. Prove it works. No credit card.",
       keyFeatures: [
-        "100 Active Users",
-        "3 Intents/Skills",
-        "2 API Configs",
-        "2 Chains",
         "1 App",
-        "Basic Analytics",
-        "Advanced Lead Capture",
-        "Multi-Admin",
+        "Sync only (30s max)",
+        "~500 executions/day",
+        "Throttles at limit — never blocks",
+        "Zero-data storage",
+        "Full feature access",
       ],
     },
     {
-      key: "starter",
-      type: "Starter",
-      icon: "🌟",
-      color: "#f59e0b",
-      bgColor: "#fffbeb",
-      popular: false,
-      free: false,
-      price: "$79",
-      cta: "Choose Starter",
-      description: "Complete platform for growing businesses.",
-      badge: "Best Value",
-      keyFeatures: [
-        "1,000 Active Users",
-        "10 Intents/Skills",
-        "5 API Configs",
-        "3 Chains",
-        "3 Apps",
-        "Pro Analytics",
-        "Remove Branding",
-        "Priority Support",
-      ],
-    },
-    {
-      key: "growth",
-      type: "Growth",
+      key: "runtime",
+      type: "Runtime",
       icon: "🌱",
       color: "#4d6bdf",
-      bgColor: "#eef2ff",
       popular: true,
       free: false,
       price: "$199",
-      cta: "Choose Growth",
-      description: "For SaaS & SMBs with serious engagement needs.",
-      badge: "Most Popular",
+      priceINR: "₹16,999",
+      yearly: "$1,990",
+      yearlyINR: "₹1,69,990",
+      cta: "Start Shipping",
+      description: "Ship AI to your customers. Async, retention, and scale in one plan.",
+      badge: "Most CRMs land here",
       keyFeatures: [
-        "5,000 Active Users",
-        "30 Intents/Skills",
-        "20 API Configs",
-        "15 Chains",
-        "10 Apps",
-        "Advanced Analytics",
-        "Multi-Admin + RBAC",
-        "Advanced Lead Capture",
-      ],
-    },
-    {
-      key: "scale",
-      type: "Scale",
-      icon: "⚡",
-      color: "#059669",
-      bgColor: "#ecfdf5",
-      popular: false,
-      free: false,
-      price: "$499",
-      cta: "Get Quote",
-      description: "High-volume solution for established companies.",
-      badge: null,
-      keyFeatures: [
-        "25,000 Active Users",
-        "100 Intents/Skills",
-        "50 API Configs",
-        "40 Chains",
-        "25 Apps",
-        "Advanced Analytics",
-        "Dedicated Manager",
-        "99.9% SLA",
+        "Up to 50 Apps included",
+        "500K executions/month included",
+        "Then $0.08 / 1K executions (published)",
+        "30-min async included",
+        "Async upgrades: 1hr +$50 · 4hr +$150 · 24hr +$400",
+        "App slabs: 51-200 +$99 · 201-500 +$399",
+        "30-day retention · 90d +$30 · 1yr +$100",
       ],
     },
     {
       key: "enterprise",
-      type: "Enterprise",
+      type: "Enterprise Runtime",
       icon: "🏢",
       color: "#7c3aed",
-      bgColor: "#f5f3ff",
       popular: false,
       free: false,
-      price: "Custom",
-      cta: "Contact Us",
-      description: "Fully customizable for large enterprises.",
-      badge: null,
+      price: "From $1,500",
+      priceINR: "From ₹1,25,000",
+      cta: "Contact Sales",
+      description: "Petpooja-scale. Multi-brand, multi-country, compliance-heavy.",
+      badge: "3-month minimum",
       keyFeatures: [
-        "Unlimited Users",
-        "Unlimited Intents",
-        "Unlimited APIs",
-        "Unlimited Chains",
-        "Unlimited Apps",
-        "Enterprise Analytics",
-        "24/7 Priority Support",
-        "Custom AI Training",
+        "$15,000 one-time Enterprise Activation",
+        "Unlimited Apps & Executions",
+        "Unlimited async windows",
+        "BYO storage / Custom retention",
+        "Implementation workshops included",
+        "Dedicated SLA, 24/7 support",
+        "Quarterly business reviews",
       ],
     },
   ];
+
+  const getPriceDisplay = (plan) => {
+    if (plan.isFree || plan.key === "free") return "Free forever";
+    if (plan.key === "enterprise") return billingCycle === "monthly" ? plan.price : plan.price;
+    return billingCycle === "monthly" ? plan.price : plan.yearly;
+  };
 
   return (
     <div className={styles.pricingPage}>
       {/* ===== HEADER ===== */}
       <div className={styles.headerSection}>
         <div className={styles.headerContent}>
-          <h1>The AI Agent <span>Platform</span></h1>
-          <p>Build any operation — support, sales, automation. API-first, infinitely customizable.</p>
+          <h1>The AI Agent <span>Runtime</span></h1>
+          <p>
+            Frameworks give you building blocks. We give you a runtime that's already wired,
+            already async, already multi-tenant.
+          </p>
         </div>
 
-        {/* Value Props */}
         <div className={styles.valueProps}>
           <div className={styles.valueProp}>
-            <span className={styles.valueIcon}>🔌</span>
-            <span>API-first. Connect anything.</span>
+            <span className={styles.valueIcon}>⚙️</span>
+            <span>Runtime, not framework</span>
           </div>
           <div className={styles.valueProp}>
-            <span className={styles.valueIcon}>⚡</span>
-            <span>No LLM token costs</span>
+            <span className={styles.valueIcon}>🧠</span>
+            <span>Deterministic by design</span>
           </div>
           <div className={styles.valueProp}>
-            <span className={styles.valueIcon}>🌍</span>
-            <span>Global edge. Low latency.</span>
+            <span className={styles.valueIcon}>🔒</span>
+            <span>Zero-data default</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ============================================================
+          72-HOUR GRACE PERIOD BANNER
+          ============================================================ */}
+      <div
+        style={{
+          maxWidth: "900px",
+          margin: "0 auto 30px auto",
+          padding: "16px 24px",
+          borderRadius: "12px",
+          background: isGraceActive ? "#ecfdf5" : "#fef2f2",
+          border: `1px solid ${isGraceActive ? "#10b981" : "#ef4444"}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <span style={{ fontSize: "24px" }}>{isGraceActive ? "🤝" : "⚠️"}</span>
+          <div>
+            <h4 style={{ margin: 0, color: isGraceActive ? "#065f46" : "#991b1b", fontSize: "16px", fontWeight: "600" }}>
+              {isGraceActive ? "72-Hour Free Hand Active" : "Grace Period Expired"}
+            </h4>
+            <p style={{ margin: 0, color: isGraceActive ? "#047857" : "#b91c1c", fontSize: "14px", marginTop: "4px" }}>
+              {isGraceActive
+                ? "We won't enforce hard quotas yet. Just don't abuse the platform. Soft caps apply."
+                : "Your 72-hour grace period is over. Hard limits and quotas are now strictly enforced."}
+            </p>
+          </div>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <span style={{ fontSize: "12px", color: isGraceActive ? "#047857" : "#b91c1c", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "600" }}>
+            Time Remaining
+          </span>
+          <div style={{ fontSize: "24px", fontWeight: "700", color: isGraceActive ? "#065f46" : "#991b1b", fontFamily: "monospace" }}>
+            {formatTimeLeft(graceTimeLeft)}
           </div>
         </div>
       </div>
@@ -297,17 +207,15 @@ function Pricing() {
       {/* ===== PRICING CARDS ===== */}
       <div className={styles.pricingCards}>
         {displayPlans.map((plan) => {
-          const isGrowth = plan.key === "growth";
+          const isRuntime = plan.key === "runtime";
           const isEnterprise = plan.key === "enterprise";
           const isHovered = hoveredPlan === plan.key;
 
           return (
             <div
               key={plan.key}
-              className={`${styles.pricingCard} ${isGrowth ? styles.popularCard : ""} ${isEnterprise ? styles.enterpriseCard : ""}`}
-              style={{
-                borderColor: isHovered ? plan.color : "transparent",
-              }}
+              className={`${styles.pricingCard} ${isRuntime ? styles.popularCard : ""} ${isEnterprise ? styles.enterpriseCard : ""}`}
+              style={{ borderColor: isHovered ? plan.color : "transparent" }}
               onMouseEnter={() => setHoveredPlan(plan.key)}
               onMouseLeave={() => setHoveredPlan(null)}
             >
@@ -321,14 +229,16 @@ function Pricing() {
                 <div className={styles.planIcon}>{plan.icon}</div>
                 <h3 className={styles.planName}>{plan.type}</h3>
                 <div className={styles.planPrice}>
-                  {plan.free ? (
+                  {plan.free || plan.key === "free" ? (
                     <span className={styles.freePrice}>Free</span>
                   ) : plan.key === "enterprise" ? (
-                    <span className={styles.customPrice}>Custom</span>
+                    <span className={styles.customPrice}>{plan.price}</span>
                   ) : (
                     <>
-                      <span className={styles.priceAmount}>{plan.price}</span>
-                      <span className={styles.pricePeriod}>/month</span>
+                      <span className={styles.priceAmount}>{getPriceDisplay(plan)}</span>
+                      <span className={styles.pricePeriod}>
+                        /{billingCycle === "monthly" ? "month" : "year"}
+                      </span>
                     </>
                   )}
                 </div>
@@ -345,76 +255,29 @@ function Pricing() {
               </ul>
 
               <button
-                className={`${styles.ctaButton} ${isGrowth ? styles.primaryCta : ""}`}
+                className={`${styles.ctaButton} ${isRuntime ? styles.primaryCta : ""}`}
                 style={{
-                  background: isGrowth ? plan.color : (isEnterprise ? "#7c3aed" : "#e5e7eb"),
-                  color: isGrowth || isEnterprise ? "white" : "#1f2937",
+                  background: isRuntime ? plan.color : isEnterprise ? "#7c3aed" : "#e5e7eb",
+                  color: isRuntime || isEnterprise ? "white" : "#1f2937",
                 }}
                 onClick={() => {
-                  window.location.href = "https://admin.sageion.com/pricing";
+                  if (isEnterprise) window.location.href = "mailto:sales@sageion.com";
+                  else window.location.href = "https://admin.sageion.com/signup";
                 }}
               >
                 {plan.cta}
               </button>
-
-              {/* {plan.key === "growth" && (
-                <div className={styles.sliderSection}>
-                  <div className={styles.sliderLabel}>
-                    <span>AI Messages</span>
-                    <span className={styles.sliderValue}>
-                      {formatMessageLimit(growthMessageLimit)}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min={10000}
-                    max={100000}
-                    step={1000}
-                    value={growthMessageLimit}
-                    onChange={handleGrowthMessageLimitChange}
-                    className={styles.slider}
-                    style={{
-                      background: `linear-gradient(to right, #4d6bdf 0%, #4d6bdf ${getSliderProgress(growthMessageLimit, 10000, 100000)}%, #e5e7eb ${getSliderProgress(growthMessageLimit, 10000, 100000)}%, #e5e7eb 100%)`,
-                    }}
-                  />
-                </div>
-              )}
-
-              {plan.key === "scale" && (
-                <div className={styles.sliderSection}>
-                  <div className={styles.sliderLabel}>
-                    <span>AI Messages</span>
-                    <span className={styles.sliderValue}>
-                      {formatMessageLimit(scaleMessageLimit)}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min={20000}
-                    max={250000}
-                    step={1000}
-                    value={scaleMessageLimit}
-                    onChange={handleScaleMessageLimitChange}
-                    className={styles.slider}
-                    style={{
-                      background: `linear-gradient(to right, #059669 0%, #059669 ${getSliderProgress(scaleMessageLimit, 20000, 250000)}%, #e5e7eb ${getSliderProgress(scaleMessageLimit, 20000, 250000)}%, #e5e7eb 100%)`,
-                    }}
-                  />
-                </div>
-              )} */}
             </div>
           );
         })}
       </div>
 
-      {/* ===== SEE ALL FEATURES ===== */}
       <div className={styles.seeAllWrapper}>
         <button onClick={scrollToComparison} className={styles.seeAllButton}>
-          Compare All Features →
+          Compare Runtime Limits →
         </button>
       </div>
 
-      {/* ===== COMPARISON TABLE ===== */}
       <div ref={comparisonRef}>
         <ComparisonTable />
       </div>

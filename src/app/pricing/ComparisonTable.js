@@ -4,274 +4,72 @@ import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import Modal from "./Modal";
 
 const featureDescriptions = {
-  // ===== CORE FEATURES =====
-  "Monthly Active Users": "Total unique users who interact with your chat services per month.",
-  "Agents": "Number of AI chatbot agents you can create and train with custom knowledge.",
-  "Apps": "Number of separate applications (Sales, Support, Marketing, etc.) you can create and manage under one tenant account. Each app can have its own users, settings, and branding.",
-  "Team Members": "Number of team members (admins + support staff) who can access the admin dashboard.",
-  
-  // ===== AUTHENTICATION & ACCESS CONTROL =====
-  "RBAC (Role-Based Access Control)": "Granular permission control for different teams. Assign roles (Manager, Developer, Customer Care) with specific permissions (read, delete, manage) per app.",
-  "Multi-Admin": "Enable multiple administrators with role-based access control and permission management.",
-  
-  // ===== AI CHAT FEATURES =====
-  "AI Messages / month": "Monthly limit for AI chatbot interactions (no LLM token costs).",
-  "Knowledge Base per Agent": "Maximum amount of training data per AI agent.",
-  "AI Bot Type": "Level of AI sophistication available for your chatbots.",
-  "Intents/Skills": "Number of conversational skills or intents your AI agent can recognize and handle.",
-  "Custom Intent Configuration": "Ability to define custom intents and skills for your AI agent.",
-  
-  // ===== API & WORKFLOWS =====
-  "API Configurations": "Number of API endpoints you can configure for your chatbot to call.",
-  "API Chains (Workflows)": "Multi-step API workflows where response from one API determines the next API call.",
-  "Webhooks": "Receive real-time notifications and trigger actions when specific events occur in your chat or lead capture flows.",
-  "LeadGen Workflows": "Specialized workflows for lead qualification and routing.",
-  
-  // ===== VISUAL DESIGNER =====
-  "Visual Response Designer": "No-code visual interface for designing AI responses.",
-  "Screens per API": "Number of response screens you can design per API configuration. Each screen can handle different response status codes (200, 404, 500, etc.).",
-  
-  // ===== LEAD CAPTURE =====
-  "Lead Capture Forms": "Capture leads via forms, FAQ flows, and conversational interfaces.",
-  "Lead Storage Capacity": "Number of leads that can be stored in the system.",
-  "Advanced Lead Capture": "Connect lead capture to external services (CRM, Email, Webhook) and route leads to your own systems for processing.",
-  
-  // ===== ANALYTICS =====
-  "Analytics": "Insights and reporting on chat performance, user engagement, lead conversion, and AI response quality.",
-  
-  // ===== LIVE CHAT FEATURES =====
-  "Live Chat": "Two-way live chat between visitors and your support team.",
-  "File Upload Size": "Maximum file size users can upload in live chat conversations.",
-  "Chat History Retention": "Duration chat history is stored before deletion.",
-  "Multi-Region Support": "Support for users across different geographical regions (US, IN).",
-  
-  // ===== ADMIN & MANAGEMENT =====
-  "All Chats Dashboard": "Centralized view of all conversations across all applications.",
-  "User Management": "Manage users across all applications with search and filtering.",
-  
-  // ===== EMAIL & NOTIFICATIONS =====
-  "Email Notifications": "Alerts for new messages and support requests.",
-  
-  // ===== BRANDING =====
-  "Remove Branding": "Option to remove 'Powered by Sageion' from your chat interface.",
-  
-  // ===== SUPPORT =====
-  "Priority Support": "Get faster help from our support team.",
-  "Dedicated Account Manager": "Single point of contact for support and strategy.",
-  "Phone Support": "Direct phone access to support team.",
-  "24/7 Priority Support": "Round-the-clock premium support availability.",
-  "SLA": "Service Level Agreement for uptime and reliability.",
-  
-  // ===== ENTERPRISE FEATURES =====
-  "Custom API Rate Limits": "Tailored API rate limits for your needs.",
-  "Multi-region Hosting": "Data hosting across multiple geographic regions.",
-  "Custom AI Training": "Train AI models specifically for your use case.",
-  "Audit Logs": "Comprehensive logs for security and compliance.",
-  "Quarterly Business Reviews": "Regular strategy sessions to optimize usage.",
+  "App Instances": "Number of independent tenant apps you can provision. Each app has its own users, settings, and billing attribution. Slabs: 51-200 (+$99/mo), 201-500 (+$399/mo).",
+  "Monthly Executions": "Every workflow run from intent detection to final response = 1 execution. Published overage: $0.08 per 1,000 above the monthly limit. Linear, no cap, no cutoff.",
+  "API Endpoints": "Number of distinct backend API routes the runtime is allowed to hit.",
+  "Agentic Workflows": "Number of multi-step API chains the AI can trigger. Chain A → wait for 200 → Chain B.",
+  "Bulk Intent Generation": "Automatically generate intent mappings by pointing at your API schemas and workflow definitions.",
+  "Auto-UI Generation": "Dynamically render forms, tables, and approval cards from your API JSON responses.",
+  "Deterministic Routing": "The LLM is restricted to intent classification only. All data retrieval and action execution is routed deterministically via your APIs.",
+  "Async Execution Window": "How long the runtime holds a workflow open waiting for an external webhook. Runtime base: 30 min. Upgrades: 1hr +$50/mo, 4hr +$150/mo, 24hr +$400/mo.",
+  "Human-in-the-Loop Pauses": "Ability to pause a workflow mid-execution for manual manager approval.",
+  "Session History Retention": "Opt-in storage of conversation and workflow context. Runtime base: 30 days. 90d +$30/mo, 1yr +$100/mo. Enterprise: custom/BYO.",
+  "Zero-Data Default": "Nothing saved unless retention is explicitly enabled.",
+  "Data Residency": "Option to host execution logs and state in a specific geographic region.",
+  "Connector Framework": "Attach external services (Slack, WhatsApp, Google Workspace) to nodes without blocking the main chain.",
+  "RBAC & Multi-Admin": "Granular Role-Based Access Control for franchise owners, store managers, and support staff.",
+  "Attachment Model": "Build 'golden' tenant-level configs and explicitly attach them to specific apps.",
+  "White-label Ready": "Remove all Sageion branding; surface runtime as your own platform.",
+  "Enterprise Activation": "One-time $15,000 fee includes: API mapping workshop, first 5 workflows built with your team, security review support, data residency setup, admin training, and quarterly business reviews for year 1.",
 };
 
 const plans = [
-  { name: "Launch 🚀" },
-  { name: "Starter 🌟" },
-  { name: "Growth 🌱", popular: true },
-  { name: "Scale ⚡" },
-  { name: "Enterprise 🏢" },
+  { name: "Runtime Free" },
+  { name: "Runtime", popular: true },
+  { name: "Enterprise Runtime" },
 ];
 
 const groupedFeatures = {
-  "Core Features": [
-    {
-      label: "Monthly Active Users",
-      values: ["100", "1,000", "5,000", "25,000", "Custom"]
-    },
-    {
-      label: "Agents",
-      values: ["Up to 1", "Up to 5", "Up to 15", "Up to 50", "Unlimited"]
-    },
-    {
-      label: "Apps",
-      values: ["1 app", "3 apps", "10 apps", "25 apps", "Unlimited"]
-    },
-    {
-      label: "Team Members",
-      values: ["1 Admin + 1 Support", "1 Admin + 5 Support", "1 Admin + 10 Support", "1 Admin + Unlimited Support", "Unlimited Admins + Unlimited Support"]
-    },
+  "Runtime Limits": [
+    { label: "App Instances", values: ["1 App", "50 incl. + slabs", "Unlimited"] },
+    { label: "Monthly Executions", values: ["~15,000 (~500/day)", "500K + $0.08/1K", "Custom (linear)"] },
+    { label: "API Endpoints", values: ["10", "500", "Unlimited"] },
+    { label: "Agentic Workflows", values: ["5", "100", "Unlimited"] },
   ],
-  
-  "Authentication & Access Control": [
-    {
-      label: "RBAC (Role-Based Access Control)",
-      values: ["✅ Basic", "✅ Full", "✅ Full", "✅ Full", "✅ Full + Custom"]
-    },
-    {
-      label: "Multi-Admin",
-      values: ["✅", "✅", "✅", "✅", "✅"]
-    },
+  "Agent Capabilities": [
+    { label: "Bulk Intent Generation", values: ["✅", "✅", "✅"] },
+    { label: "Auto-UI Generation", values: ["✅", "✅", "✅"] },
+    { label: "Deterministic Routing", values: ["✅", "✅", "✅"] },
+    { label: "Connector Framework", values: ["✅", "✅", "✅"] },
   ],
-  
-  "AI Chat Features": [
-    {
-      label: "AI Messages / month",
-      values: ["100", "5,000", "10,000+ (scalable)", "20,000+ (scalable)", "Unlimited"]
-    },
-    {
-      label: "Knowledge Base per Agent",
-      values: ["5 MB", "100 MB", "500 MB", "2 GB", "Custom"]
-    },
-    {
-      label: "AI Bot Type",
-      values: ["Basic AI Bot", "Enhanced AI Bot", "Advanced AI", "Enterprise-grade AI", "Custom AI"]
-    },
-    {
-      label: "Intents/Skills",
-      values: ["3", "10", "30", "100", "Unlimited"]
-    },
-    {
-      label: "Custom Intent Configuration",
-      values: ["✅ Basic", "✅ Full", "✅ Full", "✅ Full", "✅ Full + Custom"]
-    },
+  "Async & Runtime Quality": [
+    { label: "Async Execution Window", values: ["Sync only (30s)", "30 min base + upgrades", "Unlimited"] },
+    { label: "Human-in-the-Loop Pauses", values: ["❌", "✅", "✅ Unlimited"] },
   ],
-  
-  "API & Workflows": [
-    {
-      label: "API Configurations",
-      values: ["2", "5", "20", "50", "Unlimited"]
-    },
-    {
-      label: "API Chains (Workflows)",
-      values: ["2", "3", "15", "40", "Unlimited"]
-    },
-    {
-      label: "Webhooks",
-      values: ["1", "3", "10", "25", "Unlimited"]
-    },
-    {
-      label: "LeadGen Workflows",
-      values: ["2", "3", "10", "25", "Unlimited"]
-    },
+  "Data & Security": [
+    { label: "Zero-Data Default", values: ["✅", "✅", "✅"] },
+    { label: "Session History Retention", values: ["❌", "30d base + tiers", "Custom / BYO"] },
+    { label: "RBAC & Multi-Admin", values: ["✅ Basic", "✅ Full", "✅ Full + Custom"] },
+    { label: "Attachment Model", values: ["❌", "✅", "✅ Full + Custom"] },
+    { label: "Data Residency", values: ["❌", "❌", "✅"] },
   ],
-  
-  "Visual Designer": [
-    {
-      label: "Visual Response Designer",
-      values: ["✅ Basic", "✅ Full", "✅ Full + Advanced", "✅ Full + Advanced", "✅ Full + Enterprise"]
-    },
-    {
-      label: "Screens per API",
-      values: ["4 screens", "10 screens", "40 screens", "100 screens", "Unlimited"]
-    },
+  "Platform & Support": [
+    { label: "White-label Ready", values: ["❌", "✅", "✅"] },
+    { label: "Enterprise Activation", values: ["❌", "❌", "$15,000 one-time"] },
+    { label: "SLA", values: ["❌", "99.9%", "Custom"] },
+    { label: "Dedicated Account Manager", values: ["❌", "❌", "✅"] },
+    { label: "24/7 Priority Support", values: ["❌", "❌", "✅"] },
+    { label: "Minimum Commitment", values: ["None", "None", "3 months"] },
   ],
-  
-  "Lead Capture": [
-    {
-      label: "Lead Capture Forms",
-      values: ["✅ 3 forms", "✅ 10 forms", "✅ 25 forms", "✅ 50 forms", "✅ Unlimited"]
-    },
-    {
-      label: "Lead Storage Capacity",
-      values: ["100 leads", "1,000 leads", "10,000 leads", "50,000 leads", "Unlimited"]
-    },
-    {
-      label: "Advanced Lead Capture (External Routing)",
-      values: ["✅", "✅", "✅", "✅", "✅"]
-    },
-  ],
-  
-  "Analytics": [
-    {
-      label: "Analytics",
-      values: ["Basic", "Pro", "Advanced", "Advanced", "Enterprise"]
-    },
-  ],
-  
-  "Live Chat": [
-    {
-      label: "Live Chat",
-      values: [true, true, true, true, true]
-    },
-    {
-      label: "File Upload Size",
-      values: ["25 MB", "100 MB", "250 MB", "500 MB", "Custom"]
-    },
-    {
-      label: "Chat History Retention",
-      values: ["15 days", "180 days", "2 years", "5 years", "Custom"]
-    },
-    {
-      label: "Multi-Region Support",
-      values: [true, true, true, true, true]
-    },
-  ],
-  
-  "Admin & Management": [
-    {
-      label: "All Chats Dashboard",
-      values: [true, true, true, true, true]
-    },
-    {
-      label: "User Management",
-      values: [true, true, true, true, true]
-    },
-  ],
-  
-  "Email & Notifications": [
-    {
-      label: "Email Notifications",
-      values: [true, true, true, true, true]
-    },
-  ],
-  
-  "Branding": [
-    {
-      label: "Remove Branding",
-      values: ["❌", "✅", "✅", "✅", "✅"]
-    },
-  ],
-  
-  "Support": [
-    {
-      label: "Priority Support",
-      values: ["❌", "✅", "✅", "✅", "✅"]
-    },
-    {
-      label: "Dedicated Account Manager",
-      values: ["❌", "❌", "❌", "✅", "✅"]
-    },
-    {
-      label: "Phone Support",
-      values: ["❌", "❌", "❌", "✅", "✅"]
-    },
-    {
-      label: "24/7 Priority Support",
-      values: ["❌", "❌", "❌", "❌", "✅"]
-    },
-    {
-      label: "SLA",
-      values: ["❌", "❌", "❌", "✅ (99.9%)", "✅ Custom"]
-    },
-  ],
-  
-  "Enterprise Features": [
-    {
-      label: "Custom API Rate Limits",
-      values: ["❌", "❌", "❌", "❌", "✅"]
-    },
-    {
-      label: "Multi-region Hosting",
-      values: ["❌", "❌", "❌", "❌", "✅"]
-    },
-    {
-      label: "Custom AI Training",
-      values: ["❌", "❌", "❌", "❌", "✅"]
-    },
-    {
-      label: "Audit Logs",
-      values: ["❌", "❌", "❌", "❌", "✅"]
-    },
-    {
-      label: "Quarterly Business Reviews",
-      values: ["❌", "❌", "❌", "❌", "✅"]
-    },
+  "Metered Overages (Published)": [
+    { label: "Extra Executions", values: ["Throttled, not charged", "$0.08 / 1K", "Negotiated (linear)"] },
+    { label: "App Slab 51-200", values: ["—", "+$99/mo", "Included"] },
+    { label: "App Slab 201-500", values: ["—", "+$399/mo", "Included"] },
+    { label: "Async Upgrade 1hr", values: ["—", "+$50/mo", "Included"] },
+    { label: "Async Upgrade 4hr", values: ["—", "+$150/mo", "Included"] },
+    { label: "Async Upgrade 24hr", values: ["—", "+$400/mo", "Included"] },
+    { label: "Retention 90 days", values: ["—", "+$30/mo", "Included"] },
+    { label: "Retention 1 year", values: ["—", "+$100/mo", "Included"] },
   ],
 };
 
@@ -283,11 +81,7 @@ const ComparisonTable = () => {
     }, {})
   );
 
-  const [modalInfo, setModalInfo] = useState({
-    isOpen: false,
-    feature: "",
-    details: "",
-  });
+  const [modalInfo, setModalInfo] = useState({ isOpen: false, feature: "", details: "" });
 
   const toggleSection = (section) => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
@@ -297,9 +91,7 @@ const ComparisonTable = () => {
     setModalInfo({
       isOpen: true,
       feature: featureLabel,
-      details:
-        featureDescriptions[featureLabel] ||
-        "No description available for this feature.",
+      details: featureDescriptions[featureLabel] || "No description available.",
     });
   };
 
@@ -317,9 +109,9 @@ const ComparisonTable = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.comparisonTitle}>Detailed Feature Comparison</h2>
+      <h2 className={styles.comparisonTitle}>Runtime Limits & Capabilities</h2>
       <p className={styles.comparisonSubtitle}>
-        Compare all features across our plans to choose what's best for your business
+        All features are included on every tier. You only scale the limits — every overage is published and linear.
       </p>
 
       <div className={styles.tableWrapper}>
@@ -331,9 +123,7 @@ const ComparisonTable = () => {
                 <th key={idx} className={plan.popular ? styles.popular : ""}>
                   <div className={styles.planHeader}>
                     {plan.name}
-                    {plan.popular && (
-                      <div className={styles.popularTag}>Most Popular</div>
-                    )}
+                    {plan.popular && <div className={styles.popularTag}>Most CRMs land here</div>}
                   </div>
                 </th>
               ))}
@@ -386,64 +176,6 @@ const ComparisonTable = () => {
             ))}
           </tbody>
         </table>
-      </div>
-
-      {/* Quick Summary Section */}
-      <div className={styles.quickSummary}>
-        <h3>📊 Quick Plan Summary</h3>
-        <div className={styles.summaryGrid}>
-          <div className={styles.summaryCard}>
-            <span className={styles.summaryIcon}>🚀</span>
-            <h4>Launch</h4>
-            <p>Free forever • Perfect for testing & MVPs</p>
-            <ul>
-              <li>3 Intents/Skills</li>
-              <li>2 API Configs + 2 Chains</li>
-              <li>100 AI Messages/mo</li>
-              <li>✅ Basic Visual Designer</li>
-              <li>✅ Basic RBAC + Multi-Admin</li>
-              <li>✅ Advanced Lead Capture</li>
-              <li>✅ 3 Lead Capture Forms</li>
-              <li>100 Leads Storage</li>
-              <li>1 Admin + 1 Support</li>
-              <li>1 App</li>
-            </ul>
-          </div>
-          <div className={`${styles.summaryCard} ${styles.popularCard}`}>
-            <span className={styles.summaryIcon}>🌱</span>
-            <h4>Growth <span className={styles.popularTag}>Most Popular</span></h4>
-            <p>₹14,999/mo • Best for growing teams</p>
-            <ul>
-              <li>30 Intents/Skills</li>
-              <li>20 API Configs + 15 Chains</li>
-              <li>10,000+ AI Messages/mo</li>
-              <li>✅ Full + Advanced Visual Designer</li>
-              <li>✅ Full RBAC + Multi-Admin</li>
-              <li>✅ Advanced Lead Capture</li>
-              <li>✅ 25 Lead Capture Forms</li>
-              <li>10,000 Leads Storage</li>
-              <li>10 Apps</li>
-              <li>1 Admin + 10 Support</li>
-            </ul>
-          </div>
-          <div className={styles.summaryCard}>
-            <span className={styles.summaryIcon}>⚡</span>
-            <h4>Scale</h4>
-            <p>₹39,999/mo • High-volume enterprise</p>
-            <ul>
-              <li>100 Intents/Skills</li>
-              <li>50 API Configs + 40 Chains</li>
-              <li>20,000+ AI Messages/mo</li>
-              <li>✅ Full + Advanced Visual Designer</li>
-              <li>✅ Full RBAC + Multi-Admin</li>
-              <li>✅ Advanced Lead Capture</li>
-              <li>✅ 50 Lead Capture Forms</li>
-              <li>50,000 Leads Storage</li>
-              <li>25 Apps</li>
-              <li>1 Admin + Unlimited Support</li>
-            </ul>
-          </div>
-        </div>
       </div>
 
       {modalInfo.isOpen && (

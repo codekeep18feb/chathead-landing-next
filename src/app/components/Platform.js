@@ -1,29 +1,50 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { platformList } from "../data/platformData";
 import styles from "./CommonDropdown.module.css";
+
+// The unique capabilities of the Sageion AI Agent Layer
+const PLATFORM_FEATURES = [
+  {
+    id: "ai-agent-config",
+    title: "AI Agent Configuration",
+    description: "Map intents to your existing backend APIs. Deterministic execution with zero hallucinations.",
+    icon: "🤖",
+    path: "/ai-agent-configuration",
+  },
+  {
+    id: "auto-ui",
+    title: "Auto-UI Generation",
+    description: "Turn API responses into custom UX screens (forms, tables, approval cards) instantly.",
+    icon: "🎨",
+    path: "/auto-ui", // Update this path when the page is built
+  },
+  {
+    id: "attachments",
+    title: "Opt-In Attachments",
+    description: "Golden tenant configs that can be explicitly attached by custom apps. Enterprise RBAC.",
+    icon: "🧩",
+    path: "/attachment-model", // Update this path when the page is built
+  },
+  {
+    id: "async-hitl",
+    title: "Async & Human-in-the-Loop",
+    description: "Pause workflows for manager approvals. Wait for webhooks with no 30-second timeouts.",
+    icon: "⏳",
+    path: "/async-workflows", // Update this path when the page is built
+  }
+];
 
 const Platform = ({ onCloseMenu }) => {
   const router = useRouter();
 
-  const handleCardClick = (item, type) => {
+  const handleCardClick = (path) => {
     // Close the mobile menu first
     if (onCloseMenu) {
       onCloseMenu();
     }
-
-    // Then navigate
-    if (type === "aiAgentConfiguration") {
-      router.push("/ai-agent-configuration");
-    } else if (type === "liveChatFeatures") {
-      router.push("/live-chat-features");
-    } else if (type === "integration") {
-      router.push("/documentation");
-    } else {
-      const slug = item.subHeading.toLowerCase().replace(/\s+/g, "-");
-      router.push(`/platform/${slug}`);
-    }
+    // Navigate to the target path
+    router.push(path);
   };
 
   return (
@@ -37,8 +58,8 @@ const Platform = ({ onCloseMenu }) => {
             className={styles.platformImage}
           />
           <div className={styles.imageOverlay}>
-            <h3>Build Smarter</h3>
-            <p>With our comprehensive platform</p>
+            <h3>The AI Layer</h3>
+            <p>Built for your existing APIs</p>
           </div>
         </div>
       </div>
@@ -46,48 +67,31 @@ const Platform = ({ onCloseMenu }) => {
       {/* Right Side - Content */}
       <div className={styles.contentSection}>
         <div className={styles.platformSections}>
-          {/* Live Chat Section */}
+          
+          {/* Core AI Agent Features Section */}
           <div className={styles.platformSection}>
-            <h2 className={styles.sectionTitle}>LIVE CHAT</h2>
+            <h2 className={styles.sectionTitle}>AI AGENT CAPABILITIES</h2>
             <div className={styles.cardList}>
-              {platformList.liveChatFeatures.map((item, index) => (
+              {PLATFORM_FEATURES.map((item) => (
                 <div
                   className={styles.card}
-                  key={index}
-                  onClick={() => handleCardClick(item, "liveChatFeatures")}
+                  key={item.id}
+                  onClick={() => handleCardClick(item.path)}
                 >
                   <div className={styles.cardHeader}>
                     <div className={styles.iconWrapper}>
-                      <i className={`${styles.cardIcon} ${item.icon}`}></i>
+                      <span className={styles.cardIcon} style={{ fontSize: '20px' }}>
+                        {item.icon}
+                      </span>
                     </div>
-                    <h3>{item.subHeading}</h3>
+                    <h3>{item.title}</h3>
                   </div>
-                  <p>{item.text}</p>
+                  <p>{item.description}</p>
                 </div>
               ))}
             </div>
           </div>
-          {/* AI Agent Configuration Section */}
-          <div className={styles.platformSection}>
-            <h2 className={styles.sectionTitle}>AI Agent Configuration</h2>
-            <div className={styles.cardList}>
-              {platformList.aiAgentConfiguration.map((item, index) => (
-                <div
-                  className={styles.card}
-                  key={index}
-                  onClick={() => handleCardClick(item, "aiAgentConfiguration")}
-                >
-                  <div className={styles.cardHeader}>
-                    <div className={styles.iconWrapper}>
-                      <i className={`${styles.cardIcon} ${item.icon}`}></i>
-                    </div>
-                    <h3>{item.subHeading}</h3>
-                  </div>
-                  <p>{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
