@@ -163,7 +163,7 @@ const WhyWeAreSpecial = () => {
 
           <p className={styles.heroSubtitle}>
             You keep your backend. We give you the intelligent orchestration layer.
-            Turn existing APIs (Petpooja, Posist, Rista) into deterministic AI agents 
+            Turn existing APIs (Petpooja, Posist, Rista) into deterministic AI agents
             with auto-generated UI screens, async webhooks, and human-in-the-loop approvals.
           </p>
 
@@ -449,7 +449,7 @@ const WhyWeAreSpecial = () => {
                 </div>
                 <div className={styles.featureTitle}>
                   <h3>Opt-In Attachment Model</h3>
-                  <p>Tenant to App scoping without breaking siblings.</p>
+                  <p>Sell tiered AI features to your franchises with one-click Attach/Detach. No credential leaks. No data duplication.</p>
                 </div>
                 <div className={styles.featureToggle}>
                   {expandedFeature === "attachment-model" ? <FaChevronUp /> : <FaChevronDown />}
@@ -459,15 +459,16 @@ const WhyWeAreSpecial = () => {
               {expandedFeature === "attachment-model" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
-                    <h4>Enterprise Scalability</h4>
+                    <h4>Enterprise Scalability & Upselling</h4>
                     <ul>
-                      <li>Create a default base app with tenant-level API configs and chains</li>
-                      <li>Other apps can <strong>explicitly attach</strong> the resources they need</li>
-                      <li>Fail-hard guards prevent a rogue app from hitting tenant-wide endpoints</li>
-                      <li>Detach cleanly without breaking siblings</li>
+                      <li><strong>Create once, share intentionally:</strong> Build a default base app with tenant-level API configs, auth, and chains.</li>
+                      <li><strong>Explicit scoping:</strong> Other apps must explicitly <em>attach</em> the resources they need — no silent inheritance.</li>
+                      <li><strong>Fail-hard guards:</strong> Prevent a rogue app from hitting tenant-wide endpoints or using shared credentials.</li>
+                      <li><strong>Clean detach:</strong> Remove access without breaking sibling apps that rely on the same resource.</li>
+                      <li><strong>Feature toggling for upsells:</strong> Turn premium AI workflows on or off for specific franchise customers by attaching or detaching the config.</li>
                     </ul>
                     <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Deliver high-business customization safely.</span>
+                      <span>✅ Benefit: Deliver high-business customization and upsell premium features safely.</span>
                     </div>
                   </div>
                 </div>
@@ -506,7 +507,7 @@ const WhyWeAreSpecial = () => {
                 </div>
               )}
             </div>
-            
+
             {/* Feature 5: Visual API Chaining */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("api-chaining")}>
@@ -602,7 +603,7 @@ const WhyWeAreSpecial = () => {
                   <h3>LLM Tolerant Architecture</h3>
                 </div>
                 <p>We use LLMs where it's safe (intent matching) and deterministic APIs where it matters (data retrieval).</p>
-                
+
                 <div style={{ overflowX: 'auto', marginTop: '20px' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
                     <thead>
@@ -791,7 +792,7 @@ const WhyWeAreSpecial = () => {
             <div className={styles.comparisonRow}>
               <span>Role Management</span>
               <span className={styles.negative}>Basic access control</span>
-                            <span className={styles.positive}>Granular RBAC for franchises</span>
+              <span className={styles.positive}>Granular RBAC for franchises</span>
             </div>
             <div className={styles.comparisonRow}>
               <span>Core System Changes</span>
@@ -880,7 +881,7 @@ const WhyWeAreSpecial = () => {
                 Turn Your CRM into an <span className={styles.gradientText}>AI Agent</span> Today
               </h2>
               <p className={styles.ctaSubtitle}>
-                Join the restaurant tech teams building intelligent, multi-step workflows on top of existing APIs. 
+                Join the restaurant tech teams building intelligent, multi-step workflows on top of existing APIs.
                 Start with our free forever tier.
               </p>
               <div className={styles.ctaButtons}>

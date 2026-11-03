@@ -1,180 +1,137 @@
-export const inviteSupportUser = [
+// documentation/payload/versions/V2/platform/inviteSupportUser.js
+
+const inviteSupportUserPayload = [
   {
-    tag_type: "h4",
-    text: "Invite Support User",
+    tag_type: "h2",
+    text: "Multi-Admin and RBAC",
     selector_uid: "v2_invite_support",
   },
   {
     tag_type: "p",
-    text: "Invite team members as support users with granular permission controls. This feature allows you to add users with specific roles and permissions to manage your applications.",
+    text:
+      "Sageion supports multiple administrative users per tenant with role-based " +
+      "access control. This is what allows a Restaurant CRM with 70,000 downstream " +
+      "restaurants to delegate safely — a tenant admin can invite support staff " +
+      "who see only what their role permits, without ever exposing the tenant's " +
+      "root configuration.",
   },
+
+  {
+    tag_type: "h3",
+    text: "Roles",
+    selector_uid: "v2_roles",
+  },
+  {
+    tag_type: "table",
+    headers: ["Role", "Scope", "Can do"],
+    rows: [
+      [
+        "Super Admin (Tenant)",
+        "Tenant-wide",
+        "Manage tenant settings, invite admins, publish shared resources, rotate keypairs, access billing",
+      ],
+      [
+        "Tenant Manager",
+        "Tenant-wide (read-mostly)",
+        "View tenant library, review audit logs, generate reports — cannot modify shared resources",
+      ],
+      [
+        "App Developer",
+        "App-scoped",
+        "Attach shared resources, author skills, build chains, design response templates for their app",
+      ],
+      [
+        "App Manager",
+        "App-scoped",
+        "Review metering, view audit logs, edit general settings for their app",
+      ],
+      [
+        "Support Executive",
+        "App-scoped (view)",
+        "View app chats and failed AI messages — cannot edit workflows or APIs",
+      ],
+    ],
+  },
+
+  {
+    tag_type: "h3",
+    text: "Inviting a support user",
+    selector_uid: "v2_invite_flow",
+  },
+  {
+    tag_type: "steps",
+    items: [
+      {
+        title: "Tenant admin opens Invite Support User",
+        content: [
+          { tag_type: "p", text: "From Global Level Settings, the admin selects the role and scope (tenant or specific app)." },
+        ],
+      },
+      {
+        title: "An invitation is sent",
+        content: [
+          { tag_type: "p", text: "The invite contains a signed link tied to the invited email. It expires in 7 days." },
+        ],
+      },
+      {
+        title: "The new user accepts",
+        content: [
+          { tag_type: "p", text: "They set a password, are assigned the role, and immediately see only the tabs their role permits." },
+        ],
+      },
+      {
+        title: "Revocation is one click",
+        content: [
+          { tag_type: "p", text: "The admin can revoke a user at any time. Their token invalidates on the next request." },
+        ],
+      },
+    ],
+  },
+
   {
     tag_type: "callout",
     type: "info",
-    title: "📌 Multi-Admin Required",
+    title: "Permissions are enforced server-side",
     children: [
       {
         tag_type: "p",
-        text: "The Invite Support User feature requires Multi-Admin to be enabled in Global Tenant Settings first. This ensures proper permission hierarchy and security.",
+        text:
+          "Role checks are not just hidden in the UI. Every API call validates " +
+          "the caller's role and app scope. A support executive who somehow calls " +
+          "the save-config endpoint directly still gets rejected by the backend.",
       },
     ],
+  },
+
+  {
+    tag_type: "h3",
+    text: "App-scoped admins",
+    selector_uid: "v2_app_scoped_admins",
   },
   {
-    tag_type: "tabs",
-    items: [
-      {
-        label: "Available Roles",
-        content: [
-          {
-            tag_type: "h5",
-            text: "👤 User Roles",
-          },
-          {
-            tag_type: "table",
-            headers: ["Role", "Access Level", "Primary Responsibilities"],
-            rows: [
-              ["MANAGER", "Full Access", "Manage applications, settings, and users"],
-              ["DEVELOPER", "Technical Access", "API configuration, workflows, and technical settings"],
-              ["CUSTOMER_CARE_EXECUTIVE", "Limited Access", "All Chats and user management"],
-            ],
-          },
-          {
-            tag_type: "callout",
-            type: "info",
-            title: "Role Assignment",
-            children: [
-              {
-                tag_type: "p",
-                text: "Users can be assigned multiple roles. The combination of roles determines the user's overall permissions.",
-              },
-            ],
-          },
-          {
-            tag_type: "mesgTip",
-            title: "💡 Best Practice",
-            children: [
-              {
-                tag_type: "p",
-                text: "Assign the minimum required roles to each user to maintain security best practices.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: "Permission Types",
-        content: [
-          {
-            tag_type: "h5",
-            text: "🔑 App-Specific Permissions",
-          },
-          {
-            tag_type: "table",
-            headers: ["Permission", "Description", "Use Case"],
-            rows: [
-              ["read", "View application data and settings", "Read-only access"],
-              ["delete", "Remove applications and resources", "Cleanup and maintenance"],
-              ["manage", "Full administrative control", "Complete app management"],
-            ],
-          },
-          {
-            tag_type: "h5",
-            text: "✨ Create Permissions",
-          },
-          {
-            tag_type: "ul",
-            items: [
-              {
-                text: "create_apps - Allows creating new applications",
-              },
-              {
-                text: "create_users - Allows creating new users (automatically includes write permission)",
-              },
-            ],
-          },
-          {
-            tag_type: "callout",
-            type: "info",
-            title: "Permission Levels",
-            children: [
-              {
-                tag_type: "p",
-                text: "Permissions can be assigned at the app level or globally. App-specific permissions override global permissions when both are configured.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: "How to Invite",
-        content: [
-          {
-            tag_type: "h5",
-            text: "📋 Step-by-Step Process",
-          },
-          {
-            tag_type: "steps",
-            items: [
-              {
-                title: "Navigate to Invite Support User",
-                content: [
-                  {
-                    tag_type: "p",
-                    text: "Access this page from the sidebar under 'Global Level Settings'.",
-                  },
-                ],
-              },
-              {
-                title: "Select Mode",
-                content: [
-                  {
-                    tag_type: "p",
-                    text: "Switch to 'Invite User' mode if not already selected.",
-                  },
-                ],
-              },
-              {
-                title: "Enter User Details",
-                content: [
-                  {
-                    tag_type: "p",
-                    text: "Enter the user's email address and optional full name.",
-                  },
-                ],
-              },
-              {
-                title: "Assign Roles & Permissions",
-                content: [
-                  {
-                    tag_type: "p",
-                    text: "Select the roles to assign and configure app-specific permissions.",
-                  },
-                ],
-              },
-              {
-                title: "Send Invite",
-                content: [
-                  {
-                    tag_type: "p",
-                    text: "Click 'Send Invite' to send the invitation. The user will receive an email with access instructions.",
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            tag_type: "callout",
-            type: "success",
-            title: "✅ Invitation Flow",
-            children: [
-              {
-                tag_type: "p",
-                text: "The invited user will receive an email with a link to accept the invitation. Once accepted, they can access the system with the assigned permissions.",
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    tag_type: "p",
+    text:
+      "App developers and app managers are scoped to a specific app_name. They " +
+      "can only see resources, workflows, and metering for that app. They cannot " +
+      "modify tenant-scoped resources — they can only attach or detach them from " +
+      "their app. This is what makes the 60K-base-user + 10K-power-user model " +
+      "safe: the vast majority of power users are app-scoped, and their blast " +
+      "radius is one restaurant.",
+  },
+
+  {
+    tag_type: "h3",
+    text: "Audit trail",
+    selector_uid: "v2_audit_trail",
+  },
+  {
+    tag_type: "p",
+    text:
+      "Every mutating action is logged with the user's identity, their role, the " +
+      "app they acted on, and the before/after diff of the resource. The audit " +
+      "log is available to tenant managers and is essential for billing disputes " +
+      "at 70,000-restaurant scale.",
   },
 ];
+
+export default inviteSupportUserPayload;

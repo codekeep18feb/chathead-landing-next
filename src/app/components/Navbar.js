@@ -10,7 +10,6 @@ import Resources from "./Resources";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import styles from "./NavbarSty.module.css";
-import SageionLogo from "../../../SageionLogo";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -63,7 +62,6 @@ const Navbar = () => {
     }
   };
 
-  // Close menu function - to be called from child components
   const closeMenu = () => {
     if (menuOpen) {
       setMenuOpen(false);
@@ -83,7 +81,6 @@ const Navbar = () => {
     document.body.style.width = "auto";
   };
 
-  // Handle mouse enter on nav items
   const handleMouseEnter = (key) => {
     if (!isMobile) {
       if (hoverTimeoutRef.current) {
@@ -94,7 +91,6 @@ const Navbar = () => {
     }
   };
 
-  // Handle mouse leave from nav items
   const handleMouseLeave = () => {
     if (!isMobile && !isHoveringDropdownRef.current) {
       hoverTimeoutRef.current = setTimeout(() => {
@@ -107,7 +103,6 @@ const Navbar = () => {
     }
   };
 
-  // Handle mouse enter on dropdown
   const handleMouseEnterDropdown = () => {
     isHoveringDropdownRef.current = true;
     if (hoverTimeoutRef.current) {
@@ -116,7 +111,6 @@ const Navbar = () => {
     }
   };
 
-  // Handle mouse leave from dropdown
   const handleMouseLeaveDropdown = () => {
     isHoveringDropdownRef.current = false;
     if (!isMobile) {
@@ -145,7 +139,6 @@ const Navbar = () => {
 
   const handleNavItemClick = (key, e) => {
     e.stopPropagation();
-
     if (isMobile) {
       e.preventDefault();
       if (hoveredContentKey === key) {
@@ -169,7 +162,7 @@ const Navbar = () => {
     router.push("/pricing");
   };
 
-  const handleWhyWeAreSpecial = (e) => {
+  const handleWhySageion = (e) => {
     if (menuOpen) {
       setMenuOpen(false);
       document.body.style.overflow = "";
@@ -184,7 +177,6 @@ const Navbar = () => {
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-  // Render content based on hovered key
   const renderContent = () => {
     switch (hoveredContentKey) {
       case "platform":
@@ -204,18 +196,35 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      {/* Logo with click handler */}
+      {/* Logo */}
       <div className={styles.logo} onClick={handleLogoClick}>
         <div className={styles.logoImg}>
           <img src={`${basePath}/logo/sageion-logo.svg`} alt="Sageion" />
         </div>
-         <h2>
-            <span className={styles.sageText}>Sage</span>
-            <span className={styles.ionText}>ion</span>
-          </h2>
+        <h2>
+          <span className={styles.sageText}>Sage</span>
+          <span className={styles.ionText}>ion</span>
+        </h2>
       </div>
 
-      {/* Burger Icon - Visible below 990px */}
+      {/* Desktop Trust Strip (Optional Visual Element) */}
+      {!isMobile && (
+        <div style={{ 
+          fontSize: '11px', 
+          color: '#64748b', 
+          display: 'flex', 
+          gap: '12px', 
+          marginLeft: '24px',
+          borderLeft: '1px solid #e2e8f0',
+          paddingLeft: '24px'
+        }}>
+          <span>⚙️ Runtime, not framework</span>
+          <span>🔒 Zero-data default</span>
+          <span>💰 No LLM token costs</span>
+        </div>
+      )}
+
+      {/* Burger Icon */}
       <div
         className={`${styles["burger-icon"]} ${isMobile ? styles.visible : ""}`}
         onClick={toggleMenu}
@@ -233,7 +242,8 @@ const Navbar = () => {
         id="nav-links"
       >
         <div className={styles.navList}>
-          {/* Platform */}
+          
+          {/* Features / Platform */}
           <div
             className={styles.hoverWrapper}
             onMouseEnter={() => handleMouseEnter("platform")}
@@ -247,11 +257,7 @@ const Navbar = () => {
                 <Link href="/platform">Features</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "platform" ? (
-                      <FaChevronUp />
-                    ) : (
-                      <FaChevronDown />
-                    )}
+                    {hoveredContentKey === "platform" ? <FaChevronUp /> : <FaChevronDown />}
                   </span>
                 )}
               </div>
@@ -277,21 +283,13 @@ const Navbar = () => {
                 <Link href="/solutions">Solutions</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "solutions" ? (
-                      <FaChevronUp />
-                    ) : (
-                      <FaChevronDown />
-                    )}
+                    {hoveredContentKey === "solutions" ? <FaChevronUp /> : <FaChevronDown />}
                   </span>
                 )}
               </div>
-
               {isMobile && hoveredContentKey === "solutions" && (
                 <div className={styles.mobileDropdownContent}>
-                  <Solutions
-                    onCloseModal={handleCloseModal}
-                    onCloseMenu={closeMenu}
-                  />
+                  <Solutions onCloseModal={handleCloseModal} onCloseMenu={closeMenu} />
                 </div>
               )}
             </li>
@@ -311,26 +309,19 @@ const Navbar = () => {
                 <Link href="/developers">Developers</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
-                    {hoveredContentKey === "developers" ? (
-                      <FaChevronUp />
-                    ) : (
-                      <FaChevronDown />
-                    )}
+                    {hoveredContentKey === "developers" ? <FaChevronUp /> : <FaChevronDown />}
                   </span>
                 )}
               </div>
               {isMobile && hoveredContentKey === "developers" && (
                 <div className={styles.mobileDropdownContent}>
-                  <Developers
-                    onCloseModal={handleCloseModal}
-                    onCloseMenu={closeMenu}
-                  />
+                  <Developers onCloseModal={handleCloseModal} onCloseMenu={closeMenu} />
                 </div>
               )}
             </li>
           </div>
 
-          {/* Pricing - No arrow icon, separate click handler */}
+          {/* Pricing */}
           <li
             className={styles.links}
             onClick={handlePricingClick}
@@ -339,13 +330,13 @@ const Navbar = () => {
             <Link href="/pricing">Pricing</Link>
           </li>
 
-          {/* Pricing - No arrow icon, separate click handler */}
+          {/* Why Sageion (Route remains /WhyWeAreSpecial) */}
           <li
             className={styles.links}
-            onClick={handleWhyWeAreSpecial}
+            onClick={handleWhySageion}
             style={{ display: "flex" }}
           >
-            <Link href="/WhyWeAreSpecial">WhyWeAreSpecial</Link>
+            <Link href="/WhyWeAreSpecial">Why Sageion</Link>
           </li>
         </div>
 
@@ -360,7 +351,7 @@ const Navbar = () => {
         </div>
       </ul>
 
-      {/* Desktop Auth Buttons - Hidden on mobile */}
+      {/* Desktop Auth Buttons */}
       <div
         className={`${styles["auth-buttons"]} ${isMobile ? styles.hidden : ""}`}
       >

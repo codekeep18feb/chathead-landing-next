@@ -1,658 +1,189 @@
-export const visualResponseDesigner = [
+// documentation/payload/versions/V2/platform/visualResponseDesigner.js
+
+const visualResponseDesignerPayload = [
   {
-    tag_type: "h3",
+    tag_type: "h2",
     text: "Visual Response Designer",
     selector_uid: "v2_visual_response_designer",
   },
   {
     tag_type: "p",
-    text: "The Visual Response Designer is a powerful no-code tool that lets you design exactly how your AI responses appear to users. Build stunning, interactive screens without writing a single line of code.",
+    text:
+      "The Visual Response Designer is where you tell the AI Agent what to " +
+      "render after an API call. Instead of returning raw JSON or a chat message, " +
+      "you design a structured screen — a card, a table, an approval dialog, a " +
+      "form — from the API's actual response shape.",
   },
 
-  // ============================================================
-  // WHAT IS THE VISUAL RESPONSE DESIGNER?
-  // ============================================================
   {
-    tag_type: "h4",
+    tag_type: "h3",
     text: "What is the Visual Response Designer?",
     selector_uid: "v2_what_is_visual_designer",
   },
   {
     tag_type: "p",
-    text: "The Visual Response Designer is a drag-and-drop interface that transforms raw API responses into beautiful, user-friendly messages. It's designed for product managers, support teams, and developers who want full control over their chat experience without writing code.",
-  },
-  {
-    tag_type: "callout",
-    type: "info",
-    title: "💡 Why Use the Visual Response Designer?",
-    children: [
-      {
-        tag_type: "ul",
-        items: [
-          {
-            text: "✅ No coding required — design visually, just like building a slide",
-          },
-          {
-            text: "✅ See exactly what your users will see, in real-time",
-          },
-          {
-            text: "✅ Transform data into tables, cards, lists, and styled text with one click",
-          },
-          {
-            text: "✅ Perfect for customer support teams, product managers, and non-technical users",
-          },
-        ],
-      },
-    ],
+    text:
+      "It is a no-code editor that takes the sample response from an API Config " +
+      "and lets you map each field into a UI component. The result is rendered by " +
+      "the same deterministic engine used across the platform — no LLM involvement, " +
+      "no risk of hallucination, no HTML injection risk.",
   },
 
-  // ============================================================
-  // KEY CONCEPTS
-  // ============================================================
   {
-    tag_type: "h4",
-    text: "Key Concepts",
-    selector_uid: "v2_visual_designer_concepts",
-  },
-  {
-    tag_type: "p",
-    text: "Understanding these core concepts will help you get started quickly:",
-  },
-  {
-    tag_type: "h5",
-    text: "📄 Screen",
-  },
-  {
-    tag_type: "p",
-    text: "A Screen is what your users see in the chat. Each screen can display different information. You can create:",
-  },
-  {
-    tag_type: "ul",
-    items: [
-      {
-        text: "Single Screen: All data appears on one screen (perfect for simple responses)",
-      },
-      {
-        text: "Multiple Screens: Each data item appears on its own screen (great for lists, search results, or multi-item responses)",
-      },
-    ],
-  },
-  {
-    tag_type: "h5",
-    text: "📋 Template",
-  },
-  {
-    tag_type: "p",
-    text: "A Template is the design of your response. It defines what information appears and how it's organized. Think of it like a slide design in PowerPoint — you design once, and it works for all your data.",
-  },
-  {
-    tag_type: "h5",
-    text: "🔄 Transformations",
-  },
-  {
-    tag_type: "p",
-    text: "Transformations are visual enhancements you can apply to your design with one click:",
-  },
-  {
-    tag_type: "ul",
-    items: [
-      {
-        text: "📊 Table View — Show data in a clean, organized table",
-      },
-      {
-        text: "🃏 Card View — Display each item as a beautiful card",
-      },
-      {
-        text: "📋 List View — Show items in a simple list format",
-      },
-      {
-        text: "🎨 Style Transformations — Highlight, bold, italicize, or underline text",
-      },
-    ],
-  },
-
-  // ============================================================
-  // GETTING STARTED
-  // ============================================================
-  {
-    tag_type: "h4",
-    text: "Getting Started",
+    tag_type: "h3",
+    text: "Getting started",
     selector_uid: "v2_visual_designer_getting_started",
-  },
-  {
-    tag_type: "p",
-    text: "Follow these steps to create your first visual response:",
   },
   {
     tag_type: "steps",
     items: [
       {
-        title: "Step 1: Paste Your Sample Response",
+        title: "Open the Preview Tester",
         content: [
-          {
-            tag_type: "p",
-            text: "Copy a sample JSON response from your API and paste it into the 'Sample Response' area. This gives the designer an example of your data structure.",
-          },
-          {
-            tag_type: "callout",
-            type: "info",
-            title: "💡 Tip",
-            children: [
-              {
-                tag_type: "p",
-                text: "Use a real response from your API to see exactly how your data will appear. The designer automatically generates a starting template from your sample.",
-              },
-            ],
-          },
+          { tag_type: "p", text: "From any API Config, click {{ Create Template }} for a specific status code." },
         ],
       },
       {
-        title: "Step 2: Click 'Render Preview'",
+        title: "Paste a sample response",
         content: [
-          {
-            tag_type: "p",
-            text: "This generates a visual preview of your response. You'll see how your data looks and can start designing.",
-          },
+          { tag_type: "p", text: "Use a real response from your API so the designer can show you every available field." },
         ],
       },
       {
-        title: "Step 3: Open the Visual Editor",
+        title: "Design the layout",
         content: [
-          {
-            tag_type: "p",
-            text: "Click 'Open Editor' to access the visual design interface. Here you can:",
-          },
-          {
-            tag_type: "ul",
-            items: [
-              {
-                text: "Drag rows to reorder content",
-              },
-              {
-                text: "Edit text directly inline",
-              },
-              {
-                text: "Add custom messages",
-              },
-              {
-                text: "Insert dynamic data fields",
-              },
-            ],
-          },
+          { tag_type: "p", text: "Pick a screen template (Card, Table, Timeline, Approval) and map each API field into a slot." },
         ],
       },
       {
-        title: "Step 4: Apply Transformations",
+        title: "Preview and save",
         content: [
-          {
-            tag_type: "p",
-            text: "Use the 'Start Wizard' button to transform your design:",
-          },
-          {
-            tag_type: "ul",
-            items: [
-              {
-                text: "Structure — Convert to Table, Cards, or List view",
-              },
-              {
-                text: "Media — Turn image URLs into actual pictures",
-              },
-              {
-                text: "Styles — Apply colors, bold, italic, and alignment",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: "Step 5: Save Your Design",
-        content: [
-          {
-            tag_type: "p",
-            text: "Click 'Use Template' or 'Save Configuration' to save your visual design. It's now ready for your users!",
-          },
+          { tag_type: "p", text: "The live preview uses the sample data. Save when it looks right." },
         ],
       },
     ],
   },
 
-  // ============================================================
-  // THE VISUAL EDITOR
-  // ============================================================
   {
-    tag_type: "h4",
+    tag_type: "h3",
     text: "The Visual Editor",
     selector_uid: "v2_visual_editor",
   },
   {
     tag_type: "p",
-    text: "The Visual Editor is where you design your responses. It's designed to be intuitive and powerful, like a slide editor:",
-  },
-  {
-    tag_type: "h5",
-    text: "🖱️ Drag & Drop Reordering",
-  },
-  {
-    tag_type: "p",
-    text: "Simply drag any row up or down to change the order of content. Your changes are reflected instantly in the preview.",
-  },
-  {
-    tag_type: "h5",
-    text: "✏️ Inline Editing",
-  },
-  {
-    tag_type: "p",
-    text: "Click the ✎ icon on any row to edit its content directly. You can:",
-  },
-  {
-    tag_type: "ul",
-    items: [
-      {
-        text: "Change text labels",
-      },
-      {
-        text: "Add custom messages",
-      },
-      {
-        text: "Insert dynamic data using the @ menu",
-      },
-    ],
-  },
-  {
-    tag_type: "h5",
-    text: "➕ Add Buttons & Button Groups",
-  },
-  {
-    tag_type: "p",
-    text: "Add interactive elements to your responses:",
-  },
-  {
-    tag_type: "ul",
-    items: [
-      {
-        text: "Single Buttons — Perfect for simple actions like 'Book Now' or 'Learn More'",
-      },
-      {
-        text: "Button Groups — Multiple buttons in a row for related actions",
-      },
-    ],
-  },
-  {
-    tag_type: "callout",
-    type: "success",
-    title: "💡 Pro Tip",
-    children: [
-      {
-        tag_type: "p",
-        text: "Use Button Groups to offer users choices. Each button can trigger different actions, like 'View Details', 'Book Now', or 'Contact Support'.",
-      },
-    ],
+    text:
+      "The editor is split into three panes: the field palette on the left " +
+      "(every field your API returns), the canvas in the middle, and the " +
+      "preview on the right. Drag fields into slots, choose UI components from " +
+      "a palette, and adjust styling within the guardrails the platform provides.",
   },
 
-  // ============================================================
-  // THE TRANSFORMATION WIZARD
-  // ============================================================
   {
-    tag_type: "h4",
+    tag_type: "h3",
     text: "The Transformation Wizard",
     selector_uid: "v2_transformation_wizard",
   },
   {
     tag_type: "p",
-    text: "The Transformation Wizard is your creative toolkit for enhancing responses. It walks you through three steps:",
+    text:
+      "For APIs that return flat data (like {{ {status: \"ok\", items: [...]} }}), " +
+      "the transformation wizard lets you declare how to reshape the response " +
+      "before rendering. For example: {{ items → filter where active === true }}, " +
+      "or {{ created_at → format as \"dd MMM yyyy\" }}. The transformations are " +
+      "declarative and auditable — no scripts.",
   },
 
   {
-    tag_type: "tabs",
-    items: [
-      {
-        label: "📐 Structural Transformations",
-        content: [
-          {
-            tag_type: "p",
-            text: "Change how your data is organized and displayed:",
-          },
-          {
-            tag_type: "table",
-            headers: ["Transformation", "What It Does", "Best For"],
-            rows: [
-              ["📊 Table View", "Organizes data into a clean table with headers and rows", "Comparing multiple items, structured data"],
-              ["🃏 Card View", "Shows each item as a separate card with a title and details", "Profiles, product listings, individual records"],
-              ["📋 List View", "Simple list format with each item on a new line", "Quick overviews, short lists"],
-              ["📝 JSON View", "Shows the raw data structure", "Debugging and technical reviews"],
-            ],
-          },
-          {
-            tag_type: "callout",
-            type: "info",
-            title: "💡 Card View Options",
-            children: [
-              {
-                tag_type: "p",
-                text: "Card View can be displayed vertically (scrolling down) or horizontally (scrolling sideways). Choose the direction that best fits your content.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: "🖼️ Media Transformations",
-        content: [
-          {
-            tag_type: "p",
-            text: "Transform image URLs into actual pictures users can see:",
-          },
-          {
-            tag_type: "ul",
-            items: [
-              {
-                text: "Select any image URL in your design",
-              },
-              {
-                text: "Click 'Render Images' to convert URLs to images",
-              },
-              {
-                text: "Adjust image size (width and height)",
-              },
-              {
-                text: "Toggle aspect ratio preservation",
-              },
-            ],
-          },
-          {
-            tag_type: "callout",
-            type: "info",
-            title: "📸 Image Rendering",
-            children: [
-              {
-                tag_type: "p",
-                text: "Images are rendered directly in the chat response. Users can click on images to view them full-size.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: "🎨 Style Transformations",
-        content: [
-          {
-            tag_type: "p",
-            text: "Apply visual styles to make your content stand out:",
-          },
-          {
-            tag_type: "table",
-            headers: ["Style", "Effect", "Use Case"],
-            rows: [
-              ["✨ Highlight", "Adds a yellow highlight background", "Drawing attention to important info"],
-              ["𝐁 Bold", "Makes text bold", "Emphasizing key points"],
-              ["𝐼 Italic", "Makes text italic", "Quotes, subtle emphasis"],
-              ["U̲ Underline", "Underlines text", "Links, important phrases"],
-              ["S̶t̶r̶i̶k̶e̶", "Strikes through text", "Completed items, deleted content"],
-            ],
-          },
-          {
-            tag_type: "h5",
-            text: "Text Alignment",
-          },
-          {
-            tag_type: "ul",
-            items: [
-              {
-                text: "⬅️ Left — Default alignment for most content",
-              },
-              {
-                text: "⬛ Center — Perfect for titles and announcements",
-              },
-              {
-                text: "➡️ Right — Good for numbers and dates",
-              },
-            ],
-          },
-          {
-            tag_type: "callout",
-            type: "success",
-            title: "💡 Combine Styles",
-            children: [
-              {
-                tag_type: "p",
-                text: "You can apply multiple styles at once! For example, highlight + bold makes important information really stand out.",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-
-  // ============================================================
-  // SINGLE SCREEN VS MULTIPLE SCREENS
-  // ============================================================
-  {
-    tag_type: "h4",
-    text: "Single Screen vs Multiple Screens",
+    tag_type: "h3",
+    text: "Single vs Multiple Screens",
     selector_uid: "v2_single_vs_multiple_screens",
   },
   {
     tag_type: "p",
-    text: "The Visual Response Designer automatically detects your data structure and suggests the best layout:",
+    text:
+      "By default, one API status → one screen. But if your API returns an array " +
+      "of items, you can configure the designer to produce multiple screens — one " +
+      "per item. This is how an agent that returns a menu shows 40 separate dish " +
+      "cards in a smooth carousel without any code.",
   },
 
   {
-    tag_type: "table",
-    headers: ["Layout Type", "When It's Used", "What Users See", "Example"],
-    rows: [
-      [
-        "Single Screen",
-        "Your data has a single item or metadata with arrays",
-        "All information on one screen",
-        "A hotel booking confirmation with guest details",
-      ],
-      [
-        "Multiple Screens",
-        "Your data has a list of items at the root or in an array",
-        "Each item appears on its own screen",
-        "A list of available rooms, each with its own screen",
-      ],
-    ],
-  },
-
-  {
-    tag_type: "callout",
-    type: "info",
-    title: "💡 How It Works",
-    children: [
-      {
-        tag_type: "p",
-        text: "The designer analyzes your data structure automatically. If you have a list of items, you'll get multiple screens. If you have a single object, you'll get a single screen. You can always adjust the design manually.",
-      },
-    ],
-  },
-
-  // ============================================================
-  // LIVE PREVIEW
-  // ============================================================
-  {
-    tag_type: "h4",
+    tag_type: "h3",
     text: "Live Preview",
     selector_uid: "v2_live_preview",
   },
   {
     tag_type: "p",
-    text: "The Visual Response Designer shows you exactly what your users will see, updated in real-time as you design:",
-  },
-  {
-    tag_type: "ul",
-    items: [
-      {
-        text: "👁️ See your changes instantly — no refresh needed",
-      },
-      {
-        text: "📱 Preview in Desktop or Mobile view",
-      },
-      {
-        text: "🔄 See how your design looks with different data",
-      },
-      {
-        text: "✅ Ensure everything looks perfect before saving",
-      },
-    ],
-  },
-  {
-    tag_type: "callout",
-    type: "success",
-    title: "💡 Pro Tip",
-    children: [
-      {
-        tag_type: "p",
-        text: "Use the Desktop/Mobile toggle to test how your design looks on different devices. This ensures a great experience for all users.",
-      },
-    ],
+    text:
+      "The live preview uses the sample response you pasted. Every change to " +
+      "the layout updates in real time. You can toggle dark/light mode and " +
+      "simulate mobile vs desktop viewports before saving.",
   },
 
-  // ============================================================
-  // SAVING & DEPLOYMENT
-  // ============================================================
-  {
-    tag_type: "h4",
-    text: "Saving & Deployment",
+    {
+    tag_type: "h3",
+    text: "Saving and Deployment",
     selector_uid: "v2_saving_deployment",
   },
   {
     tag_type: "p",
-    text: "Once your design is ready, saving it is simple:",
+    text:
+      "Saved templates are versioned. When you publish a template, every app " +
+      "that has attached the parent API Config immediately uses the new version " +
+      "on the next call. If a tenant admin updates a shared template, they see " +
+      "a list of every app that's attached to it — the platform blocks the " +
+      "update unless the admin confirms they intend every app to inherit the change.",
   },
-  {
-    tag_type: "steps",
-    items: [
-      {
-        title: "Review Your Design",
-        content: [
-          {
-            tag_type: "p",
-            text: "Check the preview to ensure everything looks perfect.",
-          },
-        ],
-      },
-      {
-        title: "Click 'Use Template'",
-        content: [
-          {
-            tag_type: "p",
-            text: "This saves your design to the configuration. If you're in the standalone tool, click 'Save Configuration'.",
-          },
-        ],
-      },
-      {
-        title: "Deploy to Users",
-        content: [
-          {
-            tag_type: "p",
-            text: "Your visual design is now live! Users will see the beautiful, professional responses you've created.",
-          },
-        ],
-      },
-    ],
-  },
+
   {
     tag_type: "callout",
     type: "warning",
-    title: "⚠️ Important",
+    title: "Cross-app template changes",
     children: [
       {
         tag_type: "p",
-        text: "When you save a design, all active clients (users) will be updated automatically to see the new response format.",
+        text:
+          "This is the same fail-hard guard as API configs and chains. If a " +
+          "template is attached to 4,000 restaurants and you're about to change " +
+          "the copy in the booking-confirmation card, the platform stops you " +
+          "and shows the list. You either accept the fan-out or build an " +
+          "app-scoped override for the apps that need a different template.",
       },
     ],
   },
 
-  // ============================================================
-  // BEST PRACTICES
-  // ============================================================
   {
-    tag_type: "h4",
-    text: "Best Practices",
+    tag_type: "h3",
+    text: "Best practices",
     selector_uid: "v2_visual_designer_best_practices",
-  },
-  {
-    tag_type: "p",
-    text: "Follow these tips to create the best user experience:",
   },
   {
     tag_type: "ul",
     items: [
-      {
-        text: "💡 Start simple — begin with a basic design and add complexity gradually",
-      },
-      {
-        text: "📱 Test on mobile — always preview your design in mobile view",
-      },
-      {
-        text: "🎯 Be consistent — use similar styles across all responses for brand coherence",
-      },
-      {
-        text: "📊 Use Card View for multi-item responses to improve readability",
-      },
-      {
-        text: "🎨 Apply styles sparingly — highlight only what's truly important",
-      },
-      {
-        text: "🔘 Use buttons to guide users to the next action",
-      },
+      { tag_type: "li", text: "Use a real sample response — not synthetic data — so the preview matches what real users see." },
+      { tag_type: "li", text: "Design the error states (400, 404, 409) before shipping the happy path. Users hit error states more than you think." },
+      { tag_type: "li", text: "Keep text templates short. The agent's UI is dense; long paragraphs crowd the action buttons." },
+      { tag_type: "li", text: "If two APIs return the same shape, build a shared template and attach it from both — do not duplicate the design." },
+      { tag_type: "li", text: "Test the mobile viewport. 70% of restaurant staff use tablets in portrait orientation." },
+      { tag_type: "li", text: "If a template has been running for 90+ days, review it against current API fields. Old templates quietly render blank slots when the API schema drifts." },
     ],
   },
 
-  // ============================================================
-  // SUMMARY
-  // ============================================================
   {
-    tag_type: "callout",
-    type: "success",
-    title: "✅ Visual Response Designer Overview Complete",
-    children: [
-      {
-        tag_type: "p",
-        text: "The Visual Response Designer is a no-code tool that empowers you to create beautiful, professional responses without writing code. Whether you're a product manager, support lead, or developer, you can design exactly what users see in the chat.",
-      },
-      {
-        tag_type: "p",
-        text: "Start with your sample data, design visually, and deploy to users instantly. No coding required.",
-      },
-    ],
+    tag_type: "h3",
+    text: "How this connects to the billing story",
+    selector_uid: "v2_visual_designer_billing",
   },
-
-  // ============================================================
-  // QUICK NAVIGATION
-  // ============================================================
   {
-    tag_type: "accordion",
-    title: "📖 Quick Navigation Guide",
-    children: [
-      {
-        tag_type: "ul",
-        items: [
-          {
-            text: "What is the Visual Response Designer? → Understand the tool",
-          },
-          {
-            text: "Getting Started → Create your first design in 5 steps",
-          },
-          {
-            text: "The Visual Editor → Drag, drop, and edit visually",
-          },
-          {
-            text: "The Transformation Wizard → Apply one-click enhancements",
-          },
-          {
-            text: "Single vs Multiple Screens → Choose the right layout",
-          },
-          {
-            text: "Live Preview → See your design in real-time",
-          },
-          {
-            text: "Best Practices → Tips for professional results",
-          },
-        ],
-      },
-    ],
+    tag_type: "p",
+    text:
+      "Every template that renders is one metered event on the parent app. " +
+      "Designing 40 templates doesn't change the billing — what matters is how " +
+      "many times each template actually renders in front of a user. That's " +
+      "why the metering is per-execution, not per-template. A single tenant " +
+      "admin can safely build a library of 200 templates for 70,000 restaurants " +
+      "without inflating anyone's bill.",
   },
 ];
+
+export default visualResponseDesignerPayload;

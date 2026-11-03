@@ -615,14 +615,15 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
 
   const handleScroll = (selector) => {
     console.log("Looking for element with selector:", selector);
-    console.log("inner config items")
     const element = document.getElementById(selector);
     console.log("Found element:", element);
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      // ⭐ FIX: Use native scrollIntoView and offset for fixed headers
+      const yOffset = -80; // Adjust this if your top nav covers the title
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      
     } else {
       console.warn(`Element with ID "${selector}" not found`);
     }
