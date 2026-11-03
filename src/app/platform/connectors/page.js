@@ -177,6 +177,22 @@ const ConnectorsPage = () => {
             calendar, Sheets, or any future integration — in parallel with your AI agent
             workflows, with zero shared credentials and zero UI rebuilds.
           </p>
+          <div style={{
+            margin: '16px auto 0',
+            padding: '12px 20px',
+            background: 'rgba(79, 70, 229, 0.08)',
+            border: '1px solid rgba(79, 70, 229, 0.2)',
+            borderRadius: '8px',
+            fontSize: '15px',
+            fontWeight: '600',
+            color: '#4f46e5',
+            maxWidth: '640px',
+            textAlign: 'center',
+          }}>
+            <strong>The catalog grows without any UI change.</strong>{" "}
+            Every new connector ships as a schema-driven operation — when Slack arrives,
+            your admin sees it instantly.
+          </div>
 
           <div className={styles.heroStats}>
             <div className={styles.heroStat}>
@@ -286,17 +302,15 @@ const ConnectorsPage = () => {
           {operations.map((provider, idx) => (
             <div
               key={idx}
-              className={`${styles.catalogCard} ${
-                provider.status !== "live" ? styles.catalogCardPending : ""
-              }`}
+              className={`${styles.catalogCard} ${provider.status !== "live" ? styles.catalogCardPending : ""
+                }`}
             >
               <div className={styles.catalogHeader}>
                 <span className={styles.catalogIcon}>{provider.icon}</span>
                 <span className={styles.catalogName}>{provider.provider}</span>
                 <span
-                  className={`${styles.catalogStatus} ${
-                    styles[`status-${provider.status}`]
-                  }`}
+                  className={`${styles.catalogStatus} ${styles[`status-${provider.status}`]
+                    }`}
                 >
                   {provider.status === "live" && "● Live"}
                   {provider.status === "pipeline" && "◐ Shipping Soon"}

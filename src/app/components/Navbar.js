@@ -1,3 +1,4 @@
+// src/app/components/Navbar.js
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -24,7 +25,6 @@ const Navbar = () => {
     const handleResize = () => {
       const isMobileView = window.innerWidth <= 990;
       setIsMobile(isMobileView);
-      // Close menu if switching to desktop
       if (!isMobileView && menuOpen) {
         setMenuOpen(false);
         document.body.style.overflow = "";
@@ -39,7 +39,6 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [menuOpen]);
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (hoverTimeoutRef.current) {
@@ -50,7 +49,6 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
-    // Toggle body scroll
     if (!menuOpen) {
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
@@ -207,7 +205,7 @@ const Navbar = () => {
         </h2>
       </div>
 
-      {/* Desktop Trust Strip (Optional Visual Element) */}
+      {/* Desktop Trust Strip */}
       {!isMobile && (
         <div style={{ 
           fontSize: '11px', 
@@ -254,7 +252,7 @@ const Navbar = () => {
               onClick={(e) => handleNavItemClick("platform", e)}
             >
               <div className={styles.linkContent}>
-                <Link href="/platform">Features</Link>
+                <Link href="/platform">Platform</Link>
                 {isMobile && (
                   <span className={styles.arrowIcon}>
                     {hoveredContentKey === "platform" ? <FaChevronUp /> : <FaChevronDown />}
@@ -330,7 +328,15 @@ const Navbar = () => {
             <Link href="/pricing">Pricing</Link>
           </li>
 
-          {/* Why Sageion (Route remains /WhyWeAreSpecial) */}
+          {/* Why Runtime (New direct link) */}
+          <li
+            className={styles.links}
+            style={{ display: "flex" }}
+          >
+            <Link href="/why-runtime">Why Runtime</Link>
+          </li>
+
+          {/* Why Sageion */}
           <li
             className={styles.links}
             onClick={handleWhySageion}

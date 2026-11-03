@@ -31,6 +31,7 @@ import {
   FaExclamationTriangle,
   FaTasks,
   FaBolt,
+  FaUsers,
 } from "react-icons/fa";
 
 const WhyWeAreSpecial = () => {
@@ -362,7 +363,7 @@ const WhyWeAreSpecial = () => {
       </section>
 
       {/* ============================================================
-      KEY FEATURES SECTION — all 8 hidden capabilities surfaced
+      KEY FEATURES SECTION
       ============================================================ */}
       <section id="key-features" className={styles.featuresSection} ref={(el) => (sectionRefs.current["key-features"] = el)}>
         <div className={styles.sectionContainer}>
@@ -378,9 +379,8 @@ const WhyWeAreSpecial = () => {
           </div>
 
           <div className={styles.featuresGrid}>
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 1 — HYBRID RSA + AES TOKEN ENCRYPTION (NEW)
-                ═══════════════════════════════════════════════════════════ */}
+            
+            {/* FEATURE 1 — HYBRID RSA + AES TOKEN ENCRYPTION */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("token-encryption")}>
                 <div className={styles.featureIcon} style={{ background: "#10B98120", color: "#10B981" }}>
@@ -415,9 +415,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 2 — DURABLE PAUSE & RESUME (REWRITTEN)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 2 — DURABLE PAUSE & RESUME */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("durable-async")}>
                 <div className={styles.featureIcon} style={{ background: "#EC489A20", color: "#EC489A" }}>
@@ -454,9 +452,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 3 — PARALLEL SIDE EFFECTS (REWRITTEN)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 3 — PARALLEL SIDE EFFECTS */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("parallel-actions")}>
                 <div className={styles.featureIcon} style={{ background: "#8B5CF620", color: "#8B5CF6" }}>
@@ -490,9 +486,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 4 — OPT-IN ATTACHMENT (EXPANDED)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 4 — OPT-IN ATTACHMENT */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("attachment-model")}>
                 <div className={styles.featureIcon} style={{ background: "#F59E0B20", color: "#F59E0B" }}>
@@ -529,9 +523,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 5 — FAIL-HARD VALIDATION (NEW TABLE)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 5 — FAIL-HARD VALIDATION */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("fail-hard")}>
                 <div className={styles.featureIcon} style={{ background: "#EF444420", color: "#EF4444" }}>
@@ -598,9 +590,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 6 — DETERMINISTIC RENDERING ENGINE (REWRITTEN)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 6 — DETERMINISTIC RENDERING ENGINE */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("rendering-engine")}>
                 <div className={styles.featureIcon} style={{ background: "#667EEA20", color: "#667EEA" }}>
@@ -637,9 +627,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 7 — SINGLE-API VS CHAIN INTENT MODES (NEW)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 7 — SINGLE-API VS CHAIN INTENT MODES */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("intent-modes")}>
                 <div className={styles.featureIcon} style={{ background: "#4BCF9E20", color: "#4BCF9E" }}>
@@ -672,9 +660,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-            {/* ═══════════════════════════════════════════════════════════
-                FEATURE 8 — CROSS-FIELD VALIDATION RULES (NEW)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 8 — CROSS-FIELD VALIDATION RULES */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("cross-field-validation")}>
                 <div className={styles.featureIcon} style={{ background: "#F9731620", color: "#F97316" }}>
@@ -708,9 +694,7 @@ const WhyWeAreSpecial = () => {
               )}
             </div>
 
-                        {/* ═══════════════════════════════════════════════════════════
-                FEATURE 9 — ZERO DATA STORAGE (KEPT)
-                ═══════════════════════════════════════════════════════════ */}
+            {/* FEATURE 9 — ZERO DATA STORAGE */}
             <div className={styles.featureCard}>
               <div className={styles.featureHeader} onClick={() => toggleFeature("zero-data")}>
                 <div className={styles.featureIcon} style={{ background: "#10B98120", color: "#10B981" }}>
@@ -737,6 +721,88 @@ const WhyWeAreSpecial = () => {
                     </ul>
                     <div className={styles.featureBenefit}>
                       <span>✅ Benefit: Safe to sell to high-stake franchise clients.</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* FEATURE 10 (GAP 1) — SOLO TO TEAM SCALING */}
+            <div className={styles.featureCard}>
+              <div className={styles.featureHeader} onClick={() => toggleFeature("solo-team")}>
+                <div className={styles.featureIcon} style={{ background: "#6366f120", color: "#6366f1" }}>
+                  <FaUsers />
+                </div>
+                                <div className={styles.featureTitle}>
+                  <h3>Solo → Team Scaling</h3>
+                  <p>The same agent serves a solo owner and a 40-person franchise team.</p>
+                </div>
+                <div className={styles.featureToggle}>
+                  {expandedFeature === "solo-team" ? <FaChevronUp /> : <FaChevronDown />}
+                </div>
+              </div>
+              {expandedFeature === "solo-team" && (
+                <div className={styles.featureContent}>
+                  <div className={styles.featureDescription}>
+                    <h4>From One Phone to a Full Organization</h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', marginBottom: '12px' }}>
+                      A single-franchise owner manages their store entirely from their phone.
+                      A 40-location chain has managers, accountants, warehouse staff, and shift
+                      supervisors all interacting with the same AI agent. No configuration
+                      change between the two.
+                    </p>
+                    <ul>
+                      <li><strong>Solo mode:</strong> one login, one dashboard, one AI agent that handles everything.</li>
+                      <li><strong>Team mode:</strong> a one-toggle switch activates RBAC, per-role UI, and audit trails.</li>
+                      <li>Role changes take effect instantly — no re-login required.</li>
+                      <li>When a solo owner signs a second location, the same agent scales without touching the config.</li>
+                    </ul>
+                    <div className={styles.featureBenefit}>
+                      <span>✅ Benefit: One product serves 5,000 independent restaurateurs and 500 franchise chains without forking the codebase.</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* FEATURE 11 (GAP 4) — ENTERPRISE SCALE MATH */}
+            <div className={styles.featureCard}>
+              <div className={styles.featureHeader} onClick={() => toggleFeature("enterprise-math")}>
+                <div className={styles.featureIcon} style={{ background: "#22c55e20", color: "#22c55e" }}>
+                  <FaRocket />
+                </div>
+                <div className={styles.featureTitle}>
+                  <h3>Architected for 70,000 Restaurants</h3>
+                  <p>The math behind the scale claim — not a marketing number.</p>
+                </div>
+                <div className={styles.featureToggle}>
+                  {expandedFeature === "enterprise-math" ? <FaChevronUp /> : <FaChevronDown />}
+                </div>
+              </div>
+              {expandedFeature === "enterprise-math" && (
+                <div className={styles.featureContent}>
+                  <div className={styles.featureDescription}>
+                    <h4>The Two-Tier Architecture at Scale</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', margin: '16px 0' }}>
+                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                        <div style={{ fontSize: '28px', fontWeight: '800', color: '#0f172a' }}>60,000</div>
+                        <div style={{ fontSize: '13px', fontWeight: '600', color: '#475569', marginTop: '4px' }}>Base Users</div>
+                        <div style={{ fontSize: '12px', color: '#64748b', marginTop: '8px' }}>Restaurant staff accessing pre-built agents. 1 attached app each. No customization.</div>
+                      </div>
+                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                        <div style={{ fontSize: '28px', fontWeight: '800', color: '#0f172a' }}>10,000</div>
+                        <div style={{ fontSize: '13px', fontWeight: '600', color: '#475569', marginTop: '4px' }}>Power Users</div>
+                        <div style={{ fontSize: '12px', color: '#64748b', marginTop: '8px' }}>Franchise managers and developers. ~7 apps each. Build workflows, override tenant defaults.</div>
+                      </div>
+                    </div>
+                    <ul>
+                      <li>One tenant admin team maintains the shared library — 90% of the work lives here.</li>
+                      <li>Each restaurant is one app on the tenant — inherits everything by attaching, without duplicating infrastructure.</li>
+                      <li>Metering is per-execution, so the CRM bills each restaurant directly at whatever granularity they choose.</li>
+                      <li>No additional infrastructure cost per restaurant — the shared library serves 70,000 apps from one config.</li>
+                    </ul>
+                    <div className={styles.featureBenefit}>
+                      <span>✅ Benefit: A CRM's CFO can answer "does this scale?" with arithmetic, not a sales call.</span>
                     </div>
                   </div>
                 </div>

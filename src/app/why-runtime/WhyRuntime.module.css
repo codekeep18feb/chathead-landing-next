@@ -1,0 +1,33 @@
+/* src/app/why-runtime/WhyRuntime.module.css */
+.page { max-width: 1100px; margin: 0 auto; padding: 80px 24px; color: #1a202c; }
+.hero { text-align: center; margin-bottom: 80px; }
+.badge { display: inline-block; padding: 6px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 100px; font-size: 13px; font-weight: 600; color: #991b1b; margin-bottom: 20px; }
+.heroTitle { font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+.highlight { background: linear-gradient(135deg, #4BCF9E, #667EEA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.heroSubtitle { font-size: 18px; color: #475569; max-width: 680px; margin: 0 auto; line-height: 1.6; }
+.section { margin-bottom: 80px; }
+.sectionTitle { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+.sectionSubtitle { font-size: 16px; color: #64748b; margin-bottom: 32px; }
+.tableWrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
+.table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table thead { background: #f8fafc; }
+.table th { padding: 16px; text-align: left; font-weight: 600; color: #0f172a; border-bottom: 2px solid #e2e8f0; }
+.table td { padding: 16px; border-bottom: 1px solid #f1f5f9; }
+.table tr:last-child td { border-bottom: none; }
+.aspectCell { font-weight: 600; color: #0f172a; }
+.frameworkCell { color: #64748b; }
+.sageionCell { color: #16a34a; font-weight: 600; }
+.cardGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.card { background: #fafafa; border: 1px solid #e2e8f0; border-radius: 16px; padding: 32px; }
+.cardIcon { font-size: 32px; margin-bottom: 16px; }
+.card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.card p { font-size: 15px; color: #475569; line-height: 1.7; margin-bottom: 12px; }
+.cardNote { font-size: 13px; color: #94a3b8; font-style: italic; border-left: 3px solid #cbd5e1; padding-left: 12px; }
+.ctaSection { text-align: center; padding: 64px 0; background: #0f172a; border-radius: 24px; color: white; }
+.ctaTitle { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+.ctaSubtitle { font-size: 16px; color: #cbd5e1; max-width: 620px; margin: 0 auto 32px; line-height: 1.6; }
+.ctaButtons { display: flex; gap: 12px; justify-content: center; }
+.primaryBtn, .secondaryBtn { padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+.primaryBtn { background: white; color: #0f172a; }
+.secondaryBtn { background: transparent; color: white; border: 1px solid #475569; }
+@media (max-width: 768px) { .heroTitle { font-size: 32px; } .cardGrid { grid-template-columns: 1fr; } }

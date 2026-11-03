@@ -40,13 +40,13 @@ const Footer = () => {
                 <Link href="/platform/connectors">Connector Framework</Link>
               </li>
               <li>
-                <Link href="/features">Auto-UI Generation</Link>
+                <Link href="/restaurant-operations">Restaurant Operations</Link>
               </li>
               <li>
-                <Link href="/security">Zero-Data Mode</Link>
+                <Link href="/security">Security & Compliance</Link>
               </li>
               <li>
-                <Link href="/WhyWeAreSpecial">Opt-In Attachment Model</Link>
+                <Link href="/identity">Identity Ownership</Link>
               </li>
             </ul>
           </div>
@@ -95,18 +95,18 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 5: Resources */}
+          {/* Column 5: Learn / Resources */}
           <div className={styles.linkColumn}>
-            <h4 className={styles.heading}>Resources</h4>
+            <h4 className={styles.heading}>Learn</h4>
             <ul className={styles.linkList}>
+              <li>
+                <Link href="/why-runtime">Runtime vs Framework</Link>
+              </li>
               <li>
                 <Link href="/WhyWeAreSpecial">Why Sageion</Link>
               </li>
               <li>
                 <Link href="/pricing">Pricing</Link>
-              </li>
-              <li>
-                <Link href="/blog">Blog</Link>
               </li>
               <li>
                 <Link href="/roadmap">Roadmap</Link>
