@@ -922,7 +922,7 @@ const AdminFeatures = () => {
           </div>
 
           {/* Architecture Diagram */}
-          <div className={styles.architectureDiagram}>
+          {/* <div className={styles.architectureDiagram}>
             <div className={styles.diagramPlaceholder}>
               <div className={styles.diagramContent}>
                 <span className={styles.placeholderIcon}>📐</span>
@@ -932,7 +932,7 @@ const AdminFeatures = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -1344,7 +1344,7 @@ const AdminFeatures = () => {
             TESTIMONIALS SECTION
             ============================================================ */}
 
-        <section
+        {/* <section
           id="testimonials"
           className={styles.testimonialsSection}
           ref={(el) => (sectionRefs.current.testimonials = el)}
@@ -1408,7 +1408,7 @@ const AdminFeatures = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* ============================================================
             FINAL CTA SECTION

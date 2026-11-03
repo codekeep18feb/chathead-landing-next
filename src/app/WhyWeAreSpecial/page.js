@@ -811,7 +811,7 @@ const WhyWeAreSpecial = () => {
       {/* ============================================================
       TESTIMONIALS SECTION
       ============================================================ */}
-      <section id="testimonials" className={styles.testimonialsSection} ref={(el) => (sectionRefs.current.testimonials = el)}>
+      {/* <section id="testimonials" className={styles.testimonialsSection} ref={(el) => (sectionRefs.current.testimonials = el)}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>⭐ Testimonials</span>
@@ -867,7 +867,7 @@ const WhyWeAreSpecial = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ============================================================
       FINAL CTA SECTION
