@@ -1,78 +1,137 @@
+// src/app/components/Footer.js
+"use client";
+
 import React from "react";
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
-export default function Footer() {
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
-      <div className={styles.grid}>
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          
+          {/* Column 1: Brand & Description */}
+          <div className={styles.brandColumn}>
+            <Link href="/" className={styles.logo}>
+              <span className={styles.logoIcon}>✨</span>
+              <span className={styles.logoText}>Sageion</span>
+            </Link>
+            <p className={styles.description}>
+              The deterministic AI Agent runtime for Restaurant CRMs. 
+              Turn existing APIs into enterprise-grade workflows with 
+              auto-generated UI, async webhooks, and zero data storage.
+            </p>
+            <Link href="/pricing" className={styles.ctaButton}>
+              Start Free Trial →
+            </Link>
+          </div>
 
-        {/* Brand */}
-        <div className={styles.column}>
-          <h3 className={styles.brand}>Sageion</h3>
-          <p className={styles.tagline}>
-            AI-powered chat for instant support, lead capture, and team collaboration.
-          </p>
+          {/* Column 2: Platform */}
+          <div className={styles.linkColumn}>
+            <h4 className={styles.heading}>Platform</h4>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/ai-agent-configuration">AI Agent Builder</Link>
+              </li>
+              <li>
+                <Link href="/platform/connectors">Connector Framework</Link>
+              </li>
+              <li>
+                <Link href="/features">Auto-UI Generation</Link>
+              </li>
+              <li>
+                <Link href="/security">Zero-Data Mode</Link>
+              </li>
+              <li>
+                <Link href="/WhyWeAreSpecial">Opt-In Attachment Model</Link>
+              </li>
+            </ul>
+          </div>
 
-          <a href="https://sageion.com" target="_blank" rel="noopener noreferrer">
-            <button className={styles.ctaBtn}>Try Sageion Free →</button>
-          </a>
+          {/* Column 3: Solutions */}
+          <div className={styles.linkColumn}>
+            <h4 className={styles.heading}>Solutions</h4>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/solutions/restaurant-crms">Restaurant OS / CRMs</Link>
+              </li>
+              <li>
+                <Link href="/solutions/franchise-management">Franchise Management</Link>
+              </li>
+              <li>
+                <Link href="/solutions/pos-order-workflows">POS & Order Workflows</Link>
+              </li>
+              <li>
+                <Link href="/solutions/enterprise-chains">Enterprise Chains</Link>
+              </li>
+              <li>
+                <Link href="/solutions/startup-saas">Startup SaaS</Link>
+              </li>
+            </ul>
+          </div>
 
+          {/* Column 4: Developers */}
+          <div className={styles.linkColumn}>
+            <h4 className={styles.heading}>Developers</h4>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/documentation">Documentation</Link>
+              </li>
+              <li>
+                <Link href="/documentation">API Reference</Link>
+              </li>
+              <li>
+                <Link href="/documentation">Auth Integration</Link>
+              </li>
+              <li>
+                <Link href="/documentation">Chain Builder</Link>
+              </li>
+              <li>
+                <Link href="/changelog">Changelog</Link>
+              </li>
+            </ul>
+          </div>
 
+          {/* Column 5: Resources */}
+          <div className={styles.linkColumn}>
+            <h4 className={styles.heading}>Resources</h4>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/WhyWeAreSpecial">Why Sageion</Link>
+              </li>
+              <li>
+                <Link href="/pricing">Pricing</Link>
+              </li>
+              <li>
+                <Link href="/blog">Blog</Link>
+              </li>
+              <li>
+                <Link href="/roadmap">Roadmap</Link>
+              </li>
+              <li>
+                <Link href="/contact_us">Book a Demo</Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        {/* Product */}
-        <div className={styles.column}>
-          <h4>Platform</h4>
-          <ul>
-            <li>AI Chatbot</li>
-            <li>Live Chat</li>
-            <li>Unified Inbox</li>
-            <li>Lead Generation</li>
-            <li>RAG Engine</li>
-          </ul>
+        {/* Bottom Bar */}
+        <div className={styles.bottomBar}>
+          <div className={styles.copyright}>
+            © {currentYear} Sageion — All rights reserved.
+          </div>
+          <div className={styles.trustSignals}>
+            <span>🔒 You own your users & auth</span>
+            <span>⚡ No LLM token costs</span>
+            <span>🛡️ Zero-data by default</span>
+          </div>
         </div>
-
-        {/* Solutions */}
-        <div className={styles.column}>
-          <h4>Solutions</h4>
-          <ul>
-            <li>For SaaS Startups</li>
-            <li>For SMBs</li>
-            <li>For Agencies</li>
-            <li>For Education</li>
-            <li>For Enterprises</li>
-          </ul>
-        </div>
-
-        {/* Developers */}
-        <div className={styles.column}>
-          <h4>Developers</h4>
-          <ul>
-            <li>Docs</li>
-            <li>API</li>
-            <li>Auth</li>
-            <li>CMS Plugins</li>
-            <li>Changelog</li>
-          </ul>
-        </div>
-
-        {/* Resources */}
-        <div className={styles.column}>
-          <h4>Resources</h4>
-          <ul>
-            <li>What We Solve</li>
-            <li>Pricing</li>
-            <li>Blog</li>
-            <li>Roadmap</li>
-            <li>Demo</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div className={styles.bottomBar}>
-        <p>© {new Date().getFullYear()} Sageion — All rights reserved.</p>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

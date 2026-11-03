@@ -1,94 +1,202 @@
+/* src/app/components/Footer.module.css */
+
 .footer {
-  width: 100%;
-  background: #0f0f0f;
-  color: #e8e8e8;
-  padding: 60px 40px 30px;
-  font-family: sans-serif;
+  background-color: #0a0a0a;
+  color: #a1a1aa;
+  padding: 80px 0 40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  border-top: 1px solid #27272a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto 40px auto;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
 }
 
-.column h4 {
-  font-size: 1rem;
-  margin-bottom: 12px;
+/* ============================================================
+   BRAND COLUMN
+   ============================================================ */
+
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.logoIcon {
+  font-size: 24px;
+}
+
+.logoText {
   color: #ffffff;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.column ul {
-  list-style: none;
+.description {
+  color: #a1a1aa;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 320px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #0a0a0a;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.ctaButton:hover {
+  background-color: #e4e4e7;
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   LINK COLUMNS
+   ============================================================ */
+
+.linkColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.linkList {
+  list-style: none; /* Removes the ugly bullets */
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.column ul li {
-  margin: 8px 0;
-  font-size: 0.9rem;
-  color: #c8c8c8;
-  cursor: pointer;
+.linkList a {
+  color: #a1a1aa;
+  text-decoration: none; /* Removes the default blue underline */
+  font-size: 14px;
+  line-height: 1.5;
   transition: color 0.2s ease;
 }
 
-.column ul li:hover {
-  color: #ffffff;
+.linkList a:hover {
+  color: #ffffff; /* Turns white on hover */
 }
 
-.brand {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #ffffff;
-  margin-bottom: 8px;
-}
-
-.tagline {
-  font-size: 0.95rem;
-  color: #cccccc;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.ctaBtn {
-  background: #ffffff;
-  color: #000000;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-weight: 600;
-}
-
-.ctaBtn:hover {
-  background: #e2e2e2;
-}
+/* ============================================================
+   BOTTOM BAR & TRUST SIGNALS
+   ============================================================ */
 
 .bottomBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 32px;
+  border-top: 1px solid #27272a;
+  gap: 16px;
   text-align: center;
-  font-size: 0.85rem;
-  color: #999999;
-  padding-top: 20px;
-  border-top: 1px solid #222222;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+.copyright {
+  color: #71717a;
+  font-size: 14px;
+}
+
+.trustSignals {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: #a1a1aa;
+  font-size: 13px;
+  font-weight: 500;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trustSignals span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  }
+  
+  .brandColumn {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .brandColumn {
+    grid-column: 1 / -1;
+  }
+
   .footer {
-    padding: 50px 20px 25px;
+    padding: 60px 0 40px;
   }
 
-  .ctaBtn {
-    width: 100%;
-    text-align: center;
+  .description {
+    max-width: 100%;
   }
 
-  .brand {
-    font-size: 1.3rem;
+  .bottomBar {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .trustSignals {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -20,7 +20,7 @@ const VALUE_PROPS = [
     icon: "🔗",
     title: "One Config, Infinite Reuse",
     description:
-      "Define your API connection once, then reuse it across any intent, form, or lead‑gen flow. Your chatbot grows smarter with every integration, not more complex.",
+      "Define your API connection once, then reuse it across any intent or workflow. Your AI agent grows smarter with every integration, not more complex.",
     stat: "1:Many",
     statLabel: "Config Reuse",
   },
@@ -40,14 +40,17 @@ const VALUE_PROPS = [
     stat: "All",
     statLabel: "Auth Methods",
   },
-  {
-    icon: "🤖",
-    title: "From Lead Gen to Transactional",
-    description:
-      "The same API configuration powers both your AI bot and your Lead Generation bot. Collect leads, process bookings, or execute complex actions – all from one place.",
-    stat: "2x",
-    statLabel: "Faster Launch",
-  },
+
+  // ⭐ [LEADGEN_FLAG] Hidden until `leadgen` is re-enabled in global feature flags.
+  // {
+  //   icon: "🤖",
+  //   title: "From Lead Gen to Transactional",
+  //   description:
+  //     "The same API configuration powers both your AI bot and your Lead Generation bot. Collect leads, process bookings, or execute complex actions – all from one place.",
+  //   stat: "2x",
+  //   statLabel: "Faster Launch",
+  // },
+  
   {
     icon: "📋",
     title: "One‑Click cURL Import",
@@ -63,7 +66,7 @@ const PROBLEM_SOLUTION = [
   {
     problem: "Your chatbot can chat, but it can't actually do anything.",
     solution:
-      "Our platform connects your chatbot directly to your backend APIs. Booking rooms, checking availability, placing orders – all handled automatically.",
+      "Our platform connects your AI agent directly to your backend APIs. Booking rooms, checking availability, placing orders – all handled automatically.",
   },
   {
     problem: "Every new integration means weeks of development.",
@@ -73,7 +76,7 @@ const PROBLEM_SOLUTION = [
   {
     problem: "Authentication and security are a nightmare.",
     solution:
-      "We support API keys, Bearer tokens, JWT, and custom headers out of the box. No proxies, no middleware – just secure, direct connections.",
+      "We support API keys, Bearer tokens, JWT, custom headers, and even in-chat OTP authentication out of the box. No proxies, no middleware – just secure, direct connections.",
   },
 ];
 
@@ -113,19 +116,22 @@ const BENEFITS = [
     icon: "♻️",
     title: "Unified Config",
     description:
-      "Use the same API config across your AI bot, lead gen bot, and forms. One setup, infinite use cases.",
+      "Use the same API config across all your AI intents and workflows. One setup, infinite use cases.",
   },
-  {
-    icon: "🚀",
-    title: "Instant Lead Gen",
-    description:
-      "Connect lead forms directly to your backend. No separate integration required – your existing API config handles everything.",
-  },
+
+  // ⭐ [LEADGEN_FLAG] Hidden until `leadgen` is re-enabled in global feature flags.
+  // {
+  //   icon: "🚀",
+  //   title: "Instant Lead Gen",
+  //   description:
+  //     "Connect lead forms directly to your backend. No separate integration required – your existing API config handles everything.",
+  // },
+
   {
     icon: "🔄",
     title: "Auth‑Ready",
     description:
-      "Supports API keys, Bearer tokens, JWT, and custom headers. Never worry about auth again.",
+      "Supports API keys, Bearer tokens, JWT, custom headers, and in-chat OTP flows. Never worry about auth again.",
   },
 ];
 
@@ -139,7 +145,7 @@ const SOCIAL_PROOF = [
   },
   {
     quote:
-      "I'm not a developer, but I was able to connect our order management API and set up a lead gen bot in the same afternoon. This is a game-changer.",
+      "I'm not a developer, but I was able to connect our order management API and set up a complete transactional workflow in the same afternoon. This is a game-changer.",
     role: "Product Manager",
     industry: "E‑commerce",
   },
@@ -169,7 +175,7 @@ const HOW_IT_WORKS = [
     step: "3",
     title: "Deploy & Go Live",
     description:
-      "Your AI bot now executes real actions. Use the same config for lead gen, forms, and more – all from one place.",
+      "Your AI agent now executes real actions. Use the same config for any workflow, form, or intent – all from one place.",
   },
 ];
 
@@ -262,6 +268,68 @@ const AiAgentWorkflowInfo = () => {
         showStats={true}
       />
 
+      {/* ─── Secondary Auth Highlight (NEW) ───────────────────────────── */}
+      <section className={styles.secondaryAuthSection}>
+        <div className={styles.secondaryAuthContent}>
+          <div className={styles.secondaryAuthText}>
+            <span className={styles.sectionBadge}>🔐 Zero-Friction Security</span>
+            <h2 className={styles.sectionTitle}>
+              Don't force users to log into the CRM.
+              <br />
+              <span className={styles.highlight}>Authenticate inside the chat.</span>
+            </h2>
+            <p className={styles.secondaryAuthDesc}>
+              Your Restaurant owners shouldn't have to jump through hoops just to approve a refund. 
+              With our **Secondary Auth** engine, users can securely authenticate directly within the AI 
+              chat interface via a seamless two-way OTP flow.
+            </p>
+            <ul className={styles.secondaryAuthList}>
+              <li>
+                <strong>Out-of-the-box OTP Flow:</strong> Just add your `/send_otp` and `/verify_otp` endpoints. We handle the rest.
+              </li>
+              <li>
+                <strong>Session-Level Persistence:</strong> Once authenticated inside the chat, they can execute protected API actions for the entire session without re-logging in.
+              </li>
+              <li>
+                <strong>Decoupled from the CRM:</strong> If their CRM session expires, their AI Agent session remains secure and functional.
+              </li>
+            </ul>
+          </div>
+          <div className={styles.secondaryAuthVisual}>
+            <div className={styles.authFlowCard}>
+              <div className={styles.authFlowStep}>
+                <span className={styles.authStepNum}>1</span>
+                <div>
+                  <strong>User asks to issue refund</strong>
+                  <span>Intent: Refund Request</span>
+                </div>
+              </div>
+              <div className={styles.authFlowStep}>
+                <span className={styles.authStepNum}>2</span>
+                <div>
+                  <strong>Agent detects auth required</strong>
+                  <span>Prompts user for OTP in chat</span>
+                </div>
+              </div>
+              <div className={styles.authFlowStep}>
+                <span className={styles.authStepNum}>3</span>
+                <div>
+                  <strong>User verifies OTP</strong>
+                  <span>Session token generated securely</span>
+                </div>
+              </div>
+              <div className={styles.authFlowStepSuccess}>
+                <span>✅</span>
+                <div>
+                  <strong>Refund executed</strong>
+                  <span>API called with new session token</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Benefits ──────────────────────────────────────────────────── */}
       <section className={styles.valuePrpWrap}>
         <div className={styles.benefitsStickyNote}>
@@ -339,45 +407,6 @@ const AiAgentWorkflowInfo = () => {
           ))}
         </div>
       </section>
-
-      {/* ─── CTA ───────────────────────────────────────────────────────── */}
-      {/* <section className={styles.ctaGlowSection}>
-        <div className={styles.ctaGlowOrb}></div>
-        <div className={styles.ctaGlowOrb2}></div>
-        <div className={styles.ctaContent}>
-          <div className={styles.ctaPulseRing}>
-            <span className={styles.ctaPulseText}>🚀 Free Trial</span>
-          </div>
-          <h2 className={styles.ctaGlowTitle}>
-            Connect Your APIs Today.
-            <br />
-            <span className={styles.ctaGradientText}>Launch Tomorrow.</span>
-          </h2>
-          <p className={styles.ctaGlowSubtitle}>
-            See exactly how your API connects to our platform. No commitment, no
-            engineering overhead.
-          </p>
-          <div className={styles.ctaGlowButtons}>
-            <button className={styles.ctaGlowButton}>
-              Start Free Trial
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12H19M19 12L12 5M19 12L12 19"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-            <button className={styles.ctaOutlineButton}>Book a Demo</button>
-          </div>
-          <div className={styles.ctaTrustSignals}>
-            <span>🔒 Secure & Encrypted</span>
-            <span>⚡ Instant Setup</span>
-            <span>💳 No Credit Card Required</span>
-          </div>
-        </div>
-      </section> */}
 
       <ReusableCTASection />
 

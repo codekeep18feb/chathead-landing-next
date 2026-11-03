@@ -1,4 +1,4 @@
-// RoadmapNextPage.jsx - Light Background Version
+// src/app/components/HeroSection/RoadmapNextPage.jsx
 import React from "react";
 import styles from "./RoadmapNextPage.module.css";
 
@@ -7,25 +7,25 @@ export default function RoadmapNextPage() {
     {
       icon: "🎙️",
       title: "Voice-Enabled AI Chat",
-      description: "Natural conversations with voice input",
-      status: "upcoming",
-    },
-    {
-      icon: "🔁",
-      title: "Workflow Automations",
-      description: "Connect apps and automate tasks",
+      description: "Speak directly to the AI agent. Native voice input and real-time audio synthesis for a hands-free restaurant operator experience.",
       status: "in-progress",
     },
     {
-      icon: "🧾",
-      title: "CRM + Email Sync",
-      description: "Seamless integration with your stack",
-      status: "planned",
+      icon: "📞",
+      title: "PBX / SIP AI Agents",
+      description: "Direct SIP trunk integration. The AI agent answers the restaurant phone line, handles reservations, and routes calls deterministically.",
+      status: "upcoming",
     },
     {
-      icon: "❤️",
-      title: "Sentiment Analysis",
-      description: "Smart insights from conversations",
+      icon: "🔌",
+      title: "Expanded Connector Library",
+      description: "Slack, WhatsApp Business, Stripe, HubSpot, Twilio, and custom REST endpoints. Every new connector ships automatically without any UI rebuild.",
+      status: "in-progress",
+    },
+    {
+      icon: "🔍",
+      title: "Semantic API Discovery",
+      description: "Point the AI agent at your API docs and let it auto-generate intent mappings and sample payloads with a single click.",
       status: "planned",
     },
   ];
@@ -43,7 +43,7 @@ export default function RoadmapNextPage() {
         <span className={styles.badge}>🚀 ROADMAP</span>
         <h2 className={styles.mainTitle}>What's next for Sageion?</h2>
         <p className={styles.subtitle}>
-          Our journey to revolutionize AI customer support
+          Pushing the boundaries of what an AI agent layer can do for restaurant operations
         </p>
       </div>
 
@@ -101,8 +101,8 @@ export default function RoadmapNextPage() {
       <div className={styles.footerNote}>
         <div className={styles.noteIcon}>💡</div>
         <p>
-          Our roadmap is shaped by user feedback and emerging AI innovation —
-          ensuring Sageion evolves with your business needs.
+          Our roadmap is shaped by user feedback and emerging AI innovation — ensuring
+          Sageion evolves with your restaurant operations.
         </p>
       </div>
     </div>
