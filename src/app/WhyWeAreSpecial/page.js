@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./WhyWeAreSpecial.module.css";
-import { isEnabled } from "../config/features"; // Using the flag system
 
 // Icons
 import {
@@ -9,12 +8,9 @@ import {
   FaShieldAlt,
   FaPlug,
   FaBrain,
-  FaUsers,
   FaNetworkWired,
   FaPaintBrush,
-  FaBolt,
   FaLock,
-  FaServer,
   FaRobot,
   FaArrowRight,
   FaCheckCircle,
@@ -24,7 +20,11 @@ import {
   FaWaveSquare,
   FaChevronDown,
   FaChevronUp,
-  FaComments,
+  FaLayerGroup,
+  FaCodeBranch,
+  FaMagic,
+  FaServer,
+  FaLink,
 } from "react-icons/fa";
 
 const WhyWeAreSpecial = () => {
@@ -162,23 +162,23 @@ const WhyWeAreSpecial = () => {
           </h1>
 
           <p className={styles.heroSubtitle}>
-            Turn existing backend APIs (Petpooja, Posist, Rista) into intelligent, multi-step AI agents. 
-            Generate dynamic UI screens, inject human-in-the-loop approvals, and process async tasks — 
-            <strong> without changing your core systems</strong>.
+            You keep your backend. We give you the intelligent orchestration layer.
+            Turn existing APIs (Petpooja, Posist, Rista) into deterministic AI agents 
+            with auto-generated UI screens, async webhooks, and human-in-the-loop approvals.
           </p>
 
           <div className={styles.heroStats}>
             <div className={styles.heroStat}>
               <span className={styles.heroStatNumber}>0</span>
-              <span className={styles.heroStatLabel}>Code Changes Needed</span>
+              <span className={styles.heroStatLabel}>Data Stored by Default</span>
             </div>
             <div className={styles.heroStat}>
               <span className={styles.heroStatNumber}>100%</span>
-              <span className={styles.heroStatLabel}>API-First Architecture</span>
+              <span className={styles.heroStatLabel}>Deterministic API Execution</span>
             </div>
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNumber}>Async</span>
-              <span className={styles.heroStatLabel}>Long-Running Workflows</span>
+              <span className={styles.heroStatNumber}>Opt-In</span>
+              <span className={styles.heroStatLabel}>Tenant to App Attachment</span>
             </div>
           </div>
 
@@ -192,9 +192,9 @@ const WhyWeAreSpecial = () => {
           </div>
 
           <div className={styles.heroTrust}>
-            <span>🔒 No credit card required</span>
+            <span>🔒 You own your users & auth</span>
             <span>⚡ 3-minute setup</span>
-            <span>🌟 You own your users & auth</span>
+            <span>🌟 No LLM token costs</span>
           </div>
         </div>
 
@@ -219,7 +219,7 @@ const WhyWeAreSpecial = () => {
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>😓 The Reality</span>
             <h2 className={styles.sectionTitle}>
-              Why Restaurant AI Projects <span className={styles.gradientText}>Fail</span>
+              Why Most Restaurant AI Projects <span className={styles.gradientText}>Fail</span>
             </h2>
             <p className={styles.sectionSubtitle}>
               You already have the data. Why is building an AI layer on top of it so hard?
@@ -230,7 +230,7 @@ const WhyWeAreSpecial = () => {
             <div className={styles.problemCard}>
               <div className={styles.problemIcon}>⏰</div>
               <h3>Months of Backend Dev</h3>
-              <p>Building custom integrations, RAG pipelines, and new UIs takes months. By the time it launches, your menu or workflow has changed.</p>
+              <p>Building custom integrations, RAG pipelines, and new UIs takes months. By the time it launches, your menus or workflows have changed.</p>
             </div>
 
             <div className={styles.problemCard}>
@@ -275,7 +275,7 @@ const WhyWeAreSpecial = () => {
                 <FaNetworkWired />
               </div>
               <h3>API-First AI Agents</h3>
-              <p>Connect your existing APIs. The AI agent maps intents to your backend workflows, handling auth and data transformation.</p>
+              <p>Connect your existing CRMs. The AI agent maps intents to your backend workflows, handling auth and data transformation.</p>
             </div>
 
             <div className={styles.solutionCard}>
@@ -298,8 +298,8 @@ const WhyWeAreSpecial = () => {
               <div className={styles.solutionIcon} style={{ background: "#EC489A20", color: "#EC489A" }}>
                 <FaShieldAlt />
               </div>
-              <h3>Deterministic Responses</h3>
-              <p>Tolerate LLM for intent matching, but rely on your APIs for the truth. Never hallucinate a price or order status again.</p>
+              <h3>Zero Data Storage</h3>
+              <p>No API request or response is stored by default. History is enabled per-API and only persists during a session. Explicit opt-in only.</p>
             </div>
           </div>
 
@@ -379,8 +379,8 @@ const WhyWeAreSpecial = () => {
                   <FaBrain />
                 </div>
                 <div className={styles.featureTitle}>
-                  <h3>Generative AI Forms</h3>
-                  <p>Intelligent UX screens that pre-fill what users already told you</p>
+                  <h3>Bulk Intent Generation</h3>
+                  <p>Point at your APIs and chains, and we generate intents in bulk.</p>
                 </div>
                 <div className={styles.featureToggle}>
                   {expandedFeature === "gen-forms" ? <FaChevronUp /> : <FaChevronDown />}
@@ -392,43 +392,130 @@ const WhyWeAreSpecial = () => {
                   <div className={styles.featureDescription}>
                     <h4>How It Works</h4>
                     <ul>
-                      <li>User says: "Book a table for 4 for tonight"</li>
-                      <li>AI detects BOOKING intent</li>
-                      <li>Extracts: {`{ guests: 4, date: "today" }`}</li>
-                      <li>Generates custom UI form with pre-filled values</li>
-                      <li>User only adds missing info (e.g., table preference)</li>
-                      <li>Complete data → Trigger your existing booking API</li>
+                      <li>Select your backend APIs and configured chains</li>
+                      <li>Platform auto-generates intent mapping logic</li>
+                      <li>Extracts required fields: {`{ guests, date, table }`}</li>
+                      <li>Generates the initial AI routing logic</li>
+                      <li>You curate and deploy instantly</li>
                     </ul>
                     <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: 70% faster workflow completion</span>
+                      <span>✅ Benefit: Skip weeks of prompt engineering</span>
                     </div>
-                  </div>
-
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>📋</span>
-                        <span>Form Generation Demo</span>
-                        <span className={styles.placeholderSubtext}>Placeholder: Screenshot / GIF here</span>
-                      </div>
-                    </div>
-                    <button className={styles.watchDemoBtn} onClick={() => openVideoModal("form-generation")}>
-                      <FaPlayCircle /> Watch Demo
-                    </button>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Feature 2: API Chaining */}
+            {/* Feature 2: Curated Text Templates */}
             <div className={styles.featureCard}>
-              <div className={styles.featureHeader} onClick={() => toggleFeature("api-chaining")}>
+              <div className={styles.featureHeader} onClick={() => toggleFeature("curated-text")}>
                 <div className={styles.featureIcon} style={{ background: "#667EEA20", color: "#667EEA" }}>
+                  <FaLayerGroup />
+                </div>
+                <div className={styles.featureTitle}>
+                  <h3>Curated Text Templates</h3>
+                  <p>Control the exact output shape with Jinja templates.</p>
+                </div>
+                <div className={styles.featureToggle}>
+                  {expandedFeature === "curated-text" ? <FaChevronUp /> : <FaChevronDown />}
+                </div>
+              </div>
+
+              {expandedFeature === "curated-text" && (
+                <div className={styles.featureContent}>
+                  <div className={styles.featureDescription}>
+                    <h4>The Right Output Type</h4>
+                    <p style={{ fontSize: '14px', color: '#64748b', marginBottom: '15px' }}>
+                      Not every API response should become a form. For any API, you decide the output shape:
+                    </p>
+                    <ul>
+                      <li><strong>UI screen:</strong> A form, table, or approval card generated from the response</li>
+                      <li><strong>Curated text:</strong> A Jinja template you control, always rendering the same shape</li>
+                      <li><strong>Both:</strong> A text answer followed by an interactive UI</li>
+                    </ul>
+                    <div className={styles.featureBenefit}>
+                      <span>✅ Benefit: Zero hallucination. Total brand control.</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Feature 3: Opt-In Attachment Model */}
+            <div className={styles.featureCard}>
+              <div className={styles.featureHeader} onClick={() => toggleFeature("attachment-model")}>
+                <div className={styles.featureIcon} style={{ background: "#F59E0B20", color: "#F59E0B" }}>
+                  <FaLink />
+                </div>
+                <div className={styles.featureTitle}>
+                  <h3>Opt-In Attachment Model</h3>
+                  <p>Tenant to App scoping without breaking siblings.</p>
+                </div>
+                <div className={styles.featureToggle}>
+                  {expandedFeature === "attachment-model" ? <FaChevronUp /> : <FaChevronDown />}
+                </div>
+              </div>
+
+              {expandedFeature === "attachment-model" && (
+                <div className={styles.featureContent}>
+                  <div className={styles.featureDescription}>
+                    <h4>Enterprise Scalability</h4>
+                    <ul>
+                      <li>Create a default base app with tenant-level API configs and chains</li>
+                      <li>Other apps can <strong>explicitly attach</strong> the resources they need</li>
+                      <li>Fail-hard guards prevent a rogue app from hitting tenant-wide endpoints</li>
+                      <li>Detach cleanly without breaking siblings</li>
+                    </ul>
+                    <div className={styles.featureBenefit}>
+                      <span>✅ Benefit: Deliver high-business customization safely.</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Feature 4: Connectors on Every Node */}
+            <div className={styles.featureCard}>
+              <div className={styles.featureHeader} onClick={() => toggleFeature("connectors")}>
+                <div className={styles.featureIcon} style={{ background: "#EC489A20", color: "#EC489A" }}>
                   <FaProjectDiagram />
                 </div>
                 <div className={styles.featureTitle}>
+                  <h3>Connectors on Every Node</h3>
+                  <p>Tag connectors onto any step. Sync or async.</p>
+                </div>
+                <div className={styles.featureToggle}>
+                  {expandedFeature === "connectors" ? <FaChevronUp /> : <FaChevronDown />}
+                </div>
+              </div>
+
+              {expandedFeature === "connectors" && (
+                <div className={styles.featureContent}>
+                  <div className={styles.featureDescription}>
+                    <h4>Fire-and-Forget Architecture</h4>
+                    <ul>
+                      <li>Attach Slack, Google, WhatsApp, or custom webhooks</li>
+                      <li>Support for manual, sync, and async nodes</li>
+                      <li>Failures don't block the main AI conversation flow</li>
+                      <li>SQS queue handles decoupling</li>
+                    </ul>
+                    <div className={styles.featureBenefit}>
+                      <span>✅ Benefit: Never let a slow API break the UX.</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            {/* Feature 5: Visual API Chaining */}
+            <div className={styles.featureCard}>
+              <div className={styles.featureHeader} onClick={() => toggleFeature("api-chaining")}>
+                <div className={styles.featureIcon} style={{ background: "#8B5CF620", color: "#8B5CF6" }}>
+                  <FaCodeBranch />
+                </div>
+                <div className={styles.featureTitle}>
                   <h3>Visual API Chaining</h3>
-                  <p>Complex workflows built without writing a single line of code</p>
+                  <p>Build multi-step workflows by just connecting dots.</p>
                 </div>
                 <div className={styles.featureToggle}>
                   {expandedFeature === "api-chaining" ? <FaChevronUp /> : <FaChevronDown />}
@@ -438,279 +525,53 @@ const WhyWeAreSpecial = () => {
               {expandedFeature === "api-chaining" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
-                    <h4>Chain Everything</h4>
+                    <h4>No-Code Ops</h4>
                     <ul>
-                      <li>Conditional logic: If/Else/Else If</li>
-                      <li>Multiple API calls in sequence</li>
-                      <li>Error handling and retry logic</li>
-                      <li>Data transformation between steps</li>
-                      <li>Parallel execution support</li>
+                      <li>Connect APIs visually on a canvas</li>
+                      <li>Map outputs to inputs with type coercion</li>
+                      <li>Handle 404s and 409s with fallback branches</li>
+                      <li>Save customized UI screens at the end of any chain</li>
                     </ul>
                     <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Replace 1000+ lines of code</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🔗</span>
-                        <span>API Chaining Workflow</span>
-                        <span className={styles.placeholderSubtext}>Placeholder: Screenshot / Diagram here</span>
-                      </div>
-                    </div>
-                    <button className={styles.watchDemoBtn} onClick={() => openVideoModal("api-chaining")}>
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Feature 3: True Async Webhooks */}
-            <div className={styles.featureCard}>
-              <div className={styles.featureHeader} onClick={() => toggleFeature("async-webhooks")}>
-                <div className={styles.featureIcon} style={{ background: "#EC489A20", color: "#EC489A" }}>
-                  <FaWaveSquare />
-                </div>
-                <div className={styles.featureTitle}>
-                  <h3>Async & Human-in-the-Loop</h3>
-                  <p>No 30-second timeout — pause for manual approvals</p>
-                </div>
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "async-webhooks" ? <FaChevronUp /> : <FaChevronDown />}
-                </div>
-              </div>
-
-              {expandedFeature === "async-webhooks" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Process Anything</h4>
-                    <ul>
-                      <li>No hard timeout (30s, 60s, etc.)</li>
-                      <li>WebSocket callback for results</li>
-                      <li>Pause workflow for manual manager approval</li>
-                      <li>Process can take seconds, minutes, hours, or days</li>
-                      <li>Automatic retry and error handling</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Handle any process, no matter how long</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🔄</span>
-                        <span>Async Webhook Flow</span>
-                        <span className={styles.placeholderSubtext}>Placeholder: Screenshot / Diagram here</span>
-                      </div>
-                    </div>
-                    <button className={styles.watchDemoBtn} onClick={() => openVideoModal("webhook-async")}>
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Feature 4: Dynamic Screen Generation */}
-            <div className={styles.featureCard}>
-              <div className={styles.featureHeader} onClick={() => toggleFeature("screen-gen")}>
-                <div className={styles.featureIcon} style={{ background: "#8B5CF620", color: "#8B5CF6" }}>
-                  <FaPaintBrush />
-                </div>
-                <div className={styles.featureTitle}>
-                  <h3>Dynamic Screen Generation</h3>
-                  <p>Multiple screens from a single API response</p>
-                </div>
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "screen-gen" ? <FaChevronUp /> : <FaChevronDown />}
-                </div>
-              </div>
-
-              {expandedFeature === "screen-gen" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Screen Capabilities</h4>
-                    <ul>
-                      <li>Template-based rendering</li>
-                      <li>Style transformations (bold, highlight, buttons)</li>
-                      <li>Structural transformations (tables, cards, lists)</li>
-                      <li>Media transformations (images, PDFs)</li>
-                      <li>Multiple screens from array data</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: No hardcoded UI — adapts to your data</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🎨</span>
-                        <span>Dynamic Screen Demo</span>
-                        <span className={styles.placeholderSubtext}>Placeholder: Screenshot / Demo here</span>
-                      </div>
+                      <span>✅ Benefit: Replace 1000+ lines of code.</span>
                     </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Feature 5: Multi-Admin (Reframed) */}
+            {/* Feature 6: Zero Data Storage */}
             <div className={styles.featureCard}>
-              <div className={styles.featureHeader} onClick={() => toggleFeature("multi-admin")}>
-                <div className={styles.featureIcon} style={{ background: "#0EA5E920", color: "#0EA5E9" }}>
-                  <FaUsers />
-                </div>
-                <div className={styles.featureTitle}>
-                  <h3>Multi-Admin & RBAC</h3>
-                  <p>Enterprise role management for franchise hierarchies</p>
-                </div>
-                <div className={styles.featureToggle}>
-                  {expandedFeature === "multi-admin" ? <FaChevronUp /> : <FaChevronDown />}
-                </div>
-              </div>
-
-              {expandedFeature === "multi-admin" && (
-                <div className={styles.featureContent}>
-                  <div className={styles.featureDescription}>
-                    <h4>Admin Capabilities</h4>
-                    <ul>
-                      <li>Granular role-based access control (RBAC)</li>
-                      <li>Franchise owner vs. Store manager views</li>
-                      <li>Approve high-value actions (refunds, large orders)</li>
-                      <li>Audit trails for all AI agent actions</li>
-                    </ul>
-                    <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Enterprise-grade governance</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>👥</span>
-                        <span>Admin Panel Interface</span>
-                        <span className={styles.placeholderSubtext}>Placeholder: Screenshot / Demo here</span>
-                      </div>
-                    </div>
-                    <button className={styles.watchDemoBtn} onClick={() => openVideoModal("admin-panel")}>
-                      <FaPlayCircle /> Watch Demo
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Feature 6: Security & Auth */}
-            <div className={styles.featureCard}>
-              <div className={styles.featureHeader} onClick={() => toggleFeature("security")}>
+              <div className={styles.featureHeader} onClick={() => toggleFeature("zero-data")}>
                 <div className={styles.featureIcon} style={{ background: "#10B98120", color: "#10B981" }}>
-                  <FaLock />
+                  <FaShieldAlt />
                 </div>
                 <div className={styles.featureTitle}>
-                  <h3>Enterprise-Grade Security</h3>
-                  <p>No XSS attacks, no stored scripts, complete safety</p>
+                  <h3>Zero Data Storage</h3>
+                  <p>No request/response saved by default.</p>
                 </div>
                 <div className={styles.featureToggle}>
-                  {expandedFeature === "security" ? <FaChevronUp /> : <FaChevronDown />}
+                  {expandedFeature === "zero-data" ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
 
-              {expandedFeature === "security" && (
+              {expandedFeature === "zero-data" && (
                 <div className={styles.featureContent}>
                   <div className={styles.featureDescription}>
-                    <h4>Security Features</h4>
+                    <h4>Privacy-First Architecture</h4>
                     <ul>
-                      <li>No HTML/JS stored in database</li>
-                      <li>Template + transformations applied client-side</li>
-                      <li>Primary + Secondary authentication</li>
-                      <li>Role-Based Access Control (RBAC)</li>
-                      <li>Secure API key management</li>
+                      <li>We do not save API requests or responses</li>
+                      <li>History is explicitly opt-in per API</li>
+                      <li>Session-only persistence</li>
+                      <li>Enterprise-grade data safety</li>
                     </ul>
                     <div className={styles.featureBenefit}>
-                      <span>✅ Benefit: Safe, secure, compliant</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.featureVisual}>
-                    <div className={styles.featureScreenshot}>
-                      <div className={styles.screenshotPlaceholder}>
-                        <span className={styles.placeholderIcon}>🔐</span>
-                        <span>Security Architecture</span>
-                        <span className={styles.placeholderSubtext}>Placeholder: Security diagram here</span>
-                      </div>
+                      <span>✅ Benefit: Safe to sell to high-stake franchise clients.</span>
                     </div>
                   </div>
                 </div>
               )}
             </div>
-
-            {/* --- LEGACY FEATURES (Hidden under flags) --- */}
-
-            {/* RAG Engine (Hidden) */}
-            {isEnabled("faqQna") && (
-              <div className={styles.featureCard}>
-                <div className={styles.featureHeader} onClick={() => toggleFeature("rag")}>
-                  <div className={styles.featureIcon} style={{ background: "#F59E0B20", color: "#F59E0B" }}>
-                    <FaRobot />
-                  </div>
-                  <div className={styles.featureTitle}>
-                    <h3>Built-in RAG Engine</h3>
-                    <p>Context-aware AI without paying per-query to OpenAI</p>
-                  </div>
-                  <div className={styles.featureToggle}>
-                    {expandedFeature === "rag" ? <FaChevronUp /> : <FaChevronDown />}
-                  </div>
-                </div>
-                {expandedFeature === "rag" && (
-                  <div className={styles.featureContent}>
-                    <div className={styles.featureDescription}>
-                      <h4>RAG Capabilities</h4>
-                      <ul>
-                        <li>Ingest websites, PDFs, documents</li>
-                        <li>Semantic search across your knowledge base</li>
-                        <li>Context-aware responses</li>
-                        <li>No token costs — fixed pricing</li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Live Chat (Hidden) */}
-            {isEnabled("liveChat") && (
-              <div className={styles.featureCard}>
-                <div className={styles.featureHeader} onClick={() => toggleFeature("live-chat")}>
-                  <div className={styles.featureIcon} style={{ background: "#0EA5E920", color: "#0EA5E9" }}>
-                    <FaComments />
-                  </div>
-                  <div className={styles.featureTitle}>
-                    <h3>Live Chat</h3>
-                    <p>Real-time agent collaboration</p>
-                  </div>
-                  <div className={styles.featureToggle}>
-                    {expandedFeature === "live-chat" ? <FaChevronUp /> : <FaChevronDown />}
-                  </div>
-                </div>
-                {expandedFeature === "live-chat" && (
-                  <div className={styles.featureContent}>
-                    <div className={styles.featureDescription}>
-                      <h4>Chat Capabilities</h4>
-                      <ul>
-                        <li>Multi-admin support with role-based access</li>
-                        <li>Unified inbox across all websites</li>
-                        <li>Smart agent routing and handover</li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
           </div>
         </div>
       </section>
@@ -723,71 +584,63 @@ const WhyWeAreSpecial = () => {
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>🏗️ Architecture</span>
             <h2 className={styles.sectionTitle}>
-              Built Different. <span className={styles.gradientText}>Works Better.</span>
+              Deterministic by <span className={styles.gradientText}>Design.</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              The three-layer architecture that makes Sageion infinitely more powerful.
+              The model decides what the user wants. The runtime decides what happens next.
             </p>
           </div>
 
+          {/* Deterministic vs LLM Table */}
           <div className={styles.architectureLayers}>
-            <div className={styles.architectureLayer}>
-              <div className={styles.layerNumber}>1</div>
+            <div className={styles.architectureLayer} style={{ width: '100%' }}>
               <div className={styles.layerContent}>
                 <div className={styles.layerHeader}>
                   <div className={styles.layerIcon} style={{ background: "#4BCF9E20", color: "#4BCF9E" }}>
-                    <FaPaintBrush />
+                    <FaServer />
                   </div>
-                  <h3>Presentation Layer</h3>
+                  <h3>LLM Tolerant Architecture</h3>
                 </div>
-                <p>Dynamic UI generation from API responses. No hardcoded screens.</p>
-                <ul className={styles.layerDetails}>
-                  <li><FaCheckCircle /> Templated responses with Nunjucks</li>
-                  <li><FaCheckCircle /> Style transformations (bold, highlight, buttons)</li>
-                  <li><FaCheckCircle /> Structural transformations (tables, cards, lists)</li>
-                  <li><FaCheckCircle /> Media transformations (images, PDFs)</li>
-                  <li><FaCheckCircle /> Multiple screens from single API response</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.architectureLayer}>
-              <div className={styles.layerNumber}>2</div>
-              <div className={styles.layerContent}>
-                <div className={styles.layerHeader}>
-                  <div className={styles.layerIcon} style={{ background: "#667EEA20", color: "#667EEA" }}>
-                    <FaNetworkWired />
-                  </div>
-                  <h3>Orchestration Layer</h3>
+                <p>We use LLMs where it's safe (intent matching) and deterministic APIs where it matters (data retrieval).</p>
+                
+                <div style={{ overflowX: 'auto', marginTop: '20px' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+                    <thead>
+                      <tr style={{ background: '#f8fafc', textAlign: 'left' }}>
+                        <th style={{ padding: '12px', borderBottom: '2px solid #e2e8f0' }}>Concern</th>
+                        <th style={{ padding: '12px', borderBottom: '2px solid #e2e8f0' }}>Deterministic</th>
+                        <th style={{ padding: '12px', borderBottom: '2px solid #e2e8f0' }}>LLM-Allowed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>Intent classification</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>—</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0', color: '#10b981' }}>✅</td>
+                      </tr>
+                      <tr>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>API URL / method / auth</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0', color: '#10b981' }}>✅</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>❌</td>
+                      </tr>
+                      <tr>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>Response content</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0', color: '#10b981' }}>✅</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>❌</td>
+                      </tr>
+                      <tr>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>Template rendering</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0', color: '#10b981' }}>✅</td>
+                        <td style={{ padding: '12px', borderBottom: '1px solid #e2e8f0' }}>❌</td>
+                      </tr>
+                      <tr>
+                        <td style={{ padding: '12px' }}>Data storage</td>
+                        <td style={{ padding: '12px', color: '#10b981' }}>✅ (off by default)</td>
+                        <td style={{ padding: '12px' }}>❌</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <p>Intent → API/Chain → Response screens with dynamic forms.</p>
-                <ul className={styles.layerDetails}>
-                  <li><FaCheckCircle /> Generative AI form creation with pre-filled values</li>
-                  <li><FaCheckCircle /> Complex API chaining with conditional logic</li>
-                  <li><FaCheckCircle /> True async webhook support (no 30s timeout)</li>
-                  <li><FaCheckCircle /> Human-in-the-loop manual pauses</li>
-                  <li><FaCheckCircle /> Session memory across all actions</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.architectureLayer}>
-              <div className={styles.layerNumber}>3</div>
-              <div className={styles.layerContent}>
-                <div className={styles.layerHeader}>
-                  <div className={styles.layerIcon} style={{ background: "#F59E0B20", color: "#F59E0B" }}>
-                    <FaPlug />
-                  </div>
-                  <h3>Integration Layer</h3>
-                </div>
-                <p>Connect to anything without changing your systems.</p>
-                <ul className={styles.layerDetails}>
-                  <li><FaCheckCircle /> Primary + Secondary authentication (Bearer, API Key, Basic)</li>
-                  <li><FaCheckCircle /> Protected and public API support</li>
-                  <li><FaCheckCircle /> Webhook callbacks for long-running processes</li>
-                  <li><FaCheckCircle /> No database access required</li>
-                  <li><FaCheckCircle /> Multi-tenant ready from day one</li>
-                </ul>
               </div>
             </div>
           </div>
@@ -821,7 +674,7 @@ const WhyWeAreSpecial = () => {
               </div>
             </div>
 
-                        <div className={styles.workflowCard}>
+            <div className={styles.workflowCard}>
               <div className={styles.workflowIcon}>📦</div>
               <h3>Order Status & Tracking</h3>
               <p>Users ask "Where is my order?". The AI hits your POS API and generates a custom UI timeline of the order status.</p>
@@ -926,9 +779,19 @@ const WhyWeAreSpecial = () => {
               <span className={styles.positive}>True Async Webhooks</span>
             </div>
             <div className={styles.comparisonRow}>
+              <span>Data Storage</span>
+              <span className={styles.negative}>Stores everything</span>
+              <span className={styles.positive}>Zero by default</span>
+            </div>
+            <div className={styles.comparisonRow}>
+              <span>Attachment Model</span>
+              <span className={styles.negative}>All-or-nothing</span>
+              <span className={styles.positive}>Opt-in per app</span>
+            </div>
+            <div className={styles.comparisonRow}>
               <span>Role Management</span>
               <span className={styles.negative}>Basic access control</span>
-              <span className={styles.positive}>Granular RBAC for franchises</span>
+                            <span className={styles.positive}>Granular RBAC for franchises</span>
             </div>
             <div className={styles.comparisonRow}>
               <span>Core System Changes</span>
