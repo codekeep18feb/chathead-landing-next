@@ -1,0 +1,415 @@
+/* src/app/solutions/[useCase]/SolutionDetail.module.css */
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  color: #111827;
+  font-family: inherit;
+}
+
+/* ============== HERO ============== */
+.hero {
+  padding: 60px 0 40px;
+  text-align: center;
+}
+
+.heroInner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.backLink {
+  display: inline-block;
+  font-size: 14px;
+  color: #6b7280;
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #111827;
+}
+
+.heroIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  background: linear-gradient(135deg, #4bcf9e15, #4d6bdf15);
+  border-radius: 24px;
+  margin-bottom: 24px;
+}
+
+.heroEmoji {
+  font-size: 44px;
+  line-height: 1;
+}
+
+.heroTitle {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.heroLead {
+  font-size: 18px;
+  line-height: 1.65;
+  color: #4b5563;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ============== SECTIONS ============== */
+.section {
+  padding: 40px 0;
+}
+
+.sectionInner {
+  max-width: 100%;
+}
+
+.sectionHeader {
+  margin-bottom: 28px;
+}
+
+.sectionBadge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #4bcf9e;
+  background: #4bcf9e12;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0f172a;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.sectionSubtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ============== PROBLEM ============== */
+.problemText {
+  font-size: 17px;
+  line-height: 1.75;
+  color: #374151;
+  margin: 0;
+  padding: 24px 28px;
+  background: #f9fafb;
+  border-left: 4px solid #ef4444;
+  border-radius: 8px;
+}
+
+/* ============== HOW IT WORKS ============== */
+.howItWorksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.howItWorksStep {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.howItWorksStep:hover {
+  border-color: #4bcf9e;
+  box-shadow: 0 4px 12px #4bcf9e10;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4bcf9e, #4d6bdf);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.stepContent {
+  flex: 1;
+}
+
+.stepText {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #374151;
+  margin: 0;
+}
+
+/* ============== WORKFLOW EXAMPLE ============== */
+.workflowCard {
+  background: #0f172a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+}
+
+.workflowCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.workflowDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #475569;
+}
+
+.workflowDot:nth-child(1) {
+  background: #ef4444;
+}
+
+.workflowDot:nth-child(2) {
+  background: #f59e0b;
+}
+
+.workflowDot:nth-child(3) {
+  background: #10b981;
+}
+
+.workflowCardTitle {
+  margin-left: 12px;
+  font-size: 13px;
+  color: #94a3b8;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+.workflowSteps {
+  list-style: none;
+  padding: 20px 24px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.workflowStep {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2e8f0;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+.workflowStepArrow {
+  flex-shrink: 0;
+  color: #4bcf9e;
+  font-weight: 700;
+}
+
+.workflowCardFooter {
+  padding: 12px 24px;
+  background: #1e293b;
+  border-top: 1px solid #334155;
+}
+
+.workflowFooterText {
+  font-size: 12px;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* ============== OUTCOMES ============== */
+.outcomesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.outcomeCard {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 20px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+}
+
+.outcomeCheck {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.outcomeText {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #065f46;
+  margin: 0;
+}
+
+/* ============== CTA ============== */
+.ctaSection {
+  padding: 60px 0 0;
+}
+
+.ctaCard {
+  text-align: center;
+  padding: 48px 32px;
+  background: linear-gradient(135deg, #f0fdf4, #eff6ff);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.ctaTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 12px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.ctaSubtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0 auto 28px;
+  max-width: 520px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.ctaPrimaryBtn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.ctaPrimaryBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+}
+
+.ctaSecondaryBtn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.ctaSecondaryBtn:hover {
+  background: #f9fafb;
+}
+
+.ctaTrust {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 768px) {
+  .page {
+    padding: 0 16px 60px;
+  }
+
+  .hero {
+    padding: 40px 0 24px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .heroLead {
+    font-size: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 22px;
+  }
+
+  .outcomesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaTitle {
+    font-size: 22px;
+  }
+
+  .howItWorksStep {
+    padding: 16px;
+  }
+
+  .problemText {
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .workflowSteps {
+    padding: 16px;
+    font-size: 13px;
+  }
+}

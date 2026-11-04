@@ -16,6 +16,9 @@ export default function WhyRuntimePage() {
     { aspect: "Deterministic routing", framework: "Custom — usually LLM-allowed", sageion: "LLM classifies intent only", },
     { aspect: "Time to first workflow", framework: "Weeks", sageion: "Days", },
     { aspect: "Ops burden", framework: "Yours", sageion: "Sageion's", },
+    { aspect: "Billing attribution", framework: "You build it", sageion: "Per-execution (app_name + uid)" },
+    { aspect: "Data custody", framework: "Full context required", sageion: "Opaque uid only" },
+    { aspect: "Billing lock-in", framework: "Bundled / contractual", sageion: "Designed for exit" },
   ];
 
   return (
@@ -91,6 +94,20 @@ export default function WhyRuntimePage() {
               a new UI form. You own it forever.
             </p>
           </div>
+
+          <div className={styles.card}>
+  <div className={styles.cardIcon}>💰</div>
+  <h3>Metering, Not Custody</h3>
+  <p>
+    Every execution carries app_name and uid. That's the entire billing surface.
+    You build the invoice, not the pipeline. The runtime never holds PII, order
+    history, or pricing — only a reference you can resolve.
+  </p>
+  <p className={styles.cardNote}>
+    In a framework, you build both the metering and the custody layer. Every
+    dollar of revenue needs a data pipeline.
+  </p>
+</div>
 
           <div className={styles.card}>
             <div className={styles.cardIcon}>🛡️</div>

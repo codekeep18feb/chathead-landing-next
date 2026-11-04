@@ -1,87 +1,186 @@
+// src/app/components/blogs_items/blog/page.js
 "use client";
-import React from "react";
+
+import React, { useMemo, useState } from "react";
 import blogSty from "./blogStyle.module.css";
 import { FaClock, FaCalendarAlt } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import Link from "next/link";
-import blogPosts from "./blogPosts";
+import {
+  getPublishedPosts,
+  formatDate,
+} from "./blogPosts";
 
 const Blog = () => {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const [query, setQuery] = useState("");
+
+  // ✅ Only published posts (future posts filtered out automatically)
+  const publishedPosts = useMemo(() => getPublishedPosts(), []);
+
+  // The banner is the most recent published post
+  const featuredPost = publishedPosts[0] || null;
+
+  // Filter by search across title / excerpt / tags / category
+  const filteredPosts = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return publishedPosts;
+    return publishedPosts.filter((post) => {
+      const haystack = [
+        post.title,
+        post.excerpt,
+        post.category,
+        ...(post.tags || []),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return haystack.includes(q);
+    });
+  }, [query, publishedPosts]);
+
+  // Non-featured posts shown in the "Recent articles" list
+  const listPosts = useMemo(() => {
+    if (!featuredPost) return filteredPosts;
+    const filtered = query.trim()
+      ? filteredPosts
+      : filteredPosts.filter((post) => post.id !== featuredPost.id);
+    return filtered;
+  }, [filteredPosts, featuredPost, query]);
+
   return (
     <div className={blogSty.container}>
+      {/* ============ SEARCH ============ */}
       <div className={blogSty.searchWrap}>
         <IoSearch className={blogSty.searchIcon} size={28} />
         <input
           type="text"
           placeholder="Search articles..."
           className={blogSty["input-box"]}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
+        {query && (
+          <button
+            type="button"
+            className={blogSty.clearSearch}
+            onClick={() => setQuery("")}
+            aria-label="Clear search"
+          >
+            ✕
+          </button>
+        )}
       </div>
 
-      <div className={blogSty.banner}>
-        <img
-          src="https://media.licdn.com/dms/image/v2/D5612AQG_V2Dd6m-07Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1691073649914?e=2147483647&v=beta&t=q29TzpL-kNYH6djQJ-q53B6YgnX1QoFWR3LxiKcnNMM"
-          alt="Chat Solution"
-        />
-        <div className={blogSty.banner_content}>
-          <h3>
-            Great Customer Service as a Marketing Strategy: Turning Happy
-            Customers into Loyal Advocates
-          </h3>
-          <p>
-            <div className={blogSty.bannerIc}>
-              {/* <FaUser size={18} /> */}
-              <img src="https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2ZpbGUlMjBwaWN8ZW58MHx8MHx8fDA%3D" />
-              Justyna Polaczyk
-            </div>
-
-            <div className={blogSty.bannerIc}>
-              <span>
-                <FaClock size={18} />
+      {/* ============ FEATURED BANNER ============ */}
+      {featuredPost && !query.trim() && (
+        <Link
+          href={`/blog/${featuredPost.slug}`}
+          className={blogSty.banner}
+        >
+          <img src={featuredPost.image} alt={featuredPost.title} />
+          <div className={blogSty.banner_content}>
+            {featuredPost.category && (
+              <span className={blogSty.bannerCategory}>
+                {featuredPost.category}
               </span>
-              3 min read
-            </div>
-
-            <div className={blogSty.bannerIc}>
-              <span>
-                <FaCalendarAlt size={18} />
+            )}
+            <h3>{featuredPost.title}</h3>
+            <p className={blogSty.bannerMeta}>
+              <span className={blogSty.bannerIc}>
+                <span className={blogSty.bannerAvatar}>
+                  {featuredPost.author.charAt(0)}
+                </span>
+                {featuredPost.author}
               </span>
-              Feb 28
-            </div>
-          </p>
-        </div>
-      </div>
 
+              <span className={blogSty.bannerIc}>
+                <FaClock size={16} />
+                {featuredPost.readTime}
+              </span>
+
+              <span className={blogSty.bannerIc}>
+                <FaCalendarAlt size={16} />
+                {formatDate(featuredPost.publishedAt)}
+              </span>
+            </p>
+          </div>
+        </Link>
+      )}
+
+      {/* ============ ARTICLES LIST ============ */}
       <div className={blogSty.articles_wrap}>
-        <h1>Recent articles</h1>
-        <div className={blogSty.articles_content}>
-          {blogPosts.map((post) => (
-            <div key={post.id} className={blogSty.article}>
-              <div className={blogSty.article_img}>
-                <img src={post.image} alt="Article thumbnail" />
-              </div>
-              <div className={blogSty.text_content}>
-                <p>
-                  <span>{post.readTime}</span>
-                  <span>{post.date}</span>
-                  <span>{post.author}</span>
-                </p>
-                <h2>
-                  <Link href={post.link} className={blogSty.heading}>
-                    {post.title}
+        <h1>{query.trim() ? "Search results" : "Recent articles"}</h1>
+
+        {listPosts.length === 0 ? (
+          <div className={blogSty.emptyState}>
+            <span className={blogSty.emptyIcon}>📭</span>
+            <h3>
+              {query.trim()
+                ? `No articles match "${query}"`
+                : "No articles yet"}
+            </h3>
+            <p>
+              {query.trim()
+                ? "Try a different search term, or browse all articles."
+                : "Check back soon — new articles are on the way."}
+            </p>
+            {query.trim() && (
+              <button
+                type="button"
+                className={blogSty.emptyResetBtn}
+                onClick={() => setQuery("")}
+              >
+                Clear search
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className={blogSty.articles_content}>
+            {listPosts.map((post) => (
+              <div key={post.id} className={blogSty.article}>
+                <div className={blogSty.article_img}>
+                  <Link href={`/blog/${post.slug}`}>
+                    <img src={post.image} alt={post.title} />
                   </Link>
-                </h2>
-                <p className={blogSty.description}>
-                  {post.excerpt}
-                  <Link href={post.link} className={blogSty.readMore}>
-                    read more
-                  </Link>
-                </p>
+                </div>
+                <div className={blogSty.text_content}>
+                  <p className={blogSty.articleMeta}>
+                    <span>{post.readTime}</span>
+                    <span>{formatDate(post.publishedAt)}</span>
+                    <span>{post.author}</span>
+                  </p>
+                  <h2>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className={blogSty.heading}
+                    >
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <p className={blogSty.description}>
+                    {post.excerpt}
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className={blogSty.readMore}
+                    >
+                      {" "}
+                      read more
+                    </Link>
+                  </p>
+                  {post.tags && post.tags.length > 0 && (
+                    <div className={blogSty.tagRow}>
+                      {post.tags.map((tag) => (
+                        <span key={tag} className={blogSty.tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

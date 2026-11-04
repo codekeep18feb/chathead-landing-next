@@ -9,8 +9,12 @@ const HeroSection = () => {
   const [isTryMeOpen, setIsTryMeOpen] = useState(false);
   const [typedText, setTypedText] = useState("");
 
+  // ─── Typed tagline ─────────────────────────────────────────────
+  // Line 1: "Your systems. Your AI. Your Rules."
+  // Line 2: "The AI runtime your Restaurant CRM was missing."
+  // ───────────────────────────────────────────────────────────────
   const firstText = "Your systems. Your AI. Your Rules.";
-  const secondText = "Give Your Backend A Superpower.";
+  const secondText = "The runtime your Restaurant CRM was missing.";
 
   useEffect(() => {
     const fullText = `${firstText}|${secondText}`;
@@ -52,21 +56,22 @@ const HeroSection = () => {
 
         <div className={styles.hero_content}>
           <div className={styles.container}>
-            {/* ===== NEW HEADLINE ===== */}
+            {/* ===== HEADLINE ===== */}
             <div>
               <h1 className={styles.title}>
-                The Operating System for
+                The AI Runtime for
                 <br />
-                <span className={styles.highlight}>AI Agents.</span>
+                <span className={styles.highlight}>Restaurant CRMs.</span>
               </h1>
 
-              {/* ===== NEW SUBTITLE ===== */}
-
+              {/* ===== SUBHEADLINE ===== */}
               <p className={styles.subtitle}>
-                Connect your backend systems. Build any agent. Deploy anywhere.
+                Turn your existing POS, inventory, and payment APIs into
+                deterministic AI agents.
                 <br />
                 <span style={{ fontSize: "0.9em", opacity: 0.8 }}>
-                  API-first architecture. No code required. No vendor lock-in.
+                  Auto-generated UI screens. Zero data stored. Built for
+                  70,000-restaurant scale.
                 </span>
               </p>
             </div>
@@ -136,13 +141,13 @@ const HeroSection = () => {
                     className={`${styles.learnMoreBtn} ${styles.primaryButton}`}
                     onClick={() => (window.location.href = "/pricing")}
                   >
-                    Get Started →
+                    Start Free Trial →
                   </button>
                   <button
                     className={`${styles.learnMoreBtn} ${styles.secondaryButton}`}
-                    onClick={() => (window.location.href = "/contact")}
+                    onClick={() => (window.location.href = "/contact_us")}
                   >
-                    Schedule Demo →
+                    Book a Demo →
                   </button>
                   <button
                     className={`${styles.learnMoreBtn} ${styles.tryMe}`}
@@ -162,23 +167,28 @@ const HeroSection = () => {
           <div className={styles.valueProps}>
             <div className={styles.valuePropsTrack}>
               <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>⚡</span> Deploy in hours,
-                not months
+                <span className={styles.valueIcon}>⚡</span> Deploy in days,
+                not quarters
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>🔒</span> Zero data stored
+                by default
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>💰</span> No LLM token
+                costs
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>🔗</span> Your APIs do the
+                work, not the model
+              </span>
+              <span className={styles.valueProp}>
+                <span className={styles.valueIcon}>🧩</span> Built for 70,000
+                restaurants
               </span>
               <span className={styles.valueProp}>
                 <span className={styles.valueIcon}>🔐</span> You own your users
-                & auth
-              </span>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>💰</span> No LLM token costs
-              </span>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🔗</span> API-first
-                architecture
-              </span>
-              <span className={styles.valueProp}>
-                <span className={styles.valueIcon}>🎨</span> No-code visual
-                designer
+                &amp; auth
               </span>
             </div>
           </div>

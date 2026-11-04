@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.grid}>
-          
+
           {/* Column 1: Brand & Description */}
           <div className={styles.brandColumn}>
             <Link href="/" className={styles.logo}>
@@ -20,8 +20,8 @@ const Footer = () => {
               <span className={styles.logoText}>Sageion</span>
             </Link>
             <p className={styles.description}>
-              The deterministic AI Agent runtime for Restaurant CRMs. 
-              Turn existing APIs into enterprise-grade workflows with 
+              The deterministic AI Agent runtime for Restaurant CRMs.
+              Turn existing APIs into enterprise-grade workflows with
               auto-generated UI, async webhooks, and zero data storage.
             </p>
             <Link href="/pricing" className={styles.ctaButton}>
@@ -47,6 +47,9 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/identity">Identity Ownership</Link>
+              </li>
+              <li>
+                <Link href="/billing">Billing & Metering</Link>
               </li>
             </ul>
           </div>

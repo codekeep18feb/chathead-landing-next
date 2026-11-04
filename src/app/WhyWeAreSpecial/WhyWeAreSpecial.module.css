@@ -1,4 +1,443 @@
 /* ============================================================
+   HERO VISUAL — PRODUCT MOCKUP
+   Replaces the old "Add your visual here" placeholder.
+   ============================================================ */
+.heroVisual {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroMockup {
+  width: 100%;
+  max-width: 620px;
+  background: #0f172a;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.25),
+    0 8px 16px rgba(15, 23, 42, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockupChrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.mockupDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.mockupDot:nth-child(1) {
+  background: #ef4444;
+}
+
+.mockupDot:nth-child(2) {
+  background: #f59e0b;
+}
+
+.mockupDot:nth-child(3) {
+  background: #10b981;
+}
+
+.mockupUrl {
+  margin-left: auto;
+  font-size: 11px;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  color: #64748b;
+  background: #0f172a;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.mockupBody {
+  display: flex;
+  min-height: 340px;
+}
+
+.mockupSidebar {
+  width: 140px;
+  background: #0b1220;
+  border-right: 1px solid #1e293b;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.mockupSidebarTitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 8px 8px;
+}
+
+.mockupSidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  color: #94a3b8;
+  transition: background 0.15s;
+}
+
+.mockupSidebarItemActive {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.mockupSidebarIcon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.mockupMain {
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mockupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.mockupBreadcrumb {
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+.mockupBreadcrumb strong {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.mockupStatus {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #10b981;
+  background: #10b98120;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.mockupFlow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mockupNode {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  font-size: 11.5px;
+}
+
+.mockupNodeSuccess {
+  border-color: #10b98160;
+  background: #064e3b30;
+}
+
+.mockupNodeBadge {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #e2e8f0;
+  background: #334155;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mockupNodeSuccess .mockupNodeBadge {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.mockupNodeTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.3;
+}
+
+.mockupNodeSub {
+  font-size: 10.5px;
+  color: #64748b;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  margin-top: 2px;
+}
+
+.mockupConnector {
+  width: 2px;
+  height: 10px;
+  background: #334155;
+  margin-left: 22px;
+}
+
+.mockupTerminal {
+  background: #0b1220;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  font-size: 10.5px;
+  line-height: 1.7;
+  margin-top: auto;
+}
+
+.mockupTerminalLine {
+  display: flex;
+  gap: 8px;
+  color: #94a3b8;
+}
+
+.mockupTerminalPrompt {
+  color: #4bcf9e;
+  flex-shrink: 0;
+}
+
+.mockupTerminalSuccess {
+  color: #10b981;
+}
+
+/* ============================================================
+   VIDEO THUMBNAILS
+   Replaces the old "videoThumbnailPlaceholder" box.
+   Each card uses a distinct gradient so they look intentional
+   even before real thumbnails are uploaded.
+   ============================================================ */
+.videoThumbnail {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.videoThumbnailA {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.videoThumbnailB {
+  background: linear-gradient(135deg, #ec489a, #f97316);
+}
+
+.videoThumbnailC {
+  background: linear-gradient(135deg, #4bcf9e, #0ea5e9);
+}
+
+.videoThumbnailOverlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.videoPlayIcon {
+  font-size: 44px;
+  opacity: 0.95;
+  transition: transform 0.2s;
+}
+
+.videoProofCard:hover .videoPlayIcon {
+  transform: scale(1.12);
+}
+
+.videoThumbnailLabel {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.videoDuration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+/* ============================================================
+   VIDEO MODAL — real embed OR "coming soon" fallback
+   ============================================================ */
+.videoEmbedWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.videoEmbed {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+.videoComingSoon {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  gap: 12px;
+}
+
+.videoComingSoonIcon {
+  font-size: 52px;
+  color: #4bcf9e;
+  opacity: 0.9;
+}
+
+.videoComingSoonTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.videoComingSoonText {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #94a3b8;
+  max-width: 360px;
+  margin: 0;
+}
+
+.videoComingSoonBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #4bcf9e;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.videoComingSoonBtn:hover {
+  background: #6ee7b7;
+}
+
+.videoModalDuration {
+  display: inline-block;
+  font-size: 12px;
+  color: #64748b;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .heroMockup {
+    max-width: 100%;
+  }
+
+  .mockupSidebar {
+    width: 110px;
+  }
+
+  .mockupSidebarItem {
+    font-size: 10.5px;
+    padding: 7px 8px;
+  }
+
+  .mockupMain {
+    padding: 12px;
+  }
+
+  .mockupNodeTitle {
+    font-size: 11px;
+  }
+
+  .mockupNodeSub {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mockupBody {
+    min-height: 280px;
+  }
+
+  .mockupSidebar {
+    display: none;
+  }
+
+  .mockupTerminal {
+    font-size: 9.5px;
+    padding: 10px;
+  }
+
+  .videoPlayIcon {
+    font-size: 36px;
+  }
+
+  .videoComingSoonIcon {
+    font-size: 40px;
+  }
+
+  .videoComingSoonTitle {
+    font-size: 16px;
+  }
+
+  .videoComingSoonText {
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
    WhyWeAreSpecial.module.css
    ============================================================ */
 
