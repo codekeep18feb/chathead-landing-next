@@ -5,7 +5,7 @@ export const backendIntegration = [
     children: [
       {
         tag_type: "h2",
-        text: "Backend Integration", // ⭐ Changed from "Connecting Sageion..."
+        text: "Backend Integration",
         selector_uid: "v2_backend_integration",
       },
       {
@@ -85,7 +85,7 @@ SAGEION_PUBLIC_KEY_PATH="/etc/sageion/sageion-public.pem"
         rows: [
           ["[[onboardUser()]]", "Your signup handler", "Tells Sageion a new user exists in your system so their chat box works."],
           ["[[encryptToken()]]", "Your [[/auth/client-user-token]] endpoint", "Encrypts your internal JWT so the AI agent can call your backend on behalf of a specific user. Sageion rejects plaintext JWTs."],
-          ["[[getCorrelationId()]] + [[dispatchWebhookAsync()]]", "Any async endpoint the AI agent calls", "Reads the correlation id, then fires the webhook that resumes the AI chain when your async work finishes."],
+          ["[[getCorrelationId()]] + [[dispatchWebhookAsync()]]", "Any async or manual endpoint the AI agent calls", "Reads the correlation id, then fires the webhook that resumes the AI chain when your work finishes."],
         ],
       },
 
@@ -137,22 +137,6 @@ router.post('/register', [...validators], async (req, res) => {
 });`,
                 language: "javascript",
               },
-              {
-                tag_type: "callout",
-                type: "info",
-                title: "Signature",
-                children: [
-                  {
-                    tag_type: "table",
-                    headers: ["Argument", "Type", "Description"],
-                    rows: [
-                      ["[[uid]]", "string", "Your platform's unique user id. Must match what you pass to [[initialize()]] on the frontend."],
-                      ["[[appId]]", "string", "Your Sageion app id ([[SAGEION_APP_ID]])."],
-                      ["[[metadata]]", "object?", "Optional. [[email]], [[full_name]], [[image]]."],
-                    ],
-                  },
-                ],
-              },
             ],
           },
           {
@@ -160,52 +144,21 @@ router.post('/register', [...validators], async (req, res) => {
             content: [
               {
                 tag_type: "p",
-                text: "If your language is not listed, implement a single ~40-line module that exposes the same three functions. Below are skeleton files for Python, Go, PHP, and Ruby.",
+                text: "If your language is not listed, implement a single ~40-line module that exposes the same three functions. Below is the HTTP contract for onboarding.",
               },
               {
-                tag_type: "accordion",
-                title: "🐍 Python",
+                tag_type: "callout",
+                type: "info",
+                title: "HTTP Contract",
                 children: [
                   {
-                    tag_type: "code_with_copy",
-                    code: `# sageion.py
-import os, httpx
-
-REGION = os.environ.get("SAGEION_REGION", "us")
-
-def onboard_user(uid: str, app_id: str, metadata: dict | None = None) -> None:
-    try:
-        httpx.post(
-            f"https://{REGION}.userauth2.sageion.com/prod/onboarding",
-            json={"uid": str(uid), "app_id": app_id, "metadata": metadata or {}},
-            headers={"X-API-Key": os.environ["SAGEION_REST_API_KEY"]},
-            timeout=5.0,
-        )
-    except Exception as exc:
-        print(f"[Sageion] onboarding error: {exc}")`,
-                    language: "python",
-                  },
-                ],
-              },
-              {
-                tag_type: "accordion",
-                title: "🐹 Go",
-                children: [
-                  {
-                    tag_type: "code_with_copy",
-                    code: `package sageion
-
-import ("bytes"; "encoding/json"; "net/http"; "os"; "time")
-
-func OnboardUser(uid, appID string, metadata map[string]any) {
-    body, _ := json.Marshal(map[string]any{"uid": uid, "app_id": appID, "metadata": metadata})
-    req, _ := http.NewRequest("POST", fmt.Sprintf("https://%s.userauth2.sageion.com/prod/onboarding", os.Getenv("SAGEION_REGION")), bytes.NewReader(body))
-    req.Header.Set("X-API-Key", os.Getenv("SAGEION_REST_API_KEY"))
-    resp, err := (&http.Client{Timeout: 5 * time.Second}).Do(req)
-    if err != nil { return }
-    defer resp.Body.Close()
-}`,
-                    language: "go",
+                    tag_type: "table",
+                    headers: ["Field", "Value"],
+                    rows: [
+                      ["URL", "[[POST https://{region}.userauth2.sageion.com/prod/onboarding]]"],
+                      ["Header", "[[X-API-Key: SAGEION_REST_API_KEY]]"],
+                      ["Body", "[[{ uid, app_id, metadata }]]"],
+                    ],
                   },
                 ],
               },
@@ -215,78 +168,182 @@ func OnboardUser(uid, appID string, metadata map[string]any) {
       },
 
       // ============================================================
-      // STEP 2 — ASYNC APIs
+      // STEP 2 — THE STORY & NODE TYPES
       // ============================================================
       {
         tag_type: "h3",
-        text: "Step 2 — APIs the AI agent can call: sync vs. async",
+        text: "Step 2 — Node Execution Types",
         selector_uid: "v2_backend_async_correlation",
       },
+      
+      // 🎭 THE STORY
       {
-        tag_type: "p",
-        text: "Every API you register with Sageion is either synchronous (returns data immediately) or asynchronous (waits for a payment, approval, or background job). If your API is synchronous, you don't need any special code. If it is asynchronous, you must use the SDK to read the correlation ID and fire a webhook.",
+        tag_type: "callout",
+        type: "success",
+        title: "🎭 The Chain, The Nodes, and The Ticket",
+        children: [
+          {
+            tag_type: "p",
+            text: "Think of Sageion as a **Master Conductor**. When a user asks the AI to do something complex, the Conductor doesn't do the work itself — instead, it builds a **Chain**.",
+          },
+          {
+            tag_type: "p",
+            text: "A Chain is simply a sequence of steps. Each step is an **API (a Node)** on your backend. The Conductor calls Node A, gets a result, passes that to Node B, and so on.",
+          },
+          {
+            tag_type: "p",
+            text: "However, not all Nodes behave the same. Some are instant. Some take minutes. Some need a human to say 'Yes'. To keep the Chain moving without getting stuck, the Conductor handles three types of Nodes:",
+          },
+          {
+            tag_type: "ul",
+            items: [
+              { text: "**Sync Nodes (The Instant Answer):** The Conductor asks a question, and your API answers immediately in the HTTP response. No waiting." },
+              { text: "**Async Nodes (The Background Job):** The Conductor asks a question, but your API says *'I'm working on it, here is a **Ticket** (Correlation ID). I'll call you back when I'm done.'*" },
+              { text: "**Manual Nodes (The Human Pause):** The Conductor asks a question, but your API says *'I have to ask my manager. Here is a **Ticket**. I'll call you back when they click Approve.'*" },
+            ],
+          },
+          {
+            tag_type: "p",
+            text: "For Async and Manual Nodes, your backend holds the Ticket, does the work, and then fires a Webhook back to Sageion to resume the Chain. Pick the type that matches your API below:",
+          },
+        ],
       },
+
       {
         tag_type: "tabs",
         items: [
+          // ==================== 1. SYNC NODE ====================
           {
-            label: "Synchronous (Default)",
+            label: "Sync Node (Default)",
             content: [
               {
-                tag_type: "p",
-                text: "Your handler returns the result immediately. The AI agent reads it from the HTTP response body. No special headers to read, no webhook to post.",
+                tag_type: "callout",
+                type: "success",
+                title: "The Instant Answer",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "Use this for APIs that compute and return the final result within a few seconds (e.g., fetching a menu, checking inventory). Sageion reads the final result directly from the HTTP response body. No special SDK code required.",
+                  },
+                ],
               },
               {
                 tag_type: "code_with_copy",
                 code: `router.post('/bookings', async (req, res) => {
+  // Do the work immediately
   const booking = await createBooking(req.user.userId, req.body);
+  
+  // Return the result to Sageion
   res.status(201).json({ success: true, booking_id: booking.id });
 });`,
                 language: "javascript",
               },
             ],
           },
+
+          // ==================== 2. ASYNC NODE ====================
           {
-            label: "Asynchronous (Async Callback)",
+            label: "Async Node (Background)",
             content: [
               {
-                tag_type: "p",
-                text: "Sageion sends an [[x-correlation-id]] header and waits for your backend to POST the final result when the work is done.",
+                tag_type: "callout",
+                type: "info",
+                title: "The Background Job",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "Use this when the API kicks off a background job or external process (e.g., a payment gateway, an SMS delivery). Sageion sends a Ticket ([[x-correlation-id]]) and waits for your backend to call it back when the job finishes.",
+                  },
+                ],
               },
               {
                 tag_type: "steps",
                 items: [
-                  { title: "Receive request", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header on every call." }] },
-                  { title: "Acknowledge & kick off work", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], persist it, start the work, and return HTTP 202." }] },
-                  { title: "Fire the webhook", content: [{ tag_type: "p", text: "When the work finishes, call [[dispatchWebhookAsync(correlationId, status, data)]]." }] },
+                  { title: "Receive Ticket", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header." }] },
+                  { title: "Acknowledge & kick off work", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], save it to your database alongside the job, start the background work, and return HTTP 202." }] },
+                  { title: "Fire the Webhook", content: [{ tag_type: "p", text: "When the background job finishes, call [[dispatchWebhookAsync(correlationId, status, data)]]." }] },
                 ],
               },
               {
-                tag_type: "accordion",
-                title: "Node.js Code Example",
+                tag_type: "code_with_copy",
+                code: `const { getCorrelationId, dispatchWebhookAsync } = require('@sageion/node');
+
+router.post('/process-payment', async (req, res) => {
+  const correlation_id = getCorrelationId(req);
+  
+  // 1. Create pending record and save the Ticket
+  const job = await createPendingPayment(req.body);
+  await saveCorrelationId(job.id, correlation_id);
+  
+  // 2. Return 202 immediately
+  res.status(202).json({ status: 'processing' });
+
+  // 3. (Later, in a separate worker/queue):
+  // When the payment provider confirms success:
+  dispatchWebhookAsync(correlation_id, 200, { status: 'paid', payment_id: job.id });
+});`,
+                language: "javascript",
+              },
+            ],
+          },
+
+          // ==================== 3. MANUAL NODE ====================
+          {
+            label: "Manual Node (Human-in-the-loop)",
+            content: [
+              {
+                tag_type: "callout",
+                type: "warning",
+                title: "The Human Pause",
                 children: [
                   {
-                    tag_type: "code_with_copy",
-                    code: `const { getCorrelationId, dispatchWebhookAsync } = require('@sageion/node');
-
-router.post('/bookings', async (req, res) => {
-  const correlation_id = getCorrelationId(req);
-  const booking = await createPendingBooking(req.body);
-  await attachCorrelationId(booking.id, correlation_id);
-  
-  res.status(202).json({ status: 'pending_payment' });
-});
-
-router.post('/payments/webhook', async (req, res) => {
-  const correlation_id = await getCorrelationIdForBooking(req.body.booking_id);
-  if (correlation_id) {
-    dispatchWebhookAsync(correlation_id, 200, { status: 'confirmed' });
-  }
-  res.json({ ok: true });
-});`,
-                    language: "javascript",
+                    tag_type: "p",
+                    text: "Use this when the workflow must pause and wait for a human action (e.g., a manager clicking an 'Approve' link in an email). It is technically an Async Node, but the trigger is a human, not a background job.",
                   },
                 ],
+              },
+              {
+                tag_type: "steps",
+                items: [
+                  { title: "Receive Ticket", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header." }] },
+                  { title: "Acknowledge & send approval link", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], save it, and send an email containing the link. Return HTTP 202." }] },
+                  { title: "Human clicks the link", content: [{ tag_type: "p", text: "Your frontend sends a request to your backend to approve." }] },
+                  { title: "Fire the Webhook", content: [{ tag_type: "p", text: "In your approval handler, call [[dispatchWebhookAsync(correlationId, 200, data)]] to resume the AI chain." }] },
+                ],
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `const { getCorrelationId, dispatchWebhookAsync } = require('@sageion/node');
+
+// 1. AI calls this to start the approval flow
+router.post('/request-approval', async (req, res) => {
+  const correlation_id = getCorrelationId(req);
+  
+  const request = await createApprovalRequest(req.body);
+  await saveCorrelationId(request.id, correlation_id);
+  
+  // Email the manager with a link containing request.id
+  await sendApprovalEmail(request.manager_email, request.id);
+  
+  res.status(202).json({ status: 'pending_approval' });
+});
+
+// 2. The Manager clicks the link in their email
+router.post('/approve-request', async (req, res) => {
+  const request = await approveRequest(req.body.request_id);
+  const correlation_id = await getCorrelationIdForRequest(request.id);
+
+  if (correlation_id) {
+    // Tell Sageion the human finally clicked!
+    dispatchWebhookAsync(correlation_id, 200, { 
+      approved: true, 
+      approved_by: req.user.id 
+    });
+  }
+
+  res.json({ success: true });
+});`,
+                language: "javascript",
               },
             ],
           },
@@ -294,7 +351,7 @@ router.post('/payments/webhook', async (req, res) => {
       },
 
       // ============================================================
-      // STEP 3 — SECURE AGENT AUTH (The separated section)
+      // STEP 3 — SECURE AGENT AUTH
       // ============================================================
       {
         tag_type: "h3",
@@ -312,14 +369,14 @@ router.post('/payments/webhook', async (req, res) => {
           },
         ],
       },
-
+      
       {
         tag_type: "accordion",
         title: "1. Agent Token Endpoint (/auth/client-user-token)",
         children: [
           {
             tag_type: "p",
-            text: "This is a one-time backend setup. Your backend exchanges Sageion's client credentials for a short-lived, scoped token tied to a specific user. Sageion then uses this token to call your protected endpoints.",
+            text: "Your backend exchanges Sageion's client credentials for a short-lived, scoped token tied to a specific user. Sageion then uses this token to call your protected endpoints.",
           },
           {
             tag_type: "h5",
