@@ -1,3 +1,42 @@
+/* Add this to your CSS module */
+.collapsibleSection {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  background: white;
+  overflow: hidden;
+}
+
+.collapsibleSummary {
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none; /* Hides default triangle */
+}
+
+.collapsibleSummary::-webkit-details-marker {
+  display: none; /* Hides default triangle in Safari */
+}
+
+.collapsibleSummary:hover {
+  background: #f9fafb;
+}
+
+.collapsibleContent {
+  padding: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Rotate chevron when open */
+.collapsibleSection[open] .chevron {
+  transform: rotate(180deg);
+}
+
+
 /* ============================================ */
 /* CONTENT AREA */
 /* ============================================ */

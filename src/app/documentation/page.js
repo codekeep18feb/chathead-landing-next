@@ -80,7 +80,8 @@ const Document = () => {
     const content = payload[selectedFilter.version_type];
     return (
       <div className={styles["content-area"]}>
-        <ContentRenderer key={4444} content={content} />
+        {/* ⭐ Added groupSections={true} right here */}
+        <ContentRenderer key={4444} content={content} groupSections={true} />
       </div>
     );
   };
@@ -137,16 +138,6 @@ const Document = () => {
                 isMobileSidebarOpen ? styles.mobileSidebarOpen : ""
               }`}
             >
-              {/* <div className={styles.mobileSidebarHeader}>
-                <span>Documentation</span>
-                <button
-                  className={styles.mobileSidebarClose}
-                  onClick={closeMobileSidebar}
-                  aria-label="Close sidebar"
-                >
-                  <FaTimes size={20} />
-                </button>
-              </div> */}
               <div className={styles.mobileSidebarContent}>
                 <Sidebar
                   isMobile={isMobile}
@@ -184,22 +175,6 @@ const Document = () => {
               )}
             </button>
           )}
-
-          {/* ===== DESKTOP COLLAPSE TOGGLE ===== */}
-          {/* {!isMobile && (
-            <button
-              className={styles.sidebar_toggle_btn}
-              onClick={toggleSidebar}
-              aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
-              title={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
-            >
-              {isSidebarOpen ? (
-                <IoMdArrowRoundBack size={18} />
-              ) : (
-                <IoMdArrowRoundForward size={18} />
-              )}
-            </button>
-          )} */}
 
           <div
             className={`${styles["main-content"]} ${

@@ -71,6 +71,66 @@ const supportedTags = [
   "mesgTip", "strong",
 ];
 
+// ============================================================
+// COLLAPSIBLE SECTIONS (DROPDOWNS)
+// ============================================================
+const groupContentByH2 = (content) => {
+  if (!content) return [];
+  
+  // 1. Flatten all wrapper divs so we can group by H2 tags
+  let flatContent = [];
+  const flatten = (items) => {
+    items.forEach(item => {
+      // If it's a div with no text/class and just holds children, flatten it
+      const isWrapperDiv = item.tag_type === "div" && item.children && !item.text && !item.className;
+      // If it's a div that starts with an H2, flatten it so the H2 is extracted
+      const isSectionDiv = item.tag_type === "div" && item.children && item.children[0]?.tag_type === "h2";
+      
+      if (isWrapperDiv || isSectionDiv) {
+        flatten(item.children);
+      } else {
+        flatContent.push(item);
+      }
+    });
+  };
+  flatten(content);
+
+  // 2. Group content by H1/H2 tags
+  const groups = [];
+  let currentGroup = { title: "Introduction", items: [] };
+
+  flatContent.forEach((item) => {
+    const isHeading = item.tag_type === "h2" || item.tag_type === "h1";
+    
+    if (isHeading) {
+      if (currentGroup.items.length > 0) groups.push(currentGroup);
+      currentGroup = { title: stripMarkers(item.text), items: [item] };
+    } else {
+      currentGroup.items.push(item);
+    }
+  });
+
+  if (currentGroup.items.length > 0) groups.push(currentGroup);
+  return groups;
+};
+
+const CollapsibleSection = ({ title, children, defaultOpen = false }) => {
+  return (
+    <details open={defaultOpen} className={styles.collapsibleSection}>
+      <summary className={styles.collapsibleSummary}>
+        <span>{title}</span>
+        <span className={styles.collapsibleIcon}>▼</span>
+      </summary>
+      <div className={styles.collapsibleContent}>
+        {children}
+      </div>
+    </details>
+  );
+};
+
+// ============================================================
+// EXISTING COMPONENTS (CondRadio, Callout, Tabs, etc.)
+// ============================================================
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts || linkParts.length === 0) {
     return <span dangerouslySetInnerHTML={{ __html: applyMarkers(text) }} />;
@@ -123,9 +183,6 @@ const renderTextWithElements = (text, linkParts) => {
   return parts;
 };
 
-// ============================================================
-// FEATURE-OPTION RADIO / DROPDOWN
-// ============================================================
 const CondRadioRender = ({ r_options }) => {
   const [selectedOption, setSelectedOption] = useState(r_options[0]?.text);
   const [isMobile, setIsMobile] = useState(false);
@@ -186,9 +243,6 @@ const CondRadioRender = ({ r_options }) => {
   );
 };
 
-// ============================================================
-// CALLOUT / MESSAGE TIP / STEPS / TABS / TOOLTIP / SIDE NAV
-// ============================================================
 const Callout = ({ type = "info", title, children }) => {
   return (
     <div className={`${styles.callout} ${styles[`callout-${type}`]}`}>
@@ -480,9 +534,6 @@ const List = ({ items, listType, collapsable, fcNonCollapsable, depth = 0 }) => 
   );
 };
 
-// ============================================================
-// LIST ITEM
-// ============================================================
 const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   const onLinkClick = useContext(SidebarLinkContext);
 
@@ -622,9 +673,6 @@ const ListItem = ({ item, listType, collapsable, fcNonCollapsable, depth }) => {
   );
 };
 
-// ============================================================
-// API REFERENCE TABLE
-// ============================================================
 const APIReferenceTable = ({ properties }) => (
   <table className="api-table">
     <thead>
@@ -660,9 +708,6 @@ const APIReferenceTable = ({ properties }) => (
   </table>
 );
 
-// ============================================================
-// CONTENT LIST ITEM (For standalone `li` inside ContentRenderer)
-// ============================================================
 const ContentListItem = ({ item, index, renderLink }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const hasSubItems = item.sub_items && item.sub_items.length > 0;
@@ -712,8 +757,28 @@ const ContentListItem = ({ item, index, renderLink }) => {
 // ============================================================
 // CONTENT RENDERER
 // ============================================================
-const ContentRenderer = ({ content }) => {
+const ContentRenderer = ({ content, groupSections = false }) => {
   const onLinkClick = useContext(SidebarLinkContext);
+
+  if (!content) return null;
+
+  // ⭐ Handles the dropdown grouping for the main page sections
+  if (groupSections) {
+    const groups = groupContentByH2(content);
+    return (
+      <div className={`${styles.contents} ${styles.sidebarContentclass}`}>
+        {groups.map((group, index) => (
+          <CollapsibleSection
+            key={index}
+            title={group.title}
+            defaultOpen={index === 0 || group.title === "Introduction"}
+          >
+            <ContentRenderer content={group.items} />
+          </CollapsibleSection>
+        ))}
+      </div>
+    );
+  }
 
   const renderLink = (item) => {
     if (!item.link_configuration?.show) return null;

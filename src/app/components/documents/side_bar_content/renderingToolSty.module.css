@@ -1,3 +1,56 @@
+/* Add these to renderingToolSty.module.css */
+
+.collapsibleSection {
+  margin-bottom: 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.collapsibleSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  background-color: #f9fafb;
+  border-bottom: 1px solid transparent;
+  list-style: none;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.collapsibleSummary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsibleSummary:hover {
+  background-color: #f3f4f6;
+}
+
+.collapsibleSection[open] .collapsibleSummary {
+  border-bottom-color: #e5e7eb;
+}
+
+.collapsibleIcon {
+  font-size: 1rem;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+}
+
+.collapsibleSection[open] .collapsibleIcon {
+  transform: rotate(180deg);
+}
+
+.collapsibleContent {
+  padding: 1.5rem;
+}
+
 /* ============================================ */
 /* BASE STYLES */
 /* ============================================ */
