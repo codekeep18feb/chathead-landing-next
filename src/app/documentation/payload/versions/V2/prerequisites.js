@@ -17,10 +17,7 @@ export const prerequisites = [
             tag_type: "li",
             text: "Create a New App and select Version V2 during setup.",
           },
-          {
-            tag_type: "li",
-            text: "Enable at least one of the three AI bots — [[FAQ/QNA Tree]], [[AI Chat]], or [[Live Agent]]. An app cannot be created without one.",
-          },
+        
           {
             tag_type: "li",
             text: "Open the App Details page and note your: App Name, API Key, and Region (US or IN).",
