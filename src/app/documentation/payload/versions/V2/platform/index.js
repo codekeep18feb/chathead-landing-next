@@ -1,54 +1,8 @@
 // documentation/payload/versions/V2/platform/index.js
 
-import integrationsApisWorkflows from "./integrationsApisWorkflows";
+import integrationsApisWorkflows from "./integrationsApisWorkflows.js";
 
 const platformPayload = [
-  // ============================================================
-  // INTEGRATION (Prerequisites, Client, Code, Backend)
-  // ============================================================
-  {
-    tag_type: "h2",
-    text: "Prerequisites",
-    selector_uid: "v2_prerequisites",
-  },
-  {
-    tag_type: "p",
-    text: "Before you start, make sure you have your Sageion API key and your app details ready.",
-  },
-  {
-    tag_type: "h2",
-    text: "Client Integration",
-    selector_uid: "v2_client_integration",
-  },
-  {
-    tag_type: "p",
-    text: "Sageion exposes two methods on `window.sageion_os`: `setUp()` and `initialize()`. Everything else — sockets, DOM, auth, lifecycle, teardown — is handled internally.",
-  },
-  {
-    tag_type: "h2",
-    text: "Code Example",
-    selector_uid: "v2_code_example",
-  },
-  {
-    tag_type: "code_with_copy",
-    language: "javascript",
-    code: `await window.sageion_os.setUp(
-  "your_app_id",
-  "YOUR_API_KEY",
-  "US",
-  "sageion-chat-root"
-);`
-  },
-  {
-    tag_type: "h2",
-    text: "Backend Integration",
-    selector_uid: "v2_backend_integration",
-  },
-  {
-    tag_type: "p",
-    text: "Your backend must expose endpoints to authenticate users and return a token.",
-  },
-
   // ============================================================
   // PLATFORM (AI Agent)
   // ============================================================
