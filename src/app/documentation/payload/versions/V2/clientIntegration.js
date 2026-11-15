@@ -5,7 +5,7 @@ export const clientIntegration = [
     children: [
       {
         tag_type: "h2",
-        text: "Project setup",
+        text: "Client Integration", // ⭐ Changed from "Project setup"
         selector_uid: "v2_client_integration",
       },
       {

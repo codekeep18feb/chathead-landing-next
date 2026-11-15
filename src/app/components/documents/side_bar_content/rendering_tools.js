@@ -129,7 +129,7 @@ const CollapsibleSection = ({ title, children, defaultOpen = false }) => {
 };
 
 // ============================================================
-// EXISTING COMPONENTS (CondRadio, Callout, Tabs, etc.)
+// EXISTING COMPONENTS
 // ============================================================
 const renderTextWithElements = (text, linkParts) => {
   if (!linkParts || linkParts.length === 0) {
@@ -767,15 +767,27 @@ const ContentRenderer = ({ content, groupSections = false }) => {
     const groups = groupContentByH2(content);
     return (
       <div className={`${styles.contents} ${styles.sidebarContentclass}`}>
-        {groups.map((group, index) => (
-          <CollapsibleSection
-            key={index}
-            title={group.title}
-            defaultOpen={index === 0 || group.title === "Introduction"}
-          >
-            <ContentRenderer content={group.items} />
-          </CollapsibleSection>
-        ))}
+        {groups.map((group, index) => {
+          // Keep the very first header (Page Title) as a normal heading, not a dropdown
+          if (index === 0) {
+            return (
+              <div key={index} style={{ marginBottom: "2rem" }}>
+                <ContentRenderer content={group.items} />
+              </div>
+            );
+          }
+
+          // Render every subsequent H2 as a collapsible dropdown
+          return (
+            <CollapsibleSection
+              key={index}
+              title={group.title}
+              defaultOpen={group.title === "Prerequisite"} // Auto-open the first actionable section
+            >
+              <ContentRenderer content={group.items} />
+            </CollapsibleSection>
+          );
+        })}
       </div>
     );
   }

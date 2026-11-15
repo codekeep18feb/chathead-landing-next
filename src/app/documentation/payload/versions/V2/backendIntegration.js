@@ -5,7 +5,7 @@ export const backendIntegration = [
     children: [
       {
         tag_type: "h2",
-        text: "Connecting Sageion to Your Product's Authentication",
+        text: "Backend Integration", // ⭐ Changed from "Connecting Sageion..."
         selector_uid: "v2_backend_integration",
       },
       {
@@ -312,7 +312,7 @@ router.post('/payments/webhook', async (req, res) => {
           },
         ],
       },
-      
+
       {
         tag_type: "accordion",
         title: "1. Agent Token Endpoint (/auth/client-user-token)",
