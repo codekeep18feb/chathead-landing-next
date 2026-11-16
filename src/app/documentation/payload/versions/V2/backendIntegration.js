@@ -12,9 +12,40 @@ export const backendIntegration = [
         tag_type: "p",
         text: "Sageion does not own your user identities. Your product remains the source of truth — users sign up and log in against your own backend, and Sageion is told about them via a small onboarding call. Everything Sageion needs from your backend is exposed through a single SDK, [[@sageion/node]].",
       },
+
+      // ============================================================
+      // THE MENTAL MODEL (ONE-TIME VS PER-WORKFLOW)
+      // ============================================================
+      {
+        tag_type: "callout",
+        type: "success",
+        title: "🧠 The Mental Model: One-time Setup vs. Per-Workflow Logic",
+        children: [
+          {
+            tag_type: "p",
+            text: "Before you write any code, understand this: **90% of the integration is standard boilerplate you write once for your entire CRM.** You only touch specific API endpoints if that specific workflow requires background processing or human approval.",
+          },
+          {
+            tag_type: "table",
+            headers: ["Integration Piece", "Write Once?", "Per-Workflow?", "Description"],
+            rows: [
+              ["[[onboardUser()]]", "✅ Yes", "❌ No", "Call this in your standard `/register` route. You never touch it again."],
+              ["[[/auth/client-user-token]]", "✅ Yes", "❌ No", "Standard auth endpoint so the AI can securely act as a specific user."],
+              ["OTP Endpoints", "✅ Yes", "❌ No", "Optional, but if you build `/send-otp` once, every workflow can use it."],
+              ["[[getCorrelationId()]]", "❌ No", "✅ Yes", "Only add this to APIs that take time or need a human. (Async/Manual nodes)."],
+              ["[[dispatchWebhookAsync()]]", "❌ No", "✅ Yes", "Only call this when your background job finishes or a human clicks 'Approve'."]
+            ]
+          },
+          {
+            tag_type: "p",
+            text: "If an API is instant (e.g., fetching a menu, reading stock), **you do absolutely nothing to it.** Sageion just reads the standard JSON response."
+          }
+        ],
+      },
+
       {
         tag_type: "accordion",
-        title: "🔑 How identity flows",
+        title: "🔑 How identity flows (The One-time Auth)",
         children: [
           {
             tag_type: "ol",
@@ -83,9 +114,9 @@ SAGEION_PUBLIC_KEY_PATH="/etc/sageion/sageion-public.pem"
         tag_type: "table",
         headers: ["Function", "Called from", "Why you need it"],
         rows: [
-          ["[[onboardUser()]]", "Your signup handler", "Tells Sageion a new user exists in your system so their chat box works."],
-          ["[[encryptToken()]]", "Your [[/auth/client-user-token]] endpoint", "Encrypts your internal JWT so the AI agent can call your backend on behalf of a specific user. Sageion rejects plaintext JWTs."],
-          ["[[getCorrelationId()]] + [[dispatchWebhookAsync()]]", "Any async or manual endpoint the AI agent calls", "Reads the correlation id, then fires the webhook that resumes the AI chain when your work finishes."],
+          ["[[onboardUser()]]", "Your signup handler (One-time)", "Tells Sageion a new user exists in your system so their chat box works."],
+          ["[[encryptToken()]]", "Your [[/auth/client-user-token]] endpoint (One-time)", "Encrypts your internal JWT so the AI agent can call your backend on behalf of a specific user. Sageion rejects plaintext JWTs."],
+          ["[[getCorrelationId()]] + [[dispatchWebhookAsync()]]", "Any async or manual endpoint the AI agent calls (Per-workflow)", "Reads the correlation id, then fires the webhook that resumes the AI chain when your work finishes."],
         ],
       },
 
@@ -94,12 +125,12 @@ SAGEION_PUBLIC_KEY_PATH="/etc/sageion/sageion-public.pem"
       // ============================================================
       {
         tag_type: "h3",
-        text: "Step 1 — Onboarding a user",
+        text: "Step 1 — Onboarding a user (One-time Boilerplate)",
         selector_uid: "v2_backend_onboarding_api",
       },
       {
         tag_type: "p",
-        text: "The moment your signup handler commits the user to your own DB, call [[onboardUser()]]. The call is fire-and-forget: your signup succeeds even if Sageion is temporarily unreachable.",
+        text: "The moment your signup handler commits the user to your own DB, call [[onboardUser()]]. The call is fire-and-forget: your signup succeeds even if Sageion is temporarily unreachable. You write this once, and every future AI workflow automatically knows about new users.",
       },
       {
         tag_type: "tabs",
@@ -168,236 +199,11 @@ router.post('/register', [...validators], async (req, res) => {
       },
 
       // ============================================================
-      // STEP 2 — THE PITCH, STORY & NODE TYPES
+      // ⭐ STEP 2 — SECURE AGENT AUTH (MOVED UP)
       // ============================================================
       {
         tag_type: "h3",
-        text: "Step 2 — Node Execution Types",
-        selector_uid: "v2_backend_async_correlation",
-      },
-
-      // 🚀 THE PITCH
-      {
-        tag_type: "callout",
-        type: "success",
-        title: "🚀 Turn your existing APIs into AI Agents",
-        children: [
-          {
-            tag_type: "p",
-            text: "You already have a powerful backend. Your APIs do the heavy lifting, but right now, they're just sitting there waiting for a frontend to click a button. Sageion unlocks them.",
-          },
-          {
-            tag_type: "p",
-            text: "Sageion turns your [[existing APIs]] into autonomous AI Agents. Because the AI must call your API to get an answer, it [[never hallucinates]]—it gets the absolute truth directly from your own backend. We don't store your business data; Sageion is a [[hollow wrapper]] that simply fills the gap between 'user intent' and 'your API'.",
-          },
-          {
-            tag_type: "p",
-            text: "It gives you instant AI capabilities to build anything whatsoever, while you manage most of it through an easy UI admin panel.",
-          },
-        ],
-      },
-
-      // 🎭 THE STORY (Improved UX)
-      {
-        tag_type: "callout",
-        type: "info",
-        title: "📖 The Story: The Assistant and The Ticket",
-        children: [
-          {
-            tag_type: "p",
-            text: "To make this happen, imagine the Sageion AI Agent is a new [[Executive Assistant]]. A user gives the Assistant a task (a [[Chain]]): \"Find the customer, check their order, and refund them.\"",
-          },
-          {
-            tag_type: "p",
-            text: "To finish this, the Assistant has to run errands to your backend APIs (the [[Nodes]]). Depending on how your API is built, the Assistant will experience one of three scenarios:",
-          },
-          {
-            tag_type: "table",
-            headers: ["Scenario", "Node Type", "What Happens", "Setup Required"],
-            rows: [
-              [
-                "[[Instant]]", 
-                "Sync Node", 
-                "The Assistant asks for data, and your API replies immediately in the HTTP response. The Assistant checks it off and moves on.", 
-                "None"
-              ],
-              [
-                "[[Background]]", 
-                "Async Node", 
-                "Your API says: \"I'll put this in a queue. Here is a [[Ticket]] (Correlation ID). I'll call you when it's done.\" The Assistant moves to the next task while you work.", 
-                "Webhook"
-              ],
-              [
-                "[[Human Pause]]", 
-                "Manual Node", 
-                "Your API says: \"I need a Manager to approve this. Here is a [[Ticket]]. I'll call you back when the human clicks Approve.\" The Assistant waits.", 
-                "Webhook"
-              ]
-            ]
-          },
-        ],
-      },
-      
-      // The Golden Rule separate so it stands out
-      {
-        tag_type: "callout",
-        type: "warning",
-        title: "🏆 The Golden Rule",
-        children: [
-          {
-            tag_type: "p",
-            text: "For Async and Manual Nodes, Sageion pauses the Chain and waits. It is your backend's job to hold onto that Ticket using [[getCorrelationId(req)]], and use [[dispatchWebhookAsync()]] to call the Assistant back once the work is actually finished.",
-          },
-        ],
-      },
-
-      {
-        tag_type: "tabs",
-        items: [
-          // ==================== 1. SYNC NODE ====================
-          {
-            label: "1. Sync Node (Instant)",
-            content: [
-              {
-                tag_type: "callout",
-                type: "success",
-                title: "No special SDK code required",
-                children: [
-                  {
-                    tag_type: "p",
-                    text: "Use this for APIs that compute and return the final result within a few seconds (e.g., fetching a menu, checking inventory). Sageion reads the final result directly from the HTTP response body.",
-                  },
-                ],
-              },
-              {
-                tag_type: "code_with_copy",
-                code: `router.post('/bookings', async (req, res) => {
-  // Do the work immediately
-  const booking = await createBooking(req.user.userId, req.body);
-  
-  // Return the result to Sageion right away
-  res.status(201).json({ success: true, booking_id: booking.id });
-});`,
-                language: "javascript",
-              },
-            ],
-          },
-
-          // ==================== 2. ASYNC NODE ====================
-          {
-            label: "2. Async Node (Background)",
-            content: [
-              {
-                tag_type: "callout",
-                type: "info",
-                title: "Requires Correlation ID & Webhook",
-                children: [
-                  {
-                    tag_type: "p",
-                    text: "Use this when the API kicks off a background job or external process (e.g., a payment gateway, an SMS delivery). Sageion sends a Ticket ([[x-correlation-id]]) and waits for your backend to call it back when the job finishes.",
-                  },
-                ],
-              },
-              {
-                tag_type: "steps",
-                items: [
-                  { title: "Receive Ticket", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header." }] },
-                  { title: "Acknowledge & start work", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], save it to your database alongside the job, start the background work, and return HTTP 202 immediately." }] },
-                  { title: "Fire the Webhook", content: [{ tag_type: "p", text: "When the background job finishes, call [[dispatchWebhookAsync(correlationId, status, data)]] to resume the Assistant." }] },
-                ],
-              },
-              {
-                tag_type: "code_with_copy",
-                code: `const { getCorrelationId, dispatchWebhookAsync } = require('@sageion/node');
-
-router.post('/process-payment', async (req, res) => {
-  const correlation_id = getCorrelationId(req);
-  
-  // 1. Create pending record and save the Ticket
-  const job = await createPendingPayment(req.body);
-  await saveCorrelationId(job.id, correlation_id);
-  
-  // 2. Return 202 immediately
-  res.status(202).json({ status: 'processing' });
-
-  // 3. (Later, in a separate worker/queue):
-  // When the payment provider confirms success:
-  dispatchWebhookAsync(correlation_id, 200, { status: 'paid', payment_id: job.id });
-});`,
-                language: "javascript",
-              },
-            ],
-          },
-
-          // ==================== 3. MANUAL NODE ====================
-          {
-            label: "3. Manual Node (Human)",
-            content: [
-              {
-                tag_type: "callout",
-                type: "warning",
-                title: "Requires Correlation ID & Webhook",
-                children: [
-                  {
-                    tag_type: "p",
-                    text: "Use this when the workflow must pause and wait for a human action (e.g., a manager clicking an 'Approve' link in an email). It is technically an Async Node, but the trigger is a human, not a background job.",
-                  },
-                ],
-              },
-              {
-                tag_type: "steps",
-                items: [
-                  { title: "Receive Ticket", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header." }] },
-                  { title: "Acknowledge & send email", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], save it, and send an email to the human with an approval link. Return HTTP 202." }] },
-                  { title: "Human clicks the link", content: [{ tag_type: "p", text: "Your frontend sends a request to your backend to approve." }] },
-                  { title: "Fire the Webhook", content: [{ tag_type: "p", text: "In your approval handler, call [[dispatchWebhookAsync(correlationId, 200, data)]] to resume the Assistant." }] },
-                ],
-              },
-              {
-                tag_type: "code_with_copy",
-                code: `const { getCorrelationId, dispatchWebhookAsync } = require('@sageion/node');
-
-// 1. AI calls this to start the approval flow
-router.post('/request-approval', async (req, res) => {
-  const correlation_id = getCorrelationId(req);
-  
-  const request = await createApprovalRequest(req.body);
-  await saveCorrelationId(request.id, correlation_id);
-  
-  // Email the manager with a link containing request.id
-  await sendApprovalEmail(request.manager_email, request.id);
-  
-  res.status(202).json({ status: 'pending_approval' });
-});
-
-// 2. The Manager clicks the link in their email
-router.post('/approve-request', async (req, res) => {
-  const request = await approveRequest(req.body.request_id);
-  const correlation_id = await getCorrelationIdForRequest(request.id);
-
-  if (correlation_id) {
-    // Tell Sageion the human finally clicked!
-    dispatchWebhookAsync(correlation_id, 200, { 
-      approved: true, 
-      approved_by: req.user.id 
-    });
-  }
-
-  res.json({ success: true });
-});`,
-                language: "javascript",
-              },
-            ],
-          },
-        ],
-      },
-
-      // ============================================================
-      // STEP 3 — SECURE AGENT AUTH
-      // ============================================================
-      {
-        tag_type: "h3",
-        text: "Step 3 — Authenticated APIs & the AI Agent",
+        text: "Step 2 — Authenticated APIs & the AI Agent (One-time Boilerplate)",
         selector_uid: "v2_agent_integration",
       },
       {
@@ -407,7 +213,7 @@ router.post('/approve-request', async (req, res) => {
         children: [
           {
             tag_type: "p",
-            text: "If the endpoints you expose to Sageion require a Bearer token (JWT), the AI Agent cannot call them as a generic client. You must implement a `/auth/client-user-token` endpoint so Sageion can securely act on behalf of a specific user.",
+            text: "If the endpoints you expose to Sageion require a Bearer token (JWT), the AI Agent cannot call them as a generic client. You must implement a `/auth/client-user-token` endpoint so Sageion can securely act on behalf of a specific user. You write this endpoint once.",
           },
         ],
       },
@@ -471,7 +277,7 @@ router.post('/client-user-token', async (req, res) => {
         children: [
           {
             tag_type: "p",
-            text: "If you want users to be able to opt for secondary authentication (e.g., confirming a cancellation via email code), implement these two endpoints. Sageion will call them automatically if the AI decides an action requires a second factor.",
+            text: "If you want users to be able to opt for secondary authentication (e.g., confirming a cancellation via email code), implement these two endpoints. Sageion will call them automatically if the AI decides an action requires a second factor. You build this once, and all workflows can use it.",
           },
           {
             tag_type: "code_with_copy",
@@ -501,6 +307,241 @@ router.post('/verify-otp', async (req, res) => {
               {
                 tag_type: "p",
                 text: "JSON numbers lose leading zeros across languages. Always return [[user_id]] as a string in the verify-otp response.",
+              },
+            ],
+          },
+        ],
+      },
+
+      // ============================================================
+      // ⭐ STEP 3 — THE PITCH, STORY & NODE TYPES (MOVED DOWN)
+      // ============================================================
+      {
+        tag_type: "h3",
+        text: "Step 3 — Node Execution Types (Per-Workflow Logic)",
+        selector_uid: "v2_backend_async_correlation",
+      },
+      
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "📖 The Story: The Assistant and The Ticket",
+        children: [
+          {
+            tag_type: "p",
+            text: "To make this happen, imagine the Sageion AI Agent is a new [[Executive Assistant]]. A user gives the Assistant a task (a [[Chain]]): \"Find the customer, check their order, and refund them.\"",
+          },
+          {
+            tag_type: "p",
+            text: "To finish this, the Assistant has to run errands to your backend APIs (the [[Nodes]]). Depending on how your API is built, the Assistant will experience one of three scenarios:",
+          },
+          {
+            tag_type: "table",
+            headers: ["Scenario", "Node Type", "What Happens", "Setup Required"],
+            rows: [
+              [
+                "[[Instant]]", 
+                "Sync Node", 
+                "The Assistant asks for data, and your API replies immediately in the HTTP response. The Assistant checks it off and moves on.", 
+                "✅ None (Leave API as-is)"
+              ],
+              [
+                "[[Background]]", 
+                "Async Node", 
+                "Your API says: \"I'll put this in a queue. Here is a [[Ticket]] (Correlation ID). I'll call you when it's done.\" The Assistant moves to the next task while you work.", 
+                "⭐ Add Correlation ID & Webhook"
+              ],
+              [
+                "[[Human Pause]]", 
+                "Manual Node", 
+                "Your API says: \"I need a Manager to approve this. Here is a [[Ticket]]. I'll call you back when the human clicks Approve.\" The Assistant waits.", 
+                "⭐ Add Correlation ID & Webhook"
+              ]
+            ]
+          },
+        ],
+      },
+      
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "🏆 The Golden Rule",
+        children: [
+          {
+            tag_type: "p",
+            text: "For Async and Manual Nodes, Sageion pauses the Chain and waits. It is your backend's job to hold onto that Ticket using [[getCorrelationId(req)]], and use [[dispatchWebhookAsync()]] to call the Assistant back once the work is actually finished.",
+          },
+        ],
+      },
+
+      {
+        tag_type: "callout",
+        type: "success",
+        title: "🛠️ Example: How Demo 1 (Inventory & POs) uses all 3 Node Types",
+        children: [
+          {
+            tag_type: "p",
+            text: "Let's look at the 3 APIs used in the Inventory & Purchase Order Demo to see exactly how much (or how little) you have to change your existing code."
+          },
+          {
+            tag_type: "steps",
+            items: [
+              { 
+                title: "1. GET /inventory/:material_id (Sync Node)", 
+                content: [
+                  { tag_type: "p", text: "The AI asks for the stock. The API replies immediately with the JSON. **Code changes required: ZERO.** Sageion just reads your JSON response." }
+                ] 
+              },
+              { 
+                title: "2. POST /purchase-orders (Manual Node)", 
+                content: [
+                  { tag_type: "p", text: "The AI creates a PO. But the workflow requires a human manager to approve it via email. **Code changes required: Add `getCorrelationId(req)`, save it in your DB, and return HTTP 202.**" }
+                ] 
+              },
+              { 
+                title: "3. PATCH /purchase-orders/:po_id/approve (Async Completion)", 
+                content: [
+                  { tag_type: "p", text: "The manager clicks 'Approve' in the email. **Code changes required: When updating the DB, call `dispatchWebhookAsync(correlation_id, 200, data)` to tell Sageion the human finished the task.**" }
+                ] 
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        tag_type: "tabs",
+        items: [
+          // ==================== 1. SYNC NODE ====================
+          {
+            label: "1. Sync Node (Zero Effort)",
+            content: [
+              {
+                tag_type: "callout",
+                type: "success",
+                title: "No special SDK code required",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "Use this for APIs that compute and return the final result within a few seconds (e.g., fetching a menu, checking inventory, getting order status). Sageion reads the final result directly from the HTTP response body.",
+                  },
+                ],
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `// Your standard API - DO NOT MODIFY THIS
+router.get('/inventory/:material_id', async (req, res) => {
+  const material = await getStock(req.params.material_id);
+  res.json(material); 
+});`,
+                language: "javascript",
+              },
+            ],
+          },
+
+          // ==================== 2. ASYNC NODE ====================
+          {
+            label: "2. Async Node (Background Jobs)",
+            content: [
+              {
+                tag_type: "callout",
+                type: "info",
+                title: "Requires Correlation ID & Webhook",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "Use this when the API kicks off a background job or external process (e.g., a payment gateway, an SMS delivery). Sageion sends a Ticket ([[x-correlation-id]]) and waits for your backend to call it back when the job finishes.",
+                  },
+                ],
+              },
+              {
+                tag_type: "steps",
+                items: [
+                  { title: "Receive Ticket", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header." }] },
+                  { title: "Acknowledge & start work", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], save it to your database alongside the job, start the background work, and return HTTP 202 immediately." }] },
+                  { title: "Fire the Webhook", content: [{ tag_type: "p", text: "When the background job finishes, call [[dispatchWebhookAsync(correlationId, status, data)]] to resume the Assistant." }] },
+                ],
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `const { getCorrelationId, dispatchWebhookAsync } = require('@sageion/node');
+
+router.post('/process-payment', async (req, res) => {
+  const correlation_id = getCorrelationId(req);
+  
+  // 1. Create pending record and save the Ticket
+  const job = await createPendingPayment(req.body);
+  await saveCorrelationId(job.id, correlation_id);
+  
+  // 2. Return 202 immediately
+  res.status(202).json({ status: 'processing' });
+
+  // 3. (Later, in a separate worker/queue):
+  // When the payment provider confirms success:
+  dispatchWebhookAsync(correlation_id, 200, { status: 'paid', payment_id: job.id });
+});`,
+                language: "javascript",
+              },
+            ],
+          },
+
+          // ==================== 3. MANUAL NODE ====================
+          {
+            label: "3. Manual Node (Human-in-the-Loop)",
+            content: [
+              {
+                tag_type: "callout",
+                type: "warning",
+                title: "Requires Correlation ID & Webhook",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "Use this when the workflow must pause and wait for a human action (e.g., a manager clicking an 'Approve' link in an email). It is technically an Async Node, but the trigger is a human, not a background job.",
+                  },
+                ],
+              },
+              {
+                tag_type: "steps",
+                items: [
+                  { title: "Receive Ticket", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header." }] },
+                  { title: "Acknowledge & send email", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], save it, and send an email to the human with an approval link. Return HTTP 202." }] },
+                  { title: "Human clicks the link", content: [{ tag_type: "p", text: "Your frontend sends a request to your backend to approve." }] },
+                  { title: "Fire the Webhook", content: [{ tag_type: "p", text: "In your approval handler, call [[dispatchWebhookAsync(correlationId, 200, data)]] to resume the Assistant." }] },
+                ],
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `const { getCorrelationId, dispatchWebhookAsync } = require('@sageion/node');
+
+// 1. AI calls this to start the approval flow
+router.post('/request-approval', async (req, res) => {
+  const correlation_id = getCorrelationId(req);
+  
+  const request = await createApprovalRequest(req.body);
+  await saveCorrelationId(request.id, correlation_id);
+  
+  // Email the manager with a link containing request.id
+  await sendApprovalEmail(request.manager_email, request.id);
+  
+  res.status(202).json({ status: 'pending_approval' });
+});
+
+// 2. The Manager clicks the link in their email
+router.post('/approve-request', async (req, res) => {
+  const request = await approveRequest(req.body.request_id);
+  const correlation_id = await getCorrelationIdForRequest(request.id);
+
+  if (correlation_id) {
+    // Tell Sageion the human finally clicked!
+    dispatchWebhookAsync(correlation_id, 200, { 
+      approved: true, 
+      approved_by: req.user.id 
+    });
+  }
+
+  res.json({ success: true });
+});`,
+                language: "javascript",
               },
             ],
           },
