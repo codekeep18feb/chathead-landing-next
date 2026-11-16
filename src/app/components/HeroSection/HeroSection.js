@@ -151,7 +151,13 @@ const HeroSection = () => {
                   </button>
                   <button
                     className={`${styles.learnMoreBtn} ${styles.tryMe}`}
-                    onClick={() => setIsTryMeOpen(true)}
+                    onClick={() =>
+                      window.open(
+                        "https://demo.sageion.com/",
+                        "_blank",
+                        "noopener,noreferrer",
+                      )
+                    }
                   >
                     Try Me →
                   </button>
