@@ -131,11 +131,31 @@ SAGEION_PUBLIC_KEY_PATH="/etc/sageion/sageion-public.pem"
       },
 
       // ============================================================
-      // STEP 1 — ONBOARDING
+      // ⭐ SECTION 1 — AUTHENTICATION (One-time)
       // ============================================================
       {
         tag_type: "h3",
-        text: "Step 1 — Onboarding a user (One-time Boilerplate)",
+        text: "Authentication (One-time Boilerplate)",
+        selector_uid: "v2_backend_authentication",
+      },
+      {
+        tag_type: "callout",
+        type: "info",
+        title: "Applicable only if your workflow APIs are auth-protected",
+        children: [
+          {
+            tag_type: "p",
+            text: "The pieces in this section are what let the AI Agent call **your** APIs securely. If the endpoints you expose to Sageion are public (no JWT), you can skip the agent-token and OTP subsections — only onboarding is required. If they are protected, you must implement them, and you do so **once** per backend.",
+          },
+        ],
+      },
+
+      // ------------------------------------------------------------
+      // STEP 1 — ONBOARDING
+      // ------------------------------------------------------------
+      {
+        tag_type: "h4",
+        text: "Step 1 — Onboarding a user",
         selector_uid: "v2_backend_onboarding_api",
       },
       {
@@ -208,12 +228,12 @@ router.post('/register', [...validators], async (req, res) => {
         ],
       },
 
-      // ============================================================
-      // ⭐ STEP 2 — SECURE AGENT AUTH (MOVED UP)
-      // ============================================================
+      // ------------------------------------------------------------
+      // STEP 2 — PRIMARY AUTHENTICATION
+      // ------------------------------------------------------------
       {
-        tag_type: "h3",
-        text: "Step 2 — Authenticated APIs & the AI Agent (One-time Boilerplate)",
+        tag_type: "h4",
+        text: "Step 2 — Primary Authentication (Agent Token Endpoint)",
         selector_uid: "v2_agent_integration",
       },
       {
@@ -230,7 +250,7 @@ router.post('/register', [...validators], async (req, res) => {
 
       {
         tag_type: "accordion",
-        title: "1. Agent Token Endpoint (/auth/client-user-token)",
+        title: "Agent Token Endpoint (/auth/client-user-token)",
         children: [
           {
             tag_type: "p",
@@ -281,13 +301,25 @@ router.post('/client-user-token', async (req, res) => {
         ],
       },
 
+      // ------------------------------------------------------------
+      // STEP 2b — SECONDARY AUTHENTICATION
+      // ------------------------------------------------------------
+      {
+        tag_type: "h4",
+        text: "Secondary Authentication (OTP)",
+        selector_uid: "v2_backend_secondary_auth",
+      },
+      {
+        tag_type: "p",
+        text: "Secondary authentication is optional. Build these two endpoints once and every workflow can use them — Sageion will call them automatically if the AI decides an action requires a second factor (e.g., confirming a cancellation via email code).",
+      },
       {
         tag_type: "accordion",
-        title: "2. OTP Endpoints (/auth/send-otp, /auth/verify-otp)",
+        title: "OTP Endpoints (/auth/send-otp, /auth/verify-otp)",
         children: [
           {
             tag_type: "p",
-            text: "If you want users to be able to opt for secondary authentication (e.g., confirming a cancellation via email code), implement these two endpoints. Sageion will call them automatically if the AI decides an action requires a second factor. You build this once, and all workflows can use it.",
+            text: "If you want users to be able to opt for secondary authentication, implement these two endpoints. You build this once, and all workflows can use it.",
           },
           {
             tag_type: "code_with_copy",
@@ -324,11 +356,11 @@ router.post('/verify-otp', async (req, res) => {
       },
 
       // ============================================================
-      // ⭐ STEP 3 — THE PITCH, STORY & NODE TYPES (MOVED DOWN)
+      // ⭐ SECTION 2 — ENDPOINT UPDATES (Per-Workflow)
       // ============================================================
       {
         tag_type: "h3",
-        text: "Step 3 — Node Execution Types (Per-Workflow Logic)",
+        text: "Endpoint Updates (Per-Workflow Logic)",
         selector_uid: "v2_backend_async_correlation",
       },
 
