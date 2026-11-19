@@ -33,7 +33,8 @@ export const backendIntegration = [
               ["[[/auth/client-user-token]]", "✅ Yes", "❌ No", "Standard auth endpoint so the AI can securely act as a specific user."],
               ["OTP Endpoints", "✅ Yes", "❌ No", "Optional, but if you build `/send-otp` once, every workflow can use it."],
               ["[[getCorrelationId()]]", "❌ No", "✅ Yes", "Only add this to APIs that take time or need a human. (Async/Manual nodes)."],
-              ["[[dispatchWebhookAsync()]]", "❌ No", "✅ Yes", "Only call this when your background job finishes or a human clicks 'Approve'."]
+              ["[[dispatchWebhookAsync()]]", "❌ No", "✅ Yes", "Only call this when your background job finishes or a human clicks 'Approve'."],
+              ["[[dispatchTerminalWebhook()]]", "❌ No", "✅ Yes", "Call this when your backend can decide the workflow is over early — for example, when an inventory check finds stock is healthy and no purchase order is needed."]
             ]
           },
           {
@@ -80,7 +81,7 @@ export const backendIntegration = [
       },
       {
         tag_type: "p",
-        text: "Sageion ships an official SDK for Node.js. It is framework-agnostic and has zero external dependencies. The SDK handles the pieces you would otherwise have to write by hand: hybrid RSA/AES token encryption, the onboarding HTTP call, correlation-id extraction, and webhook dispatch.",
+        text: "Sageion ships an official SDK for Node.js. It is framework-agnostic and has zero external dependencies. The SDK handles the pieces you would otherwise have to write by hand: hybrid RSA/AES token encryption, the onboarding HTTP call, correlation-id extraction, and webhook dispatch (both normal resume and terminal bailout).",
       },
       {
         tag_type: "code_with_copy",
@@ -108,16 +109,25 @@ SAGEION_PUBLIC_KEY_PATH="/etc/sageion/sageion-public.pem"
       },
       {
         tag_type: "h4",
-        text: "The three core functions",
+        text: "The SDK at a glance",
+      },
+      {
+        tag_type: "p",
+        text: "The SDK exposes a small, stable surface — four functions in total. Two of them you call once while wiring up your backend; the other two you call per workflow when a specific API needs to pause the Chain. If you remember nothing else, remember which column each function lives in.",
       },
       {
         tag_type: "table",
-        headers: ["Function", "Called from", "Why you need it"],
+        headers: ["Function", "When to use it", "What it does"],
         rows: [
-          ["[[onboardUser()]]", "Your signup handler (One-time)", "Tells Sageion a new user exists in your system so their chat box works."],
-          ["[[encryptToken()]]", "Your [[/auth/client-user-token]] endpoint (One-time)", "Encrypts your internal JWT so the AI agent can call your backend on behalf of a specific user. Sageion rejects plaintext JWTs."],
-          ["[[getCorrelationId()]] + [[dispatchWebhookAsync()]]", "Any async or manual endpoint the AI agent calls (Per-workflow)", "Reads the correlation id, then fires the webhook that resumes the AI chain when your work finishes."],
+          ["[[onboardUser(uid, appId, metadata)]]", "Once, in your signup handler", "Tells Sageion a new user exists in your system so their chat box works. Fire-and-forget — your signup succeeds even if Sageion is unreachable."],
+          ["[[encryptToken(plaintextToken)]]", "Once, in your [[/auth/client-user-token]] endpoint", "Hybrid-encrypts your internal JWT (RSA-OAEP + AES-GCM) so the AI agent can call your backend on behalf of a specific user. Sageion rejects plaintext JWTs."],
+          ["[[getCorrelationId(req)]] + [[dispatchWebhookAsync(...)]]", "Per workflow, on any Async or Manual node", "Reads the correlation id from the incoming request, then — when your work actually finishes — fires a webhook that resumes the Chain at its next node."],
+          ["[[getCorrelationId(req)]] + [[dispatchTerminalWebhook(...)]]", "Per workflow, on an Async node that can bail out early", "Reads the same correlation id, but fires a terminal webhook: Sageion does not resume the Chain — it returns your payload and status code as the final answer. Use it when your backend already knows the workflow is done."],
         ],
+      },
+      {
+        tag_type: "p",
+        text: "That's the whole surface. Everything below is an expanded walkthrough of these four functions, grouped by the same one-time / per-workflow split.",
       },
 
       // ============================================================
@@ -217,7 +227,7 @@ router.post('/register', [...validators], async (req, res) => {
           },
         ],
       },
-      
+
       {
         tag_type: "accordion",
         title: "1. Agent Token Endpoint (/auth/client-user-token)",
@@ -321,7 +331,7 @@ router.post('/verify-otp', async (req, res) => {
         text: "Step 3 — Node Execution Types (Per-Workflow Logic)",
         selector_uid: "v2_backend_async_correlation",
       },
-      
+
       {
         tag_type: "callout",
         type: "info",
@@ -340,28 +350,34 @@ router.post('/verify-otp', async (req, res) => {
             headers: ["Scenario", "Node Type", "What Happens", "Setup Required"],
             rows: [
               [
-                "[[Instant]]", 
-                "Sync Node", 
-                "The Assistant asks for data, and your API replies immediately in the HTTP response. The Assistant checks it off and moves on.", 
+                "[[Instant]]",
+                "Sync Node",
+                "The Assistant asks for data, and your API replies immediately in the HTTP response. The Assistant checks it off and moves on.",
                 "✅ None (Leave API as-is)"
               ],
               [
-                "[[Background]]", 
-                "Async Node", 
-                "Your API says: \"I'll put this in a queue. Here is a [[Ticket]] (Correlation ID). I'll call you when it's done.\" The Assistant moves to the next task while you work.", 
+                "[[Background]]",
+                "Async Node",
+                "Your API says: \"I'll put this in a queue. Here is a [[Ticket]] (Correlation ID). I'll call you when it's done.\" The Assistant moves to the next task while you work.",
                 "⭐ Add Correlation ID & Webhook"
               ],
               [
-                "[[Human Pause]]", 
-                "Manual Node", 
-                "Your API says: \"I need a Manager to approve this. Here is a [[Ticket]]. I'll call you back when the human clicks Approve.\" The Assistant waits.", 
+                "[[Human Pause]]",
+                "Manual Node",
+                "Your API says: \"I need a Manager to approve this. Here is a [[Ticket]]. I'll call you back when the human clicks Approve.\" The Assistant waits.",
                 "⭐ Add Correlation ID & Webhook"
+              ],
+              [
+                "[[Early Exit]]",
+                "Async Node (Terminal Bailout)",
+                "Your API says: \"Here is a [[Ticket]], but I already know the answer. Don't run the rest of the plan — just return this to the user.\" The Assistant stops the chain immediately.",
+                "⭐ Add Correlation ID & [[dispatchTerminalWebhook()]]"
               ]
             ]
           },
         ],
       },
-      
+
       {
         tag_type: "callout",
         type: "warning",
@@ -369,7 +385,11 @@ router.post('/verify-otp', async (req, res) => {
         children: [
           {
             tag_type: "p",
-            text: "For Async and Manual Nodes, Sageion pauses the Chain and waits. It is your backend's job to hold onto that Ticket using [[getCorrelationId(req)]], and use [[dispatchWebhookAsync()]] to call the Assistant back once the work is actually finished.",
+            text: "For Async and Manual Nodes, Sageion pauses the Chain and waits. It is your backend's job to hold onto that Ticket using [[getCorrelationId(req)]], and call the Assistant back once the work is actually finished.",
+          },
+          {
+            tag_type: "p",
+            text: "Use [[dispatchWebhookAsync()]] when you want the Chain to continue to its next node. Use [[dispatchTerminalWebhook()]] when your backend has already decided the answer and the Chain should end here — for example, when an inventory check finds stock is healthy and no purchase order is needed.",
           },
         ],
       },
@@ -386,23 +406,25 @@ router.post('/verify-otp', async (req, res) => {
           {
             tag_type: "steps",
             items: [
-              { 
-                title: "1. GET /inventory/:material_id (Sync Node)", 
+              {
+                title: "1. GET /inventory/:material_id (Async Node with early exit)",
                 content: [
-                  { tag_type: "p", text: "The AI asks for the stock. The API replies immediately with the JSON. **Code changes required: ZERO.** Sageion just reads your JSON response." }
-                ] 
+                  { tag_type: "p", text: "The AI asks for the stock. The API returns HTTP 202 with the current stock, and Sageion pauses the Chain on the correlation id." },
+                  { tag_type: "p", text: "If the stock is **below** threshold, your backend fires [[dispatchWebhookAsync(correlation_id, 200, data)]] three seconds later, and the Chain proceeds to the Manual Node." },
+                  { tag_type: "p", text: "If the stock is **healthy**, your backend fires [[dispatchTerminalWebhook(correlation_id, 202, data)]] instead. Sageion does **not** proceed to the Manual Node — it ends the Chain and returns your payload as the final answer." },
+                ]
               },
-              { 
-                title: "2. POST /purchase-orders (Manual Node)", 
+              {
+                title: "2. POST /purchase-orders (Manual Node)",
                 content: [
                   { tag_type: "p", text: "The AI creates a PO. But the workflow requires a human manager to approve it via email. **Code changes required: Add `getCorrelationId(req)`, save it in your DB, and return HTTP 202.**" }
-                ] 
+                ]
               },
-              { 
-                title: "3. PATCH /purchase-orders/:po_id/approve (Async Completion)", 
+              {
+                title: "3. PATCH /purchase-orders/:po_id/approve (Async Completion)",
                 content: [
                   { tag_type: "p", text: "The manager clicks 'Approve' in the email. **Code changes required: When updating the DB, call `dispatchWebhookAsync(correlation_id, 200, data)` to tell Sageion the human finished the task.**" }
-                ] 
+                ]
               }
             ]
           }
@@ -542,6 +564,76 @@ router.post('/approve-request', async (req, res) => {
   res.json({ success: true });
 });`,
                 language: "javascript",
+              },
+            ],
+          },
+          // ==================== 4. TERMINAL BAILOUT ====================
+          {
+            label: "4. Terminal Bailout (Early Exit)",
+            content: [
+              {
+                tag_type: "callout",
+                type: "success",
+                title: "End the Chain early when your backend already knows the answer",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "Use this when an Async Node can decide that the rest of the workflow is unnecessary. The Node still pauses on the fresh call (Sageion expects a webhook), but your callback uses [[dispatchTerminalWebhook()]] to say: stop here, this is the final answer.",
+                  },
+                ],
+              },
+              {
+                tag_type: "steps",
+                items: [
+                  { title: "Receive Ticket", content: [{ tag_type: "p", text: "Sageion sends an [[x-correlation-id]] header, exactly like a normal Async Node." }] },
+                  { title: "Acknowledge & decide", content: [{ tag_type: "p", text: "Call [[getCorrelationId(req)]], return HTTP 202 immediately, and then inspect the data your backend fetched to decide whether the workflow should continue." }] },
+                  { title: "Fire the terminal webhook", content: [{ tag_type: "p", text: "If the answer is already known, call [[dispatchTerminalWebhook(correlationId, statusCode, data)]]. Sageion will not descend into any child node — it returns your payload and status code as the final answer." }] },
+                ],
+              },
+              {
+                tag_type: "code_with_copy",
+                code: `const { getCorrelationId, dispatchWebhookAsync, dispatchTerminalWebhook } = require('@sageion/node');
+
+// 1. AI calls this to check inventory
+router.get('/inventory/:material_id', async (req, res) => {
+  const correlation_id = getCorrelationId(req);
+  const material = await getStock(req.params.material_id);
+  const is_low = material.current_qty < material.low_threshold;
+
+  // Return 202 immediately so Sageion pauses
+  res.status(202).json(material);
+
+  // 2. Three seconds later, decide whether to continue or bail out
+  setTimeout(() => {
+    if (!is_low) {
+      // Stock is healthy: end the Chain here with a terminal webhook
+      dispatchTerminalWebhook(correlation_id, 202, {
+        message: 'Inventory is healthy. No action required.',
+        material_id: material.material_id,
+        current_qty: material.current_qty,
+      });
+      return;
+    }
+
+    // Stock is low: normal resume, continue to the Manual Node
+    dispatchWebhookAsync(correlation_id, 200, {
+      material_id: material.material_id,
+      current_qty: material.current_qty,
+    });
+  }, 3000);
+});`,
+                language: "javascript",
+              },
+              {
+                tag_type: "callout",
+                type: "info",
+                title: "Why a separate function?",
+                children: [
+                  {
+                    tag_type: "p",
+                    text: "[[dispatchTerminalWebhook()]] is the supported way to end a Chain early from an Async Node. Pass it a status code and the payload you want returned as the final answer — the SDK handles the callback protocol. It throws if the status code is invalid, so misconfiguration fails in your process instead of silently on the server.",
+                  },
+                ],
               },
             ],
           },
