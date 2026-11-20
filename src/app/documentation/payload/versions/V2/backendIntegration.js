@@ -33,13 +33,42 @@ export const backendIntegration = [
               ["[[/auth/client-user-token]]", "✅ Yes", "❌ No", "Standard auth endpoint so the AI can securely act as a specific user."],
               ["OTP Endpoints", "✅ Yes", "❌ No", "Optional, but if you build `/send-otp` once, every workflow can use it."],
               ["[[getCorrelationId()]]", "❌ No", "✅ Yes", "Only add this to APIs that take time or need a human. (Async/Manual nodes)."],
-              ["[[dispatchWebhookAsync()]]", "❌ No", "✅ Yes", "Only call this when your background job finishes or a human clicks 'Approve'."],
-              ["[[dispatchTerminalWebhook()]]", "❌ No", "✅ Yes", "Call this when your backend can decide the workflow is over early — for example, when an inventory check finds stock is healthy and no purchase order is needed."]
+              ["[[dispatchWebhookAsync()]]", "❌ No", "✅ Yes", "Tells Sageion the async task is finished using the provided `correlation_id`, so the Chain can resume and move to the next step."],
+              ["[[dispatchTerminalWebhook()]]", "❌ No", "✅ Yes", "Tells Sageion to stop the Chain immediately. Use this to abort early and return an override payload/status code as the final answer, skipping any remaining steps."]
             ]
           },
           {
             tag_type: "p",
             text: "If an API is instant (e.g., fetching a menu, reading stock), **you do absolutely nothing to it.** Sageion just reads the standard JSON response."
+          }
+        ],
+      },
+
+      // ============================================================
+      // ⭐ NEW: LOCAL TESTING SETUP (NGROK)
+      // ============================================================
+      {
+        tag_type: "callout",
+        type: "warning",
+        title: "🌐 Local Testing Setup: Exposing your APIs",
+        children: [
+          {
+            tag_type: "p",
+            text: "If you are developing on your local machine and want to test Async or Manual nodes, **Sageion requires a publicly accessible domain** to send the webhook back to your backend. You cannot use `localhost` or a local LAN IP (like `192.168.x.x` or `122.160.x.x`) because Sageion's cloud cannot reach them.",
+          },
+          {
+            tag_type: "p",
+            text: "Use a tunneling tool like **ngrok** to create a secure public tunnel to your local server:"
+          },
+          {
+            tag_type: "code_with_copy",
+            code: `# Example: Exposing a backend running on port 3001
+ngrok http 3001 --url https://your-assigned-domain.ngrok-free.dev`,
+            language: "bash",
+          },
+          {
+            tag_type: "p",
+            text: "Once the tunnel is running, update the Base URL in your Sageion Admin UI to point to the `https://...ngrok-free.dev` URL. Now, when Sageion sends a webhook for a paused chain, ngrok will forward it directly to your local machine."
           }
         ],
       },
